@@ -11,8 +11,7 @@ import SvgWrapper from 'Screens/svgwrapper';
 import Animated, {useSharedValue, useDerivedValue, useAnimatedStyle, useAnimatedProps, withTiming, withSpring} from 'react-native-reanimated';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
-export default ProfileHeader = ({scene, route, navigation}) => {
-	const {options} = scene.descriptor;
+export default ProfileHeader = ({options, route, navigation}) => {
 
 	const [isMeatballOpen, setMeatballOpen] = React.useState(false);
 
