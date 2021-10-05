@@ -26,20 +26,11 @@ const MainStack = createStackNavigator();
 const MainTabNav = createBottomTabNavigator();
 
 export default Route = () => {
-	const [token, setToken] = useState();
 
 	return (
-		<AuthContext.Provider
-			value={{
-				token: token,
-				getToken: () => token,
-				setToken: input => {
-					setToken(input);
-				},
-			}}>
 			<SafeAreaView style={{flex: 1}}>
 				<NavigationContainer>
-					<MainStack.Navigator initialRouteName="Login" headerMode="screen" screenOptions={{header: () => <></>}}>
+					<MainStack.Navigator initialRouteName="Login" screenOptions={{header: () => <></>,headerMode:'screen'}}>
 						<MainStack.Screen name="MainScreen" component={TabRoute} />
 						<MainStack.Screen name="Login" component={Login} />
 						<MainStack.Screen name="AssignRoute" component={AssignRoute} />
@@ -54,7 +45,6 @@ export default Route = () => {
 					</MainStack.Navigator>
 				</NavigationContainer>
 			</SafeAreaView>
-		</AuthContext.Provider>
 	);
 };
 
