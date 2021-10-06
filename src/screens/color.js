@@ -9,6 +9,7 @@ export const GRAY_PLACEHOLDER='#999999';
 export const GRAY_BRIGHT = '#DBDBDB';
 export const GRAY_BRIGHTEST = '#EDEDED';
 export const BLACK = '#000';
+export const TEXTBASECOLOR = '#000';
 export const SLIGHT_BLACK='#191919';
 export const WHITE = '#FFF';
 export const RED = '#FF3120';

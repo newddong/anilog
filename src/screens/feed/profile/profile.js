@@ -1,9 +1,8 @@
 import React, {useState, useRef} from 'react';
 import {Text, View, Image, ScrollView, TouchableWithoutFeedback, SafeAreaView, StyleSheet} from 'react-native';
 
-import {layout, text, button, float_btn} from './style_profile';
 import {DownBracketBlack, DownBracket, BtnWriteFeed} from 'Asset/image';
-import {BracketDown,FloatBtnWrite} from 'Asset/image_v2';
+import {BracketDown, FloatBtnWrite} from 'Asset/image_v2';
 
 import BelongedPetList from './subcomponent/belongedPetList';
 import ProfileInfo from './subcomponent/profileInfo';
@@ -17,8 +16,9 @@ import FeedList from './subcomponent/feedlist';
 import VolunteerList from './subcomponent/volunteerList';
 import profiledata from './profiledata.json';
 import {getUserProfile, getUserPetList} from 'Root/api/userapi';
+import {MAINCOLOR, WHITE} from 'Root/screens/color';
 import {txt} from 'Screens/textstyle';
-import { MAINCOLOR, WHITE } from 'Root/screens/color';
+import {layout, text, button, float_btn} from './style_profile';
 
 export default Profile = ({navigation, route}) => {
 	const [data, setData] = React.useState({user: {}, postList: [], isFollowed: false});
@@ -30,7 +30,7 @@ export default Profile = ({navigation, route}) => {
 		navigation.setOptions({
 			title: route.params ? route.params.user_nickname : '존재하지 않는 유저입니다.',
 		});
-		setData({...data,isFollowed:true});
+		setData({...data, isFollowed: false});
 	}, []);
 
 	React.useEffect(() => {
@@ -51,7 +51,7 @@ export default Profile = ({navigation, route}) => {
 	const [tab, setTab] = useState(FEED);
 
 	const [petList, setPetList] = React.useState([]);
-	
+
 	const test = () => {
 		// console.log(route.params);
 		console.log(route.name);
@@ -116,6 +116,9 @@ export default Profile = ({navigation, route}) => {
 		if (tabVal.value !== 0) tabVal.value = withTiming(0, {duration: 300});
 	};
 
+	const followUser = () => {
+		alert(route.params.user_nickname + '을 팔로우합니다.');
+	};
 	//animation setting
 	const followBtnAnimation = useSharedValue(0);
 	const followBtnAniStyle = useAnimatedStyle(() => ({
@@ -158,42 +161,51 @@ export default Profile = ({navigation, route}) => {
 				<View style={{backgroundColor: 'red', width: 80 * DP, height: 80 * DP, position: 'absolute', top: 0, left: 30}} />
 			</TouchableWithoutFeedback>
 			<View style={[layout.profileButtonContainer]}>
-				<Dropdown
-					style={[button.followButton, !data.isFollowed?button.shadow:{}, !data.isFollowed && {backgroundColor: WHITE}]}
-					dropdownContainerStyle={[
-						button.followButtonDropDown,
-						!data.isFollowed && {backgroundColor: '#fff'},
-						// !data.isFollowed?button.shadow:{},
-						// !data.isFollowed?{elevation:3}:{},
-						followBtnAniStyle,
-					]}
-					data={['즐겨찾기 추가', '소식받기', '차단', data.isFollowed ? '팔로우 취소' : '팔로우']}
-					dropItemStyle={{marginVertical: 3 * DP, paddingHorizontal: 30 * DP}}
-					dropItemTxtStyle={[txt.noto30,{lineHeight:48*DP}, data.isFollowed ? txt.white : {color: MAINCOLOR}]}
-					listBackgroundStyle={[{height: 240 * DP, marginTop: 60 * DP}, followBtnItemListStyle]}
-					listContainerStyle={{height: 240 * DP, justifyContent: 'space-between', alignItems: 'center'}}
-					onSelect={e => {
-						alert(e);
-					}}
-					onSelectNotClose={true}
-					onOpen={() => {
-						followBtnAnimation.value = withSpring(1, {duration: 300});
-					}}
-					onClose={() => {
-						followBtnAnimation.value = withTiming(0, {duration: 300});
-					}}
-					animation
-					component={
-						<>
-							<Text style={[txt.noto24,{lineHeight:36*DP}, data.isFollowed ? txt.white : {color: MAINCOLOR}]}>{data.isFollowed ? '팔로우 중' : '팔로우'}</Text>
-							<SvgWrapper
-								style={[button.followButtonBracketsize, followBtnBracketStyle]}
-								svg={<BracketDown fill={data.isFollowed ? WHITE : MAINCOLOR} />}
-							/>
-						</>
-					}
-				/>
-				<ProfileBtn onPress={petBtnClick} rotateAni={rotateAni} />
+				{!data.isFollowed ? (
+					<TouchableWithoutFeedback onPress={followUser}>
+						<View style={[button.followButton_not_followed, button.shadow]}>
+							<Text style={[txt.noto24, {color: MAINCOLOR, lineHeight: 36 * DP}]}>팔로우</Text>
+						</View>
+					</TouchableWithoutFeedback>
+				) : (
+					<Dropdown
+						style={button.followButton}
+						dropdownContainerStyle={[
+							button.followButtonDropDown,
+							// !data.isFollowed?button.shadow:{},
+							// !data.isFollowed?{elevation:3}:{},
+							followBtnAniStyle,
+						]}
+						data={['즐겨찾기 추가', '소식받기', '차단', '팔로우 취소']}
+						dropItemStyle={{marginVertical: 3 * DP, paddingHorizontal: 30 * DP}}
+						dropItemTxtStyle={[txt.noto30, {lineHeight: 48 * DP}, txt.white]}
+						listBackgroundStyle={[{height: 240 * DP, marginTop: 60 * DP}, followBtnItemListStyle]}
+						listContainerStyle={{height: 240 * DP, justifyContent: 'space-between', alignItems: 'center'}}
+						onSelect={e => {
+							alert(e);
+						}}
+						onSelectNotClose={true}
+						onOpen={() => {
+							followBtnAnimation.value = withSpring(1, {duration: 300});
+						}}
+						onClose={() => {
+							followBtnAnimation.value = withTiming(0, {duration: 300});
+						}}
+						animation
+						component={
+							<>
+								<Text style={[txt.noto24, {lineHeight: 36 * DP}, txt.white]}>{'팔로우 중'}</Text>
+								<SvgWrapper style={[button.followButtonBracketsize, followBtnBracketStyle]} svg={<BracketDown fill={WHITE} />} />
+							</>
+						}
+					/>
+				)}
+				<TouchableWithoutFeedback onPress={petBtnClick}>
+					<View style={[button.profileButton, button.shadow]}>
+						<Text style={[txt.noto24,{color: MAINCOLOR, lineHeight: 36 * DP}]}>반려 동물</Text>
+						<SvgWrapper style={[button.profileButtonBracketsize, rotateAni]} svg={<BracketDown fill={MAINCOLOR} />} />
+					</View>
+				</TouchableWithoutFeedback>
 			</View>
 
 			<Animated.View style={[animalAni]}>
@@ -233,13 +245,3 @@ const TabMenu = props => {
 	);
 };
 
-const ProfileBtn = props => {
-	return (
-		<TouchableWithoutFeedback onPress={props.onPress}>
-			<View style={[button.profileButton, button.shadow]}>
-				<Text style={text.regular24cjk}>반려 동물</Text>
-				<SvgWrapper style={[button.profileButtonBracketsize, props.rotateAni]} svg={<DownBracketBlack />} />
-			</View>
-		</TouchableWithoutFeedback>
-	);
-};

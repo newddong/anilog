@@ -13,6 +13,9 @@ export const button = StyleSheet.create({
 		justifyContent: 'center',
 		marginTop:40*DP,
 		marginRight:70*DP,
+		borderWidth:4*DP,
+		borderColor:MAINCOLOR,
+		
 		
 	},
 	profileButtonBracketsize: {
@@ -25,6 +28,19 @@ export const button = StyleSheet.create({
 		height: 60 * DP,
 		borderRadius: 30 * DP,
 		backgroundColor: MAINCOLOR,
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginTop:40*DP,
+		marginRight:70*DP,
+	},
+	followButton_not_followed:{
+		width: 280 * DP,
+		height: 60 * DP,
+		borderRadius: 30 * DP,
+		borderWidth:4*DP,
+		borderColor:MAINCOLOR,
+		backgroundColor: WHITE,
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -56,7 +72,7 @@ export const button = StyleSheet.create({
 			width: 0,
 			height: 3,
 		},
-		elevation: 4,
+		elevation: 3,
 		
 	}
 });

@@ -55,15 +55,6 @@ export default CommentList = props => {
 		setEditComment({...editComment, images: [props.route.params.localSelectedImages]});
 	}, [props.route.params]);
 
-	const addPhoto = () => {
-		let options = {
-			mediaType: 'mixed',
-			saveToPhotos: true,
-		};
-		//  launchImageLibrary(options, (response) => {
-		//  });
-		// launchCamera(options, response => {});
-	};
 
 	const writeComment = () => {
 		if (editComment.content.length === 0) {
@@ -281,7 +272,6 @@ export const layout = StyleSheet.create({
 	cntr_postContent: {
 		height: 330 * DP,
 		width: '100%',
-		paddingHorizontal: 48 * DP,
 		paddingTop: 40 * DP,
 		backgroundColor: '#fff',
 		marginBottom: 2 * DP,

@@ -42,10 +42,10 @@ export default FeedList = ({navigation, route}) => {
 			const unsubscribe = navigation.addListener('focus', () => {
 				// console.log('focus');
 				// console.log(feedData.feedHomeData);
-				setData({});
-				setImmediate(() => {
+				// setData({});
+				// setImmediate(() => {
 					setData(feedData.feedHomeData);
-				});
+				// });
 			});
 			return unsubscribe;
 		}

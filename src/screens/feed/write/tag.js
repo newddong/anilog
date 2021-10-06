@@ -93,7 +93,7 @@ export default Tag = ({pos, user, content, onDelete, onEnd, viewmode, background
 	});
 
 	const moveToTaggedProfile = () => {
-		tagnav.push('Profile', {user_id: user.nickname, user: user._id});
+		tagnav.push('Profile', {user_nickname: user.nickname, user_id: user._id});
 	};
 
 	// const style = [tag.background, {top: position.y, left: position.x, opacity: position.opacity}, border()];

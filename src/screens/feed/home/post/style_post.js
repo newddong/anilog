@@ -143,7 +143,9 @@ export const userinfo = StyleSheet.create({
 	meatballListBackGround: {
 		// height:300*DP,
 		// backgroundColor:BOXCOLOR&&'red'
-		backgroundColor: BOXCOLOR && 'red',
+		// left:70*DP,
+		// position:'absolute',
+		backgroundColor:  BOXCOLOR && 'red',
 	},
 	meatballListContainer: {
 		// height:300*DP,

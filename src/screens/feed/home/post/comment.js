@@ -13,7 +13,7 @@ export default React.memo(
 		const nav = useNavigation();
 		const svg_size = {width: '100%', height: '100%'};
 		const moveToProfile = () => {
-			nav.push('Profile', {user_id: data.user.nickname, user: data.user});
+			nav.push('Profile', {user_nickname: data.user.nickname, user_id: data.user});
 		};
 		const isMe = loginInfo.user_id === data.user._id;
 		const [like, setLike] = React.useState({isLike: liked, count: data.like_count});

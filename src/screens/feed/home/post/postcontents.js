@@ -3,13 +3,21 @@ import {Text, View, Image, TouchableWithoutFeedback} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import Swiper from 'react-native-swiper';
 import {DropdownMeatball, BracketDown} from 'Asset/image_v2';
-import {GRAY_MEATBALL,GRAY, MAINCOLOR} from 'Screens/color';
+import {GRAY_MEATBALL, GRAY, MAINCOLOR} from 'Screens/color';
 import DP from 'Screens/dp';
 import SvgWrapper, {SvgWrap} from 'Screens/svgwrapper';
 import {lo, userinfo, btn} from './style_post';
 import {txt} from 'Screens/textstyle';
 import PostComment from './postcomment';
-import Animated, {useSharedValue, useDerivedValue, useAnimatedStyle, useAnimatedProps, withTiming, withSpring} from 'react-native-reanimated';
+import Animated, {
+	useSharedValue,
+	useDerivedValue,
+	useAnimatedStyle,
+	useAnimatedProps,
+	withTiming,
+	withSpring,
+	withDelay,
+} from 'react-native-reanimated';
 import FastImage from 'react-native-fast-image';
 import {loginInfo} from 'Screens/login/login';
 import Dropdown from 'Screens/common/dropdown';
@@ -31,11 +39,18 @@ export default PostContents = props => {
 	};
 
 	const meatBallAnimation = useSharedValue(0);
-	const meatBallDropAni = useAnimatedStyle(() => ({
-		height: meatBallAnimation.value * (isMe ? 360 : 160) * DP,
-	}));
+	const meatBallListAnimation = useSharedValue(0);
+
 	const meatBallDropListAni = useAnimatedStyle(() => ({
 		transform: [{scaleY: meatBallAnimation.value}],
+		// height: meatBallAnimation.value * (isMe ? 300 : 110) * DP,
+	}));
+
+	const meatBallDropAni = useAnimatedStyle(() => ({
+		height: meatBallAnimation.value * (isMe ? 360 : 160) * DP,
+		// transform: [{scaleY: meatBallAnimation.value},{translateY:180*DP}],
+		// height: (isMe ? 360 : 160) * DP,
+		// transform: [{scaleY: meatBallAnimation.value},{translateY:(1-meatBallAnimation.value)*(-400)*DP}],
 	}));
 
 	const selectMeatBall = e => {
@@ -77,15 +92,21 @@ export default PostContents = props => {
 				<View style={userinfo.temp_shelter}>
 					<Text style={[txt.noto24, {lineHeight: 38 * DP, color: MAINCOLOR}]}>임보</Text>
 				</View>
-				
+
 				<Dropdown
 					style={userinfo.meatBallMenu}
-					dropdownContainerStyle={[meatBallDropAni, userinfo.shadow, userinfo.meatballDropdown, {backgroundColor: '#FFF'}]}
+					dropdownContainerStyle={[
+						meatBallDropAni,
+						{height: (isMe ? 360 : 160) * DP},
+						userinfo.shadow,
+						userinfo.meatballDropdown,
+						{backgroundColor: '#FFF'},
+					]}
 					data={isMe ? ['링크복사', '공유하기', '댓글 기능 해제', '수정', '삭제'] : ['링크복사', '공유하기']}
 					renderItem={({item}) => (
-						<View style={{marginVertical: 3 * DP, paddingHorizontal: 0 * DP}}>
-							<Text style={[txt.noto30, {lineHeight: 48 * DP}, item === '삭제' && txt.red]}>{item}</Text>
-						</View>
+						<Animated.View style={{marginVertical: 3 * DP, paddingHorizontal: 0 * DP}}>
+							<Animated.Text style={[txt.noto30, {lineHeight: 48 * DP}, item === '삭제' && txt.red]}>{item}</Animated.Text>
+						</Animated.View>
 					)}
 					listBackgroundStyle={[{height: isMe ? 300 * DP : 110 * DP}, userinfo.meatballListBackGround, meatBallDropListAni]}
 					listContainerStyle={[{height: isMe ? 300 * DP : 110 * DP}, userinfo.meatballListContainer]}
@@ -94,27 +115,31 @@ export default PostContents = props => {
 					onOpen={() => {
 						setMeatballOpen(true);
 						meatBallAnimation.value = withTiming(1, {duration: 300});
+						// meatBallListAnimation.value = withTiming(1, {duration: 200});
 					}}
 					onClose={() => {
 						setMeatballOpen(false);
 						meatBallAnimation.value = withTiming(0, {duration: 300});
+						// meatBallListAnimation.value = withTiming(0, {duration: 200});
 					}}
 					animation
-					component={<SvgWrapper style={{width:30*DP,height:80*DP}} svg={<DropdownMeatball fill={isMeatballOpen ? MAINCOLOR : GRAY_MEATBALL} />} />}
+					component={
+						<SvgWrapper style={{width: 30 * DP, height: 80 * DP}} svg={<DropdownMeatball fill={isMeatballOpen ? MAINCOLOR : GRAY_MEATBALL} />} />
+					}
 				/>
 			</View>
 
 			<View style={[lo.cntr_txt, showAllContents ? {} : {height: 60 * DP}]}>
-				<Text style={[txt.noto28,{lineHeight:43*DP}, txt.gray]}>{props.data.content}</Text>
+				<Text style={[txt.noto28, {lineHeight: 43 * DP}, txt.gray]}>{props.data.content}</Text>
 				{/* <TxtContainHash data={props.data.content}/> */}
 			</View>
 			<View style={lo.cntr_txt_footer}>
-				<Text style={[txt.noto24,{lineHeight:36*DP}, txt.gray]}>{props.data.time}</Text>
+				<Text style={[txt.noto24, {lineHeight: 36 * DP}, txt.gray]}>{props.data.time}</Text>
 
 				{!showAllContents && (
 					<TouchableWithoutFeedback onPress={showWholeContents}>
 						<View style={btn.btn_moreContent}>
-							<Text style={[txt.noto22, txt.gray, {marginRight: 14 * DP,lineHeight:36*DP}]}>더보기</Text>
+							<Text style={[txt.noto22, txt.gray, {marginRight: 14 * DP, lineHeight: 36 * DP}]}>더보기</Text>
 							<SvgWrap style={{height: 12 * DP, width: 20 * DP}} svg={<BracketDown fill={GRAY} />} />
 						</View>
 					</TouchableWithoutFeedback>
