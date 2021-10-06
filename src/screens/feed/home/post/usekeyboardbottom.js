@@ -1,19 +1,18 @@
 import React from 'react';
-import {Platform,Keyboard, StatusBar} from 'react-native';
+import {Platform, Keyboard, StatusBar} from 'react-native';
 import DP, {isNotch} from 'Screens/dp';
 
 export function useKeyboardBottom() {
-   
-   const [keyboardY, setKeyboardY] = React.useState(0);
+	const [keyboardY, setKeyboardY] = React.useState(0);
 
-   const KeybordBorderLine = (() => {
+	const KeybordBorderLine = (() => {
 		if (Platform.OS === 'ios') {
 			return isNotch ? -34 : 0;
 		} else if (Platform.OS === 'android') {
 			return isNotch ? StatusBar.currentHeight : 0;
 		}
 	})();
-	React.useEffect(()=>{
+	React.useEffect(() => {
 		const didShow = Keyboard.addListener('keyboardDidShow', e => {
 			setKeyboardY(e.endCoordinates.height + KeybordBorderLine);
 		});
@@ -28,17 +27,19 @@ export function useKeyboardBottom() {
 		});
 
 		return () => {
-			// didShow.remove();
-			// didHide.remove();
-			// willShow.remove();
-			// willHide.remove();
-			// Keyboard.removeAllListeners('keyboardDidShow');
-			// Keyboard.removeAllListeners('keyboardDidHide');
-			// Keyboard.removeAllListeners('keyboardWillShow');
-			// Keyboard.removeAllListeners('keyboardWillHide');
-			Keyboard.removeAllListeners();
+			if (Keyboard) {
+				didShow.remove();
+				didHide.remove();
+				willShow.remove();
+				willHide.remove();
+				// Keyboard.removeAllListeners('keyboardDidShow');
+				// Keyboard.removeAllListeners('keyboardDidHide');
+				// Keyboard.removeAllListeners('keyboardWillShow');
+				// Keyboard.removeAllListeners('keyboardWillHide');
+				// Keyboard.removeAllListeners();
+			}
 		};
-	},[])
+	}, []);
 
-   return Platform.OS==='ios'?keyboardY:0;
+	return Platform.OS === 'ios' ? keyboardY : 0;
 }
