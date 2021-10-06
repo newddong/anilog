@@ -61,7 +61,7 @@ const TabRoute = () => {
 					setTab(visible);
 				},
 			}}>
-			<MainTabNav.Navigator tabBar={props => <MainTabBar {...props} />}>
+			<MainTabNav.Navigator screenOptions={{header:props=>false}} tabBar={props => <MainTabBar {...props} />}>
 				<MainTabNav.Screen
 					name="feed"
 					component={FeedRoute}
