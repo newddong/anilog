@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import Route from './route';
+import Test from './test';
 // import SplashScreen from 'react-native-splash-screen'; 
 
 export default App = () => {
@@ -15,7 +16,7 @@ export default App = () => {
 	//  });	
 
 	return (
-		<Route/>
+		<Test/>
 	);
 };
 
