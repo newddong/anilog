@@ -4,7 +4,7 @@ import {APRI10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
-export const UserDescriptionLabel = props => {
+export default UserDescriptionLabel = props => {
 	console.log("PROPS"+JSON.stringify(props))
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>

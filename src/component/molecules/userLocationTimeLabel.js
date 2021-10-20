@@ -4,7 +4,7 @@ import { GRAY20 } from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
 import { styles } from '../atom/image/imageStyle';
-export const UserLocationTimeLabel = props => {
+export default UserLocationTimeLabel = props => {
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<View style={{paddingBottom:8*DP}}>

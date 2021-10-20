@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
-export const UserPetLabel = props => {
+export default UserPetLabel = props => {
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<View style={{ paddingVertical: 5 * DP}}>

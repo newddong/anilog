@@ -4,7 +4,7 @@ import { APRI10 } from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
-export const UserLocationLabel = props => {
+export default UserLocationLabel = props => {
 	return (
 			<View style={{flexDirection: 'row', alignItems: 'center'}}>
 				<View style={{paddingTop: 4 * DP,}}>
