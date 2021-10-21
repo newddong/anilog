@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View,} from 'react-native';
-import SelectedMedia410 from 'Root/component/molecules/selectedMedia410';
-import SelectedMedia190 from 'Root/component/molecules/selectedMedia190';
-import LocalMedia from 'Root/component/molecules/localMedia';
+import SelectedMedia410 from 'Root/component/molecules/SelectedMedia410';
+import SelectedMedia190 from 'Root/component/molecules/SelectedMedia190';
+import LocalMedia from 'Root/component/molecules/LocalMedia';
 import { ScrollView } from 'react-native';
-import CameraLink from 'Root/component/molecules/cameraLink';
+import CameraLink from 'Root/component/molecules/CameraLink';
 export default SelectedMediaTest = () => {
 
     const mediaInfo = {

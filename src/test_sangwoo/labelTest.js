@@ -1,15 +1,15 @@
 import React from 'react';
 import {ScrollView, Text} from 'react-native';
-import PetLabel from 'Root/component/molecules/petLabel';
-import UserDescriptionLabel from 'Root/component/molecules/userDescriptionLabel';
-import UserLocationLabel from 'Root/component/molecules/userLocationLabel';
-import UserLocationTimeLabel from 'Root/component/molecules/userLocationTimeLabel';
-import UserPetLabel from 'Root/component/molecules/userPetLabel';
-import UserTimeLabel from 'Root/component/molecules/userTimeLabel';
-import HashLabel from 'Root/component/molecules/hashLabel';
+import PetLabel from 'Root/component/molecules/PetLabel';
+import UserDescriptionLabel from 'Root/component/molecules/UserDescriptionLabel';
+import UserLocationLabel from 'Root/component/molecules/UserLocationLabel';
+import UserLocationTimeLabel from 'Root/component/molecules/UserLocationTimeLabel';
+import UserPetLabel from 'Root/component/molecules/UserPetLabel';
+import UserTimeLabel from 'Root/component/molecules/UserTimeLabel';
+import HashLabel from 'Root/component/molecules/HashLabel';
 import {APRI10, BLACK, GRAY10, GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
-import ShelterLabel from 'Root/component/molecules/shelterLabel';
+import ShelterLabel from 'Root/component/molecules/ShelterLabel';
 const LabelTest = () => {
 	//Test용 데이터
 	const data = {

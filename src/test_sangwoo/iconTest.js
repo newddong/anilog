@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, TextInput, Button, TouchableOpacity} from 'react-native';
+import {SafeAreaView, ScrollView,Text, View,} from 'react-native';
 import {
 	Heart30Border,
 	Heart30Filled,

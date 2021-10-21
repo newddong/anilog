@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import FeedThumnail from 'Root/component/molecules/feedThumnail';
+import FeedThumnail from 'Root/component/molecules/FeedThumnail';
 export default FeedThumbnailTest = props => {
 	const rand1 = Math.floor(Math.random() * 100);
 	const rand2 = Math.floor(Math.random() * 100);

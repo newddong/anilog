@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import ProfileImageSelect from 'Root/component/molecules/profileImageSelect';
+import ProfileImageSelect from 'Root/component/molecules/ProfileImageSelect';
 import {ScrollView} from 'react-native';
-import ProfileImageLarge160 from 'Root/component/molecules/profileImageLarge160';
-import ProfileImageLarge194 from 'Root/component/molecules/profileImageLarge194';
-import ProfileImageMedium120 from 'Root/component/molecules/profileImageMedium120';
-import ProfileImageMedium140 from 'Root/component/molecules/profileImageMedium140';
-import ProfileImageSmall from 'Root/component/molecules/profileImageSmall';
-import PetImageLabel from 'Root/component/molecules/petImageLabel';
+import ProfileImageLarge160 from 'Root/component/molecules/ProfileImageLarge160';
+import ProfileImageLarge194 from 'Root/component/molecules/ProfileImageLarge194';
+import ProfileImageMedium120 from 'Root/component/molecules/ProfileImageMedium120';
+import ProfileImageMedium140 from 'Root/component/molecules/ProfileImageMedium140';
+import ProfileImageSmall from 'Root/component/molecules/ProfileImageSmall';
+import PetImageLabel from 'Root/component/molecules/PetImageLabel';
 export default ProfileImageSelectTest = props => {
 	return (
 		<ScrollView>
