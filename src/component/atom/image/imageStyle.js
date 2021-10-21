@@ -55,6 +55,10 @@ export const styles = StyleSheet.create({
         width:186*DP,
         height:186*DP,
     },
+    img_square_178:{
+        width:178*DP,
+        height:178*DP,
+    },
     img_rect_654x542:{
         width:654*DP,
         height:542*DP,

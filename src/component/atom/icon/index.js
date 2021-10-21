@@ -95,6 +95,10 @@ import myTabFilled from './myTabFilled'
 import paw94x90 from './paw94x90'
 import cameraLink from './cameraLink'
 import hashLabel from './hashLabel'
+import tagView from './tagView'
+import tagEdit from './tagEdit'
+import xMark from './xMark'
+import addPet180 from './addPet180'
 
 
 import DP from 'Screens/dp';
@@ -243,3 +247,7 @@ export const HashLabel94 = makeSvg(hashLabel, size94)
 export const HashLabel76 = makeSvg(hashLabel, size76)
 export const HashLabel70 = makeSvg(hashLabel, size70)
 export const HashLabel60 = makeSvg(hashLabel, size60)
+export const Tag_View = makeSvg(tagView, {width:110*DP, height:52*DP})
+export const Tag_Edit = makeSvg(tagEdit, {width:170*DP, height:52*DP})
+export const X_Mark = makeSvg(xMark, size48)
+export const Add_Pet = makeSvg(addPet180, {width:180*DP, height:180*DP})

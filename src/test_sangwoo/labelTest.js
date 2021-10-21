@@ -20,7 +20,6 @@ const LabelTest = () => {
 		owner : 'OwnerName',
 		text_intro : 'Text/Intro',
 	};
-	
 	const _userTimeLabel_dummy = {
 		user_nickname: 'user_nickname',
 		user_id: 'user_id',

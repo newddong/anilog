@@ -5,6 +5,15 @@ import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
 export default UserLocationTimeLabel = props => {
+	// Data 필드
+	// user_id - 유저의 내부 DB ID, 프로필 검색에 사용, 표시되지 않음
+	// user_nickname - 유저의 닉네임
+	// user_image - 유저의 프로필 사진 uri
+	// location - 라벨의 위치(지역)정보를 표시
+	// time - 라벨의 시간 정보를 표시 
+	// UserPetLabel 기능
+	// - 라벨을 클릭하였을 때 onClickLabel 이벤트 발생, 매개변수로 user_id를 넘김
+
 	const handleLabelClick = e => {
 		props.onLabelClick(props.data.user_id);
 	};

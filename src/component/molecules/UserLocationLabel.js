@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
-import {styles} from '../atom/image/imageStyle';
+import {styles} from 'Root/component/atom/image/imageStyle';
 export default UserLocationLabel = props => {
 	const handleLabelClick = e => {
 		props.onLabelClick(props.data.user_id);
