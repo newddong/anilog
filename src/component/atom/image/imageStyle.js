@@ -1,6 +1,14 @@
 import { StyleSheet } from "react-native"
 import DP from 'Screens/dp';
 
+
+export const square_style = size => {
+    return {
+        width:size*DP,
+        height:size*DP,
+    }
+}
+
 export const styles = StyleSheet.create({
     img_square_round_606:{
         width:606*DP,
@@ -42,7 +50,6 @@ export const styles = StyleSheet.create({
     img_square_246:{
         width:246*DP,
         height:246*DP,
-        borderRadius:30*DP,
     },
     img_square_186:{
         width:186*DP,
@@ -105,6 +112,11 @@ export const styles = StyleSheet.create({
         height:94*DP,
         borderRadius:500
     },
+    img_round_76:{
+        width:76*DP,
+        height:76*DP,
+        borderRadius:500
+    },
     img_round_70:{
         width:70*DP,
         height:70*DP,
@@ -118,6 +130,11 @@ export const styles = StyleSheet.create({
     img_round_56:{
         width:56*DP,
         height:56*DP,
+        borderRadius:500
+    },
+    img_round_46:{
+        width:46*DP,
+        height:46*DP,
         borderRadius:500
     },
 })

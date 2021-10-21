@@ -89,7 +89,7 @@ import {
 	Public62,
 	AddItem64,
 	Tag70,
-	Sociall_kakao72,
+	Social_kakao72,
 	Clip72,
 	Email72,
 	FlashOff72,
@@ -293,7 +293,7 @@ export default IconTest = () => {
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 72, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 72 Size Icon : </Text>
 						<View style={{width: 72 * DP, height: 72 * DP, backgroundColor: 'red'}} />
-						<Sociall_kakao72 />
+						<Social_kakao72 />
 						<Clip72 />
 						<Email72 />
 					</View>
