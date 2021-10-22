@@ -92,9 +92,13 @@ import feedTabFilled from './feedTabFilled'
 import animalSavingTabFilled from'./animalSavingTabFilled'
 import communityTabFilled from './communityTabFilled'
 import myTabFilled from './myTabFilled'
-
-
-
+import paw94x90 from './paw94x90'
+import cameraLink from './cameraLink'
+import hashLabel from './hashLabel'
+import tagView from './tagView'
+import tagEdit from './tagEdit'
+import xMark from './xMark'
+import addPet180 from './addPet180'
 
 
 import DP from 'Screens/dp';
@@ -114,6 +118,7 @@ const size62 = {width:62*DP,height:64*DP};
 const size64 = {width:64*DP,height:64*DP};
 const size70 = {width:70*DP,height:70*DP};
 const size72 = {width:72*DP,height:72*DP};
+const size76 = {width:72*DP,height:72*DP};
 const size92 = {width:92*DP,height:92*DP};
 const size94 = {width:94*DP,height:94*DP};
 const size126x92 = {width:126*DP,height:92*DP};
@@ -215,7 +220,7 @@ export const Private62 = makeSvg(private62,size62)
 export const Public62 = makeSvg(public62, size62)
 export const AddItem64 = makeSvg(addItem64, size64)
 export const Tag70 = makeSvg(tag70, size70)
-export const Sociall_kakao72 = makeSvg(social_kakao72, size72)
+export const Social_kakao72 = makeSvg(social_kakao72, size72)
 export const Clip72 = makeSvg(clip72, size72)
 export const Email72 = makeSvg(email72, size72)
 export const FlashOff72 = makeSvg(flashOff72, size72)
@@ -234,3 +239,15 @@ export const AnimalSavingTabFilled = makeSvg(animalSavingTabFilled, {width:54 * 
 export const CommunityTabFilled = makeSvg(communityTabFilled, {width:54*DP, height:48*DP})
 export const MyTabFilled = makeSvg(myTabFilled, {width:50*DP, height:48*DP})
 
+// Added for molecules
+export const Paw94x90 = makeSvg(paw94x90, {width:94*DP, height:90*DP})
+export const CameraLinkIcon = makeSvg(cameraLink, {width:86*DP, height:70*DP})
+export const HashLabel46 = makeSvg(hashLabel, size46)
+export const HashLabel94 = makeSvg(hashLabel, size94)
+export const HashLabel76 = makeSvg(hashLabel, size76)
+export const HashLabel70 = makeSvg(hashLabel, size70)
+export const HashLabel60 = makeSvg(hashLabel, size60)
+export const Tag_View = makeSvg(tagView, {width:110*DP, height:52*DP})
+export const Tag_Edit = makeSvg(tagEdit, {width:170*DP, height:52*DP})
+export const X_Mark = makeSvg(xMark, size48)
+export const Add_Pet = makeSvg(addPet180, {width:180*DP, height:180*DP})

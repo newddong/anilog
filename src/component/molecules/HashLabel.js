@@ -9,7 +9,7 @@ export default HashLabel = props => {
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<View
-				style={{
+				style={{ //90 img_round가 없음
 					width: 90 * DP,
 					height: 90 * DP,
 					borderRadius: 100,
@@ -23,13 +23,13 @@ export default HashLabel = props => {
 					<Hash50 />
 				</View>
 			</View>
-			<View style={{marginLeft: 30 * DP, paddingVertical: 2 * DP}}>
+			<View style={{marginLeft: 30 * DP, }}>
 				{/* profile Image와 총 height가 4차이가 난다 => paddingVertical 2 */}
 				{/* 해쉬마크가 담긴 원과 KEYWORD간 30의 차이 */}
 				{props.count == null ? ( //부모가 보내는 count값이 없을 경우
 					//키워드만 출력
 					<View>
-						<Text style={[txt.noto30, {width: 200 * DP}]} numberOfLines={1} ellipsizeMode="tail">
+						<Text style={txt.noto30} numberOfLines={1} ellipsizeMode="tail">
 							{props.keyword}
 						</Text>
 					</View>
@@ -37,14 +37,14 @@ export default HashLabel = props => {
 					//count값이 있을 경우 'count한 게시물' 출력
 					<View>
 						<View>
-							<Text style={[txt.noto30, {lineHeight: 42 * DP, width: 500 * DP}]} numberOfLines={1} ellipsizeMode="tail">
+							<Text style={[txt.noto30, {lineHeight: 42 * DP,}]} numberOfLines={1} ellipsizeMode="tail">
 								{props.keyword}
 							</Text>
 						</View>
 						<View>
 							{/* 부모 props의 keywordBold값이 True라면 noto24b를 스타일로 준다 */}
 							<Text 
-								style={props.keywordBold ? [txt.noto24b, {lineHeight: 42 * DP, width: 500 * DP}] : [txt.noto24, {lineHeight: 42 * DP, width: 500 * DP}]}
+								style={props.keywordBold ? [txt.noto24b, {lineHeight: 42 * DP, width: 300 * DP}] : [txt.noto24, {lineHeight: 42 * DP, width: 300 * DP}]}
 								numberOfLines={1}
 								ellipsizeMode="tail">
 								{props.count}
