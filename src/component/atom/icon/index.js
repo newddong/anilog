@@ -99,10 +99,17 @@ import tagView from './tagView'
 import tagEdit from './tagEdit'
 import xMark from './xMark'
 import addPet180 from './addPet180'
+import urgent_write1 from './urgent_write1'
+import urgent_write2 from './urgent_write2'
+import leaflet from './leaflet'
+import arrow_down from './arrow_down'
+import arrow_up from './arrow_up'
+
+
 
 
 import DP from 'Screens/dp';
-import { APRI10, YELL20,GRAY20 } from 'Root/config/color';
+import { APRI10, YELL20,GRAY20, GRAY30, GRAY10 } from 'Root/config/color';
 
 
 const size30 = {width:30*DP,height:30*DP};
@@ -121,6 +128,7 @@ const size72 = {width:72*DP,height:72*DP};
 const size76 = {width:72*DP,height:72*DP};
 const size92 = {width:92*DP,height:92*DP};
 const size94 = {width:94*DP,height:94*DP};
+const size110 = {width:110*DP,height:110*DP};
 const size126x92 = {width:126*DP,height:92*DP};
 
 const makeSvg = (component, style, color) => {
@@ -251,3 +259,17 @@ export const Tag_View = makeSvg(tagView, {width:110*DP, height:52*DP})
 export const Tag_Edit = makeSvg(tagEdit, {width:170*DP, height:52*DP})
 export const X_Mark = makeSvg(xMark, size48)
 export const Add_Pet = makeSvg(addPet180, {width:180*DP, height:180*DP})
+export const Urgent_Write1 = makeSvg(urgent_write1, size110)
+export const Urgent_Write2 = makeSvg(urgent_write2, size110)
+export const Leaflet = makeSvg(leaflet, {width:118*DP, height:110*DP})
+export const Arrow_Down_White = makeSvg(arrow_down, size48, 'white')
+export const Arrow_Down_APRI10 = makeSvg(arrow_down, size48, APRI10)
+export const Arrow_Down_GRAY30 = makeSvg(arrow_down, size48, GRAY30)
+export const Arrow_Down_GRAY10 = makeSvg(arrow_down, size48, GRAY10)
+export const Arrow_Up_APRI10 = makeSvg(arrow_up, size48, APRI10)
+export const Arrow_Up_GRAY30 = makeSvg(arrow_up, size48, GRAY30)
+export const Arrow_Up_GRAY10 = makeSvg(arrow_up, size48, GRAY10)
+export const Arrow_Up_White = makeSvg(arrow_up, size48, 'white')
+
+
+

@@ -1,6 +1,6 @@
-import { useNavigation } from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {SafeAreaView, ScrollView,Text, View,} from 'react-native';
+import {SafeAreaView, ScrollView, Text, TouchableOpacity, View, Button} from 'react-native';
 import {
 	Heart30Border,
 	Heart30Filled,
@@ -93,28 +93,35 @@ import {
 	Clip72,
 	Email72,
 	FlashOff72,
-    Rotate72,
-    FlashOn72,
-    AddItem92,
-    Write94,
-    FloatAddPet_126x92,
-    FloatAddArticle_126x92,
-    FeedTabBorder,
-    AnimalSavingTabBorder,
-    CommunityTabBorder,
-    MyTabBorder,
-    FeedTabFilled,
-    AnimalSavingTabFilled,
-    CommunityTabFilled,
-    MyTabFilled,
+	Rotate72,
+	FlashOn72,
+	AddItem92,
+	Write94,
+	FloatAddPet_126x92,
+	FloatAddArticle_126x92,
+	FeedTabBorder,
+	AnimalSavingTabBorder,
+	CommunityTabBorder,
+	MyTabBorder,
+	FeedTabFilled,
+	AnimalSavingTabFilled,
+	CommunityTabFilled,
+	MyTabFilled,
 } from 'Root/component/atom/icon/index';
 import DP from 'Screens/dp';
 
 export default IconTest = () => {
-	const navigation = useNavigation()
+	const navigation = useNavigation();
+
 	return (
 		<SafeAreaView>
 			<ScrollView>
+				<TouchableOpacity onPress={() => navigation.navigate('ImageStyle')}>
+					<View style={{backgroundColor:'yellow'}}><Text>Imagesetyle</Text></View>
+				</TouchableOpacity>
+				<TouchableOpacity onPress={() => navigation.navigate('Label')}>
+				<View style={{backgroundColor:'powderblue'}}><Text>Label</Text></View>
+				</TouchableOpacity>
 				<View style={{justifyContent: 'center', alignItems: 'center', alignSelf: 'center', marginTop: 0}}>
 					{/* <SvgWrap style={{backgroundColor:'yellow'}}  svg={<Meatball50h fill='black'/>}/> */}
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
@@ -254,11 +261,11 @@ export default IconTest = () => {
 						<Photo60 />
 						<Send60 />
 						<Send60Big />
-						
+
 						<Lock60Border />
 						<Lock60Filled />
 					</View>
-					<View style={{flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
+					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 62, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 62 Size Icon : </Text>
 						<View style={{width: 62 * DP, height: 62 * DP, backgroundColor: 'red'}} />
 						<Dog62 />
@@ -274,7 +281,7 @@ export default IconTest = () => {
 						{/* 화면 분간용*/}
 						<View style={{backgroundColor: 'blue', flexDirection: 'row'}}>
 							<Cancel62 />
-						</View>             
+						</View>
 						<Private62 />
 						<Public62 />
 					</View>
@@ -297,53 +304,67 @@ export default IconTest = () => {
 						<Clip72 />
 						<Email72 />
 					</View>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 72, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 72 Size Icon : </Text>
 						<View style={{width: 72 * DP, height: 72 * DP, backgroundColor: 'red'}} />
 						{/* 화면 분간용*/}
 						<View style={{backgroundColor: 'blue', flexDirection: 'row'}}>
 							<FlashOff72 />
-                            <Rotate72/>
-                            <FlashOn72/>
+							<Rotate72 />
+							<FlashOn72 />
 						</View>
 					</View>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 92, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 92 Size Icon : </Text>
 						<View style={{width: 92 * DP, height: 92 * DP, backgroundColor: 'red'}} />
-						
+
 						{/* 화면 분간용*/}
 						<View style={{backgroundColor: 'blue', flexDirection: 'row'}}>
-							<AddItem92/>
-
+							<AddItem92 />
 						</View>
 					</View>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 94, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 94 Size Icon : </Text>
 						<View style={{width: 94 * DP, height: 94 * DP, backgroundColor: 'red'}} />
-						<Write94/>
+						<Write94 />
 					</View>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-						<Text style={{width: 126, height: 92, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 126 * 92 Size Icon : </Text>
+					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+						<Text style={{width: 126, height: 92, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}>
+							{' '}
+							126 * 92 Size Icon :{' '}
+						</Text>
 						<View style={{width: 126 * DP, height: 92 * DP, backgroundColor: 'red'}} />
-                        <FloatAddPet_126x92/>
-                        <FloatAddArticle_126x92/>
+						<FloatAddPet_126x92 />
+						<FloatAddArticle_126x92 />
 					</View>
-                    <View  style={{backgroundColor:'yellow', height:12, width:400}}/>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-						<Text style={{width: 126, height: 30, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> Not yet classified: </Text>
-                        <FeedTabBorder/>
-                        <AnimalSavingTabBorder/>
-                        <CommunityTabBorder/>
-                        <MyTabBorder/>
+					<View style={{backgroundColor: 'yellow', height: 12, width: 400}} />
+					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+						<Text style={{width: 126, height: 30, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}>
+							{' '}
+							Not yet classified:{' '}
+						</Text>
+						<FeedTabBorder />
+						<AnimalSavingTabBorder />
+						<CommunityTabBorder />
+						<MyTabBorder />
 					</View>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-						<Text style={{width: 126, height: 30, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> Not yet classified: </Text>
-                        <FeedTabFilled/>
-                        <AnimalSavingTabFilled/>
-                        <CommunityTabFilled/>
-                        <MyTabFilled/>
+					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+						<Text style={{width: 126, height: 30, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}>
+							{' '}
+							Not yet classified:{' '}
+						</Text>
+						<FeedTabFilled />
+						<AnimalSavingTabFilled />
+						<CommunityTabFilled />
+						<MyTabFilled />
 					</View>
 				</View>
+				<TouchableOpacity onPress={() => navigation.navigate('ImageStyle')}>
+					<Button title={'ImageStyle ==>'} />
+				</TouchableOpacity>
+				<TouchableOpacity onPress={() => navigation.navigate('Label')}>
+					<Button title={'Label ==>'} />
+				</TouchableOpacity>
 			</ScrollView>
 		</SafeAreaView>
 	);

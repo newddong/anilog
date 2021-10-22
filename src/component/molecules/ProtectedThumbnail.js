@@ -5,7 +5,6 @@ import {txt} from 'Root/config/textstyle';
 import {Female48, Male48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 export default ProtectedThumbnail = props => {
-
 	const statusColor = e => {
 		switch (props.data.status) {
 			case 'red':
