@@ -34,7 +34,7 @@ import {
 	Paw48_APRI10,
 	Telephone48,
 	Check48,
-	Rect48,
+	Rect48_APRI10,
 	Rect48Border,
 	Calendar48Filled,
 	Share48Filled,
@@ -117,7 +117,7 @@ export default IconTest = () => {
 		<SafeAreaView>
 			<ScrollView>
 				<TouchableOpacity onPress={() => navigation.navigate('ImageStyle')}>
-					<View style={{backgroundColor:'yellow'}}><Text>Imagesetyle</Text></View>
+					<View style={{backgroundColor:'yellow', width:500, height:150}}><Text>Imagesetyle</Text></View>
 				</TouchableOpacity>
 				<TouchableOpacity onPress={() => navigation.navigate('Label')}>
 				<View style={{backgroundColor:'powderblue'}}><Text>Label</Text></View>
@@ -177,7 +177,7 @@ export default IconTest = () => {
 						<Paw48_APRI10 />
 						<Telephone48 />
 						<Check48 />
-						<Rect48 />
+						<Rect48_APRI10 />
 						<Rect48Border />
 						<Calendar48Filled />
 					</View>

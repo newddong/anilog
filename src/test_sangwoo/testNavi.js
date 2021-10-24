@@ -13,7 +13,7 @@ export default TestNavi = () => {
 	return (
 		<NavigationContainer>
 			<TestStack.Navigator>
-				<TestStack.Screen name="InputTest" component={InputTestNavi} />
+				<TestStack.Screen name="InputTest" component={InputTestNavi} options={{headerShown:false}} />
 
 				<TestStack.Screen name="Icon,img,label" component={Test1} />
 				<TestStack.Screen name="SelectedMedia/LocalMedial/CameraLink" component={SelectedMediaTest} />
