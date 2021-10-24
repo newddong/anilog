@@ -27,9 +27,3 @@ export const BLUE20 = '#007EEC'
 export const RED10 = '#FF3120'
 export const YELL20 = '#FFD153'
 
-export const MIDNIGHT_BLUE = "#191970"
-export const PALETUR = "#AFEEEE"
-export const LIGHT_SALMON = "#FFA07A"
-export const LIGNT_CYAN = "#E0FFFF"
-export const GAINSBORO = "#DCDCDC"
-export const BISQUE = "#FFE4C4"
