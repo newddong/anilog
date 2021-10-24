@@ -3,7 +3,7 @@ import {txt} from 'Root/config/textstyle';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
 import {TextInput} from 'react-native-gesture-handler';
-import {GRAY30} from 'Root/config/color';
+import {APRI10, GRAY30} from 'Root/config/color';
 import {BLACK} from 'Root/screens/color';
 export default InputBalloon = props => {
 	// 텍스트 입력에 텍스트를 입력하여 입력값이 변화할 때마다 onChange콜백이 발생하고 입력 value를 매개변수로 넘김
@@ -21,17 +21,25 @@ export default InputBalloon = props => {
 	// blur() - textinput에서 포커스를 해제
 	const [title, setTitle] = React.useState();
 	const [content, setContent] = React.useState();
+	const inputRef = React.useRef();
+	// React.useEffect(() => {
+	// 	inputRef.current.focus();
+	// 	setTimeout(() => {
+	// 		inputRef.current.blur();
+	// 	}, 2000);
+	// });
+	const handleClear = () => {
+		inputRef.current.clear();
+	};
 	return (
-		<View style={{width: 654 * DP, height: 276 * DP, backgroundColor: 'powderblue'}}>
-			<View style={{backgroundColor: GRAY30, height: 34 * DP}}>
-				<Text style={[txt.noto24, {color: 'red', lineHeight: 34 * DP}]} numberOfLines={1}>
-					Title
-				</Text>
-			</View>
+		<View style={{width:654*DP, backgroundColor:'yellow'}}>
+			<Text style={[txt.noto24, {color: APRI10, lineHeight: 34 * DP, includeFontPadding: false}]} >
+				Title
+			</Text>
 			<View
 				style={{
 					color: 'red',
-					backgroundColor: 'yellow',
+					width:654*DP,
 					height: 230 * DP,
 					marginTop: 12 * DP,
 					borderRadius: 30 * DP,
@@ -41,12 +49,12 @@ export default InputBalloon = props => {
 					justifyContent: 'center',
 				}}>
 				<TextInput
-					style={{width: 606 * DP, height: 182 * DP, backgroundColor: 'red', textAlignVertical: 'top', includeFontPadding:false,}}
-					numberOfLines={4}
-					onChange={txt => setContent(txt)}
+					style={[txt.noto24, {width: 606 * DP, height: 182 * DP,  textAlignVertical: 'top', includeFontPadding: false}]}
+					onChangeText={text => props.onChange(text)}
 					placeholder={props.placeholder}
-					defaultValue={"07. 26:02 너에게 응답하라 1994 OST08. 29:52 너는 나의 봄이다 (시크릿 가든 OST) 09. 34:21 미소천사10. 38:19 희재 국화꽃 향기 OST"}
-                    multiline={true}
+					defaultValue={'너에게 응답하라 '}
+					multiline={true}
+					ref={inputRef}
 				/>
 			</View>
 		</View>
