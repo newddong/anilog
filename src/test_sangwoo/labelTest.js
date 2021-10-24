@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, Text} from 'react-native';
-import PetLabel from 'Root/component/molecules/PetLabel';
+import PetLabel from 'Root/component/molecules/petLabel';
 import UserDescriptionLabel from 'Root/component/molecules/UserDescriptionLabel';
 import UserLocationLabel from 'Root/component/molecules/UserLocationLabel';
 import UserLocationTimeLabel from 'Root/component/molecules/UserLocationTimeLabel';
