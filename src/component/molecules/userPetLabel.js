@@ -1,5 +1,3 @@
-//PetNickName 설정 必
-
 import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
 import {txt} from 'Root/config/textstyle';
@@ -38,6 +36,6 @@ UserPetLabel.defaultProps = {
 	data : {
 		user_id : 'user_id',
 		user_nickname : 'user_nickname',
-		user_image : 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png'
+		user_image : 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
 	}
 }

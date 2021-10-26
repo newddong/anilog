@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {Text, View, Image} from 'react-native';
 import { APRI10 } from 'Root/config/color';
 import DP from 'Root/config/dp';
 import { txt } from 'Root/config/textstyle';

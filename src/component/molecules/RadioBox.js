@@ -1,6 +1,6 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import {StyleSheet, Text, View, Image, TouchableOpacity, FlatList} from 'react-native';
+import {Text, View,  TouchableOpacity, FlatList} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY10, GRAY20, GRAY40} from 'Root/config/color';
 import {RadioChecked48, RadioUnchecked48} from '../atom/icon';

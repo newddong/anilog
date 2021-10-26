@@ -1,21 +1,20 @@
 import React from 'react';
-import {txt} from 'Root/config/textstyle';
-import {StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'react-native';
-import DP from 'Root/config/dp';
+import {Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import InputBalloon from 'Root/component/molecules/InputBalloon';
 import InputLongText from 'Root/component/molecules/InputLongText';
 import Input30 from 'Root/component/molecules/Input30';
-import Input24A from 'Root/component/molecules/Input24A';
-import Input24B from 'Root/component/molecules/Input24B';
+import Input24 from 'Root/component/molecules/Input24';
 import InputNoTitle from 'Root/component/molecules/InputNoTitle';
 import InputWithSearchIcon from 'Root/component/molecules/InputWithSearchIcon';
-import { useNavigation } from '@react-navigation/core';
-import { GRAY10 } from 'Root/config/color';
+import {useNavigation} from '@react-navigation/core';
+import {GRAY10} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
+import {GRAY_BRIGHT} from 'Root/screens/color';
+import Formtxtinput from 'Root/screens/common/formtxtinput';
 export default InputTest1 = props => {
-	const navigation=useNavigation()
+	const navigation = useNavigation();
 	return (
 		<ScrollView>
-			
 			<View style={{flexDirection: 'row'}}>
 				<TouchableOpacity onPress={() => navigation.navigate('InputTest1')}>
 					<View style={{width: 130, height: 50, backgroundColor: 'yellow'}}>
@@ -33,22 +32,13 @@ export default InputTest1 = props => {
 					</View>
 				</TouchableOpacity>
 			</View>
-			<Text style={{backgroundColor: 'blue', color: 'white'}}> inputBalloon </Text>
-			<InputBalloon placeholder={'PlaceHolder'} value={'title'} onChange={e => console.log(e)} />
-			<Text style={{backgroundColor: 'blue', color: 'white'}}> InputLongText</Text>
-			<InputLongText placeholder={'PlaceHolder'} value={'title'} onChange={e => console.log(e)} maxLength={500} />
-
-			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> InputWithSearchIcon </Text>
-			<InputWithSearchIcon
-				title={'Title'}
-				placeholder={'placeholder'}
-				info={'information'}
-				value={'InputWithSearchICon'}
-				alert_msg={'alert_msg'}
-				confirm_msg={'confirm_msg'}
-				onChange={e => console.log(e)}
-				// onClear={}
+			<FormTxtInput
+				onChange={() => console.log('d')}
+				inputStyle={[txt.noto28]}
+				placeholder={'닉네임을 입력하세요'}
+				placeholderTextColor={GRAY_BRIGHT}
 			/>
+			{/* InputNoTitle */}
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> InputNoTitle </Text>
 			<View style={{flexDirection: 'row'}}>
 				<InputNoTitle
@@ -73,10 +63,12 @@ export default InputTest1 = props => {
 				/>
 			</View>
 
-			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> Input24B </Text>
-			<Input24B
+			{/* Input24 - info Version */}
+			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> Input24 - info Version </Text>
+			<Input24
 				title={'Title'}
 				placeholder={'placeholder'}
+				descriptionType={'info'}
 				info={'information'}
 				value={'value'}
 				alert_msg={'alert_msg'}
@@ -84,23 +76,45 @@ export default InputTest1 = props => {
 				onChange={e => console.log(e)}
 				// onClear={}
 			/>
-			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> Input 24A /</Text>
-			<Input24A
-				title={'LLLLong Title'}
+			{/* Input24 - star Version */}
+			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> Input24 - star Version</Text>
+			<Input24
+				title={'Long Title'}
 				placeholder={'placeholder'}
 				value={'value'}
+				descriptionType={'star'}
 				alert_msg={'alert_msg'}
 				confirm_msg={'confirm_msg'}
+				required={true}
 				onChange={e => console.log(e)}
-				// onClear={}
+				onClear={e => console.log(e)}
 			/>
+			{/* Input30 */}
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> Input30 / msg출력 확인을 위해선 10자이상 써주세요</Text>
-
 			<Input30
 				title={'title'}
 				placeholder={'placeholder'}
 				description={'description'}
 				value={'value'}
+				alert_msg={'alert_msg'}
+				confirm_msg={'confirm_msg'}
+				onChange={e => console.log(e)}
+				onClear={e => console.log(e)}
+				// onClear={}
+			/>
+			{/* InputBallon */}
+			<Text style={{backgroundColor: 'blue', color: 'white'}}> inputBalloon </Text>
+			<InputBalloon placeholder={'PlaceHolder'} value={'title'} onChange={e => console.log(e)} />
+			{/* InputLongText */}
+			<Text style={{backgroundColor: 'blue', color: 'white'}}> InputLongText</Text>
+			<InputLongText placeholder={'PlaceHolder'} value={'title'} onChange={e => console.log(e)} maxLength={500} />
+			{/* InputWithSearchIcon */}
+			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> InputWithSearchIcon </Text>
+			<InputWithSearchIcon
+				title={'Title'}
+				placeholder={'placeholder'}
+				info={'information'}
+				value={'InputWithSearchICon'}
 				alert_msg={'alert_msg'}
 				confirm_msg={'confirm_msg'}
 				onChange={e => console.log(e)}

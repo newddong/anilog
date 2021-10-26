@@ -104,7 +104,7 @@ import urgent_write2 from './urgent_write2'
 import leaflet from './leaflet'
 import arrow_down from './arrow_down'
 import arrow_up from './arrow_up'
-import expiredDate from '../image/expiredDate'
+import expiredDate from './expiredDate'
 
 
 

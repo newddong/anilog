@@ -1,14 +1,11 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
 import {StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'react-native';
-import DP from 'Root/config/dp';
 import {useNavigation} from '@react-navigation/core';
 import InputTimeLimit from 'Root/component/molecules/InputTimeLimit';
 import DropdownSelect from 'Root/component/molecules/DropdownSelect';
-import Calendar from './calendar';
 import DatePicker from 'Root/component/molecules/DatePicker';
 import CheckBox from 'Root/component/molecules/CheckBox';
-import RadioBox from 'Root/component/molecules/RadioBox';
 import { GRAY10 } from 'Root/config/color';
 export default InputTest2 = props => {
 	const navigation = useNavigation();

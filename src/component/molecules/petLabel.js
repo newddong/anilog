@@ -1,32 +1,38 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import {APRI10} from 'Root/config/color';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
-import {Paw30_APRI10, Paw30_YELL20} from '../atom/icon';
+import {Paw30_APRI10, Paw30_Mixed, Paw30_YELL20} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 export default PetLabel = props => {
-	//props 목록
-	// onLabelClick : Label 클릭시 수행되는 메소드
-	// petInfo :
-	//    	pet_name: 펫이름
-	// 	  	pet_id: 펫Id
-	// 		pet_image: pet image path
-	// 		location: 위치정보
-	// 		owner: 오너 정보(이름)
-
-	const handleLabelClick = e => {
+	const [imgUri, setImgUri] = React.useState(props.data.user_image);
+	React.useEffect(() => {
+		if (imgUri == null) {
+			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
+		}
+	});
+	const getStatusMark = () => {
+		switch (props.data.status) {
+			case 'protected':
+				return <Paw30_YELL20 />;
+				break;
+			case 'adopted':
+				return <Paw30_Mixed />;
+				break;
+			default:
+				return <Paw30_APRI10 />;
+		}
+	};
+	const onClickLabel = e => {
 		props.onLabelClick(props.data.user_id);
 	};
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
-			<TouchableOpacity onPress={handleLabelClick}>
-				<Image source={{uri: props.data.user_image}} style={styles.img_round_94} />
+			<TouchableOpacity onPress={onClickLabel}>
+				<Image source={{uri: imgUri}} style={styles.img_round_94} />
 				<View style={{position: 'absolute'}}>
-					{/* 임시보호중 여부에 따른 분기  */}
-					{props.protected 
-						? <Paw30_APRI10 /> 
-						: <Paw30_YELL20 />}
+					{/* 팻의 상태 여부에 따른 분기 - protected, adopted, normal  */}
+					{getStatusMark()}
 				</View>
 			</TouchableOpacity>
 			<View style={{marginLeft: 30 * DP, width: 300 * DP, paddingVertical: 4 * DP}}>
@@ -44,3 +50,12 @@ export default PetLabel = props => {
 		</View>
 	);
 };
+
+PetLabel.defaultProps = {
+	data : {
+		user_id : 'user_id',
+		user_nickname : 'user_nickname',
+		user_image : 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+		status : 'normal'
+	}
+}

@@ -1,18 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'react-native';
-import {btn_w226, btn_w654} from 'Root/component/atom/btn/btn_style';
+import { Text, View, ScrollView} from 'react-native';
+import {btn_w226} from 'Root/component/atom/btn/btn_style';
 import {Leaflet, Urgent_Write1, Urgent_Write2} from 'Root/component/atom/icon';
 import ActionButton from 'Root/component/molecules/ActionButton';
 import AniButton from 'Root/component/molecules/AniButton';
 import FilterButton from 'Root/component/molecules/FilterButton';
 import DP from 'Root/config/dp';
-export default ButtonTest = props => {
-	//status 상태 임시로 protected, emergency , default:protected로 설정
-	
+export default ButtonTest = props => {	
 	return (
 		<ScrollView>
 			
-
 			{/* 버튼 테스트 */}
 			{/* props = btnTitle(버튼Text), disable(버튼사용불가능 스타일), titleFontSize(버튼 글꼴크기), btnLayout(버튼의 레이아웃)*/}
 			{/*         btnStyle(버튼의 스타일-filled, border, noBorder) onOpen(버튼 open시 발생하는 콜백), onClose(버튼 close시 발생하는 콜백) */}

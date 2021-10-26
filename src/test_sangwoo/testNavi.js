@@ -12,7 +12,7 @@ export default TestNavi = () => {
 	const TestStack = createBottomTabNavigator();
 	return (
 		<NavigationContainer>
-			<TestStack.Navigator initialRouteName={"Icon,img,label"}>
+			<TestStack.Navigator initialRouteName={"InputTest"}>
 				<TestStack.Screen name="InputTest" component={InputTestNavi} options={{headerShown:false}} />
 			
 				<TestStack.Screen name="Icon,img,label" component={Test1} />
