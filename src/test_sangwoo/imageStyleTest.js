@@ -1,20 +1,25 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View, TextInput, Button, Image, Dimensions, TouchableOpacity} from 'react-native';
+import {SafeAreaView, ScrollView, Text, View, Image, TouchableOpacity} from 'react-native';
 import {styles} from 'Root/component/atom/image/imageStyle';
 import DP from 'Screens/dp';
-import { useNavigation } from '@react-navigation/core';
-export default IconTest = () => {
+import {useNavigation} from '@react-navigation/core';
+export default ImageStyleTest = () => {
 	const navigation = useNavigation();
 
 	return (
 		<SafeAreaView>
 			<ScrollView>
-				<TouchableOpacity onPress={ navigation.navigate('Icon')}>
-				<View style={{backgroundColor:'yellow'}}><Text>Icon</Text></View>
+				<View style={{flexDirection:'row'}}>
+				<TouchableOpacity onPress={() => navigation.navigate('Icon')}>
+					<Text style={{width:100, height:50, backgroundColor:'yellow', textAlign:'center', fontSize:30}}>Icon</Text>
 				</TouchableOpacity>
-				<TouchableOpacity onPress={ navigation.navigate('Label')}>
-				<View style={{backgroundColor:'powderblue'}}><Text>Label</Text></View>
+				<TouchableOpacity onPress={() => navigation.navigate('Label')}>
+					<Text style={{width:100, height:50, backgroundColor:'yellow', textAlign:'center', fontSize:30}}>Label</Text>
 				</TouchableOpacity>
+				</View>
+
+				<Text style={{backgroundColor: 'blue', color: 'white'}}> TagView </Text>
+
 				<View style={{justifyContent: 'center', alignItems: 'center', alignSelf: 'center', marginTop: 0}}>
 					<Text style={{fontSize: 20, fontWeight: 'bold'}}> img_square_round_606 </Text>
 					<Image source={{uri: 'https://i.ytimg.com/vi/ERAMkP92arE/maxresdefault.jpg'}} style={styles.img_square_round_606} />

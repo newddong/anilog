@@ -4,8 +4,6 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30} from 'Root/config/color';
 import {TextInput} from 'react-native-gesture-handler';
-import {BLACK} from 'Root/screens/color';
-import {Cross52} from '../atom/icon';
 export default Input24B = props => {
 	// 텍스트 입력에 텍스트를 입력하여 입력값이 변화할 때마다 onChange콜백이 발생하고 입력 value를
 	// 매개변수로 넘김, onChange콜백이 발생할 때마다 입력값에 대해 validator를 실행 false 반환시 경고

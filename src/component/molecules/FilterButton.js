@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import { Text, View, TouchableWithoutFeedback} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import DP from 'Root/config/dp';
@@ -28,16 +29,15 @@ export default FilterButton = props => {
 	//btn의 초기상태 - false는 아직 버튼이 오픈되지 않은 상태
 	
 	return (
-		<TouchableWithoutFeedback onPress={handlePress}>
+		<TouchableOpacity onPress={handlePress}>
 			{/* 각각 필요한 스타일들(배경색, 테두리, 그림자효과)을 함수에서 얻어와 더해갑니다 */}
-			<View style={[props.btnLayout, {flexDirection: 'row', justifyContent: 'center', borderWidth:4*DP, borderColor:GRAY10,}]}>
+			<View style={[props.btnLayout, {flexDirection: 'row', justifyContent: 'center', alignItems:'center', borderWidth:4*DP, borderColor:GRAY10,}]}>
 				<Text
 					style={[
 						txt.noto24,
 						{
 							fontSize: props.titleFontStyle * DP,
 							color: GRAY10,
-							textAlign: 'center',
 							lineHeight: props.btnLayout.height - 4 * DP, //noto는 lineHeight가 필요한 글꼴이며 Lineheight는 버튼layout의 height를 활용
 						},
 					]}>
@@ -47,6 +47,6 @@ export default FilterButton = props => {
                 { btnStatus ? <Arrow_Up_GRAY10/>: <Arrow_Down_GRAY10/>}
                 </View>
 			</View>
-		</TouchableWithoutFeedback>
+		</TouchableOpacity>
 	);
 };

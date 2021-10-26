@@ -108,6 +108,7 @@ import {
 	CommunityTabFilled,
 	MyTabFilled,
 } from 'Root/component/atom/icon/index';
+import { APRI10, GRAY30 } from 'Root/config/color';
 import DP from 'Screens/dp';
 
 export default IconTest = () => {
@@ -116,12 +117,15 @@ export default IconTest = () => {
 	return (
 		<SafeAreaView>
 			<ScrollView>
-				<TouchableOpacity onPress={() => navigation.navigate('ImageStyle')}>
-					<View style={{backgroundColor:'yellow', width:500, height:150}}><Text>Imagesetyle</Text></View>
-				</TouchableOpacity>
-				<TouchableOpacity onPress={() => navigation.navigate('Label')}>
-				<View style={{backgroundColor:'powderblue'}}><Text>Label</Text></View>
-				</TouchableOpacity>
+				<View style={{flexDirection: 'row'}}>
+					<TouchableOpacity onPress={() => navigation.navigate('ImageStyle')} style={{backgroundColor:APRI10 ,width: 100, height: 40, justifyContent: 'center'}}>
+						<Text>Imagesetyle</Text>
+					</TouchableOpacity>
+					<TouchableOpacity onPress={() => navigation.navigate('Label')} style={{backgroundColor:GRAY30, width: 100, height: 40, justifyContent: 'center'}}>
+						<Text>Label</Text>
+					</TouchableOpacity>
+				</View>
+
 				<View style={{justifyContent: 'center', alignItems: 'center', alignSelf: 'center', marginTop: 0}}>
 					{/* <SvgWrap style={{backgroundColor:'yellow'}}  svg={<Meatball50h fill='black'/>}/> */}
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
@@ -359,12 +363,6 @@ export default IconTest = () => {
 						<MyTabFilled />
 					</View>
 				</View>
-				<TouchableOpacity onPress={() => navigation.navigate('ImageStyle')}>
-					<Button title={'ImageStyle ==>'} />
-				</TouchableOpacity>
-				<TouchableOpacity onPress={() => navigation.navigate('Label')}>
-					<Button title={'Label ==>'} />
-				</TouchableOpacity>
 			</ScrollView>
 		</SafeAreaView>
 	);

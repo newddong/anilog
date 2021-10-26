@@ -4,7 +4,7 @@ import TagView from 'Root/component/molecules/TagView';
 import TagEdit from 'Root/component/molecules/TagEdit';
 import AddPet from 'Root/component/molecules/AddPet';
 import RescueImage from 'Root/component/molecules/RescueImage';
-export default ProfileTagTest = props => {
+export default TagTest = props => {
 	const handleDelete = (e) => {
 		alert("삭제시도")
 	}

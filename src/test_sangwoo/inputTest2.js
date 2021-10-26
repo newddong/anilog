@@ -9,6 +9,7 @@ import {useNavigation} from '@react-navigation/core';
 import PasswordInput from 'Root/component/molecules/PasswordInput';
 import InputWithSelect from 'Root/component/molecules/InputWithSelect';
 import InputWithEmail from 'Root/component/molecules/InputWithEmail';
+import { GRAY10 } from 'Root/config/color';
 export default InputTest2 = props => {
 	const navigation = useNavigation();
 	const items = ['Feed', 'Feed2', 'Feed3'];
@@ -25,13 +26,18 @@ export default InputTest2 = props => {
 		<View>
 			<View style={{flexDirection: 'row'}}>
 				<TouchableOpacity onPress={() => navigation.navigate('InputTest1')}>
-					<View style={{width: 130, height: 50, backgroundColor: 'yellow', justifyContent: 'center',}}>
-						<Text style={{fontSize: 23}}>InputTest1</Text>
+					<View style={{width: 130, height: 50, backgroundColor: 'yellow'}}>
+						<Text style={{fontSize: 18}}>InputTest1</Text>
+					</View>
+				</TouchableOpacity>
+				<TouchableOpacity onPress={() => navigation.navigate('InputTest2')}>
+					<View style={{width: 130, height: 50, backgroundColor: 'powderblue'}}>
+						<Text style={{fontSize: 18}}>InputTest2</Text>
 					</View>
 				</TouchableOpacity>
 				<TouchableOpacity onPress={() => navigation.navigate('InputTest3')}>
-					<View style={{width: 130, height: 50, backgroundColor: 'powderblue', justifyContent: 'center',}}>
-						<Text style={{fontSize: 23}}>InputTest3</Text>
+					<View style={{width: 130, height: 50, backgroundColor: GRAY10}}>
+						<Text style={{fontSize: 18}}>InputTest3</Text>
 					</View>
 				</TouchableOpacity>
 			</View>

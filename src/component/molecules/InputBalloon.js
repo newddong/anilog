@@ -32,7 +32,7 @@ export default InputBalloon = props => {
 		inputRef.current.clear();
 	};
 	return (
-		<View style={{width:654*DP, backgroundColor:'yellow'}}>
+		<View style={{width:654*DP, }}>
 			<Text style={[txt.noto24, {color: APRI10, lineHeight: 34 * DP, includeFontPadding: false}]} >
 				Title
 			</Text>

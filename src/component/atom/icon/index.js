@@ -104,7 +104,7 @@ import urgent_write2 from './urgent_write2'
 import leaflet from './leaflet'
 import arrow_down from './arrow_down'
 import arrow_up from './arrow_up'
-
+import expiredDate from '../image/expiredDate'
 
 
 
@@ -271,6 +271,6 @@ export const Arrow_Up_APRI10 = makeSvg(arrow_up, size48, APRI10)
 export const Arrow_Up_GRAY30 = makeSvg(arrow_up, size48, GRAY30)
 export const Arrow_Up_GRAY10 = makeSvg(arrow_up, size48, GRAY10)
 export const Arrow_Up_White = makeSvg(arrow_up, size48, 'white')
-
+export const ExpiredDate = makeSvg(expiredDate, {width:134*DP, height:27*DP} )
 
 

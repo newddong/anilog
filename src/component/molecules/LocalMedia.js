@@ -6,28 +6,30 @@ import {styles} from '../atom/image/imageStyle';
 import {APRI10} from 'Root/config/color';
 import {Paw94x90} from '../atom/icon';
 export default LocalMedia = props => {
-	const [selected, setSelected] = React.useState(false);
-	// 데이터명세
+	// data : {
 	//    img_uri : uri
 	//    isVideo : true,
 	//    duration : "03:10"
+	// }
 	// index - 다중선택 상태일 때 선택된 item들  배열 중 해당 컴포넌트의 index
 	// isSingleSelection - 다중선택/단독선택 여부 결정
 	// onSelect - 컴포넌트 클릭시 발생, img_uri값을 매개변수로 넘김
 
-	const handleMediaClick = e => {
+	const [selected, setSelected] = React.useState(false);
+	const onSelect = e => {
 		setSelected(!selected);
 		props.onSelect(props.data.img_uri);
 	};
-	const handle_selected_style = () => {
+	const getStyleOfSelectedItem = () => {
 		if (selected) {
-			return [styles.img_square_178, {borderWidth: 4 * DP, borderColor: APRI10, opacity: 0.6}];
+			return [styles.img_square_186, {borderWidth: 4 * DP, borderColor: APRI10, opacity: 0.6}];
 		} else if (!selected) {
 			return styles.img_square_186;
 		}
 	};
-	const selected_style_image = () => {
-		if ( selected && props.isSingleSelection) {
+	const getImageOfSelectedItem = () => {
+		//singleTon
+		if (selected && props.isSingleSelection) {
 			return (
 				<View
 					style={{
@@ -40,6 +42,7 @@ export default LocalMedia = props => {
 					<Paw94x90 />
 				</View>
 			);
+			//다중선택
 		} else if (selected && props.isSingleSelection == false) {
 			return (
 				<View
@@ -51,10 +54,19 @@ export default LocalMedia = props => {
 						backgroundColor: APRI10,
 						right: 18 * DP,
 						top: 12 * DP,
+						justifyContent: 'center',
 					}}>
-					<View style={{paddingVertical: 3 * DP, paddingHorizontal: 6 * DP}}>
-						<Text style={[txt.roboto24, {textAlign: 'center', textAlignVertical: 'center', color: 'white'}]}>{props.index}</Text>
-					</View>
+					<Text
+						style={[
+							txt.roboto24,
+							{
+								alignSelf: 'center',
+								color: 'white',
+								lineHeight: 32 * DP,
+							},
+						]}>
+						{props.index}
+					</Text>
 				</View>
 			);
 		}
@@ -63,16 +75,11 @@ export default LocalMedia = props => {
 	if (props.data.isVideo == true) {
 		// VIDEO 데이터이면서 단독선택 분기
 		return (
-			<View style={styles.img_square_186}>
-				<TouchableOpacity onPress={handleMediaClick}>
-					<Image source={{uri: props.data.img_uri}} style={handle_selected_style()} />
-					{selected_style_image()}
-
-					<View style={{position: 'absolute', left: 10 * DP, bottom: 6 * DP}}>
-						<Text style={[txt.roboto22, {color: 'white'}]}>{props.data.duration}</Text>
-					</View>
-				</TouchableOpacity>
-			</View>
+			<TouchableOpacity onPress={onSelect} style={styles.img_square_186}>
+				<Image source={{uri: props.data.img_uri}} style={getStyleOfSelectedItem()} />
+				{getImageOfSelectedItem()}
+				<Text style={[txt.roboto22, {color: 'white', position: 'absolute', left: 10 * DP, bottom: 6 * DP}]}>{props.data.duration}</Text>
+			</TouchableOpacity>
 		);
 		// vIDEO 데이터이면서 isSingleSelection과 index값이 없는 디폴트 상태일 경우
 
@@ -80,14 +87,21 @@ export default LocalMedia = props => {
 	} else if (props.data.isVideo == false) {
 		// Photo + 단독 선택 분기
 		return (
-			<View style={styles.img_square_186}>
-				<TouchableOpacity onPress={handleMediaClick}>
-					<Image
-						source={{uri: props.data.img_uri}} style={handle_selected_style()}
-					/>
-					{selected_style_image()}
-				</TouchableOpacity>
-			</View>
+			<TouchableOpacity onPress={onSelect} style={styles.img_square_186}>
+				<Image source={{uri: props.data.img_uri}} style={getStyleOfSelectedItem()} />
+				{getImageOfSelectedItem()}
+			</TouchableOpacity>
 		);
 	}
+};
+
+LocalMedia.defaultProps = {
+	data: {
+		img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+		isVideo: false,
+		duration: null,
+	},
+	index: 1,
+	isSingleSelection: true,
+	onSelect: console.log('적합한 imgUri가 없습니다'),
 };

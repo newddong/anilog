@@ -5,9 +5,9 @@ export const styles = StyleSheet.create({
 	outside: {
 		backgroundColor: 'white',
 		justifyContent: 'center',
-    borderRadius:40*DP,
-    width:650*DP,
-    marginBottom:100*DP,
+		borderRadius: 40 * DP,
+		width: 650 * DP,
+		marginBottom: 100 * DP,
 	},
 	headerCont: {
 		flexDirection: 'row',

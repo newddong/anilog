@@ -3,14 +3,10 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {APRI10, GRAY10, GRAY20, GRAY30} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
+import { btn_w226 } from '../atom/btn/btn_style';
+
+
 export default AniButton = props => {
-	// btnTitle - 버튼의 제목
-	// btnTheme - ’shadow’, ‘noShadow’, ‘gray’에서 결정
-	// btnStyle - ‘filled’, ‘border’, ‘noBorder’ 에서 결정
-	// disable - 기본값은 false true일 경우 버튼 탭을 할수없도록 하고 표시를 바꿈
-	// titleFontStyle - title의 폰트 크기
-	// btnLayout - 버튼의 레이아웃(width, height, borderRadius를 결정)
-	// onPress - 버튼을 탭했을때 발생하는 콜백
 	const btnTheme = () => {
         //btnTheme이 shadow일 경우 Button의 View에 아래의 style을 추가한다
 		if(props.btnTheme=='shadow') {
@@ -19,8 +15,8 @@ export default AniButton = props => {
                 shadowOpacity: 0.27,
                 shadowRadius: 4.65,
                 shadowOffset: {
-                    width: 1,
-                    height: 2,
+                    width: 1*DP,
+                    height: 2*DP,
                 },
                 elevation: 2,
             };
@@ -85,7 +81,7 @@ export default AniButton = props => {
 	return (
 		<TouchableOpacity onPress={handlePress}>
             {/* 각각 필요한 스타일들(배경색, 테두리, 그림자효과)을 함수에서 얻어와 더해갑니다 */}
-			<View style={[props.btnLayout, btnTheme(), border() ,btnStyle(),]}>
+			<View style={[props.btnLayout, btnTheme(), border() ,btnStyle(), {justifyContent: 'center',}]}>
 				<Text
 					style={[
 						txt.noto24b,
@@ -93,8 +89,8 @@ export default AniButton = props => {
 							fontSize: props.titleFontStyle * DP,
 							color: btnTxtColor(), //TXT_COLOR가 다양하므로 함수로 분기처리
 							textAlign: 'center',
+							includeFontPadding:false,
 							lineHeight: lineHeight() , 
-
 						},
 					]}>
 					{props.btnTitle}
@@ -103,3 +99,14 @@ export default AniButton = props => {
 		</TouchableOpacity>
 	);
 };
+
+
+AniButton.defaultProps={
+	btnTitle:'title', //버튼의 제목
+	btnTheme:'shadow',// btnTheme - ’shadow’, ‘noShadow’, ‘gray’에서 결정
+	btnStyle:'filled',// btnStyle - ‘filled’, ‘border’, ‘noBorder’ 에서 결정
+	disable:false, // disable - 기본값은 false true일 경우 버튼 탭을 할수없도록 하고 표시를 바
+	titleFontStyle:24*DP, // titleFontStyle - title의 폰트 크기
+	btnLayout:btn_w226,// btnLayout - 버튼의 레이아웃(width, height, borderRadius를 결정)
+	onPress:{} // 버튼을 탭했을때 발생하는 콜백
+}

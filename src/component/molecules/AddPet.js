@@ -14,7 +14,7 @@ export default AddPet = props => {
 				<Add_Pet />
 			</TouchableOpacity>
 			<View style={{width: 106 * DP, height: 80 * DP}}>
-				<Text style={[txt.noto24, {includeFontPadding: false, color: APRI10, textAlign: 'center', }]}>반려동물추가</Text>
+				<Text style={[txt.noto24, { color: APRI10, textAlign: 'center', }]}>반려동물추가</Text>
 			</View>
 		</View>
 	);

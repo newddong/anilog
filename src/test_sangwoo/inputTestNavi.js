@@ -9,10 +9,10 @@ export default InputTestNavi = () => {
     const InputTest = createStackNavigator()
     return(
             <InputTest.Navigator initialRouteName={"InputTest4"} screenOptions={{headerShown:false}}>
-                <InputTest.Screen name="InputTest3" component={InputTest3} options={{headerShown:true}} />
+                <InputTest.Screen name="InputTest3" component={InputTest3} options={{headerShown:true}}/>
                 <InputTest.Screen name="InputTest2" component={InputTest2}  options={{headerShown:true}}/>
-                <InputTest.Screen name="InputTest1" component={InputTest1}  options={{headerShown:true}} />
-                <InputTest.Screen name="InputTest4" component={InputTest4}  options={{headerShown:true}} />
+                <InputTest.Screen name="InputTest1" component={InputTest1}  options={{headerShown:true}}/>
+                <InputTest.Screen name="InputTest4" component={InputTest4}  options={{headerShown:true}}/>
             </InputTest.Navigator>
     )
 }

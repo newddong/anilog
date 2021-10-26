@@ -3,16 +3,9 @@ import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {Paw48Mixed, Paw48Yell20, Paw48_APRI10, Private62, Public62} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
-export default ProfileImageLarge160 = props => {
-	// ProfileImageLarge 기능
+export default ProfileImageLarge194 = props => {
 	// 유저의 프로필 이미지를 표시,  유저의 종류(일반유저, 반려동물, 보호소)와 상태(임시보호중,입양,공립,사립)에 따라 아이콘을 표시
-	// Props
-	// imgUri - 이미지의 uri
-	// userType - 유저타입('shelter, pet, user)'
-	// shelterType - ‘public’, ‘private’,’none’ 중 선택 가능
-	// petStatus - ’normal’, ‘protected’, ’adopted’, ’none’ 중 선택 가능
 	const petStatus = () => {
-		console.log('petStatus  ' + props.petStatus);
 		switch (props.petStatus) {
 			case 'normal':
 				return (
@@ -40,7 +33,6 @@ export default ProfileImageLarge160 = props => {
 		}
 	};
 	const shelter_type = () => {
-		console.log('petStatus  ' + props.shelterType);
 		switch (props.shelterType) {
 			case 'public':
 				return <Public62 />;
@@ -66,8 +58,15 @@ export default ProfileImageLarge160 = props => {
 	};
 	return (
 		<View style={styles.img_round_194}>
-			<Image source={{uri: props.imgUri}} style={styles.img_round_194} />
+			<Image source={{uri: props.img_uri}} style={styles.img_round_194} />
 			{userType()}
 		</View>
 	);
+};
+
+ProfileImageLarge194.defaultProps = {
+	img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
+	userType: 'user', //required - 유저타입 pet user shelter
+	shelterType: 'none', // public private
+	petStatus: 'none', // normal protected adopted none
 };

@@ -14,3 +14,6 @@ export default CameraLink = props => {
 		</View>
 	);
 };
+CameraLink.defaultProps = {
+	
+}

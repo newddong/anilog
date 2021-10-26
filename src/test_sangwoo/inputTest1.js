@@ -10,16 +10,29 @@ import Input24B from 'Root/component/molecules/Input24B';
 import InputNoTitle from 'Root/component/molecules/InputNoTitle';
 import InputWithSearchIcon from 'Root/component/molecules/InputWithSearchIcon';
 import { useNavigation } from '@react-navigation/core';
+import { GRAY10 } from 'Root/config/color';
 export default InputTest1 = props => {
 	const navigation=useNavigation()
 	return (
 		<ScrollView>
 			
-			<TouchableOpacity onPress={() => navigation.navigate('InputTest2')}>
-				<View style={{width: '100%', height: 50, backgroundColor: 'powderblue', }}>
-					<Text style={{fontSize: 30,}}>{'<<<<<<<InputTest2<<<<<<<<<<'}</Text>
-				</View>
-			</TouchableOpacity>
+			<View style={{flexDirection: 'row'}}>
+				<TouchableOpacity onPress={() => navigation.navigate('InputTest1')}>
+					<View style={{width: 130, height: 50, backgroundColor: 'yellow'}}>
+						<Text style={{fontSize: 18}}>InputTest1</Text>
+					</View>
+				</TouchableOpacity>
+				<TouchableOpacity onPress={() => navigation.navigate('InputTest2')}>
+					<View style={{width: 130, height: 50, backgroundColor: 'powderblue'}}>
+						<Text style={{fontSize: 18}}>InputTest2</Text>
+					</View>
+				</TouchableOpacity>
+				<TouchableOpacity onPress={() => navigation.navigate('InputTest3')}>
+					<View style={{width: 130, height: 50, backgroundColor: GRAY10}}>
+						<Text style={{fontSize: 18}}>InputTest3</Text>
+					</View>
+				</TouchableOpacity>
+			</View>
 			<Text style={{backgroundColor: 'blue', color: 'white'}}> inputBalloon </Text>
 			<InputBalloon placeholder={'PlaceHolder'} value={'title'} onChange={e => console.log(e)} />
 			<Text style={{backgroundColor: 'blue', color: 'white'}}> InputLongText</Text>

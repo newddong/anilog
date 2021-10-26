@@ -54,7 +54,6 @@ export default InputWithSearchIcon = props => {
 							{
 								//TextInput과 바깥 View와의 거리 24px, lineHeight는 글꼴크기와 일치
 								paddingLeft: 24 * DP,
-								includeFontPadding: false,
 								lineHeight: 28 * DP,
 								textAlignVertical: 'top',
 							},

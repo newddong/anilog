@@ -2,7 +2,7 @@ import React from 'react';
 import {txt} from 'Root/config/textstyle';
 import {StyleSheet, Text, View, Image, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
 import DP from 'Root/config/dp';
-import {Check48, Check50, Rect48Border, Rect48_APRI10, Rect48_GRAY30, Rect50Border} from '../atom/icon';
+import {Check50, Rect48_GRAY30, Rect50Border} from '../atom/icon';
 import { GRAY10, GRAY20 } from 'Root/config/color';
 export default CheckBox = props => {
 	const [checked, setChecked] = React.useState(false);

@@ -5,14 +5,14 @@ import {Cancel48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 
 export default SelectedMedia190 = props => {
-	const handleDelete = (e) => {
+	const onDelete = (e) => {
 		alert('삭제작업')
 	}
 	return (
 		<View>
 			<View style={styles.img_square_round_190}>
 				<Image source={{uri: props.media_uri}} style={styles.img_square_round_190} />
-				<TouchableOpacity onPress={handleDelete} style={{position: 'absolute', right: 6 * DP, top: 6 * DP}}>
+				<TouchableOpacity onPress={onDelete} style={{position: 'absolute', right: 6 * DP, top: 6 * DP}}>
 					<View >
 						<Cancel48 />
 					</View>
@@ -21,3 +21,7 @@ export default SelectedMedia190 = props => {
 		</View>
 	);
 };
+
+SelectedMedia190.defaultProps = {
+	media_uri : 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+}
