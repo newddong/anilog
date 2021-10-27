@@ -1,12 +1,12 @@
 import React from 'react';
 import {ScrollView, Text, View, TouchableOpacity} from 'react-native';
-import PetLabel from 'Root/component/molecules/petLabel';
+import PetLabel from 'Root/component/molecules/PetLabel';
 import UserDescriptionLabel from 'Root/component/molecules/UserDescriptionLabel';
 import UserLocationLabel from 'Root/component/molecules/UserLocationLabel';
 import UserLocationTimeLabel from 'Root/component/molecules/UserLocationTimeLabel';
 import UserPetLabel from 'Root/component/molecules/UserPetLabel';
 import UserTimeLabel from 'Root/component/molecules/UserTimeLabel';
-import HashLabel from 'Root/component/molecules/hashLabel';
+import HashLabel from 'Root/component/molecules/HashLabel';
 import {APRI10, BLACK, GRAY10, GRAY20, GRAY30} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import ShelterLabel from 'Root/component/molecules/ShelterLabel';
