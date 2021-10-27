@@ -26,6 +26,7 @@ export const BLUE10 = '#88B8FF'
 export const BLUE20 = '#007EEC'
 export const RED10 = '#FF3120'
 export const YELL20 = '#FFD153'
+export const GREEN = '#13BE00'
 
 export const MIDNIGHT_BLUE = "#191970"
 export const PALETUR = "#AFEEEE"

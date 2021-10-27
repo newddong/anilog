@@ -4,13 +4,13 @@ import InputBalloon from 'Root/component/molecules/InputBalloon';
 import InputLongText from 'Root/component/molecules/InputLongText';
 import Input30 from 'Root/component/molecules/Input30';
 import Input24 from 'Root/component/molecules/Input24';
-import InputNoTitle from 'Root/component/molecules/InputNoTitle';
 import InputWithSearchIcon from 'Root/component/molecules/InputWithSearchIcon';
 import {useNavigation} from '@react-navigation/core';
 import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {GRAY_BRIGHT} from 'Root/screens/color';
 import Formtxtinput from 'Root/screens/common/formtxtinput';
+import { cos } from 'react-native-reanimated';
 export default InputTest1 = props => {
 	const navigation = useNavigation();
 	return (
@@ -38,29 +38,57 @@ export default InputTest1 = props => {
 				placeholder={'닉네임을 입력하세요'}
 				placeholderTextColor={GRAY_BRIGHT}
 			/>
-			{/* InputNoTitle */}
-			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> InputNoTitle </Text>
+			{/* InputWithSearchIcon */}
+			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> InputWithSearchIcon </Text>
+			<InputWithSearchIcon
+				title={'Title'}
+				placeholder={'placeholder'}
+				info={'information'}
+				value={'InputWithSearchICon'}
+				alert_msg={'alert_msg'}
+				confirm_msg={'confirm_msg'}
+				onChange={e => console.log(e)}
+				onClear={ e => console.log(e)}
+				onSearch={ e => console.log(e)}
+			/>
+			{/* Input30 */}
+			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> Input30 - showTitle [ true false] </Text>
 			<View style={{flexDirection: 'row'}}>
-				<InputNoTitle
-					title={'Title'}
+				<Input30
+					title={'title'}
+					showTitle={true}
 					placeholder={'placeholder'}
-					info={'information'}
+					description={'description'}
 					value={'value'}
 					alert_msg={'alert_msg'}
 					confirm_msg={'confirm_msg'}
 					onChange={e => console.log(e)}
-					// onClear={}
+					onClear={e => console.log(e)}
 				/>
-				<InputNoTitle
-					title={'Title'}
+				<View style={{}}>
+				<Input30
+					title={'title'}
+					showTitle={false}
 					placeholder={'placeholder'}
-					info={'information'}
-					value={'value for confirm msg'}
+					description={'description'}
+					value={'value'}
 					alert_msg={'alert_msg'}
 					confirm_msg={'confirm_msg'}
 					onChange={e => console.log(e)}
-					// onClear={}
+					onClear={e => console.log(e)}
 				/>
+				<Input30
+					title={'title'}
+					showTitle={false}
+					placeholder={'placeholder'}
+					description={'description'}
+					value={'value'}
+					alert_msg={'alert_msg'}
+					confirm_msg={'confirm_msg'}
+					onChange={e => console.log(e)}
+					onClear={e => console.log(e)}
+				/>
+				</View>
 			</View>
 
 			{/* Input24 - info Version */}
@@ -108,18 +136,7 @@ export default InputTest1 = props => {
 			{/* InputLongText */}
 			<Text style={{backgroundColor: 'blue', color: 'white'}}> InputLongText</Text>
 			<InputLongText placeholder={'PlaceHolder'} value={'title'} onChange={e => console.log(e)} maxLength={500} />
-			{/* InputWithSearchIcon */}
-			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> InputWithSearchIcon </Text>
-			<InputWithSearchIcon
-				title={'Title'}
-				placeholder={'placeholder'}
-				info={'information'}
-				value={'InputWithSearchICon'}
-				alert_msg={'alert_msg'}
-				confirm_msg={'confirm_msg'}
-				onChange={e => console.log(e)}
-				// onClear={}
-			/>
+			
 		</ScrollView>
 	);
 };
