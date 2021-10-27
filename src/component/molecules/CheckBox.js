@@ -3,31 +3,35 @@ import {txt} from 'Root/config/textstyle';
 import {StyleSheet, Text, View, Image, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
 import DP from 'Root/config/dp';
 import {Check50, Rect48_GRAY30, Rect50Border} from '../atom/icon';
-import { GRAY10, GRAY20 } from 'Root/config/color';
+import {GRAY10, GRAY20} from 'Root/config/color';
 export default CheckBox = props => {
-	const [checked, setChecked] = React.useState(false);
-	const getCheckBox = () => {
-        if(checked){
-            return(
-                <TouchableWithoutFeedback onPress={()=> setChecked(!checked)}>
-                    <Check50/>
-                </TouchableWithoutFeedback>
-            )
-        } else if(!checked){
-            return(
-                <TouchableWithoutFeedback onPress={()=> setChecked(!checked)}>
-                    <Rect50Border/>
-                </TouchableWithoutFeedback>
-            )
-        }
-	};
-    const getFontColor = () => {
-        return props.disable ? GRAY20 : GRAY10 
+
+	const [checked, setChecked] = React.useState(false); //체크상태 여부 boolean
+
+    const onCheck = () => { //
+        setChecked(!checked)
+        props.onCheck(props.value)
     }
+
 	return (
-		<View style={{flexDirection:'row'}}>
-			{props.disable ? <Rect48_GRAY30 /> : getCheckBox()}
-			<Text style={[txt.noto24,{color:getFontColor(), includeFontPadding:false, lineHeight:38*DP, paddingLeft:12*DP}]}>{props.value}</Text>
+		<View style={{flexDirection: 'row'}}>
+			{props.disable 
+                ? <Rect48_GRAY30 /> 
+                : 
+                <TouchableWithoutFeedback onPress={onCheck}>
+                    {checked ? <Check50 /> : <Rect50Border />}
+                </TouchableWithoutFeedback> 
+            }
+			<Text
+				style={[
+					txt.noto24,
+					{
+						color: props.disable ? GRAY20 : GRAY10,
+						paddingLeft: 12 * DP,
+					},
+				]}>
+				{props.value}
+			</Text>
 		</View>
 	);
 };
@@ -35,4 +39,5 @@ export default CheckBox = props => {
 CheckBox.defaultProps = {
 	value: null,
 	disable: false,
+    onCheck : e => console.log(e)
 };

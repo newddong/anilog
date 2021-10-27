@@ -7,7 +7,7 @@ import UserLocationTimeLabel from 'Root/component/molecules/UserLocationTimeLabe
 import UserPetLabel from 'Root/component/molecules/UserPetLabel';
 import UserTimeLabel from 'Root/component/molecules/UserTimeLabel';
 import HashLabel from 'Root/component/molecules/HashLabel';
-import {APRI10, BLACK, GRAY10, GRAY20, GRAY30} from 'Root/config/color';
+import {APRI10, GRAY30} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import ShelterLabel from 'Root/component/molecules/ShelterLabel';
 import { useNavigation } from '@react-navigation/core';

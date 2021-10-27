@@ -35,6 +35,7 @@ export default InputTest2 = props => {
 					</View>
 				</TouchableOpacity>
 			</View>
+			{/* PasswordInput */}
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> PasswordInput </Text>
 			<PasswordInput
 				title={'title'}
@@ -44,17 +45,20 @@ export default InputTest2 = props => {
 				alert_msg={'alert_msg'}
 				confirm_msg={'confirm_msg'}
 			/>
+			{/* InputWithEmail */}
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> InputWithEmail / 이메일란 한글자 이상- Border 바뀜</Text>
 			<InputWithEmail itemList={emailList} placeholder={'placeholder'} value={null} defaultIndex={0} />
+			{/* InputWithSelect */}
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> InputWithSelect </Text>
-			<InputWithSelect itemList={itemList} placeholder={'placeholder'} value={null} defaultIndex={0} />
+			<InputWithSelect itemList={itemList} placeholder={'placeholder'} value={null} defaultIndex={0} onChange={ e => console.log(e)} />
+			{/* TabSelectFilled_Type1 */}
 			<View style={{marginTop: 20}} />
-			
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> TabSelectFilled_Type1 </Text>
-
 			<TabSelectFilled_Type1 items={items} onSelect={e => alert(e)} />
+			{/* TabSelectFilled_Type2 */}
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> TabSelectFilled_Type2 </Text>
 			<TabSelectFilled_Type2 items={items} onSelect={e => console.log(e)} />
+			{/* TabSelectBorder */}
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> TabSelectBorder </Text>
 			<TabSelectBorder items={items2} onSelect={e => console.log(e)} />
 

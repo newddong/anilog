@@ -1,28 +1,30 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import {Text, View} from 'react-native';
+import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
-import {TextInput} from 'react-native-gesture-handler';
 import {APRI10, GRAY10, GRAY30} from 'Root/config/color';
 export default InputLongText = props => {
+
 	const [content, setContent] = React.useState('');
 	const inputRef = React.useRef();
+
 	const blur = () => {
 		inputRef.current.blur();
 	};
+
 	const focus = () => {
 		inputRef.current.focus();
 	};
+
 	const clear = () => {
 		inputRef.current.clear();
 	};
-	const setBorderColor = () => {
-		return content.length > 0 ? APRI10 : GRAY30;
-	};
+
 	const onChange = text => {
 		setContent(text);
 		props.onChange(text);
 	};
+
 	return (
 		<View style={{flexDirection: 'row'}}>
 			<View
@@ -31,7 +33,7 @@ export default InputLongText = props => {
 					height: 424 * DP,
 					borderWidth: 2 * DP,
 					borderRadius: 30 * DP,
-					borderColor: setBorderColor(),
+					borderColor: content.length > 0 ? APRI10 : GRAY30,
 					alignItems: 'center',
 					justifyContent: 'center',
 				}}>
@@ -57,4 +59,5 @@ InputLongText.defaultProps = {
 	placeholder: 'placeholder',
 	value: 'value',
 	maxlength: 500,
+	onChange : e => console.log(e)
 };

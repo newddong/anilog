@@ -111,6 +111,11 @@ export const styles = StyleSheet.create({
         height:120*DP,
         borderRadius:500
     },
+    img_round_90:{
+        width:90*DP,
+        height:90*DP,
+        borderRadius:500
+    },
     img_round_94:{
         width:94*DP,
         height:94*DP,

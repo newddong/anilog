@@ -1,40 +1,50 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import {View, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
-import {APRI10} from 'Root/config/color';
-import {TextInput} from 'react-native-gesture-handler';
+import {APRI10, GRAY30} from 'Root/config/color';
 import {Cross48, Search48} from '../atom/icon';
 export default InputWithSearchIcon = props => {
+
 	const [input, setInput] = React.useState('');
 	const inputRef = React.useRef();
 
-	const onChange = txt => {
-		setInput(txt);
-		props.onChange(txt);
+	const onChange = text => {
+		setInput(text);
+		props.onChange(text);
 	};
+
 	const onClear = () => {
 		inputRef.current.clear();
 		props.onClear();
 		setInput('');
 	};
+
 	const onSearch = () => {
 		alert("검색시도 "+input)
 		props.onSearch()
 	}
+
 	const blur = () => {
 		inputRef.current.blur();
 	};
+
 	const focus = () => {
 		inputRef.current.focus();
 	};
+
 	return (
 		<View style={{flexDirection: 'row'}}>
 				{/* 하단테두리는 2px, APRI설정 */}
-				<View style={{height: 82 * DP, flexDirection: 'row', borderBottomWidth: 2 * DP, borderBottomColor: APRI10, alignItems: 'center'}}>
+				<View style={{
+					height: 82 * DP, 
+					borderBottomWidth: 2 * DP, 
+					borderBottomColor: input.length == 0 ? GRAY30 : APRI10, 
+					alignItems: 'center', 
+					flexDirection: 'row',}}>
 					<TextInput
 						// value={props.value}
-						onChangeText={txt => onChange(txt)}
+						onChangeText={text => onChange(text)}
 						placeholder={props.placeholder}
 						ref={inputRef}
 						style={[
@@ -46,7 +56,7 @@ export default InputWithSearchIcon = props => {
 							},
 						]}
 					/>
-					<TouchableOpacity onPress={onClear} style={{marginLeft: 120 * DP,  }}>
+					<TouchableOpacity onPress={onClear} style={{marginLeft: 120 * DP, }}>
 						<Cross48 />
 					</TouchableOpacity>
 					{/* SearchIcon은 X 마크와 14px 차이 */}
@@ -60,7 +70,7 @@ export default InputWithSearchIcon = props => {
 InputWithSearchIcon.defaultProps = {
 	value: 'Value',
 	placeholder: 'placeholder',
-	onChange: {},
-	onSearch: {},
-	onClear: {},
+	onChange: e => console.log(e),
+	onSearch:  e => console.log(e),
+	onClear:  e => console.log(e),
 };

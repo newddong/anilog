@@ -5,7 +5,9 @@ import {APRI10, BLACK} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
+
 export default UserDescriptionLabel = props => {
+
 	const [validation, setValidation] = React.useState(false);
 	const [imgUri, setImgUri] = React.useState(props.data.user_image)
 
@@ -15,6 +17,7 @@ export default UserDescriptionLabel = props => {
 			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg')
 		}
 	})
+
 	//user_nickname Text 색깔 조건부적용을 위한 세션아이디 비교
 	React.useEffect(() => {
 		const getItem = async () => {
@@ -27,9 +30,11 @@ export default UserDescriptionLabel = props => {
 		getItem();
 		return () => {};
 	});
-	const onClickLabel = e => {
+
+	const onClickLabel = () => {
 		props.onLabelClick(props.data.user_id);
 	};
+
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
@@ -55,6 +60,7 @@ export default UserDescriptionLabel = props => {
 		</View>
 	);
 };
+
 UserDescriptionLabel.defaultProps = {
 	data: {
 		user_id: 'user_id',
@@ -62,4 +68,5 @@ UserDescriptionLabel.defaultProps = {
 		user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
 		text_intro: 'Description',
 	},
+	onLabelClick : e => console.log(e)
 };

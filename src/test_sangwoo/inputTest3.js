@@ -30,14 +30,18 @@ export default InputTest2 = props => {
 				</TouchableOpacity>
 			</View>
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> InputTimeLimit - </Text>
-			<InputTimeLimit placeholder={'placeholder'} value={null} timelimit={100} alert_msg={'alert_msg'} timeout_msg={'timeout_msg'} />
+			<InputTimeLimit placeholder={'placeholder'} value={null} timelimit={10} alert_msg={'alert_msg'} timeout_msg={'timeout_msg'} />
+
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> DropdownSelect - </Text>
 			<DropdownSelect itemList={itemList} value={null} defaultIndex={0} />
 			<DropdownSelect itemList={itemList} value={null} defaultIndex={1} />
+
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> DatePicker - </Text>
 			<DatePicker />
+
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> CheckBox - </Text>
 			<CheckBox value={'value'} disable={false} />
+			
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> CheckBox - disable </Text>
 			<CheckBox value={'value'} disable={true} />
 		</ScrollView>

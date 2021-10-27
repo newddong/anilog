@@ -1,59 +1,58 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
-import {TextInput} from 'react-native-gesture-handler';
 import {Cross52, Eye52_APRI10, Eye52_GRAY20} from '../atom/icon';
 export default PasswordInput = props => {
+
 	const [input, setInput] = React.useState(''); // 암호 별표화 State
-	const [clearBtnPressed, setClearBtnPressed] = React.useState(false); //Clear 버튼 Press state
-	const [confirm, setConfirm] = React.useState('normal'); // 암호 validation state
+	const [confirm, setConfirm] = React.useState(false); // 암호 validation state
 	const [pwdSecureState, setPwdSecureState] = React.useState(true); // 암호 별표화 state
 	const inputRef = React.useRef();
 
 	const getMsg = () => {
-		if(confirm == 'normal'){ return <Text style={(txt.noto22, {color: GRAY20, lineHeight: 36 * DP})}>{props.information}</Text> }
-		if(confirm == true){ return  <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>}
-		if(confirm == false){ return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text> }
-		return null
+		if(input.length == 0){ return <Text style={(txt.noto22, {color: GRAY20, lineHeight: 36 * DP})}>{props.information}</Text> }
+		else if(confirm == true){ return  <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text> }
+		else if(confirm == false){ return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text> }
+		else return null
 	};
 	const getBorderColor = () => {
-		if(confirm == 'normal'){ return GRAY30 }
-		if(confirm == false){ return APRI10}
-		if(confirm == true){ return GREEN }
-		return null
+		if(input.length == 0){ return GRAY30 }
+		else if(confirm == false){ return APRI10 }
+		else if(confirm == true){ return GREEN }
+		else return null
 	};
 
-	const onChange = txt => {
-		setInput(txt);
-		props.onChange(txt)
-		validator(txt);
+	const onChange = text => {
+		setInput(text);
+		props.onChange(text)
+		validator(text);
 	};
+
 	const validator = txt => {
 		txt.length > 10 ? setConfirm(true) : setConfirm(false);
 	};
+
 	const onClear = () => {
 		inputRef.current.clear();
 		props.onClear();
-		setConfirm('normal');
-		setClearBtnPressed(true);
+		setConfirm();
 		setInput('');
 	};
+
 	const blur = () => {
 		inputRef.current.blur();
 	};
 	const focus = () => {
 		inputRef.current.focus();
 	};
+
 	const onShowPassword = () => {
 		setPwdSecureState(!pwdSecureState);
 		props.onShowPassword()
 	};
-	const getWidth = () => {
-		if(input.length > 0){ return null }
-		if (!input || clearBtnPressed) { return 190 * DP } 
-	};
+
 	return (
 		<View style={{flexDirection: 'row'}}>
 			<View style={{height: 158 * DP}}>
@@ -65,18 +64,17 @@ export default PasswordInput = props => {
 					<TextInput
 						ref={inputRef}
 						placeholder={props.placeholder}
-						onChangeText={txt => onChange(txt)}
-						secureTextEntry={pwdSecureState}
+						onChangeText={text => onChange(text)}
+						secureTextEntry={pwdSecureState} //암호 별모양 표시 boolean
 						style={[
 							txt.noto28,
 							{
 								//TextInput과 바깥 View와의 거리 24px, lineHeight는 글꼴크기와 일치
 								paddingLeft: 24 * DP,
 								lineHeight: 44 * DP,
-								width: getWidth(),
+								width: input.length == 0 ?  190 * DP : null,
 								//placeholder 상태일때 글꼴의 영향인지 placeholde'r' 마지막글자가 짤리는 현상 발생
 								//우선 width를 가변적으로 주는 방식으로 해결
-								textAlignVertical: 'center',
 							},
 						]}
 					/>

@@ -1,11 +1,12 @@
 import React from 'react';
 import {Text, View, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
-import {APRI10, GRAY20, GRAY30} from 'Root/config/color';
+import {APRI10, GRAY20, GRAY30, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
 
 export default AniButton = props => {
+
 	const btnTheme = () => {
 		//btnTheme이 shadow일 경우 Button의 View에 아래의 style을 추가한다
 		if (props.btnTheme == 'shadow') {
@@ -21,15 +22,14 @@ export default AniButton = props => {
 			};
 		}
 	};
+	 
 	//txt Color의 종류는 3가지 - white, APRI10, GRAY20
 	const btnTxtColor = () => {
 		if (props.disable || props.btnStyle == 'filled') {
-			return 'white';
-		}
-		if (props.btnTheme == 'gray' && props.btnStyle == 'border') {
+			return WHITE;
+		} else if (props.btnTheme == 'gray' && props.btnStyle == 'border') {
 			return GRAY20;
-		}
-		return APRI10;
+		} else return APRI10;
 	};
 
 	//default는 APRI10, Gray의 경우 GRAY20
@@ -42,34 +42,23 @@ export default AniButton = props => {
 	};
 
 	const btnStyle = () => {
-		//filled - APRI10 / Border or noBorder - white / Disable - GRAY30
-		if (props.disable) {
-			return GRAY30;
-		}
-		if (props.btnStyle == 'filled') {
-			return APRI10;
-		} else {
-			return 'white';
-		}
+		if (props.disable) { return GRAY30 } //disable일 경우 배경색 GRAY30
+		else if (props.btnStyle == 'filled') { return APRI10 } //FILLED일 경우 배경색 APRI10
+		else { return WHITE } //이외의 경우 WHITE
 	};
 
-	const lineHeight = () => {
-		//Border가 설정되는 disable=true , btnStyle='border'의 경우 border의 width만큼 lineheight에서 빼준다
-		if (props.btnStyle == 'border') {
-			return props.btnLayout.height - 4 * DP;
-		} else {
-			return props.btnLayout.height;
-		}
-	};
+	// const lineHeight = () => {
+	// 	//Border가 설정되는 disable=true , btnStyle='border'의 경우 border의 width만큼 lineheight에서 빼준다
+	// 	if (props.btnStyle == 'border') {
+	// 		return props.btnLayout.height - 4 * DP;
+	// 	} else {
+	// 		return props.btnLayout.height;
+	// 	}
+	// };
 	
-	//클릭 이벤트
-	const onPress = e => {
-		if (props.disable) {
-			// alert('disabled');
-		} else if (!props.disable) {
-			props.onPress();
-		}
-	};
+	//클릭 이벤트 - Disable false일 경우 onPress이벤트 발생
+	const onPress = () => {	props.disable ? null : props.onPress()	}
+
 	const insideView = () => {
 		return (
 			<View style={[props.btnLayout, btnTheme(), border(), {backgroundColor: btnStyle(), justifyContent: 'center'}]}>
@@ -80,7 +69,7 @@ export default AniButton = props => {
 							fontSize: props.titleFontStyle * DP,
 							color: btnTxtColor(),
 							textAlign: 'center',
-							lineHeight: lineHeight(),
+							// lineHeight: lineHeight(),
 						},
 					]}>
 					{props.btnTitle}
