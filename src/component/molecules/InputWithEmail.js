@@ -20,8 +20,7 @@ export default InputWithEmail = props => {
 	const onClear = () => {
 		inputRef.current.clear();
 		setInput(''); //email state를 null로 해주어야 borderColor가 GRAY30으로 반응한다
-		//X버튼을 누를 때마다 placeholder의 fontPadding이 적용되는 현상이 간헐적으로 발생
-		// 우선 X버튼 클릭이벤트 발생 시에도 강제적으로 width를 적용하여 해결
+		
 		props.onClear();
 	};
 
@@ -51,6 +50,8 @@ export default InputWithEmail = props => {
 							paddingLeft: 24 * DP,
 							lineHeight: 44 * DP,
 							width: input.length == 0 ? 190 * DP : null,
+							//X버튼을 누를 때마다 placeholder의 fontPadding이 적용되는 현상이 간헐적으로 발생
+							// 우선 X버튼 클릭이벤트 발생 시에도 강제적으로 width를 적용하여 해결
 						},
 					]}
 				/>

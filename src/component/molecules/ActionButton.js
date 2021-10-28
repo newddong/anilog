@@ -44,13 +44,13 @@ export default ActionButton = props => {
 		btnStatus ? props.onOpen() : props.onClose()
 	};
 
+	//액션버튼 본체
 	return (
 		<TouchableOpacity onPress={onPress}>
-			{/* 각각 필요한 스타일들(배경색, 테두리, 그림자효과)을 함수에서 얻어와 더해갑니다 */}
 			<View style={[
-				props.btnLayout, 
-				border(), 
-				{
+				props.btnLayout, // 버튼 레이아웃
+				border(),  // 버튼 테두리
+				{   //이외 스타일 적용 
 					backgroundColor: props.btnStyle == 'filled' ? APRI10 : 'white', 
 					flexDirection: 'row', 
 					justifyContent: 'center', 

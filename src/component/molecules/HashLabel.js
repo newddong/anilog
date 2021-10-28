@@ -5,7 +5,9 @@ import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
 import {Hash50} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
+
 export default HashLabel = props => {
+	
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<View

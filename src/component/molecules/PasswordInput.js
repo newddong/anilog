@@ -6,7 +6,7 @@ import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
 import {Cross52, Eye52_APRI10, Eye52_GRAY20} from '../atom/icon';
 export default PasswordInput = props => {
 
-	const [input, setInput] = React.useState(''); // 암호 별표화 State
+	const [input, setInput] = React.useState(''); // 암호 input text state
 	const [confirm, setConfirm] = React.useState(false); // 암호 validation state
 	const [pwdSecureState, setPwdSecureState] = React.useState(true); // 암호 별표화 state
 	const inputRef = React.useRef();

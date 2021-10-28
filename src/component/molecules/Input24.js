@@ -3,6 +3,7 @@ import {txt} from 'Root/config/textstyle';
 import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
+
 export default Input24 = props => {
 	const [input, setInput] = React.useState('');
 	const [confirm, setConfirm] = React.useState(false);
@@ -51,7 +52,7 @@ export default Input24 = props => {
 	const getMsg = () => {
 		if (input.length == 0) {
 			return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}></Text>;
-		}
+		} else
 		return confirm ? <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>
 		 			   : <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>
 		

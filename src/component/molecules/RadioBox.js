@@ -27,7 +27,7 @@ export default RadioBox = props => {
 		} else { // 유저가 선택한 Box가 선택가능한 수를 초과했을 경우
 			if (checkedItems.includes(index)) { // 이미 체크되어 있는 박스를 선택했을 경우
 				// noting
-			} else { // 새로운 박스를 선택했을 경우 가장 먼저 선택되었던 박스를 선택해제
+			} else { // 새로운 박스를 선택했을 경우 가장 먼저 선택했던 박스를 해제하고 새로운 박스 추가
 				checkedItems.splice(0, 1);
 				checkedItems.push(index);
 			}

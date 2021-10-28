@@ -1,8 +1,8 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import {StyleSheet, Text, View, Image, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
+import {Text, View, TouchableWithoutFeedback} from 'react-native';
 import DP from 'Root/config/dp';
-import {Check50, Rect48_GRAY30, Rect50Border} from '../atom/icon';
+import {Check50, Rect48_GRAY30, Rect50_Border} from '../atom/icon';
 import {GRAY10, GRAY20} from 'Root/config/color';
 export default CheckBox = props => {
 
@@ -19,7 +19,7 @@ export default CheckBox = props => {
                 ? <Rect48_GRAY30 /> 
                 : 
                 <TouchableWithoutFeedback onPress={onCheck}>
-                    {checked ? <Check50 /> : <Rect50Border />}
+                    {checked ? <Check50 /> : <Rect50_Border />}
                 </TouchableWithoutFeedback> 
             }
 			<Text

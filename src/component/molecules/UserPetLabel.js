@@ -40,5 +40,6 @@ UserPetLabel.defaultProps = {
 		user_id : 'user_id',
 		user_nickname : 'user_nickname',
 		user_image : 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-	}
+	},
+	onClickLabel : e => console.log(e)
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import { View} from 'react-native';
 import { Tag_View } from '../atom/icon';
 export default TagView = props => {
 	return (
@@ -8,3 +8,6 @@ export default TagView = props => {
 		</View>
 	);
 };
+TagView.defaultProps = {
+	
+}

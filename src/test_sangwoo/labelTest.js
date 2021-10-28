@@ -12,6 +12,7 @@ import {txt} from 'Root/config/textstyle';
 import ShelterLabel from 'Root/component/molecules/ShelterLabel';
 import { useNavigation } from '@react-navigation/core';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import PetImageLabel from 'Root/component/molecules/PetImageLabel';
 const LabelTest = () => {
 	//세션아이디의 일치여부에 따른 스타일 적용 테스트용 토큰
 	AsyncStorage.setItem('token','user_id')

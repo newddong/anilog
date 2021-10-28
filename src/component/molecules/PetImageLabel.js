@@ -9,26 +9,9 @@ export default PetImageLabel = props => {
 	// 반려동물의 프로필 이미지를 표시, 상태(임시보호중,입양)에 따라 아이콘을 표시
 	const petStatus = () => {
 		switch (props.petStatus) {
-			case 'protected':
-				return (
-					<View style={{position: 'absolute'}}>
-						<Paw62_YELL20 />
-					</View>
-				);
-				break;
-			case 'adopted':
-				return (
-					<View style={{position: 'absolute'}}>
-						<Paw62_Mixed />
-					</View>
-				);
-				break;
-			default:
-				return (
-					<View style={{position: 'absolute'}}>
-						<Paw62_APRI10 />
-					</View>
-				);
+			case 'protected': return <Paw62_YELL20 />
+			case 'adopted':	return <Paw62_Mixed />
+			default: return <Paw62_APRI10 />
 		}
 	};
 

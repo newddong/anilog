@@ -14,6 +14,7 @@ export default DropdownSelect = props => {
 
 	React.useEffect(()=>{
 		//selectedItem이 DropDown 선택으로 인해 바뀌면 수행되는 함수
+		//현재 Dropdown은 미구현 상태
 		onChange = () => {
 			props.onChange(txt)
 		}

@@ -2,8 +2,8 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {SafeAreaView, ScrollView, Text, TouchableOpacity, View, Button} from 'react-native';
 import {
-	Heart30Border,
-	Heart30Filled,
+	Heart30_Border,
+	Heart30_Filled,
 	Paw30_APRI10,
 	Paw30_YELL20,
 	Paw30_Mixed,
@@ -13,9 +13,9 @@ import {
 	Dog38,
 	Cross46,
 	Shelter46,
-	FavoriteTag46Filled,
-	FavoriteTag48Filled,
-	FavoriteTag48Border,
+	FavoriteTag46_Filled,
+	FavoriteTag48_Filled,
+	FavoriteTag48_Border,
 	Paw46,
 	Setting46,
 	Search48,
@@ -24,22 +24,22 @@ import {
 	RadioUnchecked48,
 	Public48,
 	Private48,
-	Like48Border,
-	Like48Filled,
-	Comment48Border,
-	Heart48Filled,
-	Paw48Yell20,
-	Paw48Mixed,
+	Like48_Border,
+	Like48_Filled,
+	Comment48_Border,
+	Heart48_Filled,
+	Paw48_YELL20,
+	Paw48_Mixed,
 	House48,
 	Paw48_APRI10,
 	Telephone48,
 	Check48,
 	Rect48_APRI10,
-	Rect48Border,
-	Calendar48Filled,
-	Share48Filled,
-	Share48Border,
-	Calendar48Border,
+	Rect48_GRAY30,
+	Calendar48_Filled,
+	Share48_Filled,
+	Share48_Border,
+	Calendar48_Border,
 	Cross48,
 	Person48,
 	Phone48,
@@ -48,16 +48,16 @@ import {
 	Female48,
 	VideoPlay48,
 	Bracket48,
-	Star50Border,
-	Star50Filled,
-	Meatball50h_GRAY20,
-	Meatball50h_APRI10,
-	Meatball50v_GRAY20,
-	Meatball50v_APRI10,
+	Star50_Border,
+	Star50_Filled,
+	Meatball50_GRAY20_Horizontal,
+	Meatball50_APRI10_Horizontal,
+	Meatball50_GRAY20_Vertical,
+	Meatball50_APRI10_Vertical,
 	Hash50,
-	Rect50Border,
+	Rect50_Border,
 	Check50,
-	Heart52Border,
+	Heart52_Border,
 	Heart52,
 	Eye52_APRI10,
 	Eye52_GRAY20,
@@ -65,19 +65,19 @@ import {
 	Location54_APRI10,
 	Location54_GRAY30,
 	Camera54,
-	PawBorder54,
-	Location54Filled,
-	SirenRed58,
-	SirenWhite58,
+	Paw54_Border,
+	Location54_Filled,
+	Siren58_Red,
+	Siren58_White,
 	ImageList48,
 	Cancel48,
-	Star60Border,
-	Star60Filled,
+	Star60_Border,
+	Star60_Filled,
 	Photo60,
 	Send60,
-	Send60Big,
-	Lock60Border,
-	Lock60Filled,
+	Send60_Big,
+	Lock60_Border,
+	Lock60_Filled,
 	Dog62,
 	Cat62,
 	Rabbit62,
@@ -89,7 +89,7 @@ import {
 	Public62,
 	AddItem64,
 	Tag70,
-	Social_kakao72,
+	SocialKakao72,
 	Clip72,
 	Email72,
 	FlashOff72,
@@ -131,8 +131,8 @@ export default IconTest = () => {
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 30, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 30 Size Icon : </Text>
 						<View style={{width: 30 * DP, height: 30 * DP, backgroundColor: 'red'}} />
-						<Heart30Filled />
-						<Heart30Border />
+						<Heart30_Filled />
+						<Heart30_Border />
 						<Paw30_APRI10 />
 						<Paw30_YELL20 />
 						<Paw30_Mixed />
@@ -150,7 +150,7 @@ export default IconTest = () => {
 						<View style={{width: 46 * DP, height: 46 * DP, backgroundColor: 'red'}} />
 						<Cross46 />
 						<Shelter46 />
-						<FavoriteTag46Filled />
+						<FavoriteTag46_Filled />
 						<Paw46 />
 						<Setting46 />
 					</View>
@@ -167,12 +167,12 @@ export default IconTest = () => {
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 48, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 48 Size Icon : </Text>
 						<View style={{width: 48 * DP, height: 48 * DP, backgroundColor: 'red'}} />
-						<Like48Border />
-						<Like48Filled />
-						<Comment48Border />
-						<Heart48Filled />
-						<Paw48Yell20 />
-						<Paw48Mixed />
+						<Like48_Border />
+						<Like48_Filled />
+						<Comment48_Border />
+						<Heart48_Filled />
+						<Paw48_YELL20 />
+						<Paw48_Mixed />
 					</View>
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 48, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 48 Size Icon : </Text>
@@ -182,17 +182,17 @@ export default IconTest = () => {
 						<Telephone48 />
 						<Check48 />
 						<Rect48_APRI10 />
-						<Rect48Border />
-						<Calendar48Filled />
+						<Rect48_GRAY30 />
+						<Calendar48_Filled />
 					</View>
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 48, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 48 Size Icon : </Text>
 						<View style={{width: 48 * DP, height: 48 * DP, backgroundColor: 'red'}} />
-						<Share48Filled />
-						<Share48Border />
-						<FavoriteTag48Filled />
-						<FavoriteTag48Border />
-						<Calendar48Border />
+						<Share48_Filled />
+						<Share48_Border />
+						<FavoriteTag48_Filled />
+						<FavoriteTag48_Border />
+						<Calendar48_Border />
 						{/* <Cross46/>  */}
 						<Cross48 />
 						<Person48 />
@@ -216,25 +216,25 @@ export default IconTest = () => {
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 50, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 50 Size Icon : </Text>
 						<View style={{width: 50 * DP, height: 50 * DP, backgroundColor: 'red'}} />
-						<Star50Border />
-						<Star50Filled />
-						<Meatball50h_GRAY20 />
-						<Meatball50v_GRAY20 />
+						<Star50_Border />
+						<Star50_Filled />
+						<Meatball50_GRAY20_Horizontal />
+						<Meatball50_GRAY20_Vertical />
 						<Hash50 />
 					</View>
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 50, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 50 Size Icon : </Text>
 						<View style={{width: 50 * DP, height: 50 * DP, backgroundColor: 'red'}} />
-						<Rect50Border />
+						<Rect50_Border />
 						<Check50 />
 
-						<Meatball50h_APRI10 />
-						<Meatball50v_APRI10 />
+						<Meatball50_APRI10_Horizontal />
+						<Meatball50_APRI10_Vertical />
 					</View>
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 52, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 52 Size Icon : </Text>
 						<View style={{width: 52 * DP, height: 52 * DP, backgroundColor: 'red'}} />
-						<Heart52Border />
+						<Heart52_Border />
 						<Heart52 />
 						<Eye52_APRI10 />
 						<Eye52_GRAY20 />
@@ -246,28 +246,28 @@ export default IconTest = () => {
 						<Location54_APRI10 />
 						<Location54_GRAY30 />
 						<Camera54 />
-						<PawBorder54 />
-						<Location54Filled />
+						<Paw54_Border />
+						<Location54_Filled />
 					</View>
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 58, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 58 Size Icon : </Text>
 						<View style={{width: 58 * DP, height: 58 * DP, backgroundColor: 'red'}} />
-						<SirenRed58 />
+						<Siren58_Red />
 						<View style={{backgroundColor: 'blue', flexDirection: 'row'}}>
-							<SirenWhite58 />
+							<Siren58_White />
 						</View>
 					</View>
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 60, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 60 Siz </Text>
 						<View style={{width: 60 * DP, height: 60 * DP, backgroundColor: 'red'}} />
-						<Star60Border />
-						<Star60Filled />
+						<Star60_Border />
+						<Star60_Filled />
 						<Photo60 />
 						<Send60 />
-						<Send60Big />
+						<Send60_Big />
 
-						<Lock60Border />
-						<Lock60Filled />
+						<Lock60_Border />
+						<Lock60_Filled />
 					</View>
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 62, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 62 Size Icon : </Text>
@@ -304,7 +304,7 @@ export default IconTest = () => {
 					<View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 						<Text style={{width: 100, height: 72, marginHorizontal: 10, textAlign: 'center', textAlignVertical: 'center'}}> 72 Size Icon : </Text>
 						<View style={{width: 72 * DP, height: 72 * DP, backgroundColor: 'red'}} />
-						<Social_kakao72 />
+						<SocialKakao72 />
 						<Clip72 />
 						<Email72 />
 					</View>

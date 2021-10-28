@@ -3,8 +3,8 @@ import {txt} from 'Root/config/textstyle';
 import { Text, View, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY40, WHITE, } from 'Root/config/color';
-export default OnOffSwitch = props => {
 
+export default OnOffSwitch = props => {
 
 	const [btnStatus, setBtnStatus] = React.useState(props.default);
 

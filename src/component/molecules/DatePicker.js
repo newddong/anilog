@@ -2,7 +2,7 @@ import React from 'react';
 import {txt} from 'Root/config/textstyle';
 import {Text, View, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
-import {Calendar48Border} from '../atom/icon';
+import {Calendar48_Border} from '../atom/icon';
 import {APRI10} from 'Root/config/color';
 import Calendar from 'Root/test_sangwoo/calendar';
 export default DatePicker = props => {
@@ -34,7 +34,7 @@ export default DatePicker = props => {
 					{selectedDate}
 				</Text>
 				<TouchableOpacity onPress={openCalendar} style={{marginLeft: 294 * DP}}>
-					<Calendar48Border />
+					<Calendar48_Border />
 				</TouchableOpacity>
 			</View>
 			<Calendar modalOn={btnStatus} modalOff={() => setBtnStatus(false)} selectDate={date => onDateChange(date)} />

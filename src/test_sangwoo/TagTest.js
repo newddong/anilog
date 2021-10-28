@@ -5,9 +5,6 @@ import TagEdit from 'Root/component/molecules/TagEdit';
 import AddPet from 'Root/component/molecules/AddPet';
 import RescueImage from 'Root/component/molecules/RescueImage';
 export default TagTest = props => {
-	const handleDelete = (e) => {
-		alert("삭제시도")
-	}
 	return (
 		<View>
 			<Text style={{backgroundColor: 'blue', color: 'white'}}> TagView </Text>

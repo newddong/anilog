@@ -5,7 +5,9 @@ import {GRAY20, BLACK, APRI10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
+
 export default UserTimeLabel = props => {
+
 	const [validation, setValidation] = React.useState(false);
 	const [imgUri, setImgUri] = React.useState(props.data.user_image);
 
@@ -58,4 +60,5 @@ UserTimeLabel.defaultProps = {
 		user_image: 'user_image',
 		time: '1일',
 	},
+	onClickLabel : e => console.log(e),
 };

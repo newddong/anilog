@@ -3,6 +3,7 @@ import {txt} from 'Root/config/textstyle';
 import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {GRAY20, GRAY30, BLACK, RED10} from 'Root/config/color';
+
 export default InputTimeLimit = props => {
 
 	const [input, setInput] = React.useState('');

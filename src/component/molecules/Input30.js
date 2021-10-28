@@ -20,8 +20,8 @@ export default Input30 = props => {
 
 	//Validator 조건확인이 안되었기에 테스트용으로 입력된 텍스트가
 	// 10자 이상일 때 confirmed가 되도록 작성
-	const validator = txt => {
-		txt.length < 10 ? setConfirm(false) : setConfirm(true);
+	const validator = text => {
+		text.length < 10 ? setConfirm(false) : setConfirm(true);
 	};
 
 	const getMsg = () => {
