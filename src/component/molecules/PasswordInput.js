@@ -57,7 +57,10 @@ export default PasswordInput = props => {
 		<View style={{flexDirection: 'row'}}>
 			<View style={{height: 158 * DP}}>
 				{/* 모든 text에 fontPadding false 적용 잊지말것 */}
-				<Text style={[txt.noto24, {color: APRI10, lineHeight: 40 * DP}]}> {props.title} </Text>
+				{/* parent에서 title이 props로 명시되어 있지 않을 경우 'title' string 으로 받음. */}
+				{(props.title!='' && props.title!='title')&&(
+					<Text style={[txt.noto24, {color: APRI10, lineHeight: 40 * DP}]}> {props.title} </Text>
+				)}
 				{/* Description 아래는 height 90으로 고정 */}
 				{/* 하단테두리는 2px, APRI설정 */}
 				<View style={{height: 82 * DP, flexDirection: 'row', borderBottomWidth: 2 * DP, borderBottomColor: getBorderColor(), alignItems: 'center'}}>

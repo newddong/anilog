@@ -23,7 +23,7 @@ export default Input24 = props => {
 
 	const onChange = text => {
 		setInput(text);
-		props.onChange(text);
+		//props.onChange(text);
 		validator(text);
 	};
 
@@ -62,10 +62,15 @@ export default Input24 = props => {
 		<View style={{flexDirection: 'row'}}>
 			{/* height는 168로 고정 */}
 			<View style={{height: 168 * DP}}>
-				<View style={{flexDirection: 'row',}}>
-					<Text style={[txt.noto24, {color: APRI10,}]}> {props.title} </Text>
-					{getDescription()}
-				</View>
+				{console.log(typeof props.title)}
+				{console.log("props.title=" + props.title)}
+				{/* parent에서 title이 props로 명시되어 있지 않을 경우 'title' string 으로 받음. */}
+				{(props.title!='' && props.title!='title')&&(
+					<View style={{flexDirection: 'row',}}>
+						<Text style={[txt.noto24, {color: APRI10,}]}> {props.title} </Text>
+						{getDescription()}
+					</View>)
+				}
 				{/* 하단테두리 2px이 있기 때문에 inputValue와 82px가 차이가 나도 -2한 80값을 height로 줌 */}
 				<View style={{height: 80 * DP, borderBottomWidth: 2 * DP, borderBottomColor: setBorderColor()}}>
 					<TextInput
