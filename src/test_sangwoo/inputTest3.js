@@ -1,14 +1,11 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
 import {StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'react-native';
-import DP from 'Root/config/dp';
 import {useNavigation} from '@react-navigation/core';
 import InputTimeLimit from 'Root/component/molecules/InputTimeLimit';
 import DropdownSelect from 'Root/component/molecules/DropdownSelect';
-import Calendar from './calendar';
 import DatePicker from 'Root/component/molecules/DatePicker';
 import CheckBox from 'Root/component/molecules/CheckBox';
-import RadioBox from 'Root/component/molecules/RadioBox';
 import { GRAY10 } from 'Root/config/color';
 export default InputTest2 = props => {
 	const navigation = useNavigation();
@@ -33,14 +30,18 @@ export default InputTest2 = props => {
 				</TouchableOpacity>
 			</View>
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> InputTimeLimit - </Text>
-			<InputTimeLimit placeholder={'placeholder'} value={null} timelimit={100} alert_msg={'alert_msg'} timeout_msg={'timeout_msg'} />
+			<InputTimeLimit placeholder={'placeholder'} value={null} timelimit={10} alert_msg={'alert_msg'} timeout_msg={'timeout_msg'} />
+
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> DropdownSelect - </Text>
 			<DropdownSelect itemList={itemList} value={null} defaultIndex={0} />
 			<DropdownSelect itemList={itemList} value={null} defaultIndex={1} />
+
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> DatePicker - </Text>
 			<DatePicker />
+
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> CheckBox - </Text>
 			<CheckBox value={'value'} disable={false} />
+			
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> CheckBox - disable </Text>
 			<CheckBox value={'value'} disable={true} />
 		</ScrollView>

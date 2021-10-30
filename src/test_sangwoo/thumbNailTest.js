@@ -48,7 +48,7 @@ export default FeedThumbnailTest = props => {
 			<Text style={{backgroundColor: 'blue', color: 'white'}}>Feed Thumbnail - only photo </Text>
 
 			<ScrollView horizontal={true} style={{flexDirection: 'row'}}>
-				<FeedThumnail img_uri={'http://ojsfile.ohmynews.com/STD_IMG_FILE/2019/0603/IE002505411_STD.jpg'} data={feedInfo} onPress={ (e) => console.log(e)} />
+				<FeedThumnail img_uri={'http://ojsfile.ohmynews.com/STD_IMG_FILE/2019/0603/IE002505411_STD.jpg'} data={feedInfo} onSelect={ (e) => console.log(e)} />
 				<FeedThumnail img_uri={'http://ojsfile.ohmynews.com/STD_IMG_FILE/2019/0603/IE002505411_STD.jpg'} data={feedInfo2} />
 				<FeedThumnail data={feedInfo3} />
 			</ScrollView>

@@ -4,30 +4,14 @@ import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {Paw62_APRI10, Paw62_Mixed, Paw62_YELL20} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
+
 export default PetImageLabel = props => {
 	// 반려동물의 프로필 이미지를 표시, 상태(임시보호중,입양)에 따라 아이콘을 표시
 	const petStatus = () => {
 		switch (props.petStatus) {
-			case 'protected':
-				return (
-					<View style={{position: 'absolute'}}>
-						<Paw62_YELL20 />
-					</View>
-				);
-				break;
-			case 'adopted':
-				return (
-					<View style={{position: 'absolute'}}>
-						<Paw62_Mixed />
-					</View>
-				);
-				break;
-			default:
-				return (
-					<View style={{position: 'absolute'}}>
-						<Paw62_APRI10 />
-					</View>
-				);
+			case 'protected': return <Paw62_YELL20 />
+			case 'adopted':	return <Paw62_Mixed />
+			default: return <Paw62_APRI10 />
 		}
 	};
 
@@ -39,8 +23,9 @@ export default PetImageLabel = props => {
 		</View>
 	);
 };
+
 PetImageLabel.defaultProps = {
 	img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
 	petStatus: 'normal', // normal protected adopted 
-	petNickname: '달리', // 펫 프로필이미지 아래에 출력되는 닉네임
+	petNickname: null, // 펫 프로필이미지 아래에 출력되는 닉네임
 };
