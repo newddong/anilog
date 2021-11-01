@@ -1,10 +1,12 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import { Text, View, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
-import {APRI10, GRAY40, YELL20} from 'Root/config/color';
+import {APRI10, GRAY40, WHITE, } from 'Root/config/color';
+
 export default OnOffSwitch = props => {
-	const [btnStatus, setBtnStatus] = React.useState(false);
+
+	const [btnStatus, setBtnStatus] = React.useState(props.default);
 
 	return (
 		<View>
@@ -20,8 +22,8 @@ export default OnOffSwitch = props => {
 							alignItems: 'center',
 							backgroundColor: APRI10,
 						}}>
-						<Text style={[txt.roboto20, {color: 'white'}]}> On </Text>
-						<View style={{width: 28 * DP, height: 28 * DP, borderRadius: 30, backgroundColor: 'white'}} />
+						<Text style={[txt.roboto20, {color: WHITE}]}> On </Text>
+						<View style={{width: 28 * DP, height: 28 * DP, borderRadius: 30, backgroundColor: WHITE}} />
 					</View>
 				</TouchableOpacity>
 			) : (
@@ -36,8 +38,8 @@ export default OnOffSwitch = props => {
 							alignItems: 'center',
 							backgroundColor: GRAY40,
 						}}>
-						<View style={{width: 28 * DP, height: 28 * DP, borderRadius: 30, backgroundColor: 'white'}} />
-						<Text style={[txt.roboto20, {color: 'white'}]}> Off </Text>
+						<View style={{width: 28 * DP, height: 28 * DP, borderRadius: 30, backgroundColor: WHITE}} />
+						<Text style={[txt.roboto20, {color: WHITE}]}> Off </Text>
 					</View>
 				</TouchableOpacity>
 			)}
@@ -46,6 +48,6 @@ export default OnOffSwitch = props => {
 };
 OnOffSwitch.defaultProps = {
 	default: 0,
-	onSwtichOn: {},
-	onSwtichOff: {},
+	onSwtichOn: e => console.log(e),
+	onSwtichOff: e => console.log(e),
 };

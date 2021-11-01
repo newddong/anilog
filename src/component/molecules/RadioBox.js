@@ -2,9 +2,11 @@ import React from 'react';
 import {txt} from 'Root/config/textstyle';
 import {Text, View,  TouchableOpacity, FlatList} from 'react-native';
 import DP from 'Root/config/dp';
-import {APRI10, GRAY10, GRAY20, GRAY40} from 'Root/config/color';
+import {GRAY20} from 'Root/config/color';
 import {RadioChecked48, RadioUnchecked48} from '../atom/icon';
+
 export default RadioBox = props => {
+
 	const tabLength = props.items.length;
 	let tabState = [];
 	Array(tabLength)
@@ -18,71 +20,49 @@ export default RadioBox = props => {
 	const [checkedItems, setCheckedItems] = React.useState([]);
 
 	//선택된 Tab의 State를 True로 이외의 Tab은 False로
-	const handleClick = index => {
+	const onSelect = index => {
 		const copyState = [...selected];
-		if (checkedItems.length < props.selectableNumber) {
-			console.log('3개 이하');
+		if (checkedItems.length < props.selectableNumber) { // 유저가 선택한 Box가 선택가능한 수 미만일 경우
 			checkedItems.push(index);
-		}
-		console.log('checked length ' + checkedItems.length);
-		if (checkedItems.length >= props.selectableNumber) {
-			console.log('3개가 되었을 때');
-			if (checkedItems.includes(index)) {
-			} else {
+		} else { // 유저가 선택한 Box가 선택가능한 수를 초과했을 경우
+			if (checkedItems.includes(index)) { // 이미 체크되어 있는 박스를 선택했을 경우
+				// noting
+			} else { // 새로운 박스를 선택했을 경우 가장 먼저 선택했던 박스를 해제하고 새로운 박스 추가
 				checkedItems.splice(0, 1);
 				checkedItems.push(index);
 			}
 		}
 		for (let i = 0; i < copyState.length; i++) {
-			if (!checkedItems.includes(i)) {
-				copyState[i].state = false;
-			} else if (checkedItems.includes(i)) {
-				copyState[i].state = true;
-			}
+			checkedItems.includes(i) ? copyState[i].state = true
+									 : copyState[i].state = false
 		}
-		console.log('Checked ' + JSON.stringify(checkedItems));
 		setSelected(copyState);
 		props.onSelect(checkedItems)
-	};
-	const getRadioCheck = index => {
-		if (selected[index].state) {
-			return (
-				<View style={{height: 82 * DP}}>
-					<RadioChecked48 />
-				</View>
-			);
-		} else if (!selected[index].state) {
-			return (
-				<View style={{height: 82 * DP}}>
-					<RadioUnchecked48 />
-				</View>
-			);
-		}
-	};
+	}
+
 	const renderItem = ({item, index}) => {
 		return (
-			<TouchableOpacity onPress={() => handleClick(index)}>
+			<TouchableOpacity onPress={() => onSelect(index)}>
 				<View style={{height: 82 * DP, flexDirection: 'row'}}>
-					{/* <RadioChecked48/>
-				<RadioUnchecked48 /> */}
-					<View style={{marginLeft: props.horizontal ? 25 * DP : 0}}>{getRadioCheck(index)}</View>
-					<Text style={[txt.noto28, {color: GRAY20, textAlign: 'center', includeFontPadding: false, lineHeight: 46 * DP, marginLeft: 12 * DP}]}>
+					<View style={{marginLeft: props.horizontal ? 25 * DP : 0}}>
+						<View style={{height: 82 * DP}}>
+						{selected[index].state  ? <RadioChecked48 />
+						      		 			: <RadioUnchecked48 />
+						}
+						</View>
+					</View>
+					<Text style={[txt.noto28, {color: GRAY20, lineHeight: 46 * DP, marginLeft: 12 * DP, textAlign: 'center', }]}>
 						{item}
 					</Text>
 				</View>
 			</TouchableOpacity>
 		);
 	};
-	return (
-		<View>
-			<View style={{}}>
-				<FlatList data={props.items} renderItem={renderItem} horizontal={props.horizontal} />
-			</View>
-		</View>
-	);
+	return <FlatList data={props.items} renderItem={renderItem} horizontal={props.horizontal} />
+	
 };
 RadioBox.defaultProps = {
 	values: null,
 	selectableNumber: 1,
-	onSelect: {},
+	onSelect: e => console.log(e),
 };

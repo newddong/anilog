@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import { Text, View,} from 'react-native';
 import ProfileImageSelect from 'Root/component/molecules/ProfileImageSelect';
 import {ScrollView} from 'react-native';
 import ProfileImageLarge160 from 'Root/component/molecules/ProfileImageLarge160';
@@ -8,11 +8,12 @@ import ProfileImageMedium120 from 'Root/component/molecules/ProfileImageMedium12
 import ProfileImageMedium140 from 'Root/component/molecules/ProfileImageMedium140';
 import ProfileImageSmall from 'Root/component/molecules/ProfileImageSmall';
 import PetImageLabel from 'Root/component/molecules/PetImageLabel';
+import { BLUE20, WHITE } from 'Root/config/color';
 export default ProfileImageSelectTest = props => {
 	return (
 		<ScrollView>
 			{/* Profile Image */}
-			<Text style={{backgroundColor: 'blue', color: 'white'}}> ProfileImage - img uri 有 </Text>
+			<Text style={{backgroundColor: BLUE20, color: WHITE}}> ProfileImage - img uri 有 </Text>
 
 			<ProfileImageSelect
 				selectedImageUri={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBxxkWTv71fEvE9HvXaCLjexYJhc_Ij_w7JA&usqp=CAU'}

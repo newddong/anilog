@@ -1,26 +1,24 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {View, Image, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
 import {Cancel62} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 
 export default SelectedMedia410 = props => {
-	const onDelete = (e) => {
-		alert('삭제작업')
-	}
+	const onDelete = e => {
+		alert('삭제작업');
+		props.onDelete();
+	};
 	return (
-		<View>
-			<View style={styles.img_square_round_410}>
-				<Image source={{uri: props.media_uri}} style={styles.img_square_round_410} />
-				<TouchableOpacity onPress={onDelete} style={{position: 'absolute', right: 20 * DP, top: 20 * DP}}>
-					<View >
-						<Cancel62 />
-					</View>
-				</TouchableOpacity>
-			</View>
+		<View style={styles.img_square_round_410}>
+			<Image source={{uri: props.media_uri}} style={styles.img_square_round_410} />
+			<TouchableOpacity onPress={onDelete} style={{position: 'absolute', right: 20 * DP, top: 20 * DP}}>
+				<Cancel62 />
+			</TouchableOpacity>
 		</View>
 	);
 };
 SelectedMedia410.defaultProps = {
-	media_uri : 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
-}
+	media_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+	onDelete: e => console.log(e),
+};

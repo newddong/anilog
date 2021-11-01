@@ -6,15 +6,19 @@ import {Private48, Public48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 import { APRI10, BLACK } from 'Root/config/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export default ShelterLabel = props => {
+
 	const [validation, setValidation] = React.useState(false);
 	const [imgUri, setImgUri] = React.useState(props.data.shelter_image);
+
 	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정
 	React.useEffect(() => {
 		if (imgUri == null) {
 			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
 		}
 	});
+	
 	//user_nickname Text 색깔 조건부적용을 위한 세션아이디 비교
 	React.useEffect(() => {
 		const getItem = async () => {
@@ -30,19 +34,16 @@ export default ShelterLabel = props => {
 	
 	const getStatusMark = () => {
 		switch (props.data.shelter_type) { 
-			case 'public':
-				return <Public48 />;
-				break;
-			case 'private':
-				return <Private48 />;
-				break;
-			default:
-				return  <></>
+			case 'public'	:   return <Public48 />;
+			case 'private'	:	return <Private48 />;
+			default: return  <></>
 		}
 	};
+
 	const onClickLabel = e => {
 		props.onLabelClick(props.data.user_id);
 	};
+
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
@@ -73,5 +74,6 @@ ShelterLabel.defaultProps = {
 		shelter_image: 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
 		location: 'location',
 		shelter_type: null,
-	}
+	},
+	onClickLabel : e => console.log(e)
 }

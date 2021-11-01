@@ -4,28 +4,28 @@ import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
 import {Paw30_APRI10, Paw30_Mixed, Paw30_YELL20} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
+
 export default PetLabel = props => {
+
 	const [imgUri, setImgUri] = React.useState(props.data.user_image);
 	React.useEffect(() => {
 		if (imgUri == null) {
 			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
 		}
 	});
+
 	const getStatusMark = () => {
 		switch (props.data.status) {
-			case 'protected':
-				return <Paw30_YELL20 />;
-				break;
-			case 'adopted':
-				return <Paw30_Mixed />;
-				break;
-			default:
-				return <Paw30_APRI10 />;
+			case 'protected': return <Paw30_YELL20 />;
+			case 'adopted':	return <Paw30_Mixed />;
+			default: return <Paw30_APRI10 />;
 		}
 	};
+	
 	const onClickLabel = e => {
 		props.onLabelClick(props.data.user_id);
 	};
+
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
@@ -50,12 +50,13 @@ export default PetLabel = props => {
 		</View>
 	);
 };
-
+ 
 PetLabel.defaultProps = {
 	data : {
 		user_id : 'user_id',
 		user_nickname : 'user_nickname',
 		user_image : 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
 		status : 'normal'
-	}
+	},
+	onClickLabel : e => console.log(e),
 }

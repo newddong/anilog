@@ -38,6 +38,30 @@ export default InputTest1 = props => {
 				placeholder={'닉네임을 입력하세요'}
 				placeholderTextColor={GRAY_BRIGHT}
 			/>
+			{/* Input24 - info Version */}
+			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> Input24 - star Version </Text>
+			<Input24
+				title={'Title'}
+				placeholder={'placeholder'}
+				descriptionType={'star'} // Important
+				value={'value'}
+				alert_msg={'alert_msg'}
+				confirm_msg={'confirm_msg'}
+				onChange={e => console.log(e)}
+				// onClear={}
+			/>
+			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> Input24 - info Version </Text>
+			<Input24
+				title={'Title'}
+				placeholder={'placeholder'}
+				descriptionType={'info'} // Important
+				info={'information'}
+				value={'value'}
+				alert_msg={'alert_msg'}
+				confirm_msg={'confirm_msg'}
+				onChange={e => console.log(e)}
+				// onClear={}
+			/>
 			{/* InputWithSearchIcon */}
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> InputWithSearchIcon </Text>
 			<InputWithSearchIcon
@@ -91,19 +115,7 @@ export default InputTest1 = props => {
 				</View>
 			</View>
 
-			{/* Input24 - info Version */}
-			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> Input24 - info Version </Text>
-			<Input24
-				title={'Title'}
-				placeholder={'placeholder'}
-				descriptionType={'info'}
-				info={'information'}
-				value={'value'}
-				alert_msg={'alert_msg'}
-				confirm_msg={'confirm_msg'}
-				onChange={e => console.log(e)}
-				// onClear={}
-			/>
+			
 			{/* Input24 - star Version */}
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> Input24 - star Version</Text>
 			<Input24

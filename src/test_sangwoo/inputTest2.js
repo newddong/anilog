@@ -2,9 +2,6 @@ import React from 'react';
 import {txt} from 'Root/config/textstyle';
 import { Text, View, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
-import TabSelectFilled_Type1 from 'Root/component/molecules/TabSelectFilled_Type1';
-import TabSelectFilled_Type2 from 'Root/component/molecules/TabSelectFilled_Type2';
-import TabSelectBorder from 'Root/component/molecules/TabSelectBorder';
 import {useNavigation} from '@react-navigation/core';
 import PasswordInput from 'Root/component/molecules/PasswordInput';
 import InputWithSelect from 'Root/component/molecules/InputWithSelect';
@@ -35,6 +32,7 @@ export default InputTest2 = props => {
 					</View>
 				</TouchableOpacity>
 			</View>
+			{/* PasswordInput */}
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> PasswordInput </Text>
 			<PasswordInput
 				title={'title'}
@@ -44,20 +42,13 @@ export default InputTest2 = props => {
 				alert_msg={'alert_msg'}
 				confirm_msg={'confirm_msg'}
 			/>
+			{/* InputWithEmail */}
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> InputWithEmail / 이메일란 한글자 이상- Border 바뀜</Text>
 			<InputWithEmail itemList={emailList} placeholder={'placeholder'} value={null} defaultIndex={0} />
+			{/* InputWithSelect */}
 			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> InputWithSelect </Text>
-			<InputWithSelect itemList={itemList} placeholder={'placeholder'} value={null} defaultIndex={0} />
-			<View style={{marginTop: 20}} />
+			<InputWithSelect itemList={itemList} placeholder={'placeholder'} value={null} defaultIndex={0} onChange={ e => console.log(e)} />
 			
-			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> TabSelectFilled_Type1 </Text>
-
-			<TabSelectFilled_Type1 items={items} onSelect={e => alert(e)} />
-			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> TabSelectFilled_Type2 </Text>
-			<TabSelectFilled_Type2 items={items} onSelect={e => console.log(e)} />
-			<Text style={{backgroundColor: 'blue', color: 'white', marginVertical: 10}}> TabSelectBorder </Text>
-			<TabSelectBorder items={items2} onSelect={e => console.log(e)} />
-
 			{/* Password Input */}
 		</View>
 	);
