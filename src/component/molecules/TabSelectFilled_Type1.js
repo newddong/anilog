@@ -5,6 +5,7 @@ import DP from 'Root/config/dp';
 import {APRI10, GRAY10, GRAY40, WHITE} from 'Root/config/color';
 
 export default TabSelectFilled_Type1 = props => {
+	
 	let tabState = [];
 	const tabLength = props.items.length;
 	Array(tabLength)
@@ -14,6 +15,7 @@ export default TabSelectFilled_Type1 = props => {
 		});
 	tabState[0].state = true;
 	const [selected, setSelected] = React.useState(tabState);
+	
 
 	//선택된 Tab의 State를 True로 이외의 Tab은 False로
 	const onSelect = index => {

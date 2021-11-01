@@ -13,6 +13,8 @@ import ShelterLabel from 'Root/component/molecules/ShelterLabel';
 import { useNavigation } from '@react-navigation/core';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PetImageLabel from 'Root/component/molecules/PetImageLabel';
+import ShelterSmallLabel from 'Root/component/molecules/ShelterSmallLabel';
+import ShelterInfo from 'Root/component/molecules/ShelterInfo';
 const LabelTest = () => {
 	//세션아이디의 일치여부에 따른 스타일 적용 테스트용 토큰
 	AsyncStorage.setItem('token','user_id')
@@ -110,6 +112,32 @@ const LabelTest = () => {
 		location: 'location',
 		shelter_type: 'private',
 	};
+	const shelterInfo_dummy1 = {
+		user_id: 'user_id',
+		shelter_name: 'shelter_name',
+		user_image : 'https://i.ytimg.com/vi/ERAMkP92arE/maxresdefault.jpg',
+		phone_number : '010-9645-0422',
+		address : 'Address',
+		location: 'location',
+		shelter_type: 'private',
+	};
+	const shelterInfo_dummy2 = {
+		user_id: 'user_id2',
+		shelter_name: 'shelter_name',
+		user_image : 'https://i.ytimg.com/vi/ERAMkP92arE/maxresdefault.jpg',
+		phone_number : '010-9645-0422',
+		address : 'Address',
+		location: 'location',
+		shelter_type: 'public',
+	};
+	const shelterInfo_dummy3 = {
+		user_id: 'user_id3',
+		shelter_name: 'shelter_name',
+		phone_number : '010-9645-0422',
+		address : 'Address',
+		location: 'location',
+		shelter_type: 'private',
+	};
 	//Test용 데이터
 	return (
 		<ScrollView>
@@ -170,6 +198,15 @@ const LabelTest = () => {
 			<ShelterLabel data={shelter_dummy2} onLabelClick={e => alert(e)} />
 			<ShelterLabel data={shelter_dummy3} onLabelClick={e => alert(e)} />
 			<ShelterLabel onLabelClick={e => alert(e)} />
+			{/* ShelterSmallLabel */}
+			<ShelterSmallLabel data={shelter_dummy1} onLabelClick={e => alert(e)}/>
+			<ShelterSmallLabel data={shelter_dummy2} onLabelClick={e => alert(e)}/>
+			<ShelterSmallLabel data={shelter_dummy3} onLabelClick={e => alert(e)}/>
+
+			{/* ShelterInfo */}
+			<ShelterInfo data={shelterInfo_dummy1} />
+			<ShelterInfo data={shelterInfo_dummy2} />
+			<ShelterInfo data={shelterInfo_dummy3} />
 		</ScrollView>
 	);
 };

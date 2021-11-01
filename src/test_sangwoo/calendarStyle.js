@@ -1,13 +1,14 @@
 import {StyleSheet} from 'react-native';
-import {LIGHT_SALMON, MIDNIGHT_BLUE, PALETUR} from 'Root/config/color';
+import {APRI10, LIGHT_SALMON, MIDNIGHT_BLUE, PALETUR} from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
 export const styles = StyleSheet.create({
 	outside: {
 		backgroundColor: 'white',
 		justifyContent: 'center',
 		borderRadius: 40 * DP,
-		width: 650 * DP,
-		marginBottom: 100 * DP,
+		width: 658 * DP,
+		height: 792 * DP, 
 	},
 	headerCont: {
 		flexDirection: 'row',
@@ -15,7 +16,6 @@ export const styles = StyleSheet.create({
 		height: 140 * DP,
 	},
 	headerText: {
-		fontFamily: 'BMJUA',
 		fontSize: 58 * DP,
 		alignItems: 'center',
 		alignSelf: 'center',
@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
 	dateContainer: {
 		flexDirection: 'row',
 		alignSelf: 'center',
-		marginHorizontal: 120 * DP,
+		justifyContent: 'center',
 		marginTop: 50 * DP,
 	},
 	daysCont: {
@@ -53,52 +53,38 @@ export const styles = StyleSheet.create({
 		alignSelf: 'center',
 	},
 	daysView: {
-		width: 70 * DP,
-		height: 70 * DP,
+		width: 94 * DP,
+		height: 54 * DP,
 		marginBottom: -20 * DP,
-		backgroundColor: PALETUR,
 		paddingTop: 16 * DP,
 		opacity: 0.7,
-		marginHorizontal: 5 * DP,
+	},
+	daysText: {
+		fontSize: 30 * DP,
+		alignSelf: 'center',
 	},
 	weekend: {
 		fontSize: 30 * DP,
 		color: 'red',
-		fontFamily: 'BMJUA',
 		textAlign: 'center',
 	},
-	today: {
-		width: 70 * DP,
-		height: 70 * DP,
-		backgroundColor: 'yellow',
-		marginHorizontal: 5 * DP,
-	},
+
 	days_not_this_month: {
 		width: 70 * DP,
 		height: 70 * DP,
-		marginHorizontal: 5 * DP,
 	},
 	days_not_this_month_text: {
-		fontSize: 30 * DP,
-		fontFamily: 'BMJUA',
 		alignSelf: 'center',
-		color: 'gray',
 		opacity: 0.5,
-		marginHorizontal: 5 * DP,
 	},
 	days_this_month: {
-		width: 70 * DP,
-		height: 70 * DP,
-		marginHorizontal: 5 * DP,
+		width: 94 * DP,
+		height: 54 * DP,
+		justifyContent: 'center', alignItems:'center'
 	},
-	days_have_task: {
-		width: 70 * DP,
-		height: 70 * DP,
-		backgroundColor: LIGHT_SALMON,
-	},
-	daysText: {
-		fontSize: 30 * DP,
-		fontFamily: 'BMJUA',
-		alignSelf: 'center',
+	today: {
+		width: 94 * DP,
+		height: 54 * DP,
+		justifyContent: 'center', alignItems:'center' 
 	},
 });
