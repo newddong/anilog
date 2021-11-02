@@ -24,6 +24,8 @@ export const RECAPTCHA = '상단 이미지의 보안문자를 입력해주세요
 export const LOGIN_SOCIAL = '소셜 아이디로 로그인'
 export const FIND_MY_ACCOUNT = '내 계정 찾기'
 export const CONFIRM_MY_ACCOUNT = '계정 확인'
+export const NONE_OF_YOUR_ACCOUNTS = '이 번호로 가입한 계정이 없습니다.'
+
 
 //Verify_User
 export const REQ_NAME = '이름을 입력해주세요.';
