@@ -68,7 +68,7 @@ export default InputTimeLimit = props => {
 
 	const getMsg = () => {
 		if(input.length == 0 && !timeOut){
-			return null
+			return false
 		} else if(!confirm && !timeOut){
 			return props.alert_msg
 		} else if(timeOut){

@@ -24,7 +24,7 @@ export default HashLabel = props => {
 			</View>
 			<View style={{marginLeft: 30 * DP}}>
 				{/* 해쉬마크가 담긴 원과 KEYWORD간 30의 차이 */}
-				{props.count == null 
+				{props.count == false 
 					? //부모가 보내는 count값이 없을 경우 키워드만 출력
 					<Text style={txt.noto30}>{props.keyword}</Text>
 				 	: //count값이 있을 경우 'count한 게시물' 출력
