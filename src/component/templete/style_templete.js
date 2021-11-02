@@ -196,8 +196,153 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',	
 		backgroundColor: '#DEB5B5',
 	},
-	
-	
+	textMsg_AssignUserHabitation:{
+		width: 654 * DP,
+		height: 128 * DP,	
+		alignItems: 'center',
+		justifyContent: 'center',	
+		backgroundColor: '#DBD3EB',
+	},
+	habitationForm:{
+		width: 654 * DP,
+		height: 366 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#A07A7A',
+	},
+	textMsg_AssignUserProfileImage:{
+		width: 512 * DP,
+		height: 38 * DP,	
+		alignItems: 'center',
+		justifyContent: 'center',	
+		backgroundColor: '#DBD3EB',
+	},
+	input30_assignUserProfileImage:{
+		width: 654 * DP,
+		height: 204 * DP,	
+		alignItems: 'center',
+		justifyContent: 'center',	
+		backgroundColor: '#DEB5B5',
+	},
+	inputForm_assignShelterAddress:{
+		width: 654 * DP,
+		height: 420 * DP,	
+		alignItems: 'center',
+		justifyContent: 'center',	
+		backgroundColor: '#DEB5B5',
+	},
+	input24A_assignShelterAddress:{
+		width: 654 * DP,
+		height: 112 * DP,	
+		alignItems: 'center',
+		justifyContent: 'center',	
+		backgroundColor: '#EF9FE5',
+	},
+	addressInput:{
+		width: 654 * DP,
+		height: 238 * DP,	
+		alignItems: 'center',
+		justifyContent: 'center',	
+		backgroundColor: '#ADB5CE',
+	},
+	inputWithSelect_assignShelterInformation:{
+		width: 654 * DP,
+		height: 122 * DP,	
+		alignItems: 'center',
+		justifyContent: 'center',	
+		backgroundColor: '#D8B5DE',
+	},
+	inputWithEmail_assignShelterInformation:{
+		width: 654 * DP,
+		height: 122 * DP,	
+		alignItems: 'center',
+		justifyContent: 'center',	
+		backgroundColor: '#D8B5DE',
+	},
+	input24A_assignShelterInformation:{
+		width: 654 * DP,
+		height: 122 * DP,	
+		alignItems: 'center',
+		justifyContent: 'center',	
+		backgroundColor: '#D8B5DE',
+	},
+	datePicker_assignShelterInformation:{
+		width: 654 * DP,
+		height: 122 * DP,	
+		alignItems: 'center',
+		justifyContent: 'center',	
+		backgroundColor: '#D8B5DE',
+	},
+	datePicker_assignShelterInformation:{
+		width: 654 * DP,
+		height: 122 * DP,	
+		alignItems: 'center',
+		justifyContent: 'center',	
+		backgroundColor: '#D8B5DE',
+	},
+	passwordChecker:{
+		width: 654 * DP,
+		height: 406 * DP,	
+		alignItems: 'center',
+		justifyContent: 'center',	
+		backgroundColor: '#DEB5B5',
+	},
+	profileImageSelect:{
+		width: 294 * DP,
+		height: 294 * DP,	
+		alignItems: 'center',
+		justifyContent: 'center',	
+		backgroundColor: '#A07A7A',
+	},
+	profileNicknameChange:{
+		width: 654 * DP,
+		height: 380 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#DEB5B5',
+	},
+	input24_changeUserProfileImage:{
+		width: 654 * DP,
+		height: 168 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#A3DCB2',
+	},
+	input30_changePetProfileImage:{
+		width: 654 * DP,
+		height: 118 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#DEB5B5',
+	},	
+	passwordChecker_changePassword:{
+		width: 654 * DP,
+		height: 634 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#A07A7A',
+	},	
+	inputForm_userInfoDetailSettting:{
+		width: 654 * DP,
+		height: 616 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#A07A7A',
+	},
+	text_userInfoDetailSettting:{
+		width: 118 * DP,
+		height: 46 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#E0A8A8',
+	},	
+	text_tabSelectFilled_Type1:{
+		width: 520 * DP,
+		height: 82 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#EDEDED',
+	},	
 });
 
 export const loginTemplete_style = StyleSheet.create({
@@ -313,6 +458,12 @@ export const shelterCodeCheck_style = StyleSheet.create({
 	},
 	btn_w654:{	
 		marginTop:106*DP		
+	},	
+});
+
+export const assignUserHabitation_style = StyleSheet.create({
+	btn_w654:{	
+		marginTop:150*DP		
 	},	
 });
 
@@ -590,5 +741,128 @@ export const verifyuser = StyleSheet.create({
 		height:234*DP,
 		justifyContent:'center',
 		alignItems:'center'
+	},
+});
+
+export const assignUserProfileImage_style = StyleSheet.create({
+	txt_msg:{	
+		marginTop:80*DP		
+	},	
+	profileImageSelect:{	
+		marginTop:70*DP		
+	},
+	input30:{	
+		marginTop:42*DP		
+	},	
+	btn_w654:{	
+		marginTop:110*DP		
+	},	
+});
+
+export const assignShelterAddress_style = StyleSheet.create({
+	inputForm:{	
+		marginTop:80*DP		
+	},
+	input24A:{	
+		marginTop:80*DP		
+	},
+	addressInput:{	
+		marginTop:60*DP		
+	},
+	btn_w654:{	
+		marginTop:110*DP		
+	},
+});
+
+export const assignShelterInformation_style = StyleSheet.create({
+	input24A:{	
+		marginTop:80*DP		
+	},
+	inputWithEmail:{	
+		marginTop:60*DP		
+	},
+	input24A:{	
+		marginTop:60*DP		
+	},
+	datePicker:{	
+		marginTop:60*DP		
+	},
+	datePicker:{	
+		marginTop:60*DP		
+	},
+	btn_w654:{	
+		marginTop:110*DP		
+	},
+});
+
+export const checkShelterPassword_style = StyleSheet.create({
+	passwordChecker:{	
+		marginTop:110*DP		
+	},
+	btn_w654:{	
+		marginTop:110*DP		
+	},
+});
+
+export const assignShelterProfileImage_style = StyleSheet.create({
+	txt_msg:{	
+		marginTop:80*DP		
+	},
+	profileImageSelect:{	
+		marginTop:70*DP		
+	},
+	btn_w654:{	
+		marginTop:110*DP		
+	},
+});
+
+export const changeUserProfileImage_style = StyleSheet.create({
+	profileNicknameChange:{	
+		marginTop:42*DP		
+	},
+	profileImageSelect:{	
+		marginTop:70*DP		
+	},
+	btn_w654:{	
+		marginTop:110*DP		
+	},
+	input24:{	
+		marginBottom:44*DP		
+	},
+	
+});
+
+export const changePetProfileImage_style = StyleSheet.create({
+	ProfileImageSelect:{	
+		marginTop:110*DP		
+	},
+	input30:{	
+		marginTop:70*DP		
+	},
+	btn_w654:{	
+		marginTop:110*DP		
+	},	
+});
+
+export const changePassword_style = StyleSheet.create({
+	passwordChecker:{	
+		marginTop:110*DP		
+	},
+	btn_w654:{	
+		marginTop:110*DP		
+	},	
+});
+
+export const userInfoDetailSettting_style = StyleSheet.create({
+	inputForm:{	
+		marginTop:60*DP		
+	},
+	inputForm_detail:{	
+		flexDirection: 'row',
+		marginBottom:40*DP		
+	},
+	text:{			
+		marginTop: 18*DP,
+		marginRight: 16*DP,
 	},
 });
