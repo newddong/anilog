@@ -53,7 +53,7 @@ export default Input30 = props => {
 					<Text style={[txt.noto30b, {color: APRI10}]}> {props.title} </Text>
 					<Text style={[txt.noto22, {color: GRAY20}]}> {props.description} </Text>
 				</View>
-			: null
+			: false
 	};
 
 	return (

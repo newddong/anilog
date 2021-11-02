@@ -15,13 +15,13 @@ export default PasswordInput = props => {
 		if(input.length == 0){ return <Text style={(txt.noto22, {color: GRAY20, lineHeight: 36 * DP})}>{props.information}</Text> }
 		else if(confirm == true){ return  <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text> }
 		else if(confirm == false){ return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text> }
-		else return null
+		else return false
 	};
 	const getBorderColor = () => {
 		if(input.length == 0){ return GRAY30 }
 		else if(confirm == false){ return APRI10 }
 		else if(confirm == true){ return GREEN }
-		else return null
+		else return false
 	};
 
 	const onChange = text => {
@@ -75,7 +75,7 @@ export default PasswordInput = props => {
 								//TextInput과 바깥 View와의 거리 24px, lineHeight는 글꼴크기와 일치
 								paddingLeft: 24 * DP,
 								lineHeight: 44 * DP,
-								width: input.length == 0 ?  190 * DP : null,
+								width: input.length == 0 ?  190 * DP : false,
 								//placeholder 상태일때 글꼴의 영향인지 placeholde'r' 마지막글자가 짤리는 현상 발생
 								//우선 width를 가변적으로 주는 방식으로 해결
 							},

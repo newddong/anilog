@@ -32,6 +32,7 @@ export default RadioBox = props => {
 				checkedItems.push(index);
 			}
 		}
+		//CheckedItems 배열에 copyState의 길이만큼 인덱스를 검색 
 		for (let i = 0; i < copyState.length; i++) {
 			checkedItems.includes(i) ? copyState[i].state = true
 									 : copyState[i].state = false

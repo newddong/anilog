@@ -157,3 +157,6 @@ export const TAG = "태그"
 export const TEMP_PROTECTION_DIARY = "임보일기"
 export const SEARCHED_TAG = "검색한 태그"
 export const ORI_ACCOUNT = "본 계정"
+
+//Calendar 
+export const day = ['일', '월', '화', '수', '목', '금', '토']; //요일 정보

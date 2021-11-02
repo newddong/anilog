@@ -15,7 +15,7 @@ export default ProtectedThumbnail = props => {
 				borderColor: RED10,
 				borderRadius: 30 * DP,
 			};
-		} else return null
+		} else return false
 	};
 
 	const getEmergencyMsg = () => {
@@ -24,7 +24,7 @@ export default ProtectedThumbnail = props => {
 			<View style={{position: 'absolute', alignSelf:'center', bottom:46*DP}}>
 				<Mercy_Killing />
 			</View>
-			: null
+			: false
 	}
 
 	return (

@@ -52,6 +52,7 @@ export default TabSelectBorder_Type2 = props => {
 			</TouchableOpacity>  
 		);
 	};
+	
 	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />;
 };
 

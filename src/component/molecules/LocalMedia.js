@@ -71,7 +71,7 @@ export default LocalMedia = props => {
 			{getImageOfSelectedItem()}
 			{props.data.isVideo 
 				? <Text style={[txt.roboto22, {color: WHITE, position: 'absolute', left: 10 * DP, bottom: 6 * DP}]}>{props.data.duration}</Text>
-				: null
+				: false
 			}
 		</TouchableOpacity>
 	);

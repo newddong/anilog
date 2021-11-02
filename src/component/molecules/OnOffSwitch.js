@@ -47,7 +47,7 @@ export default OnOffSwitch = props => {
 	);
 };
 OnOffSwitch.defaultProps = {
-	default: 0,
+	default: 0, //0일 경우 Off상태, 1일 경우 On상태
 	onSwtichOn: e => console.log(e),
 	onSwtichOff: e => console.log(e),
 };
