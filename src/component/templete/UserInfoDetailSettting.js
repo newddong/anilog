@@ -11,6 +11,7 @@ export default UserInfoDetailSettting = props => {
 
 		    {/* InputForm */}
 			<View style={[temp_style.inputForm_userInfoDetailSettting , userInfoDetailSettting_style.inputForm]}>
+
 				{/* inputForm_detail list */}
 				<View style={[userInfoDetailSettting_style.inputForm_detail]}>
 					{/* Text */}
@@ -21,7 +22,8 @@ export default UserInfoDetailSettting = props => {
 					<View style={[temp_style.tabSelectFilled_Type1]}>
 						<Text>(M)TabSelectFilled_Type1</Text>
 					</View>	
-				</View>		
+				</View>	
+
 				<View style={[userInfoDetailSettting_style.inputForm_detail]}>
 					{/* Text */}
 					<View style={[temp_style.text_userInfoDetailSettting, userInfoDetailSettting_style.text]}>
@@ -32,7 +34,8 @@ export default UserInfoDetailSettting = props => {
 						<Text>(M)DatePicker</Text>
 					</View>	
 				</View>	
-				<View style={[userInfoDetailSettting_style.inputForm_detail]}>
+
+				<View style={[userInfoDetailSettting_style.inputWithSelect]}>
 					{/* Text */}
 					<View style={[temp_style.text_userInfoDetailSettting, userInfoDetailSettting_style.text]}>
 						<Text>Text</Text>
@@ -42,6 +45,7 @@ export default UserInfoDetailSettting = props => {
 						<Text>(M)InputWithSelect</Text>
 					</View>	
 				</View>	
+
 				{/* (O)AddressInput */}
 				<View style={[temp_style.addressInput]}>
 					<Text>(O)AddressInput</Text>
