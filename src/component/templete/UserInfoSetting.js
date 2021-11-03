@@ -21,24 +21,58 @@ export default UserInfoSetting = props => {
 						<Text>(A)btn_w242</Text>
 					</View>
 				</View>
-
 				{/* step2 - MyInfo */}
 				<View style={[temp_style.userInfoSetting_step2]}>
-					{/* privateInfo */}
-					<View style={[temp_style.privateInfo]}>
-						<View style={[temp_style.title]}>
+					{/* accountInfo - MyInfo에서 첫번째 칸 : 계정정보 */}
+					<View style={[temp_style.accountInfo]}>
+						<View style={[temp_style.title, userInfoSetting_style.title]}>
 							<Text>Tititle</Text>
 						</View>
+						{/* accountInfo_depth2 - user_email과 비밀번호 변경하기*/}
+						<View style={[temp_style.accountInfo_depth2]}>
+							<View style={[temp_style.user_email_userInfoSetting, userInfoSetting_style.user_email]}>
+								<Text>User_email</Text>
+							</View>
+							<View style={[temp_style.changePassword_userInfoSetting, userInfoSetting_style.changePassword]}>
+								<Text>비밀번호 변경하기</Text>
+							</View>
+						</View>
 					</View>
+					<View style={[temp_style.vertical_border]}></View>
 
-					{/*  detailInfo*/}
-					<View style={[btn_style.btn_w242, userInfoSetting_style.btn_w242]}>
-						<Text>(A)btn_w242</Text>
+					{/* detailInfo - MyInfo에서 두번째 칸 : 상세정보 */}
+					<View style={[temp_style.detailInfo]}>
+						<View style={[temp_style.title, userInfoSetting_style.title_detail]}>
+							<Text>Tititle</Text>
+						</View>
+						<View style={[temp_style.bracket48, userInfoSetting_style.bracket48]}>
+							<Text>Bracket48</Text>
+						</View>
 					</View>
+					<View style={[temp_style.vertical_border]}></View>
 
-					{/*  introduce*/}
-					<View style={[btn_style.btn_w242, userInfoSetting_style.btn_w242]}>
-						<Text>(A)btn_w242</Text>
+					{/* introduce - MyInfo에서 세번째 칸 : 소개 */}
+					<View style={[temp_style.introduceInfo]}>
+						<View style={[temp_style.introduceInfo_depth1]}>
+							<View style={[temp_style.title, userInfoSetting_style.title_detail]}>
+								<Text>Tititle</Text>
+							</View>
+							<View style={[btn_style.btn_w114, userInfoSetting_style.btn_w114]}>
+								<Text>btn_w114</Text>
+							</View>
+						</View>
+						<View style={[temp_style.userText_userInfoSetting, userInfoSetting_style.userText]}>
+							<Text>User_Text</Text>
+						</View>
+					</View>
+				</View>
+				{/* step3 - MyPetList */}
+				<View style={[temp_style.myPetList]}>
+					<View style={[temp_style.myPetList_title]}>
+						<Text style={[temp_style.title_userInfoSetting, userInfoSetting_style.title_detail]}>Title</Text>
+					</View>
+					<View style={[temp_style.myPetList_myPetList]}>
+						<Text>(O)MyPetList</Text>
 					</View>
 				</View>
 			</ScrollView>

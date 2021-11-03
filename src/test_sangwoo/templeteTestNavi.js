@@ -26,13 +26,15 @@ import UserInfoDetailSettting from 'Root/component/templete/UserInfoDetailSettti
 import AddFamilyAccount from 'Root/component/templete/AddFamilyAccount';
 import UserMenu from 'Root/component/templete/UserMenu';
 import UserInfoSetting from 'Root/component/templete/UserInfoSetting';
+import AssignPetProfileImage from 'Root/component/templete/AssignPetProfileImage';
+import AssignPetInfoA from 'Root/component/templete/AssignPetInfoA';
 
 // const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
 
 export default TempleteTestNavi = () => {
 	return (
-		<Drawer.Navigator initialRouteName="FindAccount">
+		<Drawer.Navigator initialRouteName="AssignPetInfoA">
 			<Drawer.Screen name="LoginTemplete" component={LoginTemplete} />
 			<Drawer.Screen name="FindAccount" component={FindAccount} />
 			<Drawer.Screen name="PasswordReset" component={PasswordReset} />
@@ -56,6 +58,8 @@ export default TempleteTestNavi = () => {
 			<Drawer.Screen name="AddFamilyAccount" component={AddFamilyAccount} />
 			<Drawer.Screen name="UserMenu" component={UserMenu} />
 			<Drawer.Screen name="UserInfoSetting" component={UserInfoSetting} />
+			<Drawer.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
+			<Drawer.Screen name="AssignPetInfoA" component={AssignPetInfoA} />
 		</Drawer.Navigator>
 	);
 };
