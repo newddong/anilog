@@ -28,6 +28,7 @@ import UserMenu from 'Root/component/templete/UserMenu';
 import UserInfoSetting from 'Root/component/templete/UserInfoSetting';
 import AssignPetProfileImage from 'Root/component/templete/AssignPetProfileImage';
 import AssignPetInfoA from 'Root/component/templete/AssignPetInfoA';
+import AssignPetInfoB from 'Root/component/templete/AssignPetInfoB';
 
 // const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -60,6 +61,7 @@ export default TempleteTestNavi = () => {
 			<Drawer.Screen name="UserInfoSetting" component={UserInfoSetting} />
 			<Drawer.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
 			<Drawer.Screen name="AssignPetInfoA" component={AssignPetInfoA} />
+			<Drawer.Screen name="AssignPetInfoB" component={AssignPetInfoB} />
 		</Drawer.Navigator>
 	);
 };
