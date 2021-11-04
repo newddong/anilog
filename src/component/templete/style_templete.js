@@ -146,6 +146,8 @@ export const btn_style = StyleSheet.create({
 	},
 	btn_w280: {
 		width: 280 * DP,
+	btn_w114: {
+		width: 114 * DP,
 		height: 60 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -500,11 +502,10 @@ export const temp_style = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: '#B3EBB5',
 	},
-	privateInfo: {
+	accountInfo: {
 		flexDirection: 'column',
 		width: 750 * DP,
 		height: 152 * DP,
-		alignItems: 'center',
 		backgroundColor: '#B3EBB5',
 	},
 	title: {
@@ -650,6 +651,163 @@ export const temp_style = StyleSheet.create({
 		width: 654 * DP,
 		height: 174 * DP,
 		backgroundColor: '#E1E8FF',
+	accountInfo_depth2: {
+		flexDirection: 'row',
+	},
+	user_email_userInfoSetting: {
+		width: 442 * DP,
+		height: 36 * DP,
+		backgroundColor: '#D19F9F',
+	},
+	changePassword_userInfoSetting: {
+		width: 188 * DP,
+		height: 36 * DP,
+		backgroundColor: '#D19F9F',
+	},
+	vertical_border: {
+		width: 750 * DP,
+		borderBottomWidth: 2 * DP,
+		borderBottomColor: '#EDEDED',
+	},
+	detailInfo: {
+		flexDirection: 'row',
+		width: 750 * DP,
+		height: 126 * DP,
+		backgroundColor: '#B3EBB5',
+	},
+	bracket48: {
+		flexDirection: 'row',
+		width: 50 * DP,
+		height: 50 * DP,
+		backgroundColor: '#8F8065',
+	},
+	introduceInfo: {
+		flexDirection: 'column',
+		width: 750 * DP,
+		height: 126 * DP,
+		backgroundColor: '#B3EBB5',
+	},
+	introduceInfo_depth1: {
+		flexDirection: 'row',
+		width: 750 * DP,
+		height: 116 * DP,
+		backgroundColor: '#B3EBB5',
+	},
+	userText_userInfoSetting: {
+		width: 654 * DP,
+		height: 82 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#AFD5FB',
+	},
+	myPetList: {
+		width: 750 * DP,
+		height: 378 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#7F8EF3',
+	},
+	myPetList_title: {
+		width: 750 * DP,
+		height: 116 * DP,
+		backgroundColor: '#7F8EF3',
+	},
+	myPetList_myPetList: {
+		width: 750 * DP,
+		height: 262 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#AFBCE1',
+	},
+	title_userInfoSetting: {
+		width: 200 * DP,
+		height: 46 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#AFBCE1',
+	},
+	title_userInfoSetting: {
+		width: 200 * DP,
+		height: 46 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#AFBCE1',
+	},
+	textMsg_assignPetProfileImage: {
+		width: 654 * DP,
+		height: 76 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#707070',
+	},
+	inputForm_assignPetProfileImage: {
+		width: 654 * DP,
+		height: 172 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#DEF4C9',
+	},
+	input30_assignPetProfileImage: {
+		width: 654 * DP,
+		height: 82 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#D3C9F4',
+	},
+	checkBox_assignPetProfileImage: {
+		width: 526 * DP,
+		height: 50 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#D3C9F4',
+	},
+	textMsg_assignPetInfoA: {
+		width: 654 * DP,
+		height: 36 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#707070',
+	},
+	AssignPetInfoA: {
+		width: 654 * DP,
+		height: 330 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#A07A7A',
+	},
+
+	inputForm_assignPetInfoA_line1: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 82 * DP,
+		alignItems: 'center',
+	},
+	inputForm_assignPetInfoA_line1: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 82 * DP,
+		alignItems: 'center',
+	},
+	inputForm_assignPetInfoA_line1: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 46 * DP,
+		alignItems: 'center',
+	},
+	text_assignPetInfoA: {
+		width: 118 * DP,
+		height: 46 * DP,
+		backgroundColor: '#E0A8A8',
+	},
+	dropdownSelect_assignPetInfoA_depth1: {
+		width: 204 * DP,
+		height: 82 * DP,
+		backgroundColor: '#A9B0D5',
+	},
+	dropdownSelect_assignPetInfoA_depth2: {
+		width: 292 * DP,
+		height: 82 * DP,
+		backgroundColor: '#A9B0D5',
 	},
 });
 
@@ -1217,6 +1375,71 @@ export const userInfoSetting_style = StyleSheet.create({
 	},
 	btn_w242: {
 		marginTop: 30 * DP,
+	},
+	user_email: {
+		flexDirection: 'row',
+		marginTop: 30 * DP,
+		marginLeft: 48 * DP,
+	},
+	title: {
+		marginLeft: 48 * DP,
+	},
+	changePassword: {
+		marginTop: 30 * DP,
+		marginLeft: 24 * DP,
+	},
+	bracket48: {
+		marginTop: 38 * DP,
+		marginLeft: 404 * DP,
+	},
+	title_detail: {
+		marginLeft: 48 * DP,
+		marginTop: 40 * DP,
+	},
+	userText: {
+		marginLeft: 48 * DP,
+	},
+	btn_w114: {
+		marginTop: 40 * DP,
+		marginLeft: 340 * DP,
+	},
+});
+
+export const assignPetProfileImage_style = StyleSheet.create({
+	textMsg: {
+		marginTop: 12 * DP,
+	},
+	profileImageSelect: {
+		marginTop: 70 * DP,
+	},
+	inputForm: {
+		marginTop: 70 * DP,
+	},
+	btn_w654: {
+		marginTop: 110 * DP,
+	},
+	input30: {
+		marginTop: 110 * DP,
+	},
+	checkBox: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginTop: 40 * DP,
+	},
+});
+
+export const assignPetInfoA_style = StyleSheet.create({
+	textMsg: {
+		marginTop: 12 * DP,
+	},
+	inputForm: {
+		marginTop: 70 * DP,
+	},
+	dropdownSelect_depth1: {
+		marginLeft: 16 * DP,
+	},
+	dropdownSelect_depth2: {
+		marginLeft: 24 * DP,
 	},
 });
 

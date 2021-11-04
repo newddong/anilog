@@ -65,13 +65,15 @@ import SelectAccount from 'Root/component/templete/SelectAccount';
 import AidRequestList from 'Root/component/templete/AidRequestList';
 import ManageVolunteer from 'Root/component/templete/ManageVolunteer';
 import WriteAidRequest from 'Root/component/templete/WriteAidRequest';
+import AssignPetProfileImage from 'Root/component/templete/AssignPetProfileImage';
+import AssignPetInfoA from 'Root/component/templete/AssignPetInfoA';
 
 // const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
 
 export default TempleteTestNavi = () => {
 	return (
-		<Drawer.Navigator initialRouteName="FindAccount">
+		<Drawer.Navigator initialRouteName="AssignPetInfoA">
 			<Drawer.Screen name="LoginTemplete" component={LoginTemplete} />
 			<Drawer.Screen name="FindAccount" component={FindAccount} />
 			<Drawer.Screen name="PasswordReset" component={PasswordReset} />
@@ -133,6 +135,8 @@ export default TempleteTestNavi = () => {
 			<Drawer.Screen name="AidRequestList" component={AidRequestList} />
 			<Drawer.Screen name="ManageVolunteer" component={ManageVolunteer} />
 			<Drawer.Screen name="WriteAidRequest" component={WriteAidRequest} />
+			<Drawer.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
+			<Drawer.Screen name="AssignPetInfoA" component={AssignPetInfoA} />
 		</Drawer.Navigator>
 	);
 };
