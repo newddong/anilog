@@ -29,13 +29,22 @@ import UserInfoSetting from 'Root/component/templete/UserInfoSetting';
 import AssignPetProfileImage from 'Root/component/templete/AssignPetProfileImage';
 import AssignPetInfoA from 'Root/component/templete/AssignPetInfoA';
 import AssignPetInfoB from 'Root/component/templete/AssignPetInfoB';
+import AssignProtectAnimalImage from 'Root/component/templete/AssignProtectAnimalImage';
+import AssignProtectAnimalDate from 'Root/component/templete/AssignProtectAnimalDate';
+import AssignProtectAnimalInfo from 'Root/component/templete/AssignProtectAnimalInfo';
+import SaveAnimalRequest from 'Root/component/templete/SaveAnimalRequest';
+import FavoriteFeeds from 'Root/component/templete/FavoriteFeeds';
+import SaveFavorite from 'Root/component/templete/SaveFavorite';
+import AnimalProtectList from 'Root/component/templete/AnimalProtectList';
+import ApplyAdoptionList from 'Root/component/templete/ApplyAdoptionList';
+import AdoptorInformation from 'Root/component/templete/AdoptorInformation';
 
 // const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
 
 export default TempleteTestNavi = () => {
 	return (
-		<Drawer.Navigator initialRouteName="AssignPetInfoA">
+		<Drawer.Navigator initialRouteName="AdoptorInformation">
 			<Drawer.Screen name="LoginTemplete" component={LoginTemplete} />
 			<Drawer.Screen name="FindAccount" component={FindAccount} />
 			<Drawer.Screen name="PasswordReset" component={PasswordReset} />
@@ -62,6 +71,15 @@ export default TempleteTestNavi = () => {
 			<Drawer.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
 			<Drawer.Screen name="AssignPetInfoA" component={AssignPetInfoA} />
 			<Drawer.Screen name="AssignPetInfoB" component={AssignPetInfoB} />
+			<Drawer.Screen name="AssignProtectAnimalImage" component={AssignProtectAnimalImage} />
+			<Drawer.Screen name="AssignProtectAnimalDate" component={AssignProtectAnimalDate} />
+			<Drawer.Screen name="AssignProtectAnimalInfo" component={AssignProtectAnimalInfo} />
+			<Drawer.Screen name="SaveAnimalRequest" component={SaveAnimalRequest} />
+			<Drawer.Screen name="FavoriteFeeds" component={FavoriteFeeds} />
+			<Drawer.Screen name="SaveFavorite" component={SaveFavorite} />
+			<Drawer.Screen name="AnimalProtectList" component={AnimalProtectList} />
+			<Drawer.Screen name="ApplyAdoptionList" component={ApplyAdoptionList} />
+			<Drawer.Screen name="AdoptorInformation" component={AdoptorInformation} />
 		</Drawer.Navigator>
 	);
 };

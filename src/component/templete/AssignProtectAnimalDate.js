@@ -6,7 +6,7 @@ import {login_style, btn_style, temp_style, progressbar_style, assignProtectAnim
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
-export default AssignProtectAnimalImage = props => {
+export default AssignProtectAnimalDate = props => {
 	return (
 		<View style={login_style.wrp_main}>
 			{/* (M)StageBar	 */}
@@ -19,17 +19,31 @@ export default AssignProtectAnimalImage = props => {
 				<Text>Text Msg</Text>
 			</View>
 
-			{/* (O)SelectedMediaList */}
-			<View style={[temp_style.selectedMediaList_assignProtectAnimal, assignProtectAnimal_style.selectedMediaList]}>
-				<Text>(O)SelectedMediaList</Text>
+			{/* InputForm */}
+			<View style={[temp_style.inputForm_assignProtectAnimal, assignProtectAnimal_style.selectedMediaList]}>
+				{/* InputForm line1 */}
+				<View style={[temp_style.inputForm_assignProtectAnimal_line1]}>
+					<Text style={[temp_style.text_assignProtectAnimal]}>Text</Text>
+					<View style={[temp_style.datePicker_assignProtectAnimal_depth1]}>
+						<Text>(M)DatePicker</Text>
+					</View>
+				</View>
+
+				{/* InputForm line2 */}
+				<View style={[temp_style.inputForm_assignProtectAnimal_line1, assignProtectAnimal_style.inputform]}>
+					<Text style={[temp_style.text_assignProtectAnimal]}>Text</Text>
+					<View style={[temp_style.datePicker_assignProtectAnimal_depth1]}>
+						<Text>(M)Input24A</Text>
+					</View>
+				</View>
 			</View>
 
 			{/* (A)Btn_w654 */}
 			<View style={[temp_style.btn_w226_assignProtectAnimal, assignProtectAnimal_style.btn_w226_view_image]}>
-				<View style={[temp_style.image_assignProtectAnimal]}>
-					<Text>사진추가</Text>
+				<View style={[btn_style.btn_w226]}>
+					<Text>(A)Btn_w226</Text>
 				</View>
-				<View style={[btn_style.btn_w226, assignProtectAnimal_style.btn_w226]}>
+				<View style={[btn_style.btn_w226]}>
 					<Text>(A)Btn_w226</Text>
 				</View>
 			</View>

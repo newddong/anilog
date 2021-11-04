@@ -143,7 +143,7 @@ export const btn_style = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#DEB5B5',
-	},	
+	},
 });
 
 export const temp_style = StyleSheet.create({
@@ -646,33 +646,150 @@ export const temp_style = StyleSheet.create({
 	btn_w226_assignPetInfo: {
 		flexDirection: 'row',
 		width: 654 * DP,
-		height: 70 * DP,		
+		height: 70 * DP,
 	},
 	datePicker_assignPetInfo_depth1: {
 		width: 290 * DP,
 		height: 82 * DP,
-		backgroundColor: '#B1B6F0',	
+		backgroundColor: '#B1B6F0',
 	},
 	text218_assignPetInfo: {
 		width: 218 * DP,
 		height: 36 * DP,
-		backgroundColor: '#B1B6F0',	
+		backgroundColor: '#B1B6F0',
 	},
 	inputNoTitle_assignPetInfo: {
 		width: 156 * DP,
 		height: 82 * DP,
-		backgroundColor: '#B1B6F0',	
+		backgroundColor: '#B1B6F0',
 	},
 	text68_assignPetInfo: {
 		width: 68 * DP,
 		height: 46 * DP,
-		backgroundColor: '#B1B6F0',	
+		backgroundColor: '#B1B6F0',
 	},
-
-	
-	
-
-	
+	selectedMediaList_assignProtectAnimal: {
+		width: 654 * DP,
+		height: 410 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#A07A7A',
+	},
+	textMsg_assignProtectAnimal: {
+		width: 654 * DP,
+		height: 36 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#707070',
+	},
+	image_assignProtectAnimal: {
+		width: 160 * DP,
+		height: 54 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#C8FBD2',
+	},
+	btn_w226_assignProtectAnimal: {
+		width: 654 * DP,
+		height: 70 * DP,
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+	},
+	inputForm_assignProtectAnimal_line1: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 82 * DP,
+		alignItems: 'center',
+	},
+	text118_assignProtectAnimal: {
+		width: 118 * DP,
+		height: 46 * DP,
+		backgroundColor: '#B1B6F0',
+	},
+	datePicker_assignProtectAnimal_depth1: {
+		width: 520 * DP,
+		height: 82 * DP,
+		backgroundColor: '#EDEDED',
+	},
+	inputForm_assignProtectAnimal: {
+		width: 654 * DP,
+		height: 224 * DP,
+		backgroundColor: '#A07A7A',
+	},
+	dropdownSelect_assignProtectAnimalInfo: {
+		width: 160 * DP,
+		height: 82 * DP,
+		backgroundColor: '#B1B6F0',
+	},
+	text64_assignProtectAnimal: {
+		width: 64 * DP,
+		height: 46 * DP,
+		backgroundColor: '#B1B6F0',
+	},
+	inputForm_assignProtectAnimal_line2: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 82 * DP,
+		alignItems: 'center',
+	},
+	selectstat_view: {
+		width: 750 * DP,
+		height: 100 * DP,
+		alignItems: 'center',
+		backgroundColor: '#ACC4D6',
+	},
+	selectstat: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 42 * DP,
+		backgroundColor: '#B5EAEC',
+	},
+	textBtn: {
+		width: 120 * DP,
+		height: 42 * DP,
+		alignItems: 'center',
+		backgroundColor: '#D9F5CD',
+	},
+	vertical_stick: {
+		borderRightColor: '#FF0000',
+		borderRightWidth: 2 * DP,
+	},
+	AnimalNeedHelpList: {
+		width: 654 * DP,
+		height: 1324 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#F2C2C2',
+	},
+	FeedThumbnailList: {
+		width: 750 * DP,
+		height: 1324 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#669AC2',
+	},
+	baseFlatList: {
+		width: 654 * DP,
+		height: 1324 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#D28888',
+	},
+	animalProtectDetails_protectApplyForm: {
+		width: 654 * DP,
+		height: 1316 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#C4C483',
+	},
+	animalProtectDetails_adoptorInformation: {
+		width: 654 * DP,
+		height: 1386 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#C4C483',
+	},
 });
 
 export const loginTemplete_style = StyleSheet.create({
@@ -1314,10 +1431,10 @@ export const assignPetInfo_style = StyleSheet.create({
 	line3: {
 		marginTop: 60 * DP,
 	},
-	btn_w226_viewA : {
+	btn_w226_viewA: {
 		marginTop: 110 * DP,
 	},
-	btn_w226 : {
+	btn_w226: {
 		marginLeft: 202 * DP,
 	},
 	datePicker_depth1: {
@@ -1325,15 +1442,64 @@ export const assignPetInfo_style = StyleSheet.create({
 	},
 	text218: {
 		marginTop: 46 * DP,
-		marginLeft: 12 * DP
+		marginLeft: 12 * DP,
 	},
 	inputNoTitle: {
 		marginLeft: 16 * DP,
-	},	
+	},
 	text68: {
 		marginLeft: 16 * DP,
-	},	
-	btn_w226_viewB : {
+	},
+	btn_w226_viewB: {
 		marginTop: 130 * DP,
+	},
+});
+
+export const assignProtectAnimal_style = StyleSheet.create({
+	textMsg: {
+		marginTop: 12 * DP,
+	},
+	selectedMediaList: {
+		marginTop: 70 * DP,
+	},
+	btn_w226_view_image: {
+		marginTop: 110 * DP,
+	},
+	inputform: {
+		marginTop: 60 * DP,
+	},
+	dropdownSelect_year: {
+		marginLeft: 16 * DP,
+	},
+	text118: {
+		marginLeft: 10 * DP,
+	},
+});
+
+export const selectstat_view_style = StyleSheet.create({
+	select_all: {
+		marginLeft: 268 * DP,
+	},
+	vertical_stick: {
+		marginLeft: 12 * DP,
+	},
+	delete_selected: {
+		marginLeft: 12 * DP,
+	},
+	selectstat: {
+		marginTop: 38 * DP,
+	},
+	selecting: {
+		marginTop: 38 * DP,
+		justifyContent: 'flex-end',
+	},
+});
+
+export const baseInfo_style = StyleSheet.create({
+	list: {
+		marginTop: 40 * DP,
+	},
+	detail: {
+		marginTop: 40 * DP,
 	},
 });
