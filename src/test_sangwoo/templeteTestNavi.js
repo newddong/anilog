@@ -38,13 +38,16 @@ import SaveFavorite from 'Root/component/templete/SaveFavorite';
 import AnimalProtectList from 'Root/component/templete/AnimalProtectList';
 import ApplyAdoptionList from 'Root/component/templete/ApplyAdoptionList';
 import AdoptorInformation from 'Root/component/templete/AdoptorInformation';
+import AidRequestManage from 'Root/component/templete/AidRequestManage';
+import ProtectRequestList from 'Root/component/templete/ProtectRequestList';
+import RequestLogin from 'Root/component/templete/RequestLogin';
 
 // const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
 
 export default TempleteTestNavi = () => {
 	return (
-		<Drawer.Navigator initialRouteName="AdoptorInformation">
+		<Drawer.Navigator initialRouteName="RequestLogin">
 			<Drawer.Screen name="LoginTemplete" component={LoginTemplete} />
 			<Drawer.Screen name="FindAccount" component={FindAccount} />
 			<Drawer.Screen name="PasswordReset" component={PasswordReset} />
@@ -80,6 +83,9 @@ export default TempleteTestNavi = () => {
 			<Drawer.Screen name="AnimalProtectList" component={AnimalProtectList} />
 			<Drawer.Screen name="ApplyAdoptionList" component={ApplyAdoptionList} />
 			<Drawer.Screen name="AdoptorInformation" component={AdoptorInformation} />
+			<Drawer.Screen name="AidRequestManage" component={AidRequestManage} />
+			<Drawer.Screen name="ProtectRequestList" component={ProtectRequestList} />
+			<Drawer.Screen name="RequestLogin" component={RequestLogin} />
 		</Drawer.Navigator>
 	);
 };

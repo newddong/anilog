@@ -790,6 +790,52 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#C4C483',
 	},
+	aidRequestList_aidRequestManage: {
+		width: 654 * DP,
+		height: 1384 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#E1E8FF',
+	},
+	aidRequestList_aidRequestManage: {
+		width: 654 * DP,
+		height: 1384 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#E1E8FF',
+	},
+	filterbutton_view: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 60 * DP,
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		backgroundColor: '#B5DED8',
+	},
+	filterbutton: {
+		width: 306 * DP,
+		height: 60 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#D891C7',
+	},
+	meatball50: {
+		width: 50 * DP,
+		height: 50 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#D891C7',
+	},
+	baseFlatList_protectRequestList: {
+		width: 654 * DP,
+		height: 1286 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#C4C483',
+	},
+	
+	
+	
 });
 
 export const loginTemplete_style = StyleSheet.create({
@@ -1501,5 +1547,23 @@ export const baseInfo_style = StyleSheet.create({
 	},
 	detail: {
 		marginTop: 40 * DP,
+	},
+});
+
+export const protectRequestList_style = StyleSheet.create({
+	filterbutton_view: {
+		marginTop: 40 * DP,
+	},
+});
+
+export const requestLogin_style = StyleSheet.create({
+	txt_msg: {
+		marginTop: 326 * DP,
+	},
+	btn_w522: {
+		marginTop: 24 * DP,
+	},
+	social_info: {
+		marginTop: 70 * DP,
 	},
 });

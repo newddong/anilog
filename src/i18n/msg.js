@@ -25,6 +25,7 @@ export const LOGIN_SOCIAL = '소셜 아이디로 로그인'
 export const FIND_MY_ACCOUNT = '내 계정 찾기'
 export const CONFIRM_MY_ACCOUNT = '계정 확인'
 export const NONE_OF_YOUR_ACCOUNTS = '이 번호로 가입한 계정이 없습니다.'
+export const NEEDS_LOGIN_ARE_YOU_MEMBER = '로그인이 필요한 페이지입니다.\n아직 회원이 아닌가요?'
 
 
 //Verify_User
