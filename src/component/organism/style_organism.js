@@ -17,7 +17,6 @@ export const organism_style = StyleSheet.create({
 		width: 448 * DP,
 		backgroundColor: '#0FA743',
 	},
-
 	feed: {
 		width: 750 * DP,
 		height: 1222 * DP,
