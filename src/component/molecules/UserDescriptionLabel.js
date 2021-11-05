@@ -13,7 +13,7 @@ export default UserDescriptionLabel = props => {
 
 	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정
 	React.useEffect( ()=>{
-		if(imgUri == null){
+		if(imgUri == false){
 			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg')
 		}
 	})

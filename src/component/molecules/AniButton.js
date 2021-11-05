@@ -57,7 +57,7 @@ export default AniButton = props => {
 	// };
 	
 	//클릭 이벤트 - Disable false일 경우 onPress이벤트 발생
-	const onPress = () => {	props.disable ? null : props.onPress()	}
+	const onPress = () => {	props.disable ? false : props.onPress()	}
 
 	const insideView = () => {
 		return (

@@ -24,6 +24,7 @@ export default TabSelectFilled_Type2 = props => {
 		setSelected(copyState); //새로만들어진 배열로 state 변경
 		props.onSelect(copyState[index].tabName);
 	};
+
 	const renderItem = ({item, index}) => {
 		return (
 			<TouchableOpacity
@@ -48,6 +49,7 @@ export default TabSelectFilled_Type2 = props => {
 			</TouchableOpacity>
 		);
 	};
+	
 	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />;
 };
 

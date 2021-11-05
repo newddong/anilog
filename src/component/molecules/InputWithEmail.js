@@ -49,7 +49,7 @@ export default InputWithEmail = props => {
 						{
 							paddingLeft: 24 * DP,
 							lineHeight: 44 * DP,
-							width: input.length == 0 ? 190 * DP : null,
+							width: input.length == 0 ? 190 * DP : false,
 							//X버튼을 누를 때마다 placeholder의 fontPadding이 적용되는 현상이 간헐적으로 발생
 							// 우선 X버튼 클릭이벤트 발생 시에도 강제적으로 width를 적용하여 해결
 						},
@@ -59,7 +59,7 @@ export default InputWithEmail = props => {
 					<TouchableOpacity onPress={onClear} style={{marginLeft: 40 * DP}}>
 						<Cross52 />
 					</TouchableOpacity>
-				) : null}
+				) : false}
 				<Text style={[txt.roboto24b, {marginHorizontal: 24 * DP, lineHeight: 36 * DP}]}>@</Text>
 				<Text style={[txt.roboto28, {marginHorizontal: 24 * DP, lineHeight: 36 * DP}]}> {selectedItem} </Text>
 				<TouchableOpacity onPress={() => setBtnStatus(!btnStatus)} style={{marginLeft: 12 * DP}}>
