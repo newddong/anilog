@@ -25,8 +25,7 @@ export default TestNavi = () => {
 				<TestStack.Screen name="ProfileImage Select/Large Test  " component={ProfileImageSelectTest} />
 				<TestStack.Screen name="Tag Test" component={TagTest} />
 				<TestStack.Screen name="ButtonTest" component={ButtonTest} />
-				<TestStack.Screen name="TempleteTestNavi" component={TempleteTestNavi} options={{headerShown: false, tabBarVisible: false}} />
-				<TestStack.Screen name="TempleteTestNavi" component={TempleteTestNavi} options={{headerShown: false, tabBarVisible: false}} />
+				<TestStack.Screen name="TempleteTestNavi" component={TempleteTestNavi} options={{headerShown: false, tabBarVisible: false}} />				
 				<TestStack.Screen name="OrganismTestNavi" component={OrganismTestNavi} options={{headerShown: false, tabBarVisible: false}} />
 			</TestStack.Navigator>
 		</NavigationContainer>
