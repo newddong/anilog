@@ -1,11 +1,10 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
 import {Text, View} from 'react-native';
-import {applyCompanionA, applyVolunteer, btn_style, login_style, temp_style, temp_txt} from './style_templete';
+import {applyCompanionA, btn_style, login_style, temp_style} from './style_templete';
 
 export default ApplyCompanionA = props => {
 	return (
-		<ScrollView contentContainerStyle={[login_style.wrp_main, applyVolunteer.container]}>
+		<View style={[login_style.wrp_main, applyCompanionA.container]}>
 			{/* stageBar */}
 			<View style={[temp_style.stageBar, applyCompanionA.stageBar]}>
 				<Text>(M)StageBar</Text>
@@ -29,6 +28,6 @@ export default ApplyCompanionA = props => {
 			<View style={[btn_style.btn_w654, applyCompanionA.btn_w654]}>
 				<Text>(A)Btn_w654</Text>
 			</View>
-		</ScrollView>
+		</View>
 	);
 };
