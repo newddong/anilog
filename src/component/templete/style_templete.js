@@ -652,6 +652,7 @@ export const temp_style = StyleSheet.create({
 		width: 654 * DP,
 		height: 174 * DP,
 		backgroundColor: '#E1E8FF',
+	},
 	accountInfo_depth2: {
 		flexDirection: 'row',
 	},
@@ -769,7 +770,6 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#707070',
 	},
-	AssignPetInfoA: {
 	assignPetInfoA: {
 		width: 654 * DP,
 		height: 330 * DP,
@@ -780,7 +780,6 @@ export const temp_style = StyleSheet.create({
 		height: 224 * DP,
 		backgroundColor: '#A07A7A',
 	},
-
 	inputForm_assignPetInfo_line1: {
 		flexDirection: 'row',
 		width: 654 * DP,
@@ -1009,9 +1008,6 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#C4C483',
 	},
-	
-	
-	
 });
 
 export const loginTemplete_style = StyleSheet.create({

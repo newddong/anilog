@@ -42,7 +42,6 @@ import SearchAccountB from 'Root/component/templete/SearchAccountB';
 import SearchHashTag from 'Root/component/templete/SearchHashTag';
 import SearchProtectRequest from 'Root/component/templete/SearchProtectRequest';
 import AppliesRecord from 'Root/component/templete/AppliesRecord';
-import ProtectRequestList from 'Root/component/templete/ProtectRequestList';
 import MissingReportList from 'Root/component/templete/MissingReportList';
 import ActivationList from 'Root/component/templete/ActivationList';
 import ActivationDetail from 'Root/component/templete/ActivationDetail';
@@ -125,7 +124,6 @@ export default TempleteTestNavi = () => {
 			<Drawer.Screen name="SearchHashTag" component={SearchHashTag} />
 			<Drawer.Screen name="SearchProtectRequest" component={SearchProtectRequest} />
 			<Drawer.Screen name="AppliesRecord" component={AppliesRecord} />
-			<Drawer.Screen name="ProtectRequestList" component={ProtectRequestList} />
 			<Drawer.Screen name="MissingReportList" component={MissingReportList} />
 			<Drawer.Screen name="ActivationList" component={ActivationList} />
 			<Drawer.Screen name="ActivationDetail" component={ActivationDetail} />
