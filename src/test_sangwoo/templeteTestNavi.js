@@ -42,7 +42,6 @@ import SearchAccountB from 'Root/component/templete/SearchAccountB';
 import SearchHashTag from 'Root/component/templete/SearchHashTag';
 import SearchProtectRequest from 'Root/component/templete/SearchProtectRequest';
 import AppliesRecord from 'Root/component/templete/AppliesRecord';
-import ProtectRequestList from 'Root/component/templete/ProtectRequestList';
 import MissingReportList from 'Root/component/templete/MissingReportList';
 import ActivationList from 'Root/component/templete/ActivationList';
 import ActivationDetail from 'Root/component/templete/ActivationDetail';
@@ -70,73 +69,100 @@ import AssignPetInfoA from 'Root/component/templete/AssignPetInfoA';
 import FeedMediaTagEdit from 'Root/component/templete/FeedMediaTagEdit';
 import FeedWrite from 'Root/component/templete/FeedWrite';
 import Profile from 'Root/component/templete/Profile';
+import AssignPetInfoB from 'Root/component/templete/AssignPetInfoB';
+import AssignProtectAnimalImage from 'Root/component/templete/AssignProtectAnimalImage';
+import AssignProtectAnimalDate from 'Root/component/templete/AssignProtectAnimalDate';
+import AssignProtectAnimalInfo from 'Root/component/templete/AssignProtectAnimalInfo';
+import SaveAnimalRequest from 'Root/component/templete/SaveAnimalRequest';
+import FavoriteFeeds from 'Root/component/templete/FavoriteFeeds';
+import SaveFavorite from 'Root/component/templete/SaveFavorite';
+import AnimalProtectList from 'Root/component/templete/AnimalProtectList';
+import ApplyAdoptionList from 'Root/component/templete/ApplyAdoptionList';
+import AdoptorInformation from 'Root/component/templete/AdoptorInformation';
+import AidRequestManage from 'Root/component/templete/AidRequestManage';
+import ProtectRequestList from 'Root/component/templete/ProtectRequestList';
+import RequestLogin from 'Root/component/templete/RequestLogin';
 
 // const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
 
 export default TempleteTestNavi = () => {
 	return (
-		<Drawer.Navigator initialRouteName="AssignPetInfoA">
-			<Drawer.Screen name="LoginTemplete" component={LoginTemplete} />
-			<Drawer.Screen name="FindAccount" component={FindAccount} />
-			<Drawer.Screen name="PasswordReset" component={PasswordReset} />
-			<Drawer.Screen name="SuggestAssign" component={SuggestAssign} />
-			<Drawer.Screen name="AgreementCheck" component={AgreementCheck} />
-			<Drawer.Screen name="UserAssignMobile" component={UserAssignMobile} />
-			<Drawer.Screen name="UserAssignEmail" component={UserAssignEmail} />
-			<Drawer.Screen name="UserPasswordCheck" component={UserPasswordCheck} />
-			<Drawer.Screen name="ShelterCodeCheck" component={ShelterCodeCheck} />
-			<Drawer.Screen name="ShelterAssignEntrance" component={ShelterAssignEntrance} />
-			<Drawer.Screen name="AssignUserHabitation" component={AssignUserHabitation} />
-			<Drawer.Screen name="AssignUserProfileImage" component={AssignUserProfileImage} />
-			<Drawer.Screen name="AssignShelterAddress" component={AssignShelterAddress} />
-			<Drawer.Screen name="AssignShelterInformation" component={AssignShelterInformation} />
-			<Drawer.Screen name="CheckShelterPassword" component={CheckShelterPassword} />
-			<Drawer.Screen name="AssignShelterProfileImage" component={AssignShelterProfileImage} />
-			<Drawer.Screen name="ChangeUserProfileImage" component={ChangeUserProfileImage} />
-			<Drawer.Screen name="ChangePetProfileImage" component={ChangePetProfileImage} />
-			<Drawer.Screen name="ChangePassword" component={ChangePassword} />
-			<Drawer.Screen name="UserInfoDetailSettting" component={UserInfoDetailSettting} />
-			<Drawer.Screen name="AddFamilyAccount" component={AddFamilyAccount} />
-			<Drawer.Screen name="UserMenu" component={UserMenu} />
-			<Drawer.Screen name="UserInfoSetting" component={UserInfoSetting} />
-			<Drawer.Screen name="ShelterMenu" component={ShelterMenu} />
-			<Drawer.Screen name="ShelterInfoSetting" component={ShelterInfoSetting} />
-			<Drawer.Screen name="EditShelterInfo" component={EditShelterInfo} />
-			<Drawer.Screen name="ApplicationFormVolunteer" component={ApplicationFormVolunteer} />
-			<Drawer.Screen name="AnimalAdoption" component={AnimalAdoption} />
-			<Drawer.Screen name="SetPetInformation" component={SetPetInformation} />
-			<Drawer.Screen name="PetInfoSetting" component={PetInfoSetting} />
-			<Drawer.Screen name="VaccinationRecord" component={VaccinationRecord} />
-			<Drawer.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
-			<Drawer.Screen name="SearchFeed" component={SearchFeed} />
-			<Drawer.Screen name="SearchAccountA" component={SearchAccountA} />
-			<Drawer.Screen name="SearchAccountB" component={SearchAccountB} />
-			<Drawer.Screen name="SearchHashTag" component={SearchHashTag} />
-			<Drawer.Screen name="SearchProtectRequest" component={SearchProtectRequest} />
-			<Drawer.Screen name="AppliesRecord" component={AppliesRecord} />
-			<Drawer.Screen name="ProtectRequestList" component={ProtectRequestList} />
-			<Drawer.Screen name="MissingReportList" component={MissingReportList} />
-			<Drawer.Screen name="ActivationList" component={ActivationList} />
+		<Drawer.Navigator initialRouteName="RequestLogin">
+			<Drawer.Screen name="AccountPicker" component={AccountPicker} />
 			<Drawer.Screen name="ActivationDetail" component={ActivationDetail} />
-			<Drawer.Screen name="ApplyVolunteer" component={ApplyVolunteer} />
+			<Drawer.Screen name="ActivationList" component={ActivationList} />
+			<Drawer.Screen name="AddFamilyAccount" component={AddFamilyAccount} />
+			<Drawer.Screen name="AdoptorInformation" component={AdoptorInformation} />
+			<Drawer.Screen name="AgreementCheck" component={AgreementCheck} />
+			<Drawer.Screen name="AidRequestList" component={AidRequestList} />
+			<Drawer.Screen name="AidRequestManage" component={AidRequestManage} />
+			<Drawer.Screen name="AnimalAdoption" component={AnimalAdoption} />
+			<Drawer.Screen name="AnimalProtectList" component={AnimalProtectList} />
+			<Drawer.Screen name="ApplicationFormVolunteer" component={ApplicationFormVolunteer} />
+			<Drawer.Screen name="AppliesRecord" component={AppliesRecord} />
+			<Drawer.Screen name="ApplyAdoptionList" component={ApplyAdoptionList} />
 			<Drawer.Screen name="ApplyCompanionA" component={ApplyCompanionA} />
 			<Drawer.Screen name="ApplyCompanionB" component={ApplyCompanionB} />
 			<Drawer.Screen name="ApplyCompanionC" component={ApplyCompanionC} />
 			<Drawer.Screen name="ApplyCompanionD" component={ApplyCompanionD} />
 			<Drawer.Screen name="ApplyDetails" component={ApplyDetails} />
-			<Drawer.Screen name="PhotoSelect" component={PhotoSelect} />
-			<Drawer.Screen name="UserIdentification" component={UserIdentification} />
-			<Drawer.Screen name="MissingAnimalDetail" component={MissingAnimalDetail} />
-			<Drawer.Screen name="ReportDetail" component={ReportDetail} />
-			<Drawer.Screen name="FeedList" component={FeedList} />
+			<Drawer.Screen name="ApplyVolunteer" component={ApplyVolunteer} />
+			<Drawer.Screen name="AssignPetInfoA" component={AssignPetInfoA} />
+			<Drawer.Screen name="AssignPetInfoB" component={AssignPetInfoB} />
+			<Drawer.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
+			<Drawer.Screen name="AssignProtectAnimalDate" component={AssignProtectAnimalDate} />
+			<Drawer.Screen name="AssignProtectAnimalImage" component={AssignProtectAnimalImage} />
+			<Drawer.Screen name="AssignProtectAnimalInfo" component={AssignProtectAnimalInfo} />
+			<Drawer.Screen name="AssignShelterAddress" component={AssignShelterAddress} />
+			<Drawer.Screen name="AssignShelterInformation" component={AssignShelterInformation} />
+			<Drawer.Screen name="AssignShelterProfileImage" component={AssignShelterProfileImage} />
+			<Drawer.Screen name="AssignUserHabitation" component={AssignUserHabitation} />
+			<Drawer.Screen name="AssignUserProfileImage" component={AssignUserProfileImage} />
+			<Drawer.Screen name="ChangePassword" component={ChangePassword} />
+			<Drawer.Screen name="ChangePetProfileImage" component={ChangePetProfileImage} />
+			<Drawer.Screen name="ChangeUserProfileImage" component={ChangeUserProfileImage} />
+			<Drawer.Screen name="CheckShelterPassword" component={CheckShelterPassword} />
+			<Drawer.Screen name="EditShelterInfo" component={EditShelterInfo} />
+			<Drawer.Screen name="FavoriteFeeds" component={FavoriteFeeds} />
 			<Drawer.Screen name="FeedCommentList" component={FeedCommentList} />
-			<Drawer.Screen name="SocialRelation" component={SocialRelation} />
+			<Drawer.Screen name="FeedList" component={FeedList} />
+			<Drawer.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
+			<Drawer.Screen name="FindAccount" component={FindAccount} />
 			<Drawer.Screen name="LocationPicker" component={LocationPicker} />
-			<Drawer.Screen name="AccountPicker" component={AccountPicker} />
-			<Drawer.Screen name="SelectAccount" component={SelectAccount} />
-			<Drawer.Screen name="AidRequestList" component={AidRequestList} />
+			<Drawer.Screen name="LoginTemplete" component={LoginTemplete} />
 			<Drawer.Screen name="ManageVolunteer" component={ManageVolunteer} />
+			<Drawer.Screen name="MissingAnimalDetail" component={MissingAnimalDetail} />
+			<Drawer.Screen name="MissingReportList" component={MissingReportList} />
+			<Drawer.Screen name="PasswordReset" component={PasswordReset} />
+			<Drawer.Screen name="PetInfoSetting" component={PetInfoSetting} />
+			<Drawer.Screen name="PhotoSelect" component={PhotoSelect} />
+			<Drawer.Screen name="ProtectRequestList" component={ProtectRequestList} />
+			<Drawer.Screen name="ReportDetail" component={ReportDetail} />
+			<Drawer.Screen name="RequestLogin" component={RequestLogin} />
+			<Drawer.Screen name="SaveAnimalRequest" component={SaveAnimalRequest} />
+			<Drawer.Screen name="SaveFavorite" component={SaveFavorite} />
+			<Drawer.Screen name="SearchAccountA" component={SearchAccountA} />
+			<Drawer.Screen name="SearchAccountB" component={SearchAccountB} />
+			<Drawer.Screen name="SearchFeed" component={SearchFeed} />
+			<Drawer.Screen name="SearchHashTag" component={SearchHashTag} />
+			<Drawer.Screen name="SearchProtectRequest" component={SearchProtectRequest} />
+			<Drawer.Screen name="SelectAccount" component={SelectAccount} />
+			<Drawer.Screen name="SetPetInformation" component={SetPetInformation} />
+			<Drawer.Screen name="ShelterAssignEntrance" component={ShelterAssignEntrance} />
+			<Drawer.Screen name="ShelterCodeCheck" component={ShelterCodeCheck} />
+			<Drawer.Screen name="ShelterInfoSetting" component={ShelterInfoSetting} />
+			<Drawer.Screen name="ShelterMenu" component={ShelterMenu} />
+			<Drawer.Screen name="SocialRelation" component={SocialRelation} />
+			<Drawer.Screen name="SuggestAssign" component={SuggestAssign} />
+			<Drawer.Screen name="UserAssignEmail" component={UserAssignEmail} />
+			<Drawer.Screen name="UserAssignMobile" component={UserAssignMobile} />
+			<Drawer.Screen name="UserIdentification" component={UserIdentification} />
+			<Drawer.Screen name="UserInfoDetailSettting" component={UserInfoDetailSettting} />
+			<Drawer.Screen name="UserInfoSetting" component={UserInfoSetting} />
+			<Drawer.Screen name="UserMenu" component={UserMenu} />
+			<Drawer.Screen name="UserPasswordCheck" component={UserPasswordCheck} />
+			<Drawer.Screen name="VaccinationRecord" component={VaccinationRecord} />
 			<Drawer.Screen name="WriteAidRequest" component={WriteAidRequest} />
 			<Drawer.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
 			<Drawer.Screen name="AssignPetInfoA" component={AssignPetInfoA} />

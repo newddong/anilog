@@ -669,6 +669,9 @@ export const temp_style = StyleSheet.create({
 			flexDirection: 'row',
 		},
 	},
+	accountInfo_depth2: {
+		flexDirection: 'row',
+	},
 	user_email_userInfoSetting: {
 		width: 442 * DP,
 		height: 36 * DP,
@@ -776,50 +779,52 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#D3C9F4',
 	},
-	textMsg_assignPetInfoA: {
+	textMsg_assignPetInfo: {
 		width: 654 * DP,
 		height: 36 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#707070',
 	},
-	AssignPetInfoA: {
+	assignPetInfoA: {
 		width: 654 * DP,
 		height: 330 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
 		backgroundColor: '#A07A7A',
 	},
-
-	inputForm_assignPetInfoA_line1: {
+	assignPetInfoB: {
+		width: 654 * DP,
+		height: 224 * DP,
+		backgroundColor: '#A07A7A',
+	},
+	inputForm_assignPetInfo_line1: {
 		flexDirection: 'row',
 		width: 654 * DP,
 		height: 82 * DP,
 		alignItems: 'center',
 	},
-	inputForm_assignPetInfoA_line1: {
+	inputForm_assignPetInfo_line2: {
 		flexDirection: 'row',
 		width: 654 * DP,
 		height: 82 * DP,
 		alignItems: 'center',
 	},
-	inputForm_assignPetInfoA_line1: {
+	inputForm_assignPetInfo_line3: {
 		flexDirection: 'row',
 		width: 654 * DP,
 		height: 46 * DP,
 		alignItems: 'center',
 	},
-	text_assignPetInfoA: {
+	text_assignPetInfo: {
 		width: 118 * DP,
 		height: 46 * DP,
 		backgroundColor: '#E0A8A8',
 	},
-	dropdownSelect_assignPetInfoA_depth1: {
+	dropdownSelect_assignPetInfo_depth1: {
 		width: 204 * DP,
 		height: 82 * DP,
 		backgroundColor: '#A9B0D5',
 	},
-	dropdownSelect_assignPetInfoA_depth2: {
+	dropdownSelect_assignPetInfo_depth2: {
 		width: 292 * DP,
 		height: 82 * DP,
 		backgroundColor: '#A9B0D5',
@@ -869,6 +874,201 @@ export const temp_style = StyleSheet.create({
 	animalNeedHelpList: {
 		width: 750 * DP,
 		height: 770 * DP,
+	},
+	radioBox_assignPetInfo: {
+		width: 520 * DP,
+		height: 46 * DP,
+		backgroundColor: '#EDEDED',
+	},
+	btn_w226_assignPetInfo: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 70 * DP,
+	},
+	datePicker_assignPetInfo_depth1: {
+		width: 290 * DP,
+		height: 82 * DP,
+		backgroundColor: '#B1B6F0',
+	},
+	text218_assignPetInfo: {
+		width: 218 * DP,
+		height: 36 * DP,
+		backgroundColor: '#B1B6F0',
+	},
+	inputNoTitle_assignPetInfo: {
+		width: 156 * DP,
+		height: 82 * DP,
+		backgroundColor: '#B1B6F0',
+	},
+	text68_assignPetInfo: {
+		width: 68 * DP,
+		height: 46 * DP,
+		backgroundColor: '#B1B6F0',
+	},
+	selectedMediaList_assignProtectAnimal: {
+		width: 654 * DP,
+		height: 410 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#A07A7A',
+	},
+	textMsg_assignProtectAnimal: {
+		width: 654 * DP,
+		height: 36 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#707070',
+	},
+	image_assignProtectAnimal: {
+		width: 160 * DP,
+		height: 54 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#C8FBD2',
+	},
+	btn_w226_assignProtectAnimal: {
+		width: 654 * DP,
+		height: 70 * DP,
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+	},
+	inputForm_assignProtectAnimal_line1: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 82 * DP,
+		alignItems: 'center',
+	},
+	text118_assignProtectAnimal: {
+		width: 118 * DP,
+		height: 46 * DP,
+		backgroundColor: '#B1B6F0',
+	},
+	datePicker_assignProtectAnimal_depth1: {
+		width: 520 * DP,
+		height: 82 * DP,
+		backgroundColor: '#EDEDED',
+	},
+	inputForm_assignProtectAnimal: {
+		width: 654 * DP,
+		height: 224 * DP,
+		backgroundColor: '#A07A7A',
+	},
+	dropdownSelect_assignProtectAnimalInfo: {
+		width: 160 * DP,
+		height: 82 * DP,
+		backgroundColor: '#B1B6F0',
+	},
+	text64_assignProtectAnimal: {
+		width: 64 * DP,
+		height: 46 * DP,
+		backgroundColor: '#B1B6F0',
+	},
+	inputForm_assignProtectAnimal_line2: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 82 * DP,
+		alignItems: 'center',
+	},
+	selectstat_view: {
+		width: 750 * DP,
+		height: 100 * DP,
+		alignItems: 'center',
+		backgroundColor: '#ACC4D6',
+	},
+	selectstat: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 42 * DP,
+		backgroundColor: '#B5EAEC',
+	},
+	textBtn: {
+		width: 120 * DP,
+		height: 42 * DP,
+		alignItems: 'center',
+		backgroundColor: '#D9F5CD',
+	},
+	vertical_stick: {
+		borderRightColor: '#FF0000',
+		borderRightWidth: 2 * DP,
+	},
+	AnimalNeedHelpList: {
+		width: 654 * DP,
+		height: 1324 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#F2C2C2',
+	},
+	FeedThumbnailList: {
+		width: 750 * DP,
+		height: 1324 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#669AC2',
+	},
+	baseFlatList: {
+		width: 654 * DP,
+		height: 1324 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#D28888',
+	},
+	animalProtectDetails_protectApplyForm: {
+		width: 654 * DP,
+		height: 1316 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#C4C483',
+	},
+	animalProtectDetails_adoptorInformation: {
+		width: 654 * DP,
+		height: 1386 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#C4C483',
+	},
+	aidRequestList_aidRequestManage: {
+		width: 654 * DP,
+		height: 1384 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#E1E8FF',
+	},
+	aidRequestList_aidRequestManage: {
+		width: 654 * DP,
+		height: 1384 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#E1E8FF',
+	},
+	filterbutton_view: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 60 * DP,
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		backgroundColor: '#B5DED8',
+	},
+	filterbutton: {
+		width: 306 * DP,
+		height: 60 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#D891C7',
+	},
+	meatball50: {
+		width: 50 * DP,
+		height: 50 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#D891C7',
+	},
+	baseFlatList_protectRequestList: {
+		width: 654 * DP,
+		height: 1286 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#C4C483',
 	},
 });
 
@@ -1489,7 +1689,7 @@ export const assignPetProfileImage_style = StyleSheet.create({
 	},
 });
 
-export const assignPetInfoA_style = StyleSheet.create({
+export const assignPetInfo_style = StyleSheet.create({
 	textMsg: {
 		marginTop: 12 * DP,
 	},
@@ -1501,6 +1701,104 @@ export const assignPetInfoA_style = StyleSheet.create({
 	},
 	dropdownSelect_depth2: {
 		marginLeft: 24 * DP,
+	},
+	line2: {
+		marginTop: 60 * DP,
+	},
+	tabSelectFilled_Type1: {
+		marginLeft: 16 * DP,
+	},
+	line3: {
+		marginTop: 60 * DP,
+	},
+	btn_w226_viewA: {
+		marginTop: 110 * DP,
+	},
+	btn_w226: {
+		marginLeft: 202 * DP,
+	},
+	datePicker_depth1: {
+		marginLeft: 16 * DP,
+	},
+	text218: {
+		marginTop: 46 * DP,
+		marginLeft: 12 * DP,
+	},
+	inputNoTitle: {
+		marginLeft: 16 * DP,
+	},
+	text68: {
+		marginLeft: 16 * DP,
+	},
+	btn_w226_viewB: {
+		marginTop: 130 * DP,
+	},
+});
+
+export const assignProtectAnimal_style = StyleSheet.create({
+	textMsg: {
+		marginTop: 12 * DP,
+	},
+	selectedMediaList: {
+		marginTop: 70 * DP,
+	},
+	btn_w226_view_image: {
+		marginTop: 110 * DP,
+	},
+	inputform: {
+		marginTop: 60 * DP,
+	},
+	dropdownSelect_year: {
+		marginLeft: 16 * DP,
+	},
+	text118: {
+		marginLeft: 10 * DP,
+	},
+});
+
+export const selectstat_view_style = StyleSheet.create({
+	select_all: {
+		marginLeft: 268 * DP,
+	},
+	vertical_stick: {
+		marginLeft: 12 * DP,
+	},
+	delete_selected: {
+		marginLeft: 12 * DP,
+	},
+	selectstat: {
+		marginTop: 38 * DP,
+	},
+	selecting: {
+		marginTop: 38 * DP,
+		justifyContent: 'flex-end',
+	},
+});
+
+export const baseInfo_style = StyleSheet.create({
+	list: {
+		marginTop: 40 * DP,
+	},
+	detail: {
+		marginTop: 40 * DP,
+	},
+});
+
+export const protectRequestList_style = StyleSheet.create({
+	filterbutton_view: {
+		marginTop: 40 * DP,
+	},
+});
+
+export const requestLogin_style = StyleSheet.create({
+	txt_msg: {
+		marginTop: 326 * DP,
+	},
+	btn_w522: {
+		marginTop: 24 * DP,
+	},
+	social_info: {
+		marginTop: 70 * DP,
 	},
 });
 
