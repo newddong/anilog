@@ -67,6 +67,9 @@ import ManageVolunteer from 'Root/component/templete/ManageVolunteer';
 import WriteAidRequest from 'Root/component/templete/WriteAidRequest';
 import AssignPetProfileImage from 'Root/component/templete/AssignPetProfileImage';
 import AssignPetInfoA from 'Root/component/templete/AssignPetInfoA';
+import FeedMediaTagEdit from 'Root/component/templete/FeedMediaTagEdit';
+import FeedWrite from 'Root/component/templete/FeedWrite';
+import Profile from 'Root/component/templete/Profile';
 
 // const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -137,6 +140,9 @@ export default TempleteTestNavi = () => {
 			<Drawer.Screen name="WriteAidRequest" component={WriteAidRequest} />
 			<Drawer.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
 			<Drawer.Screen name="AssignPetInfoA" component={AssignPetInfoA} />
+			<Drawer.Screen name="FeedMediaTagEdit" component={FeedMediaTagEdit} />
+			<Drawer.Screen name="FeedWrite" component={FeedWrite} />
+			<Drawer.Screen name="Profile" component={Profile} />
 		</Drawer.Navigator>
 	);
 };

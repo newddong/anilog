@@ -7,7 +7,7 @@ import {activationList, login_style, temp_style} from './style_templete';
 
 export default ActivationList = props => {
 	return (
-		<View contentContainerStyle={[login_style.wrp_main]}>
+		<View style={[login_style.wrp_main, activationList.container]}>
 			{/* (O)topTabNavigation_border */}
 			<View style={[temp_style.topTabNavigation_border]}>
 				<Text>(O)topTabNavigation_border</Text>
@@ -20,7 +20,7 @@ export default ActivationList = props => {
 						<Text style={[activationList.activityName]}>Text</Text>
 					</View>
 					<View style={[activationList.activityImage]}>
-						<Text>activityName</Text>
+						<Text>Participation Image</Text>
 					</View>
 				</View>
 				{/* Activity */}
@@ -29,7 +29,7 @@ export default ActivationList = props => {
 						<Text style={[activationList.activityName]}>Text</Text>
 					</View>
 					<View style={[activationList.activityImage]}>
-						<Text>activityName</Text>
+						<Text>Participation Image</Text>
 					</View>
 				</View>
 				{/* Activity */}
@@ -38,7 +38,7 @@ export default ActivationList = props => {
 						<Text style={[activationList.activityName]}>Text</Text>
 					</View>
 					<View style={[activationList.activityImage]}>
-						<Text>activityName</Text>
+						<Text>Participation Image</Text>
 					</View>
 				</View>
 			</View>

@@ -7,7 +7,7 @@ import {login_style, setPetInformation, temp_style, temp_txt} from './style_temp
 
 export default SetPetInformation = props => {
 	return (
-		<View style={[login_style.wrp_main]}>
+		<View style={[login_style.wrp_main, setPetInformation.container]}>
 			<View style={[setPetInformation.inputForm]}>
 				{/* tabSelectFilled_Type1 */}
 				<View style={[setPetInformation.inputForm_line_layout]}>

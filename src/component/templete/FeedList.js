@@ -9,6 +9,7 @@ export default FeedList = props => {
 			<View style={[feedList.feedList]}>
 				<Text>FeedList</Text>
 			</View>
+
 			{/* FloatButton */}
 			<View style={[temp_style.floatingBtn, feedList.floatingBtn]}>
 				<Text>Float Btn</Text>

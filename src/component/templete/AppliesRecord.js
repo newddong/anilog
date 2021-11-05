@@ -8,7 +8,7 @@ import {appliesRecord, login_style, temp_style} from './style_templete';
 
 export default AppliesRecord = props => {
 	return (
-		<View contentContainerStyle={[login_style.wrp_main]}>
+		<View style={[login_style.wrp_main, appliesRecord.container]}>
 			<View style={[appliesRecord.record]}>
 				{/* (O)AnimalNeedHelp */}
 				<View style={[appliesRecord.animalNeedHelp.container]}>

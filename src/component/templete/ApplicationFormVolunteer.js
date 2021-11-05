@@ -1,6 +1,5 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
-import {Text, View} from 'react-native';
+import {FlatList, Text, View} from 'react-native';
 import {login_style, applicationFormVolunteer, temp_txt, btn_style} from './style_templete';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
@@ -8,7 +7,7 @@ import {login_style, applicationFormVolunteer, temp_txt, btn_style} from './styl
 
 export default ApplicationFormVolunteer = props => {
 	return (
-		<ScrollView contentContainerStyle={login_style.wrp_main}>
+		<View style={[login_style.wrp_main, applicationFormVolunteer.container]}>
 			{/* ProfileImage & btn_w242*/}
 			<View style={[applicationFormVolunteer.shelterInfo]}>
 				<Text>(M)ShelterInfo</Text>
@@ -42,9 +41,9 @@ export default ApplicationFormVolunteer = props => {
 						<Text>title</Text>
 					</View>
 				</View>
-				{/* Text */}
+				{/* List는 여기 */}
 				<View style={[applicationFormVolunteer.participants_step2]}>
-					<Text>Text</Text>
+					<Text> (O)AccountList</Text>
 				</View>
 			</View>
 			{/* ViewForm */}
@@ -55,6 +54,6 @@ export default ApplicationFormVolunteer = props => {
 			<View style={[btn_style.btn_w226, applicationFormVolunteer.btn_w226]}>
 				<Text> (A) btn_w226 </Text>
 			</View>
-		</ScrollView>
+		</View>
 	);
 };

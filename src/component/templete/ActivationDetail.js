@@ -8,8 +8,10 @@ import {activationDetail, login_style, temp_txt} from './style_templete';
 
 export default ActivationDetail = props => {
 	return (
-		<View contentContainerStyle={[login_style.wrp_main]}>
-			<View style={[activationDetail.imageContainer]}></View>
+		<View style={[login_style.wrp_main, activationDetail.container]}>
+			<View style={[activationDetail.imageContainer]}>
+				<Text>Image</Text>
+			</View>
 			<View style={[activationDetail.titleContainer]}>
 				<View style={[activationDetail.titleText]}>
 					<Text>Activity Name</Text>
