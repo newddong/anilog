@@ -20,6 +20,7 @@ export const organism_style = StyleSheet.create({
 		backgroundColor: '#0FA743',
 	},
 	feed: {
+		flexDirection: 'column',
 		width: 750 * DP,
 		height: 1222 * DP,
 		alignItems: 'center',
@@ -156,6 +157,111 @@ export const organism_style = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#4B6EE1',
 	},
+	feedMedia_feed: {
+		width: 750 * DP,
+		height: 750 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#0FA743',
+	},
+	comment_feed_view: {
+		width: 750 * DP,
+		height: 202 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#EBC48E',
+	},
+	likeCommentButtons_view: {
+		width: 654 * DP,
+		height: 48 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#BAA568',
+	},
+	likeCommentButtons: {
+		width: 654 * DP,
+		height: 48 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#BAA568',
+	},
+	recentComment_view: {
+		width: 654 * DP,
+		height: 76 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#C1DAF6',
+	},
+	likeCommentInfo_view: {
+		width: 256 * DP,
+		height: 48 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#4AAA60',
+	},
+	like48: {
+		width: 48 * DP,
+		height: 48 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#F8DDDD',
+	},
+	like_count_view_feed: {
+		width: 92 * DP,
+		height: 48 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#4AAA60',
+	},
+	like_count_feed: {
+		width: 92 * DP,
+		height: 48 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#4AAA60',
+	},
+	comment48: {
+		width: 48 * DP,
+		height: 48 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#F8DDDD',
+	},
+	comment_count_view_feed: {
+		width: 68 * DP,
+		height: 48 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#4AAA60',
+	},
+	comment_count_feed: {
+		width: 56 * DP,
+		height: 30 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#F8DDDD',
+	},
+	writerID_feed_view: {
+		width: 116 * DP,
+		height: 76 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#C1DAF6',
+	},
+	writerID_feed: {
+		width: 96 * DP,
+		height: 36 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#AAE8B6',
+	},
+	commentText_view: {
+		width: 538 * DP,
+		height: 76 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#AAE8B6',
+	},
 });
 
 export const feedContent_style = StyleSheet.create({
@@ -176,5 +282,19 @@ export const feedContent_style = StyleSheet.create({
 	},
 	share: {
 		marginTop: 1 * DP,
+	},
+});
+
+export const feed_style = StyleSheet.create({
+	like_count: {
+		marginLeft: 12 * DP,
+		marginTop: 9 * DP,
+	},
+	recentComment: {
+		marginLeft: 24 * DP,
+		marginTop: 24 * DP,
+	},
+	likeCommentButtons: {
+		marginTop: 24 * DP,
 	},
 });
