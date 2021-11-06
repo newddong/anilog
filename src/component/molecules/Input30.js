@@ -7,7 +7,6 @@ import {Cross52} from '../atom/icon';
 import {TouchableOpacity} from 'react-native';
 
 export default Input30 = props => {
-
 	const [input, setInput] = React.useState('');
 	const [confirm, setConfirm] = React.useState();
 	const inputRef = React.useRef();
@@ -28,9 +27,11 @@ export default Input30 = props => {
 		if (input.length == 0) {
 			return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}></Text>;
 		}
-		return confirm ? <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>
-					   : <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>
-		
+		return confirm ? (
+			<Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>
+		) : (
+			<Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>
+		);
 	};
 
 	const onClear = () => {
@@ -48,12 +49,14 @@ export default Input30 = props => {
 	};
 
 	const showTitle = () => {
-		return props.showTitle 
-			?	<View>
-					<Text style={[txt.noto30b, {color: APRI10}]}> {props.title} </Text>
-					<Text style={[txt.noto22, {color: GRAY20}]}> {props.description} </Text>
-				</View>
-			: false
+		return props.showTitle ? (
+			<View>
+				<Text style={[txt.noto30b, {color: APRI10}]}> {props.title} </Text>
+				<Text style={[txt.noto22, {color: GRAY20}]}> {props.description} </Text>
+			</View>
+		) : (
+			false
+		);
 	};
 
 	return (

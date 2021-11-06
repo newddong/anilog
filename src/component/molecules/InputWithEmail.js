@@ -5,7 +5,6 @@ import DP from 'Root/config/dp';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52} from '../atom/icon';
 import {APRI10, GRAY30} from 'Root/config/color';
 export default InputWithEmail = props => {
-
 	const [btnStatus, setBtnStatus] = React.useState(false);
 	// Dropdown에서 현재 선택된 항목 State, 처음 Mount시 itemList[defaultIndex]를 반환
 	const [selectedItem, setSelectedItem] = React.useState(props.itemList[props.defaultIndex]);
@@ -20,7 +19,7 @@ export default InputWithEmail = props => {
 	const onClear = () => {
 		inputRef.current.clear();
 		setInput(''); //email state를 null로 해주어야 borderColor가 GRAY30으로 반응한다
-		
+
 		props.onClear();
 	};
 
@@ -59,7 +58,9 @@ export default InputWithEmail = props => {
 					<TouchableOpacity onPress={onClear} style={{marginLeft: 40 * DP}}>
 						<Cross52 />
 					</TouchableOpacity>
-				) : false}
+				) : (
+					false
+				)}
 				<Text style={[txt.roboto24b, {marginHorizontal: 24 * DP, lineHeight: 36 * DP}]}>@</Text>
 				<Text style={[txt.roboto28, {marginHorizontal: 24 * DP, lineHeight: 36 * DP}]}> {selectedItem} </Text>
 				<TouchableOpacity onPress={() => setBtnStatus(!btnStatus)} style={{marginLeft: 12 * DP}}>
@@ -70,7 +71,7 @@ export default InputWithEmail = props => {
 	);
 };
 InputWithEmail.defaultProps = {
-	itemList: null,
+	itemList: ['naver.com', 'daum.net', 'nate.com'],
 	placeholder: 'placeholder',
 	defaultIndex: 0,
 	value: null,

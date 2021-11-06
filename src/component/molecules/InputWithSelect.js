@@ -76,14 +76,16 @@ export default InputWithSelect = props => {
 					<TouchableOpacity onPress={onClear} style={{marginLeft: 120 * DP}}>
 						<Cross52 />
 					</TouchableOpacity>
-				) : false}
+				) : (
+					false
+				)}
 			</View>
 		</View>
 	);
 };
 InputWithSelect.defaultProps = {
 	placeholder: 'placeholder',
-	itemList: null,
+	itemList: ['test1', 'test2', 'test3', 'test3', 'test5'],
 	defaultIndex: 0, // props로 받은 itemList의 디폴트 인덱스
 	value: null,
 	onChange: e => console.log(e),
