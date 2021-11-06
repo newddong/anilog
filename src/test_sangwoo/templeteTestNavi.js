@@ -136,7 +136,8 @@ export default TempleteTestNavi = () => {
 			<Drawer.Screen name="MissingReportList" component={MissingReportList} />
 			<Drawer.Screen name="PasswordReset" component={PasswordReset} />
 			<Drawer.Screen name="PetInfoSetting" component={PetInfoSetting} />
-			<Drawer.Screen name="PhotoSelect" component={PhotoSelect} />
+			<Drawer.Screen name="PhotoSelect" component={PhotoSelect} />			
+			<Drawer.Screen name="ProtectApplyForm" component={ProtectApplyForm} />
 			<Drawer.Screen name="ProtectRequestList" component={ProtectRequestList} />
 			<Drawer.Screen name="ReportDetail" component={ReportDetail} />
 			<Drawer.Screen name="RequestLogin" component={RequestLogin} />
