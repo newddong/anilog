@@ -5,28 +5,33 @@ import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
 import {Cross52, Eye52_APRI10, Eye52_GRAY20} from '../atom/icon';
 export default PasswordInput = props => {
-
 	const [input, setInput] = React.useState(''); // 암호 input text state
 	const [confirm, setConfirm] = React.useState(false); // 암호 validation state
 	const [pwdSecureState, setPwdSecureState] = React.useState(true); // 암호 별표화 state
 	const inputRef = React.useRef();
 
 	const getMsg = () => {
-		if(input.length == 0){ return <Text style={(txt.noto22, {color: GRAY20, lineHeight: 36 * DP})}>{props.information}</Text> }
-		else if(confirm == true){ return  <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text> }
-		else if(confirm == false){ return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text> }
-		else return false
+		if (input.length == 0) {
+			return <Text style={(txt.noto22, {color: GRAY20, lineHeight: 36 * DP})}>{props.information}</Text>;
+		} else if (confirm == true) {
+			return <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>;
+		} else if (confirm == false) {
+			return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>;
+		} else return false;
 	};
 	const getBorderColor = () => {
-		if(input.length == 0){ return GRAY30 }
-		else if(confirm == false){ return APRI10 }
-		else if(confirm == true){ return GREEN }
-		else return false
+		if (input.length == 0) {
+			return GRAY30;
+		} else if (confirm == false) {
+			return APRI10;
+		} else if (confirm == true) {
+			return GREEN;
+		} else return false;
 	};
 
 	const onChange = text => {
 		setInput(text);
-		props.onChange(text)
+		props.onChange(text);
 		validator(text);
 	};
 
@@ -50,7 +55,7 @@ export default PasswordInput = props => {
 
 	const onShowPassword = () => {
 		setPwdSecureState(!pwdSecureState);
-		props.onShowPassword()
+		props.onShowPassword();
 	};
 
 	return (
@@ -58,9 +63,7 @@ export default PasswordInput = props => {
 			<View style={{height: 158 * DP}}>
 				{/* 모든 text에 fontPadding false 적용 잊지말것 */}
 				{/* parent에서 title이 props로 명시되어 있지 않을 경우 'title' string 으로 받음. */}
-				{(props.title!='' && props.title!='title')&&(
-					<Text style={[txt.noto24, {color: APRI10, lineHeight: 40 * DP}]}> {props.title} </Text>
-				)}
+				{props.title != '' && props.title != 'title' && <Text style={[txt.noto24, {color: APRI10, lineHeight: 40 * DP}]}> {props.title} </Text>}
 				{/* Description 아래는 height 90으로 고정 */}
 				{/* 하단테두리는 2px, APRI설정 */}
 				<View style={{height: 82 * DP, flexDirection: 'row', borderBottomWidth: 2 * DP, borderBottomColor: getBorderColor(), alignItems: 'center'}}>
@@ -75,7 +78,7 @@ export default PasswordInput = props => {
 								//TextInput과 바깥 View와의 거리 24px, lineHeight는 글꼴크기와 일치
 								paddingLeft: 24 * DP,
 								lineHeight: 44 * DP,
-								width: input.length == 0 ?  190 * DP : false,
+								width: input.length == 0 ? 190 * DP : null,
 								//placeholder 상태일때 글꼴의 영향인지 placeholde'r' 마지막글자가 짤리는 현상 발생
 								//우선 width를 가변적으로 주는 방식으로 해결
 							},
@@ -103,7 +106,7 @@ PasswordInput.defaultProps = {
 	value: 'value', // pwd input 값
 	alert_msg: 'alert_msg', // confrim state가 false일 경우 출력될 하단 메시지
 	confirm_msg: 'confirm_msg', // confirm state가 true일 경우 출력될 하단 메시지
-	onChange: (e) => console.log(e), // pwd input 값이 변할 때마다 수행되는 함수
-	onClear: (e) => console.log(e), // X마크로 input값을 clear할 때마다 수행되는 함수
-	onShowPassword: (e) => console.log(e), // 눈마크를 Press하여 별표(*)화된 pwd값을 보이게 할 경우 수행되는 함수
+	onChange: e => console.log(e), // pwd input 값이 변할 때마다 수행되는 함수
+	onClear: e => console.log(e), // X마크로 input값을 clear할 때마다 수행되는 함수
+	onShowPassword: e => console.log(e), // 눈마크를 Press하여 별표(*)화된 pwd값을 보이게 할 경우 수행되는 함수
 };

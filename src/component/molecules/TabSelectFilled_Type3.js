@@ -32,8 +32,8 @@ export default TabSelectFilled_Type3 = props => {
 				style={{
 					width: 250 * DP,
 					height: 70 * DP,
-					borderTopLeftRadius: 30*DP,
-					borderTopRightRadius : 30*DP,
+					borderTopLeftRadius: 30 * DP,
+					borderTopRightRadius: 30 * DP,
 					backgroundColor: selected[index].state ? APRI10 : GRAY40,
 					justifyContent: 'center',
 				}}>
@@ -54,6 +54,6 @@ export default TabSelectFilled_Type3 = props => {
 	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />;
 };
 TabSelectFilled_Type3.defaultProps = {
-	items: null, //FlatList에 담길 배열 정보
+	items: [1, 2, 3], //FlatList에 담길 배열 정보
 	onSelect: e => console.log(e), //Tab Press 이벤트
 };

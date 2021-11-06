@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {GRAY30, WHITE} from 'Root/config/color';
+import {APRI10, GRAY20, GRAY30, GRAY40, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
 
 export const BGCOLOR = '#B5DED8';
@@ -271,9 +271,214 @@ export const emailVerification = StyleSheet.create({
 });
 
 export const passwordChecker = StyleSheet.create({
+	container_initMode: {
+		width: 654 * DP,
+		height: 406 * DP,
+		backgroundColor: 'yellow',
+	},
+	container_resetMode: {
+		width: 654 * DP,
+		height: 634 * DP,
+		backgroundColor: 'yellow',
+	},
+	passwordInput_resetMode: {
+		marginBottom: 80 * DP,
+	},
+	passwordInput_initMode: {
+		marginBottom: 90 * DP,
+	},
+});
+
+export const socialInfoA = StyleSheet.create({
+	container: {
+		width: 366 * DP,
+		height: 84 * DP,
+		backgroundColor: BGCOLOR,
+		flexDirection: 'row',
+	},
+	socialInfo: {
+		width: 82 * DP,
+		height: 84 * DP,
+		marginRight: 60 * DP,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: 'pink',
+	},
+	number: {
+		height: 38 * DP,
+	},
+	title: {
+		height: 46 * DP,
+	},
+});
+
+export const socialInfoB = StyleSheet.create({
+	container: {
+		width: 500 * DP,
+		height: 106 * DP,
+		backgroundColor: BGCOLOR,
+		flexDirection: 'row',
+	},
+	socialInfo: {
+		width: 164 * DP,
+		height: 106 * DP,
+		marginRight: 4 * DP,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: 'pink',
+	},
+	number: {
+		width: 80 * DP,
+		height: 50 * DP,
+		textAlign: 'center',
+	},
+	title: {
+		height: 46 * DP,
+	},
+});
+
+export const profileMenu = StyleSheet.create({
+	container: {
+		width: 750 * DP,
+		height: 630 * DP,
+	},
+	upperMenu: {},
+	lowerMenu: {
+		marginTop: 76 * DP,
+	},
+	titleContainer: {
+		height: 82 * DP,
+		flexDirection: 'row',
+		borderBottomWidth: 2 * DP,
+		borderBottomColor: APRI10,
+		alignItems: 'center',
+		paddingLeft: 48 * DP,
+	},
+	title: {
+		width: 200 * DP,
+		height: 42 * DP,
+		marginLeft: 6 * DP,
+		backgroundColor: 'powderblue',
+	},
+	bottomeContainer: {},
+	itemContainer: {
+		paddingHorizontal: 32 * DP,
+	},
+	item_step1: {
+		flexDirection: 'row',
+		height: 76 * DP,
+		// backgroundColor: 'pink',
+	},
+	item_step2: {
+		flexDirection: 'row',
+		height: 76 * DP,
+		backgroundColor: 'yellow',
+	},
+	item: {
+		width: 310 * DP,
+		height: 48 * DP,
+		marginLeft: 16 * DP,
+		flexDirection: 'row',
+		alignSelf: 'center',
+	},
+	item_text: {
+		width: 210 * DP,
+		height: 36 * DP,
+		marginRight: 52 * DP,
+		alignSelf: 'center',
+	},
+	item_bracket: {
+		alignSelf: 'center',
+	},
+	horizon_separator: {
+		width: 362 * DP,
+		height: 2 * DP,
+		marginLeft: 5 * DP,
+		marginRight: 7 * DP,
+		backgroundColor: GRAY40,
+	},
+	vertical_separator: {
+		width: 2 * DP,
+		height: 64 * DP,
+		marginTop: 6 * DP,
+		marginHorizontal: 16 * DP,
+		backgroundColor: GRAY40,
+	},
+});
+
+export const myPetList = StyleSheet.create({
+	container: {
+		width: 750 * DP,
+		height: 270 * DP,
+		paddingLeft: 28 * DP,
+		flexDirection: 'row',
+		backgroundColor: 'yellow',
+	},
+	petImageLabel: {
+		width: 180 * DP,
+		height: 270 * DP,
+		marginLeft: 20 * DP,
+	},
+	addPet: {
+		marginLeft: 20 * DP,
+	},
+});
+
+export const interestTagList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		height: 402 * DP,
-		backgroundColor: WHITE,
+		height: 236 * DP,
+		backgroundColor: BGCOLOR,
+	},
+	titleContainer: {
+		width: 654 * DP,
+		height: 70 * DP,
+		marginTop: 44 * DP,
+		flexDirection: 'row',
+	},
+	title: {
+		width: 226 * DP,
+		height: 48 * DP,
+		alignSelf: 'center',
+		backgroundColor: 'powderblue',
+	},
+	btn_w226: {
+		marginLeft: 202 * DP,
+	},
+	interestingTagList: {
+		width: 606 * DP,
+		height: 102 * DP,
+		backgroundColor: 'yellow',
+		marginLeft: 48 * DP,
+		marginTop: 20 * DP,
+	},
+});
+
+export const addressInput = StyleSheet.create({
+	container: {
+		width: 654 * DP,
+		height: 238 * DP,
+		backgroundColor: 'white',
+	},
+	upperContainer: {
+		width: 654 * DP,
+		height: 132 * DP,
+		flexDirection: 'row',
+	},
+	lowerContainer: {},
+	input24A: {
+		width: 388 * DP,
+		height: 90 * DP,
+		justifyContent: 'flex-start',
+		alignSelf: 'flex-start',
+		backgroundColor: 'yellow',
+	},
+	btn_w226: {
+		marginLeft: 40 * DP,
+		marginTop: 60 * DP,
+		backgroundColor: 'white',
+	},
+	inputNoTitle: {
+		marginTop: 24 * DP,
 	},
 });

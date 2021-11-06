@@ -1,15 +1,40 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import PasswordInput from '../molecules/PasswordInput';
 import {passwordChecker} from './style_organism';
 
 export default PasswordChecker = props => {
-	return <View style={[passwordChecker.container]}></View>;
+	const [resetPwd, setResetPwd] = React.useState(false);
+	return resetPwd ? (
+		<View style={[passwordChecker.container_resetMode]}>
+			<View style={[passwordChecker.passwordInput_resetMode]}>
+				<PasswordInput title={'현재 비밀번호'} />
+			</View>
+			<View style={[passwordChecker.passwordInput_resetMode]}>
+				<PasswordInput title={'비밀번호'} />
+			</View>
+			<View style={[passwordChecker.passwordInput_resetMode]}>
+				<PasswordInput title={'비밀번호 확인'} />
+			</View>
+		</View>
+	) : (
+		<View style={[passwordChecker.container_initMode]}>
+			<View style={[passwordChecker.passwordInput_initMode]}>
+				<PasswordInput title={'비밀번호'} />
+			</View>
+			<View style={[passwordChecker.passwordInput_doubleCheck]}>
+				<PasswordInput title={'비밀번호 확인'} />
+			</View>
+		</View>
+	);
 };
 
-// btnTitle: 'title', //버튼의 제목
-// 	btnTheme: 'shadow', // btnTheme - ’shadow’, ‘noShadow’, ‘gray’에서 결정
-// 	btnStyle: 'filled', // btnStyle - ‘filled’, ‘border’, ‘noBorder’ 에서 결정
-// 	disable: false, // disable - 기본값은 false true일 경우 버튼 탭을 할수없도록 하고 표시를 바
-// 	titleFontStyle: 24 * DP, // titleFontStyle - title의 폰트 크기
-// 	btnLayout: btn_w226, // btnLayout - 버튼의 레이아웃(width, height, borderRadius를 결정)
-// 	onPress: {}, // 버튼을 탭했을때 발생하는 콜백
+// 	title: 'title', //비밀번호란 상단 타이틀
+// 	placeholder: 'placeholder', //placeholder
+// 	information: 'information', // confirm state가 'normal'일 경우 출력될 하단 메시지
+// 	value: 'value', // pwd input 값
+// 	alert_msg: 'alert_msg', // confrim state가 false일 경우 출력될 하단 메시지
+// 	confirm_msg: 'confirm_msg', // confirm state가 true일 경우 출력될 하단 메시지
+// 	onChange: (e) => console.log(e), // pwd input 값이 변할 때마다 수행되는 함수
+// 	onClear: (e) => console.log(e), // X마크로 input값을 clear할 때마다 수행되는 함수
+// 	onShowPassword: (e) => console.log(e), // 눈마크를 Press하여 별표(*)화된 pwd값을 보이게 할 경우

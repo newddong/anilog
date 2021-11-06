@@ -8,7 +8,7 @@ import DP from 'Root/config/dp';
 import {day} from 'Root/i18n/msg';
 import {txt} from 'Root/config/textstyle';
 import {APRI10, GRAY20, GRAY30, WHITE} from 'Root/config/color';
-import {NextMonthBtn, PreviousMonthBtn} from 'Root/component/atom/icon';
+import {NextMark, PreviousMonthBtn} from 'Root/component/atom/icon';
 
 const Calendar = props => {
 	const [getMoment, setMoment] = React.useState(moment()); //현재 시각 정보
@@ -93,7 +93,7 @@ const Calendar = props => {
 							setMoment(getMoment.clone().add(1, 'month'));
 						}}>
 						<View style={{flexDirection: 'row', alignSelf: 'center', alignItems: 'center', justifyContent: 'center', marginTop: 10 * DP}}>
-							<NextMonthBtn />
+							<NextMark />
 							<Text style={[txt.roboto32b, {color: GRAY20, marginLeft: 12 * DP}]}>{getMoment.clone().add(1, 'month').month() + 1}</Text>
 						</View>
 					</TouchableOpacity>
