@@ -165,8 +165,6 @@ export default TempleteTestNavi = () => {
 			<Drawer.Screen name="UserPasswordCheck" component={UserPasswordCheck} />
 			<Drawer.Screen name="VaccinationRecord" component={VaccinationRecord} />
 			<Drawer.Screen name="WriteAidRequest" component={WriteAidRequest} />
-			<Drawer.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
-			<Drawer.Screen name="AssignPetInfoA" component={AssignPetInfoA} />
 			<Drawer.Screen name="FeedMediaTagEdit" component={FeedMediaTagEdit} />
 			<Drawer.Screen name="FeedWrite" component={FeedWrite} />
 			<Drawer.Screen name="Profile" component={Profile} />
