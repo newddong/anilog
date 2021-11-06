@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {NextMonthBtn} from '../atom/icon';
+import {NextMark} from '../atom/icon';
 import {appliesRecord, login_style, temp_style} from './style_templete';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
@@ -19,7 +19,7 @@ export default AppliesRecord = props => {
 						<View style={[appliesRecord.animalNeedHelp.headerContainer.moreTxt]}>
 							<Text>더보기 </Text>
 							<View style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
-								<NextMonthBtn />
+								<NextMark />
 							</View>
 						</View>
 					</View>

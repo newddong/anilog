@@ -11,11 +11,12 @@ import TagTest from './TagTest';
 import TabSelectTest from './tabSelectTest';
 import TempleteTestNavi from './templeteTestNavi';
 import OrganismTestNavi from './OrganismTestNavi';
+import OrganismTestNavi_ksw from './OrganismTestNavi_ksw';
 export default TestNavi = () => {
 	const TestStack = createBottomTabNavigator();
 	return (
 		<NavigationContainer>
-			<TestStack.Navigator initialRouteName={'OrganismTestNavi'}>
+			<TestStack.Navigator initialRouteName={'OrganismTestNavi_ksw'}>
 				<TestStack.Screen name="InputTest" component={InputTestNavi} options={{headerShown: false}} />
 				<TestStack.Screen name="TabTest" component={TabSelectTest} />
 
@@ -25,8 +26,9 @@ export default TestNavi = () => {
 				<TestStack.Screen name="ProfileImage Select/Large Test  " component={ProfileImageSelectTest} />
 				<TestStack.Screen name="Tag Test" component={TagTest} />
 				<TestStack.Screen name="ButtonTest" component={ButtonTest} />
-				<TestStack.Screen name="TempleteTestNavi" component={TempleteTestNavi} options={{headerShown: false, tabBarVisible: false}} />				
+				<TestStack.Screen name="TempleteTestNavi" component={TempleteTestNavi} options={{headerShown: false, tabBarVisible: false}} />
 				<TestStack.Screen name="OrganismTestNavi" component={OrganismTestNavi} options={{headerShown: false, tabBarVisible: false}} />
+				<TestStack.Screen name="OrganismTestNavi_ksw" component={OrganismTestNavi_ksw} options={{headerShown: false, tabBarVisible: false}} />
 			</TestStack.Navigator>
 		</NavigationContainer>
 	);

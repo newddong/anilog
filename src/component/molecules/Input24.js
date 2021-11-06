@@ -16,10 +16,10 @@ export default Input24 = props => {
 	};
 
 	const setBorderColor = () => {
-		if (input.length == 0) { return GRAY30 } 
-		else return confirm ? GRAY30 : APRI10;
+		if (input.length == 0) {
+			return GRAY30;
+		} else return confirm ? GRAY30 : APRI10;
 	};
-
 
 	const onChange = text => {
 		setInput(text);
@@ -42,20 +42,22 @@ export default Input24 = props => {
 	};
 
 	const getDescription = () => {
-		if(props.descriptionType == 'info'){
-			return <Text style={[txt.noto22, {color: GRAY20, marginLeft: 75 * DP}]}> *{props.info} </Text>
-		} else if(props.descriptionType == 'star'){
-			return <Text style={[txt.noto28, {color: RED10, marginLeft: 120 * DP}]}>*</Text> 
+		if (props.descriptionType == 'info') {
+			return <Text style={[txt.noto22, {color: GRAY20, marginLeft: 75 * DP}]}> *{props.info} </Text>;
+		} else if (props.descriptionType == 'star') {
+			return <Text style={[txt.noto28, {color: RED10, marginLeft: 120 * DP}]}>*</Text>;
 		}
-	}
+	};
 
 	const getMsg = () => {
 		if (input.length == 0) {
 			return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}></Text>;
 		} else
-		return confirm ? <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>
-		 			   : <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>
-		
+			return confirm ? (
+				<Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>
+			) : (
+				<Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>
+			);
 	};
 
 	return (
@@ -63,14 +65,14 @@ export default Input24 = props => {
 			{/* height는 168로 고정 */}
 			<View style={{height: 168 * DP}}>
 				{console.log(typeof props.title)}
-				{console.log("props.title=" + props.title)}
+				{console.log('props.title=' + props.title)}
 				{/* parent에서 title이 props로 명시되어 있지 않을 경우 'title' string 으로 받음. */}
-				{(props.title!='' && props.title!='title')&&(
-					<View style={{flexDirection: 'row',}}>
-						<Text style={[txt.noto24, {color: APRI10,}]}> {props.title} </Text>
+				{props.title != '' && props.title != 'title' && (
+					<View style={{flexDirection: 'row'}}>
+						<Text style={[txt.noto24, {color: APRI10}]}> {props.title} </Text>
 						{getDescription()}
-					</View>)
-				}
+					</View>
+				)}
 				{/* 하단테두리 2px이 있기 때문에 inputValue와 82px가 차이가 나도 -2한 80값을 height로 줌 */}
 				<View style={{height: 80 * DP, borderBottomWidth: 2 * DP, borderBottomColor: setBorderColor()}}>
 					<TextInput
@@ -82,6 +84,7 @@ export default Input24 = props => {
 							{
 								paddingLeft: 24 * DP,
 								lineHeight: 44 * DP,
+								// width: 130,
 							},
 						]}
 					/>
@@ -95,9 +98,9 @@ export default Input24 = props => {
 Input24.defaultProps = {
 	title: 'title', // input title
 	placeholder: 'placeholder',
-	descriptionType : 'star', // star , info - title 오른쪽 description을 별표형식 / Info형식 구분
+	descriptionType: 'star', // star , info - title 오른쪽 description을 별표형식 / Info형식 구분
 	value: 'value',
 	alert_msg: 'alert_msg',
 	confirm_msg: 'confirm_msg',
-	info: null, // 
+	info: null, //
 };
