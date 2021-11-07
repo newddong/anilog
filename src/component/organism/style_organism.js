@@ -259,6 +259,60 @@ export const organism_style = StyleSheet.create({
 		height: 44 * DP,
 		backgroundColor: '#F8DDDD',
 	},
+	profileInfo_main: {
+		flexDirection: 'column',
+		width: 750 * DP,
+		height: 416 * DP,
+		backgroundColor: '#B0C7D8',
+	},
+	profileImageLarge_view_profileInfo: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 172 * DP,
+		backgroundColor: '#FF00FF',
+	},
+	profileImageLarge_profileInfo: {
+		width: 160 * DP,
+		height: 160 * DP,
+		backgroundColor: '#8BD199',
+	},
+	socialInfo_profileInfo: {
+		width: 366 * DP,
+		height: 84 * DP,
+		backgroundColor: '#D7D7F5',
+	},
+	content_view_profileInfo: {
+		flexDirection: 'row',
+		width: 700 * DP,
+		height: 80 * DP,
+		backgroundColor: '#0000FF',
+	},
+	content_profileInfo: {
+		width: 492 * DP,
+		height: 80 * DP,
+		backgroundColor: '#F5D7F5',
+	},
+	addMore_profileInfo: {
+		width: 114 * DP,
+		height: 48 * DP,
+		backgroundColor: '#D7F4F5',
+	},
+	btn_w280_view_profileInfo: {
+		flexDirection: 'row',
+		width: 680 * DP,
+		height: 60 * DP,
+		backgroundColor: '#FF00FF',
+	},
+	btn_w280_profileInfo: {
+		width: 280 * DP,
+		height: 60 * DP,
+		backgroundColor: '#D7F4F5',
+	},
+	ActionButton_profileInfo: {
+		width: 280 * DP,
+		height: 60 * DP,
+		backgroundColor: '#E3AAB8',
+	},
 });
 
 export const feedContent_style = StyleSheet.create({
@@ -295,5 +349,32 @@ export const feed_style = StyleSheet.create({
 	},
 	comment_count: {
 		marginLeft: 12 * DP,
+	},
+});
+
+export const profileInfo_style = StyleSheet.create({
+	profileImageLarge: {
+		marginTop: 9 * DP,
+		marginLeft: 48 * DP,
+	},
+	socialInfo: {
+		marginTop: 64 * DP,
+		marginLeft: 80 * DP,
+	},
+	content_view: {
+		marginTop: 30 * DP,
+	},
+	content: {
+		marginLeft: 48 * DP,
+	},
+	addMore: {
+		marginLeft: 46 * DP,
+		marginTop: 32 * DP,
+	},
+	btn_w280_view: {
+		marginTop: 40 * DP,
+	},
+	btn_w280: {
+		marginLeft: 70 * DP,
 	},
 });
