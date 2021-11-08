@@ -181,3 +181,6 @@ export const testArray = [
 	'테스트용 Array',
 	'테스트용 Array',
 ];
+
+//DefaultImage uri
+export const DEFAULT_PROFILE = 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg';

@@ -5,6 +5,9 @@ import AccountHashList from 'Root/component/organism_ksw/AccountHashList';
 import AccountList from 'Root/component/organism_ksw/AccountList';
 import AddressInput from 'Root/component/organism_ksw/AddressInput';
 import AidRequest from 'Root/component/organism_ksw/AidRequest';
+import AidRequestList from 'Root/component/organism_ksw/AidRequestList';
+import AnimalInfo from 'Root/component/organism_ksw/AnimalInfo';
+import AnimalInfoList from 'Root/component/organism_ksw/AnimalInfoList';
 import AssignCheckList from 'Root/component/organism_ksw/AssignCheckList';
 import AssignCheckListItem from 'Root/component/organism_ksw/AssignCheckListItem';
 import ChildComment from 'Root/component/organism_ksw/ChildComment';
@@ -32,7 +35,11 @@ import SocialInfoB from 'Root/component/organism_ksw/SocialInfoB';
 import TopTabNavigation_Border from 'Root/component/organism_ksw/TopTabNavigation_Border';
 import TopTabNavigation_Filled from 'Root/component/organism_ksw/TopTabNavigation_Filled';
 import Vaccination from 'Root/component/organism_ksw/Vaccination';
-
+import VolunteerItem from 'Root/component/organism_ksw/VolunteerItem';
+import VolunteerItemList from 'Root/component/organism_ksw/VolunteerItemList';
+import SelectedMediaList from 'Root/component/organism_ksw/SelectedMediaList';
+import AnimalNeedHelp from 'Root/component/organism_ksw/AnimalNeedHelp';
+import AnimalNeedHelpList from 'Root/component/organism_ksw/AnimalNeedHelpList';
 // const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -71,6 +78,14 @@ export default OrganismTestNavi_ksw = () => {
 			<Drawer.Screen name="PetList" component={PetList} />
 			<Drawer.Screen name="OwnerList" component={OwnerList} />
 			<Drawer.Screen name="AidRequest" component={AidRequest} />
+			<Drawer.Screen name="AidRequestList" component={AidRequestList} />
+			<Drawer.Screen name="VolunteerItem" component={VolunteerItem} />
+			<Drawer.Screen name="VolunteerItemList" component={VolunteerItemList} />
+			<Drawer.Screen name="AnimalInfo" component={AnimalInfo} />
+			<Drawer.Screen name="AnimalInfoList" component={AnimalInfoList} />
+			<Drawer.Screen name="SelectedMediaList" component={SelectedMediaList} />
+			<Drawer.Screen name="AnimalNeedHelp" component={AnimalNeedHelp} />
+			<Drawer.Screen name="AnimalNeedHelpList" component={AnimalNeedHelpList} />
 		</Drawer.Navigator>
 	);
 };

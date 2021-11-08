@@ -817,7 +817,6 @@ export const aidRequest = StyleSheet.create({
 	container: {
 		width: 672 * DP,
 		height: 192 * DP,
-		backgroundColor: GRAY40,
 		justifyContent: 'center',
 	},
 	numberContainer: {
@@ -835,14 +834,15 @@ export const aidRequest = StyleSheet.create({
 		width: 654 * DP,
 		height: 174 * DP,
 		marginTop: 18 * DP,
+		borderRadius: 30 * DP,
+		borderColor: APRI10,
+		borderWidth: 2 * DP,
 		flexDirection: 'row',
-		backgroundColor: 'yellow',
 	},
 	leftContainer: {},
 	img_irregular_174: {
 		width: 174 * DP,
 		height: 174 * DP,
-		backgroundColor: 'lightblue',
 	},
 	gender: {
 		position: 'absolute',
@@ -865,7 +865,233 @@ export const aidRequest = StyleSheet.create({
 		height: 44 * DP,
 		backgroundColor: GRAY30,
 	},
-	right_middleMenu: {},
-	right_middleMenu_catrgory: {},
-	right_lowerMenu: {},
+	right_middleMenu: {
+		width: 440 * DP,
+		height: 36 * DP,
+		marginTop: 12 * DP,
+		flexDirection: 'row',
+		backgroundColor: 'wheat',
+	},
+	right_middleMenu_title: {
+		height: 36 * DP,
+		backgroundColor: 'lavender',
+	},
+	right_middleMenu_content: {
+		height: 36 * DP,
+		backgroundColor: 'palegreen',
+		paddingRight: 15 * DP,
+		marginLeft: 10 * DP,
+		marginRight: 10 * DP,
+	},
+	right_lowerMenu: {
+		width: 440 * DP,
+		height: 36 * DP,
+		marginTop: 12 * DP,
+		flexDirection: 'row',
+		backgroundColor: 'lightgray',
+	},
+});
+
+export const aidRequestList = StyleSheet.create({
+	container: {
+		width: 672 * DP,
+		height: 816 * DP,
+		backgroundColor: 'lightcyan',
+	},
+	itemContainer: {
+		flexDirection: 'row',
+	},
+	addProtectedPetContainer: {
+		width: 654 * DP,
+		height: 174 * DP,
+		borderRadius: 30 * DP,
+		borderColor: APRI10,
+		borderWidth: 2 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexDirection: 'row',
+	},
+	addProtectedPet_insideContainer: {
+		height: 64 * DP,
+		flexDirection: 'row',
+	},
+	addProtectedPetText: {
+		marginLeft: 10 * DP,
+		textAlign: 'center',
+		textAlignVertical: 'center',
+		color: APRI10,
+	},
+});
+
+export const volunteerItem = StyleSheet.create({
+	container: {
+		width: 654 * DP,
+		height: 94 * DP,
+		flexDirection: 'row',
+	},
+	labelContainer: {
+		width: 542 * DP,
+	},
+	expected_activityDate: {
+		width: 112 * DP,
+		height: 70 * DP,
+		alignItems: 'flex-end',
+		alignSelf: 'center',
+	},
+});
+
+export const volunteerItemList = StyleSheet.create({
+	container: {
+		width: 654 * DP,
+		height: 418 * DP,
+		backgroundColor: 'pink',
+	},
+	title: {
+		width: 182 * DP,
+		height: 35 * DP,
+		marginBottom: 20 * DP,
+		backgroundColor: 'lightcyan',
+	},
+	itemContainer: {
+		width: 654 * DP,
+		height: 94 * DP,
+		marginBottom: 40 * DP,
+		backgroundColor: 'white',
+	},
+});
+
+export const animalInfo = StyleSheet.create({
+	container: {
+		width: 654 * DP,
+		height: 180 * DP,
+		flexDirection: 'row',
+	},
+	infoContainer: {
+		width: 434 * DP,
+		height: 132 * DP,
+		marginLeft: 40 * DP,
+		alignSelf: 'center',
+	},
+	infoContainer_petNickname: {
+		height: 46 * DP,
+	},
+	infoContainer_petDetail: {
+		height: 38 * DP,
+	},
+});
+
+export const animalInfoList = StyleSheet.create({
+	container: {
+		width: 654 * DP,
+		height: 723 * DP,
+		backgroundColor: 'pink',
+	},
+	title: {
+		width: 177 * DP,
+		height: 35 * DP,
+		marginBottom: 45 * DP,
+		backgroundColor: 'lightcyan',
+	},
+	itemContainer: {
+		width: 654 * DP,
+		height: 180 * DP,
+		marginBottom: 30 * DP,
+		backgroundColor: 'white',
+	},
+});
+
+export const selectedMediaList = StyleSheet.create({
+	container: {
+		width: 750 * DP,
+		height: 190 * DP,
+	},
+	itemContainer: {
+		width: 190 * DP,
+		height: 190 * DP,
+		marginRight: 30 * DP,
+		backgroundColor: 'white',
+	},
+});
+
+export const animalNeedHelp = StyleSheet.create({
+	container: {
+		width: 750 * DP,
+		height: 214 * DP,
+		flexDirection: 'row',
+	},
+	protectedThumbnail_container: {
+		width: 214 * DP,
+		height: 214 * DP,
+	},
+	gender: {
+		width: 48 * DP,
+		height: 48 * DP,
+		position: 'absolute',
+		right: 10 * DP,
+		top: 10 * DP,
+	},
+	detailContainer: {
+		width: 410 * DP,
+		height: 214 * DP,
+		marginLeft: 30 * DP,
+		backgroundColor: 'yellow',
+	},
+	detail_upperMenu: {
+		width: 410 * DP,
+		height: 48 * DP,
+		flexDirection: 'row',
+		backgroundColor: 'wheat',
+	},
+	detail_upper_petStateContainer: {
+		height: 38 * DP,
+		flexDirection: 'row',
+	},
+	detail_upper_petState: {
+		height: 38 * DP,
+		borderRadius: 15 * DP,
+		borderWidth: 2 * DP,
+		borderColor: GRAY10,
+		paddingHorizontal: 15 * DP,
+		marginRight: 12 * DP,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	petStatusContainer_text: {
+		color: GRAY10,
+		lineHeight: 30 * DP,
+	},
+	detail_upper_tag: {
+		position: 'absolute',
+		right: 0,
+	},
+	detail_lowerMenu: {
+		marginTop: 6 * DP,
+		width: 410 * DP,
+		height: 160 * DP,
+		backgroundColor: 'lavender',
+	},
+	lowerMenu_kindAndBreed: {
+		height: 46 * DP,
+		flexDirection: 'row',
+		backgroundColor: 'yellow',
+	},
+	breedText: {
+		alignSelf: 'center',
+		marginLeft: 20 * DP,
+	},
+	lowerMenu_helpDetail: {
+		height: 38 * DP,
+		backgroundColor: 'wheat',
+	},
+});
+
+export const animalNeedHelpList = StyleSheet.create({
+	container: {
+		width: 654 * DP,
+		height: 722 * DP,
+		backgroundColor: 'lightblue',
+	},
+	itemContainer: {
+		marginBottom: 40 * DP,
+	},
 });

@@ -16,7 +16,7 @@ export default TestNavi = () => {
 	const TestStack = createBottomTabNavigator();
 	return (
 		<NavigationContainer>
-			<TestStack.Navigator initialRouteName={'OrganismTestNavi'}>
+			<TestStack.Navigator initialRouteName={'OrganismTestNavi_ksw'}>
 				<TestStack.Screen name="InputTest" component={InputTestNavi} options={{headerShown: false}} />
 				<TestStack.Screen name="TabTest" component={TabSelectTest} />
 

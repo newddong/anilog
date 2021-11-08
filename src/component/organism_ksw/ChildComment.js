@@ -8,7 +8,7 @@ import UserTimeLabel from '../molecules/UserTimeLabel';
 import {childComment} from './style_organism';
 
 export default ChildComment = props => {
-	const [showImage, setShowImage] = React.useState(true);
+	const [showImage, setShowImage] = React.useState(true); //댓글쓰기의
 	return (
 		<View style={[childComment.container]}>
 			<View style={[childComment.profileContainer]}>
@@ -20,16 +20,19 @@ export default ChildComment = props => {
 					<Meatball50_GRAY20_Vertical />
 				</View>
 			</View>
+			{/* 댓글의 이미지를 보이게하는 경우 */}
 			{showImage ? (
 				<View style={[childComment.img_square_round_484]}>
 					<Image style={[styles.img_square_round_484]} source={{uri: 'http://www.interfootball.co.kr/news/photo/202012/512564_417408_5117.jpg'}} />
 				</View>
 			) : null}
+			{/* 댓글 텍스트 */}
 			<View style={[childComment.commentContainer]}>
 				<View style={[childComment.commentText]}>
 					<Text style={[txt.noto24, {color: GRAY10}]}>CommentText</Text>
 				</View>
 			</View>
+			{/* 좋아요 버튼, 좋아요 숫자 , 답글쓰기 컨테이너 */}
 			<View style={[childComment.likeReplyButton]}>
 				<View style={[childComment.heart30]}>
 					<Heart30_Filled />
