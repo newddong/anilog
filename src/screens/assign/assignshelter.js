@@ -31,31 +31,32 @@ import {ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 export const ShelterContext = React.createContext({
-	code:'',
-	shelter_name:'',
-	shelter_addr:'',
-	shelter_addr_detail:'',
-	shelter_phone_num:'',
-	shelter_area_code:'',
-	shelter_email:'',
-	shelter_email_company:'',
-	shelter_homepage:'',
-	sheleter_foundation_year:'',
-	sheleter_foundation_month:'',
-	sheleter_foundation_day:'',
+	code: '',
+	shelter_name: '',
+	shelter_addr: '',
+	shelter_addr_detail: '',
+	shelter_phone_num: '',
+	shelter_area_code: '',
+	shelter_email: '',
+	shelter_email_company: '',
+	shelter_homepage: '',
+	sheleter_foundation_year: '',
+	sheleter_foundation_month: '',
+	sheleter_foundation_day: '',
 });
 export default AssignShelter = props => {
 	const [btnActive, setBtnActive] = React.useState(true);
 	const codeconfirmed = () => {
 		props.navigation.push('FirtStage', {title: '보호소 등록'});
 	};
-
+	const moveToLogin = () => {
+		props.navigation.push('AgreementCheck');
+	};
 	return (
 		<ShelterContext.Provider
 			value={{
-				code:'',
-			}}
-		>
+				code: '',
+			}}>
 			<View style={lo.wrp_main}>
 				<View style={lo.contents}>
 					<View style={lo.sctn_shelter_first}>

@@ -32,6 +32,10 @@ import LocationPicker from 'Templete/LocationPicker';
 
 import PhotoSelect from 'Templete/PhotoSelect';
 
+import AssignPetProfileImage from 'Templete/AssignPetProfileImage';
+import AssignPetInfoA from 'Templete/AssignPetInfoA';
+import AssignPetInfoB from 'Templete/AssignPetInfoB';
+
 import MainTabNavigation from './main_tab/MainTabNavigation';
 
 import {PIC_SELECTION} from 'Root/i18n/msg';
@@ -81,6 +85,10 @@ export default RootStackNavigation = () => {
 
 					<RootStack.Screen name="SinglePhotoSelect" component={PhotoSelect} />
 					<RootStack.Screen name="MultiPhotoSelect" component={PhotoSelect} />
+
+					<RootStack.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
+					<RootStack.Screen name="AssignPetInfoA" component={AssignPetInfoA} />
+					<RootStack.Screen name="AssignPetInfoB" component={AssignPetInfoB} />
 				</RootStack.Navigator>
 			</NavigationContainer>
 		</SafeAreaView>
