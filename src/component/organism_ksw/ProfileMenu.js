@@ -48,7 +48,9 @@ export default ProfileMenu = props => {
 								<View style={[profileMenu.item_text]}>
 									<Text style={[txt.noto24, {color: GRAY10}]}>보호요청 (저장)</Text>
 								</View>
-								<NextMark />
+								<View style={[profileMenu.item_bracket]}>
+									<NextMark />
+								</View>
 							</View>
 							<View style={[profileMenu.vertical_separator]} />
 							<View style={[profileMenu.item]}>
@@ -106,7 +108,9 @@ export default ProfileMenu = props => {
 								<View style={[profileMenu.item_text]}>
 									<Text style={[txt.noto24, {color: GRAY10}]}>신청 내역</Text>
 								</View>
-								<NextMark />
+								<View style={[profileMenu.item_bracket]}>
+									<NextMark />
+								</View>
 							</View>
 							<View style={[profileMenu.vertical_separator]} />
 							<View style={[profileMenu.item]}>
@@ -131,7 +135,9 @@ export default ProfileMenu = props => {
 								<View style={[profileMenu.item_text]}>
 									<Text style={[txt.noto24, {color: GRAY10}]}>커뮤니티</Text>
 								</View>
-								<NextMark />
+								<View style={[profileMenu.item_bracket]}>
+									<NextMark />
+								</View>
 							</View>
 							<View style={[profileMenu.vertical_separator]} />
 							<View style={[profileMenu.item]}>

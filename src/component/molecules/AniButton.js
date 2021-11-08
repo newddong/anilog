@@ -6,7 +6,6 @@ import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
 
 export default AniButton = props => {
-
 	const btnTheme = () => {
 		//btnTheme이 shadow일 경우 Button의 View에 아래의 style을 추가한다
 		if (props.btnTheme == 'shadow') {
@@ -22,7 +21,7 @@ export default AniButton = props => {
 			};
 		}
 	};
-	 
+
 	//txt Color의 종류는 3가지 - white, APRI10, GRAY20
 	const btnTxtColor = () => {
 		if (props.disable || props.btnStyle == 'filled') {
@@ -42,9 +41,15 @@ export default AniButton = props => {
 	};
 
 	const btnStyle = () => {
-		if (props.disable) { return GRAY30 } //disable일 경우 배경색 GRAY30
-		else if (props.btnStyle == 'filled') { return APRI10 } //FILLED일 경우 배경색 APRI10
-		else { return WHITE } //이외의 경우 WHITE
+		if (props.disable) {
+			return GRAY30;
+		} //disable일 경우 배경색 GRAY30
+		else if (props.btnStyle == 'filled') {
+			return APRI10;
+		} //FILLED일 경우 배경색 APRI10
+		else {
+			return WHITE;
+		} //이외의 경우 WHITE
 	};
 
 	// const lineHeight = () => {
@@ -55,9 +60,11 @@ export default AniButton = props => {
 	// 		return props.btnLayout.height;
 	// 	}
 	// };
-	
+
 	//클릭 이벤트 - Disable false일 경우 onPress이벤트 발생
-	const onPress = () => {	props.disable ? false : props.onPress()	}
+	const onPress = () => {
+		props.disable ? false : props.onPress(props.btnTitle);
+	};
 
 	const insideView = () => {
 		return (
@@ -78,13 +85,9 @@ export default AniButton = props => {
 		);
 	};
 	return props.disable ? (
-		<TouchableWithoutFeedback onPress={onPress}>
-			{insideView()}
-		</TouchableWithoutFeedback>
+		<TouchableWithoutFeedback onPress={onPress}>{insideView()}</TouchableWithoutFeedback>
 	) : (
-		<TouchableOpacity onPress={onPress}>
-			{insideView()}
-		</TouchableOpacity>
+		<TouchableOpacity onPress={onPress}>{insideView()}</TouchableOpacity>
 	);
 };
 
@@ -95,5 +98,5 @@ AniButton.defaultProps = {
 	disable: false, // disable - 기본값은 false true일 경우 버튼 탭을 할수없도록 하고 표시를 바
 	titleFontStyle: 24 * DP, // titleFontStyle - title의 폰트 크기
 	btnLayout: btn_w226, // btnLayout - 버튼의 레이아웃(width, height, borderRadius를 결정)
-	onPress: {}, // 버튼을 탭했을때 발생하는 콜백
+	onPress: e => alert(e), // 버튼을 탭했을때 발생하는 콜백
 };

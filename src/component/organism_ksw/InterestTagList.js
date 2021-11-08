@@ -1,10 +1,26 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {FlatList, Text, View} from 'react-native';
+import {GRAY20} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
+import {Cross46, Cross52} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import {interestTagList, myPetList} from './style_organism';
 
 export default InterestTagList = props => {
+	const testData = ['서울', '이집트', '욘두라스', '욜둔'];
+
+	const renderItem = item => {
+		return (
+			<View style={[interestTagList.tagContainer]}>
+				<Text style={[txt.noto28, {color: GRAY20, textAlign: 'center'}]}>{item}</Text>
+				<View style={[interestTagList.cross52]}>
+					<Cross46 />
+				</View>
+			</View>
+		);
+	};
+
 	return (
 		<View style={[interestTagList.container]}>
 			<View style={[interestTagList.titleContainer]}>
@@ -15,7 +31,9 @@ export default InterestTagList = props => {
 					<AniButton btnTitle={'추가하기'} btnLayout={btn_w226} btnTheme={'shadow'} btnStyle={'filled'} titleFontStyle={24} />
 				</View>
 			</View>
-			<View style={[interestTagList.interestingTagList]}></View>
+			<View style={[interestTagList.interestingTagList]}>
+				<FlatList data={testData} renderItem={({item}) => renderItem(item)} horizontal={true} />
+			</View>
 		</View>
 	);
 };

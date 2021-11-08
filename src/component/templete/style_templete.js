@@ -864,7 +864,6 @@ export const temp_style = StyleSheet.create({
 	inputNoTitle: {
 		width: 438 * DP,
 		height: 82 * DP,
-		backgroundColor: '#DDF8DF',
 	},
 	profileInfo: {
 		width: 750 * DP,

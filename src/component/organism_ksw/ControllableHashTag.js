@@ -18,7 +18,7 @@ export default ControllableHashTag = props => {
 				false
 			)}
 			<View style={[checked ? controllableHashTag.hashLabel_uncheked : controllableHashTag.hashLabel]}>
-				<HashLabel keyword={props.data.keyword} keywordBold={props.data.keywordBold} count={props.data.count} />
+				<HashLabel keyword={props.keyword} keywordBold={props.keywordBold} count={props.count} />
 			</View>
 			{checked ? (
 				false

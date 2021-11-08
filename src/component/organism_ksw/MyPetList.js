@@ -7,19 +7,19 @@ import {myPetList} from './style_organism';
 export default MyPetList = props => {
 	const testList = [
 		{
-			img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+			img_uri: 'https://opgg-static.akamaized.net/images/lol/champion/Volibear.png?image=c_scale,q_auto,w_140&v=1635906101',
 			petStatus: 'normal',
-			petNickname: '구름이',
+			petNickname: '볼붕이',
 		},
 		{
-			img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+			img_uri: 'https://opgg-static.akamaized.net/images/lol/champion/Yuumi.png?image=c_scale,q_auto,w_140&v=1635906101',
 			petStatus: 'adopted',
-			petNickname: '하늘이',
+			petNickname: '유우미',
 		},
 		{
-			img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+			img_uri: 'https://opgg-static.akamaized.net/images/lol/champion/Gnar.png?image=c_scale,q_auto,w_140&v=1635906101',
 			petStatus: 'protected',
-			petNickname: '썅썅이',
+			petNickname: '슈슈파가',
 		},
 	];
 

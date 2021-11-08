@@ -409,7 +409,6 @@ export const myPetList = StyleSheet.create({
 		height: 270 * DP,
 		paddingLeft: 28 * DP,
 		flexDirection: 'row',
-		backgroundColor: 'yellow',
 	},
 	petImageLabel: {
 		width: 180 * DP,
@@ -425,7 +424,6 @@ export const interestTagList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
 		height: 236 * DP,
-		backgroundColor: BGCOLOR,
 	},
 	titleContainer: {
 		width: 654 * DP,
@@ -436,8 +434,8 @@ export const interestTagList = StyleSheet.create({
 	title: {
 		width: 226 * DP,
 		height: 48 * DP,
+		marginLeft: 44 * DP,
 		alignSelf: 'center',
-		backgroundColor: 'powderblue',
 	},
 	btn_w226: {
 		marginLeft: 202 * DP,
@@ -445,9 +443,22 @@ export const interestTagList = StyleSheet.create({
 	interestingTagList: {
 		width: 606 * DP,
 		height: 102 * DP,
-		backgroundColor: 'yellow',
 		marginLeft: 48 * DP,
 		marginTop: 20 * DP,
+	},
+	tagContainer: {
+		width: 194 * DP,
+		height: 68 * DP,
+		borderRadius: 30 * DP,
+		borderWidth: 2 * DP,
+		borderColor: GRAY30,
+		marginRight: 15 * DP,
+		justifyContent: 'center',
+		flexDirection: 'row',
+		alignItems: 'center',
+	},
+	cross52: {
+		marginLeft: 20 * DP,
 	},
 });
 
@@ -455,25 +466,26 @@ export const addressInput = StyleSheet.create({
 	container: {
 		width: 654 * DP,
 		height: 238 * DP,
-		backgroundColor: 'white',
 	},
 	upperContainer: {
 		width: 654 * DP,
 		height: 132 * DP,
 		flexDirection: 'row',
 	},
+	titleContainer: {
+		width: 118 * DP,
+		height: 46 * DP,
+	},
 	lowerContainer: {},
 	input24A: {
 		width: 388 * DP,
-		height: 90 * DP,
+		height: 80 * DP,
 		justifyContent: 'flex-start',
 		alignSelf: 'flex-start',
-		backgroundColor: 'yellow',
 	},
 	btn_w226: {
 		marginLeft: 40 * DP,
 		marginTop: 60 * DP,
-		backgroundColor: 'white',
 	},
 	inputNoTitle: {
 		marginTop: 24 * DP,

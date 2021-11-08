@@ -29,7 +29,7 @@ export default ControllableAccount = props => {
 				{following ? (
 					<AniButton btnTitle={'팔로우'} btnTheme={'noShadow'} btnStyle={'filled'} titleFontStyle={24} btnLayout={btn_w108} />
 				) : (
-					<AniButton />
+					<AniButton btnTitle={'팔로잉'} btnTheme={'gray'} titleFontStyle={24} btnLayout={btn_w108} />
 				)}
 			</View>
 			{checkBox ? (

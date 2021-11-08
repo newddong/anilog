@@ -22,7 +22,7 @@ export default PetImageLabel = props => {
 		<View style={{width: 180 * DP, height: 180 * DP}}>
 			<Image source={{uri: props.img_uri}} style={styles.img_round_180} />
 			<View style={{position: 'absolute'}}>{petStatus()}</View>
-			{/* <Text style={[txt.noto28, {color: GRAY10, textAlign: 'center'}]}>{props.petNickname}</Text> */}
+			<Text style={[txt.noto28, {color: GRAY10, textAlign: 'center'}]}>{props.petNickname}</Text>
 		</View>
 	);
 };

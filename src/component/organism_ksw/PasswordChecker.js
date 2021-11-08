@@ -1,10 +1,10 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import PasswordInput from '../molecules/PasswordInput';
 import {passwordChecker} from './style_organism';
 
 export default PasswordChecker = props => {
-	const [resetPwd, setResetPwd] = React.useState(false);
+	const [resetPwd, setResetPwd] = React.useState(true);
 	return resetPwd ? (
 		<View style={[passwordChecker.container_resetMode]}>
 			<View style={[passwordChecker.passwordInput_resetMode]}>
