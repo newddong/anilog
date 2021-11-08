@@ -313,6 +313,38 @@ export const organism_style = StyleSheet.create({
 		height: 60 * DP,
 		backgroundColor: '#E3AAB8',
 	},
+	parentComment: {
+		flexDirection: 'column',
+		width: 654 * DP,
+		alignItems: 'flex-end',
+		backgroundColor: '#ECFCDD',
+	},
+	userLocationTimeLabel: {
+		width: 472 * DP,
+		height: 68 * DP,
+		backgroundColor: '#FABCBC',
+	},
+	UserLocationTimeLabel_view_parentComment: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 68 * DP,
+		justifyContent: 'space-between',
+		backgroundColor: '#0000FF',
+	},
+	meatball_50_vertical: {
+		width: 50 * DP,
+		height: 50 * DP,
+		backgroundColor: '#F8BAFA',
+	},
+	img_square_round_574: {
+		width: 574 * DP,
+		height: 574 * DP,
+		backgroundColor: '#ADAFE5',
+	},
+	childCommentList: {
+		width: 574 * DP,
+		backgroundColor: '#B4EAD3',
+	},
 });
 
 export const feedContent_style = StyleSheet.create({
@@ -376,5 +408,11 @@ export const profileInfo_style = StyleSheet.create({
 	},
 	btn_w280: {
 		marginLeft: 70 * DP,
+	},
+});
+
+export const parentComment_style = StyleSheet.create({
+	img_square_round_574: {
+		marginTop: 4 * DP,
 	},
 });
