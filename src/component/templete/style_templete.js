@@ -101,6 +101,7 @@ export const login_style = StyleSheet.create({
 		justifyContent: 'space-between',
 	},
 	basic_info: {
+		flexDirection: 'row',
 		width: 562 * DP,
 		height: 40 * DP,
 		justifyContent: 'center',

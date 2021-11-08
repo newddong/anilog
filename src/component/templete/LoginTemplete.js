@@ -6,6 +6,9 @@ export default LoginTemplete = props => {
 	const moveToLogin = () => {
 		props.navigation.push('AgreementCheck');
 	};
+	const moveToShelterCodeCheck = () => {
+		props.navigation.push('ShelterCodeCheck');
+	};
 
 	return (
 		<View style={login_style.wrp_main}>
@@ -33,7 +36,10 @@ export default LoginTemplete = props => {
 
 			{/* basic info */}
 			<View style={[login_style.basic_info, loginTemplete_style.basic_info]}>
-				<Text>보호소 등록 | 내 계정 찾기 | 비밀번호 재설정</Text>
+				<TouchableWithoutFeedback onPress={moveToShelterCodeCheck}>
+					<Text>보호소 등록</Text>
+				</TouchableWithoutFeedback>
+				<Text> | 내 계정 찾기 | 비밀번호 재설정</Text>
 			</View>
 
 			{/* social login */}
