@@ -1,10 +1,12 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, TouchableWithoutFeedback} from 'react-native';
 import {organism_style, feedContent_style} from './style_organism';
 import UserLocationLabel from 'Root/component/molecules/UserLocationLabel';
 import AniButton from 'Root/component/molecules/AniButton';
 import {btn_w130} from 'Root/component/atom/btn/btn_style';
 import {useNavigation} from '@react-navigation/core';
+import {BLUE10, BLUE20} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
 
 export default FeedContent = props => {
 	//Test용 데이터
@@ -15,6 +17,10 @@ export default FeedContent = props => {
 		user_image: 'https://i.ytimg.com/vi/ERAMkP92arE/maxresdefault.jpg',
 		location: 'location',
 		text_intro: 'Text/Intro',
+	};
+
+	const moveToFeedListForHashTag = () => {
+		props.navigation.push('FeedListForHashTag');
 	};
 
 	return (
@@ -75,7 +81,15 @@ export default FeedContent = props => {
 
 			{/* line 2 */}
 			<View style={[organism_style.content_feedContent, feedContent_style.content]}>
-				<Text>Content</Text>
+				<Text>우리</Text>
+				<TouchableWithoutFeedback onPress={moveToFeedListForHashTag}>
+					<Text style={[txt.noto24b, {color: BLUE20}]}>#둥이</Text>
+				</TouchableWithoutFeedback>
+				<Text>는 언제나</Text>
+				<TouchableWithoutFeedback onPress={moveToFeedListForHashTag}>
+					<Text style={[txt.noto24b, {color: BLUE20}]}>#창가</Text>
+				</TouchableWithoutFeedback>
+				<Text>에 앉아있기를 좋아하는 거 같다.</Text>
 			</View>
 
 			{/* line 3 */}
@@ -105,5 +119,6 @@ FeedContent.defaultProps = {
 		type: 'button',
 		addMore: true,
 		tipOff: true,
+		content: 'comment 내용을 넣어야 합니다.',
 	},
 };
