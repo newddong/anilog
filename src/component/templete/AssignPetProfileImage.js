@@ -9,6 +9,9 @@ export default AssignPetProfileImage = props => {
 	const moveToAssignPetProfileImage = () => {
 		props.navigation.push('AssignPetInfoA');
 	};
+	const moveToSinglePhotoSelect = () => {
+		props.navigation.push('SinglePhotoSelect');
+	};
 	return (
 		<View style={login_style.wrp_main}>
 			{/* (M)StageBar	 */}
@@ -22,9 +25,11 @@ export default AssignPetProfileImage = props => {
 			</View>
 
 			{/* (M)ProfileImageSelect */}
-			<View style={[temp_style.profileImageSelect, assignPetProfileImage_style.profileImageSelect]}>
-				<Text>(M)ProfileImageSelect</Text>
-			</View>
+			<TouchableWithoutFeedback onPress={moveToSinglePhotoSelect}>
+				<View style={[temp_style.profileImageSelect, assignPetProfileImage_style.profileImageSelect]}>
+					<Text>(M)ProfileImageSelect</Text>
+				</View>
+			</TouchableWithoutFeedback>
 
 			{/* InputForm */}
 			<View style={[temp_style.inputForm_assignPetProfileImage, assignPetProfileImage_style.inputForm]}>
