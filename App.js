@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import Route from './route';
-import Test from './iconTest';
-// import SplashScreen from 'react-native-splash-screen'; 
+import RootStackNavigation from 'Navigation/route/RootStackNavigation';
+// import SplashScreen from 'rreact-native-splash-screen'; 
 
 export default App = () => {
 	// useEffect(() => {
@@ -16,7 +16,8 @@ export default App = () => {
 	//  });	
 
 	return (
-		<Test/>
+		<RootStackNavigation/>
+		// <Route/>
 	);
 };
 
