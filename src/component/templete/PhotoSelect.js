@@ -3,6 +3,9 @@ import {Text, View} from 'react-native';
 import {login_style, temp_style, photoSelect} from './style_templete';
 
 export default PhotoSelect = props => {
+	const moveToSingPhotoSelect = () => {
+		props.navigation.push('AssignPetInfoB');
+	};
 	return (
 		<View style={(login_style.wrp_main, photoSelect.container)}>
 			{/* (A)Img_Squeare_750 */}
