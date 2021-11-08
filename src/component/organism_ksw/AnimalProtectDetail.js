@@ -12,8 +12,8 @@ export default AnimalProtectDetail = props => {
 	const testData = {
 		kind: '개',
 		breed: '시고르자브종',
-		temp_protection_request: false,
-		adoption_days_remain: null,
+		temp_protection_request: true,
+		adoption_days_remain: 10,
 		like: false,
 		registered_date: '2021-06-17',
 		location: '닮은사람',

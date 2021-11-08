@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import Feed from '../organism/Feed';
 import {feedList, login_style, missingAnimalDetail, temp_style} from './style_templete';
 
 export default FeedList = props => {
@@ -7,7 +8,7 @@ export default FeedList = props => {
 		<View style={[login_style.wrp_main, missingAnimalDetail.container]}>
 			{/* FeedList */}
 			<View style={[feedList.feedList]}>
-				<Text>FeedList</Text>
+				<Feed />
 			</View>
 
 			{/* FloatButton */}

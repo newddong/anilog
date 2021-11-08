@@ -302,7 +302,6 @@ export const temp_style = StyleSheet.create({
 		height: 238 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#ADB5CE',
 	},
 	inputWithSelect_assignShelterInformation: {
 		width: 654 * DP,
@@ -328,9 +327,6 @@ export const temp_style = StyleSheet.create({
 	input24A_applyCompanionA: {
 		width: 654 * DP,
 		height: 122 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#D8B5DE',
 	},
 	datePicker_assignShelterInformation: {
 		width: 654 * DP,
@@ -617,17 +613,15 @@ export const temp_style = StyleSheet.create({
 	assignCheckList: {
 		width: 654 * DP,
 		height: 853 * DP,
-		backgroundColor: 'pink',
 	},
 	inputLongText: {
 		width: 710 * DP,
 		height: 424 * DP,
-		backgroundColor: 'pink',
+		backgroundColor: 'white',
 	},
 	animalProtectDetails: {
 		width: 654 * DP,
 		height: 1316 * DP,
-		backgroundColor: '#C4C483',
 	},
 	img_square_750: {
 		width: 750 * DP,
@@ -2692,7 +2686,6 @@ export const applyCompanionA = StyleSheet.create({
 		marginTop: 80 * DP,
 	},
 	btn_w654: {
-		backgroundColor: 'yellow',
 		marginTop: 70 * DP,
 	},
 	addressInput: {},
@@ -2790,7 +2783,6 @@ export const applyCompanionD = StyleSheet.create({
 export const applyDetails = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	animalProtectDetails: {
 		marginTop: 40 * DP,

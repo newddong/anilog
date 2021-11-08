@@ -1,22 +1,34 @@
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView} from 'react-native';
+import {btn_w226} from '../atom/btn/btn_style';
+import AniButton from '../molecules/AniButton';
+import AnimalProtectDetail from '../organism_ksw/AnimalProtectDetail';
 import {applyDetails, btn_style, login_style, temp_style} from './style_templete';
 
 export default ApplyDetails = props => {
+	const navigation = useNavigation();
 	return (
 		<ScrollView>
 			<View style={[login_style.wrp_main, applyDetails.container]}>
 				{/* (M)animalProtectDetails */}
 				<View style={[temp_style.animalProtectDetails, applyDetails.animalProtectDetails]}>
-					<Text>(M)animalProtectDetails</Text>
+					{/* <Text>(M)animalProtectDetails</Text> */}
+					<AnimalProtectDetail />
 				</View>
 				{/* BtnsContainer */}
 				<View style={[applyDetails.btnContainer]}>
 					<View style={[btn_style.btn_w226, applyDetails.btn_w226]}>
-						<Text>(A)btn_w226</Text>
+						<AniButton btnStyle={'border'} btnLayout={btn_w226} btnTitle={'뒤로'} titleFontStyle={24} onPress={() => navigation.goBack()} />
 					</View>
 					<View style={[btn_style.btn_w226, applyDetails.btn_w226]}>
-						<Text>(A)btn_w226</Text>
+						<AniButton
+							btnStyle={'filled'}
+							btnLayout={btn_w226}
+							btnTitle={'다음'}
+							titleFontStyle={24}
+							onPress={() => navigation.navigate('UserProfile')}
+						/>
 					</View>
 				</View>
 			</View>

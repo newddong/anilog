@@ -4,9 +4,11 @@ import {organism_style, feedContent_style} from './style_organism';
 import UserLocationLabel from 'Root/component/molecules/UserLocationLabel';
 import AniButton from 'Root/component/molecules/AniButton';
 import {btn_w130} from 'Root/component/atom/btn/btn_style';
+import {useNavigation} from '@react-navigation/core';
 
 export default FeedContent = props => {
 	//Test용 데이터
+	const navigation = useNavigation();
 	const test_data = {
 		user_nickname: 'user_nickname',
 		user_id: 'user_id',
@@ -21,7 +23,7 @@ export default FeedContent = props => {
 			<View style={[organism_style.userLocationLabel_view_feedContent]}>
 				{/* UserLocationLabel */}
 				<View style={[organism_style.userLocationLabel_feedContent]}>
-					<UserLocationLabel data={test_data} onLabelClick={e => alert(e)} />
+					<UserLocationLabel data={test_data} onLabelClick={() => navigation.push('UserProfile')} />
 				</View>
 
 				{/* type값이 status일 경우 status 버튼이 나오고 그렇지 않으면 다른 버튼 표기 */}

@@ -1027,7 +1027,6 @@ export const animalNeedHelp = StyleSheet.create({
 		width: 654 * DP,
 		height: 214 * DP,
 		flexDirection: 'row',
-		backgroundColor: 'yellow',
 	},
 	checkBoxContainer: {
 		width: 80 * DP,
@@ -1048,13 +1047,11 @@ export const animalNeedHelp = StyleSheet.create({
 		width: 410 * DP,
 		height: 214 * DP,
 		marginLeft: 30 * DP,
-		backgroundColor: 'yellow',
 	},
 	detail_upperMenu: {
 		width: 410 * DP,
 		height: 48 * DP,
 		flexDirection: 'row',
-		backgroundColor: 'wheat',
 	},
 	detail_upper_petStateContainer: {
 		height: 38 * DP,
@@ -1082,12 +1079,10 @@ export const animalNeedHelp = StyleSheet.create({
 		marginTop: 6 * DP,
 		width: 410 * DP,
 		height: 160 * DP,
-		backgroundColor: 'lavender',
 	},
 	lowerMenu_kindAndBreed: {
 		height: 46 * DP,
 		flexDirection: 'row',
-		backgroundColor: 'yellow',
 	},
 	breedText: {
 		alignSelf: 'center',
@@ -1095,7 +1090,6 @@ export const animalNeedHelp = StyleSheet.create({
 	},
 	lowerMenu_helpDetail: {
 		height: 38 * DP,
-		backgroundColor: 'wheat',
 	},
 });
 
