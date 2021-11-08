@@ -1,22 +1,22 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
-import {APRI10, BLACK} from 'Root/config/color';
+import {APRI10, BLACK, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
 
 export default UserDescriptionLabel = props => {
-
+	console.log(props);
 	const [validation, setValidation] = React.useState(false);
-	const [imgUri, setImgUri] = React.useState(props.data.user_image)
+	const [imgUri, setImgUri] = React.useState(props.data.user_image);
 
 	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정
-	React.useEffect( ()=>{
-		if(imgUri == false){
-			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg')
+	React.useEffect(() => {
+		if (imgUri == false) {
+			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
 		}
-	})
+	});
 
 	//user_nickname Text 색깔 조건부적용을 위한 세션아이디 비교
 	React.useEffect(() => {
@@ -52,7 +52,7 @@ export default UserDescriptionLabel = props => {
 					{/* user_nickname Text박스에 비해 y축이 4가 크다 => paddingTop : 4 *  DP  */}
 				</View>
 
-				<Text style={[txt.noto24, {lineHeight: 44 * DP}]} numberOfLines={1} ellipsizeMode="tail">
+				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
 					{props.data.text_intro}
 				</Text>
 				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
@@ -63,10 +63,10 @@ export default UserDescriptionLabel = props => {
 
 UserDescriptionLabel.defaultProps = {
 	data: {
-		user_id: 'user_id',
+		user_id: 'Default id',
 		user_nickname: 'user_nickname',
 		user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
 		text_intro: 'Description',
 	},
-	onLabelClick : e => console.log(e)
+	onLabelClick: e => console.log(e),
 };

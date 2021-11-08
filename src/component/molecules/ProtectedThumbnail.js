@@ -27,22 +27,47 @@ export default ProtectedThumbnail = props => {
 		);
 	};
 
+	const getStatusContainerStyle = () => {
+		if (props.data.status == 'missing') {
+			return RED10;
+		} else if (props.data.status == 'reported') {
+			return 'pink';
+		} else return GRAY10;
+	};
+
+	const getStatusText = () => {
+		switch (props.data.status) {
+			case 'adoption_available':
+				return '입양가능';
+			case 'missing':
+				return '실종';
+			case 'reported':
+				return '제보';
+			case 'onNegotiation':
+				return '협의 중';
+			case 'adopted':
+				return '입양완료';
+		}
+	};
+
 	return (
 		<View style={styles.img_square_round_214}>
 			<Image source={{uri: props.data.img_uri}} style={[styles.img_square_round_214, borderByStatus()]} />
+			{/* 펫 성별마크 */}
 			<View style={{position: 'absolute', right: 10 * DP, top: 10 * DP}}>{props.data.gender == 'male' ? <Male48 /> : <Female48 />}</View>
+			{/* 펫 보호상태 */}
 			<View
 				style={{
 					position: 'absolute',
 					width: '100%',
 					height: 36 * DP,
-					opacity: 0.8,
+					opacity: 1,
 					bottom: 0,
 					borderBottomLeftRadius: 30 * DP,
 					borderBottomRightRadius: 30 * DP,
-					backgroundColor: props.data.status == 'protected' ? GRAY10 : RED10,
+					backgroundColor: getStatusContainerStyle(),
 				}}>
-				<Text style={[txt.noto24, {color: WHITE, textAlign: 'center', lineHeight: 32 * DP}]}>{props.data.status}</Text>
+				<Text style={[txt.noto24, {color: WHITE, textAlign: 'center', lineHeight: 32 * DP}]}>{getStatusText()}</Text>
 			</View>
 			{getEmergencyMsg()}
 		</View>
@@ -53,6 +78,6 @@ ProtectedThumbnail.defaultProps = {
 	data: {
 		img_uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU',
 		gender: 'female',
-		status: 'protected', // protected, missing, reported, onNegotiation, adoption_available
+		status: 'adoption_available', // protected, missing, reported, onNegotiation, adoption_available, adopted
 	},
 };

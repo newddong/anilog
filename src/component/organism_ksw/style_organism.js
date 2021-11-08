@@ -75,7 +75,6 @@ export const organism_style = StyleSheet.create({
 	userDescriptionLabel: {
 		width: 654 * DP,
 		height: 94 * DP,
-		backgroundColor: 'yellow',
 	},
 	cross46: {
 		width: 46 * DP,
@@ -94,7 +93,6 @@ export const organism_style = StyleSheet.create({
 export const controllableAccount = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		backgroundColor: 'powderblue',
 		flexDirection: 'row',
 		marginBottom: 40 * DP,
 		alignSelf: 'center',
@@ -109,7 +107,6 @@ export const controllableAccount = StyleSheet.create({
 		width: 108 * DP,
 		height: 54 * DP,
 		marginLeft: 20 * DP,
-		backgroundColor: 'pink',
 		alignSelf: 'center',
 	},
 	cross46: {
@@ -1015,9 +1012,14 @@ export const selectedMediaList = StyleSheet.create({
 
 export const animalNeedHelp = StyleSheet.create({
 	container: {
-		width: 750 * DP,
+		width: 654 * DP,
 		height: 214 * DP,
 		flexDirection: 'row',
+		backgroundColor: 'yellow',
+	},
+	checkBoxContainer: {
+		width: 80 * DP,
+		justifyContent: 'center',
 	},
 	protectedThumbnail_container: {
 		width: 214 * DP,
@@ -1051,7 +1053,7 @@ export const animalNeedHelp = StyleSheet.create({
 		borderRadius: 15 * DP,
 		borderWidth: 2 * DP,
 		borderColor: GRAY10,
-		paddingHorizontal: 15 * DP,
+		paddingHorizontal: 10 * DP,
 		marginRight: 12 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -1089,9 +1091,41 @@ export const animalNeedHelpList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
 		height: 722 * DP,
-		backgroundColor: 'lightblue',
 	},
 	itemContainer: {
 		marginBottom: 40 * DP,
+	},
+});
+
+export const animalProtectDetail = StyleSheet.create({
+	container: {
+		alignSelf: 'center',
+	},
+	animalNeedHelp_container: {
+		marginBottom: 10 * DP,
+	},
+	details_container: {
+		width: 654 * DP,
+		paddingBottom: 100 * DP,
+	},
+	detail: {
+		width: 654 * DP,
+		marginTop: 40 * DP,
+	},
+	detail_icon48: {
+		width: 48 * DP,
+		height: 48 * DP,
+	},
+	detail_title: {
+		width: 590 * DP,
+		height: 40 * DP,
+		marginLeft: 16 * DP,
+		alignSelf: 'center',
+	},
+	detail_content: {
+		width: 590 * DP,
+		marginTop: 6 * DP,
+		marginLeft: 64 * DP,
+		minHeight: 50 * DP,
 	},
 });

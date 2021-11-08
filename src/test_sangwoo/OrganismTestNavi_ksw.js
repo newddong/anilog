@@ -40,6 +40,7 @@ import VolunteerItemList from 'Root/component/organism_ksw/VolunteerItemList';
 import SelectedMediaList from 'Root/component/organism_ksw/SelectedMediaList';
 import AnimalNeedHelp from 'Root/component/organism_ksw/AnimalNeedHelp';
 import AnimalNeedHelpList from 'Root/component/organism_ksw/AnimalNeedHelpList';
+import AnimalProtectDetail from 'Root/component/organism_ksw/AnimalProtectDetail';
 // const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -86,6 +87,7 @@ export default OrganismTestNavi_ksw = () => {
 			<Drawer.Screen name="SelectedMediaList" component={SelectedMediaList} />
 			<Drawer.Screen name="AnimalNeedHelp" component={AnimalNeedHelp} />
 			<Drawer.Screen name="AnimalNeedHelpList" component={AnimalNeedHelpList} />
+			<Drawer.Screen name="AnimalProtectDetail" component={AnimalProtectDetail} />
 		</Drawer.Navigator>
 	);
 };
