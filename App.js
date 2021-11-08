@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import Route from './route';
 import RootStackNavigation from 'Navigation/route/RootStackNavigation';
-// import SplashScreen from 'rreact-native-splash-screen'; 
+// import SplashScreen from 'rreact-native-splash-screen';
 
 export default App = () => {
 	// useEffect(() => {
@@ -13,11 +13,10 @@ export default App = () => {
 	// 	  console.warn('Error');
 	// 	  console.warn(e);
 	// 	}
-	//  });	
+	//  });
 
 	return (
-		<RootStackNavigation/>
+		<RootStackNavigation />
 		// <Route/>
 	);
 };
-
