@@ -14,7 +14,7 @@ export default ChildComment = props => {
 			<View style={[childComment.profileContainer]}>
 				<View style={[childComment.commentMark]} />
 				<View style={[childComment.userTimeLabel]}>
-					<UserTimeLabel />
+					<UserTimeLabel data={props.data} />
 				</View>
 				<View style={[childComment.meatBall50_vertical]}>
 					<Meatball50_GRAY20_Vertical />
@@ -23,13 +23,13 @@ export default ChildComment = props => {
 			{/* 댓글의 이미지를 보이게하는 경우 */}
 			{showImage ? (
 				<View style={[childComment.img_square_round_484]}>
-					<Image style={[styles.img_square_round_484]} source={{uri: 'http://www.interfootball.co.kr/news/photo/202012/512564_417408_5117.jpg'}} />
+					<Image style={[styles.img_square_round_484]} source={{uri: 'https://image.ytn.co.kr/general/jpg/2017/1018/201710181100063682_d.jpg'}} />
 				</View>
 			) : null}
 			{/* 댓글 텍스트 */}
 			<View style={[childComment.commentContainer]}>
 				<View style={[childComment.commentText]}>
-					<Text style={[txt.noto24, {color: GRAY10}]}>CommentText</Text>
+					<Text style={[txt.noto24, {color: GRAY10}]}>{props.data.comment}</Text>
 				</View>
 			</View>
 			{/* 좋아요 버튼, 좋아요 숫자 , 답글쓰기 컨테이너 */}
@@ -38,7 +38,7 @@ export default ChildComment = props => {
 					<Heart30_Filled />
 				</View>
 				<View style={[childComment.likeCount]}>
-					<Text style={(txt.roboto24, childComment.likeCountText)}>101</Text>
+					<Text style={(txt.roboto24, childComment.likeCountText)}>{props.data.likecount}</Text>
 				</View>
 				<View style={[childComment.writeComment]}>
 					<Text style={(txt.noto22, childComment.writeCommentText)} numberOfLines={1}>
@@ -56,3 +56,10 @@ export default ChildComment = props => {
 // 	user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
 // 	time: '1일',
 // },
+
+ChildComment.defaultProps = {
+	data: {
+		comment: '개',
+		likecount: 80,
+	},
+};
