@@ -27,7 +27,7 @@ import ApplyAdoptionList from "Templete/ApplyAdoptionList";
 import ApplyDetails from "Templete/ApplyDetails";
 import AnimalProtectList from "Templete/AnimalProtectList";
 import AssignProtectAnimalImage from "Templete/AssignProtectAnimalImage";
-// import AssignProtectAnimalIDate from "Templete/AssignProtectAnimalIDate";
+import AssignProtectAnimalDate from "Templete/AssignProtectAnimalDate";
 import AssignProtectAnimalInfo from "Templete/AssignProtectAnimalInfo";
 import ShelterMenu from "Templete/ShelterMenu";
 import ShelterInfoSetting from "Templete/ShelterInfoSetting";
@@ -93,7 +93,7 @@ export default MyStackNavigation = () => {
             <MyStack.Screen name="EditShelterInfo" component={EditShelterInfo} />
 
             <MyStack.Screen name="AssignProtectAnimalImage" component={AssignProtectAnimalImage} />
-            {/* <MyStack.Screen name="AssignProtectAnimalDate" component={AssignProtectAnimalIDate} /> */}
+            <MyStack.Screen name="AssignProtectAnimalDate" component={AssignProtectAnimalDate} />
             <MyStack.Screen name="AssignProtectAnimalType" component={AssignPetInfoA} />
             <MyStack.Screen name="AssignProtectAnimalAge" component={AssignProtectAnimalInfo} />
 
