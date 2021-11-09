@@ -38,16 +38,15 @@ export default FeedCommentList = props => {
 	};
 
 	return (
-		<View style={[login_style.wrp_main, feedCommentList.container]}>
-			<ScrollView>
+		<ScrollView>
+			<View style={[login_style.wrp_main, feedCommentList.container]}>
 				<View style={[feedCommentList.feedContent]}>
 					<FeedContent />
-					<TouchableOpacity onPress={() => setEditComment(!editComment)} style={{width: 100, height: 50, backgroundColor: 'black'}}>
+					{/* <TouchableOpacity onPress={() => setEditComment(!editComment)} style={{width: 100, height: 50, backgroundColor: 'black'}}>
 						<Text style={{color: WHITE}}>EditComment 테스트용 버튼</Text>
-					</TouchableOpacity>
+					</TouchableOpacity> */}
 				</View>
 				<View style={[feedCommentList.commentList]}>
-					{/* <Text>(O)commentList</Text> */}
 					<ParentComment />
 					<View style={[feedCommentList.editComment]}>
 						<TouchableOpacity onPress={() => setEditComment(true)} style={{flex: 1}}>
@@ -55,7 +54,7 @@ export default FeedCommentList = props => {
 						</TouchableOpacity>
 					</View>
 				</View>
-			</ScrollView>
-		</View>
+			</View>
+		</ScrollView>
 	);
 };

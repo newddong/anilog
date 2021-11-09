@@ -2908,8 +2908,8 @@ export const feedCommentList = StyleSheet.create({
 	},
 	commentList: {
 		width: 750 * DP,
-		height: 932 * DP,
 		backgroundColor: 'yellow',
+		marginTop: 20,
 	},
 	editComment: {
 		width: 750 * DP,
