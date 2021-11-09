@@ -1026,6 +1026,31 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#C4C483',
 	},
+	rescueContentScroll_view: {
+		width: 654 * DP,
+		height: 1254 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#B3BADE',
+	},
+	requestProtect_view: {
+		width: 654 * DP,
+		height: 67 * DP,
+		backgroundColor: '#B3BADE',
+	},
+	requestProtect: {
+		width: 95 * DP,
+		height: 36 * DP,
+		marginTop: 30 * DP,
+		backgroundColor: '#F29797',
+	},
+	rescueContentTitle: {
+		width: 654 * DP,
+		height: 82 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#CF5B5B',
+	},
 });
 
 export const loginTemplete_style = StyleSheet.create({
@@ -2985,7 +3010,6 @@ export const accountPicker = StyleSheet.create({
 		flex: 1,
 	},
 	accountList: {
-		marginTop: 28 * DP,
 		width: 654 * DP,
 		height: 1224 * DP,
 		backgroundColor: '#88BA88',
@@ -3254,5 +3278,12 @@ export const profile = StyleSheet.create({
 	animalNeedHelpList: {
 		backgroundColor: '#96A8B5',
 		height: 1000 * DP,
+	},
+});
+
+export const animalProtectRequestDetail_style = StyleSheet.create({
+	requestProtect: {
+		marginTop: 30 * DP,
+		backgroundColor: '#F29797',
 	},
 });
