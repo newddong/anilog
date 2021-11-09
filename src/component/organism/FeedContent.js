@@ -20,7 +20,7 @@ export default FeedContent = props => {
 	};
 
 	const moveToFeedListForHashTag = () => {
-		props.navigation.push('FeedListForHashTag');
+		navigation.push('FeedListForHashTag');
 	};
 
 	return (
