@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, TouchableWithoutFeedback} from 'react-native';
 import {NORMAL, PET, SHELTER} from 'Root/i18n/msg';
 import TabSelectFilled_Type2 from '../molecules/TabSelectFilled_Type2';
 import ProfileInfo from '../organism/ProfileInfo';
@@ -18,6 +18,9 @@ export default Profile = props => {
 	const dummyData = {
 		userType: userType,
 		petStatus: petStatus,
+	};
+	const moveToFeedWrite = () => {
+		props.navigation.push('FeedWrite');
 	};
 	const showList = () => {
 		//유저타입 - 사람
@@ -95,9 +98,11 @@ export default Profile = props => {
 			<View>
 				<View style={[temp_style.feedThumbnailList, profile.feedThumbNailList]}>{getThumbnailList()}</View>
 			</View>
-			<View style={[temp_style.floatingBtn, profile.floatingBtn]}>
-				<Text>FloatBtn</Text>
-			</View>
+			<TouchableWithoutFeedback onPress={moveToFeedWrite}>
+				<View style={[temp_style.floatingBtn, profile.floatingBtn]}>
+					<Text>FloatBtn</Text>
+				</View>
+			</TouchableWithoutFeedback>
 		</View>
 	);
 };

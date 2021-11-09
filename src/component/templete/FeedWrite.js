@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {ScrollView, Text, TouchableOpacity, View, TouchableWithoutFeedback} from 'react-native';
 import {btn_style, feedWrite, login_style, temp_style} from './style_templete';
 
 export default FeedWrite = props => {
@@ -12,6 +12,22 @@ export default FeedWrite = props => {
 		// 실종버튼, 제보버튼, pet목록 출력 기능이 작동 중이지 않을 때는 긴급버튼목록이 출력
 		showLostAnimalForm || showReportForm || showPetAccountList ? setShowUrgentBtns(false) : setShowUrgentBtns(true);
 	}, [showLostAnimalForm, showReportForm]);
+
+	const moveToFeedReportWrite = () => {
+		props.navigation.push('FeedReportWrite', {title: '제보 게시물'});
+	};
+	const moveToFeedMissingWrite = () => {
+		props.navigation.push('FeedMissingWrite', {title: '실종 게시물'});
+	};
+	const moveToMultiPhotoSelect = () => {
+		props.navigation.push('MultiPhotoSelect');
+	};
+	const moveToLocationPicker = () => {
+		props.navigation.push('LocationPicker');
+	};
+	const moveToFeedMediaTagEdit = () => {
+		props.navigation.push('FeedMediaTagEdit');
+	};
 
 	const setUrgBtnsClickedView = () => {
 		//긴급 버튼 중 '제보' 클릭한 경우
@@ -126,7 +142,15 @@ export default FeedWrite = props => {
 					<View style={[feedWrite.container]}>
 						{/* 사진추가 / 위치추가 / 태그하기 */}
 						<View style={[feedWrite.buttonContainer]}>
-							<Text>Buttons</Text>
+							<TouchableWithoutFeedback onPress={moveToMultiPhotoSelect}>
+								<Text>사진추가(클릭)</Text>
+							</TouchableWithoutFeedback>
+							<TouchableWithoutFeedback onPress={moveToLocationPicker}>
+								<Text>위치추가(클릭)</Text>
+							</TouchableWithoutFeedback>
+							<TouchableWithoutFeedback onPress={moveToFeedMediaTagEdit}>
+								<Text>태그하기(클릭)</Text>
+							</TouchableWithoutFeedback>
 						</View>
 						<View style={[feedWrite.btn_w194_container]}>
 							{/* 임보일기 */}
@@ -176,7 +200,12 @@ export default FeedWrite = props => {
 			{/* 긴급 게시물 관련 버튼 컨테이너 */}
 			{showUrgentBtns ? (
 				<View style={[temp_style.floatingBtn, feedWrite.urgentBtnContainer]}>
-					<Text> UrgentButtons</Text>
+					<TouchableWithoutFeedback onPress={moveToFeedMissingWrite}>
+						<Text>실종(클릭)</Text>
+					</TouchableWithoutFeedback>
+					<TouchableWithoutFeedback onPress={moveToFeedReportWrite}>
+						<Text>제보(클릭)</Text>
+					</TouchableWithoutFeedback>
 				</View>
 			) : (
 				false

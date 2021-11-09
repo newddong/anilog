@@ -55,10 +55,9 @@ export const organism_style = StyleSheet.create({
 		backgroundColor: '#CAD0F2',
 	},
 	content_feedContent: {
+		flexDirection: 'row',
 		width: 654 * DP,
-		height: 86 * DP,
-		justifyContent: 'center',
-		backgroundColor: '#0FA743',
+		backgroundColor: '#fff',
 	},
 	time_view_feedContent: {
 		flexDirection: 'row',

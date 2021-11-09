@@ -3,6 +3,9 @@ import {Text, View, TouchableWithoutFeedback} from 'react-native';
 import {login_style, temp_style, btn_style, loginTemplete_style} from './style_templete';
 
 export default LoginTemplete = props => {
+	const moveToMainTab = () => {
+		props.navigation.push('MainTab');
+	};
 	const moveToLogin = () => {
 		props.navigation.push('AgreementCheck');
 	};
@@ -13,9 +16,11 @@ export default LoginTemplete = props => {
 	return (
 		<View style={login_style.wrp_main}>
 			{/* confirm without login */}
-			<View style={temp_style.without_login}>
-				<Text>로그인 없이 둘러보기</Text>
-			</View>
+			<TouchableWithoutFeedback onPress={moveToMainTab}>
+				<View style={temp_style.without_login}>
+					<Text>로그인 없이 둘러보기</Text>
+				</View>
+			</TouchableWithoutFeedback>
 
 			{/* LoginForm */}
 			<View style={temp_style.loginForm}>
@@ -23,9 +28,11 @@ export default LoginTemplete = props => {
 			</View>
 
 			{/* Btn_w522 */}
-			<View style={[btn_style.btn_w522, loginTemplete_style.btn_w522_login]}>
-				<Text>Btn_w522(로그인)</Text>
-			</View>
+			<TouchableWithoutFeedback onPress={moveToMainTab}>
+				<View style={[btn_style.btn_w522, loginTemplete_style.btn_w522_login]}>
+					<Text>Btn_w522(로그인)</Text>
+				</View>
+			</TouchableWithoutFeedback>
 
 			{/* Btn_w522 */}
 			<TouchableWithoutFeedback onPress={moveToLogin}>

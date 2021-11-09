@@ -651,6 +651,7 @@ export const temp_style = StyleSheet.create({
 		backgroundColor: '#95E29F',
 	},
 	floatingBtn: {
+		flexDirection: 'column',
 		width: 94 * DP,
 		height: 94 * DP,
 		backgroundColor: '#CC6D6D',
@@ -3105,11 +3106,13 @@ export const feedWrite = StyleSheet.create({
 		backgroundColor: '#FFE5E1',
 	},
 	buttonContainer: {
+		flexDirection: 'row',
 		width: 654 * DP,
 		height: 54 * DP,
 		marginTop: 38 * DP,
 		backgroundColor: '#C8E3FB',
 		alignItems: 'center',
+		justifyContent: 'space-between',
 	},
 	btn_w194_container: {
 		width: 654 * DP,

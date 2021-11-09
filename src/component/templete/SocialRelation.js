@@ -1,8 +1,9 @@
 import React from 'react';
 import {FlatList, TouchableOpacity} from 'react-native';
-import {Text, View} from 'react-native';
+import {Text, View, TouchableWithoutFeedback} from 'react-native';
 import {testArray} from 'Root/i18n/msg';
 import {socialRelation, login_style, temp_style} from './style_templete';
+import {useNavigation} from '@react-navigation/core';
 
 export default SocialRelation = props => {
 	const [showRecommendList, setShowRecommendList] = React.useState(false);
@@ -15,6 +16,11 @@ export default SocialRelation = props => {
 				<Text>{item}</Text>
 			</View>
 		);
+	};
+
+	const navigation = useNavigation();
+	const moveToSocialRelation = () => {
+		navigation.push('UserProfile');
 	};
 
 	return (
@@ -42,9 +48,11 @@ export default SocialRelation = props => {
 				</View>
 			) : (
 				//AccountList FullScreen Mode
-				<View style={[temp_style.controllableAccountList, socialRelation.controllableAccountListFull]}>
-					<Text>(O)ControllableAccountListFull</Text>
-				</View>
+				<TouchableWithoutFeedback onPress={moveToSocialRelation}>
+					<View style={[temp_style.controllableAccountList, socialRelation.controllableAccountListFull]}>
+						<Text>(O)ControllableAccountListFull</Text>
+					</View>
+				</TouchableWithoutFeedback>
 			)}
 			{/* Floating Btn */}
 			<View style={[temp_style.floatingBtn, socialRelation.floatingBtn]}>

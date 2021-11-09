@@ -1,9 +1,15 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, TouchableWithoutFeedback} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import {feedListForHashTag, login_style, temp_style} from './style_templete';
+import {useNavigation} from '@react-navigation/core';
 
 export default FeedListForHashTag = props => {
+	const navigation = useNavigation();
+	const moveToHashFeedList = () => {
+		navigation.push('HashFeedList');
+	};
+
 	return (
 		<View style={[login_style.wrp_main, feedListForHashTag.container]}>
 			{/* HashTagInfo */}
@@ -18,9 +24,11 @@ export default FeedListForHashTag = props => {
 				</View>
 			</View>
 			{/* FeedThumbnailList */}
-			<View style={[temp_style.feedThumbnailList]}>
-				<Text>(O)FeedThumbnailList</Text>
-			</View>
+			<TouchableWithoutFeedback onPress={moveToHashFeedList}>
+				<View style={[temp_style.feedThumbnailList]}>
+					<Text>(O)FeedThumbnailList</Text>
+				</View>
+			</TouchableWithoutFeedback>
 		</View>
 	);
 };
