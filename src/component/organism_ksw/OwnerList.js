@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import ProfileImageMedium120 from '../molecules/ProfileImageMedium120';
@@ -9,21 +9,19 @@ export default OwnerList = props => {
 	const testData = [
 		{
 			img_uri: 'https://pbs.twimg.com/profile_images/719984599456043009/whcMczoB_400x400.jpg',
-			petStatus: 'normal',
-			breed: '개냥이',
-			name: '다리우스',
+			name: '엄마',
 		},
 		{
 			img_uri: 'https://t1.daumcdn.net/cfile/tistory/994D85495A5978580A',
-			name: '케넨',
+			name: '아빠',
 		},
 		{
 			img_uri: 'https://dimg.donga.com/wps/NEWS/IMAGE/2013/12/18/59635708.3.jpg',
-			name: '야스오',
+			name: '고종사촌',
 		},
 		{
 			img_uri: 'https://pbs.twimg.com/profile_images/719984599456043009/whcMczoB_400x400.jpg',
-			name: '다리우스',
+			name: '장모의딸',
 		},
 		{
 			img_uri: 'https://t1.daumcdn.net/cfile/tistory/994D85495A5978580A',
@@ -38,7 +36,9 @@ export default OwnerList = props => {
 		return (
 			<View style={[ownerList.itemContainer]}>
 				<View style={[ownerList.petProfileImageMedium]}>
-					<ProfileImageMedium120 img_uri={item.img_uri} userType={'user'} />
+					<TouchableOpacity onPress={() => props.onLabelClick(item)}>
+						<ProfileImageMedium120 img_uri={item.img_uri} userType={'user'} />
+					</TouchableOpacity>
 				</View>
 
 				<View style={[ownerList.petProfileInfo]}>
@@ -57,6 +57,9 @@ export default OwnerList = props => {
 	);
 };
 
+OwnerList.defaultProps = {
+	onLabelClick: e => console.log(e),
+};
 // ProfileImageMedium120 - props
 // img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
 // 	userType: 'user', //required - 유저타입 pet user shelter

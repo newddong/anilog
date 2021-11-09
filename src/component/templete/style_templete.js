@@ -2004,7 +2004,7 @@ export const applicationFormVolunteer = StyleSheet.create({
 		height: 246 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#C4C483',
+		backgroundColor: 'white',
 		marginTop: 30 * DP,
 	},
 	viewForm: {

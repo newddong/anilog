@@ -51,6 +51,11 @@ export const styles = StyleSheet.create({
 	},
 
 	//Square no round
+
+	img_square_750x750: {
+		width: 750 * DP,
+		height: 750 * DP,
+	},
 	img_square_246: {
 		width: 246 * DP,
 		height: 246 * DP,

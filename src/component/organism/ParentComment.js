@@ -5,16 +5,20 @@ import FeedContent from './FeedContent';
 import {styles} from '../atom/image/imageStyle';
 import ChildComment from 'Root/component/organism_ksw/ChildComment';
 import ChildCommentList from 'Root/component/organism/ChildCommentList';
+import UserLocationTimeLabel from '../molecules/UserLocationTimeLabel';
+import {Meatball50_APRI10_Vertical} from '../atom/icon';
 
 export default ParentComment = props => {
 	return (
 		<View style={organism_style.parentComment}>
 			<View style={organism_style.UserLocationTimeLabel_view_parentComment}>
 				<View style={organism_style.userLocationTimeLabel}>
-					<Text>(M)UserLocationTimeLabel</Text>
+					{/* <Text>(M)UserLocationTimeLabel</Text> */}
+					<UserLocationTimeLabel />
 				</View>
 				<View style={[organism_style.meatball_50_vertical, parentComment_style.meatball_50_vertical]}>
-					<Text>(A)MEATBALL_50_VERTICAL</Text>
+					{/* <Text>(A)MEATBALL_50_VERTICAL</Text> */}
+					<Meatball50_APRI10_Vertical />
 				</View>
 			</View>
 			<View style={[organism_style.img_square_round_574, parentComment_style.img_square_round_574]}>

@@ -159,7 +159,7 @@ export const organism_style = StyleSheet.create({
 	},
 	comment_feed_view: {
 		width: 750 * DP,
-		height: 202 * DP,
+		height: 750 * DP,
 		alignItems: 'center',
 		backgroundColor: '#EBC48E',
 	},
@@ -257,24 +257,23 @@ export const organism_style = StyleSheet.create({
 	allCommentCount: {
 		width: 360 * DP,
 		height: 44 * DP,
+		alignItems: 'flex-end',
 		backgroundColor: '#F8DDDD',
 	},
 	profileInfo_main: {
-		flexDirection: 'column',
 		width: 750 * DP,
 		height: 416 * DP,
-		backgroundColor: '#B0C7D8',
 	},
 	profileImageLarge_view_profileInfo: {
 		flexDirection: 'row',
 		width: 654 * DP,
 		height: 172 * DP,
-		backgroundColor: '#FF00FF',
+		backgroundColor: 'wheat',
 	},
 	profileImageLarge_profileInfo: {
 		width: 160 * DP,
 		height: 160 * DP,
-		backgroundColor: '#8BD199',
+		backgroundColor: 'white',
 	},
 	socialInfo_profileInfo: {
 		width: 366 * DP,
@@ -285,7 +284,6 @@ export const organism_style = StyleSheet.create({
 		flexDirection: 'row',
 		width: 700 * DP,
 		height: 80 * DP,
-		backgroundColor: '#0000FF',
 	},
 	content_profileInfo: {
 		width: 492 * DP,
@@ -301,7 +299,6 @@ export const organism_style = StyleSheet.create({
 		flexDirection: 'row',
 		width: 680 * DP,
 		height: 60 * DP,
-		backgroundColor: '#FF00FF',
 	},
 	btn_w280_profileInfo: {
 		width: 280 * DP,
@@ -381,6 +378,24 @@ export const feed_style = StyleSheet.create({
 	},
 	comment_count: {
 		marginLeft: 12 * DP,
+	},
+	likeCommentButton: {
+		width: 654 * DP,
+		height: 48 * DP,
+		backgroundColor: 'wheat',
+		flexDirection: 'row',
+		alignSelf: 'center',
+	},
+	like_comment_info: {
+		width: 256 * DP,
+		height: 48 * DP,
+		backgroundColor: 'red',
+	},
+	showMoreComment: {
+		width: 360 * DP,
+		height: 44 * DP,
+		marginLeft: 38 * DP,
+		backgroundColor: 'yellow',
 	},
 });
 

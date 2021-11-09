@@ -5,6 +5,7 @@ import UserLocationLabel from 'Root/component/molecules/UserLocationLabel';
 import AniButton from 'Root/component/molecules/AniButton';
 import {btn_w130} from 'Root/component/atom/btn/btn_style';
 import {useNavigation} from '@react-navigation/core';
+import {FavoriteTag48_Filled, Share48_Filled} from '../atom/icon';
 
 export default FeedContent = props => {
 	//Test용 데이터
@@ -48,7 +49,7 @@ export default FeedContent = props => {
 					<View style={[organism_style.button_view_feedContent]}>
 						<View style={[organism_style.favoriteTag_view_feedContent]}>
 							<View style={[organism_style.favoriteTag_feedContent]}>
-								<Text>FavoriteTag48</Text>
+								<FavoriteTag48_Filled />
 							</View>
 							<View style={[organism_style.like_count_feedContent, feedContent_style.like_count]}>
 								<Text>like_count</Text>
@@ -56,7 +57,7 @@ export default FeedContent = props => {
 						</View>
 						<View style={[organism_style.share48_view_feedContent]}>
 							<View style={[organism_style.share48_feedContent]}>
-								<Text>Share48</Text>
+								<Share48_Filled />
 							</View>
 							<View style={[organism_style.share_feedContent, feedContent_style.share]}>
 								<Text>공유</Text>

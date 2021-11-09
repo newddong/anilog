@@ -1,16 +1,22 @@
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {ScrollView} from 'react-native';
 import {Text, View} from 'react-native';
+import {btn_w226} from '../atom/btn/btn_style';
+import AniButton from '../molecules/AniButton';
+import ShelterInfo from '../molecules/ShelterInfo';
 import {applicationFormVolunteer, applyVolunteer, btn_style, login_style, temp_txt} from './style_templete';
 
 export default ApplyVolunteer = props => {
+	const navigation = useNavigation();
 	return (
 		<ScrollView>
 			<View style={[login_style.wrp_main, applyVolunteer.container]}>
 				{/* ShelterInfo */}
 
 				<View style={[applicationFormVolunteer.shelterInfo]}>
-					<Text>(M)ShelterInfo</Text>
+					{/* <Text>(M)ShelterInfo</Text> */}
+					<ShelterInfo />
 				</View>
 				{/* InputForm */}
 				<View style={[applicationFormVolunteer.viewForm]}>
@@ -30,9 +36,7 @@ export default ApplyVolunteer = props => {
 					</View>
 				</View>
 				{/* Participants */}
-				<View style={[applicationFormVolunteer.participants]}>
-					<Text>Participants</Text>
-				</View>
+				<View style={[applicationFormVolunteer.participants]}>{/* <Text>Participants</Text> */}</View>
 				{/* InputForm */}
 				<View style={[applicationFormVolunteer.viewForm]}>
 					<View style={[applicationFormVolunteer.viewForm_step1]}>
@@ -52,7 +56,7 @@ export default ApplyVolunteer = props => {
 				</View>
 				{/* btn_w226 */}
 				<View style={[btn_style.btn_w226, applyVolunteer.btn_w226]}>
-					<Text>(A)btn_w226</Text>
+					<AniButton title={'신청'} btnLayout={btn_w226} btnStyle={'filled'} titleFontStyle={30} onPress={() => navigation.navigate('UserProfile')} />
 				</View>
 			</View>
 		</ScrollView>
