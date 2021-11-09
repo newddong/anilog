@@ -152,6 +152,64 @@ export default ProfileMenu = props => {
 					</View>
 				</View>
 			</View>
+			{/* 설정 */}
+			<View style={[profileMenu.lowerMenu]}>
+				<View style={[profileMenu.titleContainer]}>
+					<Paw46 />
+					<View style={[profileMenu.title]}>
+						<Text style={[txt.noto24b, {color: GRAY10}]}>설정</Text>
+					</View>
+				</View>
+				<View style={[profileMenu.bottomeContainer]}>
+					{/* 1층 메뉴 */}
+					<View style={[profileMenu.itemContainer]}>
+						<View style={[profileMenu.item_step1]}>
+							<View style={[profileMenu.item]}>
+								<View style={[profileMenu.item_text]}>
+									<Text style={[txt.noto24, {color: GRAY10}]}>정보 / 문의</Text>
+								</View>
+								<View style={[profileMenu.item_bracket]}>
+									<NextMark />
+								</View>
+							</View>
+							<View style={[profileMenu.vertical_separator]} />
+							<View style={[profileMenu.item]}>
+								<View style={[profileMenu.item_text]}>
+									<Text style={[txt.noto24, {color: GRAY10}]}>계정</Text>
+								</View>
+								<View style={[profileMenu.item_bracket]}>
+									<NextMark />
+								</View>
+							</View>
+						</View>
+					</View>
+					{/* 가로선 */}
+					<View style={{flexDirection: 'row'}}>
+						<View style={[profileMenu.horizon_separator]} />
+						<View style={[profileMenu.horizon_separator]} />
+					</View>
+					{/* 2층 메뉴 */}
+					<View style={[profileMenu.itemContainer]}>
+						<View style={[profileMenu.item_step1]}>
+							<View style={[profileMenu.item]}>
+								<View style={[profileMenu.item_text]}>
+									<Text style={[txt.noto24, {color: GRAY10}]}>알림</Text>
+								</View>
+								<View style={[profileMenu.item_bracket]}>
+									<NextMark />
+								</View>
+							</View>
+							<View style={[profileMenu.vertical_separator]} />
+							<View style={[profileMenu.item]}></View>
+						</View>
+					</View>
+					{/* 가로선 */}
+					<View style={{flexDirection: 'row'}}>
+						<View style={[profileMenu.horizon_separator]} />
+						<View style={[profileMenu.horizon_separator]} />
+					</View>
+				</View>
+			</View>
 		</View>
 	);
 };

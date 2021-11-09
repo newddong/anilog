@@ -313,8 +313,9 @@ export const socialInfoB = StyleSheet.create({
 	container: {
 		width: 500 * DP,
 		height: 106 * DP,
-		backgroundColor: BGCOLOR,
 		flexDirection: 'row',
+
+		// backgroundColor: BGCOLOR,
 	},
 	socialInfo: {
 		width: 164 * DP,
@@ -322,7 +323,7 @@ export const socialInfoB = StyleSheet.create({
 		marginRight: 4 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: 'pink',
+		// backgroundColor: 'pink',
 	},
 	number: {
 		width: 80 * DP,
@@ -341,7 +342,7 @@ export const profileMenu = StyleSheet.create({
 	},
 	upperMenu: {},
 	lowerMenu: {
-		marginTop: 76 * DP,
+		marginTop: 10 * DP,
 	},
 	titleContainer: {
 		height: 82 * DP,
@@ -355,7 +356,6 @@ export const profileMenu = StyleSheet.create({
 		width: 200 * DP,
 		height: 42 * DP,
 		marginLeft: 6 * DP,
-		backgroundColor: 'powderblue',
 	},
 	bottomeContainer: {},
 	itemContainer: {
