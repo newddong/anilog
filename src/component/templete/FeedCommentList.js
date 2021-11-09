@@ -1,18 +1,18 @@
 import React from 'react';
-import {LogBox, ScrollView, TouchableOpacity} from 'react-native';
+import {LogBox, ScrollView} from 'react-native';
 import {FlatList, Text, View} from 'react-native';
-import {WHITE} from 'Root/config/color';
 import {testArray} from 'Root/i18n/msg';
-import ChildCommentList from '../organism/ChildCommentList';
 import FeedContent from '../organism/FeedContent';
 import ParentComment from '../organism/ParentComment';
 import {feedCommentList, login_style} from './style_templete';
 
 export default FeedCommentList = props => {
-	React.useEffect(() => {
-		LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-	}, []);
+	// React.useEffect(() => {
+	// 	LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+	// }, []);
 	const [editComment, setEditComment] = React.useState(false);
+
+	const dummy_ParentComment = [1, 2, 3, 4];
 	//DummyData
 	const getFlat = item => {
 		return (
@@ -23,8 +23,7 @@ export default FeedCommentList = props => {
 		);
 	};
 
-	LogBox.ignoreLogs;
-
+	//댓글 수정 시 발생하는 이벤트 함수, 현재 보류 상태
 	const getEditCommentContainer = () => {
 		return editComment ? (
 			<View style={[feedCommentList.editComment_expanded]}>
@@ -32,29 +31,25 @@ export default FeedCommentList = props => {
 			</View>
 		) : (
 			<View style={[]}>
-				<Text>(O)EidComment</Text>
+				<Text>(O)EditComment</Text>
 			</View>
 		);
 	};
 
+	const renderItem = item => {
+		return <ParentComment />;
+	};
+
 	return (
-		<ScrollView>
-			<View style={[login_style.wrp_main, feedCommentList.container]}>
-				<View style={[feedCommentList.feedContent]}>
-					<FeedContent />
-					{/* <TouchableOpacity onPress={() => setEditComment(!editComment)} style={{width: 100, height: 50, backgroundColor: 'black'}}>
-						<Text style={{color: WHITE}}>EditComment 테스트용 버튼</Text>
-					</TouchableOpacity> */}
-				</View>
-				<View style={[feedCommentList.commentList]}>
-					<ParentComment />
-					<View style={[feedCommentList.editComment]}>
-						<TouchableOpacity onPress={() => setEditComment(true)} style={{flex: 1}}>
-							{getEditCommentContainer()}
-						</TouchableOpacity>
-					</View>
-				</View>
+		<View style={[login_style.wrp_main, feedCommentList.container]}>
+			<View style={[feedCommentList.feedContent]}>
+				<FeedContent />
 			</View>
-		</ScrollView>
+			<View style={[feedCommentList.commentList]}>
+				<Text style={[feedCommentList.comment_number]}>댓글 {dummy_ParentComment.length}개</Text>
+				<FlatList data={dummy_ParentComment} renderItem={({item}) => renderItem(item)} />
+				{/* <View style={[feedCommentList.editComment]}>{getEditCommentContainer()}</View> */}
+			</View>
+		</View>
 	);
 };

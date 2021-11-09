@@ -3,10 +3,12 @@ import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import {APRI10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
+import {btn_w176} from '../atom/btn/btn_style';
 import {AddItem64} from '../atom/icon';
+import AniButton from '../molecules/AniButton';
 import Stagebar from '../molecules/Stagebar';
 import CompanionFormList from '../organism_ksw/CompanionFormList';
-import {applyCompanionB, login_style, temp_style} from './style_templete';
+import {applyCompanionB, login_style, temp_style, applyCompanionC, btn_style} from './style_templete';
 
 export default ApplyCompanionC = props => {
 	const navigation = useNavigation();
@@ -42,6 +44,25 @@ export default ApplyCompanionC = props => {
 						}>
 						<Text style={[txt.noto30, applyCompanionB.addPetText]}>반려 생활 추가</Text>
 					</TouchableOpacity>
+				</View>
+			</View>
+			<View style={[applyCompanionC.btnContainer]}>
+				<View style={[btn_style.btn_w176, applyCompanionC.btn_w176]}>
+					<AniButton btnStyle={'border'} btnLayout={btn_w176} btnTitle={'뒤로'} titleFontStyle={24} onPress={() => navigation.goBack()} />
+				</View>
+				<View style={[btn_style.btn_w176, applyCompanionC.btn_w176]}>
+					<AniButton btnStyle={'border'} btnLayout={btn_w176} btnTitle={'임시저장'} titleFontStyle={24} />
+				</View>
+				<View style={[btn_style.btn_w176, applyCompanionC.btn_w176]}>
+					<AniButton
+						btnStyle={'filled'}
+						btnLayout={btn_w176}
+						btnTitle={'다음'}
+						titleFontStyle={24}
+						onPress={() =>
+							props.route.name == 'ApplyProtectActivityB' ? navigation.push('ApplyProtectActivityC') : navigation.push('ApplyAnimalAdoptionC')
+						}
+					/>
 				</View>
 			</View>
 		</View>

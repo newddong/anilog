@@ -585,8 +585,8 @@ export const shelterList = StyleSheet.create({
 export const childComment = StyleSheet.create({
 	container: {
 		width: 574 * DP,
-		backgroundColor: 'yellow',
 		alignSelf: 'center',
+		// backgroundColor: 'yellow',
 	},
 	profileContainer: {
 		width: 574 * DP,
@@ -605,7 +605,7 @@ export const childComment = StyleSheet.create({
 		width: 442 * DP,
 		height: 46 * DP,
 		marginLeft: 10 * DP,
-		backgroundColor: 'lightblue',
+		// backgroundColor: 'lightblue',
 	},
 	meatBall50_vertical: {
 		width: 50 * DP,
@@ -620,7 +620,7 @@ export const childComment = StyleSheet.create({
 		width: 484 * DP,
 		height: 40 * DP,
 		marginLeft: 90 * DP,
-		backgroundColor: 'lightblue',
+		// backgroundColor: 'lightblue',
 	},
 	commentText: {},
 	likeReplyButton: {

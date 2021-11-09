@@ -8,13 +8,19 @@ import UserTimeLabel from '../molecules/UserTimeLabel';
 import {childComment} from './style_organism';
 
 export default ChildComment = props => {
+	const userTimeLabel_data = props.data.profile_data;
+
+	React.useEffect(() => {
+		props.data.img ? setShowImage(true) : setShowImage(false);
+	}, [props]);
+
 	const [showImage, setShowImage] = React.useState(true); //댓글쓰기의
 	return (
 		<View style={[childComment.container]}>
 			<View style={[childComment.profileContainer]}>
 				<View style={[childComment.commentMark]} />
 				<View style={[childComment.userTimeLabel]}>
-					<UserTimeLabel data={props.data} />
+					<UserTimeLabel data={userTimeLabel_data} />
 				</View>
 				<View style={[childComment.meatBall50_vertical]}>
 					<Meatball50_GRAY20_Vertical />
@@ -23,7 +29,7 @@ export default ChildComment = props => {
 			{/* 댓글의 이미지를 보이게하는 경우 */}
 			{showImage ? (
 				<View style={[childComment.img_square_round_484]}>
-					<Image style={[styles.img_square_round_484]} source={{uri: 'https://image.ytn.co.kr/general/jpg/2017/1018/201710181100063682_d.jpg'}} />
+					<Image style={[styles.img_square_round_484]} source={{uri: props.data.img_uri}} />
 				</View>
 			) : null}
 			{/* 댓글 텍스트 */}
@@ -50,16 +56,17 @@ export default ChildComment = props => {
 	);
 };
 
-// data: {
-// 	user_id: 'user_id',
-// 	user_nickname: 'user_nickname',
-// 	user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-// 	time: '1일',
-// },
-
 ChildComment.defaultProps = {
 	data: {
 		comment: '개',
 		likecount: 80,
 	},
 };
+
+// UserTimeLabel.default
+// data: {
+// 	user_id: 'user_id',
+// 	user_nickname: 'user_nickname',
+// 	user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
+// 	time: '1일',
+// },
