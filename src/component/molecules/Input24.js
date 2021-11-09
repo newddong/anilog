@@ -85,6 +85,7 @@ export default Input24 = props => {
 								paddingLeft: 24 * DP,
 								lineHeight: 44 * DP,
 								// width: 130,
+								minWidth: 300 * DP,
 							},
 						]}
 					/>

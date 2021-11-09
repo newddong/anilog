@@ -276,7 +276,7 @@ export const passwordChecker = StyleSheet.create({
 	container_resetMode: {
 		width: 654 * DP,
 		height: 634 * DP,
-		backgroundColor: 'yellow',
+		// backgroundColor: 'yellow',
 	},
 	passwordInput_resetMode: {
 		marginBottom: 80 * DP,
@@ -313,8 +313,9 @@ export const socialInfoB = StyleSheet.create({
 	container: {
 		width: 500 * DP,
 		height: 106 * DP,
-		backgroundColor: BGCOLOR,
 		flexDirection: 'row',
+
+		// backgroundColor: BGCOLOR,
 	},
 	socialInfo: {
 		width: 164 * DP,
@@ -322,7 +323,7 @@ export const socialInfoB = StyleSheet.create({
 		marginRight: 4 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: 'pink',
+		// backgroundColor: 'pink',
 	},
 	number: {
 		width: 80 * DP,
@@ -341,7 +342,7 @@ export const profileMenu = StyleSheet.create({
 	},
 	upperMenu: {},
 	lowerMenu: {
-		marginTop: 76 * DP,
+		marginTop: 10 * DP,
 	},
 	titleContainer: {
 		height: 82 * DP,
@@ -355,7 +356,6 @@ export const profileMenu = StyleSheet.create({
 		width: 200 * DP,
 		height: 42 * DP,
 		marginLeft: 6 * DP,
-		backgroundColor: 'powderblue',
 	},
 	bottomeContainer: {},
 	itemContainer: {
@@ -434,7 +434,6 @@ export const interestTagList = StyleSheet.create({
 	title: {
 		width: 226 * DP,
 		height: 48 * DP,
-		marginLeft: 44 * DP,
 		alignSelf: 'center',
 	},
 	btn_w226: {
@@ -443,12 +442,12 @@ export const interestTagList = StyleSheet.create({
 	interestingTagList: {
 		width: 606 * DP,
 		height: 102 * DP,
-		marginLeft: 48 * DP,
+		marginLeft: 44 * DP,
 		marginTop: 20 * DP,
 	},
 	tagContainer: {
-		width: 194 * DP,
 		height: 68 * DP,
+		paddingHorizontal: 20 * DP,
 		borderRadius: 30 * DP,
 		borderWidth: 2 * DP,
 		borderColor: GRAY30,

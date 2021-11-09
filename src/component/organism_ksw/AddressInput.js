@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
@@ -14,14 +15,14 @@ export default AddressInput = props => {
 			<View style={[addressInput.upperContainer]}>
 				<View>
 					<View style={[addressInput.titleContainer]}>
-						<Text style={[txt.noto28]}> 나의 지역 </Text>
+						<Text style={[txt.noto28, {color: GRAY10}]}> 나의 지역 </Text>
 					</View>
 					<View style={[addressInput.input24A]}>
 						<Input24 />
 					</View>
 				</View>
 				<View style={[btn_style.btn_w226, addressInput.btn_w226]}>
-					<AniButton btnTitle={'추가하기'} btnLayout={btn_w226} btnTheme={'shadow'} btnStyle={'filled'} titleFontStyle={24} />
+					<AniButton btnTitle={'주소 찾기'} btnLayout={btn_w226} btnTheme={'shadow'} btnStyle={'filled'} titleFontStyle={24} />
 				</View>
 			</View>
 			<View style={[temp_style.inputNoTitle, addressInput.inputNoTitle]}>

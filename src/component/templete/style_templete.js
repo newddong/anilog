@@ -131,7 +131,7 @@ export const btn_style = StyleSheet.create({
 		height: 104 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
+		// backgroundColor: '#DEB5B5',
 	},
 	btn_w522: {
 		width: 522 * DP,
@@ -151,7 +151,7 @@ export const btn_style = StyleSheet.create({
 		height: 60 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#FBE0AF',
+		// backgroundColor: '#FBE0AF',
 	},
 	btn_w280: {
 		width: 280 * DP,
@@ -161,14 +161,13 @@ export const btn_style = StyleSheet.create({
 		height: 60 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#FBE0AF',
+		// backgroundColor: '#FBE0AF',
 	},
 	btn_w226: {
 		width: 226 * DP,
 		height: 70 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#FBE0AF',
 	},
 	btn_w176: {
 		width: 176 * DP,
@@ -384,28 +383,24 @@ export const temp_style = StyleSheet.create({
 		height: 634 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#A07A7A',
 	},
 	inputForm_userInfoDetailSettting: {
 		width: 654 * DP,
-		height: 616 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#A07A7A',
+		// backgroundColor: '#A07A7A',
 	},
 	text_userInfoDetailSettting: {
 		width: 118 * DP,
 		height: 46 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#E0A8A8',
+		// backgroundColor: '#E0A8A8',
 	},
 	tabSelectFilled_Type1: {
 		width: 520 * DP,
 		height: 82 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#EDEDED',
+		// backgroundColor: '#EDEDED',
 	},
 	tabSelectFilled_Type2: {
 		width: 750 * DP,
@@ -433,61 +428,21 @@ export const temp_style = StyleSheet.create({
 		height: 194 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#BCC0DC',
+		// backgroundColor: '#BCC0DC',
 	},
 	profileImageLarge: {
 		width: 194 * DP,
 		height: 194 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#D1E7F1',
+		// backgroundColor: '#D1E7F1',
 	},
-	user_id: {
-		width: 420 * DP,
-		height: 48 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#D1E7F1',
-	},
-	contents: {
-		width: 420 * DP,
-		height: 92 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#FBC5C5',
-	},
-	socialInfoB: {
-		width: 500 * DP,
-		height: 106 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#B0C0EC',
-	},
-	btn_w280__view_userMenu: {
-		width: 610 * DP,
-		height: 60 * DP,
-		alignItems: 'center',
-		backgroundColor: '#78BB95',
-	},
-	btn_w280_userMenu: {
-		width: 280 * DP,
-		height: 60 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#BF9547',
-	},
-	userMenu_step1: {
-		width: 750 * DP,
-		height: 508 * DP,
-		alignItems: 'center',
-		backgroundColor: '#6F9B85',
-	},
+
 	userMenu_step2: {
 		width: 750 * DP,
-		height: 256 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#7F8EF3',
+		// backgroundColor: '#7F8EF3',
 	},
 	userMenu_step3: {
 		width: 750 * DP,
@@ -507,25 +462,24 @@ export const temp_style = StyleSheet.create({
 		width: 750 * DP,
 		height: 364 * DP,
 		alignItems: 'center',
-		backgroundColor: '#94ACA0',
+		// backgroundColor: '#94ACA0',
 	},
 	userInfoSetting_step2: {
 		width: 750 * DP,
 		height: 522 * DP,
 		alignItems: 'center',
-		backgroundColor: '#B3EBB5',
+		// backgroundColor: '#B3EBB5',
 	},
 	accountInfo: {
 		flexDirection: 'column',
 		width: 750 * DP,
 		height: 152 * DP,
-		backgroundColor: '#B3EBB5',
+		// backgroundColor: '#B3EBB5',
 	},
 	title: {
 		width: 200 * DP,
 		height: 46 * DP,
-		alignItems: 'center',
-		backgroundColor: '#AFBCE1',
+		// backgroundColor: '#AFBCE1',
 	},
 	petImageLabel: {
 		width: 190 * DP,
@@ -672,12 +626,12 @@ export const temp_style = StyleSheet.create({
 	user_email_userInfoSetting: {
 		width: 442 * DP,
 		height: 36 * DP,
-		backgroundColor: '#D19F9F',
+		// backgroundColor: '#D19F9F',
 	},
 	changePassword_userInfoSetting: {
 		width: 188 * DP,
 		height: 36 * DP,
-		backgroundColor: '#D19F9F',
+		// backgroundColor: '#D19F9F',
 	},
 	vertical_border: {
 		width: 750 * DP,
@@ -688,65 +642,57 @@ export const temp_style = StyleSheet.create({
 		flexDirection: 'row',
 		width: 750 * DP,
 		height: 126 * DP,
-		backgroundColor: '#B3EBB5',
+		// backgroundColor: '#B3EBB5',
 	},
 	bracket48: {
-		flexDirection: 'row',
 		width: 50 * DP,
 		height: 50 * DP,
-		backgroundColor: '#8F8065',
+		// backgroundColor: '#8F8065',
 	},
 	introduceInfo: {
 		flexDirection: 'column',
 		width: 750 * DP,
 		height: 126 * DP,
-		backgroundColor: '#B3EBB5',
+		// backgroundColor: '#B3EBB5',
 	},
 	introduceInfo_depth1: {
 		flexDirection: 'row',
 		width: 750 * DP,
 		height: 116 * DP,
-		backgroundColor: '#B3EBB5',
+		// backgroundColor: '#B3EBB5',
 	},
 	userText_userInfoSetting: {
-		width: 654 * DP,
+		width: 450 * DP,
 		height: 82 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#AFD5FB',
+		// backgroundColor: '#AFD5FB',
 	},
 	myPetList: {
 		width: 750 * DP,
 		height: 378 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#7F8EF3',
+		// backgroundColor: '#7F8EF3',
 	},
 	myPetList_title: {
 		width: 750 * DP,
 		height: 116 * DP,
-		backgroundColor: '#7F8EF3',
+		// backgroundColor: '#7F8EF3',
 	},
 	myPetList_myPetList: {
 		width: 750 * DP,
 		height: 262 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#AFBCE1',
+		// alignItems: 'center',
+		// justifyContent: 'center',
+		// backgroundColor: '#AFBCE1',
 	},
 	title_userInfoSetting: {
 		width: 200 * DP,
 		height: 46 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#AFBCE1',
-	},
-	title_userInfoSetting: {
-		width: 200 * DP,
-		height: 46 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#AFBCE1',
+		// backgroundColor: '#AFBCE1',
 	},
 	textMsg_assignPetProfileImage: {
 		width: 654 * DP,
@@ -1590,7 +1536,7 @@ export const changePetProfileImage_style = StyleSheet.create({
 
 export const changePassword_style = StyleSheet.create({
 	passwordChecker: {
-		marginTop: 110 * DP,
+		marginTop: 90 * DP,
 	},
 	btn_w654: {
 		marginTop: 110 * DP,
@@ -1613,6 +1559,15 @@ export const userInfoDetailSettting_style = StyleSheet.create({
 		flexDirection: 'row',
 		marginBottom: 52 * DP,
 	},
+
+	tagListContainer: {
+		width: 654 * DP,
+		marginTop: 80 * DP,
+	},
+	interestTagList: {
+		width: 654 * DP,
+		height: 236 * DP,
+	},
 });
 
 export const addFamilyAccount_style = StyleSheet.create({
@@ -1628,6 +1583,33 @@ export const addFamilyAccount_style = StyleSheet.create({
 });
 
 export const userMenu_style = StyleSheet.create({
+	container: {
+		height: 1478 * DP,
+	},
+
+	userMenu_step1: {
+		width: 750 * DP,
+		height: 508 * DP,
+		alignItems: 'center',
+		borderBottomColor: GRAY40,
+		borderBottomWidth: 10 * DP,
+		// backgroundColor: '#6F9B85',
+	},
+	user_id: {
+		width: 420 * DP,
+		height: 48 * DP,
+	},
+	contents: {
+		width: 420 * DP,
+		height: 92 * DP,
+	},
+	socialInfoB: {
+		width: 500 * DP,
+		height: 106 * DP,
+		marginTop: 38 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 	userInfo: {
 		flexDirection: 'row',
 		marginTop: 40 * DP,
@@ -1635,16 +1617,22 @@ export const userMenu_style = StyleSheet.create({
 	profileImageLarge: {
 		marginRight: 40 * DP,
 	},
-	socialInfoB: {
-		marginTop: 38 * DP,
-	},
 	btn_w280_view: {
 		flexDirection: 'row',
 		marginTop: 30 * DP,
+		width: 610 * DP,
+		height: 60 * DP,
+		alignItems: 'center',
 	},
+
 	btn_w280: {
 		flexDirection: 'row',
 		marginRight: 50 * DP,
+		width: 280 * DP,
+		height: 60 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		// backgroundColor: '#BF9547',
 	},
 	horizontalLine: {
 		marginTop: 10 * DP,
@@ -1671,8 +1659,8 @@ export const userInfoSetting_style = StyleSheet.create({
 		marginLeft: 24 * DP,
 	},
 	bracket48: {
-		marginTop: 38 * DP,
 		marginLeft: 404 * DP,
+		marginTop: 56 * DP,
 	},
 	title_detail: {
 		marginLeft: 48 * DP,

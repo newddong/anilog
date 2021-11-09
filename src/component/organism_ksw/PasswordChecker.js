@@ -4,6 +4,7 @@ import PasswordInput from '../molecules/PasswordInput';
 import {passwordChecker} from './style_organism';
 
 export default PasswordChecker = props => {
+	//resetPwd가 true일 경우 pwdInput이 3개 출현 (현재암호 / 바꿀 암호 / 바꿀 암호 확인)
 	const [resetPwd, setResetPwd] = React.useState(true);
 	return resetPwd ? (
 		<View style={[passwordChecker.container_resetMode]}>

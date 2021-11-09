@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
-import {GRAY20} from 'Root/config/color';
+import {GRAY10, GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
 import {Cross46, Cross52} from '../atom/icon';
@@ -25,7 +25,7 @@ export default InterestTagList = props => {
 		<View style={[interestTagList.container]}>
 			<View style={[interestTagList.titleContainer]}>
 				<View style={[interestTagList.title]}>
-					<Text>관심 지역</Text>
+					<Text style={[txt.noto28, {color: GRAY10}]}>관심 지역</Text>
 				</View>
 				<View style={[interestTagList.btn_w226]}>
 					<AniButton btnTitle={'추가하기'} btnLayout={btn_w226} btnTheme={'shadow'} btnStyle={'filled'} titleFontStyle={24} />

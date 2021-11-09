@@ -7,7 +7,7 @@ export default SocialInfoB = props => {
 	const [support, setSupport] = React.useState(true);
 	return (
 		<View>
-			<View style={[socialInfoB.container]}>
+			{/* <View style={[socialInfoB.container]}>
 				<View style={[socialInfoB.socialInfo]}>
 					<Text style={[txt.roboto36b, socialInfoB.number, {backgroundColor: '#D1E7F1'}]}>129</Text>
 					<Text style={[txt.noto24, socialInfoB.title, {backgroundColor: 'yellow'}]}>업로드</Text>
@@ -24,11 +24,11 @@ export default SocialInfoB = props => {
 					<Text style={[txt.roboto36b, socialInfoB.number]}>3</Text>
 					<Text style={[txt.noto24, socialInfoB.title]}>후원</Text>
 				</View>
-			</View>
-			<View style={[socialInfoB.container, {marginTop: 20}]}>
+			</View> */}
+			<View style={[socialInfoB.container]}>
 				<View style={[socialInfoB.socialInfo]}>
-					<Text style={[txt.roboto36b, socialInfoB.number, {backgroundColor: '#D1E7F1'}]}>129</Text>
-					<Text style={[txt.noto24, socialInfoB.title, {backgroundColor: 'yellow'}]}>업로드</Text>
+					<Text style={[txt.roboto36b, socialInfoB.number]}>129</Text>
+					<Text style={[txt.noto24, socialInfoB.title]}>업로드</Text>
 				</View>
 				<View style={[socialInfoB.socialInfo]}>
 					<Text style={[txt.roboto36b, socialInfoB.number]}>1k</Text>

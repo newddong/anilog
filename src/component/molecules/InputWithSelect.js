@@ -8,7 +8,7 @@ import {APRI10, GRAY30} from 'Root/config/color';
 export default InputWithSelect = props => {
 	const [btnStatus, setBtnStatus] = React.useState(false);
 	// Dropdown에서 현재 선택된 항목 State, 처음 Mount시 itemList[defaultIndex]를 반환
-	const [selectedItem, setSelectedItem] = React.useState(props.itemList[props.defaultIndex]);
+	const [selectedItem, setSelectedItem] = React.useState(props.items[props.defaultIndex]);
 	const [input, setInput] = React.useState('');
 	const inputRef = React.useRef();
 
@@ -66,7 +66,7 @@ export default InputWithSelect = props => {
 							lineHeight: 44 * DP,
 							//placeholder 상태일때 글꼴의 영향인지 placeholde'r' 마지막글자가 짤리는 현상 발생
 							//우선 width를 가변적으로 주는 방식으로 해결
-							width: input.length == 0 ? 190 * DP : false, //Input란이 비었을 시 width 고정을 줌
+							width: props.width * DP, //Input란이 비었을 시 width 고정을 줌
 							paddingVertical: 16 * DP, // Value와 최상위 View와의 paddingVertical 16px
 							paddingLeft: 12 * DP, // Arrow버튼과 Value란 12px 차이
 						},
@@ -85,9 +85,10 @@ export default InputWithSelect = props => {
 };
 InputWithSelect.defaultProps = {
 	placeholder: 'placeholder',
-	itemList: ['test1', 'test2', 'test3', 'test3', 'test5'],
+	items: ['default1', 'default2', 'default3', 'test3', 'test5'],
 	defaultIndex: 0, // props로 받은 itemList의 디폴트 인덱스
 	value: null,
 	onChange: e => console.log(e),
 	onClear: e => console.log(e),
+	width: 200,
 };

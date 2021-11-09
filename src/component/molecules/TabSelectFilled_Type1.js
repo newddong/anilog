@@ -5,7 +5,6 @@ import DP from 'Root/config/dp';
 import {APRI10, GRAY10, GRAY40, WHITE} from 'Root/config/color';
 
 export default TabSelectFilled_Type1 = props => {
-	
 	let tabState = [];
 	const tabLength = props.items.length;
 	Array(tabLength)
@@ -15,7 +14,6 @@ export default TabSelectFilled_Type1 = props => {
 		});
 	tabState[0].state = true;
 	const [selected, setSelected] = React.useState(tabState);
-	
 
 	//선택된 Tab의 State를 True로 이외의 Tab은 False로
 	const onSelect = index => {
@@ -54,6 +52,6 @@ export default TabSelectFilled_Type1 = props => {
 	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />;
 };
 TabSelectFilled_Type1.defaultProps = {
-	items: null, //FlatList에 담길 배열 정보
+	items: [1, 2, 3, 4], //FlatList에 담길 배열 정보
 	onSelect: e => console.log(e), //Tab Press 이벤트
 };
