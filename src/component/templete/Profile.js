@@ -12,13 +12,8 @@ import {login_style, profile, temp_style} from './style_templete';
 
 export default Profile = props => {
 	const navigation = useNavigation();
-<<<<<<< HEAD
-	// const [userType, setUserType] = React.useState(NORMAL);
-	const [userType, setUserType] = React.useState(SHELTER);
-=======
 	const [userType, setUserType] = React.useState(PET); //NORMAL, PET, SHELTER
 	const [petStatus, setPetStatus] = React.useState('protected');
->>>>>>> 9acb570b70389e4d51ba358f3fa338491e9af368
 	const [tabMenuSelected, setTabMenuSelected] = React.useState(0);
 	const dummyData = {
 		userType: userType,
