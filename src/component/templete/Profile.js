@@ -12,7 +12,8 @@ import {login_style, profile, temp_style} from './style_templete';
 
 export default Profile = props => {
 	const navigation = useNavigation();
-	const [userType, setUserType] = React.useState(NORMAL);
+	// const [userType, setUserType] = React.useState(NORMAL);
+	const [userType, setUserType] = React.useState(SHELTER);
 	const [tabMenuSelected, setTabMenuSelected] = React.useState(0);
 	const moveToFeedWrite = () => {
 		props.navigation.push('FeedWrite');

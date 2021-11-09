@@ -3,33 +3,53 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {btn_w226} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
-import {login_style, accountPicker} from './style_templete';
+import {login_style, accountPicker, temp_style, animalProtectRequestDetail_style} from './style_templete';
+import RescueImage from '../molecules/RescueImage';
+import {ScrollView} from 'react-native-gesture-handler';
+import {txt} from 'Root/config/textstyle';
 
 export default AnimalProtectRequestDetail = props => {
 	const navigation = useNavigation();
 
 	return (
 		<View style={[login_style.wrp_main, accountPicker.container]}>
-			{/* AccountList */}
-			<View style={[accountPicker.accountList]}>
-				<Text>AnimalProtectRequestDetail</Text>
+			<View style={[temp_style.rescueContentScroll_view]}>
+				<ScrollView>
+					{/* 임시보호 후보자 협의 중 사진 */}
+					<View style={[temp_style.rescueImage]}>
+						<RescueImage></RescueImage>
+					</View>
+					<View style={[temp_style.requestProtect_view]}>
+						<Text style={[txt.noto24, temp_style.requestProtect]}>보호요청</Text>
+					</View>
 
-				<View style={{flexDirection: 'row', alignSelf: 'center', marginTop: 800 * DP}}>
-					<AniButton
-						btnLayout={btn_w226}
-						btnStyle={'border'}
-						btnTitle={'임시보호 신청'}
-						titleFontStyle={30}
-						onPress={() => navigation.push('ApplyProtectActivityA')}
-					/>
-					<AniButton
-						btnLayout={btn_w226}
-						btnStyle={'filled'}
-						btnTitle={'입양 신청'}
-						titleFontStyle={30}
-						onPress={() => navigation.push('ApplyAnimalAdoptionA')}
-					/>
-				</View>
+					<View style={[temp_style.requestProtect_view]}>
+						<Text>RescueContentTitle</Text>
+					</View>
+
+					{/* RescueContentTitle */}
+					{/* AccountList */}
+					<View style={[accountPicker.accountList]}>
+						<Text>AnimalProtectRequestDetail</Text>
+
+						<View style={{flexDirection: 'row', alignSelf: 'center', marginTop: 800 * DP}}>
+							<AniButton
+								btnLayout={btn_w226}
+								btnStyle={'border'}
+								btnTitle={'임시보호 신청'}
+								titleFontStyle={30}
+								onPress={() => navigation.push('ApplyProtectActivityA')}
+							/>
+							<AniButton
+								btnLayout={btn_w226}
+								btnStyle={'filled'}
+								btnTitle={'입양 신청'}
+								titleFontStyle={30}
+								onPress={() => navigation.push('ApplyAnimalAdoptionA')}
+							/>
+						</View>
+					</View>
+				</ScrollView>
 			</View>
 		</View>
 	);
