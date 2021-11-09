@@ -433,61 +433,21 @@ export const temp_style = StyleSheet.create({
 		height: 194 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#BCC0DC',
+		// backgroundColor: '#BCC0DC',
 	},
 	profileImageLarge: {
 		width: 194 * DP,
 		height: 194 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#D1E7F1',
+		// backgroundColor: '#D1E7F1',
 	},
-	user_id: {
-		width: 420 * DP,
-		height: 48 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#D1E7F1',
-	},
-	contents: {
-		width: 420 * DP,
-		height: 92 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#FBC5C5',
-	},
-	socialInfoB: {
-		width: 500 * DP,
-		height: 106 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#B0C0EC',
-	},
-	btn_w280__view_userMenu: {
-		width: 610 * DP,
-		height: 60 * DP,
-		alignItems: 'center',
-		backgroundColor: '#78BB95',
-	},
-	btn_w280_userMenu: {
-		width: 280 * DP,
-		height: 60 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#BF9547',
-	},
-	userMenu_step1: {
-		width: 750 * DP,
-		height: 508 * DP,
-		alignItems: 'center',
-		backgroundColor: '#6F9B85',
-	},
+
 	userMenu_step2: {
 		width: 750 * DP,
-		height: 256 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#7F8EF3',
+		// backgroundColor: '#7F8EF3',
 	},
 	userMenu_step3: {
 		width: 750 * DP,
@@ -1603,6 +1563,33 @@ export const addFamilyAccount_style = StyleSheet.create({
 });
 
 export const userMenu_style = StyleSheet.create({
+	container: {
+		height: 1478 * DP,
+	},
+
+	userMenu_step1: {
+		width: 750 * DP,
+		height: 508 * DP,
+		alignItems: 'center',
+		borderBottomColor: GRAY40,
+		borderBottomWidth: 10 * DP,
+		// backgroundColor: '#6F9B85',
+	},
+	user_id: {
+		width: 420 * DP,
+		height: 48 * DP,
+	},
+	contents: {
+		width: 420 * DP,
+		height: 92 * DP,
+	},
+	socialInfoB: {
+		width: 500 * DP,
+		height: 106 * DP,
+		marginTop: 38 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 	userInfo: {
 		flexDirection: 'row',
 		marginTop: 40 * DP,
@@ -1610,16 +1597,22 @@ export const userMenu_style = StyleSheet.create({
 	profileImageLarge: {
 		marginRight: 40 * DP,
 	},
-	socialInfoB: {
-		marginTop: 38 * DP,
-	},
 	btn_w280_view: {
 		flexDirection: 'row',
 		marginTop: 30 * DP,
+		width: 610 * DP,
+		height: 60 * DP,
+		alignItems: 'center',
 	},
+
 	btn_w280: {
 		flexDirection: 'row',
 		marginRight: 50 * DP,
+		width: 280 * DP,
+		height: 60 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		// backgroundColor: '#BF9547',
 	},
 	horizontalLine: {
 		marginTop: 10 * DP,
