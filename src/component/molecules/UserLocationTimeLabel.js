@@ -7,7 +7,6 @@ import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
 
 export default UserLocationTimeLabel = props => {
-
 	const [validation, setValidation] = React.useState(false);
 	const [imgUri, setImgUri] = React.useState(props.data.user_image);
 
@@ -59,12 +58,12 @@ export default UserLocationTimeLabel = props => {
 };
 
 UserLocationTimeLabel.defaultProps = {
-	data : {
-		user_id : 'user_id',
-		user_nickname : 'user_nickname',
-		user_image : 'user_image',
-		location : 'location',
-		time : '1일'
+	data: {
+		user_id: 'user_id',
+		user_nickname: 'user_nickname',
+		user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
+		location: 'location',
+		time: '1',
 	},
-	onClickLabel : e => console.log(e)
-}
+	onClickLabel: e => console.log(e),
+};

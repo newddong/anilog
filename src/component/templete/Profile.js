@@ -12,9 +12,18 @@ import {login_style, profile, temp_style} from './style_templete';
 
 export default Profile = props => {
 	const navigation = useNavigation();
+<<<<<<< HEAD
 	// const [userType, setUserType] = React.useState(NORMAL);
 	const [userType, setUserType] = React.useState(SHELTER);
+=======
+	const [userType, setUserType] = React.useState(PET); //NORMAL, PET, SHELTER
+	const [petStatus, setPetStatus] = React.useState('protected');
+>>>>>>> 9acb570b70389e4d51ba358f3fa338491e9af368
 	const [tabMenuSelected, setTabMenuSelected] = React.useState(0);
+	const dummyData = {
+		userType: userType,
+		petStatus: petStatus,
+	};
 	const moveToFeedWrite = () => {
 		props.navigation.push('FeedWrite');
 	};
@@ -46,15 +55,13 @@ export default Profile = props => {
 		// 유저타입 PET
 		else if (userType == PET) {
 			// 반려동물 주인 보이기 true
-			if (showOwnerList) {
-				return (
-					<View style={[profile.feedListContainer]}>
-						<View style={[profile.petList]}>
-							<OwnerList />
-						</View>
+			return (
+				<View style={[profile.feedListContainer]}>
+					<View style={[profile.petList]}>
+						<OwnerList onLabelClick={item => navigation.push('UserProfile', item)} />
 					</View>
-				);
-			}
+				</View>
+			);
 		}
 		// 유저타입 보호소
 		else if (userType == SHELTER) {
@@ -81,7 +88,13 @@ export default Profile = props => {
 	return (
 		<View style={[login_style.wrp_main, profile.container]}>
 			<View style={[profile.profileInfo]}>
-				<ProfileInfo data={props.route.params} showMyPet={e => alert(e)} />
+				<ProfileInfo
+					data={props.route.params}
+					dummyData={dummyData}
+					showMyPet={e => alert(e)}
+					volunteerBtnClick={() => navigation.push('ApplyVolunteer')}
+					adoptionBtnClick={() => navigation.push('ApplyAnimalAdoptionA')}
+				/>
 			</View>
 			<View style={[temp_style.tabSelectFilled_Type2, profile.tabSelectFilled_Type2]}>
 				<TabSelectFilled_Type2 items={['피드', '태그', '보호활동']} onSelect={e => setTabMenuSelected(e)} />

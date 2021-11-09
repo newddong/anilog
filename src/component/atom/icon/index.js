@@ -274,3 +274,4 @@ export const Arrow_Up_White = makeSvg(arrow_up, size48, 'white');
 export const Mercy_Killing = makeSvg(expiredDate, {width: 134 * DP, height: 27 * DP});
 export const NextMark = makeSvg(nextMonthBtn, {width: 12 * DP, height: 20 * DP});
 export const PreviousMonthBtn = makeSvg(previousMonthBtn, {width: 12 * DP, height: 20 * DP});
+export const VideoPlay_Feed = makeSvg(videoPlay48, size94);

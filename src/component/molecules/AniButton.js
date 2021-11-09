@@ -98,5 +98,5 @@ AniButton.defaultProps = {
 	disable: false, // disable - 기본값은 false true일 경우 버튼 탭을 할수없도록 하고 표시를 바
 	titleFontStyle: 24 * DP, // titleFontStyle - title의 폰트 크기
 	btnLayout: btn_w226, // btnLayout - 버튼의 레이아웃(width, height, borderRadius를 결정)
-	onPress: e => alert(e), // 버튼을 탭했을때 발생하는 콜백
+	onPress: e => console.log(e), // 버튼을 탭했을때 발생하는 콜백
 };

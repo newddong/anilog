@@ -5,7 +5,8 @@ import UserLocationLabel from 'Root/component/molecules/UserLocationLabel';
 import AniButton from 'Root/component/molecules/AniButton';
 import {btn_w130} from 'Root/component/atom/btn/btn_style';
 import {useNavigation} from '@react-navigation/core';
-import {BLUE10, BLUE20} from 'Root/config/color';
+import {Bracket48, FavoriteTag48_Filled, Meatball50_GRAY20_Horizontal, Share48_Filled} from '../atom/icon';
+import {BLUE10, BLUE20, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 
 export default FeedContent = props => {
@@ -47,25 +48,25 @@ export default FeedContent = props => {
 						</View>
 
 						<View style={[organism_style.meatball, feedContent_style.meatball]}>
-							<Text>MEATBALL 50 HORIZONTAL</Text>
+							<Meatball50_GRAY20_Horizontal />
 						</View>
 					</>
 				) : (
 					<View style={[organism_style.button_view_feedContent]}>
 						<View style={[organism_style.favoriteTag_view_feedContent]}>
 							<View style={[organism_style.favoriteTag_feedContent]}>
-								<Text>FavoriteTag48</Text>
+								<FavoriteTag48_Filled />
 							</View>
 							<View style={[organism_style.like_count_feedContent, feedContent_style.like_count]}>
-								<Text>like_count</Text>
+								<Text>29</Text>
 							</View>
 						</View>
 						<View style={[organism_style.share48_view_feedContent]}>
 							<View style={[organism_style.share48_feedContent]}>
-								<Text>Share48</Text>
+								<Share48_Filled />
 							</View>
 							<View style={[organism_style.share_feedContent, feedContent_style.share]}>
-								<Text>공유</Text>
+								<Text style={[txt.noto24, {color: GRAY10}]}>공유</Text>
 							</View>
 						</View>
 					</View>
@@ -95,17 +96,17 @@ export default FeedContent = props => {
 			{/* line 3 */}
 			<View style={[organism_style.time_view_feedContent]}>
 				<View style={[organism_style.time_feedContent]}>
-					<Text>time시간 전</Text>
+					<Text>1일 전</Text>
 				</View>
 
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}
 				{props.data.addMore && (
 					<View style={[organism_style.addMore_view_feedContent]}>
 						<View style={[organism_style.addMore_feedContent]}>
-							<Text>더보기</Text>
+							<Text style={[txt.noto22, {color: GRAY10}]}>더보기</Text>
 						</View>
 						<View style={[organism_style.braket]}>
-							<Text>BRACKET 48</Text>
+							<Bracket48 />
 						</View>
 					</View>
 				)}

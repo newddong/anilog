@@ -13,6 +13,7 @@ import {
 	BLUE20,
 	APRI10,
 	GRAY10,
+	GRAY40,
 } from 'Root/config/color';
 import DP from 'Root/config/dp';
 
@@ -2030,7 +2031,7 @@ export const applicationFormVolunteer = StyleSheet.create({
 		height: 246 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#C4C483',
+		backgroundColor: 'white',
 		marginTop: 30 * DP,
 	},
 	viewForm: {
@@ -2866,7 +2867,6 @@ export const userIdentification = StyleSheet.create({
 
 export const missingAnimalDetail = StyleSheet.create({
 	container: {
-		backgroundColor: '#ACC4D6',
 		alignItems: 'center',
 		flex: 1,
 	},
@@ -2910,8 +2910,7 @@ export const feedList = StyleSheet.create({
 	},
 	feedList: {
 		width: 750 * DP,
-		height: 2000 * DP,
-		backgroundColor: '#B0C7D8',
+		// height: 2000 * DP,
 	},
 	floatingBtn: {
 		position: 'absolute',
@@ -2922,19 +2921,27 @@ export const feedList = StyleSheet.create({
 
 export const feedCommentList = StyleSheet.create({
 	container: {
-		backgroundColor: '#ACC4D6',
 		alignItems: 'center',
 		flex: 1,
+		// backgroundColor: '#ACC4D6',
 	},
 	feedContent: {
 		width: 750 * DP,
-		height: 330 * DP,
-		backgroundColor: 'powderblue',
+		// height: 330 * DP,
+		borderBottomWidth: 2 * DP,
+		borderBottomColor: GRAY40,
+		// backgroundColor: 'powderblue',
 	},
 	commentList: {
 		width: 750 * DP,
-		height: 932 * DP,
-		backgroundColor: 'yellow',
+		alignItems: 'center',
+		// backgroundColor: 'yellow',
+	},
+	comment_number: {
+		marginTop: 30 * DP,
+		marginBottom: 12 * DP,
+		marginLeft: 48 * DP,
+		alignSelf: 'flex-start',
 	},
 	editComment: {
 		width: 750 * DP,
@@ -2945,7 +2952,7 @@ export const feedCommentList = StyleSheet.create({
 	},
 	editComment_expanded: {
 		width: 750 * DP,
-		height: 744 * DP,
+		height: 750 * DP,
 		backgroundColor: '#D9A0A0',
 		position: 'absolute',
 		bottom: 0,
