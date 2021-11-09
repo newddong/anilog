@@ -603,7 +603,7 @@ export const temp_style = StyleSheet.create({
 	},
 	commentList: {
 		width: 654 * DP,
-		backgroundColor: '#95E29F',
+		backgroundColor: '#A4D6EC',
 	},
 	floatingBtn: {
 		flexDirection: 'column',
@@ -1036,6 +1036,74 @@ export const temp_style = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#CF5B5B',
+	},
+	shelterSmallLabel_view_animalProtectRequestDetail: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 84 * DP,
+		alignItems: 'flex-start',
+		justifyContent: 'space-between',
+		backgroundColor: '#FF00FF',
+	},
+	shelterSmallLabel_animalProtectRequestDetail: {
+		width: 504 * DP,
+		height: 72 * DP,
+		alignItems: 'center',
+		backgroundColor: '#94D1AE',
+	},
+	button_animalProtectRequestDetail: {
+		width: 126 * DP,
+		height: 84 * DP,
+		alignItems: 'center',
+		backgroundColor: '#F29797',
+	},
+	rescueSummary: {
+		width: 654 * DP,
+		height: 188 * DP,
+		alignItems: 'center',
+		backgroundColor: '#CCD186',
+	},
+	rescueText: {
+		width: 654 * DP,
+		height: 160 * DP,
+		alignItems: 'center',
+		backgroundColor: '#CC9898',
+	},
+	comment_count_view: {
+		width: 654 * DP,
+		height: 116 * DP,
+		backgroundColor: '#B3BADE',
+	},
+	comment_count: {
+		width: 148 * DP,
+		height: 46 * DP,
+		marginTop: 70 * DP,
+		backgroundColor: '#F2B8B8',
+	},
+	writeComment: {
+		width: 654 * DP,
+		height: 80 * DP,
+		marginTop: 58 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#E3A0A0',
+	},
+	addMoreRequest_view: {
+		width: 654 * DP,
+		height: 118 * DP,
+		backgroundColor: '#FF00FF',
+	},
+	addMoreRequest: {
+		width: 186 * DP,
+		height: 36 * DP,
+		marginTop: 82 * DP,
+		backgroundColor: '#E3A0A0',
+	},
+	floatingBtnAapply: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 170 * DP,
+		backgroundColor: '#E1BDE2',
 	},
 });
 
@@ -3007,7 +3075,8 @@ export const accountPicker = StyleSheet.create({
 	accountList: {
 		width: 654 * DP,
 		height: 1224 * DP,
-		backgroundColor: '#88BA88',
+		marginTop: 42 * DP,
+		backgroundColor: '#B5DED8',
 	},
 });
 
@@ -3280,5 +3349,15 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 	requestProtect: {
 		marginTop: 30 * DP,
 		backgroundColor: '#F29797',
+	},
+	rescueSummary: {
+		marginTop: 28 * DP,
+	},
+	rescueText: {
+		marginTop: 40 * DP,
+	},
+	floatingBtnAapply: {
+		position: 'absolute',
+		bottom: 0 * DP,
 	},
 });

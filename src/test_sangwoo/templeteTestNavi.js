@@ -82,13 +82,14 @@ import AdoptorInformation from 'Root/component/templete/AdoptorInformation';
 import AidRequestManage from 'Root/component/templete/AidRequestManage';
 import ProtectRequestList from 'Root/component/templete/ProtectRequestList';
 import RequestLogin from 'Root/component/templete/RequestLogin';
+import AnimalProtectRequestDetail from 'Root/component/templete/AnimalProtectRequestDetail';
 
 // const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
 
 export default TempleteTestNavi = () => {
 	return (
-		<Drawer.Navigator initialRouteName="RequestLogin">
+		<Drawer.Navigator initialRouteName="AnimalProtectRequestDetail">
 			<Drawer.Screen name="AccountPicker" component={AccountPicker} />
 			<Drawer.Screen name="ActivationDetail" component={ActivationDetail} />
 			<Drawer.Screen name="ActivationList" component={ActivationList} />
@@ -136,7 +137,7 @@ export default TempleteTestNavi = () => {
 			<Drawer.Screen name="MissingReportList" component={MissingReportList} />
 			<Drawer.Screen name="PasswordReset" component={PasswordReset} />
 			<Drawer.Screen name="PetInfoSetting" component={PetInfoSetting} />
-			<Drawer.Screen name="PhotoSelect" component={PhotoSelect} />			
+			<Drawer.Screen name="PhotoSelect" component={PhotoSelect} />
 			<Drawer.Screen name="ProtectApplyForm" component={ProtectApplyForm} />
 			<Drawer.Screen name="ProtectRequestList" component={ProtectRequestList} />
 			<Drawer.Screen name="ReportDetail" component={ReportDetail} />
@@ -168,6 +169,7 @@ export default TempleteTestNavi = () => {
 			<Drawer.Screen name="FeedMediaTagEdit" component={FeedMediaTagEdit} />
 			<Drawer.Screen name="FeedWrite" component={FeedWrite} />
 			<Drawer.Screen name="Profile" component={Profile} />
+			<Drawer.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} />
 		</Drawer.Navigator>
 	);
 };

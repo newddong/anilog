@@ -23,15 +23,73 @@ export default AnimalProtectRequestDetail = props => {
 						<Text style={[txt.noto24, temp_style.requestProtect]}>보호요청</Text>
 					</View>
 
-					<View style={[temp_style.requestProtect_view]}>
+					{/* RescueContentTitle */}
+					<View style={[temp_style.rescueContentTitle]}>
 						<Text>RescueContentTitle</Text>
 					</View>
 
-					{/* RescueContentTitle */}
-					{/* AccountList */}
-					<View style={[accountPicker.accountList]}>
-						<Text>AnimalProtectRequestDetail</Text>
+					{/* ShelterSmallLabel */}
+					<View style={[temp_style.shelterSmallLabel_view_animalProtectRequestDetail]}>
+						{/* RescueContentTitle */}
+						<View style={[temp_style.shelterSmallLabel_animalProtectRequestDetail]}>
+							<Text>(M)ShelterSmallLabel</Text>
+						</View>
+						{/* Buttons */}
+						<View style={[temp_style.button_animalProtectRequestDetail]}>
+							<Text>(M)Buttons</Text>
+						</View>
+					</View>
 
+					{/* RescueSummary */}
+					<View style={[temp_style.rescueSummary, animalProtectRequestDetail_style.rescueSummary]}>
+						<Text>RescueSummary</Text>
+					</View>
+
+					{/* RescueText */}
+					<View style={[temp_style.rescueText, animalProtectRequestDetail_style.rescueText]}>
+						<Text>RescueText</Text>
+					</View>
+
+					{/* comment_count */}
+					<View style={[temp_style.comment_count_view]}>
+						<Text style={[txt.noto24, temp_style.comment_count]}>댓글 5</Text>
+					</View>
+
+					{/* (O)CommentList */}
+					<View style={[temp_style.commentList]}>
+						<Text>(O)CommentList</Text>
+					</View>
+
+					{/* WriteComment */}
+					<View style={[temp_style.writeComment]}>
+						<Text>writeComment</Text>
+					</View>
+
+					{/* 보호요청 더 보기addMoreRequest */}
+					<View style={[temp_style.addMoreRequest_view]}>
+						<Text style={[txt.noto24, temp_style.addMoreRequest]}>보호요청 더보기</Text>
+					</View>
+
+					<View style={[temp_style.floatingBtnAapply, animalProtectRequestDetail_style.floatingBtnAapply]}>
+						<AniButton
+							btnLayout={btn_w226}
+							btnStyle={'border'}
+							btnTitle={'임시보호 신청'}
+							titleFontStyle={30}
+							// onPress={() => navigation.push('ApplyProtectActivityA')}
+						/>
+						<AniButton
+							btnLayout={btn_w226}
+							btnStyle={'filled'}
+							btnTitle={'입양 신청'}
+							titleFontStyle={30}
+							// onPress={() => navigation.push('ApplyAnimalAdoptionA')}
+						/>
+					</View>
+
+					{/* AccountList */}
+					{/* <View style={[accountPicker.accountList]}>
+						<Text>(O)AnimalNeedHelpList</Text>
 						<View style={{flexDirection: 'row', alignSelf: 'center', marginTop: 800 * DP}}>
 							<AniButton
 								btnLayout={btn_w226}
@@ -48,7 +106,7 @@ export default AnimalProtectRequestDetail = props => {
 								onPress={() => navigation.push('ApplyAnimalAdoptionA')}
 							/>
 						</View>
-					</View>
+					</View> */}
 				</ScrollView>
 			</View>
 		</View>
