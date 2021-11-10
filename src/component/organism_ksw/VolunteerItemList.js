@@ -1,5 +1,7 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
+import {GRAY20} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
 import {volunteerItemList} from './style_organism';
 import VolunteerItem from './VolunteerItem';
 
@@ -21,12 +23,19 @@ export default VolunteerItemList = props => {
 			location: '호주 시드니',
 		},
 		{
-			//userDescriptionLabel 출력을 위한 테스트 데이터
-			user_type: 'user',
-			user_id: 'user_id',
-			user_nickname: 'user_nickname',
-			user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-			text_intro: 'Description',
+			//shelterLabel 출력을 위한 테스트 데이터
+			user_type: 'shelter',
+			shelter_name: '인천 우리 반려동물 보호소',
+			shelter_type: 'private',
+			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
+			location: '호주 시드니',
+		},
+		{
+			user_type: 'shelter',
+			shelter_name: '인천 우리 반려동물 보호소',
+			shelter_type: 'private',
+			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
+			location: '호주 시드니',
 		},
 	];
 
@@ -40,10 +49,6 @@ export default VolunteerItemList = props => {
 
 	return (
 		<View style={[volunteerItemList.container]}>
-			<View style={[volunteerItemList.title]}>
-				{/* Volunteer Title */}
-				<Text>Title</Text>
-			</View>
 			<FlatList data={testArray} renderItem={({item, index}) => renderItem(item, index)} />
 		</View>
 	);

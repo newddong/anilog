@@ -258,6 +258,7 @@ export const Tag_View = makeSvg(tagView, {width: 110 * DP, height: 52 * DP});
 export const Tag_Edit = makeSvg(tagEdit, {width: 170 * DP, height: 52 * DP});
 export const X_Mark = makeSvg(xMark, size48);
 export const Add_Pet = makeSvg(addPet180, {width: 180 * DP, height: 180 * DP});
+export const Add_Volunteer = makeSvg(addPet180, {width: 94 * DP, height: 94 * DP});
 export const Urgent_Write1 = makeSvg(urgent_write1, size110);
 export const Urgent_Write2 = makeSvg(urgent_write2, size110);
 export const Leaflet = makeSvg(leaflet, {width: 118 * DP, height: 110 * DP});

@@ -2124,7 +2124,6 @@ export const editShelterInfo = StyleSheet.create({
 export const applicationFormVolunteer = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	shelterInfo: {
 		width: 702 * DP,
@@ -2136,61 +2135,72 @@ export const applicationFormVolunteer = StyleSheet.create({
 	},
 	viewForm: {
 		width: 654 * DP,
-		height: 202 * DP,
 		marginTop: 40 * DP,
-		backgroundColor: 'pink',
 	},
 	viewForm_step1: {
 		width: 654 * DP,
 		height: 52 * DP,
-		backgroundColor: 'yellow',
 		flexDirection: 'row',
 	},
 	icon48: {
 		width: 48 * DP,
 		height: 48 * DP,
-		backgroundColor: 'pink',
 	},
 	title: {
 		width: 590 * DP,
 		height: 42 * DP,
-		backgroundColor: '#F5DDD2',
 		marginLeft: 16 * DP,
-		justifyContent: 'center',
-		alignItems: 'center',
 		marginTop: 4 * DP,
 		marginBottom: 10 * DP,
+		flexDirection: 'row',
 	},
 	viewForm_step2: {
 		width: 590 * DP,
-		height: 148 * DP,
-		backgroundColor: '#999EDF',
-		alignSelf: 'flex-end',
-		justifyContent: 'center',
-		alignItems: 'center',
+		height: 168 * DP,
+		marginTop: 22 * DP,
+		marginLeft: 64 * DP,
 	},
 	participants: {
 		width: 654 * DP,
-		height: 376 * DP,
 		marginTop: 40 * DP,
-		backgroundColor: 'pink',
 	},
 	participants_step1: {
 		width: 654 * DP,
 		height: 52 * DP,
-		backgroundColor: 'yellow',
 		flexDirection: 'row',
 	},
+
 	participants_step2: {
 		width: 590 * DP,
-		height: 322 * DP,
-		backgroundColor: '#999EDF',
 		alignSelf: 'flex-end',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
+	addParticipantBtn: {
+		width: 654 * DP,
+		flexDirection: 'row',
+	},
+	addParticipantTxt: {
+		color: APRI10,
+		alignSelf: 'center',
+		justifyContent: 'center',
+		marginLeft: 30 * DP,
+	},
+	participants_contact: {
+		width: 654 * DP,
+		height: 42 * DP,
+		marginTop: 40 * DP,
+	},
+	participants_contact_text: {
+		width: 590 * DP,
+		height: 42 * DP,
+		marginTop: 10 * DP,
+		marginLeft: 64 * DP,
+	},
 	btn_w226: {
+		height: 90 * DP,
 		marginTop: 110 * DP,
+		marginBottom: 66 * DP,
 	},
 });
 
@@ -3176,32 +3186,32 @@ export const aidRequestList = StyleSheet.create({
 
 export const manageVolunteer = StyleSheet.create({
 	container: {
-		backgroundColor: '#ACC4D6',
-		alignItems: 'center',
 		flex: 1,
 	},
 	volunteerList: {
-		marginTop: 40 * DP,
 		width: 654 * DP,
-		height: 418 * DP,
-		backgroundColor: '#C4C483',
+	},
+	title: {
+		height: 35 * DP,
+		marginTop: 40 * DP,
+		marginBottom: 20 * DP,
+		marginLeft: 48 * DP,
+		alignSelf: 'flex-start',
 	},
 	separator: {
 		width: 654 * DP,
 		height: 2 * DP,
-		marginVertical: 40 * DP,
 		backgroundColor: APRI10,
 	},
 	showMoreContainer: {
 		width: 214 * DP,
 		height: 48 * DP,
-		marginTop: 60 * DP,
+		marginVertical: 20 * DP,
 		flexDirection: 'row',
 		alignSelf: 'center',
 		alignItems: 'center',
 		alignContent: 'center',
 		justifyContent: 'center',
-		backgroundColor: 'pink',
 	},
 	showMoreContainer_text: {
 		color: GRAY10,

@@ -9,12 +9,19 @@ import {login_style, temp_style, baseInfo_style} from './style_templete';
 
 export default ApplyAdoptionList = props => {
 	const navigation = useNavigation();
+	console.log(props.route.name);
 	return (
 		<View style={login_style.wrp_main}>
 			{/* <FlatList> */}
 			<View style={[temp_style.baseFlatList, baseInfo_style.list]}>
 				{/* (O)AnimalNeedHelpList */}
-				<AnimalNeedHelpList onItemClick={() => navigation.push('ApplyAdoptionDetails')} />
+				<AnimalNeedHelpList
+					onItemClick={
+						props.route.name == 'ApplyTempProtectList'
+							? () => navigation.push('ApplyTempProtectDetails')
+							: () => navigation.push('ApplyAdoptionDetails')
+					}
+				/>
 			</View>
 			{/* </FlatList> */}
 		</View>

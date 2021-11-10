@@ -27,13 +27,14 @@ export default AccountList = props => {
 	const renderItem = item => {
 		console.log(item);
 		return (
-			<View style={organism_style.accountList}>
-				<View style={[organism_style.userDescriptionLabel]}>
-					<UserDescriptionLabel />
-				</View>
+			<View style={[organism_style.userDescriptionLabel]}>
+				<UserDescriptionLabel />
 			</View>
 		);
 	};
-
-	return <FlatList data={_dummyData} renderItem={({item}) => renderItem(item)} />;
+	return (
+		<View style={organism_style.accountList}>
+			<FlatList data={_dummyData} renderItem={({item}) => renderItem(item)} />
+		</View>
+	);
 };
