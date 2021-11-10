@@ -8,6 +8,7 @@ import {login_style, manageVolunteer} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
 
 export default ManageVolunteer = props => {
+	const navigation = useNavigation();
 	const moveToShelterVolunteerForm = () => {
 		navigation.push('ShelterVolunteerForm');
 	};

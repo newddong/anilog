@@ -3,8 +3,10 @@ import {FlatList, TouchableOpacity, View, Text} from 'react-native';
 import AnimalNeedHelp from './AnimalNeedHelp';
 import {animalNeedHelpList} from './style_organism';
 import {animalNeedHelp} from './style_organism';
+import {useNavigation} from '@react-navigation/core';
 
 export default AnimalNeedHelpList = props => {
+	const navigation = useNavigation();
 	const testData = [
 		{
 			kind: '고양이',
@@ -82,7 +84,7 @@ export default AnimalNeedHelpList = props => {
 
 	const renderItem = (item, index) => {
 		return (
-			<TouchableOpacity style={[animalNeedHelpList.itemContainer]} onPress={() => props.onItemClick()}>
+			<TouchableOpacity style={[animalNeedHelpList.itemContainer]} onPress={() => navigation.push('AnimalProtectRequestDetail')}>
 				<AnimalNeedHelp data={item} />
 			</TouchableOpacity>
 		);
