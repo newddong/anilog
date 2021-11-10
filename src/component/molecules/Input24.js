@@ -43,7 +43,7 @@ export default Input24 = props => {
 
 	const getDescription = () => {
 		if (props.descriptionType == 'info') {
-			return <Text style={[txt.noto22, {color: GRAY20, marginLeft: 75 * DP}]}> *{props.info} </Text>;
+			return <Text style={[txt.noto22, {color: GRAY20, marginLeft: 20 * DP}]}> *{props.info} </Text>;
 		} else if (props.descriptionType == 'star') {
 			return <Text style={[txt.noto28, {color: RED10, marginLeft: 120 * DP}]}>*</Text>;
 		}

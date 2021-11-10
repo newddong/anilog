@@ -1,6 +1,8 @@
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, TouchableWithoutFeedback} from 'react-native';
 import {btn_w226} from '../atom/btn/btn_style';
+import AniButton from '../molecules/AniButton';
 import {login_style, btn_style, temp_style, progressbar_style, assignPetInfo_style} from './style_templete';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
@@ -11,7 +13,7 @@ export default AssignPetInfoA = props => {
 		props.navigation.push('AssignProtectAnimalAge');
 	};
 	return (
-		<View style={login_style.wrp_main}>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* (M)StageBar	 */}
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Text>(M)StageBar</Text>
@@ -56,12 +58,27 @@ export default AssignPetInfoA = props => {
 			<View style={[temp_style.btn_w226_assignPetInfo, assignPetInfo_style.btn_w226_viewA]}>
 				<TouchableWithoutFeedback onPress={props.navigation.goBack}>
 					<View style={[btn_style.btn_w226]}>
-						<Text>(A)Btn_w226(뒤로)</Text>
+						{/* <Text>(A)Btn_w226(뒤로)</Text> */}
+						<AniButton
+							btnTitle={'뒤로'}
+							btnTheme={'shadow'}
+							btnStyle={'border'}
+							btnLayout={btn_w226}
+							titleFontStyle={24}
+							onPress={() => navigation.goBack()}
+						/>
 					</View>
 				</TouchableWithoutFeedback>
 				<TouchableWithoutFeedback onPress={moveToAssignProtectAnimalAge}>
 					<View style={[btn_style.btn_w226, assignPetInfo_style.btn_w226]}>
-						<Text>(A)Btn_w226(다음)</Text>
+						<AniButton
+							btnTitle={'다음'}
+							btnTheme={'shadow'}
+							btnStyle={'filled'}
+							btnLayout={btn_w226}
+							titleFontStyle={24}
+							onPress={() => navigation.push('AssignPetInfoB')}
+						/>
 					</View>
 				</TouchableWithoutFeedback>
 			</View>

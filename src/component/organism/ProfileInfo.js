@@ -9,7 +9,7 @@ import SocialInfoA from '../organism_ksw/SocialInfoA';
 import {organism_style, profileInfo_style} from './style_organism';
 
 export default ProfileInfo = props => {
-	console.log(props);
+	console.log(' PRofileInfo ' + JSON.stringify(props.data));
 
 	const getButton = () => {
 		if (props.dummyData.userType == PET && props.dummyData.petStatus == 'protected') {

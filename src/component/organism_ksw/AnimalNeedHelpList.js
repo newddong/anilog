@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, View} from 'react-native';
+import {FlatList, TouchableOpacity, View} from 'react-native';
 import AnimalNeedHelp from './AnimalNeedHelp';
 import {animalNeedHelpList} from './style_organism';
 
@@ -46,23 +46,52 @@ export default AnimalNeedHelpList = props => {
 				status: 'onNegotiation', // protected, missing, reported, onNegotiation, adoption_available
 			},
 		},
+		{
+			kind: null,
+			breed: null,
+			temp_protection_request: true,
+			registered_date: '2021-06-17',
+			location: '테트리스',
+			saved_location: '세이브포인트',
+			thumbnailData: {
+				img_uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU',
+				gender: 'female',
+				status: 'onNegotiation', // protected, missing, reported, onNegotiation, adoption_available
+			},
+		},
+		{
+			kind: null,
+			breed: null,
+			temp_protection_request: true,
+			registered_date: '2021-06-17',
+			location: '테트리스',
+			saved_location: '세이브포인트',
+			thumbnailData: {
+				img_uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU',
+				gender: 'female',
+				status: 'onNegotiation', // protected, missing, reported, onNegotiation, adoption_available
+			},
+		},
 	];
 
 	const renderItem = (item, index) => {
 		return (
-			<View style={[animalNeedHelpList.itemContainer]}>
+			<TouchableOpacity style={[animalNeedHelpList.itemContainer]} onPress={() => props.onItemClick()}>
 				<AnimalNeedHelp data={item} />
-			</View>
+			</TouchableOpacity>
 		);
 	};
 
 	return (
 		<View style={[animalNeedHelpList.container]}>
-			<FlatList data={testData} renderItem={({item, index}) => renderItem(item, index)} />
+			<FlatList data={testData} renderItem={({item, index}) => renderItem(item, index)} nestedScrollEnabled />
 		</View>
 	);
 };
 
+AnimalNeedHelpList.defaultProps = {
+	onItemClick: e => console.log(e),
+};
 // AnimalNeedHelp.defaultProps = {
 // 	temp_protection_request: true,
 // 	adoption_days_remain: 10,

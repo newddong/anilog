@@ -5,7 +5,6 @@ import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30} from 'Root/config/color';
 
 export default TabSelectBorder_Type3 = props => {
-
 	const tabLength = props.items.length;
 	let tabState = [];
 	Array(tabLength)
@@ -26,14 +25,14 @@ export default TabSelectBorder_Type3 = props => {
 		props.onSelect(copyState[index]);
 	};
 
-	const getWidth = (index) => {
-		if(selected[index].state){
-			return 212 * DP
-		} else return 158 * DP
-	}
+	const getWidth = index => {
+		if (selected[index].state) {
+			return 212 * DP;
+		} else return 158 * DP;
+	};
 
 	const renderItem = ({item, index}) => {
-		return ( 
+		return (
 			<TouchableOpacity
 				onPress={() => onSelect(index)}
 				style={{
@@ -55,13 +54,13 @@ export default TabSelectBorder_Type3 = props => {
 					]}>
 					{item}
 				</Text>
-			</TouchableOpacity>  
+			</TouchableOpacity>
 		);
 	};
 	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />;
 };
 
 TabSelectBorder_Type3.defaultProps = {
-	items: null, //FlatList에 담길 배열 정보
+	items: [1, 2, 3], //FlatList에 담길 배열 정보
 	onSelect: e => console.log(e), //Tab Press 이벤트
 };

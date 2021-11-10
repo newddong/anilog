@@ -1,14 +1,18 @@
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
-import {login_style, btn_style, temp_style, selectstat_view_style, saveAnimalRequest_style} from './style_templete';
+import AccountHashList from '../organism_ksw/AccountHashList';
+import {login_style, temp_style, selectstat_view_style} from './style_templete';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default SaveFavorite = props => {
+	const _dummyData = [{}];
+	const navigation = useNavigation();
+
 	return (
-		<View style={login_style.wrp_main}>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* SelectStat	 */}
 			<View style={[temp_style.selectstat_view]}>
 				{/* 취소, 전체선택, 선택삭제 */}
@@ -24,20 +28,16 @@ export default SaveFavorite = props => {
 						<Text>선택 삭제</Text>
 					</View>
 				</View>
-
-				{/* 선택하기 */}
-				{/* <View style={[temp_style.selectstat, saveAnimalRequest_style.selecting]}>
-					<View style={[temp_style.textBtn, saveAnimalRequest_style.delete_selected]}>
-						<Text>선택하기</Text>
-					</View>
-				</View> */}
 			</View>
 
 			{/* <FlatList> */}
 			<View style={[temp_style.AnimalNeedHelpList]}>
-				<Text>(O)AccountHashList</Text>
+				{/* <Text>(O)AccountHashList</Text> */}
+				<AccountHashList
+					onLabelClick={item => navigation.push('UserProfile', item)}
+					onHashClick={item => navigation.push('FeedListForHashTag', item)}
+				/>
 			</View>
-			{/* </FlatList> */}
 		</View>
 	);
 };

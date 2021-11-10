@@ -174,14 +174,14 @@ export const controllableHashTagList = StyleSheet.create({
 export const accountHashList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
+		marginTop: 30 * DP,
 		alignSelf: 'center',
-		backgroundColor: BGCOLOR,
+		// backgroundColor: BGCOLOR,
 	},
 	userAccount: {
 		width: 654 * DP,
 		height: 94 * DP,
 		marginBottom: 40 * DP,
-		backgroundColor: 'yellow',
 	},
 });
 
@@ -386,6 +386,12 @@ export const profileMenu = StyleSheet.create({
 	},
 	item_bracket: {
 		alignSelf: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: 100 * DP,
+		height: 50 * DP,
+		right: 30 * DP,
+		backgroundColor: 'red',
 	},
 	horizon_separator: {
 		width: 362 * DP,
@@ -557,7 +563,6 @@ export const shelterLabel = StyleSheet.create({
 	container: {
 		width: 178 * DP,
 		height: 260 * DP,
-		backgroundColor: 'lightgray',
 	},
 	profileImageMedium: {
 		alignSelf: 'center',
@@ -566,7 +571,6 @@ export const shelterLabel = StyleSheet.create({
 		width: 178 * DP,
 		height: 120 * DP,
 		alignItems: 'center',
-		backgroundColor: 'lightblue',
 	},
 });
 
@@ -574,7 +578,6 @@ export const shelterList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
 		height: 260 * DP,
-		backgroundColor: 'pink',
 	},
 	shelterLabel: {
 		marginRight: 22 * DP,
@@ -1095,7 +1098,6 @@ export const animalNeedHelp = StyleSheet.create({
 export const animalNeedHelpList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		height: 722 * DP,
 	},
 	itemContainer: {
 		marginBottom: 40 * DP,
@@ -1132,5 +1134,54 @@ export const animalProtectDetail = StyleSheet.create({
 		marginTop: 6 * DP,
 		marginLeft: 64 * DP,
 		minHeight: 50 * DP,
+	},
+});
+
+export const familyAccountList = StyleSheet.create({
+	itemContainer: {
+		width: 654 * DP,
+		height: 94 * DP,
+		marginBottom: 30 * DP,
+		flexDirection: 'row',
+	},
+	profileImageSmall: {
+		width: 94 * DP,
+		height: 94 * DP,
+	},
+	userIDContainer: {
+		width: 456 * DP,
+		height: 42 * DP,
+		marginLeft: 30 * DP,
+		alignSelf: 'center',
+	},
+	cross52: {
+		marginLeft: 24 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+});
+
+export const userAccount = StyleSheet.create({
+	container: {
+		width: 654 * DP,
+		height: 94 * DP,
+		flexDirection: 'row',
+	},
+	checkBox: {
+		width: 80 * DP,
+		alignSelf: 'center',
+		justifyContent: 'center',
+	},
+	userProfileContainer: {
+		width: 442 * DP,
+		height: 94 * DP,
+	},
+	followingBtnContainer: {
+		justifyContent: 'center',
+		marginLeft: 20 * DP,
+	},
+	followingBtnContainer_noneCheckBox: {
+		justifyContent: 'center',
+		marginLeft: 100 * DP,
 	},
 });

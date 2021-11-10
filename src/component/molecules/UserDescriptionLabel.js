@@ -38,7 +38,7 @@ export default UserDescriptionLabel = props => {
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{uri: props.data.user_image}} style={styles.img_round_94} />
+				<Image source={{uri: props.data.img_uri}} style={styles.img_round_94} />
 			</TouchableOpacity>
 			<View style={{marginLeft: 30 * DP}}>
 				{/* Text부분과 프로필이미지 사이의 거리 30 */}
@@ -65,7 +65,7 @@ UserDescriptionLabel.defaultProps = {
 	data: {
 		user_id: 'Default id',
 		user_nickname: 'user_nickname',
-		user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
+		img_uri: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
 		text_intro: 'Description',
 	},
 	onLabelClick: e => console.log(e),
