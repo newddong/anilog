@@ -19,3 +19,7 @@ export default VolunteerItem = props => {
 		</View>
 	);
 };
+
+VolunteerItem.defaultProps = {
+	expected_activityDate: '21.12.21',
+};

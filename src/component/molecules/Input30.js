@@ -25,7 +25,7 @@ export default Input30 = props => {
 
 	const getMsg = () => {
 		if (input.length == 0) {
-			return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}></Text>;
+			return null;
 		}
 		return confirm ? (
 			<Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>

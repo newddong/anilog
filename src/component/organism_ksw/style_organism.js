@@ -69,12 +69,11 @@ export const organism_style = StyleSheet.create({
 	},
 	accountList: {
 		width: 654 * DP,
-		backgroundColor: '#B5DED8',
-		marginBottom: 40 * DP,
 	},
 	userDescriptionLabel: {
-		width: 654 * DP,
+		width: 590 * DP,
 		height: 94 * DP,
+		marginBottom: 40 * DP,
 	},
 	cross46: {
 		width: 46 * DP,
@@ -954,20 +953,11 @@ export const volunteerItem = StyleSheet.create({
 export const volunteerItemList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		height: 418 * DP,
-		backgroundColor: 'pink',
-	},
-	title: {
-		width: 182 * DP,
-		height: 35 * DP,
-		marginBottom: 20 * DP,
-		backgroundColor: 'lightcyan',
 	},
 	itemContainer: {
 		width: 654 * DP,
 		height: 94 * DP,
 		marginBottom: 40 * DP,
-		backgroundColor: 'white',
 	},
 });
 

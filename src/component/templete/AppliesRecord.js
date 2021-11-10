@@ -28,14 +28,21 @@ export default AppliesRecord = props => {
 					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>임시보호 신청 </Text>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.moreTxt]}>더보기 </Text>
-						<View style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
+						<TouchableOpacity onPress={() => navigation.push('ApplyTempProtectList')} style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
 							<NextMark />
-						</View>
+						</TouchableOpacity>
 					</View>
 					<AnimalNeedHelp />
 				</View>
 				<View style={[appliesRecord.shelterList_container]}>
-					<ShelterList />
+					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
+						<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>봉사활동 신청 </Text>
+						<Text style={[appliesRecord.animalNeedHelp.headerContainer.moreTxt]}>더보기 </Text>
+						<TouchableOpacity onPress={() => navigation.push('ManageUserVolunteer')} style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
+							<NextMark />
+						</TouchableOpacity>
+					</View>
+					<ShelterList onShelterLabelClick={shelterInfo => navigation.push('UserVolunteerForm', shelterInfo)} />
 				</View>
 			</ScrollView>
 		</View>
