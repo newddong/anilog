@@ -52,7 +52,7 @@ export default UserDescriptionLabel = props => {
 					{/* user_nickname Text박스에 비해 y축이 4가 크다 => paddingTop : 4 *  DP  */}
 				</View>
 
-				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
+				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10, maxWidth: 520 * DP}]} numberOfLines={1} ellipsizeMode="tail">
 					{props.data.text_intro}
 				</Text>
 				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
