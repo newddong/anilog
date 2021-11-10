@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View} from 'react-native';
 import {btn_w654} from '../atom/btn/btn_style';
