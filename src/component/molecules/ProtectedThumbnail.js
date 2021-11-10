@@ -7,6 +7,7 @@ import {Mercy_Killing, Female48, Male48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 
 export default ProtectedThumbnail = props => {
+	console.log('protected ' + JSON.stringify(props.data));
 	const borderByStatus = () => {
 		if (props.data.status == 'emergency') {
 			return {

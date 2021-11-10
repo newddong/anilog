@@ -42,6 +42,7 @@ import AnimalFromShelter from 'Templete/AnimalFromShelter';
 import AdoptorInformation from 'Templete/AdoptorInformation';
 import ManageVolunteer from 'Templete/ManageVolunteer';
 import ApplicationFormVolunteer from 'Templete/ApplicationFormVolunteer';
+import PhotoSelect from 'Root/component/templete/PhotoSelect';
 // import AnimalProtectRequestDetail from "Templete/AnimalProtectRequestDetail";
 
 const MyStack = createStackNavigator();
@@ -63,6 +64,8 @@ export default MyStackNavigation = () => {
 			<MyStack.Screen name="UserInfoSetting" component={UserInfoSetting} />
 
 			<MyStack.Screen name="ChangeUserProfileImage" component={ChangeUserProfileImage} />
+			<MyStack.Screen name="PhotoSelect" component={PhotoSelect} />
+
 			<MyStack.Screen name="ChangePassword" component={ChangePassword} />
 			<MyStack.Screen name="UserInfoDetailSetting" component={UserInfoDetailSettting} />
 

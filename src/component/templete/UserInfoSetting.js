@@ -93,7 +93,10 @@ export default UserInfoSetting = props => {
 						</View>
 					</View>
 					<View style={[temp_style.myPetList_myPetList]}>
-						<MyPetList />
+						<MyPetList
+							onLabelClick={myPetData => navigation.push('PetInfoSetting', myPetData)}
+							addPet={() => navigation.push('AssignPetProfileImage')}
+						/>
 					</View>
 				</View>
 			</ScrollView>

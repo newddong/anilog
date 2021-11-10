@@ -82,12 +82,16 @@ export default Input30 = props => {
 								//TextInput과 바깥 View와의 거리 24px, lineHeight는 Text View크기와 일치
 								paddingLeft: 24 * DP,
 								color: confirm ? BLACK : RED10,
+								width: props.width * DP,
+								textAlign: 'center',
 							},
 						]}
 					/>
-					<TouchableOpacity onPress={onClear} style={{marginLeft: 120 * DP, paddingBottom: 14 * DP}}>
-						<Cross52 />
-					</TouchableOpacity>
+					{props.clearMark ? (
+						<TouchableOpacity onPress={onClear} style={{marginLeft: 120 * DP, paddingBottom: 14 * DP}}>
+							<Cross52 />
+						</TouchableOpacity>
+					) : null}
 				</View>
 				{getMsg()}
 			</View>
@@ -103,6 +107,8 @@ Input30.defaultProps = {
 	value: 'value',
 	alert_msg: 'alert_msg',
 	confirm_msg: 'confirm_msg',
+	clearMark: false,
 	onClear: e => console.log(e),
 	onChange: e => console.log(e),
+	width: 300, // TextInput 너비
 };

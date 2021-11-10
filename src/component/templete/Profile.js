@@ -11,6 +11,8 @@ import ProtectedPetList from '../organism_ksw/ProtectedPetList';
 import {login_style, profile, temp_style} from './style_templete';
 
 export default Profile = props => {
+	const item = props.route.params;
+	console.log('item : ' + item);
 	const navigation = useNavigation();
 	const [userType, setUserType] = React.useState(PET); //NORMAL, PET, SHELTER
 	const [petStatus, setPetStatus] = React.useState('protected');

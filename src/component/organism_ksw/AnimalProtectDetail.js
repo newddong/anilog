@@ -28,7 +28,7 @@ export default AnimalProtectDetail = props => {
 	const dummy_adoptorInfo = {
 		user_id: 'Tei_0409',
 		user_nickname: '닮은 테이',
-		user_image: 'http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040004/07/01/0400040701_1165_011.043.jpg',
+		img_uri: 'http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040004/07/01/0400040701_1165_011.043.jpg',
 		text_intro: '철권형아, 버거집사장',
 	};
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, TouchableOpacity} from 'react-native';
 import {Text, View} from 'react-native';
 import AddPet from '../molecules/AddPet';
 import PetImageLabel from '../molecules/PetImageLabel';
@@ -30,11 +30,13 @@ export default MyPetList = props => {
 			return (
 				<View style={{flexDirection: 'row'}}>
 					<View style={[myPetList.petImageLabel]}>
-						<PetImageLabel img_uri={item.img_uri} petStatus={item.petStatus} petNickname={item.petNickname} />
+						<TouchableOpacity onPress={() => props.onLabelClick(item)}>
+							<PetImageLabel img_uri={item.img_uri} petStatus={item.petStatus} petNickname={item.petNickname} />
+						</TouchableOpacity>
 					</View>
 					{/* 반려동물 추가 */}
 					<View style={[myPetList.addPet]}>
-						<AddPet />
+						<AddPet onAdd={() => props.addPet()} />
 					</View>
 				</View>
 			);
@@ -42,7 +44,9 @@ export default MyPetList = props => {
 			return (
 				//PetImageLAbel
 				<View style={[myPetList.petImageLabel]}>
-					<PetImageLabel img_uri={item.img_uri} petStatus={item.petStatus} petNickname={item.petNickname} />
+					<TouchableOpacity onPress={() => props.onLabelClick(item)}>
+						<PetImageLabel img_uri={item.img_uri} petStatus={item.petStatus} petNickname={item.petNickname} />
+					</TouchableOpacity>
 				</View>
 			);
 	};
@@ -54,6 +58,10 @@ export default MyPetList = props => {
 	);
 };
 
+MyPetList.defaultProps = {
+	onLabelClick: e => console.log(e),
+	addPet: e => console.log('AddpetPressd'),
+};
 // img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
 // petStatus: 'normal', // normal protected adopted
 // petNickname: null, // 펫 프로필이미지 아래에 출력되는 닉네임

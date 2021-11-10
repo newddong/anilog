@@ -20,9 +20,6 @@ export default AnimalNeedHelp = props => {
 			<View style={[animalNeedHelp.protectedThumbnail_container]}>
 				{/* Pet Thumbnail */}
 				<ProtectedThumbnail data={data} />
-				<View style={[animalNeedHelp.gender]}>
-					<Male48 />
-				</View>
 			</View>
 			{/* Pet Info */}
 			<View style={[animalNeedHelp.detailContainer]}>

@@ -1,11 +1,13 @@
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {FavoriteTag46_Filled, NextMark, Paw46} from '../atom/icon';
 import {profileMenu} from './style_organism';
 
 export default ProfileMenu = props => {
+	const navigation = useNavigation();
 	return (
 		<View style={[profileMenu.container]}>
 			{/* 즐겨찾기 */}
@@ -23,18 +25,18 @@ export default ProfileMenu = props => {
 								<View style={[profileMenu.item_text]}>
 									<Text style={[txt.noto24, {color: GRAY10}]}>친구</Text>
 								</View>
-								<View style={[profileMenu.item_bracket]}>
+								<TouchableOpacity onPress={() => navigation.push('SaveFavorite')} style={[profileMenu.item_bracket]}>
 									<NextMark />
-								</View>
+								</TouchableOpacity>
 							</View>
 							<View style={[profileMenu.vertical_separator]} />
 							<View style={[profileMenu.item]}>
 								<View style={[profileMenu.item_text]}>
 									<Text style={[txt.noto24, {color: GRAY10}]}>피드 게시글</Text>
 								</View>
-								<View style={[profileMenu.item_bracket]}>
+								<TouchableOpacity onPress={() => navigation.push('FavoriteFeeds')} style={[profileMenu.item_bracket]}>
 									<NextMark />
-								</View>
+								</TouchableOpacity>
 							</View>
 						</View>
 					</View>
@@ -48,9 +50,9 @@ export default ProfileMenu = props => {
 								<View style={[profileMenu.item_text]}>
 									<Text style={[txt.noto24, {color: GRAY10}]}>보호요청 (저장)</Text>
 								</View>
-								<View style={[profileMenu.item_bracket]}>
+								<TouchableOpacity onPress={() => navigation.push('SaveAnimalRequest')} style={[profileMenu.item_bracket]}>
 									<NextMark />
-								</View>
+								</TouchableOpacity>
 							</View>
 							<View style={[profileMenu.vertical_separator]} />
 							<View style={[profileMenu.item]}>
@@ -81,18 +83,18 @@ export default ProfileMenu = props => {
 								<View style={[profileMenu.item_text]}>
 									<Text style={[txt.noto24, {color: GRAY10}]}>내 게시글</Text>
 								</View>
-								<View style={[profileMenu.item_bracket]}>
+								<TouchableOpacity onPress={() => navigation.push('UserFeedList')} style={[profileMenu.item_bracket]}>
 									<NextMark />
-								</View>
+								</TouchableOpacity>
 							</View>
 							<View style={[profileMenu.vertical_separator]} />
 							<View style={[profileMenu.item]}>
 								<View style={[profileMenu.item_text]}>
 									<Text style={[txt.noto24, {color: GRAY10}]}>나를 태그한 글</Text>
 								</View>
-								<View style={[profileMenu.item_bracket]}>
+								<TouchableOpacity onPress={() => navigation.push('TagMeFeedList')} style={[profileMenu.item_bracket]}>
 									<NextMark />
-								</View>
+								</TouchableOpacity>
 							</View>
 						</View>
 					</View>
@@ -108,18 +110,18 @@ export default ProfileMenu = props => {
 								<View style={[profileMenu.item_text]}>
 									<Text style={[txt.noto24, {color: GRAY10}]}>신청 내역</Text>
 								</View>
-								<View style={[profileMenu.item_bracket]}>
+								<TouchableOpacity onPress={() => navigation.push('AppliesRecord')} style={[profileMenu.item_bracket]}>
 									<NextMark />
-								</View>
+								</TouchableOpacity>
 							</View>
 							<View style={[profileMenu.vertical_separator]} />
 							<View style={[profileMenu.item]}>
 								<View style={[profileMenu.item_text]}>
 									<Text style={[txt.noto24, {color: GRAY10}]}>동물 보호 현황</Text>
 								</View>
-								<View style={[profileMenu.item_bracket]}>
+								<TouchableOpacity onPress={() => navigation.push('AnimalProtectList')} style={[profileMenu.item_bracket]}>
 									<NextMark />
-								</View>
+								</TouchableOpacity>
 							</View>
 						</View>
 					</View>
@@ -177,9 +179,9 @@ export default ProfileMenu = props => {
 								<View style={[profileMenu.item_text]}>
 									<Text style={[txt.noto24, {color: GRAY10}]}>계정</Text>
 								</View>
-								<View style={[profileMenu.item_bracket]}>
+								<TouchableOpacity onPress={() => alert('로그아웃만 구현')} style={[profileMenu.item_bracket]}>
 									<NextMark />
-								</View>
+								</TouchableOpacity>
 							</View>
 						</View>
 					</View>
