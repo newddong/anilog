@@ -1027,8 +1027,8 @@ export const selectedMediaList = StyleSheet.create({
 export const animalNeedHelp = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		height: 214 * DP,
-		flexDirection: 'row',
+		// height: 214 * DP,
+		flexDirection: 'column',
 	},
 	checkBoxContainer: {
 		width: 80 * DP,
@@ -1092,6 +1092,27 @@ export const animalNeedHelp = StyleSheet.create({
 	},
 	lowerMenu_helpDetail: {
 		height: 38 * DP,
+	},
+	container_with_Line: {
+		width: 705 * DP,
+		height: 500 * DP,
+		borderRadius: 30 * DP,
+		borderWidth: 5 * DP,
+		borderColor: APRI10,
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexDirection: 'row',
+		marginLeft: 100 * DP,
+	},
+	sideBtn_view: {
+		width: 614 * DP,
+		height: 70 * DP,
+		marginTop: 30 * DP,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+	},
+	container_basicInfo: {
+		flexDirection: 'row',
 	},
 });
 

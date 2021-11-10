@@ -112,7 +112,7 @@ export default MyStackNavigation = () => {
 			<MyStack.Screen name="ManageShelterVolunteer" component={ManageVolunteer} />
 			<MyStack.Screen name="ShelterVolunteerForm" component={ApplicationFormVolunteer} />
 			{/* <MyStack.Screen name="ShelterProtectRequests" component={ShelterProtectRequests} /> */}
-			{/* <MyStack.Screen name="ProtectRequestManage" component={AnimalProtectRequestDetail} /> */}
+			<MyStack.Screen name="ProtectRequestManage" component={AnimalProtectRequestDetail} />
 
 			<MyStack.Screen name="AppliesRecord" component={AppliesRecord} />
 			<MyStack.Screen name="ApplyAdoptionList" component={ApplyAdoptionList} />

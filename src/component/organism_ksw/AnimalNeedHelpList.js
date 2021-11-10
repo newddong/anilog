@@ -1,7 +1,8 @@
 import React from 'react';
-import {FlatList, TouchableOpacity, View} from 'react-native';
+import {FlatList, TouchableOpacity, View, Text} from 'react-native';
 import AnimalNeedHelp from './AnimalNeedHelp';
 import {animalNeedHelpList} from './style_organism';
+import {animalNeedHelp} from './style_organism';
 
 export default AnimalNeedHelpList = props => {
 	const testData = [
@@ -18,6 +19,7 @@ export default AnimalNeedHelpList = props => {
 				gender: 'male',
 				status: 'missing', // protected, missing, reported, onNegotiation, adoption_available
 			},
+			selected: true,
 		},
 		{
 			kind: '고양이',
@@ -32,6 +34,7 @@ export default AnimalNeedHelpList = props => {
 				gender: 'female',
 				status: 'reported', // protected, missing, reported, onNegotiation, adoption_available
 			},
+			selected: false,
 		},
 		{
 			kind: null,
@@ -45,6 +48,7 @@ export default AnimalNeedHelpList = props => {
 				gender: 'female',
 				status: 'onNegotiation', // protected, missing, reported, onNegotiation, adoption_available
 			},
+			selected: false,
 		},
 		{
 			kind: null,
@@ -58,6 +62,7 @@ export default AnimalNeedHelpList = props => {
 				gender: 'female',
 				status: 'onNegotiation', // protected, missing, reported, onNegotiation, adoption_available
 			},
+			selected: false,
 		},
 		{
 			kind: null,
@@ -71,6 +76,7 @@ export default AnimalNeedHelpList = props => {
 				gender: 'female',
 				status: 'onNegotiation', // protected, missing, reported, onNegotiation, adoption_available
 			},
+			selected: false,
 		},
 	];
 
