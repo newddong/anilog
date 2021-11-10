@@ -408,16 +408,12 @@ export const temp_style = StyleSheet.create({
 	inputWithSearchIcon: {
 		width: 654 * DP,
 		height: 82 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#DBAFC2',
 	},
 	accountList: {
 		width: 654 * DP,
 		height: 496 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#D4CEF3',
 	},
 	userInfo: {
 		width: 654 * DP,

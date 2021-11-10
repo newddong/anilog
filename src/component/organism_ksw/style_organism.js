@@ -68,12 +68,24 @@ export const organism_style = StyleSheet.create({
 		backgroundColor: 'yellow',
 	},
 	accountList: {
-		width: 654 * DP,
+		width: 674 * DP,
 	},
 	userDescriptionLabel: {
-		width: 590 * DP,
-		height: 94 * DP,
+		width: 674 * DP,
+		height: 134 * DP,
 		marginBottom: 40 * DP,
+		paddingHorizontal: 20 * DP,
+		paddingVertical: 10 * DP,
+	},
+	userDescriptionLabel_clicked: {
+		width: 674 * DP,
+		height: 134 * DP,
+		marginBottom: 40 * DP,
+		paddingHorizontal: 20 * DP,
+		paddingVertical: 10 * DP,
+		borderColor: APRI10,
+		borderWidth: 5 * DP,
+		borderRadius: 30 * DP,
 	},
 	cross46: {
 		width: 46 * DP,
