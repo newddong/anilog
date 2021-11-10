@@ -1,11 +1,16 @@
 import React from 'react';
-import {View, FlatList, Text} from 'react-native';
+import {View, FlatList, Text, TouchableOpacity} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import {AddItem64} from '../atom/icon';
 import AidRequest from './AidRequest';
 import {aidRequestList} from './style_organism';
+import {useNavigation} from '@react-navigation/core';
 
 export default AidRequestList = props => {
+	const navigation = useNavigation();
+	const moveToAssignProtectAnimalImage = () => {
+		navigation.push('AssignProtectAnimalImage');
+	};
 	const testArray = [
 		{
 			kind: '개',
@@ -35,12 +40,14 @@ export default AidRequestList = props => {
 
 	return (
 		<View style={[aidRequestList.container]}>
-			<View style={[aidRequestList.addProtectedPetContainer]}>
-				<View style={[aidRequestList.addProtectedPet_insideContainer]}>
-					<AddItem64 />
+			<TouchableOpacity onPress={moveToAssignProtectAnimalImage}>
+				<View style={[aidRequestList.addProtectedPetContainer]}>
 					<Text style={[txt.noto30, aidRequestList.addProtectedPetText]}>보호중인 동물 추가하기</Text>
+					<View style={[aidRequestList.addProtectedPet_insideContainer]}>
+						<AddItem64 />
+					</View>
 				</View>
-			</View>
+			</TouchableOpacity>
 			<FlatList data={testArray} renderItem={({item, index}) => renderItem(item, index)} />
 		</View>
 	);

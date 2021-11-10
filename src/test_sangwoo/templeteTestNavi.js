@@ -89,7 +89,7 @@ const Drawer = createDrawerNavigator();
 
 export default TempleteTestNavi = () => {
 	return (
-		<Drawer.Navigator initialRouteName="AnimalProtectRequestDetail">
+		<Drawer.Navigator initialRouteName="ShelterMenu">
 			<Drawer.Screen name="AccountPicker" component={AccountPicker} />
 			<Drawer.Screen name="ActivationDetail" component={ActivationDetail} />
 			<Drawer.Screen name="ActivationList" component={ActivationList} />

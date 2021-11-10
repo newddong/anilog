@@ -7,8 +7,8 @@ import {login_style, btn_style, temp_style, progressbar_style, assignPetInfo_sty
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default AssignPetInfoA = props => {
-	const moveToAssignPetInfoB = () => {
-		props.navigation.push('AssignPetInfoB');
+	const moveToAssignProtectAnimalAge = () => {
+		props.navigation.push('AssignProtectAnimalAge');
 	};
 	return (
 		<View style={login_style.wrp_main}>
@@ -59,7 +59,7 @@ export default AssignPetInfoA = props => {
 						<Text>(A)Btn_w226(뒤로)</Text>
 					</View>
 				</TouchableWithoutFeedback>
-				<TouchableWithoutFeedback onPress={moveToAssignPetInfoB}>
+				<TouchableWithoutFeedback onPress={moveToAssignProtectAnimalAge}>
 					<View style={[btn_style.btn_w226, assignPetInfo_style.btn_w226]}>
 						<Text>(A)Btn_w226(다음)</Text>
 					</View>

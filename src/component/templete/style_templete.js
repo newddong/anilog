@@ -1105,6 +1105,42 @@ export const temp_style = StyleSheet.create({
 		height: 170 * DP,
 		backgroundColor: '#E1BDE2',
 	},
+	accountInfo_shelterInfoSetting_view: {
+		width: 750 * DP,
+		height: 192 * DP,
+		backgroundColor: '#FF00FF',
+	},
+	introduce_shelterInfoSetting_view: {
+		width: 750 * DP,
+		height: 238 * DP,
+		backgroundColor: '#D891C7',
+	},
+	introduce_infoSetting_view: {
+		flexDirection: 'row',
+		width: 750 * DP,
+		height: 558 * DP,
+		alignItems: 'center',
+		backgroundColor: '#C1EDD0',
+	},
+	title_shelterInfoSetting_view: {
+		width: 750 * DP,
+		height: 100 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#D2CAF6',
+	},
+	title_shelterInfoSetting: {
+		width: 200 * DP,
+		height: 46 * DP,
+		backgroundColor: '#FFF',
+	},
+	accountInfo_email_shelterInfoSetting_view: {
+		flexDirection: 'row',
+		width: 594 * DP,
+		height: 46 * DP,
+		justifyContent: 'space-between',
+		backgroundColor: '#F6F6E4',
+	},
 });
 
 export const loginTemplete_style = StyleSheet.create({
@@ -2005,6 +2041,14 @@ export const shelterMenu = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
+	profileMenu4: {
+		backgroundColor: '#7F8EF3',
+		width: 750 * DP,
+		height: 238 * DP,
+		marginTop: 10 * DP,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 });
 
 export const shelterInfoSetting = StyleSheet.create({
@@ -2028,6 +2072,13 @@ export const shelterInfoSetting = StyleSheet.create({
 		width: 750 * DP,
 		height: 1060 * DP,
 		backgroundColor: '#B3EBB5',
+	},
+	btn_w114: {
+		marginLeft: 340 * DP,
+	},
+	email_view: {
+		marginTop: 30 * DP,
+		marginLeft: 48 * DP,
 	},
 });
 

@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, View, Image} from 'react-native';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
 import {GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import {AddItem64, Female48, Male48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 import {aidRequest} from './style_organism';
+import {useNavigation} from '@react-navigation/core';
 
 export default AidRequest = props => {
 	const [male, setMale] = React.useState(false);
@@ -15,6 +16,11 @@ export default AidRequest = props => {
 		return () => {};
 	}, [props.data.male]);
 
+	const navigation = useNavigation();
+	const moveToProtectApplicant = () => {
+		navigation.push('ProtectApplicant');
+	};
+
 	return (
 		<View style={[aidRequest.container]}>
 			<View style={[aidRequest.insideContainer]}>
@@ -23,41 +29,43 @@ export default AidRequest = props => {
 					<Image style={[styles.img_irregular_174, {zIndex: 0}]} source={{uri: props.data.img_uri}} />
 				</View>
 				<View style={[aidRequest.rightContainer]}>
-					<View style={[aidRequest.right_insideContainer]}>
-						<View style={[aidRequest.right_upperMenu]}>
-							<Text>
-								{props.data.kind}/{props.data.breed}
-							</Text>
+					<TouchableOpacity onPress={moveToProtectApplicant}>
+						<View style={[aidRequest.right_insideContainer]}>
+							<View style={[aidRequest.right_upperMenu]}>
+								<Text>
+									{props.data.kind}/{props.data.breed}
+								</Text>
+							</View>
+							<View style={[aidRequest.right_middleMenu]}>
+								<View style={[aidRequest.right_middleMenu_title]}>
+									<Text style={[txt.noto24, {color: GRAY20}]}>예상연령</Text>
+								</View>
+								<View style={[aidRequest.right_middleMenu_content]}>
+									<Text style={[txt.noto24]}>{props.data.expected_age}개월</Text>
+								</View>
+								<View style={[aidRequest.right_middleMenu_title]}>
+									<Text style={[txt.noto24, {color: GRAY20}]}>체중</Text>
+								</View>
+								<View style={[aidRequest.right_middleMenu_content]}>
+									<Text style={[txt.noto24]}>{props.data.weight}kg</Text>
+								</View>
+								<View style={[aidRequest.right_middleMenu_title]}>
+									<Text style={[txt.noto24, {color: GRAY20}]}>중성화</Text>
+								</View>
+								<View style={[aidRequest.right_middleMenu_content]}>
+									<Text style={[txt.noto24]}>{props.data.neutralization ? 'O' : 'X'}</Text>
+								</View>
+							</View>
+							<View style={[aidRequest.right_lowerMenu]}>
+								<View style={[aidRequest.right_middleMenu_title]}>
+									<Text style={[txt.noto24, {color: GRAY20}]}>구조장소</Text>
+								</View>
+								<View style={[aidRequest.right_middleMenu_content]}>
+									<Text style={[txt.noto24]}>{props.data.saved_point}</Text>
+								</View>
+							</View>
 						</View>
-						<View style={[aidRequest.right_middleMenu]}>
-							<View style={[aidRequest.right_middleMenu_title]}>
-								<Text style={[txt.noto24, {color: GRAY20}]}>예상연령</Text>
-							</View>
-							<View style={[aidRequest.right_middleMenu_content]}>
-								<Text style={[txt.noto24]}>{props.data.expected_age}개월</Text>
-							</View>
-							<View style={[aidRequest.right_middleMenu_title]}>
-								<Text style={[txt.noto24, {color: GRAY20}]}>체중</Text>
-							</View>
-							<View style={[aidRequest.right_middleMenu_content]}>
-								<Text style={[txt.noto24]}>{props.data.weight}kg</Text>
-							</View>
-							<View style={[aidRequest.right_middleMenu_title]}>
-								<Text style={[txt.noto24, {color: GRAY20}]}>중성화</Text>
-							</View>
-							<View style={[aidRequest.right_middleMenu_content]}>
-								<Text style={[txt.noto24]}>{props.data.neutralization ? 'O' : 'X'}</Text>
-							</View>
-						</View>
-						<View style={[aidRequest.right_lowerMenu]}>
-							<View style={[aidRequest.right_middleMenu_title]}>
-								<Text style={[txt.noto24, {color: GRAY20}]}>구조장소</Text>
-							</View>
-							<View style={[aidRequest.right_middleMenu_content]}>
-								<Text style={[txt.noto24]}>{props.data.saved_point}</Text>
-							</View>
-						</View>
-					</View>
+					</TouchableOpacity>
 				</View>
 			</View>
 
