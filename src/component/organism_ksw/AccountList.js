@@ -35,6 +35,7 @@ export default AccountList = props => {
 
 	const [cliked, setClicked] = React.useState(accountState);
 
+	//계정 클릭 시 해당 박스 테두리 생성 함수
 	const makeBorder = index => {
 		const copy = [...cliked];
 		copy[index].state = !copy[index].state;

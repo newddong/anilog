@@ -414,6 +414,7 @@ export const temp_style = StyleSheet.create({
 		height: 496 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
+		backgroundColor: 'yellow',
 	},
 	userInfo: {
 		width: 654 * DP,
@@ -2230,12 +2231,10 @@ export const animalAdoption = StyleSheet.create({
 export const setPetInformation = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	inputForm: {
 		width: 654 * DP,
 		height: 472 * DP,
-		backgroundColor: '#A07A7A',
 		marginTop: 60 * DP,
 	},
 	inputForm_line_layout: {
@@ -2249,19 +2248,16 @@ export const setPetInformation = StyleSheet.create({
 	inputForm_line_left_text: {
 		width: 118 * DP,
 		height: 46 * DP,
-		backgroundColor: 'pink',
 		marginTop: 16 * DP,
 	},
 	datePicker: {
 		width: 290 * DP,
-		backgroundColor: '#B1B6F0',
 		flexDirection: 'row',
 	},
 	birthTime: {
 		width: 218 * DP,
 		height: 36 * DP,
 		marginLeft: 12 * DP,
-		backgroundColor: '#B1B6F0',
 		alignSelf: 'flex-end',
 	},
 	inputNoTitle: {

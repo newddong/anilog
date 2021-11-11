@@ -17,7 +17,7 @@ export default TabSelectFilled_Type1 = props => {
 
 	//선택된 Tab의 State를 True로 이외의 Tab은 False로
 	const onSelect = index => {
-		const copyState = [...selected];
+		const copyState = [...tabState];
 		for (let i = 0; i < copyState.length; i++) {
 			i == index ? (copyState[i].state = true) : (copyState[i].state = false);
 		}

@@ -6,34 +6,44 @@ import {Calendar48_Border} from '../atom/icon';
 import {APRI10} from 'Root/config/color';
 import Calendar from 'Root/test_sangwoo/calendar';
 export default DatePicker = props => {
-
 	const [btnStatus, setBtnStatus] = React.useState(false);
 	const [selectedDate, setSelectedDate] = React.useState('2021.07.10');
 
 	const onDateChange = date => {
 		setSelectedDate(date);
 		setBtnStatus(false);
-		props.onDateChange(date)
+		props.onDateChange(date);
 	};
 
 	const openCalendar = () => {
 		setBtnStatus(true);
 	};
 	return (
-		<View style={{height: 82 * DP}}>
-			<View style={{width: 520 * DP, borderBottomColor: APRI10, borderBottomWidth: 2 * DP, flexDirection: 'row', alignItems: 'center'}}>
+		<View
+			style={{
+				width: props.width * DP,
+				height: 82 * DP,
+			}}>
+			<View
+				style={{
+					borderBottomColor: APRI10,
+					borderBottomWidth: 2 * DP,
+					backgroundColor: 'yellow',
+					flexDirection: 'row',
+					alignItems: 'center',
+				}}>
 				<Text
 					style={[
 						txt.roboto28,
 						{
 							lineHeight: 44 * DP,
-							paddingLeft: 14 * DP,
+							paddingLeft: 24 * DP,
 							paddingVertical: 18 * DP, // Value와 최상위 View와의 paddingVertical 16px
 						},
 					]}>
 					{selectedDate}
 				</Text>
-				<TouchableOpacity onPress={openCalendar} style={{marginLeft: 294 * DP}}>
+				<TouchableOpacity onPress={openCalendar} style={{position: 'absolute', right: 15 * DP}}>
 					<Calendar48_Border />
 				</TouchableOpacity>
 			</View>
@@ -43,5 +53,6 @@ export default DatePicker = props => {
 };
 DatePicker.defaultProps = {
 	value: null,
-	onDateChange : (e) =>console.log(e)
+	width: 520, //전체 DatePicker의 너비
+	onDateChange: e => console.log(e),
 };
