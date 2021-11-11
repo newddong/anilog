@@ -414,6 +414,7 @@ export const temp_style = StyleSheet.create({
 		height: 496 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
+		backgroundColor: 'yellow',
 	},
 	userInfo: {
 		width: 654 * DP,
@@ -601,7 +602,6 @@ export const temp_style = StyleSheet.create({
 		flexDirection: 'column',
 		width: 94 * DP,
 		height: 94 * DP,
-		backgroundColor: '#CC6D6D',
 	},
 	editComment: {},
 	aidRequest: {
@@ -2232,12 +2232,10 @@ export const animalAdoption = StyleSheet.create({
 export const setPetInformation = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	inputForm: {
 		width: 654 * DP,
 		height: 472 * DP,
-		backgroundColor: '#A07A7A',
 		marginTop: 60 * DP,
 	},
 	inputForm_line_layout: {
@@ -2251,35 +2249,29 @@ export const setPetInformation = StyleSheet.create({
 	inputForm_line_left_text: {
 		width: 118 * DP,
 		height: 46 * DP,
-		backgroundColor: 'pink',
 		marginTop: 16 * DP,
 	},
 	datePicker: {
 		width: 290 * DP,
-		backgroundColor: '#B1B6F0',
 		flexDirection: 'row',
 	},
 	birthTime: {
 		width: 218 * DP,
 		height: 36 * DP,
 		marginLeft: 12 * DP,
-		backgroundColor: '#B1B6F0',
 		alignSelf: 'flex-end',
 	},
 	inputNoTitle: {
 		width: 156 * DP,
-		backgroundColor: '#B1B6F0',
 	},
 	kg: {
 		width: 68 * DP,
 		height: 46 * DP,
-		backgroundColor: '#B1B6F0',
 		alignSelf: 'center',
 		marginLeft: 16 * DP,
 	},
 	inputForm_text: {
 		width: 134 * DP,
-		backgroundColor: 'pink',
 	},
 	radioBoxForm: {
 		flexDirection: 'row',
@@ -2287,14 +2279,12 @@ export const setPetInformation = StyleSheet.create({
 	},
 	radioBox_right: {
 		width: 520 * DP,
-		height: 46 * DP,
-		marginLeft: 16 * DP,
-		backgroundColor: '#EDEDED',
+		height: 50 * DP,
+		marginLeft: 10 * DP,
 	},
 	radioBox_left: {
 		width: 118 * DP,
 		height: 46 * DP,
-		backgroundColor: '#EDEDED',
 	},
 });
 
@@ -3046,6 +3036,7 @@ export const feedList = StyleSheet.create({
 		position: 'absolute',
 		right: 30 * DP,
 		bottom: 40 * DP,
+		backgroundColor: 'red',
 	},
 });
 
@@ -3074,11 +3065,20 @@ export const feedCommentList = StyleSheet.create({
 		alignSelf: 'flex-start',
 	},
 	editComment: {
-		width: 750 * DP,
+		width: 694 * DP,
 		height: 108 * DP,
-		backgroundColor: '#D9A0A0',
+		flexDirection: 'row',
+		alignItems: 'center',
 		position: 'absolute',
+		backgroundColor: WHITE,
 		bottom: 0,
+	},
+	replyTextInput: {
+		width: 474 * DP,
+		height: 108 * DP,
+		marginLeft: 20 * DP,
+		fontSize: 28 * DP,
+		lineHeight: 44 * DP,
 	},
 	editComment_expanded: {
 		width: 750 * DP,
@@ -3287,11 +3287,26 @@ export const feedWrite = StyleSheet.create({
 		marginTop: 42 * DP,
 	},
 	urgentBtnContainer: {
-		position: 'absolute',
 		width: 158 * DP,
 		height: 332 * DP,
+		position: 'absolute',
 		right: 30 * DP,
 		bottom: 60 * DP,
+		justifyContent: 'flex-end',
+	},
+	urgentActionButton: {
+		width: 110 * DP,
+		height: 110 * DP,
+		alignSelf: 'flex-end',
+	},
+	urgentBtnItemContainer: {
+		width: 158 * DP,
+		height: 90 * DP,
+		borderRadius: 40 * DP,
+		marginBottom: 30 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: 'red',
 	},
 	petAccountList: {
 		width: 614 * DP,

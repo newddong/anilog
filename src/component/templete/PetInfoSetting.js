@@ -9,11 +9,12 @@ import AniButton from '../molecules/AniButton';
 import OnOffSwitch from '../molecules/OnOffSwitch';
 import PetImageLabel from '../molecules/PetImageLabel';
 import FamilyAccountList from '../organism_ksw/FamilyAccountList';
-import {btn_style, login_style, petInfoSetting, temp_style, temp_txt} from './style_templete';
+import {btn_style, login_style, petInfoSetting, temp_style} from './style_templete';
 
 export default PetInfoSetting = props => {
 	const navigation = useNavigation();
 	const petData = props.route.params;
+	console.log(petData);
 	return (
 		<ScrollView>
 			<View contentContainerStyle={[login_style.wrp_main, petInfoSetting.container]}>

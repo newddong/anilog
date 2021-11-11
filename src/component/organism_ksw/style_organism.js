@@ -73,7 +73,7 @@ export const organism_style = StyleSheet.create({
 	userDescriptionLabel: {
 		width: 674 * DP,
 		height: 134 * DP,
-		marginBottom: 40 * DP,
+		marginBottom: 20 * DP,
 		paddingHorizontal: 20 * DP,
 		paddingVertical: 10 * DP,
 	},

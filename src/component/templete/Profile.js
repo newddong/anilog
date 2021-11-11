@@ -2,8 +2,10 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, TouchableWithoutFeedback} from 'react-native';
 import {NORMAL, PET, SHELTER} from 'Root/i18n/msg';
+import {Write94} from '../atom/icon';
 import TabSelectFilled_Type2 from '../molecules/TabSelectFilled_Type2';
 import ProfileInfo from '../organism/ProfileInfo';
+import FeedFloatingButton from '../organism_ksw/FeedFloatingButton';
 import FeedThumbnailList from '../organism_ksw/FeedThumbnailList';
 import OwnerList from '../organism_ksw/OwnerList';
 import PetList from '../organism_ksw/PetList';
@@ -102,7 +104,7 @@ export default Profile = props => {
 			</View>
 			<TouchableWithoutFeedback onPress={moveToFeedWrite}>
 				<View style={[temp_style.floatingBtn, profile.floatingBtn]}>
-					<Text>FloatBtn</Text>
+					<Write94 />
 				</View>
 			</TouchableWithoutFeedback>
 		</View>
