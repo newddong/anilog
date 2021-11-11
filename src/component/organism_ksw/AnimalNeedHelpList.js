@@ -92,7 +92,9 @@ export default AnimalNeedHelpList = props => {
 						navigation.navigate('MissingAnimalDetail');
 					} else if (item.thumbnailData.status == 'reported') {
 						navigation.navigate('ReportDetail');
-					} else {
+					}
+					//다른 route가 있을 경우 else if 확장 할 것
+					else {
 					}
 				}}>
 				<AnimalNeedHelp data={item} />

@@ -52,6 +52,7 @@ export default MyStackNavigation = () => {
 	return (
 		<MyStack.Navigator initialRouteName="UserMenu">
 			<MyStack.Screen name="UserFeedList" component={FeedList} />
+			<MyStack.Screen name="UserFeeds" component={FavoriteFeeds} />
 			<MyStack.Screen name="HashFeedList" component={FeedList} />
 			<MyStack.Screen name="ProtectAnimalFeedList" component={FeedList} />
 			<MyStack.Screen name="UserTagFeedList" component={FeedList} />
@@ -88,6 +89,7 @@ export default MyStackNavigation = () => {
 			<MyStack.Screen name="FavoriteFeeds" component={FavoriteFeeds} />
 			<MyStack.Screen name="FavoriteFeedList" component={FeedList} />
 			<MyStack.Screen name="TagMeFeedList" component={FeedList} />
+			<MyStack.Screen name="TagMeFeeds" component={FavoriteFeeds} />
 
 			<MyStack.Screen name="AnimalProtectList" component={AnimalProtectList} />
 
