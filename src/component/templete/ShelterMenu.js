@@ -40,11 +40,11 @@ export default ShelterMenu = props => {
 	const moveToSaveAnimalRequest = () => {
 		navigation.push('SaveAnimalRequest');
 	};
-	const moveToUserFeedList = () => {
-		navigation.push('UserFeedList');
+	const moveToUserFeeds = () => {
+		navigation.push('UserFeeds');
 	};
-	const moveToTagMeFeedList = () => {
-		navigation.push('TagMeFeedList');
+	const moveToTagMeFeeds = () => {
+		navigation.push('TagMeFeeds');
 	};
 	const moveToShelterProtectRequests = () => {
 		navigation.push('ShelterProtectRequests');
@@ -132,10 +132,10 @@ export default ShelterMenu = props => {
 					</TouchableOpacity>
 				</View>
 				<View style={[shelterMenu.profileMenu3]}>
-					<TouchableOpacity onPress={moveToUserFeedList}>
+					<TouchableOpacity onPress={moveToUserFeeds}>
 						<Text>내 게시글</Text>
 					</TouchableOpacity>
-					<TouchableOpacity onPress={moveToTagMeFeedList}>
+					<TouchableOpacity onPress={moveToTagMeFeeds}>
 						<Text>나를 태그한 글</Text>
 					</TouchableOpacity>
 					<TouchableOpacity onPress={''}>

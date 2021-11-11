@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {login_style, searchFeed, temp_style, temp_txt} from './style_templete';
+import FeedThumbnailList from '../organism_ksw/FeedThumbnailList';
 
 export default SearchFeed = props => {
 	return (
@@ -29,7 +30,7 @@ export default SearchFeed = props => {
 			</View>
 			{/* FeedThumbnailList */}
 			<View style={[temp_style.feedThumbnailList, searchFeed.feedThumbnailList]}>
-				<Text>FeedThumbnailList</Text>
+				<FeedThumbnailList></FeedThumbnailList>
 			</View>
 		</View>
 	);

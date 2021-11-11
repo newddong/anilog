@@ -50,7 +50,7 @@ export default AnimalNeedHelpList = props => {
 				gender: 'female',
 				status: 'onNegotiation', // protected, missing, reported, onNegotiation, adoption_available
 			},
-			selected: false,
+			selected: true,
 		},
 		{
 			kind: null,
@@ -83,8 +83,18 @@ export default AnimalNeedHelpList = props => {
 	];
 
 	const renderItem = (item, index) => {
+		console.log('index=>' + item.thumbnailData.status);
 		return (
-			<TouchableOpacity style={[animalNeedHelpList.itemContainer]} onPress={() => navigation.push('AnimalProtectRequestDetail')}>
+			<TouchableOpacity
+				style={[animalNeedHelpList.itemContainer]}
+				onPress={() => {
+					if (item.thumbnailData.status == 'missing') {
+						navigation.navigate('MissingAnimalDetail');
+					} else if (item.thumbnailData.status == 'reported') {
+						navigation.navigate('ReportDetail');
+					} else {
+					}
+				}}>
 				<AnimalNeedHelp data={item} />
 			</TouchableOpacity>
 		);

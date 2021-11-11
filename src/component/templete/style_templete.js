@@ -588,8 +588,10 @@ export const temp_style = StyleSheet.create({
 	},
 	feedContent: {
 		width: 654 * DP,
-		height: 260 * DP,
-		backgroundColor: '#A07A7A',
+		// height: 260 * DP,
+		// backgroundColor: '#A07A7A',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	commentList: {
 		width: 654 * DP,
@@ -1002,7 +1004,7 @@ export const temp_style = StyleSheet.create({
 	},
 	rescueContentScroll_view: {
 		width: 654 * DP,
-		height: 1254 * DP,
+		// height: 1254 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#B3BADE',
@@ -3001,7 +3003,7 @@ export const missingAnimalDetail = StyleSheet.create({
 	poster: {
 		width: 618 * DP,
 		height: 872 * DP,
-		backgroundColor: WHITE,
+
 		marginTop: 33 * DP,
 	},
 	feedContent: {
@@ -3014,7 +3016,7 @@ export const missingAnimalDetail = StyleSheet.create({
 
 export const reportDetail = StyleSheet.create({
 	container: {
-		backgroundColor: '#ACC4D6',
+		// backgroundColor: '#ACC4D6',
 		alignItems: 'center',
 		flex: 1,
 	},

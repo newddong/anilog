@@ -1,7 +1,12 @@
 import React from 'react';
-import {Text, View, FlatList, ScrollView, LogBox} from 'react-native';
+import {Text, View, FlatList, ScrollView, LogBox, Image} from 'react-native';
 import {testArray} from 'Root/i18n/msg';
 import {login_style, missingAnimalDetail, temp_style} from './style_templete';
+import {styles} from '../atom/image/imageStyle';
+import SvgWrapper, {SvgWrap} from 'Screens/svgwrapper';
+import {Post_dog} from 'Asset/image';
+import FeedContent from '../organism/FeedContent';
+import CommentList from 'Root/screens/feed/home/post/commentlist';
 
 export default MissingAnimalDetail = props => {
 	const getFlat = item => {
@@ -21,11 +26,11 @@ export default MissingAnimalDetail = props => {
 			<View style={[login_style.wrp_main, missingAnimalDetail.container]}>
 				{/* Poster */}
 				<View style={[missingAnimalDetail.poster]}>
-					<Text>Poster</Text>
+					<SvgWrap svg={<Post_dog />} />
 				</View>
 				{/* (O)FeedContent */}
 				<View style={[temp_style.feedContent, missingAnimalDetail.feedContent]}>
-					<Text>(O)FeedContent</Text>
+					<FeedContent></FeedContent>
 				</View>
 				{/* (O)CommentList */}
 				<View style={[temp_style.commentList, missingAnimalDetail.commentList]}>

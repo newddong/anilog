@@ -76,8 +76,6 @@ export const MyprofileIcon = icon_myprofile;
 export const AnimalSavingIconFocused = icon_animal_saving_focused;
 export const AnimalSavingIcon = icon_animal_saving;
 
-
-
 export const DownBracketBlack = bracket_down_black;
 export const DownBracket = bracket_down;
 export const DownBracketGray = bracket_down_gray;
@@ -123,7 +121,6 @@ export const MessageIcon = icon_message;
 export const SettingIcon = icon_setting;
 export const PawIcon = icon_paw;
 
-
 import icon_hash from './icon_hash.svg';
 export const HashIcon = icon_hash;
 
@@ -157,8 +154,7 @@ export const CancelInput = icon_cancel_input;
 import icon_photolist from './icon_photolist.svg';
 export const PhotoListIcon = icon_photolist;
 
-
-//renewal 
+//renewal
 
 import icon_picture from './icon_picture.svg';
 export const PictureIcon = icon_picture;
@@ -204,3 +200,6 @@ export const Circle = circle;
 
 import logo from './anilog_logo.svg';
 export const Logo = logo;
+
+import post_dog from './post_dog.svg';
+export const Post_dog = post_dog;

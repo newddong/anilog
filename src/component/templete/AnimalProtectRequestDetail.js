@@ -76,14 +76,14 @@ export default AnimalProtectRequestDetail = props => {
 							btnStyle={'border'}
 							btnTitle={'임시보호 신청'}
 							titleFontStyle={30}
-							// onPress={() => navigation.push('ApplyProtectActivityA')}
+							onPress={() => navigation.push('ApplyProtectActivityA')}
 						/>
 						<AniButton
 							btnLayout={btn_w226}
 							btnStyle={'filled'}
 							btnTitle={'입양 신청'}
 							titleFontStyle={30}
-							// onPress={() => navigation.push('ApplyAnimalAdoptionA')}
+							onPress={() => navigation.push('ApplyAnimalAdoptionA')}
 						/>
 					</View>
 

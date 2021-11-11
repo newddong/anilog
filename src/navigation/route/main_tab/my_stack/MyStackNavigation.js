@@ -37,7 +37,7 @@ import WriteAidRequest from 'Templete/WriteAidRequest';
 import AidRequestManage from 'Templete/AidRequestManage';
 // import ProtectApplicant from "Templete/ProtectApplicant";
 import ProtectApplyForm from 'Templete/ProtectApplyForm';
-// import ShelterProtectRequests from "Templete/ShelterProtectRequests";
+import ShelterProtectRequests from 'Templete/ShelterProtectRequests';
 import AnimalFromShelter from 'Templete/AnimalFromShelter';
 import AdoptorInformation from 'Templete/AdoptorInformation';
 import ManageVolunteer from 'Templete/ManageVolunteer';
@@ -49,7 +49,7 @@ const MyStack = createStackNavigator();
 
 export default MyStackNavigation = () => {
 	return (
-		<MyStack.Navigator initialRouteName="UserMenu">
+		<MyStack.Navigator initialRouteName="ShelterMenu">
 			<MyStack.Screen name="UserFeedList" component={FeedList} />
 			<MyStack.Screen name="HashFeedList" component={FeedList} />
 			<MyStack.Screen name="ProtectAnimalFeedList" component={FeedList} />
@@ -111,7 +111,7 @@ export default MyStackNavigation = () => {
 			<MyStack.Screen name="AdoptorInformation" component={AdoptorInformation} />
 			<MyStack.Screen name="ManageShelterVolunteer" component={ManageVolunteer} />
 			<MyStack.Screen name="ShelterVolunteerForm" component={ApplicationFormVolunteer} />
-			{/* <MyStack.Screen name="ShelterProtectRequests" component={ShelterProtectRequests} /> */}
+			<MyStack.Screen name="ShelterProtectRequests" component={ShelterProtectRequests} />
 			<MyStack.Screen name="ProtectRequestManage" component={AnimalProtectRequestDetail} />
 
 			<MyStack.Screen name="AppliesRecord" component={AppliesRecord} />

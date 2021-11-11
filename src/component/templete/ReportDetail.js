@@ -1,8 +1,9 @@
 import React from 'react';
-import {FlatList, LogBox, ScrollView} from 'react-native';
+import {FlatList, LogBox, ScrollView, Image} from 'react-native';
 import {Text, View} from 'react-native';
 import {testArray} from 'Root/i18n/msg';
 import {login_style, reportDetail, temp_style} from './style_templete';
+import FeedContent from '../organism/FeedContent';
 
 export default ReportDetail = props => {
 	const getFlat = item => {
@@ -21,11 +22,16 @@ export default ReportDetail = props => {
 			<View style={[login_style.wrp_main, reportDetail.container]}>
 				{/* Img_square_750 */}
 				<View style={[temp_style.img_square_750, reportDetail.img_square_750]}>
-					<Text>Img_square_750</Text>
+					<Image
+						source={{
+							uri: 'https://cdn.mkhealth.co.kr/news/photo/202102/52163_52859_5928.jpg',
+						}}
+						style={[temp_style.img_square_750]}
+					/>
 				</View>
 				{/* (O)FeedContent */}
 				<View style={[temp_style.feedContent, reportDetail.feedContent]}>
-					<Text>(O)FeedContent</Text>
+					<FeedContent></FeedContent>
 				</View>
 				{/* (O)CommentList */}
 				<View style={[temp_style.commentList, reportDetail.commentList]}>
