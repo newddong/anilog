@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, Text, View, TouchableOpacity} from 'react-native';
 import {GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {Bracket48} from '../atom/icon';

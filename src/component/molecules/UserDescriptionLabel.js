@@ -5,6 +5,7 @@ import {APRI10, BLACK, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
+import {useNavigation} from '@react-navigation/core';
 
 export default UserDescriptionLabel = props => {
 	console.log(props);
@@ -31,13 +32,20 @@ export default UserDescriptionLabel = props => {
 		return () => {};
 	});
 
+	const navigation = useNavigation();
+	// UserProfile로 넘어가면서 user_id 전달
+	const moveToUserProfile = () => {
+		navigation.push('UserProfile', props.data.user_id);
+	};
+
 	const onClickLabel = () => {
 		props.onLabelClick(props.data.user_id);
 	};
 
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
-			<TouchableOpacity onPress={onClickLabel}>
+			{/* <TouchableOpacity onPress={onClickLabel}> */}
+			<TouchableOpacity onPress={moveToUserProfile}>
 				<Image source={{uri: props.data.img_uri}} style={styles.img_round_94} />
 			</TouchableOpacity>
 			<View style={{marginLeft: 30 * DP}}>
@@ -68,5 +76,6 @@ UserDescriptionLabel.defaultProps = {
 		img_uri: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
 		text_intro: 'Description',
 	},
-	onLabelClick: e => console.log(e),
+	// onLabelClick: e => console.log(e),
+	onLabelClick: e => consol1e.log(e),
 };
