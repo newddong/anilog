@@ -37,6 +37,7 @@ import AssignPetInfoA from 'Templete/AssignPetInfoA';
 import AssignPetInfoB from 'Templete/AssignPetInfoB';
 
 import MainTabNavigation from './main_tab/MainTabNavigation';
+import SearchTabNavigation from './search_tab/SearchTabNavigation';
 
 import {PIC_SELECTION} from 'Root/i18n/msg';
 
@@ -49,6 +50,7 @@ export default RootStackNavigation = () => {
 				<RootStack.Navigator initialRouteName="MainTab">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} />
+					<RootStack.Screen name="Search" component={SearchTabNavigation} />
 
 					<RootStack.Screen name="AgreementCheck" component={AgreementCheck} />
 					<RootStack.Screen name="UserAssignMobile" component={UserAssignMobile} />
