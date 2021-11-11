@@ -107,9 +107,6 @@ export default PetInfoSetting = props => {
 							<View style={[petInfoSetting.petProfileMenu.menuTitle]}>
 								<Text style={[txt.noto30b, {color: GRAY10}]}>계정 공개 여부 변경</Text>
 							</View>
-							<View style={[petInfoSetting.petProfileMenu.bracket50]}>
-								<NextMark />
-							</View>
 						</View>
 						<View style={[petInfoSetting.exposureSetting.privateSettingView]}>
 							<View style={[petInfoSetting.exposureSetting.privateSettingMsg]}>

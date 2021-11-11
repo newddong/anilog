@@ -44,12 +44,13 @@ import ManageVolunteer from 'Templete/ManageVolunteer';
 import ApplicationFormVolunteer from 'Templete/ApplicationFormVolunteer';
 import PhotoSelect from 'Root/component/templete/PhotoSelect';
 import AnimalProtectRequestDetail from 'Templete/AnimalProtectRequestDetail';
+import SelectAccount from 'Root/component/templete/SelectAccount';
 
 const MyStack = createStackNavigator();
 
 export default MyStackNavigation = () => {
 	return (
-		<MyStack.Navigator initialRouteName="ShelterMenu">
+		<MyStack.Navigator initialRouteName="UserMenu">
 			<MyStack.Screen name="UserFeedList" component={FeedList} />
 			<MyStack.Screen name="HashFeedList" component={FeedList} />
 			<MyStack.Screen name="ProtectAnimalFeedList" component={FeedList} />
@@ -76,6 +77,7 @@ export default MyStackNavigation = () => {
 			<MyStack.Screen name="VaccinationRecord" component={VaccinationRecord} />
 			<MyStack.Screen name="AddFamilyAccount" component={AddFamilyAccount} />
 			<MyStack.Screen name="AnimalAdoption" component={AnimalAdoption} />
+			<MyStack.Screen name="SelectAccount" component={SelectAccount} />
 
 			<MyStack.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
 			<MyStack.Screen name="AssignPetInfoA" component={AssignPetInfoA} />

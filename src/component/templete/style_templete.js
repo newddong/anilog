@@ -206,7 +206,6 @@ export const temp_style = StyleSheet.create({
 		height: 32 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#C3F2B5',
 	},
 	agreementCheckList: {
 		width: 654 * DP,
@@ -356,19 +355,16 @@ export const temp_style = StyleSheet.create({
 		height: 294 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#A07A7A',
 	},
 	profileNicknameChange: {
 		width: 654 * DP,
 		height: 380 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 	input24_changeUserProfileImage: {
 		width: 654 * DP,
 		height: 168 * DP,
-		backgroundColor: '#A3DCB2',
 	},
 	input30_changePetProfileImage: {
 		width: 654 * DP,
@@ -691,45 +687,34 @@ export const temp_style = StyleSheet.create({
 		height: 76 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#707070',
 	},
 	inputForm_assignPetProfileImage: {
 		width: 654 * DP,
 		height: 172 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEF4C9',
 	},
 	input30_assignPetProfileImage: {
 		width: 654 * DP,
 		height: 82 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#D3C9F4',
 	},
 	checkBox_assignPetProfileImage: {
 		width: 526 * DP,
 		height: 50 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#D3C9F4',
 	},
 	textMsg_assignPetInfo: {
 		width: 654 * DP,
 		height: 36 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#707070',
 	},
 	assignPetInfoA: {
 		width: 654 * DP,
 		height: 330 * DP,
-		backgroundColor: '#A07A7A',
 	},
 	assignPetInfoB: {
 		width: 654 * DP,
 		height: 224 * DP,
-		backgroundColor: '#A07A7A',
 	},
 	inputForm_assignPetInfo_line1: {
 		flexDirection: 'row',
@@ -752,17 +737,14 @@ export const temp_style = StyleSheet.create({
 	text_assignPetInfo: {
 		width: 118 * DP,
 		height: 46 * DP,
-		backgroundColor: '#E0A8A8',
 	},
 	dropdownSelect_assignPetInfo_depth1: {
 		width: 204 * DP,
 		height: 82 * DP,
-		backgroundColor: '#A9B0D5',
 	},
 	dropdownSelect_assignPetInfo_depth2: {
 		width: 292 * DP,
 		height: 82 * DP,
-		backgroundColor: '#A9B0D5',
 	},
 	feedMedia: {
 		width: 750 * DP,
@@ -812,7 +794,6 @@ export const temp_style = StyleSheet.create({
 	radioBox_assignPetInfo: {
 		width: 520 * DP,
 		height: 46 * DP,
-		backgroundColor: '#EDEDED',
 	},
 	btn_w226_assignPetInfo: {
 		flexDirection: 'row',
@@ -822,22 +803,18 @@ export const temp_style = StyleSheet.create({
 	datePicker_assignPetInfo_depth1: {
 		width: 290 * DP,
 		height: 82 * DP,
-		backgroundColor: '#B1B6F0',
 	},
 	text218_assignPetInfo: {
 		width: 218 * DP,
 		height: 36 * DP,
-		backgroundColor: '#B1B6F0',
 	},
 	inputNoTitle_assignPetInfo: {
 		width: 156 * DP,
 		height: 82 * DP,
-		backgroundColor: '#B1B6F0',
 	},
 	text68_assignPetInfo: {
 		width: 68 * DP,
 		height: 46 * DP,
-		backgroundColor: '#B1B6F0',
 	},
 	selectedMediaList_assignProtectAnimal: {
 		width: 654 * DP,
@@ -1787,8 +1764,8 @@ export const assignPetProfileImage_style = StyleSheet.create({
 		marginTop: 110 * DP,
 	},
 	checkBox: {
-		justifyContent: 'center',
-		alignItems: 'center',
+		flexDirection: 'row',
+
 		marginTop: 40 * DP,
 	},
 });
@@ -2205,7 +2182,6 @@ export const applicationFormVolunteer = StyleSheet.create({
 export const animalAdoption = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	congratulatory_message: {
 		width: 654 * DP,
@@ -2218,13 +2194,46 @@ export const animalAdoption = StyleSheet.create({
 		height: 834 * DP,
 		marginTop: 20 * DP,
 		marginBottom: 60 * DP,
-		backgroundColor: '#E2C6C6',
+		borderRadius: 46 * DP,
+		shadowColor: '#000000',
+		shadowOpacity: 0.27,
+		shadowRadius: 4.65,
+		shadowOffset: {
+			width: 1 * DP,
+			height: 2 * DP,
+		},
+		elevation: 2,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
+	instruction_text: {
+		width: 574 * DP,
+		height: 542 * DP,
+		alignItems: 'center',
+	},
+	text_step1: {
+		marginBottom: 40 * DP,
+		alignItems: 'center',
+	},
+	instruction_icon: {
+		width: 414 * DP,
+		height: 142 * DP,
+		marginTop: 40 * DP,
+		flexDirection: 'row',
+	},
+	instruction_icon_item: {
+		width: 126 * DP,
+		height: 142 * DP,
+		marginRight: 18 * DP,
+		alignItems: 'center',
+	},
+	instruction_icon_item_text: {
+		width: 126 * DP,
+		height: 74 * DP,
+		textAlign: 'center',
+	},
 	btn_w522: {
 		marginBottom: 40 * DP,
-		backgroundColor: WHITE,
 		alignSelf: 'center',
 	},
 });
@@ -2458,13 +2467,11 @@ export const vaccinationRecord = StyleSheet.create({
 		width: 654 * DP,
 		height: 876 * DP,
 		marginTop: 44 * DP,
-		backgroundColor: '#A07A7A',
 	},
 	vaccination_category: {
 		width: 654 * DP,
 		height: 268 * DP,
 		marginBottom: 2 * DP,
-		backgroundColor: '#E2F2DB',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -2477,18 +2484,15 @@ export const vaccinationRecord = StyleSheet.create({
 	dueDateText: {
 		width: 194 * DP,
 		height: 36 * DP,
-		backgroundColor: 'yellow',
 	},
 	dueDateSwitch: {
 		width: 80 * DP,
 		height: 36 * DP,
-		backgroundColor: 'pink',
 	},
 	guide_msg: {
 		width: 654 * DP,
 		height: 76 * DP,
-		marginTop: 50 * DP,
-		backgroundColor: 'pink',
+		marginVertical: 50 * DP,
 	},
 });
 
@@ -3156,15 +3160,12 @@ export const accountPicker = StyleSheet.create({
 
 export const selectAccount = StyleSheet.create({
 	container: {
-		backgroundColor: '#ACC4D6',
 		alignItems: 'center',
 		flex: 1,
 	},
 	accountList: {
 		marginTop: 32 * DP,
 		width: 654 * DP,
-		height: 1380 * DP,
-		backgroundColor: '#88BA88',
 	},
 });
 

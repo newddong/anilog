@@ -78,13 +78,13 @@ export const organism_style = StyleSheet.create({
 		paddingVertical: 10 * DP,
 	},
 	userDescriptionLabel_clicked: {
-		width: 674 * DP,
+		width: 654 * DP,
 		height: 134 * DP,
-		marginBottom: 40 * DP,
+		marginBottom: 20 * DP,
 		paddingHorizontal: 20 * DP,
 		paddingVertical: 10 * DP,
 		borderColor: APRI10,
-		borderWidth: 5 * DP,
+		borderWidth: 2 * DP,
 		borderRadius: 30 * DP,
 	},
 	cross46: {
@@ -511,7 +511,6 @@ export const addressInput = StyleSheet.create({
 export const vaccination = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		backgroundColor: GRAY30,
 	},
 	insideContainer: {
 		marginVertical: 40 * DP,
@@ -533,21 +532,18 @@ export const vaccination = StyleSheet.create({
 		marginLeft: 26 * DP,
 		alignSelf: 'center',
 		alignItems: 'center',
-		backgroundColor: 'lightgray',
 	},
 	itemContainer: {
 		width: 654 * DP,
 		height: 46 * DP,
 		marginTop: 20 * DP,
 		alignSelf: 'center',
-		backgroundColor: 'yellow',
 		flexDirection: 'row',
 	},
 	item_name: {
 		width: 216 * DP,
 		height: 46 * DP,
 		marginRight: 14 * DP,
-		backgroundColor: 'pink',
 	},
 	current_dueDate: {
 		width: 186 * DP,
@@ -566,7 +562,6 @@ export const vaccination = StyleSheet.create({
 		backgroundColor: GRAY20,
 		alignSelf: 'center',
 		alignItems: 'center',
-		backgroundColor: 'lightgray',
 	},
 });
 

@@ -7,7 +7,7 @@ import {APRI10} from 'Root/config/color';
 import Calendar from 'Root/test_sangwoo/calendar';
 export default DatePicker = props => {
 	const [btnStatus, setBtnStatus] = React.useState(false);
-	const [selectedDate, setSelectedDate] = React.useState('2021.07.10');
+	const [selectedDate, setSelectedDate] = React.useState(props.defaultDate);
 
 	const onDateChange = date => {
 		setSelectedDate(date);
@@ -55,4 +55,5 @@ DatePicker.defaultProps = {
 	value: null,
 	width: 520, //전체 DatePicker의 너비
 	onDateChange: e => console.log(e),
+	defaultDate: '2021.05.01',
 };

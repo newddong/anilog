@@ -1,10 +1,15 @@
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
-import {APRI10} from 'Root/config/color';
+import {APRI10, GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
+import {btn_w522} from '../atom/btn/btn_style';
+import {Paw48_APRI10, Paw62_APRI10, Paw62_Mixed, Paw62_YELL20} from '../atom/icon';
+import AniButton from '../molecules/AniButton';
 import {login_style, btn_style, animalAdoption} from './style_templete';
 
 export default AnimalAdoption = props => {
+	const navigation = useNavigation();
 	return (
 		<ScrollView>
 			<View style={[login_style.wrp_main, animalAdoption.container]}>
@@ -15,15 +20,63 @@ export default AnimalAdoption = props => {
 				</View>
 				{/* Instruction */}
 				<View style={[animalAdoption.instruction]}>
-					<Text>Instruction</Text>
+					<View style={[animalAdoption.instruction_text]}>
+						<View style={[animalAdoption.text_step1]}>
+							<Text style={[txt.noto24b, {color: GRAY20}]}>임시보호자가 입양을 하게 된 경우</Text>
+							<Text style={[txt.noto24, {textAlign: 'center'}]}>
+								본 동물의 계정은 현재와 같이 계속 유지가 되고, 임시보호 아이콘이 일반 반려동물의 색으로 변하게 됩니다.
+							</Text>
+						</View>
+						<View style={[animalAdoption.text_step1]}>
+							<Text style={[txt.noto24b, {color: GRAY20}]}>입양자가 애니로그 계정이 있는 경우</Text>
+							<Text style={[txt.noto24, {textAlign: 'center'}]}>
+								본 동물의 계정은 유지가 되지만 더 이상의 글쓰기는 불가합니다. 임시보호 아이콘에서 입양완료 아이콘으로 변하게 되고, 프로필 메뉴에
+								입양자의 계정이 뜹니다. 계정을 비공개로 돌릴 수도 있습니다.
+							</Text>
+						</View>
+						<View style={[animalAdoption.text_step1]}>
+							<Text style={[txt.noto24b, {color: GRAY20}]}>입양자가 애니로그 계정이 없는 경우</Text>
+							<Text style={[txt.noto24, {textAlign: 'center'}]}>
+								프로필 메뉴에 입양자의 계정이 없고, 다른 변경사항들은 '입양자가 애니로그 계정이 있는 경우'와 같습니다.
+							</Text>
+						</View>
+					</View>
+					<View style={[animalAdoption.instruction_icon]}>
+						<View style={[animalAdoption.instruction_icon_item]}>
+							<Paw62_APRI10 />
+							<Text style={[txt.noto20, animalAdoption.instruction_icon_item_text]}>일반 반려동물 아이콘</Text>
+						</View>
+						<View style={[animalAdoption.instruction_icon_item]}>
+							<Paw62_YELL20 />
+							<Text style={[txt.noto20, animalAdoption.instruction_icon_item_text]}>임시 보호동물 아이콘</Text>
+						</View>
+						<View style={[animalAdoption.instruction_icon_item]}>
+							<Paw62_Mixed />
+							<Text style={[txt.noto20, animalAdoption.instruction_icon_item_text]}>입양완료 아이콘</Text>
+						</View>
+					</View>
 				</View>
-				{/* btn_w522 */}
+				{/* 입양 */}
 				<View style={[btn_style.btn_w522, animalAdoption.btn_w522]}>
-					<Text>(A)btn_w522</Text>
+					<AniButton
+						btnTitle={'입양'}
+						btnStyle={'filled'}
+						btnTheme={'shadow'}
+						btnLayout={btn_w522}
+						titleFontStyle={32}
+						onPress={() => navigation.push('SelectAccount')}
+					/>
 				</View>
-				{/* btn_w522 */}
+				{/* 임시보호자 입양*/}
 				<View style={[btn_style.btn_w522, animalAdoption.btn_w522]}>
-					<Text>(A)btn_w522</Text>
+					<AniButton
+						btnTitle={'임시보호자 입양'}
+						btnStyle={'border'}
+						btnTheme={'shadow'}
+						btnLayout={btn_w522}
+						titleFontStyle={32}
+						onPress={() => alert('임보자가 입양')}
+					/>
 				</View>
 			</View>
 		</ScrollView>

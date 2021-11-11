@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import AccountList from '../organism_ksw/AccountList';
 import {login_style, selectAccount} from './style_templete';
 
 export default SelectAccount = props => {
@@ -7,7 +8,7 @@ export default SelectAccount = props => {
 		<View style={[login_style.wrp_main, selectAccount.container]}>
 			{/* AccountList */}
 			<View style={[selectAccount.accountList]}>
-				<Text>AccountList</Text>
+				<AccountList />
 			</View>
 		</View>
 	);
