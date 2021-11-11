@@ -51,7 +51,7 @@ export default MyStackNavigation = () => {
 	return (
 		<MyStack.Navigator initialRouteName="ShelterMenu">
 			<MyStack.Screen name="UserFeedList" component={FeedList} />
-			<MyStack.Screen name="UserFeedList" component={FavoriteFeeds} />
+			<MyStack.Screen name="UserFeeds" component={FavoriteFeeds} />
 			<MyStack.Screen name="HashFeedList" component={FeedList} />
 			<MyStack.Screen name="ProtectAnimalFeedList" component={FeedList} />
 			<MyStack.Screen name="UserTagFeedList" component={FeedList} />
