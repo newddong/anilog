@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View, TouchableWithoutFeedback, FlatList} from 'react-native';
+import {Write94} from '../atom/icon';
 import Feed from '../organism/Feed';
 import {feedList, login_style, missingAnimalDetail, temp_style} from './style_templete';
 
@@ -24,7 +25,7 @@ export default FeedList = props => {
 			{/* FloatButton */}
 			<TouchableWithoutFeedback onPress={moveToFeedWrite}>
 				<View style={[temp_style.floatingBtn, feedList.floatingBtn]}>
-					<Text>Float Btn</Text>
+					<Write94 />
 				</View>
 			</TouchableWithoutFeedback>
 		</View>

@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {GRAY10, GRAY20} from 'Root/config/color';
 import DP from 'Root/config/dp';
 
 export const organism_style = StyleSheet.create({
@@ -393,8 +394,40 @@ export const profileInfo_style = StyleSheet.create({
 	},
 });
 
-export const parentComment_style = StyleSheet.create({
+export const parentComment = StyleSheet.create({
 	img_square_round_574: {
 		marginTop: 20 * DP,
+	},
+	likeReplyButton: {
+		width: 222 * DP,
+		height: 34 * DP,
+		marginTop: 20 * DP,
+		flexDirection: 'row',
+		alignItems: 'center',
+		alignSelf: 'flex-end',
+	},
+	heart30: {
+		width: 30 * DP,
+		height: 30 * DP,
+		backgroundColor: 'lightgray',
+	},
+	likeCount: {
+		width: 50 * DP,
+		height: 30 * DP,
+		marginLeft: 12 * DP,
+	},
+	likeCountText: {
+		color: GRAY10,
+		textAlignVertical: 'center',
+		textAlign: 'center',
+		lineHeight: 30 * DP,
+	},
+	writeComment: {
+		width: 130 * DP,
+		height: 34 * DP,
+	},
+	writeCommentText: {
+		color: GRAY20,
+		includeFontPadding: false,
 	},
 });

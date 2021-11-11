@@ -68,6 +68,7 @@ const Calendar = props => {
 	};
 
 	return (
+		//달력 모달 View 부분
 		<Modal isVisible={props.modalOn} avoidKeyboard={true} transparent={true} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
 			<View style={styles.outside}>
 				<View style={styles.headerCont}>

@@ -1,5 +1,9 @@
 import React from 'react';
 import {ScrollView, Text, TouchableOpacity, View, TouchableWithoutFeedback} from 'react-native';
+import {WHITE} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
+import {Urgent_Write1, Urgent_Write2} from '../atom/icon';
+import CommentList from '../organism_ksw/CommentList';
 import {btn_style, feedWrite, login_style, temp_style} from './style_templete';
 
 export default FeedWrite = props => {
@@ -7,6 +11,7 @@ export default FeedWrite = props => {
 	const [showUrgentBtns, setShowUrgentBtns] = React.useState(true); //긴급버튼목록
 	const [showLostAnimalForm, setShowLostAnimalForm] = React.useState(false); //실종버툰
 	const [showReportForm, setShowRepotForm] = React.useState(false); //제보버튼
+	const [showActionButton, setShowActionButton] = React.useState(false); // 긴급게시(하얀버전) 클릭 시 - 실종/제보 버튼 출력 Boolean
 
 	React.useEffect(() => {
 		// 실종버튼, 제보버튼, pet목록 출력 기능이 작동 중이지 않을 때는 긴급버튼목록이 출력
@@ -14,10 +19,14 @@ export default FeedWrite = props => {
 	}, [showLostAnimalForm, showReportForm]);
 
 	const moveToFeedReportWrite = () => {
-		props.navigation.push('FeedReportWrite', {title: '제보 게시물'});
+		// props.navigation.push('FeedReportWrite', {title: '제보 게시물'});
+		// ㄴ 템플릿 간의 이동이 아닌 FeedWrite내에서의 Write모드 이동이므로 Navigate는 사용안함
+		setShowRepotForm(true);
 	};
 	const moveToFeedMissingWrite = () => {
-		props.navigation.push('FeedMissingWrite', {title: '실종 게시물'});
+		setShowLostAnimalForm(true);
+		// props.navigation.push('FeedMissingWrite', {title: '실종 게시물'});
+		// ㄴ 템플릿 간의 이동이 아닌 FeedWrite내에서의 Write모드 이동이므로 Navigate는 사용안함
 	};
 	const moveToMultiPhotoSelect = () => {
 		props.navigation.push('MultiPhotoSelect');
@@ -197,14 +206,26 @@ export default FeedWrite = props => {
 				<Text>{showReportForm ? 'showReportForm' : false}</Text>
 			</View>
 			{setWriteModeState()}
+			<CommentList />
 			{/* 긴급 게시물 관련 버튼 컨테이너 */}
 			{showUrgentBtns ? (
 				<View style={[temp_style.floatingBtn, feedWrite.urgentBtnContainer]}>
-					<TouchableWithoutFeedback onPress={moveToFeedMissingWrite}>
-						<Text>실종(클릭)</Text>
-					</TouchableWithoutFeedback>
-					<TouchableWithoutFeedback onPress={moveToFeedReportWrite}>
-						<Text>제보(클릭)</Text>
+					{showActionButton ? (
+						<View>
+							<View style={[feedWrite.urgentBtnItemContainer]}>
+								<TouchableWithoutFeedback onPress={moveToFeedMissingWrite}>
+									<Text style={[txt.noto32, {color: WHITE}]}>실종</Text>
+								</TouchableWithoutFeedback>
+							</View>
+							<View style={[feedWrite.urgentBtnItemContainer]}>
+								<TouchableWithoutFeedback onPress={moveToFeedReportWrite}>
+									<Text style={[txt.noto32, {color: WHITE}]}>제보</Text>
+								</TouchableWithoutFeedback>
+							</View>
+						</View>
+					) : null}
+					<TouchableWithoutFeedback onPress={() => setShowActionButton(!showActionButton)}>
+						<View style={[feedWrite.urgentActionButton]}>{showActionButton ? <Urgent_Write2 /> : <Urgent_Write1 />}</View>
 					</TouchableWithoutFeedback>
 				</View>
 			) : (
