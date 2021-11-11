@@ -882,30 +882,26 @@ export const temp_style = StyleSheet.create({
 		alignItems: 'center',
 	},
 	selectstat_view: {
-		width: 750 * DP,
+		width: 654 * DP,
 		height: 100 * DP,
-		alignItems: 'center',
-		backgroundColor: '#ACC4D6',
 	},
 	selectstat: {
 		flexDirection: 'row',
 		width: 654 * DP,
 		height: 42 * DP,
-		backgroundColor: '#B5EAEC',
 	},
 	textBtn: {
 		width: 120 * DP,
 		height: 42 * DP,
 		alignItems: 'center',
-		backgroundColor: '#D9F5CD',
 	},
 	vertical_stick: {
-		borderRightColor: '#FF0000',
 		borderRightWidth: 2 * DP,
 	},
 	AnimalNeedHelpList: {
 		width: 654 * DP,
 		// height: 1324 * DP,
+		marginTop: 40 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 		// backgroundColor: '#F2C2C2',
@@ -918,7 +914,6 @@ export const temp_style = StyleSheet.create({
 	},
 	baseFlatList: {
 		width: 654 * DP,
-		height: 1324 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -1858,7 +1853,7 @@ export const selectstat_view_style = StyleSheet.create({
 
 export const baseInfo_style = StyleSheet.create({
 	list: {
-		marginTop: 40 * DP,
+		marginTop: 15 * DP,
 	},
 	detail: {
 		marginTop: 40 * DP,
@@ -3449,5 +3444,15 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 	floatingBtnAapply: {
 		position: 'absolute',
 		bottom: 0 * DP,
+	},
+});
+
+export const animalProtectList = StyleSheet.create({
+	title: {
+		width: 654 * DP,
+		height: 35 * DP,
+		marginTop: 30 * DP,
+		alignSelf: 'flex-start',
+		marginBottom: 21 * DP,
 	},
 });

@@ -991,14 +991,7 @@ export const animalInfo = StyleSheet.create({
 export const animalInfoList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		height: 723 * DP,
-		backgroundColor: 'pink',
-	},
-	title: {
-		width: 177 * DP,
-		height: 35 * DP,
-		marginBottom: 45 * DP,
-		backgroundColor: 'lightcyan',
+		// height: 723 * DP,
 	},
 	itemContainer: {
 		width: 654 * DP,
@@ -1201,5 +1194,42 @@ export const userAccount = StyleSheet.create({
 	followingBtnContainer_noneCheckBox: {
 		justifyContent: 'center',
 		marginLeft: 100 * DP,
+	},
+});
+
+export const selectStat = StyleSheet.create({
+	container: {
+		width: 654 * DP,
+		height: 94 * DP,
+		alignItems: 'center',
+		borderBottomColor: GRAY30,
+		borderBottomWidth: 2 * DP,
+		flexDirection: 'row',
+	},
+	selectstat_view: {
+		width: 750 * DP,
+		height: 100 * DP,
+		alignItems: 'center',
+	},
+	rightContainer: {
+		flexDirection: 'row',
+		position: 'absolute',
+		right: 0,
+	},
+	selectstat: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 42 * DP,
+	},
+	textBtn: {
+		width: 120 * DP,
+		height: 42 * DP,
+		alignItems: 'center',
+	},
+	vertical_stick: {
+		width: 2,
+		height: 34 * DP,
+		alignSelf: 'center',
+		backgroundColor: APRI10,
 	},
 });

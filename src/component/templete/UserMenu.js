@@ -27,26 +27,26 @@ export default UserMenu = props => {
 							<ProfileImageLarge194 img_uri={'https://blog.kakaocdn.net/dn/bPLim5/btq6BEqY2Tt/LFOIUbaauHk4IB2YOmzxA0/img.jpg'} />
 						</View>
 
-						{/* 2번째 세로 view */}
+						{/* UserProfile 정보 */}
 						<View>
 							{/* User_id */}
 							<View style={[userMenu_style.user_id]}>
 								<Text style={[txt.roboto36b]}>User_id</Text>
 							</View>
-							{/* Contents */}
+							{/* User 상태 메시지 */}
 							<View style={[userMenu_style.contents]}>
 								<Text style={[txt.noto24, {color: GRAY10}]}>우리 귀요미 쥬쥬랑 죠죠를 소개합니당 애교 덩어리 쥬쥬{'&'}시크 존멋탱 죠죠</Text>
 							</View>
 						</View>
 					</View>
 
-					{/* (O)SocialInfoB - 3items */}
+					{/* 업로드 팔로워 팔로잉 */}
 					<View style={[userMenu_style.socialInfoB]}>
 						{/* <Text>(O)SocialInfoB - 3items</Text> */}
 						<SocialInfoB />
 					</View>
 
-					{/* btn_w280_view */}
+					{/* 내 정보 수정 버튼*/}
 					<View style={[userMenu_style.btn_w280_view]}>
 						{/* btn_w280_view */}
 						<View style={[userMenu_style.btn_w280]}>
@@ -60,7 +60,7 @@ export default UserMenu = props => {
 							/>
 						</View>
 
-						{/* btn_w280_view */}
+						{/* 나의 반려동물 버튼 */}
 						<View style={[userMenu_style.btn_w280]}>
 							<TouchableOpacity onPress={() => navigation.push('UserInfoSetting')}>
 								<AniButton btnLayout={btn_w280} btnStyle={'border'} btnTheme={'gray'} btnTitle={'나의 반려동물'} titleFontStyle={24} />
@@ -69,7 +69,7 @@ export default UserMenu = props => {
 					</View>
 				</View>
 
-				{/* step2 */}
+				{/* UserMenu Page 하단 각종 메뉴는 ProfileMenu 안에 존재 */}
 				<View style={[temp_style.userMenu_step2, userMenu_style.horizontalLine]}>
 					<ProfileMenu />
 				</View>

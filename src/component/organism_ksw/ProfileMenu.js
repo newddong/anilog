@@ -83,7 +83,7 @@ export default ProfileMenu = props => {
 								<View style={[profileMenu.item_text]}>
 									<Text style={[txt.noto24, {color: GRAY10}]}>내 게시글</Text>
 								</View>
-								<TouchableOpacity onPress={() => navigation.push('UserFeedList')} style={[profileMenu.item_bracket]}>
+								<TouchableOpacity onPress={() => navigation.push('UserFeeds')} style={[profileMenu.item_bracket]}>
 									<NextMark />
 								</TouchableOpacity>
 							</View>
@@ -92,7 +92,7 @@ export default ProfileMenu = props => {
 								<View style={[profileMenu.item_text]}>
 									<Text style={[txt.noto24, {color: GRAY10}]}>나를 태그한 글</Text>
 								</View>
-								<TouchableOpacity onPress={() => navigation.push('TagMeFeedList')} style={[profileMenu.item_bracket]}>
+								<TouchableOpacity onPress={() => navigation.push('TagMeFeeds')} style={[profileMenu.item_bracket]}>
 									<NextMark />
 								</TouchableOpacity>
 							</View>

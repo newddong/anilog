@@ -33,21 +33,9 @@ export default AnimalInfoList = props => {
 
 	return (
 		<View style={[animalInfoList.container]}>
-			<View style={[animalInfoList.title]}>
-				<Text>Title</Text>
-			</View>
 			<FlatList data={testData} renderItem={({item, index}) => renderItem(item, index)} />
 		</View>
 	);
-};
-
-AnimalInfoList.defaultProps = {
-	data: {
-		petName: '카아르',
-		kind: '개냥이',
-		breed: '시고르자브종',
-		duration: 25,
-	},
 };
 
 // PetImageLabel.defaultProps = {
