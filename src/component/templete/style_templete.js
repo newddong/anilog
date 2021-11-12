@@ -477,7 +477,7 @@ export const temp_style = StyleSheet.create({
 	},
 	feedThumbnailList: {
 		width: 750 * DP,
-		height: 1032 * DP,
+		// height: 1032 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -908,7 +908,7 @@ export const temp_style = StyleSheet.create({
 	},
 	FeedThumbnailList: {
 		width: 750 * DP,
-		height: 1324 * DP,
+		// height: 1324 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -3406,7 +3406,7 @@ export const profile = StyleSheet.create({
 		backgroundColor: 'yellow',
 	},
 	feedThumbNailList: {
-		backgroundColor: '#96A8B5',
+		backgroundColor: '#FFF',
 		height: 2770 * DP,
 	},
 	floatingBtn: {

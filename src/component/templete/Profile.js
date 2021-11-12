@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, TouchableWithoutFeedback} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {NORMAL, PET, SHELTER} from 'Root/i18n/msg';
 import {Write94} from '../atom/icon';
 import TabSelectFilled_Type2 from '../molecules/TabSelectFilled_Type2';
@@ -68,6 +69,7 @@ export default Profile = props => {
 		}
 	};
 	const getThumbnailList = () => {
+		// 0, 1,2로 구분하는 것이 아닌 의미를 부여한 상수 이름으로 추후에 변경 할 것
 		if (tabMenuSelected == 0) {
 			//피드
 			return <FeedThumbnailList onClickThumnail={() => navigation.push('UserFeedList')} />;
@@ -100,7 +102,11 @@ export default Profile = props => {
 			</View>
 			{showList()}
 			<View>
-				<View style={[temp_style.feedThumbnailList, profile.feedThumbNailList]}>{getThumbnailList()}</View>
+				<ScrollView horizontal={false} style={{width: '100%', height: '100%'}}>
+					<ScrollView horizontal={true} style={{width: '100%', height: '100%'}}>
+						<View style={[temp_style.feedThumbnailList, profile.feedThumbNailList]}>{getThumbnailList()}</View>
+					</ScrollView>
+				</ScrollView>
 			</View>
 			<TouchableWithoutFeedback onPress={moveToFeedWrite}>
 				<View style={[temp_style.floatingBtn, profile.floatingBtn]}>
