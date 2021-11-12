@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
 	MAINCOLOR,
 	LINK,
@@ -573,7 +573,7 @@ export const temp_style = StyleSheet.create({
 	},
 	mediaSelect: {
 		width: 750 * DP,
-		height: 674 * DP,
+		minHeight: 674 * DP,
 		backgroundColor: GRAY20,
 	},
 	inputWithSelect: {
@@ -3395,7 +3395,7 @@ export const feedWrite = StyleSheet.create({
 });
 
 export const profile = StyleSheet.create({
-	container: {flex: 1},
+	container: { flex: 1 },
 	profileInfo: {
 		width: 750 * DP,
 		height: 416 * DP,

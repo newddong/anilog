@@ -1,17 +1,17 @@
 import React from 'react';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
-import {txt} from 'Root/config/textstyle';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { txt } from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
-import {Check50, ImageList48, VideoPlay48} from '../atom/icon';
-import {styles} from '../atom/image/imageStyle';
-import {BLACK, RED10, WHITE} from 'Root/config/color';
+import { Check50, ImageList48, VideoPlay48 } from '../atom/icon';
+import { styles } from '../atom/image/imageStyle';
+import { BLACK, RED10, WHITE } from 'Root/config/color';
 
 export default FeedThumbnail = props => {
 	const [selected, setSelected] = React.useState(false);
 
 	const onSelect = () => {
 		props.onSelect(props.data.feed_id);
-		// setSelected(!selected);
+		setSelected(!selected);
 	};
 
 	const getFeedIcon = () => {
@@ -26,9 +26,9 @@ export default FeedThumbnail = props => {
 	return (
 		<TouchableOpacity onPress={onSelect}>
 			{/* Select된 상태일 때 불투명도 40% 적용 및 배경색  Black */}
-			<View style={selected ? {opacity: 0.4, backgroundColor: BLACK} : false}>
-				<Image source={{uri: props.img_uri}} style={styles.img_square_246} />
-				<View style={{position: 'absolute', top: 20 * DP, left: 20 * DP}}>{getFeedIcon()}</View>
+			<View style={selected ? { opacity: 0.4, backgroundColor: BLACK } : false}>
+				<Image source={{ uri: props.img_uri }} style={styles.img_square_246} />
+				<View style={{ position: 'absolute', top: 20 * DP, left: 20 * DP }}>{getFeedIcon()}</View>
 			</View>
 			{props.data.alert_title != false || props.data.alert_title != undefined ? (
 				<View
@@ -42,13 +42,13 @@ export default FeedThumbnail = props => {
 						right: 0,
 						bottom: 0,
 					}}>
-					<Text style={[txt.noto24b, {width: 124 * DP, lineHeight: 36 * DP, color: WHITE}]}>{props.data.alert_title}</Text>
+					<Text style={[txt.noto24b, { width: 124 * DP, lineHeight: 36 * DP, color: WHITE }]}>{props.data.alert_title}</Text>
 				</View>
 			) : (
 				false
 			)}
 			{selected ? (
-				<View style={{position: 'absolute', top: 14 * DP, right: 10 * DP}}>
+				<View style={{ position: 'absolute', top: 14 * DP, right: 10 * DP }}>
 					<Check50 />
 				</View>
 			) : (
