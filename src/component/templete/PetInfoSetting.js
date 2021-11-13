@@ -14,7 +14,6 @@ import {btn_style, login_style, petInfoSetting, temp_style} from './style_temple
 export default PetInfoSetting = props => {
 	const navigation = useNavigation();
 	const petData = props.route.params;
-	console.log(petData);
 	return (
 		<ScrollView>
 			<View contentContainerStyle={[login_style.wrp_main, petInfoSetting.container]}>

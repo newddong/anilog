@@ -1,14 +1,14 @@
 import React from 'react';
-import {Text, View, FlatList, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 import {btn_w108} from '../atom/btn/btn_style';
-import {Check50} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
+import CheckBox from '../molecules/CheckBox';
 import HashLabel from '../molecules/HashLabel';
 import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
 import {userAccount} from './style_organism';
 
 export default UserAccount = props => {
-	const [checkBox, setCheckBox] = React.useState(false);
+	const [followState, setFollowState] = React.useState(true);
 
 	const getLabel = () => {
 		if (props.data.type == 'user') {
@@ -22,17 +22,31 @@ export default UserAccount = props => {
 		}
 	};
 
+	//팔로우 버튼 클릭
+	const onClickFollow = () => {
+		setFollowState(!followState);
+		props.onFollowBtnClick(followState);
+	};
+
 	return (
 		<View style={[userAccount.container]}>
-			{checkBox ? (
+			{/* CheckBox */}
+			{props.checkBoxMode ? (
 				<View style={[userAccount.checkBox]}>
-					<Check50 />
+					<CheckBox
+						state={props.data.checkBoxState}
+						onCheck={() => props.onCheckBox(props.data.type == 'hash' ? props.data.keyword : props.data.user_nickname)}
+					/>
 				</View>
 			) : null}
-
+			{/* UserLabel */}
 			<View style={[userAccount.userProfileContainer]}>{getLabel()}</View>
-			<View style={[checkBox ? userAccount.followingBtnContainer : userAccount.followingBtnContainer_noneCheckBox]}>
-				<AniButton btnTitle={'팔로잉'} btnTheme={'shadow'} btnStyle={'filled'} btnLayout={btn_w108} titleFontStyle={24} />
+			<View onPress={onClickFollow} style={[props.checkBoxMode ? userAccount.followingBtnContainer : userAccount.followingBtnContainer_noneCheckBox]}>
+				{followState ? (
+					<AniButton btnTitle={'팔로잉'} btnTheme={'shadow'} btnStyle={'border'} btnLayout={btn_w108} titleFontStyle={24} onPress={onClickFollow} />
+				) : (
+					<AniButton btnTitle={'팔로우'} btnTheme={'shadow'} btnStyle={'filled'} btnLayout={btn_w108} titleFontStyle={24} onPress={onClickFollow} />
+				)}
 			</View>
 		</View>
 	);
@@ -40,16 +54,11 @@ export default UserAccount = props => {
 
 UserAccount.defaultProps = {
 	onLabelClick: e => console.log(e),
+	onFollowBtnClick: e => console.log(e),
+	onCheckBox: e => console.log(e),
+	checkBoxMode: false,
+	checkBoxState: false,
 };
-// UserDescriptionLabel.defaultProps = {
-// 	data: {
-// 		user_id: 'Default id',
-// 		user_nickname: 'user_nickname',
-// 		user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-// 		text_intro: 'Description',
-// 	},
-// 	onLabelClick: e => console.log(e),
-// };
 
 // HashLabel.defaultProps = {
 // 	keyword: '#KEYWORD',

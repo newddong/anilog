@@ -2501,14 +2501,14 @@ export const feedListForHashTag = StyleSheet.create({
 		alignItems: 'center',
 	},
 	hashLabel: {
-		width: 702 * DP,
-		height: 150 * DP,
+		width: 622 * DP,
+		height: 144 * DP,
 		marginTop: 12 * DP,
 		borderWidth: 2 * DP,
 		borderRadius: 40 * DP,
+		paddingLeft: 40 * DP,
 		borderColor: APRI10,
 		justifyContent: 'center',
-		alignItems: 'center',
 	},
 	postCategory: {
 		width: 346 * DP,
@@ -3185,6 +3185,10 @@ export const manageVolunteer = StyleSheet.create({
 	volunteerList: {
 		width: 654 * DP,
 	},
+	previous_volunteerList: {
+		width: 654 * DP,
+		height: 500 * DP,
+	},
 	title: {
 		height: 35 * DP,
 		marginTop: 40 * DP,
@@ -3454,5 +3458,16 @@ export const animalProtectList = StyleSheet.create({
 		marginTop: 30 * DP,
 		alignSelf: 'flex-start',
 		marginBottom: 21 * DP,
+	},
+});
+
+export const saveFavorite = StyleSheet.create({
+	accountHashList: {
+		width: 654 * DP,
+		// height: 1324 * DP,
+		marginTop: 30 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		// backgroundColor: '#F2C2C2',
 	},
 });

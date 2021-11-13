@@ -4,54 +4,32 @@ import {accountHashList} from './style_organism';
 import UserAccount from './UserAccount';
 
 export default AccountHashList = props => {
-	const _dummyData = [
-		{
-			type: 'user',
-			user_id: '호이비에르',
-			user_nickname: '호이비에르',
-			img_uri: 'https://image.fmkorea.com/files/attach/new/20201127/5665468/72559051/3225348401/53b8ed4f6bc4b0279580e62a98b2874d.png',
-			text_intro: 'Description',
-		},
-		{
-			type: 'user',
-			user_id: '솔 캠벨',
-			user_nickname: '솔 캠벨',
-			img_uri: 'https://t1.daumcdn.net/cfile/blog/1761514850DABAB00E',
-			text_intro: '주급루팡',
-		},
-		{
-			type: 'user',
-
-			user_id: '쿠티뉴',
-			user_nickname: '브페',
-			img_uri: 'https://image.fmkorea.com/files/attach/new/20210116/33854530/44810969/3330726962/63e62ae90fcd03b262e0a2a5dff7fbb4.jpeg',
-			text_intro: '레전드',
-		},
-		{
-			type: 'hash',
-			keyword: '#따봉도치',
-			keywordBold: true,
-			count: 920000,
-		},
-	];
-	const renderItem = item => {
+	const renderItem = (item, index) => {
 		return (
 			<View style={[accountHashList.userAccount]}>
 				{/* <Text>UserAccount</Text> */}
-				<UserAccount data={item} onLabelClick={() => props.onLabelClick(item)} onHashClick={() => props.onHashClick(item)} />
+				<UserAccount
+					data={item}
+					checkBoxMode={props.checkBoxMode}
+					onLabelClick={() => props.onLabelClick(item)}
+					onHashClick={() => props.onHashClick(item)}
+					onCheckBox={e => props.onCheckBox(e, index)}
+				/>
 			</View>
 		);
 	};
 
 	return (
 		<View style={[accountHashList.container]}>
-			<FlatList data={_dummyData} renderItem={({item}) => renderItem(item)} />
+			<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} />
 		</View>
 	);
 };
 
 AccountHashList.defaultProps = {
-	onLabelClick: e => console.log(e),
+	onLabelClick: e => console.log(e), // UserAccount의 UserDescriptionLabel 클릭
+	onCheckBox: e => console.log(e),
+	checkBoxMode: false, // CheckBox 콘테이너 Show T/F
 };
 
 // UserDescriptionLabel.defaultProps = {

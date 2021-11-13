@@ -15,7 +15,7 @@ export default FeedContent = props => {
 	const test_data = {
 		user_nickname: 'user_nickname',
 		user_id: 'user_id',
-		user_image: 'https://i.ytimg.com/vi/ERAMkP92arE/maxresdefault.jpg',
+		img_uri: 'https://i.ytimg.com/vi/ERAMkP92arE/maxresdefault.jpg',
 		location: 'location',
 		text_intro: 'Text/Intro',
 	};

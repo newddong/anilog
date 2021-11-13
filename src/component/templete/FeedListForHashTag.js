@@ -1,6 +1,8 @@
 import React from 'react';
-import {Text, View, TouchableWithoutFeedback} from 'react-native';
+import {Text, View, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
 import {txt} from 'Root/config/textstyle';
+import {APRI10, GRAY20, GRAY30, WHITE} from 'Root/config/color';
+
 import {feedListForHashTag, login_style, temp_style} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
 import HashLabel from '../molecules/HashLabel';
@@ -12,7 +14,16 @@ export default FeedListForHashTag = props => {
 	const moveToHashFeedList = () => {
 		navigation.push('HashFeedList');
 	};
+	const [showRecent, setShowRecent] = React.useState(true);
 
+	//최근 게시글 버튼 클릭
+	const showRecentFeed = () => {
+		setShowRecent(true);
+	};
+	//추천 게시글 버튼 클릭
+	const showRecommendedFeed = () => {
+		setShowRecent(false);
+	};
 	return (
 		<View style={[login_style.wrp_main, feedListForHashTag.container]}>
 			{/* HashTagInfo */}
@@ -20,19 +31,21 @@ export default FeedListForHashTag = props => {
 				<View style={[feedListForHashTag.hashLabel]}>
 					<HashLabel keyword={hashInfo.keyword} keywordBold={hashInfo.keywordBold} count={hashInfo.count} />
 				</View>
+				{/* 최근 게시글 / 추천 게시글 */}
 				<View style={[feedListForHashTag.postCategory]}>
-					<Text style={[txt.noto24]}>최근게시글 </Text>
+					<TouchableOpacity onPress={showRecentFeed}>
+						<Text style={[txt.noto24, {color: showRecent ? APRI10 : 'black'}]}>최근게시글 </Text>
+					</TouchableOpacity>
 					<Text style={{}}> | </Text>
-					<Text style={[txt.noto24]}> 추천게시글</Text>
+					<TouchableOpacity onPress={showRecommendedFeed}>
+						<Text style={[txt.noto24, {color: !showRecent ? APRI10 : 'black'}]}> 추천게시글</Text>
+					</TouchableOpacity>
 				</View>
 			</View>
 			{/* FeedThumbnailList */}
-			<TouchableWithoutFeedback onPress={moveToHashFeedList}>
-				<View style={[temp_style.feedThumbnailList]}>
-					{/* <Text>(O)FeedThumbnailList</Text> */}
-					<FeedThumbnailList onClickThumnail={moveToHashFeedList} />
-				</View>
-			</TouchableWithoutFeedback>
+			<View style={[temp_style.feedThumbnailList]}>
+				<FeedThumbnailList onClickThumnail={moveToHashFeedList} />
+			</View>
 		</View>
 	);
 };

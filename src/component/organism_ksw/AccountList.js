@@ -39,7 +39,6 @@ export default AccountList = props => {
 	const makeBorder = index => {
 		const copy = [...cliked];
 		copy[index].state = !copy[index].state;
-		console.log('COPY : ' + JSON.stringify(copy));
 		setClicked(copy);
 	};
 

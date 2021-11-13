@@ -15,7 +15,6 @@ import {useNavigation} from '@react-navigation/core';
  * }} props
  */
 export default UserDescriptionLabel = props => {
-	console.log(props);
 	const [validation, setValidation] = React.useState(false);
 	const [imgUri, setImgUri] = React.useState(props.data.user_image);
 
@@ -51,8 +50,7 @@ export default UserDescriptionLabel = props => {
 
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
-			{/* <TouchableOpacity onPress={onClickLabel}> */}
-			<TouchableOpacity onPress={moveToUserProfile}>
+			<TouchableOpacity onPress={onClickLabel}>
 				<Image source={{uri: props.data.img_uri}} style={styles.img_round_94} />
 			</TouchableOpacity>
 			<View style={{marginLeft: 30 * DP}}>

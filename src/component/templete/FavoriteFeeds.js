@@ -1,11 +1,6 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {View} from 'react-native';
-import TabSelectBorder_Type3 from '../molecules/TabSelectBorder_Type3';
-import TagEdit from '../molecules/TagEdit';
-import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
-import UserLocationLabel from '../molecules/UserLocationLabel';
-import UserTimeLabel from '../molecules/UserTimeLabel';
 
 import FeedThumbnailList from '../organism_ksw/FeedThumbnailList';
 import SelectStat from '../organism_ksw/SelectStat';

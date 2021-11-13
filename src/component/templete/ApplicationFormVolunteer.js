@@ -14,8 +14,6 @@ import {login_style, applicationFormVolunteer, temp_txt, btn_style} from './styl
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default ApplicationFormVolunteer = props => {
-	console.log(props.route.params);
-
 	return (
 		<ScrollView>
 			<View style={[login_style.wrp_main, applicationFormVolunteer.container]}>

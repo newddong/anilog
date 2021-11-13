@@ -50,7 +50,7 @@ export default ShelterLabel = props => {
 	};
 
 	const onClickLabel = e => {
-		props.onLabelClick(props.data.user_id);
+		props.onClickLabel(props.data);
 	};
 
 	return (
