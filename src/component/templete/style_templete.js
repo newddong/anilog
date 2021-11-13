@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
 	MAINCOLOR,
 	LINK,
@@ -1843,7 +1843,7 @@ export const selectstat_view_style = StyleSheet.create({
 		marginLeft: 12 * DP,
 	},
 	selectstat: {
-		marginTop: 38 * DP,
+		marginVertical: 38 * DP,
 	},
 	selecting: {
 		marginTop: 38 * DP,
@@ -3395,7 +3395,7 @@ export const feedWrite = StyleSheet.create({
 });
 
 export const profile = StyleSheet.create({
-	container: { flex: 1 },
+	container: {flex: 1},
 	profileInfo: {
 		width: 750 * DP,
 		height: 416 * DP,

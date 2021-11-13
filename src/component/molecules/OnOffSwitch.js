@@ -1,11 +1,18 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import { Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
-import {APRI10, GRAY40, WHITE, } from 'Root/config/color';
+import {APRI10, GRAY40, WHITE} from 'Root/config/color';
 
+/**
+ *
+ *@param {{
+ *default: '0 - off , 1 - on'
+ *onSwtichOn: 'Switch On Callback',
+ *onSwtichOff: 'Switch Off Callback',
+ * }} props
+ */
 export default OnOffSwitch = props => {
-
 	const [btnStatus, setBtnStatus] = React.useState(props.default);
 
 	return (

@@ -4,9 +4,15 @@ import DP from 'Root/config/dp';
 import {Cancel48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 
+/**
+ *
+ *@param {{
+ * media_uri: string,
+ * onDelete: '삭제 버튼 클릭 Callback',
+ * }} props
+ */
 export default SelectedMedia190 = props => {
 	const onDelete = e => {
-		alert('삭제작업');
 		props.onDelete(e);
 	};
 	return (

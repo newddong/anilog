@@ -3,8 +3,16 @@ import {txt} from 'Root/config/textstyle';
 import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY10, GRAY30} from 'Root/config/color';
+/**
+ *
+ * @param {{
+ *placeholder : string,
+ *value : 'string',
+ *maxLength : 'number / 최대 글자 수 제한'
+ *onChange : 'Input Value Change Callback'
+ * }} props
+ */
 export default InputLongText = props => {
-
 	const [content, setContent] = React.useState('');
 	const inputRef = React.useRef();
 
@@ -59,5 +67,5 @@ InputLongText.defaultProps = {
 	placeholder: 'placeholder',
 	value: 'value',
 	maxlength: 500,
-	onChange : e => console.log(e)
+	onChange: e => console.log(e),
 };

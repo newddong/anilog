@@ -7,6 +7,13 @@ import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
 import {useNavigation} from '@react-navigation/core';
 
+/**
+ *
+ *@param {{
+ * data: 'user_id, user_nickname(string), img_uri(string), text_intro(string)',
+ * onLabelClick: void,
+ * }} props
+ */
 export default UserDescriptionLabel = props => {
 	console.log(props);
 	const [validation, setValidation] = React.useState(false);

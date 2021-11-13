@@ -7,6 +7,13 @@ import {styles} from '../atom/image/imageStyle';
 import {APRI10, BLACK} from 'Root/config/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+/**
+ *
+ *@param {{
+ * data: ' user_id, shelter_name, shelter_image, location, shelter_type'
+ * onClickLabel: 'Label Click Callback',
+ * }} props
+ */
 export default ShelterLabel = props => {
 	const [validation, setValidation] = React.useState(false);
 	const [imgUri, setImgUri] = React.useState(props.data.shelter_image);

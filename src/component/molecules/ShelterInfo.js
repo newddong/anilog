@@ -4,8 +4,14 @@ import {Text, View, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, BLUE20, GRAY10} from 'Root/config/color';
 import {Private48, Public48} from '../atom/icon';
+
+/**
+ *
+ *@param {{
+ * data: 'img_uri, shelter_name, phone_number, address'
+ * }} props
+ */
 export default ShelterInfo = props => {
-	console.log(props.data);
 	const [imgUri, setImgUri] = React.useState(props.data.img_uri);
 
 	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정

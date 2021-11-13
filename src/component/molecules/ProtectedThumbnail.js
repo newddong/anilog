@@ -6,6 +6,12 @@ import {txt} from 'Root/config/textstyle';
 import {Mercy_Killing, Female48, Male48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 
+/**
+ *
+ *@param {{
+ * data: 'Object - img_uri, gender(female, male), status(protected, missing, reported, onNegotiation, adoption_available, adopted'
+ * }} props
+ */
 export default ProtectedThumbnail = props => {
 	console.log('protected ' + JSON.stringify(props.data));
 	const borderByStatus = () => {

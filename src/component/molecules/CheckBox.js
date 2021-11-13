@@ -4,6 +4,14 @@ import {Text, View, TouchableWithoutFeedback} from 'react-native';
 import DP from 'Root/config/dp';
 import {Check50, Rect48_GRAY30, Rect50_Border} from '../atom/icon';
 import {GRAY10, GRAY20} from 'Root/config/color';
+import AniButton from './AniButton';
+/**
+ *
+ * @param {{
+ * value : 'boolean / 체크상태 여부',
+ * disable : 'boolean / 버튼 사용 가능 여부,
+ * onCheck : '박스가 체크될 시 수행되는 callBack함수'}} props
+ */
 export default CheckBox = props => {
 	const [checked, setChecked] = React.useState(false); //체크상태 여부 boolean
 

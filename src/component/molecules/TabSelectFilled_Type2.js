@@ -3,6 +3,14 @@ import {txt} from 'Root/config/textstyle';
 import {Text, TouchableOpacity, FlatList} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, BLACK, WHITE} from 'Root/config/color';
+
+/**
+ *
+ *@param {{
+ * items: 'Array / Tab Box에 담길 ItemList',
+ * onSelect: void,
+ * }} props
+ */
 export default TabSelectFilled_Type2 = props => {
 	const tabLength = props.items.length;
 	let tabState = [];

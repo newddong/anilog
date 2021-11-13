@@ -4,24 +4,37 @@ import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {GRAY20, GRAY30, BLACK, RED10} from 'Root/config/color';
 
+/**
+ *
+ *@param {{
+ *value: string,
+ *placeholder: string,
+ *timelimit: 'number / 시간 제한 [단위:초]',
+ *alert_msg: 'string / 경고 메시지',
+ *timeout_msg: 'string / 시간 초과 메시지',
+ *onChange: 'Input Value Change Callback',
+ *onClear: '지우기(X)버튼 클릭 Callback',
+ *onStartTimer : 'Timer 시작 시 Callback',
+ *onEndTimer : 'Timer 종료 시 Callback'
+ * }} props
+ */
 export default InputTimeLimit = props => {
-
 	const [input, setInput] = React.useState('');
 	const [confirm, setConfirm] = React.useState();
 	const inputRef = React.useRef();
-	const interval = 1000 //1 sec
-	
+	const interval = 1000; //1 sec
+
 	let min = Math.floor((props.timelimit / 60) % 60); //184 나누기 60의 몫
 	let sec = Math.floor(props.timelimit % 60); // 184 나누기 60의 나머지
 	const [minutes, setMinutes] = React.useState(min);
 	const [seconds, setSeconds] = React.useState(sec);
 	const [timeOut, setTimeout] = React.useState(false);
-	
+
 	React.useEffect(() => {
 		//onStartTimer
 		if (minutes == min && seconds == sec) {
 			console.log('처음');
-			props.onStartTimer()
+			props.onStartTimer();
 		}
 
 		const countdown = setInterval(() => {
@@ -31,7 +44,7 @@ export default InputTimeLimit = props => {
 				if (parseInt(minutes) === 0) {
 					//onEndTimer
 					setTimeout(true);
-					props.onEndTimer()
+					props.onEndTimer();
 					clearInterval(countdown);
 				} else {
 					setMinutes(parseInt(minutes) - 1);
@@ -46,7 +59,7 @@ export default InputTimeLimit = props => {
 		//Validation 조건 아직 불분명하기에 length<10일 경우 false로 설정
 		text.length > 10 ? setConfirm(true) : setConfirm(false);
 	};
-	
+
 	const blur = () => {
 		inputRef.current.blur();
 	};
@@ -57,32 +70,32 @@ export default InputTimeLimit = props => {
 
 	const onClear = () => {
 		inputRef.current.clear();
-		props.onClear()
+		props.onClear();
 	};
 
 	const onChange = text => {
 		setInput(text);
-		validator(text)
+		validator(text);
 		props.onChange(text);
 	};
 
 	const getMsg = () => {
-		if(input.length == 0 && !timeOut){
-			return false
-		} else if(!confirm && !timeOut){
-			return props.alert_msg
-		} else if(timeOut){
-			return props.timeout_msg
+		if (input.length == 0 && !timeOut) {
+			return false;
+		} else if (!confirm && !timeOut) {
+			return props.alert_msg;
+		} else if (timeOut) {
+			return props.timeout_msg;
 		}
 	};
 
 	const getBorderColor = () => {
-		if(input.length == 0 && !timeOut){
-			return GRAY30
-		} else if(!confirm || timeOut){
-			return RED10
-		} 
-	}
+		if (input.length == 0 && !timeOut) {
+			return GRAY30;
+		} else if (!confirm || timeOut) {
+			return RED10;
+		}
+	};
 
 	return (
 		<View style={{flexDirection: 'row'}}>
@@ -92,7 +105,7 @@ export default InputTimeLimit = props => {
 					style={{
 						height: 82 * DP,
 						borderBottomWidth: 2 * DP,
-						borderBottomColor:getBorderColor(),
+						borderBottomColor: getBorderColor(),
 						flexDirection: 'row',
 					}}>
 					<TextInput
@@ -121,7 +134,7 @@ export default InputTimeLimit = props => {
 						</Text>
 					</View>
 				</View>
-				<Text style={(txt.noto22, {color: 'red', lineHeight: 36 * DP,})}>{getMsg()}</Text>
+				<Text style={(txt.noto22, {color: 'red', lineHeight: 36 * DP})}>{getMsg()}</Text>
 			</View>
 		</View>
 	);
@@ -134,6 +147,6 @@ InputTimeLimit.defaultProps = {
 	timeout_msg: 'timeOut_msg',
 	onChange: e => console.log(e),
 	onClear: e => console.log(e),
-	onStartTimer : e => console.log(e),
-	onEndTimer : e => console.log(e)
+	onStartTimer: e => console.log(e),
+	onEndTimer: e => console.log(e),
 };

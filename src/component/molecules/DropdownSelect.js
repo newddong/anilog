@@ -5,6 +5,17 @@ import DP from 'Root/config/dp';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
 import {APRI10} from 'Root/config/color';
 
+/**
+ *
+ * @param {{
+ *	value: object,
+ *	items: object,
+ *	defaultIndex: number,
+ *	width: number,
+ *	onChange: 'Callback',
+ *	textStyle: 'Text Style',
+ * }} props
+ */
 export default DropdownSelect = props => {
 	// Dropdown 화살표의 state - True일 경우 opened 상태 / False일 경우 closed 상태
 	const [btnStatus, setBtnStatus] = React.useState(false);

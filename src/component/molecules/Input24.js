@@ -4,6 +4,18 @@ import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
 
+/**
+ *
+ * @param {{
+ *title: string,
+ *placeholder: string,
+ *descriptionType: 'star' | 'info',
+ *value: string,
+ *alert_msg: 'String / 긴급메시지 ',
+ *confirm_msg: 'String / 확인메시지 ',
+ *info: string, //
+ * }} props
+ */
 export default Input24 = props => {
 	const [input, setInput] = React.useState('');
 	const [confirm, setConfirm] = React.useState(false);

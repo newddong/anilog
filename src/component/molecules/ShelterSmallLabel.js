@@ -6,7 +6,13 @@ import {Private30, Public30} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 import {APRI10, BLACK, GRAY10, GRAY20} from 'Root/config/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+/**
+ *
+ *@param {{
+ * data: ' user_id, shelter_name, shelter_image, location, shelter_type'
+ * onClickLabel: 'Label Click Callback',
+ * }} props
+ */
 export default ShelterSmallLabel = props => {
 	const [validation, setValidation] = React.useState(false);
 	const [imgUri, setImgUri] = React.useState(props.data.shelter_image);
@@ -47,7 +53,7 @@ export default ShelterSmallLabel = props => {
 	};
 
 	return (
-		<View style={{flexDirection: 'row', alignItems: 'center',}}>
+		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
 				<Image source={{uri: imgUri}} style={styles.img_round_72} />
 				{/* image_round_76이 없으므로 style 작성 */}
@@ -56,10 +62,10 @@ export default ShelterSmallLabel = props => {
 			<View style={{marginLeft: 10 * DP}}>
 				{/* Text Box 2 Height 86 - profileImage height 94 = -8  ==> PaddingVertical 4씩 textBox View에 준다 */}
 				{/* Text부분과 프로필이미지 사이의 거리 50 */}
-				<Text style={[txt.noto24b, {color: validation ? APRI10 : GRAY10,  }]} numberOfLines={1} ellipsizeMode="tail">
+				<Text style={[txt.noto24b, {color: validation ? APRI10 : GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
 					{props.data.shelter_name} / {props.data.location}
 				</Text>
-				<Text style={[txt.noto24, { color: GRAY20, }]} numberOfLines={1} ellipsizeMode="tail">
+				<Text style={[txt.noto24, {color: GRAY20}]} numberOfLines={1} ellipsizeMode="tail">
 					yyyy.mm.dd
 				</Text>
 				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}

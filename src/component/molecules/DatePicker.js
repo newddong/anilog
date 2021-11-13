@@ -5,6 +5,14 @@ import DP from 'Root/config/dp';
 import {Calendar48_Border} from '../atom/icon';
 import {APRI10} from 'Root/config/color';
 import Calendar from 'Root/test_sangwoo/calendar';
+/**
+ *
+ * @param {{
+ * width : 'number / 전체 DatePicker의 너비',
+ * onDateChange : '달력에서 날짜가 선택되었을 때 실행되는 CallBack',
+ * defaultDate : 'ex) 2021.05.01  처음 설정되어 있는 날짜'
+ * }} props
+ */
 export default DatePicker = props => {
 	const [btnStatus, setBtnStatus] = React.useState(false);
 	const [selectedDate, setSelectedDate] = React.useState(props.defaultDate);

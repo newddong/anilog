@@ -4,6 +4,18 @@ import {Text, View, TouchableOpacity, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52} from '../atom/icon';
 import {APRI10, GRAY30} from 'Root/config/color';
+
+/**
+ *
+ *@param {{
+ *itemList: 'Array 도메인 사이트 리스트',
+ *placeholder: string,
+ *defaultIndex: number,
+ *value: string,
+ *onClear: '지우기 버튼(x) 클릭 Callback',
+ *onChange: 'Input Value Change Callback',
+ * }} props
+ */
 export default InputWithEmail = props => {
 	const [btnStatus, setBtnStatus] = React.useState(false);
 	// Dropdown에서 현재 선택된 항목 State, 처음 Mount시 itemList[defaultIndex]를 반환

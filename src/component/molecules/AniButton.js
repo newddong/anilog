@@ -5,7 +5,17 @@ import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
 import {useNavigation} from '@react-navigation/core';
-
+import SelectStat from '../organism_ksw/SelectStat';
+/**
+ *
+ * @param {{btnTitle : string,
+ * btnTheme: 'shadow' | 'noShadow' | 'gray' | undefined,
+ * btnStyle : 'filled' | 'border' | 'noborder' | undefined,
+ * btnLayout : Component ,
+ * disable : boolean,
+ * titleFontStyle : number,
+ * onPress : Function   }} props
+ */
 export default AniButton = props => {
 	const navigation = useNavigation();
 	const btnTheme = () => {

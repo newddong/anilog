@@ -3,7 +3,15 @@ import React from 'react';
 import {View, Image, Text} from 'react-native';
 import {Paw48_Mixed, Paw48_YELL20, Paw48_APRI10, Private62, Public62} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
-
+/**
+ *
+ *@param {{
+ * img_uri : string,
+ * userType: 'user' | 'pet' | 'shelter',
+ *shelterType: 'public' | 'private' ,
+ *petStatus: 'normal' | 'protected' | 'adopted' | 'none',
+ * }} props
+ */
 export default ProfileImageLarge160 = props => {
 	// 유저의 프로필 이미지를 표시,  유저의 종류(일반유저, 반려동물, 보호소)와 상태(임시보호중,입양,공립,사립)에 따라 아이콘을 표시
 	const petStatus = () => {
@@ -40,17 +48,15 @@ export default ProfileImageLarge160 = props => {
 	};
 	return (
 		<View style={styles.img_round_160}>
-			<Image source={{uri: props.data.img_uri}} style={styles.img_round_160} />
+			<Image source={{uri: props.img_uri}} style={styles.img_round_160} />
 			{userType()}
 		</View>
 	);
 };
 
 ProfileImageLarge160.defaultProps = {
-	data: {
-		img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
-		userType: 'user', //required - 유저타입 pet user shelter
-		shelterType: 'none', // public private
-		petStatus: 'none', // normal protected adopted none
-	},
+	img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
+	userType: 'user', //required - 유저타입 pet user shelter
+	shelterType: 'none', // public private
+	petStatus: 'none', // normal protected adopted none
 };

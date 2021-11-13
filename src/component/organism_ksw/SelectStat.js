@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import {temp_style} from '../templete/style_templete';
 import {selectStat} from './style_organism';
 
+/**
+ *
+ * @param {{onSelectMode: function, onCancelSelectMode: '펑션', }} props
+ */
 export default SelectStat = props => {
 	const [selectMode, setSelectMode] = React.useState(false);
 	return (
@@ -13,6 +18,7 @@ export default SelectStat = props => {
 				{selectMode ? (
 					<TouchableOpacity style={[temp_style.textBtn]} onPress={() => setSelectMode(!selectMode)}>
 						<Text style={[txt.noto24, {alignSelf: 'flex-start'}]}>취소</Text>
+						<Text>{props.headerText}</Text>
 					</TouchableOpacity>
 				) : null}
 				{selectMode ? (
@@ -37,4 +43,12 @@ export default SelectStat = props => {
 	);
 };
 
+SelectStat.propTypes = {
+	onSelectMode: PropTypes.func.isRequired,
+	onCancelSelectMode: PropTypes.func.isRequired,
+};
+SelectStat.defaultProps = {
+	onSelectMode: e => console.log(e),
+	onCancelSelectMode: e => console.log(e),
+};
 // media_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',

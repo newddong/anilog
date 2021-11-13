@@ -5,6 +5,13 @@ import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
 import {ASSIGN_PET} from 'Root/i18n/msg';
 import {Add_Pet} from '../atom/icon';
+
+/**
+ *
+ * @param {{
+ * onAdd : 'Add Btn Pressed CallBack'
+ * }} props
+ */
 export default AddPet = props => {
 	const onAdd = e => {
 		props.onAdd();

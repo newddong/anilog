@@ -4,6 +4,18 @@ import {View, TouchableOpacity, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY30} from 'Root/config/color';
 import {Cross48, Search48} from '../atom/icon';
+
+/**
+ *
+ *@param {{
+ *value: string,
+ *placeholder: string,
+ *width: 'number / Input 전체 너비',
+ *onChange: 'Input Value Change Callback',
+ *onSearch: 'Search Button Pressed Callback',
+ *onClear: '지우기 버튼(X) 클릭 Callback',
+ * }} props
+ */
 export default InputWithSearchIcon = props => {
 	const [input, setInput] = React.useState('');
 	const inputRef = React.useRef();

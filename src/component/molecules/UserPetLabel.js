@@ -2,22 +2,28 @@ import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
-import { styles } from '../atom/image/imageStyle';
+import {styles} from '../atom/image/imageStyle';
+/**
+ *
+ *@param {{
+ * data: 'user_id, user_nickname(string), img_uri(string)',
+ * onLabelClick: void,
+ * }} props
+ */
 export default UserPetLabel = props => {
-	
-	const [imgUri, setImgUri] = React.useState(props.data.user_image)
-	React.useEffect( ()=>{
-		if(imgUri == false){
-			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg')
+	const [imgUri, setImgUri] = React.useState(props.data.user_image);
+	React.useEffect(() => {
+		if (imgUri == false) {
+			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
 		}
-	})
+	});
 
 	const onClickLabel = e => {
 		props.onLabelClick(props.data.user_id);
 	};
 
 	return (
-		<View style={{flexDirection: 'row', alignItems: 'center'}}>			
+		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
 				<Image source={{uri: imgUri}} style={styles.img_round_76} />
 				{/* image_round_76이 없으므로 style 작성 */}
@@ -34,12 +40,12 @@ export default UserPetLabel = props => {
 			</View>
 		</View>
 	);
-}
+};
 UserPetLabel.defaultProps = {
-	data : {
-		user_id : 'user_id',
-		user_nickname : 'user_nickname',
-		user_image : 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
+	data: {
+		user_id: 'user_id',
+		user_nickname: 'user_nickname',
+		img_uri: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
 	},
-	onClickLabel : e => console.log(e)
-}
+	onClickLabel: e => console.log(e),
+};

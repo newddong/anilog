@@ -1,14 +1,23 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-
+/**
+ *
+ *@param {{
+ * style: ' {}, 전체 container style, text와 bar를 감싸는 view의 style',
+ *backgroundBarStyle: '{}, 배경이 되는 bar의 style, width props으로 너비결정됨',
+ *insideBarStyle:'{}, 내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨',
+ *current: 'number / 현재단계를 정의',
+ *maxstage:'number / 전체단계를 정의',
+ *width:'number / bar의 너비',
+ *textStyle:' {}, bar 오른쪽 Text의 스타일',
+ * }} props
+ */
 export default StageBar = props => {
-
 	return (
 		<View style={{...props.style, flexDirection: 'row', alignItems: 'center'}}>
 			{/* <View style={{backgroundColor: GRAY_BRIGHTEST, width: props.width, height: 16 * DP, borderRadius: 8 * DP, marginRight: 8 * DP}}> */}
-			<View style={[props.backgroundBarStyle,{width: props.width,justifyContent:'center'}]}>
-				<View
-					style={[props.insideBarStyle,{width: (props.width / props.maxstage) * props.current}]}/>
+			<View style={[props.backgroundBarStyle, {width: props.width, justifyContent: 'center'}]}>
+				<View style={[props.insideBarStyle, {width: (props.width / props.maxstage) * props.current}]} />
 			</View>
 			<Text style={props.textStyle}>
 				{props.current}/{props.maxstage}
@@ -18,12 +27,12 @@ export default StageBar = props => {
 };
 
 //props
-StageBar.defaultProps={
-   style:{}, //전체 container style, text와 bar를 감싸는 view의 style
-   backgroundBarStyle:{}, //배경이 되는 bar의 style, width props으로 너비결정됨
-   insideBarStyle:{}, //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
-   current:1, //현재 단계를 정의
-   maxstage:1, //전체 단계를 정의
-   width:0, //bar의 너비
-   textStyle:{},//text의 스타일
-}
+StageBar.defaultProps = {
+	style: {}, //전체 container style, text와 bar를 감싸는 view의 style
+	backgroundBarStyle: {}, //배경이 되는 bar의 style, width props으로 너비결정됨
+	insideBarStyle: {}, //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+	current: 1, //현재 단계를 정의
+	maxstage: 1, //전체 단계를 정의
+	width: 0, //bar의 너비
+	textStyle: {}, //text의 스타일
+};

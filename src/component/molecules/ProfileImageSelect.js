@@ -3,6 +3,14 @@ import {View, Image, TouchableOpacity} from 'react-native';
 import {AddItem92} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 
+/**
+ *
+ *@param {{
+ * selectedImageUri: string,
+ * defaultImageUri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+ * onClick: 'Image Click Callback'
+ * }} props
+ */
 export default ProfileImageSelect = props => {
 	const onClick = e => {
 		props.onClick();

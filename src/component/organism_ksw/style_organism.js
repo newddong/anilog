@@ -1201,6 +1201,7 @@ export const selectStat = StyleSheet.create({
 	container: {
 		width: 654 * DP,
 		height: 94 * DP,
+		alignSelf: 'center',
 		alignItems: 'center',
 		borderBottomColor: GRAY30,
 		borderBottomWidth: 2 * DP,

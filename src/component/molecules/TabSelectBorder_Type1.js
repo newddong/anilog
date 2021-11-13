@@ -4,8 +4,14 @@ import {Text, TouchableOpacity, FlatList} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY20} from 'Root/config/color';
 
+/**
+ *
+ *@param {{
+ * items: 'Array / Tab Box에 담길 ItemList',
+ * onSelect: 'Tab Pressed Callback',
+ * }} props
+ */
 export default TabSelectBorder_Type1 = props => {
-
 	const tabLength = props.items.length;
 	let tabState = [];
 	Array(tabLength)
@@ -27,7 +33,7 @@ export default TabSelectBorder_Type1 = props => {
 	};
 
 	const renderItem = ({item, index}) => {
-		return ( 
+		return (
 			<TouchableOpacity
 				onPress={() => onSelect(index)}
 				style={{
@@ -49,13 +55,13 @@ export default TabSelectBorder_Type1 = props => {
 					]}>
 					{item}
 				</Text>
-			</TouchableOpacity>  
+			</TouchableOpacity>
 		);
 	};
 	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />;
 };
 
 TabSelectBorder_Type1.defaultProps = {
-	items: null, //FlatList에 담길 배열 정보
+	items: [1, 2, 3], //FlatList에 담길 배열 정보
 	onSelect: e => console.log(e), //Tab Press 이벤트
 };

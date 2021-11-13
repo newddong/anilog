@@ -6,9 +6,16 @@ import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
 
+/**
+ *
+ *@param {{
+ * data: 'user_id, user_nickname(string), img_uri(string), location(string), time(number)',
+ * onLabelClick: void,
+ * }} props
+ */
 export default UserLocationTimeLabel = props => {
 	const [validation, setValidation] = React.useState(false);
-	const [imgUri, setImgUri] = React.useState(props.data.user_image);
+	const [imgUri, setImgUri] = React.useState(props.data.img_uri);
 
 	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정
 	React.useEffect(() => {
@@ -61,7 +68,7 @@ UserLocationTimeLabel.defaultProps = {
 	data: {
 		user_id: 'user_id',
 		user_nickname: 'user_nickname',
-		user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
+		img_uri: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
 		location: 'location',
 		time: '1',
 	},
