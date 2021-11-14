@@ -1,6 +1,6 @@
 import {useIsFocused, useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {TextInput, TouchableOpacity} from 'react-native';
+import {ScrollView, TextInput, TouchableOpacity} from 'react-native';
 import {FlatList, Text, View} from 'react-native';
 import {Lock60_Border, Lock60_Filled, Photo60, Send60} from '../atom/icon';
 import FeedContent from '../organism/FeedContent';
@@ -22,13 +22,15 @@ export default FeedCommentList = props => {
 
 	return (
 		<View style={[login_style.wrp_main, feedCommentList.container]}>
-			<View style={[feedCommentList.feedContent]}>
-				<FeedContent />
-			</View>
-			<View style={[feedCommentList.commentList]}>
-				<Text style={[feedCommentList.comment_number]}>댓글 {dummy_ParentComment.length}개</Text>
-				<CommentList onPressReplyBtn={() => setEditComment(!editComment)} />
-			</View>
+			<ScrollView>
+				<View style={[feedCommentList.feedContent]}>
+					<FeedContent />
+				</View>
+				<View style={[feedCommentList.commentList]}>
+					<Text style={[feedCommentList.comment_number]}>댓글 {dummy_ParentComment.length}개</Text>
+					<CommentList onPressReplyBtn={() => setEditComment(!editComment)} />
+				</View>
+			</ScrollView>
 			{editComment ? (
 				<View style={[feedCommentList.editComment]}>
 					<TouchableOpacity
