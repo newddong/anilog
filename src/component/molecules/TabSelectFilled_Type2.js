@@ -23,6 +23,7 @@ export default TabSelectFilled_Type2 = props => {
 	const [selected, setSelected] = React.useState(tabState);
 
 	const onSelect = index => {
+		console.log(index);
 		const copyState = [...selected];
 		//선택된 Tab의 State를 True로 이외의 Tab은 False로
 		for (let i = 0; i < copyState.length; i++) {
@@ -39,7 +40,7 @@ export default TabSelectFilled_Type2 = props => {
 				onPress={() => onSelect(index)}
 				style={{
 					backgroundColor: selected[index].state ? APRI10 : WHITE,
-					width: 250 * DP,
+					width: (750 * DP) / props.items.length + 1,
 					height: 78 * DP,
 					justifyContent: 'center',
 				}}>

@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {btn_w654} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import Input24 from '../molecules/Input24';
@@ -13,32 +13,34 @@ import {login_style, btn_style, temp_style, changeUserProfileImage_style} from '
 export default ChangeUserProfileImage = props => {
 	const navigation = useNavigation();
 	return (
-		<View style={[login_style.wrp_main, {flex: 1}]}>
-			{/* (M)ProfileImageSelect */}
-			<View style={[temp_style.profileImageSelect, changeUserProfileImage_style.profileImageSelect]}>
-				<ProfileImageSelect
-					selectedImageUri={'https://img.animalplanet.co.kr/news/2019/08/10/700/v4q0b0ff4hcpew1g6t39.jpg'}
-					onClick={() => navigation.push('SinglePhotoSelect')}
-				/>
-			</View>
-
-			{/* ProfileNicknameChange */}
-			<View style={[temp_style.profileNicknameChange, changeUserProfileImage_style.profileNicknameChange]}>
-				{/* (M)Input24 */}
-				<View style={[temp_style.input24_changeUserProfileImage, changeUserProfileImage_style.input24]}>
-					<Input24 title={'기존 닉네임'} />
+		<ScrollView>
+			<View style={[login_style.wrp_main, {flex: 1}]}>
+				{/* (M)ProfileImageSelect */}
+				<View style={[temp_style.profileImageSelect, changeUserProfileImage_style.profileImageSelect]}>
+					<ProfileImageSelect
+						selectedImageUri={'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png'}
+						onClick={() => navigation.push('SinglePhotoSelect')}
+					/>
 				</View>
-				{/* (M)Input24 */}
-				<View style={[temp_style.input24_changeUserProfileImage]}>
-					<Input24 title={'새 닉네임'} descriptionType={'info'} info={'2자 이상 15자 이내의 영문, 숫자의 입력만 가능합니다'} />
+
+				{/* ProfileNicknameChange */}
+				<View style={[temp_style.profileNicknameChange, changeUserProfileImage_style.profileNicknameChange]}>
+					{/* (M)Input24 */}
+					<View style={[temp_style.input24_changeUserProfileImage, changeUserProfileImage_style.input24]}>
+						<Input24 title={'기존 닉네임'} />
+					</View>
+					{/* (M)Input24 */}
+					<View style={[temp_style.input24_changeUserProfileImage]}>
+						<Input24 title={'새 닉네임'} descriptionType={'info'} info={'2자 이상 15자 이내의 영문, 숫자의 입력만 가능합니다'} />
+					</View>
+				</View>
+
+				{/* (A)Btn_w654 */}
+				<View style={[btn_style.btn_w654, changeUserProfileImage_style.btn_w654]}>
+					<AniButton btnTitle={'확인'} disable={true} titleFontStyle={32} btnLayout={btn_w654} />
 				</View>
 			</View>
-
-			{/* (A)Btn_w654 */}
-			<View style={[btn_style.btn_w654, changeUserProfileImage_style.btn_w654]}>
-				<AniButton btnTitle={'확인'} disable={true} titleFontStyle={32} btnLayout={btn_w654} />
-			</View>
-		</View>
+		</ScrollView>
 	);
 };
 

@@ -88,14 +88,15 @@ export default AnimalNeedHelpList = props => {
 			<TouchableOpacity
 				style={[animalNeedHelpList.itemContainer]}
 				onPress={() => {
-					if (item.thumbnailData.status == 'missing') {
-						navigation.navigate('MissingAnimalDetail');
-					} else if (item.thumbnailData.status == 'reported') {
-						navigation.navigate('ReportDetail');
-					}
-					//다른 route가 있을 경우 else if 확장 할 것
-					else {
-					}
+					props.onItemClick(item);
+					// if (item.thumbnailData.status == 'missing') {
+					// 	navigation.navigate('MissingAnimalDetail');
+					// } else if (item.thumbnailData.status == 'reported') {
+					// 	navigation.navigate('ReportDetail');
+					// }
+					// //다른 route가 있을 경우 else if 확장 할 것
+					// else {
+					// }
 				}}>
 				<AnimalNeedHelp data={item} />
 			</TouchableOpacity>

@@ -1581,7 +1581,7 @@ export const changeUserProfileImage_style = StyleSheet.create({
 		marginTop: 70 * DP,
 	},
 	btn_w654: {
-		marginTop: 110 * DP,
+		marginVertical: 110 * DP,
 	},
 	input24: {
 		marginBottom: 44 * DP,
@@ -3402,17 +3402,11 @@ export const profile = StyleSheet.create({
 	container: {flex: 1},
 	profileInfo: {
 		width: 750 * DP,
-		height: 416 * DP,
-		backgroundColor: '#B0C7D8',
+		marginBottom: 30 * DP,
+		// height: 416 * DP,
 	},
-	tabSelectFilled_Type2: {},
-	feedListContainer: {
-		backgroundColor: 'yellow',
-	},
-	feedThumbNailList: {
-		backgroundColor: '#FFF',
-		height: 2770 * DP,
-	},
+	feedListContainer: {},
+	feedThumbNailList: {},
 	floatingBtn: {
 		position: 'absolute',
 		right: 30 * DP,
@@ -3421,20 +3415,20 @@ export const profile = StyleSheet.create({
 	petList: {
 		width: 750 * DP,
 		height: 220 * DP,
-		backgroundColor: 'pink',
 	},
 	protectedPetList: {
 		width: 750 * DP,
 		height: 252 * DP,
-		backgroundColor: 'pink',
 	},
 	animalNeedHelpList: {
-		backgroundColor: '#96A8B5',
 		height: 1000 * DP,
 	},
 });
 
 export const animalProtectRequestDetail_style = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
 	requestProtect: {
 		marginTop: 30 * DP,
 		backgroundColor: '#F29797',

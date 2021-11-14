@@ -12,12 +12,12 @@ export default AnimalProtectRequestDetail = props => {
 	const navigation = useNavigation();
 
 	return (
-		<View style={[login_style.wrp_main, accountPicker.container]}>
+		<View style={[login_style.wrp_main, animalProtectRequestDetail_style.container]}>
 			<View style={[temp_style.rescueContentScroll_view]}>
 				<ScrollView>
 					{/* 임시보호 후보자 협의 중 사진 */}
 					<View style={[temp_style.rescueImage]}>
-						<RescueImage></RescueImage>
+						<RescueImage text={'보호자 협의중'} />
 					</View>
 					<View style={[temp_style.requestProtect_view]}>
 						<Text style={[txt.noto24, temp_style.requestProtect]}>보호요청</Text>

@@ -4,7 +4,6 @@ import FeedThumnail from '../molecules/FeedThumnail';
 
 export default FeedThumbnailList = props => {
 	const NUMCOLUMNS = 3;
-	// const _dummyData = [1, 2, 3, 4, 5, 6, 7, 8];
 
 	const _dummyData = [
 		{

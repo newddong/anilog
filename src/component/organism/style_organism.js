@@ -232,38 +232,31 @@ export const organism_style = StyleSheet.create({
 	},
 	profileInfo_main: {
 		width: 750 * DP,
-		height: 416 * DP,
+		// height: 416 * DP,
 	},
 	profileImageLarge_view_profileInfo: {
 		flexDirection: 'row',
 		width: 654 * DP,
 		height: 172 * DP,
-		backgroundColor: 'wheat',
 	},
 	profileImageLarge_profileInfo: {
 		width: 160 * DP,
 		height: 160 * DP,
-		backgroundColor: 'white',
 	},
 	socialInfo_profileInfo: {
 		width: 366 * DP,
 		height: 84 * DP,
-		backgroundColor: '#D7D7F5',
 	},
 	content_view_profileInfo: {
 		flexDirection: 'row',
 		width: 700 * DP,
-		height: 80 * DP,
-	},
-	content_profileInfo: {
-		width: 492 * DP,
-		height: 80 * DP,
-		backgroundColor: '#F5D7F5',
+		// height: 80 * DP,
 	},
 	addMore_profileInfo: {
 		width: 114 * DP,
 		height: 48 * DP,
-		backgroundColor: '#D7F4F5',
+		alignItems: 'center',
+		flexDirection: 'row',
 	},
 	btn_w280_view_profileInfo: {
 		flexDirection: 'row',
@@ -273,12 +266,10 @@ export const organism_style = StyleSheet.create({
 	btn_w280_profileInfo: {
 		width: 280 * DP,
 		height: 60 * DP,
-		backgroundColor: '#D7F4F5',
 	},
 	ActionButton_profileInfo: {
 		width: 280 * DP,
 		height: 60 * DP,
-		backgroundColor: '#E3AAB8',
 	},
 	parentComment: {
 		flexDirection: 'column',
@@ -380,6 +371,12 @@ export const profileInfo_style = StyleSheet.create({
 		marginTop: 30 * DP,
 	},
 	content: {
+		width: 492 * DP,
+		height: 80 * DP,
+		marginLeft: 48 * DP,
+	},
+	content_expanded: {
+		width: 492 * DP,
 		marginLeft: 48 * DP,
 	},
 	addMore: {
