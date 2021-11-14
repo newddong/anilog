@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * }} props
  */
 export default ShelterSmallLabel = props => {
+	console.log(props.data);
 	const [validation, setValidation] = React.useState(false);
 	const [imgUri, setImgUri] = React.useState(props.data.shelter_image);
 
@@ -73,13 +74,14 @@ export default ShelterSmallLabel = props => {
 		</View>
 	);
 };
-ShelterLabel.defaultProps = {
+ShelterSmallLabel.defaultProps = {
 	data: {
 		user_id: 'user_id1',
 		shelter_name: 'shelter_name',
-		shelter_image: 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+		shelter_image:
+			'https://www.urbanbrush.net/web/wp-content/uploads/edd/2017/09/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7-2017-09-03-%EC%98%A4%ED%9B%84-11.40.12-548x548.png',
 		location: 'location',
-		shelter_type: null,
+		shelter_type: 'private',
 	},
 	onClickLabel: e => console.log(e),
 };

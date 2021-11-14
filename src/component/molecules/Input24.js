@@ -96,7 +96,7 @@ export default Input24 = props => {
 							{
 								paddingLeft: 24 * DP,
 								lineHeight: 44 * DP,
-								// width: 130,
+								width: props.width * DP,
 								minWidth: 300 * DP,
 							},
 						]}
@@ -116,4 +116,5 @@ Input24.defaultProps = {
 	alert_msg: 'alert_msg',
 	confirm_msg: 'confirm_msg',
 	info: null, //
+	width: 300,
 };

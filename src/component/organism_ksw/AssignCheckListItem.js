@@ -8,8 +8,8 @@ import {assignCheckListItem} from './style_organism';
 export default AssignCheckListItem = props => {
 	const [chekced, setChecked] = React.useState(false);
 	const onCheck = e => {
-		setChecked(!chekced);
-		alert(!chekced);
+		setChecked(e);
+		props.onCheck(e);
 	};
 	return (
 		<View style={[assignCheckListItem.container]}>
@@ -25,4 +25,5 @@ export default AssignCheckListItem = props => {
 
 AssignCheckListItem.defaultProps = {
 	text: 'Default Text',
+	onCheck: e => console.log(e),
 };

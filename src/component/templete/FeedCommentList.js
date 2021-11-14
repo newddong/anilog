@@ -18,7 +18,7 @@ export default FeedCommentList = props => {
 	const [postPhoto, setPostPhoto] = React.useState(false);
 	//DummyData
 
-	const dummy_ParentComment = [1, 2, 3, 4];
+	const dummy_ParentComment = [1, 2];
 
 	return (
 		<View style={[login_style.wrp_main, feedCommentList.container]}>

@@ -666,6 +666,9 @@ export const companionForm = StyleSheet.create({
 	container: {
 		width: 702 * DP,
 		height: 324 * DP,
+		borderRadius: 40 * DP,
+		borderWidth: 2 * DP,
+		borderColor: APRI10,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -701,12 +704,9 @@ export const companionForm = StyleSheet.create({
 export const companionFormList = StyleSheet.create({
 	container: {
 		width: 702 * DP,
-		height: 853 * DP,
-		backgroundColor: 'pink',
 	},
 	companionFormContainer: {
 		marginBottom: 26 * DP,
-		backgroundColor: '#D7F1C1',
 	},
 });
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
-import DropdownSelect from '../molecules/DropdownSelect';
 import CompanionForm from './CompanionForm';
 import {companionFormList} from './style_organism';
 
@@ -15,11 +14,6 @@ export default CompanionFormList = props => {
 			breed: 1,
 			age: 1,
 			duration: 1,
-		},
-		{
-			breed: 2,
-			age: 2,
-			duration: 2,
 		},
 	];
 

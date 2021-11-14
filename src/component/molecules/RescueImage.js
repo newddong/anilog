@@ -17,7 +17,7 @@ export default RescueImage = props => {
 
 			<View style={{width: 480 * DP, height: 64 * DP, borderBottomLeftRadius: 30 * DP, backgroundColor: APRI10, position: 'absolute', right: 0}}>
 				{/* <Text style={[txt.noto32, {includeFontPadding: false, textAlign: 'center', color: 'white'}]}>{props.rescueText}</Text> */}
-				<Text style={[txt.noto32, {includeFontPadding: false, textAlign: 'center', color: 'white'}]}>{props.text}</Text>
+				<Text style={[txt.noto36, {textAlign: 'center', color: 'white'}]}>{props.text}</Text>
 			</View>
 		</View>
 	);

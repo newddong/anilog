@@ -15,7 +15,7 @@ export default AddressInput = props => {
 			<View style={[addressInput.upperContainer]}>
 				<View>
 					<View style={[addressInput.titleContainer]}>
-						<Text style={[txt.noto28, {color: GRAY10}]}> 나의 지역 </Text>
+						<Text style={[txt.noto28, {color: GRAY10}]}>{props.title} </Text>
 					</View>
 					<View style={[addressInput.input24A]}>
 						<Input24 />
@@ -30,4 +30,8 @@ export default AddressInput = props => {
 			</View>
 		</View>
 	);
+};
+
+AddressInput.defaultProps = {
+	title: '나의 장소',
 };

@@ -20,7 +20,7 @@ export default CompanionForm = props => {
 							<Text>종</Text>
 						</View>
 						<View style={[companionForm.dropDownSelect]}>
-							<DropdownSelect itemList={testBreed} defaultIndex={props.data.breed} />
+							<DropdownSelect items={testBreed} defaultIndex={props.data.breed} />
 						</View>
 					</View>
 					<View style={[companionForm.inputItem]}>
@@ -28,7 +28,7 @@ export default CompanionForm = props => {
 							<Text>나이</Text>
 						</View>
 						<View style={[companionForm.dropDownSelect]}>
-							<DropdownSelect itemList={testAge} defaultIndex={props.data.age} />
+							<DropdownSelect items={testAge} defaultIndex={props.data.age} />
 						</View>
 					</View>
 					<View style={[companionForm.inputItem]}>
@@ -36,12 +36,12 @@ export default CompanionForm = props => {
 							<Text>반려생활 기간</Text>
 						</View>
 						<View style={[companionForm.dropDownSelect]}>
-							<DropdownSelect itemList={testDuration} defaultIndex={props.data.duration} />
+							<DropdownSelect items={testDuration} defaultIndex={props.data.duration} />
 						</View>
 					</View>
 				</View>
 				<View style={[companionForm.lowerMenu]}>
-					<DropdownSelect itemList={['무지개 다리를 건넜어요']} width={634} />
+					<DropdownSelect items={['무지개 다리를 건넜어요']} width={634} />
 				</View>
 			</View>
 		</View>

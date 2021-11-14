@@ -19,7 +19,7 @@ export default CheckBox = props => {
 	const onCheck = () => {
 		//
 		setChecked(!checked);
-		props.onCheck(props.value);
+		props.onCheck(checked);
 	};
 
 	return (

@@ -175,7 +175,6 @@ export const btn_style = StyleSheet.create({
 		height: 70 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#FBE0AF',
 	},
 });
 
@@ -204,8 +203,6 @@ export const temp_style = StyleSheet.create({
 	stageBar: {
 		width: 654 * DP,
 		height: 32 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
 	},
 	agreementCheckList: {
 		width: 654 * DP,
@@ -289,7 +286,6 @@ export const temp_style = StyleSheet.create({
 		height: 450 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 	input24A_assignShelterAddress: {
 		width: 654 * DP,
@@ -550,12 +546,9 @@ export const temp_style = StyleSheet.create({
 	},
 	companionFormList: {
 		width: 702 * DP,
-		height: 853 * DP,
-		backgroundColor: 'pink',
 	},
 	assignCheckList: {
 		width: 654 * DP,
-		height: 853 * DP,
 	},
 	inputLongText: {
 		width: 710 * DP,
@@ -591,8 +584,7 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	commentList: {
-		width: 654 * DP,
-		backgroundColor: '#A4D6EC',
+		marginTop: 12 * DP,
 	},
 	floatingBtn: {
 		flexDirection: 'column',
@@ -977,27 +969,20 @@ export const temp_style = StyleSheet.create({
 	rescueContentScroll_view: {
 		width: 654 * DP,
 		// height: 1254 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#B3BADE',
 	},
 	requestProtect_view: {
 		width: 654 * DP,
 		height: 67 * DP,
-		backgroundColor: '#B3BADE',
 	},
 	requestProtect: {
 		width: 95 * DP,
 		height: 36 * DP,
 		marginTop: 30 * DP,
-		backgroundColor: '#F29797',
 	},
 	rescueContentTitle: {
 		width: 654 * DP,
 		height: 82 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#CF5B5B',
+		marginBottom: 40 * DP,
 	},
 	shelterSmallLabel_view_animalProtectRequestDetail: {
 		flexDirection: 'row',
@@ -1005,42 +990,39 @@ export const temp_style = StyleSheet.create({
 		height: 84 * DP,
 		alignItems: 'flex-start',
 		justifyContent: 'space-between',
-		backgroundColor: '#FF00FF',
 	},
 	shelterSmallLabel_animalProtectRequestDetail: {
 		width: 504 * DP,
 		height: 72 * DP,
-		alignItems: 'center',
-		backgroundColor: '#94D1AE',
 	},
 	button_animalProtectRequestDetail: {
 		width: 126 * DP,
 		height: 84 * DP,
-		alignItems: 'center',
-		backgroundColor: '#F29797',
+		flexDirection: 'row',
 	},
 	rescueSummary: {
 		width: 654 * DP,
 		height: 188 * DP,
+		borderWidth: 4 * DP,
+		borderColor: APRI10,
+		borderRadius: 40 * DP,
+
 		alignItems: 'center',
-		backgroundColor: '#CCD186',
+		justifyContent: 'center',
 	},
 	rescueText: {
 		width: 654 * DP,
 		height: 160 * DP,
 		alignItems: 'center',
-		backgroundColor: '#CC9898',
 	},
 	comment_count_view: {
 		width: 654 * DP,
-		height: 116 * DP,
-		backgroundColor: '#B3BADE',
+		height: 36 * DP,
+		marginTop: 70 * DP,
 	},
 	comment_count: {
 		width: 148 * DP,
 		height: 46 * DP,
-		marginTop: 70 * DP,
-		backgroundColor: '#F2B8B8',
 	},
 	writeComment: {
 		width: 654 * DP,
@@ -1053,13 +1035,11 @@ export const temp_style = StyleSheet.create({
 	addMoreRequest_view: {
 		width: 654 * DP,
 		height: 118 * DP,
-		backgroundColor: '#FF00FF',
 	},
 	addMoreRequest: {
 		width: 186 * DP,
 		height: 36 * DP,
 		marginTop: 82 * DP,
-		backgroundColor: '#E3A0A0',
 	},
 	floatingBtnAapply: {
 		flexDirection: 'row',
@@ -2815,7 +2795,6 @@ export const applyVolunteer = StyleSheet.create({
 export const applyCompanionA = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	stageBar: {
 		marginTop: 20 * DP,
@@ -2840,7 +2819,6 @@ export const applyCompanionA = StyleSheet.create({
 export const applyCompanionB = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	inputForm: {
 		marginTop: 40 * DP,
@@ -2854,11 +2832,9 @@ export const applyCompanionB = StyleSheet.create({
 	},
 	addPetBtnView: {
 		marginTop: 60 * DP,
-
 		width: 274 * DP,
 		height: 64 * DP,
 		flexDirection: 'row',
-		backgroundColor: 'yellow',
 	},
 	addPetTextView: {
 		marginLeft: 10 * DP,
@@ -2871,7 +2847,6 @@ export const applyCompanionB = StyleSheet.create({
 export const applyCompanionC = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	assignCheckList: {
 		marginTop: 40 * DP,
@@ -2880,14 +2855,13 @@ export const applyCompanionC = StyleSheet.create({
 		marginTop: 20 * DP,
 	},
 	textMsg: {
-		backgroundColor: WHITE,
 		marginTop: 12 * DP,
 	},
 	btnContainer: {
 		width: 654 * DP,
 		height: 70 * DP,
 		marginTop: 110 * DP,
-		backgroundColor: '#D7F1C1',
+		marginBottom: 50 * DP,
 		flexDirection: 'row',
 	},
 	btn_w176: {
@@ -3147,9 +3121,7 @@ export const accountPicker = StyleSheet.create({
 	},
 	accountList: {
 		width: 654 * DP,
-		height: 1224 * DP,
 		marginTop: 42 * DP,
-		backgroundColor: '#B5DED8',
 	},
 });
 
@@ -3427,7 +3399,7 @@ export const profile = StyleSheet.create({
 
 export const animalProtectRequestDetail_style = StyleSheet.create({
 	container: {
-		flex: 1,
+		flex: 0,
 	},
 	requestProtect: {
 		marginTop: 30 * DP,
@@ -3442,6 +3414,49 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 	floatingBtnAapply: {
 		position: 'absolute',
 		bottom: 0 * DP,
+	},
+	rescueSummary_insideContainer: {
+		width: 594 * DP,
+		height: 128 * DP,
+	},
+	rescueSummary_insideItem: {
+		width: 594 * DP,
+		height: 36 * DP,
+		marginBottom: 10 * DP,
+		flexDirection: 'row',
+	},
+	rescueSummary_insideItem_category: {
+		marginRight: 10 * DP,
+		color: GRAY20,
+	},
+	rescueSummary_insideItem_content: {
+		marginRight: 50 * DP,
+	},
+	editComment: {
+		width: 694 * DP,
+		height: 108 * DP,
+		flexDirection: 'row',
+		alignItems: 'center',
+		alignSelf: 'center',
+		position: 'absolute',
+		backgroundColor: WHITE,
+		bottom: 0,
+	},
+	btnContainer: {
+		width: 654 * DP,
+		height: 170 * DP,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+		shadowColor: '#000000',
+		shadowOpacity: 0.27,
+		shadowRadius: 4.65,
+		shadowOffset: {
+			width: 1 * DP,
+			height: 2 * DP,
+		},
+		elevation: 2,
+		marginVertical: 80 * DP,
 	},
 });
 

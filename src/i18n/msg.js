@@ -163,6 +163,9 @@ export const NORMAL = 'normal';
 export const PET = 'pet';
 export const SHELTER = 'shelter';
 
+//통신사
+export const mobile_carrier = ['SKT 텔레콤', 'LGU+', 'KT', '알뜰'];
+
 //테스트용 Array
 export const testArray = [
 	'테스트용 Array',

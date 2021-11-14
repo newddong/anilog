@@ -21,7 +21,6 @@ export default AnimalNeedHelpList = props => {
 				gender: 'male',
 				status: 'missing', // protected, missing, reported, onNegotiation, adoption_available
 			},
-			selected: true,
 		},
 		{
 			kind: '고양이',
@@ -36,7 +35,19 @@ export default AnimalNeedHelpList = props => {
 				gender: 'female',
 				status: 'reported', // protected, missing, reported, onNegotiation, adoption_available
 			},
-			selected: false,
+		},
+		{
+			kind: '개냥이',
+			breed: '초식계 정착종',
+			temp_protection_request: true,
+			registered_date: '2021-06-17',
+			location: '테트리스',
+			saved_location: '세이브포인트',
+			thumbnailData: {
+				img_uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU',
+				gender: 'female',
+				status: 'emergency', // protected, missing, reported, onNegotiation, adoption_available
+			},
 		},
 		{
 			kind: null,
@@ -50,7 +61,6 @@ export default AnimalNeedHelpList = props => {
 				gender: 'female',
 				status: 'onNegotiation', // protected, missing, reported, onNegotiation, adoption_available
 			},
-			selected: true,
 		},
 		{
 			kind: null,
@@ -64,21 +74,6 @@ export default AnimalNeedHelpList = props => {
 				gender: 'female',
 				status: 'onNegotiation', // protected, missing, reported, onNegotiation, adoption_available
 			},
-			selected: false,
-		},
-		{
-			kind: null,
-			breed: null,
-			temp_protection_request: true,
-			registered_date: '2021-06-17',
-			location: '테트리스',
-			saved_location: '세이브포인트',
-			thumbnailData: {
-				img_uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU',
-				gender: 'female',
-				status: 'onNegotiation', // protected, missing, reported, onNegotiation, adoption_available
-			},
-			selected: false,
 		},
 	];
 

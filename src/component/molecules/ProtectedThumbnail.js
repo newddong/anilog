@@ -27,7 +27,7 @@ export default ProtectedThumbnail = props => {
 	const getEmergencyMsg = () => {
 		return props.data.status == 'emergency' ? (
 			<View style={{position: 'absolute', alignSelf: 'center', bottom: 46 * DP}}>
-				<Mercy_Killing /> {/* 안락사임박 마크 */}
+				<Mercy_Killing />
 			</View>
 		) : (
 			false
@@ -36,15 +36,19 @@ export default ProtectedThumbnail = props => {
 
 	const getStatusContainerStyle = () => {
 		if (props.data.status == 'missing') {
-			return RED10;
+			return {backgroundColor: RED10};
 		} else if (props.data.status == 'reported') {
-			return 'pink';
-		} else return GRAY10;
+			return {backgroundColor: 'pink'};
+		} else if (props.data.status == 'emergency') {
+			return {backgroundColor: RED10, borderWidth: 2 * DP, borderColor: RED10};
+		} else return {backgroundColor: GRAY10};
 	};
 
 	const getStatusText = () => {
 		switch (props.data.status) {
 			case 'adoption_available':
+				return '입양가능';
+			case 'emergency':
 				return '입양가능';
 			case 'missing':
 				return '실종';
@@ -64,16 +68,18 @@ export default ProtectedThumbnail = props => {
 			<View style={{position: 'absolute', right: 10 * DP, top: 10 * DP}}>{props.data.gender == 'male' ? <Male48 /> : <Female48 />}</View>
 			{/* 펫 보호상태 */}
 			<View
-				style={{
-					position: 'absolute',
-					width: '100%',
-					height: 36 * DP,
-					opacity: 1,
-					bottom: 0,
-					borderBottomLeftRadius: 30 * DP,
-					borderBottomRightRadius: 30 * DP,
-					backgroundColor: getStatusContainerStyle(),
-				}}>
+				style={[
+					getStatusContainerStyle(),
+					{
+						position: 'absolute',
+						width: '100%',
+						height: 36 * DP,
+						opacity: 1,
+						bottom: 0,
+						borderBottomLeftRadius: 30 * DP,
+						borderBottomRightRadius: 30 * DP,
+					},
+				]}>
 				<Text style={[txt.noto24, {color: WHITE, textAlign: 'center', lineHeight: 32 * DP}]}>{getStatusText()}</Text>
 			</View>
 			{getEmergencyMsg()}
