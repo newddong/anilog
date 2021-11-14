@@ -41,6 +41,7 @@ export default ApplyCompanionD = props => {
 			{/* TextMsg */}
 			<View style={[temp_style.stageBar, applyCompanionC.textMsg]}>
 				<Text style={[txt.noto24, {color: GRAY10}]}>현재의 생활에 대해 체크해주세요.</Text>
+				{/* <Text style={[txt.noto24, {color: GRAY10}]}>{temp_inputLongText()}</Text> */}
 			</View>
 			{/* (O)AssignCheckList */}
 			<View style={[temp_style.assignCheckList, applyCompanionC.assignCheckList]}>

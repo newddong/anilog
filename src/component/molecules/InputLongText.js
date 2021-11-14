@@ -13,6 +13,7 @@ import {APRI10, GRAY10, GRAY30} from 'Root/config/color';
  * }} props
  */
 export default InputLongText = props => {
+	console.log('value ' + JSON.stringify(props.value));
 	const [content, setContent] = React.useState('');
 	const inputRef = React.useRef();
 
@@ -52,10 +53,11 @@ export default InputLongText = props => {
 						placeholder={props.placeholder}
 						multiline={true}
 						ref={inputRef}
+						defaultValue={props.value}
 					/>
 					<View style={{width: 95 * DP, height: 30 * DP, alignSelf: 'flex-end'}}>
 						<Text style={[txt.roboto24, {color: GRAY10}]}>
-							{content.length}/{props.maxLength}
+							{content.length}/{props.maxlength}
 						</Text>
 					</View>
 				</View>

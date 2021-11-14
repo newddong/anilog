@@ -17,12 +17,12 @@ import {selectStat} from './style_organism';
 export default SelectStat = props => {
 	const [selectMode, setSelectMode] = React.useState(false);
 
-	//취소 버튼 클릭
+	//선택하기 버튼 클릭
 	const select = () => {
 		setSelectMode(true);
 		props.onSelectMode(selectMode);
 	};
-	//선택하기 버튼 클릭
+	//취소 버튼 클릭
 	const selectCancel = () => {
 		setSelectMode(false);
 		props.onCancelSelectMode(selectMode);

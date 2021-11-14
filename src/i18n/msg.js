@@ -187,3 +187,6 @@ export const testArray = [
 
 //DefaultImage uri
 export const DEFAULT_PROFILE = 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg';
+
+//잠시 임시저장 기능 관련 테스트용
+export let temp_inputLongText = '';

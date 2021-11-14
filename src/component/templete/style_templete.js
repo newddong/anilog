@@ -2872,7 +2872,6 @@ export const applyCompanionC = StyleSheet.create({
 export const applyCompanionD = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	InputLongText: {
 		marginTop: 40 * DP,
@@ -2881,14 +2880,12 @@ export const applyCompanionD = StyleSheet.create({
 		marginTop: 20 * DP,
 	},
 	textMsg: {
-		backgroundColor: WHITE,
 		marginTop: 12 * DP,
 	},
 	btnContainer: {
 		width: 654 * DP,
 		height: 70 * DP,
 		marginTop: 80 * DP,
-		backgroundColor: '#D7F1C1',
 		flexDirection: 'row',
 	},
 	btn_w176: {
