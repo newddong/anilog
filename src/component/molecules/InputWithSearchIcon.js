@@ -32,8 +32,7 @@ export default InputWithSearchIcon = props => {
 	};
 
 	const onSearch = () => {
-		alert('검색시도 ' + input);
-		props.onSearch();
+		props.onSearch(input);
 	};
 
 	const blur = () => {

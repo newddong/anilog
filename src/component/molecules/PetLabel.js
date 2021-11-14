@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
+import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
 import {Paw30_APRI10, Paw30_Mixed, Paw30_YELL20} from '../atom/icon';
@@ -13,7 +14,7 @@ import {styles} from '../atom/image/imageStyle';
  * }} props
  */
 export default PetLabel = props => {
-	const [imgUri, setImgUri] = React.useState(props.data.user_image);
+	const [imgUri, setImgUri] = React.useState(props.data.img_uri);
 	React.useEffect(() => {
 		if (imgUri == false) {
 			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
@@ -51,7 +52,7 @@ export default PetLabel = props => {
 				<Text style={txt.roboto28b} numberOfLines={1} ellipsizeMode="tail">
 					{props.data.user_nickname}
 				</Text>
-				<Text style={[txt.noto24, {lineHeight: 44 * DP}]} numberOfLines={1} ellipsizeMode="tail">
+				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
 					{props.data.owner}
 				</Text>
 				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
@@ -66,6 +67,7 @@ PetLabel.defaultProps = {
 		user_nickname: 'user_nickname',
 		img_uri: 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
 		status: 'normal',
+		owner: 'Owner',
 	},
 	onClickLabel: e => console.log(e),
 };

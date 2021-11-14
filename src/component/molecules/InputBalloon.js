@@ -9,6 +9,7 @@ import {APRI10, GRAY30, RED10} from 'Root/config/color';
  * @param {{
  *placeholder : string,
  *value : 'string',
+ *title : string,
  *onChange : 'Input Value Change Callback'
  * }} props
  */
@@ -35,7 +36,7 @@ export default InputBalloon = props => {
 		<View style={{width: 654 * DP}}>
 			<Text style={[txt.noto24, {color: APRI10, lineHeight: 34 * DP}]}>
 				{/* Title을 props로 받을 것인지 Input으로 컴포넌트 내에서 처리할 것인지 확인 필요 */}
-				Title
+				{props.title}
 			</Text>
 			<View
 				style={{
@@ -63,5 +64,6 @@ export default InputBalloon = props => {
 InputBalloon.defaultProps = {
 	placeholder: 'placeholder',
 	value: 'value',
+	title: 'title',
 	onChange: e => console.log(e),
 };

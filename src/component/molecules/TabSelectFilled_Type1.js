@@ -37,10 +37,11 @@ export default TabSelectFilled_Type1 = props => {
 			<TouchableOpacity
 				onPress={() => onSelect(index)}
 				style={{
-					width: 260 * DP,
+					width: (654 * DP) / props.items.length,
 					height: 82 * DP,
 					backgroundColor: selected[index].state ? APRI10 : GRAY40,
 					justifyContent: 'center',
+					marginRight: 2 * DP,
 				}}>
 				<Text
 					style={[

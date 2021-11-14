@@ -9,11 +9,12 @@ import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
  * @param {{
  *title: string,
  *placeholder: string,
- *descriptionType: 'star' | 'info',
+ *descriptionType: 'star' | 'info' | 'none',
  *value: string,
  *alert_msg: 'String / 긴급메시지 ',
  *confirm_msg: 'String / 확인메시지 ',
- *info: string, //
+ *info: string,
+ *width: number,
  * }} props
  */
 export default Input24 = props => {
@@ -58,6 +59,8 @@ export default Input24 = props => {
 			return <Text style={[txt.noto22, {color: GRAY20, marginLeft: 20 * DP}]}> *{props.info} </Text>;
 		} else if (props.descriptionType == 'star') {
 			return <Text style={[txt.noto28, {color: RED10, marginLeft: 120 * DP}]}>*</Text>;
+		} else if (props.descriptionType == 'none') {
+			return null;
 		}
 	};
 
@@ -111,7 +114,7 @@ export default Input24 = props => {
 Input24.defaultProps = {
 	title: 'title', // input title
 	placeholder: 'placeholder',
-	descriptionType: 'star', // star , info - title 오른쪽 description을 별표형식 / Info형식 구분
+	descriptionType: 'star', // star , info , none - title 오른쪽 description을 별표형식 / Info형식 구분
 	value: 'value',
 	alert_msg: 'alert_msg',
 	confirm_msg: 'confirm_msg',

@@ -36,7 +36,6 @@ export default DatePicker = props => {
 				style={{
 					borderBottomColor: APRI10,
 					borderBottomWidth: 2 * DP,
-					backgroundColor: 'yellow',
 					flexDirection: 'row',
 					alignItems: 'center',
 				}}>

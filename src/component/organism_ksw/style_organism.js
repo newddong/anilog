@@ -60,12 +60,13 @@ export const organism_style = StyleSheet.create({
 		backgroundColor: '#C1DAF6',
 	},
 	petAccountList: {
-		width: 654 * DP,
-		backgroundColor: '#B5DED8',
+		width: 614 * DP,
+		height: 94 * DP,
+		marginBottom: 30 * DP,
+		flexDirection: 'row',
 	},
 	petLabel: {
 		marginBottom: 40 * DP,
-		backgroundColor: 'yellow',
 	},
 	accountList: {
 		width: 674 * DP,
