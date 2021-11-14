@@ -9,7 +9,7 @@ import {txt} from 'Root/config/textstyle';
 import {GRAY10} from 'Root/config/color';
 
 export default Feed = props => {
-	console.log(props.data);
+	// console.log(props.data);
 	const navigation = useNavigation();
 	//FeedMedia 관련 정보
 	const _dummyData = {

@@ -11,12 +11,20 @@ import {login_style, temp_style, selectstat_view_style} from './style_templete';
 
 export default FavoriteFeeds = props => {
 	const navigation = useNavigation();
+	//
+	const [selectMode, setSelectMode] = React.useState(true);
+
+	const checkSelectMode = e => {
+		console.log('checkSelectMode=>' + e);
+		setSelectMode(selectMode);
+	};
+
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* SelectStat	 */}
 			<View style={[temp_style.selectstat_view]}>
 				<View style={[temp_style.selectstat, selectstat_view_style.selectstat]}>
-					<SelectStat />
+					<SelectStat onSelectMode={e => checkSelectMode(e)} />
 				</View>
 			</View>
 
@@ -24,14 +32,25 @@ export default FavoriteFeeds = props => {
 			<View style={[temp_style.FeedThumbnailList]}>
 				<FeedThumbnailList
 					onClickThumnail={() => {
+						console.log('in selectMode =>' + selectMode);
+						//선택모드 true값과 false값이 반대로 주는 이유 확인 후 case 문으로 변경 필요
+						// if (selectMode) {
 						if (props.route.name == 'UserFeeds') {
 							navigation.push('UserFeedList');
 						} else if (props.route.name == 'TagMeFeeds') {
 							navigation.push('TagMeFeedList');
 						}
+						// else if (props.route.name == 'FavoriteFeeds') {
+						// 	navigation.push('FavoriteFeedList');
+						// }
 						//다른 route가 있을 경우 else if 확장 할 것
 						else {
+							console.log('props.route.name=>' + props.route.name);
 						}
+						// } else {
+						// 	//선택모드로 들어감.
+						// 	//별도 로직  ~~
+						// }
 					}}
 				/>
 			</View>

@@ -69,7 +69,7 @@ FeedThumbnail.defaultProps = {
 		img_uri: 'http://storage.enuri.info/pic_upload/knowbox2/202105/09151281620210518c342be40-3a75-40df-b7eb-6dd511de41a8.jpg',
 	},
 
-	onSelect: e => console.log(e),
+	// onSelect: e => console.log(e),
 	// img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
 	// img_uri: 'http://storage.enuri.info/pic_upload/knowbox2/202105/09151281620210518c342be40-3a75-40df-b7eb-6dd511de41a8.jpg',
 };

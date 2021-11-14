@@ -7,7 +7,7 @@ import {styles} from '../atom/image/imageStyle';
 import {BLACK, RED10, WHITE} from 'Root/config/color';
 
 export default FeedMedia_temp = props => {
-	console.log(props.data.medias);
+	// console.log(props.data.medias);
 	const onSelect = () => {
 		props.onSelect(props.data.feed_id);
 		// setSelected(!selected);
@@ -114,6 +114,6 @@ FeedMedia_temp.defaultProps = {
 		emergency: false,
 	},
 
-	onSelect: e => console.log(e),
+	// onSelect: e => console.log(e),
 	img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
 };
