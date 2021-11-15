@@ -23,11 +23,9 @@ export default FeedList = props => {
 			</View>
 
 			{/* FloatButton */}
-			<TouchableWithoutFeedback onPress={moveToFeedWrite}>
-				<View style={[temp_style.floatingBtn, feedList.floatingBtn]}>
-					<Write94 />
-				</View>
-			</TouchableWithoutFeedback>
+			<View style={[temp_style.floatingBtn, feedList.floatingBtn]}>
+				<Write94 onPress={moveToFeedWrite}/>
+			</View>
 		</View>
 	);
 };

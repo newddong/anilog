@@ -42,6 +42,8 @@ import SearchTabNavigation from './search_tab/SearchTabNavigation';
 import { PIC_SELECTION } from 'Root/i18n/msg';
 import FeedListForHashTag from 'Root/component/templete/FeedListForHashTag';
 
+import SimpleHeader from 'Navigation/header/SimpleHeader';
+
 const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
@@ -81,7 +83,7 @@ export default RootStackNavigation = () => {
 
 					<RootStack.Screen name="ApplyVolunteer" component={ApplyVolunteer} />
 					<RootStack.Screen name="FeedMediaTagEdit" component={FeedMediaTagEdit} />
-					<RootStack.Screen name="FeedWrite" component={FeedWrite} />
+					<RootStack.Screen name="FeedWrite" component={FeedWrite} options={{header:props=><SimpleHeader {...props}/>,title : '게시물 작성'}}/>
 
 					<RootStack.Screen name="FeedMissingWrite" component={FeedWrite} />
 					<RootStack.Screen name="FeedReportWrite" component={FeedWrite} />

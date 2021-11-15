@@ -9,20 +9,24 @@ import FeedCommentList from 'Templete/FeedCommentList';
 import AnimalProtectRequestDetail from 'Root/component/templete/AnimalProtectRequestDetail';
 import FeedWrite from 'Root/component/templete/FeedWrite';
 
+import LogoHeader from 'Navigation/header/LogoHeader';
+import MeatBallHeader from 'Navigation/header/MeatBallHeader';
+import AlarmAndSearchHeader from 'Navigation/header/AlarmAndSearchHeader';
+
 const FeedStack = createStackNavigator();
 
 export default FeedStackNavigation = () => {
 	return (
-		<FeedStack.Navigator initialRouteName="Login">
-			<FeedStack.Screen name="MainHomeFeedList" component={FeedList} />
-			<FeedStack.Screen name="UserProfile" component={Profile} />
+		<FeedStack.Navigator initialRouteName="MainHomeFeedList">
+			<FeedStack.Screen name="MainHomeFeedList" component={FeedList} options={{header:(props)=><LogoHeader {...props}/>}}/>
+			<FeedStack.Screen name="UserProfile" component={Profile} options={{header:(props)=><MeatBallHeader {...props}/>,title:'유저 프로필(유저 아이디)'}}/>
 			<FeedStack.Screen name="SocialRelation" component={SocialRelation} />
 			<FeedStack.Screen name="UserFeedList" component={FeedList} />
 			<FeedStack.Screen name="HashFeedList" component={FeedList} />
 			<FeedStack.Screen name="ProtectAnimalFeedList" component={FeedList} />
 			<FeedStack.Screen name="UserTagFeedList" component={FeedList} />
 			<FeedStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} />
-			<FeedStack.Screen name="FeedCommentList" component={FeedCommentList} />
+			<FeedStack.Screen name="FeedCommentList" component={FeedCommentList} options={{header:props=><AlarmAndSearchHeader/>}}/>
 		</FeedStack.Navigator>
 	);
 };
