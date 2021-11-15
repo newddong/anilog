@@ -20,12 +20,14 @@ export default SelectStat = props => {
 	//선택하기 버튼 클릭
 	const select = () => {
 		setSelectMode(true);
-		props.onSelectMode(selectMode);
+		//useState의 비동기 실행으로 상위로 값을 넘길떄 selectMode 값이 아닌 임의값으로 지정해서 전송
+		props.onSelectMode(true);
 	};
 	//취소 버튼 클릭
 	const selectCancel = () => {
 		setSelectMode(false);
-		props.onCancelSelectMode(selectMode);
+		//useState의 비동기 실행으로 상위로 값을 넘길떄 selectMode 값이 아닌 임의값으로 지정해서 전송
+		props.onCancelSelectMode(false);
 	};
 	//전체 선택
 	const selectAll = () => {
