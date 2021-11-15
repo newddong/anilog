@@ -309,7 +309,6 @@ export default FeedWrite = props => {
 						onChangeText={text => setFeedText(text)}
 					>
 					</TextInput>
-					<Button onPress={makeDraft} title={'Butto'} />
 				</View>
 
 				{/* Input Text 하단 언더라인 */}

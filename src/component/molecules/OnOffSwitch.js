@@ -27,7 +27,6 @@ export default OnOffSwitch = props => {
 							borderRadius: 18 * DP,
 							justifyContent: 'center',
 							alignItems: 'center',
-							backgroundColor: APRI10,
 						}}>
 						<Text style={[txt.roboto20, {color: WHITE}]}> On </Text>
 						<View style={{width: 28 * DP, height: 28 * DP, borderRadius: 30, backgroundColor: WHITE}} />

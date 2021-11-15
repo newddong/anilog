@@ -1,47 +1,62 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {FlatList, Image, ScrollView, Text, View, TouchableOpacity} from 'react-native';
+import {GRAY10} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
 import {activationList, login_style, temp_style} from './style_templete';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default ActivationList = props => {
+	const dummy = [
+		{
+			title: '임시보호 참여하기',
+			image: 'http://www.petpaper.co.kr/news/photo/202006/780_710_2650.jpg',
+		},
+		{
+			title: '반려동물 실종시 전단지 만들기',
+			image: 'https://www.korea.kr/newsWeb/resources/attaches/2018.08/13/j(10)(1).jpg',
+		},
+		{
+			title: '임시보호 가이드 댕댕이 편',
+			image: 'https://i.ytimg.com/vi/_sGXBdriPls/maxresdefault.jpg',
+		},
+		{
+			title: '임시보호 가이드 냥이 편',
+			image: 'https://blog.kakaocdn.net/dn/dqxd2e/btqF9CkxulW/VGaLWC0cEGxKTDsMQLEge1/img.png',
+		},
+		{
+			title: '입양하기',
+			image:
+				'https://post-phinf.pstatic.net/MjAxODA1MjVfMTI0/MDAxNTI3MjI0ODM0NjUy.3W_Gofc55O0KiKsFbSQHtDFcszORyaJanPV1c4kQrREg.--OIU53Y4G2wigHZQfha9IkpyA2yWsT3W9GH66I3ZcYg.PNG/mug_obj_152722483276385125.png?type=w1080',
+		},
+	];
+
+	const boxClick = category => {
+		console.log(category);
+		alert(category.title);
+	};
+
+	const renderItem = (item, index) => {
+		return (
+			<View style={[activationList.activity]}>
+				<View style={[activationList.activityNameContainer]}>
+					<Text style={[txt.noto28, {color: GRAY10}]}>{item.title}</Text>
+				</View>
+				<TouchableOpacity style={[activationList.activityImage]} onPress={() => boxClick(item)}>
+					<Image source={{uri: item.image}} style={{flex: 1}} resizeMode={'stretch'} />
+				</TouchableOpacity>
+			</View>
+		);
+	};
 	return (
-		<View style={[login_style.wrp_main, activationList.container]}>
-			{/* (O)topTabNavigation_border */}
-			<View style={[temp_style.topTabNavigation_border]}>
-				<Text>(O)topTabNavigation_border</Text>
-			</View>
-			{/* Activities Container */}
-			<View style={[activationList.activityContainer]}>
-				{/* Activity */}
-				<View style={[activationList.activity]}>
-					<View style={[activationList.activityNameContainer]}>
-						<Text style={[activationList.activityName]}>Text</Text>
-					</View>
-					<View style={[activationList.activityImage]}>
-						<Text>Participation Image</Text>
-					</View>
-				</View>
-				{/* Activity */}
-				<View style={[activationList.activity]}>
-					<View style={[activationList.activityNameContainer]}>
-						<Text style={[activationList.activityName]}>Text</Text>
-					</View>
-					<View style={[activationList.activityImage]}>
-						<Text>Participation Image</Text>
-					</View>
-				</View>
-				{/* Activity */}
-				<View style={[activationList.activity]}>
-					<View style={[activationList.activityNameContainer]}>
-						<Text style={[activationList.activityName]}>Text</Text>
-					</View>
-					<View style={[activationList.activityImage]}>
-						<Text>Participation Image</Text>
-					</View>
+		<ScrollView>
+			<View style={[login_style.wrp_main, activationList.container]}>
+				{/* Activities Container */}
+				<View style={[activationList.activityContainer]}>
+					<FlatList data={dummy} renderItem={({item, index}) => renderItem(item, index)} />
 				</View>
 			</View>
-		</View>
+		</ScrollView>
 	);
 };

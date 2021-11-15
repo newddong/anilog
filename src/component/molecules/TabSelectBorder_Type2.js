@@ -29,7 +29,7 @@ export default TabSelectBorder_Type2 = props => {
 			i == index ? (copyState[i].state = true) : (copyState[i].state = false);
 		}
 		setSelected(copyState);
-		props.onSelect(copyState[index]);
+		props.onSelect(props.items[index]);
 	};
 
 	const renderItem = ({item, index}) => {
@@ -63,6 +63,6 @@ export default TabSelectBorder_Type2 = props => {
 };
 
 TabSelectBorder_Type2.defaultProps = {
-	items: null, //FlatList에 담길 배열 정보
+	items: [1, 2, 3], //FlatList에 담길 배열 정보
 	onSelect: e => console.log(e), //Tab Press 이벤트
 };

@@ -1,114 +1,81 @@
-import { parse } from 'qs';
+import {parse} from 'qs';
 import React from 'react';
-import { FlatList, Text, View } from 'react-native';
-import { GRAY10 } from 'Root/config/color';
-import { txt } from 'Root/config/textstyle';
-import { feedText, organism_style } from './style_organism';
+import {FlatList, Text, View} from 'react-native';
+import {GRAY10} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
+import {feedText, organism_style} from './style_organism';
 
 export default FeedText = props => {
-    const origin_text = props.text
-    // const sliced_text = ['우리 #둥이는', ' 언제나 창가에 앉아있끼를', '좋아하는 것이 아닌가 호텔 캘리포니아']
+	const origin_text = props.text; //FeedContent에서 보내주는 Feed 글 내용
 
-    const sliced_text = ['우리 #둥이는 뚠뚠 espors', 'Cant Be the real Sports', 'Why do you so sarcastic to me these days']
-    React.useEffect(() => {
+	const char = []; //Char 단위로 나눈 Feed글을 담을 배열선언
+	char.length = origin_text.length; //Feed글의 글자수
+	//글자수 담는 반복문
+	for (let i = 0; i < char.length; i++) {
+		char[i] = origin_text.charAt(i);
+	}
+	const textLength = parseInt(props.text.length / 30); //줄을 나누기 위한 길이 설정 => 현재 30글자마다 한줄
+	const sliced = []; // 각 30글자가 담겨질 배열 선언
+	sliced.length = textLength; // 30글자 박스들의 길이 - 총 62자의 피드글이라면 length = 2
+	// 각 sliced에 30글자 씩 담는 반복문
+	for (let i = 0; i <= textLength; i++) {
+		sliced[i] = char.slice(i * 30, (i + 1) * 30);
+	}
 
-        const char = []
-        char.length = origin_text.length
-        for (let i = 0; i < char.length; i++) {
-            char[i] = origin_text.charAt(i)
-        }
-        console.log(char)
-        const textLength = parseInt(props.text.length / 20)
-        const sliced = []
-        sliced.length = textLength
-        for (let i = 0; i < textLength; i++) {
-            sliced[i] = char.slice(i, 20)
-        }
-        console.log(sliced)
-    })
+	const onHashClick = hashText => {
+		props.onHashClick(hashText);
+	};
 
+	// FlatList로 각 줄의 View 출력
+	const renderItem = (char, index) => {
+		let item = ''; // 잘게 잘라진 글자들을 다시 붙일 변수 item
+		// 잘게 잘라진 글자들을 다시 붙여주는 반복문
+		for (let i = 0; i < char.length; i++) {
+			item = item + char[i];
+		}
+		// 다시 붙여진 글을 ' ' 띄어쓰기 기준으로 split
+		const splitedArr = item.split(' ');
+		let idx = 0;
+		const valueInfos = splitedArr.map(str => {
+			// ex) '피드 테스트 #피드' 라는 3개의 split로 가정해보자
+			const idxArr = [idx, idx + str.length - 1];
+			idx += str.length + 1;
+			return {
+				str, // split된 각 배열들의 string , ex)  ['피드', '테스트','#피드']
+				isHT: str.startsWith('#'), //split된 각 배열들의 value가 #로 시작하는 경우의 boolean , ex) [false, false, true]
+				idxArr, // index
+			};
+		});
+		return (
+			<View style={{flexDirection: 'row'}}>
+				{valueInfos.map((v, idx) => {
+					//valueInfos에는 위에서 split한 값들의 str, isHt, idxArr 값이 들어있다.
+					const isLast = idx === valueInfos.length - 1; //마지막 split의 마지막 글자여부 Boolean
+					return (
+						<Text
+							key={idx}
+							// split된 값들의 isHT(hashTag로 시작하는가?)가 True일 경우 글자색은 blue이며
+							style={[txt.noto28, v.isHT ? {color: 'blue', height: 40 * DP, textDecorationLine: 'underline'} : {height: 40 * DP}]}
+							// 클릭이벤트가 부여된다. 아닐 경우 null
+							onPress={() => (v.isHT ? props.onHashClick(v.str) : null)}>
+							{v.str}
+							{/* 각 split의 마지막 글자인 경우 띄어쓰기를 부여,   */}
+							{!isLast && <Text style={{backgroundColor: 'transparent'}}> </Text>}
+						</Text>
+					);
+				})}
+			</View>
+		);
+	};
 
-    const renderItem = (item, index) => {
-        const splitedArr = item.split(" ");
-        let idx = 0;
-        const valueInfos = splitedArr.map(str => {
-            const idxArr = [idx, idx + str.length - 1];
-            idx += str.length + 1;
-            return {
-                str,
-                isHT: str.startsWith("#"),
-                idxArr,
-            };
-        })
-        return (
-            <View style={{ flexDirection: 'row' }}>
-                {valueInfos.map((v, idx) => {
-                    const isLast = idx === valueInfos.length - 1;
-                    return <Text
-                        key={idx}
-                        style={[txt.noto28, v.isHT ? { color: 'blue', height: 40 * DP, textDecorationLine: 'underline' } : { height: 40 * DP }]}
-                        onPress={() => v.isHT ? props.onHashClick(v.str) : null}
-                    >
-                        {v.str}
-                        {!isLast && <Text style={{ backgroundColor: 'transparent' }}>{" "}</Text>}
-                    </Text>
-                })}
-            </View>
-        )
-    }
-
-    const getFeedText = item => {
-        console.log(item)
-
-        if (item.length == 0) {
-            return null
-        } else {
-            const splitedArr = item.split(" ");
-            let idx = 0;
-            const valueInfos = splitedArr.map(str => {
-                const idxArr = [idx, idx + str.length - 1];
-                idx += str.length + 1;
-                return {
-                    str,
-                    isHT: str.startsWith("#"),
-                    idxArr,
-                };
-            })
-            return (
-                valueInfos.map((v, idx) => {
-                    const [firstIdx, lastIdx] = v.idxArr;
-                    let value = origin_text.slice(firstIdx, lastIdx + 1)
-                    const isLast = idx === valueInfos.length - 1;
-
-                    if (v.isHT) {
-                        return (
-                            <Text key={idx} style={[txt.noto28, { color: 'blue', height: 40 * DP }]} onPress={() => props.onHashClick(value)}>
-                                {value}
-                                {!isLast && <Text style={{ backgroundColor: 'transparent' }}>{" "}</Text>}
-                            </Text>
-                        );
-                    }
-                    return (
-                        <Text key={idx} style={[txt.noto28, { height: 40 * DP, }]}
-                        >
-                            {value}
-                            {!isLast && <Text>{" "}</Text>}
-                        </Text>
-                    );
-                })
-            )
-        }
-    }
-
-    return (
-        <View style={feedText.container}>
-            {/* <Text style={[txt.noto28, { color: GRAY10 }]}>{props.text}</Text> */}
-            <FlatList data={sliced_text} renderItem={({ item, index }) => renderItem(item, index)} />
-        </View>
-    );
+	return (
+		<View style={feedText.container}>
+			<FlatList data={sliced} renderItem={({item, index}) => renderItem(item, index)} />
+		</View>
+	);
 };
 
 FeedText.defaultProps = {
-    text: "피드 텍스트 #피드 ",
-    onHashClick: e => console.log(e)
-}
+	text: '피드 텍스트 #피드 ',
+	onHashClick: e => console.log(e),
+};

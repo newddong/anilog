@@ -5,7 +5,6 @@ import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
 import {useNavigation} from '@react-navigation/core';
-import SelectStat from '../organism_ksw/SelectStat';
 /**
  *
  * @param {{btnTitle : string,
@@ -63,17 +62,6 @@ export default AniButton = props => {
 			return WHITE;
 		} //이외의 경우 WHITE
 	};
-
-	// const lineHeight = () => {
-	// 	//Border가 설정되는 disable=true , btnStyle='border'의 경우 border의 width만큼 lineheight에서 빼준다
-	// 	if (props.btnStyle == 'border') {
-	// 		return props.btnLayout.height - 4 * DP;
-	// 	} else {
-	// 		return props.btnLayout.height;
-	// 	}
-	// };
-
-	//클릭 이벤트 - Disable false일 경우 onPress이벤트 발생
 	const onPress = () => {
 		props.disable ? false : props.onPress(props.btnTitle);
 	};

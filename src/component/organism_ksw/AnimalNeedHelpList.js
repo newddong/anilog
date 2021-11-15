@@ -2,7 +2,6 @@ import React from 'react';
 import {FlatList, TouchableOpacity, View, Text} from 'react-native';
 import AnimalNeedHelp from './AnimalNeedHelp';
 import {animalNeedHelpList} from './style_organism';
-import {animalNeedHelp} from './style_organism';
 import {useNavigation} from '@react-navigation/core';
 
 export default AnimalNeedHelpList = props => {
@@ -78,7 +77,7 @@ export default AnimalNeedHelpList = props => {
 	];
 
 	const renderItem = (item, index) => {
-		console.log('index=>' + item.thumbnailData.status);
+		// console.log('index=>' + item.thumbnailData.status);
 		return (
 			<TouchableOpacity
 				style={[animalNeedHelpList.itemContainer]}
