@@ -2989,7 +2989,6 @@ export const feedList = StyleSheet.create({
 		position: 'absolute',
 		right: 30 * DP,
 		bottom: 40 * DP,
-		backgroundColor: 'red',
 	},
 });
 
