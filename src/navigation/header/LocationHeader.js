@@ -1,39 +1,29 @@
 import React from 'react';
-import {Text, TextInput, View, Image, ScrollView, Dimensions, SafeAreaView, StyleSheet,TouchableOpacity} from 'react-native';
+import {Text, TextInput, View, StyleSheet,TouchableOpacity} from 'react-native';
 
-import {Logo} from 'Asset/image';
-import {AlarmBadger48, Search48, BackArrow32} from 'Atom/icon';
+import {AlarmBadger48, Search48, BackArrow32, Send60_Big,Location54_Filled} from 'Atom/icon';
 import DP from 'Root/config/dp';
 import {WHITE,APRI10} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
 
-export default AlarmAndSearchHeader = ({navigation,route,options,back}) => {
+export default LocationHeader = ({navigation,route,options,back}) => {
 
-	const clickSearch = () => {
-		// navigation.navigate('Search');
-		alert('Search')
-	};
-	const clickAlarm = () => {
-		alert('Alarm!');
-	};
-	return (
+    return (
 		<View style={[style.headerContainer, style.shadow]}>
              <TouchableOpacity onPress={navigation.goBack}>
                 <View style={style.backButtonContainer}>
                     <BackArrow32 onPress={navigation.goBack}/>
                 </View>
             </TouchableOpacity>
-			<View style={style.buttonContainer}>
-				<Search48 onPress={clickSearch}/>
-
-				<AlarmBadger48 onPress={clickAlarm}/>
-			</View>
+            <Text style={[{flex:1,textAlign:'center',marginLeft:30*DP,marginRight:80*DP},txt.roboto40b]}>{options.title}</Text>
+            <Location54_Filled />
 		</View>
 	);
 };
 
 const style = StyleSheet.create({
 	headerContainer: {
-		alignItems: 'flex-end',
+		alignItems: 'center',
         justifyContent:'space-between',
 		height: 135 * DP,
 		flexDirection: 'row',
@@ -44,7 +34,7 @@ const style = StyleSheet.create({
 		flexDirection: 'row',
         justifyContent: 'space-between',
         width:126*DP,
-		marginBottom: 26 * DP,
+		
 	},
 	shadow: {
 		shadowColor: '#000000',
@@ -60,6 +50,6 @@ const style = StyleSheet.create({
         width: 80*DP,
         height: 80*DP,
         justifyContent: 'center',
-		marginBottom:12*DP,
+		padding: 10*DP,
     },
 });

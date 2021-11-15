@@ -26,7 +26,7 @@ export default FeedStackNavigation = () => {
 			<FeedStack.Screen name="ProtectAnimalFeedList" component={FeedList} />
 			<FeedStack.Screen name="UserTagFeedList" component={FeedList} />
 			<FeedStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} />
-			<FeedStack.Screen name="FeedCommentList" component={FeedCommentList} options={{header:props=><AlarmAndSearchHeader/>}}/>
+			<FeedStack.Screen name="FeedCommentList" component={FeedCommentList} options={{header:props=><AlarmAndSearchHeader {...props}/>,title:'몰라'}}/>
 		</FeedStack.Navigator>
 	);
 };
