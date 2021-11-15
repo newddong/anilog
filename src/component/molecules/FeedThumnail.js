@@ -8,10 +8,12 @@ import {BLACK, RED10, WHITE} from 'Root/config/color';
 
 export default FeedThumbnail = props => {
 	const [selected, setSelected] = React.useState(false);
+	const [selectMode, setSelectMode] = React.useState(false);
 
 	const onSelect = () => {
 		props.onSelect(props.data.feed_id);
 		setSelected(!selected);
+		setSelectMode(props.selectMode);
 	};
 
 	const getFeedIcon = () => {
@@ -26,12 +28,14 @@ export default FeedThumbnail = props => {
 	return (
 		<TouchableOpacity onPress={onSelect}>
 			{/* Select된 상태일 때 불투명도 40% 적용 및 배경색  Black */}
-			<View style={selected ? {opacity: 0.4, backgroundColor: BLACK} : false}>
-				{/* <Image source={{uri: props.img_uri}} style={styles.img_square_246} /> */}
+			{selectMode ? (
+				<View style={selected ? {opacity: 0.4, backgroundColor: BLACK} : false}>
+					<Image source={{uri: props.data.img_uri}} style={styles.img_square_246} />
+					<View style={{position: 'absolute', top: 20 * DP, left: 20 * DP}}>{getFeedIcon()}</View>
+				</View>
+			) : (
 				<Image source={{uri: props.data.img_uri}} style={styles.img_square_246} />
-				<View style={{position: 'absolute', top: 20 * DP, left: 20 * DP}}>{getFeedIcon()}</View>
-			</View>
-			{/* {props.data.alert_title != false || props.data.alert_title != undefined ? ( */}
+			)}
 			{props.data.alert_title != '' && props.data.alert_title != undefined ? (
 				<View
 					style={{
@@ -50,7 +54,7 @@ export default FeedThumbnail = props => {
 			) : (
 				false
 			)}
-			{selected ? (
+			{selected && selectMode ? (
 				<View style={{position: 'absolute', top: 14 * DP, right: 10 * DP}}>
 					<Check50 />
 				</View>

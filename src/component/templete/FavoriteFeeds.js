@@ -12,11 +12,11 @@ import {login_style, temp_style, selectstat_view_style} from './style_templete';
 export default FavoriteFeeds = props => {
 	const navigation = useNavigation();
 	//
-	const [selectMode, setSelectMode] = React.useState(true);
+	const [selectMode, setSelectMode] = React.useState(false);
 
 	const checkSelectMode = e => {
 		console.log('checkSelectMode=>' + e);
-		setSelectMode(selectMode);
+		setSelectMode(e);
 	};
 
 	return (
@@ -31,26 +31,24 @@ export default FavoriteFeeds = props => {
 			{/* 즐겨찾기한 FeedList출력하는 FeedThumbnailList */}
 			<View style={[temp_style.FeedThumbnailList]}>
 				<FeedThumbnailList
+					selectMode={selectMode}
 					onClickThumnail={() => {
-						console.log('in selectMode =>' + selectMode);
-						//선택모드 true값과 false값이 반대로 주는 이유 확인 후 case 문으로 변경 필요
-						// if (selectMode) {
-						if (props.route.name == 'UserFeeds') {
-							navigation.push('UserFeedList');
-						} else if (props.route.name == 'TagMeFeeds') {
-							navigation.push('TagMeFeedList');
+						//선택하기 모드가 아닐 경우 (일반모드이며 썸네일 클릭시 네비게이션 동작)
+						if (!selectMode) {
+							//선택모드 true값과 false값이 반대로 주는 이유 확인 후 case 문으로 변경 필요
+							if (props.route.name == 'UserFeeds') {
+								navigation.push('UserFeedList');
+							} else if (props.route.name == 'TagMeFeeds') {
+								navigation.push('TagMeFeedList');
+							} else if (props.route.name == 'FavoriteFeeds') {
+								navigation.push('FavoriteFeedList');
+							}
+							//다른 route가 있을 경우 else if 확장 할 것
+							else {
+								console.log('props.route.name=>' + props.route.name);
+							}
+						} else {
 						}
-						// else if (props.route.name == 'FavoriteFeeds') {
-						// 	navigation.push('FavoriteFeedList');
-						// }
-						//다른 route가 있을 경우 else if 확장 할 것
-						else {
-							console.log('props.route.name=>' + props.route.name);
-						}
-						// } else {
-						// 	//선택모드로 들어감.
-						// 	//별도 로직  ~~
-						// }
 					}}
 				/>
 			</View>
