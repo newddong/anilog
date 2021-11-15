@@ -243,7 +243,7 @@ export const temp_style = StyleSheet.create({
 		height: 82 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
+		// backgroundColor: '#DEB5B5',
 	},
 	textMsg_AssignUserHabitation: {
 		width: 654 * DP,
@@ -2067,13 +2067,13 @@ export const shelterInfoSetting = StyleSheet.create({
 export const editShelterInfo = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#B3EBB5',
+		// backgroundColor: '#B3EBB5',
 		alignItems: 'center',
 	},
 	shelterInfoForm: {
 		width: 654 * DP,
 		height: 858 * DP,
-		backgroundColor: '#A07A7A',
+		// backgroundColor: '#A07A7A',
 		marginTop: 80 * DP,
 	},
 	btn_w654: {
@@ -2085,24 +2085,25 @@ export const editShelterInfo = StyleSheet.create({
 	category: {
 		width: 134 * DP,
 		height: 82 * DP,
-		backgroundColor: '#7F8EF3',
+		// backgroundColor: '#7F8EF3',
 		justifyContent: 'center',
 	},
 	text: {
 		width: 118 * DP,
 		height: 46 * DP,
-		backgroundColor: 'pink',
+		// backgroundColor: 'pink',
 	},
 	input30: {
 		width: 520 * DP,
 		height: 82 * DP,
 		marginBottom: 40 * DP,
-		backgroundColor: '#EDEDED',
+		// justifyContent: 'center',
+		// backgroundColor: '#EDEDED',
 	},
 	addressInput: {
 		width: 654 * DP,
 		height: 236 * DP,
-		backgroundColor: '#ADB5CE',
+		// backgroundColor: '#ADB5CE',
 		marginBottom: 40 * DP,
 		marginTop: 12 * DP,
 		justifyContent: 'center',

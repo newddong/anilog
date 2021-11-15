@@ -26,7 +26,7 @@ export default AddressInput = props => {
 				</View>
 			</View>
 			<View style={[temp_style.inputNoTitle, addressInput.inputNoTitle]}>
-				<Input30 showTitle={false} placeholder={'세부 주소를 입력해 주세요.'} />
+				<Input30 width={props.width} showTitle={false} placeholder={'세부 주소를 입력해 주세요.'} />
 			</View>
 		</View>
 	);

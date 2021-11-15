@@ -64,7 +64,7 @@ export default ShelterInfoSetting = props => {
 									btnTheme={'shadow'}
 									btnTitle={'수정'}
 									titleFontStyle={24}
-									onPress={() => navigation.navigate('')}
+									onPress={() => alert('준비중입니다.')}
 								/>
 							</View>
 						</View>
