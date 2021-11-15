@@ -55,7 +55,7 @@ export default ProfileImageLarge160 = props => {
 };
 
 ProfileImageLarge160.defaultProps = {
-	img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
+	img_uri: 'https://hobbyen.co.kr/news/data/20200320/p1065592519623812_956_thum.jpg', //image uri
 	userType: 'user', //required - 유저타입 pet user shelter
 	shelterType: 'none', // public private
 	petStatus: 'none', // normal protected adopted none

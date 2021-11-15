@@ -19,41 +19,24 @@ import InputBalloon from '../molecules/InputBalloon';
 import LocationButton from '../molecules/LocationButton';
 import PetAccountList from '../organism_ksw/PetAccountList';
 import { Button } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
 
 export default FeedWrite = props => {
-	const navigation = useNavigation()
-	const [showPetAccountList, setShowPetAccountList] = React.useState(false);
+
+	const [showPetAccountList, setShowPetAccountList] = React.useState(false); //PetAccount 계정
 	const [showUrgentBtns, setShowUrgentBtns] = React.useState(true); //긴급버튼목록
 	const [showLostAnimalForm, setShowLostAnimalForm] = React.useState(false); //실종버툰
 	const [showReportForm, setShowRepotForm] = React.useState(false); //제보버튼
 	const [showActionButton, setShowActionButton] = React.useState(false); // 긴급게시(하얀버전) 클릭 시 - 실종/제보 버튼 출력 Boolean
 
-	const [title, setTitle] = React.useState("");
+	const [completed, setCompleted] = React.useState(false) // HashTag 입력란 확인용 테스트 State	
+	const [feedText, setFeedText] = React.useState(""); // 
 	const [draft, setDraft] = React.useState()
+
+	//긴급 게시 버튼 관련 분기 처리 
 	React.useEffect(() => {
-		// 실종버튼, 제보버튼, pet목록 출력 기능이 작동 중이지 않을 때는 긴급버튼목록이 출력
+		// 실종버튼, 제보버튼, pet목록이 작동 중이지 않을 때는 긴급버튼목록이 출력
 		showLostAnimalForm || showReportForm || showPetAccountList ? setShowUrgentBtns(false) : setShowUrgentBtns(true);
 	}, [showLostAnimalForm, showReportForm]);
-
-	React.useEffect(() => {
-		const unsubscribe = navigation.addListener('beforeRemove', () => {
-			console.log("unsub")
-			setCompleted(false)
-		})
-
-		return unsubscribe
-	})
-	const moveToFeedReportWrite = () => {
-		// props.navigation.push('FeedReportWrite', {title: '제보 게시물'});
-		// ㄴ 템플릿 간의 이동이 아닌 FeedWrite내에서의 Write모드 이동이므로 Navigate는 사용안함
-		setShowRepotForm(true);
-	};
-	const moveToFeedMissingWrite = () => {
-		setShowLostAnimalForm(true);
-		// props.navigation.push('FeedMissingWrite', {title: '실종 게시물'});
-		// ㄴ 템플릿 간의 이동이 아닌 FeedWrite내에서의 Write모드 이동이므로 Navigate는 사용안함
-	};
 
 	//Text 안에 있는 HashTag된 텍스트 클릭 시 FeedListForHashTag 로 이동
 	const moveToFeedListForHashTag = (tagText) => {
@@ -228,11 +211,11 @@ export default FeedWrite = props => {
 		}
 	};
 
-	const getValueInfos = (value) => {
-		if (value.length === 0) {
+	const getValueInfos = (feedText) => {
+		if (feedText.length === 0) {
 			return [];
 		}
-		const splitedArr = value.split(" ");
+		const splitedArr = feedText.split(" ");
 		let idx = 0;
 		const valueInfos = splitedArr.map(str => {
 			const idxArr = [idx, idx + str.length - 1];
@@ -246,13 +229,16 @@ export default FeedWrite = props => {
 		return valueInfos;
 	};
 
-	let valueInfos = getValueInfos(title);
-	const getFeedContent = text => {
-		if (text.length == 0) {
+	let valueInfos = getValueInfos(feedText);
+
+	//테스트용 해쉬태그 InputView
+	const getFeedContent = feedText => {
+		//
+		if (feedText.length == 0) {
 			return null
 		} else {
-			console.log("TExt : " + text)
-			const splitedArr = text.split(" ");
+			console.log("TExt : " + feedText)
+			const splitedArr = feedText.split(" ");
 			let idx = 0;
 			const valueInfos = splitedArr.map(str => {
 				const idxArr = [idx, idx + str.length - 1];
@@ -266,7 +252,7 @@ export default FeedWrite = props => {
 			return (
 				valueInfos.map((v, idx) => {
 					const [firstIdx, lastIdx] = v.idxArr;
-					let value = title.slice(firstIdx, lastIdx + 1)
+					let value = feedText.slice(firstIdx, lastIdx + 1)
 					const isLast = idx === valueInfos.length - 1;
 					if (v.isHT) {
 						return (
@@ -277,7 +263,7 @@ export default FeedWrite = props => {
 						);
 					}
 					return (
-						<Text key={idx} style={{ color: "blue" }}>
+						<Text key={idx} >
 							{value}
 							{!isLast && <Text>{" "}</Text>}
 						</Text>
@@ -288,9 +274,8 @@ export default FeedWrite = props => {
 
 	}
 
-	const [completed, setCompleted] = React.useState(false)
 	const makeDraft = () => {
-		setDraft(title)
+		setDraft(feedText)
 		setCompleted(true)
 	}
 	return (
@@ -320,32 +305,9 @@ export default FeedWrite = props => {
 					<TextInput
 						multiline={true}
 						style={{ color: 'blue', backgroundColor: 'yellow', flex: 1, }}
-						// value={""}
 						placeholder="무엇을 할까요?"
-						onChangeText={text => setTitle(text)}
+						onChangeText={text => setFeedText(text)}
 					>
-						{/* {valueInfos.map((v, idx) => {
-							const [firstIdx, lastIdx] = v.idxArr;
-							let value = title.slice(firstIdx, lastIdx + 1)
-							const isLast = idx === valueInfos.length - 1;
-							if (v.isHT) {
-								return (
-									<Text key={idx} style={{ color: 'blue', backgroundColor: 'pink' }}>
-										{value}
-										{!isLast && <Text style={{ backgroundColor: 'transparent' }}>{" "}</Text>}
-									</Text>
-								);
-							}
-
-							// else if (!v.isHT) {#
-							// 	return (
-							// 		<Text key={idx} style={{ color: "blue" }}>
-							// 			{value}
-							// 			{!isLast && <Text>{" "}</Text>}
-							// 		</Text>
-							// 	)
-							// }
-						})} */}
 					</TextInput>
 					<Button onPress={makeDraft} title={'Butto'} />
 				</View>

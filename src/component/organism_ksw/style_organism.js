@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {APRI10, GRAY10, GRAY20, GRAY30, GRAY40, WHITE} from 'Root/config/color';
+import { StyleSheet } from 'react-native';
+import { APRI10, GRAY10, GRAY20, GRAY30, GRAY40, WHITE } from 'Root/config/color';
 import DP from 'Root/config/dp';
 
 export const BGCOLOR = '#B5DED8';
@@ -1228,3 +1228,10 @@ export const selectStat = StyleSheet.create({
 		backgroundColor: APRI10,
 	},
 });
+
+export const feedText = StyleSheet.create({
+	container: {
+		flexDirection: 'row',
+		width: 654 * DP,
+	}
+})
