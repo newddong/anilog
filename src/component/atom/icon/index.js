@@ -111,11 +111,13 @@ import expiredDate from './expiredDate';
 import nextMonthBtn from './nextMonthBtn';
 import previousMonthBtn from './previousMonthBtn';
 import expand_more from './expand_more';
+import backarrow32 from './backarrow32';
 
 import DP from 'Screens/dp';
-import {APRI10, YELL20, GRAY20, GRAY30, GRAY10} from 'Root/config/color';
+import {APRI10, YELL20, GRAY20, GRAY30, GRAY10,BLACK} from 'Root/config/color';
 
 const size30 = {width: 30 * DP, height: 30 * DP};
+const size32 = {width: 32 * DP, height: 32 * DP};
 const size38 = {width: 38 * DP, height: 38 * DP};
 const size46 = {width: 46 * DP, height: 46 * DP};
 const size48 = {width: 48 * DP, height: 48 * DP};
@@ -146,6 +148,7 @@ export const Paw30_YELL20 = makeSvg(paw30, size30, YELL20);
 export const Paw30_Mixed = makeSvg(paw30Mixed, size30, '');
 export const Private30 = makeSvg(private30, size30, '');
 export const Public30 = makeSvg(public30, size30, '');
+export const BackArrow32 = makeSvg(backarrow32,size32,BLACK);
 export const Cat38 = makeSvg(cat38, size38);
 export const Dog38 = makeSvg(dog38, size38);
 export const Cross46 = makeSvg(cross, size46);

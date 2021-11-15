@@ -1038,12 +1038,12 @@ export const temp_style = StyleSheet.create({
 		backgroundColor: '#FFF',
 	},
 	introduce_infoSetting_view: {
-		flexDirection: 'row',
+		flexDirection: 'column',
 		width: 750 * DP,
 		height: 558 * DP,
-		// alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#FF00FF',
+		alignItems: 'center',
+		// justifyContent: 'center',
+		// backgroundColor: '#FF00FF',
 	},
 	title_shelterInfoSetting_view: {
 		flexDirection: 'row',
@@ -1072,11 +1072,40 @@ export const temp_style = StyleSheet.create({
 	shlterInfo__shelterInfoSetting_view: {
 		flexDirection: 'row',
 		width: 654 * DP,
-		height: 46 * DP,
+		height: 60 * DP,
 		marginTop: 40 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
+		// alignItems: 'center',
 		justifyContent: 'space-between',
+		// backgroundColor: '#FF00FF',
+	},
+	title_type_shelterInfoSetting_view: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 48 * DP,
+		marginTop: 16 * DP,
+		justifyContent: 'space-between',
+		// backgroundColor: '#FF00FF',
+	},
+	littleTitle: {
+		width: 124 * DP,
+		height: 48 * DP,
+		backgroundColor: '#FFF',
+	},
+	littleContents: {
+		width: 510 * DP,
+		height: 48 * DP,
+		backgroundColor: '#FFF',
+	},
+	address_type_shelterInfoSetting_view: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		marginTop: 16 * DP,
+		justifyContent: 'space-between',
+		// backgroundColor: '#FF00FF',
+	},
+	addressContents: {
+		width: 510 * DP,
+		backgroundColor: '#FFF',
 	},
 });
 
@@ -2023,6 +2052,11 @@ export const shelterInfoSetting = StyleSheet.create({
 	},
 	introduceMent: {
 		marginLeft: 48 * DP,
+	},
+	grayLine: {
+		width: 750 * DP,
+		borderRightColor: '#EDEDED',
+		borderRightWidth: 2 * DP,
 	},
 });
 

@@ -10,7 +10,7 @@ import DP from 'Screens/dp';
 import SvgWrapper from 'Screens/svgwrapper';
 import Animated, {useSharedValue, useDerivedValue, useAnimatedStyle, useAnimatedProps, withTiming, withSpring} from 'react-native-reanimated';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-
+//deprecated
 export default ProfileHeader = ({options, route, navigation}) => {
 
 	const [isMeatballOpen, setMeatballOpen] = React.useState(false);
