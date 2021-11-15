@@ -27,7 +27,7 @@ export default SelectStat = props => {
 	const selectCancel = () => {
 		setSelectMode(false);
 		//useState의 비동기 실행으로 상위로 값을 넘길떄 selectMode 값이 아닌 임의값으로 지정해서 전송
-		props.onCancelSelectMode(false);
+		props.onSelectMode(false);
 	};
 	//전체 선택
 	const selectAll = () => {
