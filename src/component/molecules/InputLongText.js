@@ -3,8 +3,17 @@ import {txt} from 'Root/config/textstyle';
 import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY10, GRAY30} from 'Root/config/color';
+/**
+ *
+ * @param {{
+ *placeholder : string,
+ *value : 'string',
+ *maxLength : 'number / 최대 글자 수 제한'
+ *onChange : 'Input Value Change Callback'
+ * }} props
+ */
 export default InputLongText = props => {
-
+	console.log('value ' + JSON.stringify(props.value));
 	const [content, setContent] = React.useState('');
 	const inputRef = React.useRef();
 
@@ -44,10 +53,11 @@ export default InputLongText = props => {
 						placeholder={props.placeholder}
 						multiline={true}
 						ref={inputRef}
+						defaultValue={props.value}
 					/>
 					<View style={{width: 95 * DP, height: 30 * DP, alignSelf: 'flex-end'}}>
 						<Text style={[txt.roboto24, {color: GRAY10}]}>
-							{content.length}/{props.maxLength}
+							{content.length}/{props.maxlength}
 						</Text>
 					</View>
 				</View>
@@ -59,5 +69,5 @@ InputLongText.defaultProps = {
 	placeholder: 'placeholder',
 	value: 'value',
 	maxlength: 500,
-	onChange : e => console.log(e)
+	onChange: e => console.log(e),
 };

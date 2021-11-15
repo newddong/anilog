@@ -15,7 +15,7 @@ export default AssignCheckList = props => {
 	const renderItem = (item, index) => {
 		return (
 			<View style={[assignCheckList.assignCheckListItem]}>
-				<AssignCheckListItem text={item} />
+				<AssignCheckListItem text={item} onCheck={state => props.onCheck(item, index, state)} />
 			</View>
 		);
 	};
@@ -24,4 +24,5 @@ export default AssignCheckList = props => {
 
 AssignCheckListItem.defaultProps = {
 	text: 'Default Text',
+	onCheck: e => console.log(e),
 };

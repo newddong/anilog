@@ -7,8 +7,17 @@ import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
 import {Arrow_Down_GRAY10, Arrow_Up_GRAY10} from '../atom/icon';
 
+/**
+ *
+ *@param {{
+ *btnTitle: string,
+ *titleFontSize: number,
+ *btnLayout: '버튼 레이아웃 ex) btn_w226',
+ *onOn: '버튼 On Callback',
+ *onOff:'버튼 Off Callback',
+ * }} props
+ */
 export default FilterButton = props => {
-
 	const [btnStatus, setBtnStatus] = React.useState(false);
 
 	//클릭 이벤트

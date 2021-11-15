@@ -1,59 +1,31 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {volunteerItemList} from './style_organism';
 import VolunteerItem from './VolunteerItem';
 
 export default VolunteerItemList = props => {
-	const testArray = [
-		{
-			//shelterLabel 출력을 위한 테스트 데이터
-			user_type: 'shelter',
-			shelter_name: '인천 우리 반려동물 보호소',
-			shelter_type: 'private',
-			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
-			location: '호주 시드니',
-		},
-		{
-			user_type: 'shelter',
-			shelter_name: '인천 우리 반려동물 보호소',
-			shelter_type: 'private',
-			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
-			location: '호주 시드니',
-		},
-		{
-			//shelterLabel 출력을 위한 테스트 데이터
-			user_type: 'shelter',
-			shelter_name: '인천 우리 반려동물 보호소',
-			shelter_type: 'private',
-			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
-			location: '호주 시드니',
-		},
-		{
-			user_type: 'shelter',
-			shelter_name: '인천 우리 반려동물 보호소',
-			shelter_type: 'private',
-			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
-			location: '호주 시드니',
-		},
-	];
+	console.log(props.data);
 
 	const renderItem = (item, index) => {
 		return (
 			<View style={[volunteerItemList.itemContainer]}>
-				<VolunteerItem data={item} />
+				<VolunteerItem data={item} onClickLabel={e => props.onVolunteerItemClick(e)} />
 			</View>
 		);
 	};
 
 	return (
 		<View style={[volunteerItemList.container]}>
-			<FlatList data={testArray} renderItem={({item, index}) => renderItem(item, index)} />
+			<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} />
 		</View>
 	);
 };
 
+VolunteerItemList.defaultProps = {
+	onVolunteerItemClick: e => console.log(e),
+};
 // ShelterLabel.defaultProps = {
 // 	data: {
 // 		user_id: 'user_id1',

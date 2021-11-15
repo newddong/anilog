@@ -5,16 +5,29 @@ import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
 import {Arrow_Down_APRI10, Arrow_Down_GRAY30, Arrow_Down_White, Arrow_Up_APRI10, Arrow_Up_GRAY30, Arrow_Up_White} from '../atom/icon';
-
+/**
+ *
+ * @param {{btnTitle : string,
+ * btnStyle : 'filled' | 'border' | 'noborder' | undefined,
+ * btnLayout : '버튼의 레이아웃 ex)btn_w226' ,
+ * disable : boolean,
+ * titleFontStyle : number,
+ * onOpen : Function,
+ * onClose : Function
+ * }} props
+ */
 export default ActionButton = props => {
-	
 	//btn의 초기상태 - false는 아직 버튼이 오픈되지 않은 상태
-	const [btnStatus, setBtnStatus] = React.useState(false); 
+	const [btnStatus, setBtnStatus] = React.useState(false);
 
 	const btnTxtColor = () => {
 		//txt Color의 종류는 3가지 - white, APRI10, GRAY20
-		if (props.disable) {return GRAY30} //disable 상태
-		else if (props.btnStyle == 'filled') { return 'white' } //filled상태
+		if (props.disable) {
+			return GRAY30;
+		} //disable 상태
+		else if (props.btnStyle == 'filled') {
+			return 'white';
+		} //filled상태
 		return APRI10; //border 상태
 	};
 
@@ -37,27 +50,28 @@ export default ActionButton = props => {
 			return btnStatus ? <Arrow_Up_APRI10 /> : <Arrow_Down_APRI10 />;
 		}
 	};
-	
+
 	//클릭 이벤트
 	const onPress = e => {
 		setBtnStatus(!btnStatus);
-		btnStatus ? props.onOpen() : props.onClose()
+		btnStatus ? props.onOpen() : props.onClose();
 	};
 
 	//액션버튼 본체
 	return (
 		<TouchableOpacity onPress={onPress}>
-			<View style={[
-				props.btnLayout, // 버튼 레이아웃
-				border(),  // 버튼 테두리
-				{   //이외 스타일 적용 
-					backgroundColor: props.btnStyle == 'filled' ? APRI10 : 'white', 
-					flexDirection: 'row', 
-					justifyContent: 'center', 
-					alignItems: 'center'
-				}
-				]}
-			>
+			<View
+				style={[
+					props.btnLayout, // 버튼 레이아웃
+					border(), // 버튼 테두리
+					{
+						//이외 스타일 적용
+						backgroundColor: props.btnStyle == 'filled' ? APRI10 : 'white',
+						flexDirection: 'row',
+						justifyContent: 'center',
+						alignItems: 'center',
+					},
+				]}>
 				<Text
 					style={[
 						txt.noto24b,

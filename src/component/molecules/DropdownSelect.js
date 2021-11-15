@@ -5,6 +5,17 @@ import DP from 'Root/config/dp';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
 import {APRI10} from 'Root/config/color';
 
+/**
+ *
+ * @param {{
+ *	value: object,
+ *	items: object,
+ *	defaultIndex: number,
+ *	width: number,
+ *	onChange: 'Callback',
+ *	textStyle: 'Text Style',
+ * }} props
+ */
 export default DropdownSelect = props => {
 	// Dropdown 화살표의 state - True일 경우 opened 상태 / False일 경우 closed 상태
 	const [btnStatus, setBtnStatus] = React.useState(false);
@@ -37,6 +48,7 @@ export default DropdownSelect = props => {
 						{
 							paddingVertical: 16 * DP, // Value와 최상위 View와의 paddingVertical 16px
 							// textAlign: 'center',
+							marginRight: 40 * DP,
 						},
 					]}>
 					{selectedItem}
@@ -50,7 +62,7 @@ export default DropdownSelect = props => {
 						position: 'absolute',
 						justifyContent: 'center',
 						alignItems: 'center',
-						right: 5 * DP,
+						right: 2 * DP,
 					}}>
 					{/* 버튼staus가 true일 경우 위화살표 방향, false일 경우 아래 화살표 방향 */}
 					{btnStatus ? <Arrow_Up_GRAY20 /> : <Arrow_Down_GRAY20 />}

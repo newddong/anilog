@@ -7,8 +7,14 @@ import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
 import {useNavigation} from '@react-navigation/core';
 
+/**
+ *
+ *@param {{
+ * data: 'user_id, user_nickname(string), img_uri(string), text_intro(string)',
+ * onLabelClick: void,
+ * }} props
+ */
 export default UserDescriptionLabel = props => {
-	console.log(props);
 	const [validation, setValidation] = React.useState(false);
 	const [imgUri, setImgUri] = React.useState(props.data.user_image);
 
@@ -44,8 +50,7 @@ export default UserDescriptionLabel = props => {
 
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
-			{/* <TouchableOpacity onPress={onClickLabel}> */}
-			<TouchableOpacity onPress={moveToUserProfile}>
+			<TouchableOpacity onPress={onClickLabel}>
 				<Image source={{uri: props.data.img_uri}} style={styles.img_round_94} />
 			</TouchableOpacity>
 			<View style={{marginLeft: 30 * DP}}>

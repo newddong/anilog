@@ -163,6 +163,11 @@ export const NORMAL = 'normal';
 export const PET = 'pet';
 export const SHELTER = 'shelter';
 
+//통신사
+export const mobile_carrier = ['SKT 텔레콤', 'LGU+', 'KT', '알뜰'];
+
+//반려동물 종류
+export const pet_kind = ['개', '고양이', '새', '여우', '거북이', '햄스터'];
 //테스트용 Array
 export const testArray = [
 	'테스트용 Array',
@@ -184,3 +189,6 @@ export const testArray = [
 
 //DefaultImage uri
 export const DEFAULT_PROFILE = 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg';
+
+//잠시 임시저장 기능 관련 테스트용
+export let temp_inputLongText = '';

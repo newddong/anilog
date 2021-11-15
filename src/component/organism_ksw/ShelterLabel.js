@@ -7,7 +7,6 @@ import ProfileImageMedium140 from '../molecules/ProfileImageMedium140';
 import {shelterLabel} from './style_organism';
 
 export default ShelterLabel = props => {
-	console.log(props);
 	return (
 		<View style={[shelterLabel.container]}>
 			<TouchableOpacity style={[shelterLabel.profileImageMedium]} onPress={() => props.onLabelClick()}>

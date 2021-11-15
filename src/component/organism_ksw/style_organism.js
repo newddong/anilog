@@ -60,12 +60,13 @@ export const organism_style = StyleSheet.create({
 		backgroundColor: '#C1DAF6',
 	},
 	petAccountList: {
-		width: 654 * DP,
-		backgroundColor: '#B5DED8',
+		width: 614 * DP,
+		height: 94 * DP,
+		marginBottom: 30 * DP,
+		flexDirection: 'row',
 	},
 	petLabel: {
 		marginBottom: 40 * DP,
-		backgroundColor: 'yellow',
 	},
 	accountList: {
 		width: 674 * DP,
@@ -301,7 +302,6 @@ export const socialInfoA = StyleSheet.create({
 	container: {
 		width: 366 * DP,
 		height: 84 * DP,
-		backgroundColor: BGCOLOR,
 		flexDirection: 'row',
 	},
 	socialInfo: {
@@ -310,7 +310,6 @@ export const socialInfoA = StyleSheet.create({
 		marginRight: 60 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: 'pink',
 	},
 	number: {
 		height: 38 * DP,
@@ -668,6 +667,9 @@ export const companionForm = StyleSheet.create({
 	container: {
 		width: 702 * DP,
 		height: 324 * DP,
+		borderRadius: 40 * DP,
+		borderWidth: 2 * DP,
+		borderColor: APRI10,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -703,12 +705,9 @@ export const companionForm = StyleSheet.create({
 export const companionFormList = StyleSheet.create({
 	container: {
 		width: 702 * DP,
-		height: 853 * DP,
-		backgroundColor: 'pink',
 	},
 	companionFormContainer: {
 		marginBottom: 26 * DP,
-		backgroundColor: '#D7F1C1',
 	},
 });
 
@@ -771,7 +770,6 @@ export const petList = StyleSheet.create({
 	container: {
 		width: 750 * DP,
 		height: 220 * DP,
-		backgroundColor: GRAY40,
 		justifyContent: 'center',
 	},
 	insideContainer: {
@@ -792,7 +790,6 @@ export const petList = StyleSheet.create({
 	petProfileInfo: {
 		width: 152 * DP,
 		height: 76 * DP,
-		backgroundColor: 'lightblue',
 		alignItems: 'center',
 	},
 });
@@ -801,15 +798,12 @@ export const ownerList = StyleSheet.create({
 	container: {
 		width: 750 * DP,
 		height: 220 * DP,
-		backgroundColor: GRAY40,
 		justifyContent: 'center',
 	},
 	insideContainer: {
 		width: 750 * DP,
 		marginLeft: 30 * DP,
 		marginRight: 22 * DP,
-
-		backgroundColor: 'yellow',
 	},
 	itemContainer: {
 		width: 152 * DP,
@@ -824,7 +818,6 @@ export const ownerList = StyleSheet.create({
 	petProfileInfo: {
 		width: 152 * DP,
 		height: 40 * DP,
-		backgroundColor: 'lightblue',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -1109,6 +1102,7 @@ export const animalNeedHelp = StyleSheet.create({
 export const animalNeedHelpList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
+		marginTop: 30 * DP,
 	},
 	itemContainer: {
 		marginBottom: 40 * DP,
@@ -1201,6 +1195,7 @@ export const selectStat = StyleSheet.create({
 	container: {
 		width: 654 * DP,
 		height: 94 * DP,
+		alignSelf: 'center',
 		alignItems: 'center',
 		borderBottomColor: GRAY30,
 		borderBottomWidth: 2 * DP,

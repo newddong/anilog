@@ -125,7 +125,6 @@ export const btn_style = StyleSheet.create({
 		height: 60 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 	btn_w654: {
 		width: 654 * DP,
@@ -175,7 +174,6 @@ export const btn_style = StyleSheet.create({
 		height: 70 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#FBE0AF',
 	},
 });
 
@@ -204,8 +202,6 @@ export const temp_style = StyleSheet.create({
 	stageBar: {
 		width: 654 * DP,
 		height: 32 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
 	},
 	agreementCheckList: {
 		width: 654 * DP,
@@ -289,7 +285,6 @@ export const temp_style = StyleSheet.create({
 		height: 450 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 	input24A_assignShelterAddress: {
 		width: 654 * DP,
@@ -334,14 +329,6 @@ export const temp_style = StyleSheet.create({
 		height: 122 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#D8B5DE',
-	},
-	datePicker_assignShelterInformation: {
-		width: 654 * DP,
-		height: 122 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#D8B5DE',
 	},
 	passwordChecker: {
 		width: 654 * DP,
@@ -505,10 +492,8 @@ export const temp_style = StyleSheet.create({
 		alignItems: 'center',
 	},
 	petAccountList: {
-		width: 654 * DP,
-		height: 1108 * DP,
+		width: 614 * DP,
 		alignItems: 'center',
-		backgroundColor: '#B5DED8',
 	},
 	controllableHashTagList: {
 		width: 654 * DP,
@@ -550,12 +535,9 @@ export const temp_style = StyleSheet.create({
 	},
 	companionFormList: {
 		width: 702 * DP,
-		height: 853 * DP,
-		backgroundColor: 'pink',
 	},
 	assignCheckList: {
 		width: 654 * DP,
-		height: 853 * DP,
 	},
 	inputLongText: {
 		width: 710 * DP,
@@ -591,8 +573,7 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	commentList: {
-		width: 654 * DP,
-		backgroundColor: '#A4D6EC',
+		marginTop: 12 * DP,
 	},
 	floatingBtn: {
 		flexDirection: 'column',
@@ -754,29 +735,23 @@ export const temp_style = StyleSheet.create({
 	feedTextEdit: {
 		width: 654 * DP,
 		height: 248 * DP,
-		backgroundColor: 'pink',
+		backgroundColor: 'white',
 	},
 	selectedMediaList: {
-		width: 750 * DP,
+		width: 654 * DP,
 		height: 190 * DP,
-		backgroundColor: '#FFE5E1',
 	},
 	dropdownSelect: {
 		width: 292 * DP,
 		height: 82 * DP,
-		backgroundColor: '#A9B0D5',
 	},
 	input24: {
 		width: 654 * DP,
 		height: 122 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#D8B5DE',
 	},
 	inputBalloon: {
 		width: 654 * DP,
 		height: 276 * DP,
-		backgroundColor: '#CAC9ED',
 	},
 	inputNoTitle: {
 		width: 438 * DP,
@@ -977,27 +952,20 @@ export const temp_style = StyleSheet.create({
 	rescueContentScroll_view: {
 		width: 654 * DP,
 		// height: 1254 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#B3BADE',
 	},
 	requestProtect_view: {
 		width: 654 * DP,
 		height: 67 * DP,
-		backgroundColor: '#B3BADE',
 	},
 	requestProtect: {
 		width: 95 * DP,
 		height: 36 * DP,
 		marginTop: 30 * DP,
-		backgroundColor: '#F29797',
 	},
 	rescueContentTitle: {
 		width: 654 * DP,
 		height: 82 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#CF5B5B',
+		marginBottom: 40 * DP,
 	},
 	shelterSmallLabel_view_animalProtectRequestDetail: {
 		flexDirection: 'row',
@@ -1005,42 +973,39 @@ export const temp_style = StyleSheet.create({
 		height: 84 * DP,
 		alignItems: 'flex-start',
 		justifyContent: 'space-between',
-		backgroundColor: '#FF00FF',
 	},
 	shelterSmallLabel_animalProtectRequestDetail: {
 		width: 504 * DP,
 		height: 72 * DP,
-		alignItems: 'center',
-		backgroundColor: '#94D1AE',
 	},
 	button_animalProtectRequestDetail: {
 		width: 126 * DP,
 		height: 84 * DP,
-		alignItems: 'center',
-		backgroundColor: '#F29797',
+		flexDirection: 'row',
 	},
 	rescueSummary: {
 		width: 654 * DP,
 		height: 188 * DP,
+		borderWidth: 4 * DP,
+		borderColor: APRI10,
+		borderRadius: 40 * DP,
+
 		alignItems: 'center',
-		backgroundColor: '#CCD186',
+		justifyContent: 'center',
 	},
 	rescueText: {
 		width: 654 * DP,
 		height: 160 * DP,
 		alignItems: 'center',
-		backgroundColor: '#CC9898',
 	},
 	comment_count_view: {
 		width: 654 * DP,
-		height: 116 * DP,
-		backgroundColor: '#B3BADE',
+		height: 36 * DP,
+		marginTop: 70 * DP,
 	},
 	comment_count: {
 		width: 148 * DP,
 		height: 46 * DP,
-		marginTop: 70 * DP,
-		backgroundColor: '#F2B8B8',
 	},
 	writeComment: {
 		width: 654 * DP,
@@ -1053,13 +1018,11 @@ export const temp_style = StyleSheet.create({
 	addMoreRequest_view: {
 		width: 654 * DP,
 		height: 118 * DP,
-		backgroundColor: '#FF00FF',
 	},
 	addMoreRequest: {
 		width: 186 * DP,
 		height: 36 * DP,
 		marginTop: 82 * DP,
-		backgroundColor: '#E3A0A0',
 	},
 	floatingBtnAapply: {
 		flexDirection: 'row',
@@ -1581,7 +1544,7 @@ export const changeUserProfileImage_style = StyleSheet.create({
 		marginTop: 70 * DP,
 	},
 	btn_w654: {
-		marginTop: 110 * DP,
+		marginVertical: 110 * DP,
 	},
 	input24: {
 		marginBottom: 44 * DP,
@@ -1843,7 +1806,7 @@ export const selectstat_view_style = StyleSheet.create({
 		marginLeft: 12 * DP,
 	},
 	selectstat: {
-		marginTop: 38 * DP,
+		marginVertical: 38 * DP,
 	},
 	selecting: {
 		marginTop: 38 * DP,
@@ -2501,14 +2464,14 @@ export const feedListForHashTag = StyleSheet.create({
 		alignItems: 'center',
 	},
 	hashLabel: {
-		width: 702 * DP,
-		height: 150 * DP,
+		width: 622 * DP,
+		height: 144 * DP,
 		marginTop: 12 * DP,
 		borderWidth: 2 * DP,
 		borderRadius: 40 * DP,
+		paddingLeft: 40 * DP,
 		borderColor: APRI10,
 		justifyContent: 'center',
-		alignItems: 'center',
 	},
 	postCategory: {
 		width: 346 * DP,
@@ -2815,7 +2778,6 @@ export const applyVolunteer = StyleSheet.create({
 export const applyCompanionA = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	stageBar: {
 		marginTop: 20 * DP,
@@ -2840,7 +2802,6 @@ export const applyCompanionA = StyleSheet.create({
 export const applyCompanionB = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	inputForm: {
 		marginTop: 40 * DP,
@@ -2854,11 +2815,9 @@ export const applyCompanionB = StyleSheet.create({
 	},
 	addPetBtnView: {
 		marginTop: 60 * DP,
-
 		width: 274 * DP,
 		height: 64 * DP,
 		flexDirection: 'row',
-		backgroundColor: 'yellow',
 	},
 	addPetTextView: {
 		marginLeft: 10 * DP,
@@ -2871,7 +2830,6 @@ export const applyCompanionB = StyleSheet.create({
 export const applyCompanionC = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	assignCheckList: {
 		marginTop: 40 * DP,
@@ -2880,14 +2838,13 @@ export const applyCompanionC = StyleSheet.create({
 		marginTop: 20 * DP,
 	},
 	textMsg: {
-		backgroundColor: WHITE,
 		marginTop: 12 * DP,
 	},
 	btnContainer: {
 		width: 654 * DP,
 		height: 70 * DP,
 		marginTop: 110 * DP,
-		backgroundColor: '#D7F1C1',
+		marginBottom: 50 * DP,
 		flexDirection: 'row',
 	},
 	btn_w176: {
@@ -2898,7 +2855,6 @@ export const applyCompanionC = StyleSheet.create({
 export const applyCompanionD = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	InputLongText: {
 		marginTop: 40 * DP,
@@ -2907,14 +2863,12 @@ export const applyCompanionD = StyleSheet.create({
 		marginTop: 20 * DP,
 	},
 	textMsg: {
-		backgroundColor: WHITE,
 		marginTop: 12 * DP,
 	},
 	btnContainer: {
 		width: 654 * DP,
 		height: 70 * DP,
 		marginTop: 80 * DP,
-		backgroundColor: '#D7F1C1',
 		flexDirection: 'row',
 	},
 	btn_w176: {
@@ -3124,7 +3078,6 @@ export const socialRelation = StyleSheet.create({
 
 export const locationPicker = StyleSheet.create({
 	container: {
-		backgroundColor: '#ACC4D6',
 		alignItems: 'center',
 		flex: 1,
 	},
@@ -3135,7 +3088,6 @@ export const locationPicker = StyleSheet.create({
 		marginTop: 23 * DP,
 		width: 654 * DP,
 		height: 1280 * DP,
-		backgroundColor: '#88BA88',
 	},
 });
 
@@ -3147,9 +3099,7 @@ export const accountPicker = StyleSheet.create({
 	},
 	accountList: {
 		width: 654 * DP,
-		height: 1224 * DP,
 		marginTop: 42 * DP,
-		backgroundColor: '#B5DED8',
 	},
 });
 
@@ -3184,6 +3134,10 @@ export const manageVolunteer = StyleSheet.create({
 	},
 	volunteerList: {
 		width: 654 * DP,
+	},
+	previous_volunteerList: {
+		width: 654 * DP,
+		height: 500 * DP,
 	},
 	title: {
 		height: 35 * DP,
@@ -3250,8 +3204,6 @@ export const feedMediaTagEdit = StyleSheet.create({
 
 export const feedWrite = StyleSheet.create({
 	container: {
-		backgroundColor: '#ACC4D6',
-		alignItems: 'center',
 		flex: 1,
 	},
 	container_without_lostAnimal: {
@@ -3261,19 +3213,23 @@ export const feedWrite = StyleSheet.create({
 	},
 	feedTextEdit: {
 		marginTop: 40 * DP,
-		backgroundColor: '#FFE5E1',
 	},
 	buttonContainer: {
 		flexDirection: 'row',
 		width: 654 * DP,
 		height: 54 * DP,
 		marginTop: 38 * DP,
-		backgroundColor: '#C8E3FB',
 		alignItems: 'center',
 		justifyContent: 'space-between',
 	},
+	btnItemContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 	btn_w194_container: {
 		width: 654 * DP,
+		marginTop: 40 * DP,
 		flexDirection: 'row',
 	},
 	btn_w194: {
@@ -3305,25 +3261,21 @@ export const feedWrite = StyleSheet.create({
 		backgroundColor: 'red',
 	},
 	petAccountList: {
-		width: 614 * DP,
-		backgroundColor: '#CFCDCE',
+		minHeight: 670 * DP,
 		marginTop: 28 * DP,
 	},
 	lostAnimalForm: {
 		width: 654 * DP,
 		marginTop: 40 * DP,
-		backgroundColor: '#6E8773',
 	},
 	lostAnimalForm_Form: {
 		width: 654 * DP,
 		height: 126 * DP,
 		marginBottom: 40 * DP,
-		backgroundColor: 'yellow',
 	},
 	formTitle: {
 		width: 462 * DP,
 		height: 34 * DP,
-		backgroundColor: '#9EDEAC',
 	},
 	formContentContainer: {
 		flexDirection: 'row',
@@ -3341,40 +3293,36 @@ export const feedWrite = StyleSheet.create({
 	},
 	input24: {
 		height: 168 * DP,
-		backgroundColor: '#9EF4E6',
 		marginBottom: 4 * DP,
 	},
-	inputBalloon: {},
+	inputBalloon: {
+		marginBottom: 50 * DP,
+	},
 	reportForm_container: {
 		height: 585 * DP,
 	},
 	reportForm: {
 		width: 654 * DP,
 		height: 456 * DP,
-		backgroundColor: '#AD9898',
 		marginTop: 40 * DP,
 	},
 	reportForm_form: {
 		width: 654 * DP,
 		height: 126 * DP,
 		marginBottom: 40 * DP,
-		backgroundColor: 'yellow',
 	},
 	reportLocation_form: {
 		width: 654 * DP,
 		height: 164 * DP,
 		marginTop: 60 * DP,
 		flexDirection: 'row',
-		backgroundColor: 'yellow',
 	},
 	reportLocation_form_left: {
 		width: 438 * DP,
-		backgroundColor: 'powderblue',
 	},
 	reportLocation_form_left_title: {
 		width: 248 * DP,
 		height: 40 * DP,
-		backgroundColor: 'pink',
 	},
 	reportLocation_form_left_inputNoTitle: {
 		marginTop: 42 * DP,
@@ -3382,7 +3330,6 @@ export const feedWrite = StyleSheet.create({
 	reportLocation_form_right: {
 		width: 176 * DP,
 		marginLeft: 40 * DP,
-		backgroundColor: 'pink',
 	},
 	btn_w176: {
 		marginBottom: 24 * DP,
@@ -3398,17 +3345,11 @@ export const profile = StyleSheet.create({
 	container: { flex: 1 },
 	profileInfo: {
 		width: 750 * DP,
-		height: 416 * DP,
-		backgroundColor: '#B0C7D8',
+		marginBottom: 30 * DP,
+		// height: 416 * DP,
 	},
-	tabSelectFilled_Type2: {},
-	feedListContainer: {
-		backgroundColor: 'yellow',
-	},
-	feedThumbNailList: {
-		backgroundColor: '#FFF',
-		height: 2770 * DP,
-	},
+	feedListContainer: {},
+	feedThumbNailList: {},
 	floatingBtn: {
 		position: 'absolute',
 		right: 30 * DP,
@@ -3417,20 +3358,20 @@ export const profile = StyleSheet.create({
 	petList: {
 		width: 750 * DP,
 		height: 220 * DP,
-		backgroundColor: 'pink',
 	},
 	protectedPetList: {
 		width: 750 * DP,
 		height: 252 * DP,
-		backgroundColor: 'pink',
 	},
 	animalNeedHelpList: {
-		backgroundColor: '#96A8B5',
 		height: 1000 * DP,
 	},
 });
 
 export const animalProtectRequestDetail_style = StyleSheet.create({
+	container: {
+		flex: 0,
+	},
 	requestProtect: {
 		marginTop: 30 * DP,
 		backgroundColor: '#F29797',
@@ -3445,6 +3386,49 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 		position: 'absolute',
 		bottom: 0 * DP,
 	},
+	rescueSummary_insideContainer: {
+		width: 594 * DP,
+		height: 128 * DP,
+	},
+	rescueSummary_insideItem: {
+		width: 594 * DP,
+		height: 36 * DP,
+		marginBottom: 10 * DP,
+		flexDirection: 'row',
+	},
+	rescueSummary_insideItem_category: {
+		marginRight: 10 * DP,
+		color: GRAY20,
+	},
+	rescueSummary_insideItem_content: {
+		marginRight: 50 * DP,
+	},
+	editComment: {
+		width: 694 * DP,
+		height: 108 * DP,
+		flexDirection: 'row',
+		alignItems: 'center',
+		alignSelf: 'center',
+		position: 'absolute',
+		backgroundColor: WHITE,
+		bottom: 0,
+	},
+	btnContainer: {
+		width: 654 * DP,
+		height: 170 * DP,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+		shadowColor: '#000000',
+		shadowOpacity: 0.27,
+		shadowRadius: 4.65,
+		shadowOffset: {
+			width: 1 * DP,
+			height: 2 * DP,
+		},
+		elevation: 2,
+		marginVertical: 80 * DP,
+	},
 });
 
 export const animalProtectList = StyleSheet.create({
@@ -3454,5 +3438,16 @@ export const animalProtectList = StyleSheet.create({
 		marginTop: 30 * DP,
 		alignSelf: 'flex-start',
 		marginBottom: 21 * DP,
+	},
+});
+
+export const saveFavorite = StyleSheet.create({
+	accountHashList: {
+		width: 654 * DP,
+		// height: 1324 * DP,
+		marginTop: 30 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		// backgroundColor: '#F2C2C2',
 	},
 });

@@ -1,7 +1,9 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
+
 import FeedThumbnailList from '../organism_ksw/FeedThumbnailList';
+import SelectStat from '../organism_ksw/SelectStat';
 import {login_style, temp_style, selectstat_view_style} from './style_templete';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
@@ -9,48 +11,49 @@ import {login_style, temp_style, selectstat_view_style} from './style_templete';
 
 export default FavoriteFeeds = props => {
 	const navigation = useNavigation();
+	//
+	const [selectMode, setSelectMode] = React.useState(true);
+
+	const checkSelectMode = e => {
+		console.log('checkSelectMode=>' + e);
+		setSelectMode(selectMode);
+	};
+
 	return (
-		<View style={login_style.wrp_main}>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* SelectStat	 */}
 			<View style={[temp_style.selectstat_view]}>
-				{/* 취소, 전체선택, 선택삭제 */}
 				<View style={[temp_style.selectstat, selectstat_view_style.selectstat]}>
-					<View style={[temp_style.textBtn]}>
-						<Text>취소</Text>
-					</View>
-					<View style={[temp_style.textBtn, selectstat_view_style.select_all]}>
-						<Text>전체 선택</Text>
-					</View>
-					<View style={[temp_style.vertical_stick, selectstat_view_style.vertical_stick]}></View>
-					<View style={[temp_style.textBtn, selectstat_view_style.delete_selected]}>
-						<Text>선택 삭제</Text>
-					</View>
+					<SelectStat onSelectMode={e => checkSelectMode(e)} />
 				</View>
-
-				{/* 선택하기 */}
-				{/* <View style={[temp_style.selectstat, selectstat_view_style.selecting]}>
-					<View style={[temp_style.textBtn_saveAnimalRequest, selectstat_view_style.delete_selected]}>
-						<Text>선택하기</Text>
-					</View>
-				</View> */}
 			</View>
 
-			{/* <FlatList> */}
+			{/* 즐겨찾기한 FeedList출력하는 FeedThumbnailList */}
 			<View style={[temp_style.FeedThumbnailList]}>
 				<FeedThumbnailList
 					onClickThumnail={() => {
+						console.log('in selectMode =>' + selectMode);
+						//선택모드 true값과 false값이 반대로 주는 이유 확인 후 case 문으로 변경 필요
+						// if (selectMode) {
 						if (props.route.name == 'UserFeeds') {
 							navigation.push('UserFeedList');
 						} else if (props.route.name == 'TagMeFeeds') {
 							navigation.push('TagMeFeedList');
 						}
+						// else if (props.route.name == 'FavoriteFeeds') {
+						// 	navigation.push('FavoriteFeedList');
+						// }
 						//다른 route가 있을 경우 else if 확장 할 것
 						else {
+							console.log('props.route.name=>' + props.route.name);
 						}
+						// } else {
+						// 	//선택모드로 들어감.
+						// 	//별도 로직  ~~
+						// }
 					}}
 				/>
 			</View>
-			{/* </FlatList> */}
 		</View>
 	);
 };

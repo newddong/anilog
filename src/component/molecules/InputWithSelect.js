@@ -5,6 +5,18 @@ import DP from 'Root/config/dp';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52} from '../atom/icon';
 import {APRI10, GRAY30} from 'Root/config/color';
 
+/**
+ *
+ *@param {{
+ *placeholder: string,
+ *items: 'Array / Select 목록',
+ *defaultIndex: number,
+ *value: string,
+ *onChange: 'Input Value Chgange Callback',
+ *onClear: '지우기 버튼(X) 클릭 Callback',
+ *width: 'number / TextInput 너비 , default=200',
+ * }} props
+ */
 export default InputWithSelect = props => {
 	const [btnStatus, setBtnStatus] = React.useState(false);
 	// Dropdown에서 현재 선택된 항목 State, 처음 Mount시 itemList[defaultIndex]를 반환

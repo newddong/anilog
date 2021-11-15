@@ -6,6 +6,22 @@ import {BLACK, APRI10, GRAY20, GRAY30, RED10, GREEN} from 'Root/config/color';
 import {Cross52} from '../atom/icon';
 import {TouchableOpacity} from 'react-native';
 
+/**
+ *
+ *@param {{
+ *showTitle: true, // true - title과 description 출력 , false - 미출력
+ *title: 'showTitle True일 시 출력되는 inputTitle',
+ *description: 'showTitle True일 시 출력되는 안내메시지',
+ *placeholder: 'placeholder',
+ *value: 'value',
+ *alert_msg: 'alert_msg',
+ *confirm_msg: 'confirm_msg',
+ *clearMark: boolean,
+ *onClear: '지우기(X)버튼 클릭 callback',
+ *onChange: 'Input Value Change Callback',
+ *width: 'TextInput의 너비',
+ * }} props
+ */
 export default Input30 = props => {
 	const [input, setInput] = React.useState('');
 	const [confirm, setConfirm] = React.useState();

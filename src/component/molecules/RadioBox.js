@@ -5,6 +5,16 @@ import DP from 'Root/config/dp';
 import {GRAY20} from 'Root/config/color';
 import {RadioChecked48, RadioUnchecked48} from '../atom/icon';
 
+/**
+ *
+ *@param {{
+ * items: Array,
+ *values: string,
+ *selectableNumber: 'number / 선택가능한 Radio Box 숫자',
+ *horizontal: boolean 'RadioBox 정렬방식',
+ *onSelect: 'Box 선택 Callback',
+ * }} props
+ */
 export default RadioBox = props => {
 	const tabLength = props.items.length;
 	let tabState = [];

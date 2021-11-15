@@ -4,6 +4,21 @@ import {Text, View, TouchableOpacity, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
 import {Cross52, Eye52_APRI10, Eye52_GRAY20} from '../atom/icon';
+
+/**
+ *
+ *@param {{
+ *title: 'string / 비밀번호 상단 타이틀',
+ *placeholder: string,
+ *information: 'confirm state가 normal일 경우 출력될 하단 메시지',
+ *value: string,
+ *alert_msg: 'string / confrim state가 false일 경우 출력될 하단 메시지',
+ *confirm_msg: 'string / confirm state가 true일 경우 출력될 하단 메시지',
+ *onChange: 'Inut Value Change Callback',
+ *onClear: '지우기 버튼(X) 클릭 Callback',
+ *onShowPassword: 'Password 보이기 설정 Callback',
+ * }} props
+ */
 export default PasswordInput = props => {
 	const [input, setInput] = React.useState(''); // 암호 input text state
 	const [confirm, setConfirm] = React.useState(false); // 암호 validation state

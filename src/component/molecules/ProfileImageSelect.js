@@ -3,7 +3,16 @@ import {View, Image, TouchableOpacity} from 'react-native';
 import {AddItem92} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 
+/**
+ *
+ *@param {{
+ * selectedImageUri: string,
+ * defaultImageUri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+ * onClick: 'Image Click Callback'
+ * }} props
+ */
 export default ProfileImageSelect = props => {
+	console.log(props.selectedImageUri);
 	const onClick = e => {
 		props.onClick();
 	};
@@ -11,7 +20,7 @@ export default ProfileImageSelect = props => {
 	return (
 		<TouchableOpacity onPress={onClick} style={styles.img_round_294}>
 			{/* ProfileImage uri가 null일 경우와 아닌 경우의 분기 */}
-			<Image style={styles.img_round_294} source={{uri: props.selectedImageUri == null ? props.defaultImageUri : props.selectedImageUri}} />
+			<Image style={styles.img_round_294} source={{uri: props.selectedImageUri}} />
 			<View style={{position: 'absolute', right: 0, bottom: 0}}>
 				<AddItem92 />
 			</View>
@@ -20,7 +29,7 @@ export default ProfileImageSelect = props => {
 };
 
 ProfileImageSelect.defaultProps = {
-	selectedImageUri: null,
+	selectedImageUri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
 	defaultImageUri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
 	onClick: e => console.log(e),
 };

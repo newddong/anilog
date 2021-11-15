@@ -6,17 +6,24 @@ import {styles} from 'Root/component/atom/image/imageStyle';
 import {APRI10, BLACK} from 'Root/config/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default UserLocationLabel = props => {
+/**
+ *
+ *@param {{
+ * data: 'user_id, user_nickname(string), img_uri(string), location(string)',
+ * onLabelClick: void,
+ * }} props
+ */
 
-	const [validation, setValidation] = React.useState(false)
-	const [imgUri, setImgUri] = React.useState(props.data.user_image)
+export default UserLocationLabel = props => {
+	const [validation, setValidation] = React.useState(false);
+	const [imgUri, setImgUri] = React.useState(props.data.img_uri);
 
 	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정
-	React.useEffect( ()=>{
-		if(imgUri == false){
-			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg')
+	React.useEffect(() => {
+		if (imgUri == false) {
+			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
 		}
-	})
+	});
 
 	//user_nickname Text 색깔 조건부적용을 위한 세션아이디 비교
 	React.useEffect(() => {
@@ -38,7 +45,7 @@ export default UserLocationLabel = props => {
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{uri: props.data.user_image}} style={styles.img_round_70} />
+				<Image source={{uri: props.data.img_uri}} style={styles.img_round_70} />
 			</TouchableOpacity>
 			{/* Text박스 */}
 			<View style={{marginLeft: 20 * DP}}>
@@ -58,8 +65,8 @@ UserLocationLabel.defaultProps = {
 	data: {
 		user_id: 'user_id',
 		user_nickname: 'user_nickname',
-		user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
+		img_uri: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
 		location: 'location',
 	},
-	onClickLabel : e => console.log(e)
+	onClickLabel: e => console.log(e),
 };

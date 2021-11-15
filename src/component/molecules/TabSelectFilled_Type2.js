@@ -3,6 +3,14 @@ import {txt} from 'Root/config/textstyle';
 import {Text, TouchableOpacity, FlatList} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, BLACK, WHITE} from 'Root/config/color';
+
+/**
+ *
+ *@param {{
+ * items: 'Array / Tab Box에 담길 ItemList',
+ * onSelect: void,
+ * }} props
+ */
 export default TabSelectFilled_Type2 = props => {
 	const tabLength = props.items.length;
 	let tabState = [];
@@ -15,6 +23,7 @@ export default TabSelectFilled_Type2 = props => {
 	const [selected, setSelected] = React.useState(tabState);
 
 	const onSelect = index => {
+		console.log(index);
 		const copyState = [...selected];
 		//선택된 Tab의 State를 True로 이외의 Tab은 False로
 		for (let i = 0; i < copyState.length; i++) {
@@ -31,7 +40,7 @@ export default TabSelectFilled_Type2 = props => {
 				onPress={() => onSelect(index)}
 				style={{
 					backgroundColor: selected[index].state ? APRI10 : WHITE,
-					width: 250 * DP,
+					width: (750 * DP) / props.items.length + 1,
 					height: 78 * DP,
 					justifyContent: 'center',
 				}}>
