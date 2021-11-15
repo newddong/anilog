@@ -8,7 +8,9 @@ import CommentList from '../organism_ksw/CommentList';
 import { feedCommentList, login_style } from './style_templete';
 
 export default FeedCommentList = (props) => {
-	console.log("rmflaemf" + props.route.params)
+
+	//PhotoSelect에서 선택한 그림들 목록
+	console.log("그림들" + props.route.params)
 	const navigation = useNavigation()
 	// React.useEffect(() => {
 	// 	LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
