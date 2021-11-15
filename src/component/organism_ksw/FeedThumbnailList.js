@@ -60,7 +60,8 @@ export default FeedThumbnailList = props => {
 	];
 
 	const renderItem = (item, index) => {
-		return <FeedThumnail data={item} onSelect={e => props.onClickThumnail(e)} />;
+		// FavoriteFeeds에서 SelectStat로부터 받은 받은 선택모드 값을 selectMode 변수로 넘겨줌. FeedThumail에서 투명도 조절과 체크 사항을 표기하기 위함
+		return <FeedThumnail data={item} onSelect={e => props.onClickThumnail(e)} selectMode={props.selectMode} />;
 	};
 
 	return <FlatList data={_dummyData} renderItem={({item, index}) => renderItem(item, index)} numColumns={NUMCOLUMNS} />;
