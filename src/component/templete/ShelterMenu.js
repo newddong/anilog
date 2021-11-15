@@ -3,6 +3,12 @@ import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 // import {TouchableOpacity} from 'react-native-gesture-handler';
 import {login_style, shelterMenu, temp_txt, temp_style, btn_style} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
+import ProfileImageLarge160 from '../molecules/ProfileImageLarge160';
+import {txt} from 'Root/config/textstyle';
+import SocialInfoB from '../organism_ksw/SocialInfoB';
+import {btn_w280} from '../atom/btn/btn_style';
+import {FloatAddPet_126x92} from '../atom/icon';
+import {FloatAddArticle_126x92} from '../atom/icon';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
@@ -60,17 +66,21 @@ export default ShelterMenu = props => {
 							<View style={[shelterMenu.shelterInfo_container_left]}>
 								{/* ProfileImageLarge */}
 								<View style={[temp_style.profileImageLarge]}>
-									<Text>(M)ProfileImageLarge</Text>
+									{/* <Text>(M)ProfileImageLarge</Text> */}
+									<ProfileImageLarge160
+										img_uri="https://hobbyen.co.kr/news/data/20200320/p1065592519623812_956_thum.jpg"
+										shelterType="private"
+										userType="shelter"></ProfileImageLarge160>
 								</View>
 							</View>
 							<View style={[shelterMenu.shelterInfo_container_right]}>
 								{/* userId */}
 								<View style={[shelterMenu.shelterInfo_user_id]}>
-									<Text>User_id</Text>
+									<Text style={txt.noto36b}>파인트리 유기동물 보호소</Text>
 								</View>
 								{/* contents */}
 								<View style={[shelterMenu.shelterInfo_contents]}>
-									<Text>Contents</Text>
+									<Text style={txt.noto24}>서울시 마포구에 있는 유기 동물 보호소 입니다. 아이들의 보호를 도와주세요.</Text>
 								</View>
 							</View>
 						</View>
@@ -78,25 +88,32 @@ export default ShelterMenu = props => {
 
 					{/* (O)SocialInfoB-4Items */}
 					<View style={[temp_style.socialInfoB, shelterMenu.socialInfoB_4Items]}>
-						<Text>(o)SocialInfoB-4Items</Text>
+						{/* <Text>(o)SocialInfoB-4Items</Text> */}
+						<SocialInfoB></SocialInfoB>
 					</View>
 
 					{/* (btn_w280, Float) */}
 					<View style={[shelterMenu.btnView]}>
 						<TouchableOpacity onPress={moveToShelterInfoSetting}>
 							<View style={[btn_style.btn_w280]}>
-								<Text>(A)btn_w280</Text>
+								<AniButton
+									btnTitle={'보호소 정보수정'}
+									btnStyle={'border'}
+									titleFontStyle={24}
+									btnLayout={btn_w280}
+									onPress={moveToShelterInfoSetting}
+								/>
 							</View>
 						</TouchableOpacity>
 
 						<TouchableOpacity onPress={moveToAssignProtectAnimalImage}>
 							<View style={[shelterMenu.btnView_floadAddPet_126x92]}>
-								<Text style={temp_txt.small}>(A)FloatAddPet_126x92</Text>
+								<FloatAddPet_126x92></FloatAddPet_126x92>
 							</View>
 						</TouchableOpacity>
 						<TouchableOpacity onPress={moveToAidRequestList}>
 							<View style={[shelterMenu.btnView_floadArticle_126x92]}>
-								<Text style={temp_txt.small}>(A)FloatArticle_126x92</Text>
+								<FloatAddArticle_126x92></FloatAddArticle_126x92>
 							</View>
 						</TouchableOpacity>
 					</View>
