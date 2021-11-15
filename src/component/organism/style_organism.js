@@ -1,12 +1,12 @@
-import {StyleSheet} from 'react-native';
-import {GRAY10, GRAY20} from 'Root/config/color';
+import { StyleSheet } from 'react-native';
+import { GRAY10, GRAY20 } from 'Root/config/color';
 import DP from 'Root/config/dp';
 
 export const organism_style = StyleSheet.create({
 	feedContent: {
 		flexDirection: 'column',
 		width: 750 * DP,
-		height: 330 * DP,
+		// height: 330 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},

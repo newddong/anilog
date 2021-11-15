@@ -1,14 +1,15 @@
 import React from 'react';
-import {Text, View, TouchableWithoutFeedback} from 'react-native';
-import {organism_style, feedContent_style} from './style_organism';
+import { Text, View, TouchableWithoutFeedback, TextInput, Linking } from 'react-native';
+import { organism_style, feedContent_style } from './style_organism';
 import UserLocationLabel from 'Root/component/molecules/UserLocationLabel';
 import AniButton from 'Root/component/molecules/AniButton';
-import {btn_w130} from 'Root/component/atom/btn/btn_style';
-import {useNavigation} from '@react-navigation/core';
-import {Bracket48, FavoriteTag48_Filled, Meatball50_GRAY20_Horizontal, Share48_Filled} from '../atom/icon';
-import {BLUE10, BLUE20, GRAY10} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
-
+import { btn_w130 } from 'Root/component/atom/btn/btn_style';
+import { useNavigation } from '@react-navigation/core';
+import { Bracket48, FavoriteTag48_Filled, Meatball50_GRAY20_Horizontal, Share48_Filled } from '../atom/icon';
+import { BLUE10, BLUE20, GRAY10 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
+import { Button } from 'react-native';
+import FeedText from '../organism_ksw/FeedText';
 export default FeedContent = props => {
 	//Test용 데이터
 	const navigation = useNavigation();
@@ -20,9 +21,10 @@ export default FeedContent = props => {
 		text_intro: 'Text/Intro',
 	};
 
-	const moveToFeedListForHashTag = () => {
-		navigation.push('FeedListForHashTag');
+	const moveToFeedListForHashTag = (tagText) => {
+		navigation.push('FeedListForHashTag', tagText);
 	};
+
 
 	return (
 		<View style={organism_style.feedContent}>
@@ -66,7 +68,7 @@ export default FeedContent = props => {
 								<Share48_Filled />
 							</View>
 							<View style={[organism_style.share_feedContent, feedContent_style.share]}>
-								<Text style={[txt.noto24, {color: GRAY10}]}>공유</Text>
+								<Text style={[txt.noto24, { color: GRAY10 }]}>공유</Text>
 							</View>
 						</View>
 					</View>
@@ -82,28 +84,33 @@ export default FeedContent = props => {
 
 			{/* line 2 */}
 			<View style={[organism_style.content_feedContent, feedContent_style.content]}>
-				<Text>우리</Text>
-				<TouchableWithoutFeedback onPress={moveToFeedListForHashTag}>
-					<Text style={[txt.noto24b, {color: BLUE20}]}>#둥이</Text>
+				{/* <Text>우리</Text>
+				<TouchableWithoutFeedback onPress={() => moveToFeedListForHashTag('둥이')}>
+					<Text style={[txt.noto24b, { color: BLUE20 }]}>#둥이</Text>
 				</TouchableWithoutFeedback>
 				<Text>는 언제나</Text>
-				<TouchableWithoutFeedback onPress={moveToFeedListForHashTag}>
-					<Text style={[txt.noto24b, {color: BLUE20}]}>#창가</Text>
+				<TouchableWithoutFeedback onPress={() => moveToFeedListForHashTag('창가')}>
+					<Text style={[txt.noto24b, { color: BLUE20 }]}>#창가</Text>
 				</TouchableWithoutFeedback>
 				<Text>에 앉아있기를 좋아하는 거 같다.</Text>
-			</View>
+ 				*/}
+				<View style={{}}>
+					<FeedText text={'우리 #둥이는 언제나 창가에 앉아있끼를 좋아하는 것이 아닌가 호텔 캘리포니아'} />
+				</View>
 
+			</View>
 			{/* line 3 */}
 			<View style={[organism_style.time_view_feedContent]}>
 				<View style={[organism_style.time_feedContent]}>
 					<Text>1일 전</Text>
 				</View>
 
+
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}
 				{props.data.addMore && (
 					<View style={[organism_style.addMore_view_feedContent]}>
 						<View style={[organism_style.addMore_feedContent]}>
-							<Text style={[txt.noto22, {color: GRAY10}]}>더보기</Text>
+							<Text style={[txt.noto22, { color: GRAY10 }]}>더보기</Text>
 						</View>
 						<View style={[organism_style.braket]}>
 							<Bracket48 />
@@ -119,7 +126,7 @@ FeedContent.defaultProps = {
 	data: {
 		type: 'button',
 		addMore: true,
-		tipOff: true,
+		tipOff: false,
 		content: 'comment 내용을 넣어야 합니다.',
 	},
 };

@@ -1033,26 +1033,29 @@ export const temp_style = StyleSheet.create({
 	accountInfo_shelterInfoSetting_view: {
 		width: 750 * DP,
 		height: 192 * DP,
-		backgroundColor: '#FF00FF',
+		// backgroundColor: '#FF00FF',
 	},
 	introduce_shelterInfoSetting_view: {
 		width: 750 * DP,
 		height: 238 * DP,
-		backgroundColor: '#D891C7',
+		alignItems: 'center',
+		backgroundColor: '#FFF',
 	},
 	introduce_infoSetting_view: {
 		flexDirection: 'row',
 		width: 750 * DP,
 		height: 558 * DP,
-		alignItems: 'center',
-		backgroundColor: '#C1EDD0',
+		// alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#FF00FF',
 	},
 	title_shelterInfoSetting_view: {
-		width: 750 * DP,
+		flexDirection: 'row',
+		width: 654 * DP,
 		height: 100 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#D2CAF6',
+		backgroundColor: '#FFF',
 	},
 	title_shelterInfoSetting: {
 		width: 200 * DP,
@@ -1061,10 +1064,23 @@ export const temp_style = StyleSheet.create({
 	},
 	accountInfo_email_shelterInfoSetting_view: {
 		flexDirection: 'row',
-		width: 594 * DP,
+		width: 654 * DP,
 		height: 46 * DP,
 		justifyContent: 'space-between',
-		backgroundColor: '#F6F6E4',
+		// backgroundColor: '#F6F6E4',
+	},
+	introduceMent_shelterInfoSetting: {
+		width: 654 * DP,
+		height: 82 * DP,
+	},
+	shlterInfo__shelterInfoSetting_view: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		height: 46 * DP,
+		marginTop: 40 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		justifyContent: 'space-between',
 	},
 });
 
@@ -1857,17 +1873,17 @@ export const temp_txt = StyleSheet.create({
 export const shelterMenu = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'yellow',
+		// backgroundColor: 'yellow',
 	},
 	shelterMenuStep1: {
-		backgroundColor: '#6F9B85',
+		// backgroundColor: '#6F9B85',
 		width: 750 * DP,
 		height: 550 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	shelterInfo: {
-		backgroundColor: '#BCC0DC',
+		// backgroundColor: '#BCC0DC',
 		width: 654 * DP,
 		height: 194 * DP,
 		justifyContent: 'center',
@@ -1892,7 +1908,7 @@ export const shelterMenu = StyleSheet.create({
 	shelterInfo_user_id: {
 		width: 420 * DP,
 		height: 58 * DP,
-		backgroundColor: '#D1E7F1',
+		// backgroundColor: '#D1E7F1',
 		marginTop: 27 * DP,
 		alignSelf: 'flex-end',
 		justifyContent: 'center',
@@ -1901,19 +1917,19 @@ export const shelterMenu = StyleSheet.create({
 	shelterInfo_contents: {
 		width: 420 * DP,
 		height: 82 * DP,
-		backgroundColor: '#FBC5C5',
+		// backgroundColor: '#FBC5C5',
 		alignSelf: 'flex-end',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	socialInfoB_4Items: {
-		backgroundColor: '#B0C0EC',
+		// backgroundColor: '#B0C0EC',
 		width: 662 * DP,
 		height: 106 * DP,
 		marginTop: 38 * DP,
 	},
 	btnView: {
-		backgroundColor: '#78BB95',
+		// backgroundColor: '#78BB95',
 		width: 654 * DP,
 		height: 92 * DP,
 		marginTop: 40 * DP,
@@ -1930,7 +1946,7 @@ export const shelterMenu = StyleSheet.create({
 	btnView_floadAddPet_126x92: {
 		width: 126 * DP,
 		height: 92 * DP,
-		backgroundColor: '#BF9547',
+		// backgroundColor: '#BF9547',
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginLeft: 82 * DP,
@@ -1938,7 +1954,7 @@ export const shelterMenu = StyleSheet.create({
 	btnView_floadArticle_126x92: {
 		width: 126 * DP,
 		height: 92 * DP,
-		backgroundColor: '#BF9547',
+		// backgroundColor: '#BF9547',
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginLeft: 40 * DP,
@@ -1984,26 +2000,32 @@ export const shelterInfoSetting = StyleSheet.create({
 	shelterInfoSetting_step1: {
 		width: 750 * DP,
 		height: 364 * DP,
-		backgroundColor: '#94ACA0',
+		backgroundColor: '#FFF',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	btn_w242: {
 		width: 280 * DP,
 		height: 60 * DP,
-		backgroundColor: '#FBE0AF',
+		// backgroundColor: '#FBE0AF',
 		marginTop: 30 * DP,
 	},
 	shelterInfoSetting_step2: {
 		width: 750 * DP,
 		height: 1060 * DP,
-		backgroundColor: '#B3EBB5',
+		backgroundColor: '#FFF',
 	},
 	btn_w114: {
 		marginLeft: 340 * DP,
 	},
 	email_view: {
 		marginTop: 30 * DP,
+		marginLeft: 48 * DP,
+	},
+	accountInfo: {
+		marginLeft: 48 * DP,
+	},
+	introduceMent: {
 		marginLeft: 48 * DP,
 	},
 });
@@ -2989,7 +3011,6 @@ export const feedList = StyleSheet.create({
 		position: 'absolute',
 		right: 30 * DP,
 		bottom: 40 * DP,
-		backgroundColor: 'red',
 	},
 });
 
@@ -3204,8 +3225,6 @@ export const feedMediaTagEdit = StyleSheet.create({
 
 export const feedWrite = StyleSheet.create({
 	container: {
-		minHeight: 695 * DP,
-		alignItems: 'center',
 		flex: 1,
 	},
 	container_without_lostAnimal: {

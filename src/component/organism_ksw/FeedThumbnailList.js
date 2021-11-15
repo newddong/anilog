@@ -1,18 +1,11 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import FeedThumnail from '../molecules/FeedThumnail';
 
 export default FeedThumbnailList = props => {
 	const NUMCOLUMNS = 3;
 
 	const _dummyData = [
-		{
-			feed_id: 'dog1',
-			isVideo: true,
-			medias: [1, 2, 3, 4],
-			alert_title: '',
-			img_uri: 'http://storage.enuri.info/pic_upload/knowbox2/202105/09151281620210518c342be40-3a75-40df-b7eb-6dd511de41a8.jpg',
-		},
 		{
 			feed_id: 'dog7',
 			isVideo: true,
@@ -44,13 +37,6 @@ export default FeedThumbnailList = props => {
 			img_uri: 'https://t1.daumcdn.net/cfile/blog/2547A74C52B3D5D40B',
 		},
 		{
-			feed_id: 'dog5',
-			isVideo: false,
-			medias: [1, 2, 3, 4],
-			alert_title: '',
-			img_uri: 'http://storage.enuri.info/pic_upload/knowbox2/202105/03382977120210523908b5efc-5e2b-4758-8697-7bdc0eee0bcf.jpg',
-		},
-		{
 			feed_id: 'dog6',
 			isVideo: true,
 			medias: [1, 2, 3, 4],
@@ -60,8 +46,9 @@ export default FeedThumbnailList = props => {
 	];
 
 	const renderItem = (item, index) => {
-		return <FeedThumnail data={item} onSelect={e => props.onClickThumnail(e)} />;
+		// FavoriteFeeds에서 SelectStat로부터 받은 받은 선택모드 값을 selectMode 변수로 넘겨줌. FeedThumail에서 투명도 조절과 체크 사항을 표기하기 위함
+		return <FeedThumnail data={item} onSelect={e => props.onClickThumnail(e)} selectMode={props.selectMode} />;
 	};
 
-	return <FlatList data={_dummyData} renderItem={({item, index}) => renderItem(item, index)} numColumns={NUMCOLUMNS} />;
+	return <FlatList data={_dummyData} renderItem={({ item, index }) => renderItem(item, index)} numColumns={NUMCOLUMNS} />;
 };

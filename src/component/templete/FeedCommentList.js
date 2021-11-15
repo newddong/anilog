@@ -1,11 +1,11 @@
-import {useIsFocused, useNavigation} from '@react-navigation/core';
+import { useIsFocused, useNavigation } from '@react-navigation/core';
 import React from 'react';
-import {ScrollView, TextInput, TouchableOpacity} from 'react-native';
-import {FlatList, Text, View} from 'react-native';
-import {Lock60_Border, Lock60_Filled, Photo60, Send60} from '../atom/icon';
+import { ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
+import { Lock60_Border, Lock60_Filled, Photo60, Send60 } from '../atom/icon';
 import FeedContent from '../organism/FeedContent';
 import CommentList from '../organism_ksw/CommentList';
-import {feedCommentList, login_style} from './style_templete';
+import { feedCommentList, login_style } from './style_templete';
 
 export default FeedCommentList = props => {
 	console.log('그림들' + props.route.params);

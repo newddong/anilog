@@ -1,11 +1,11 @@
 import React from 'react';
-import {Text, View, TouchableWithoutFeedback, Image, ScrollView, FlatList, TouchableOpacity, PermissionsAndroid} from 'react-native';
-import {txt} from 'Root/config/textstyle';
-import {Bracket48} from '../atom/icon';
+import { Text, View, TouchableWithoutFeedback, Image, ScrollView, FlatList, TouchableOpacity, PermissionsAndroid } from 'react-native';
+import { txt } from 'Root/config/textstyle';
+import { Bracket48 } from '../atom/icon';
 import LocalMedia from '../molecules/LocalMedia';
-import {login_style, temp_style, photoSelect} from './style_templete';
+import { login_style, temp_style, photoSelect } from './style_templete';
 import CameraRoll from '@react-native-community/cameraroll';
-import {item} from 'Root/screens/common/style_address';
+import { item } from 'Root/screens/common/style_address';
 export default PhotoSelect = props => {
 	const moveToSingPhotoSelect = () => {
 		props.navigation.push('AssignPetInfoB');
@@ -18,6 +18,8 @@ export default PhotoSelect = props => {
 	const [selectedIndex, setSelectedIndex] = React.useState(indexArray);
 	const [number, setNumber] = React.useState(1);
 
+
+
 	React.useEffect(() => {
 		CameraRoll.getPhotos({
 			first: 20,
@@ -27,9 +29,9 @@ export default PhotoSelect = props => {
 			.catch(err => {
 				console.log(err);
 			});
-
-		return () => {};
+		return () => { };
 	});
+
 	const onSelect = (e, index) => {
 		setSelectedPhoto(e);
 		let photoArray_dummy = [...photoArray];
@@ -46,7 +48,7 @@ export default PhotoSelect = props => {
 	const renderItem = React.useCallback(
 		(item, index) => {
 			return (
-				<LocalMedia isSingleSelection={false} onSelect={e => onSelect(e, index)} data={{img_uri: item.node.image.uri}} index={selectedIndex[index]} />
+				<LocalMedia isSingleSelection={false} onSelect={e => onSelect(e, index)} data={{ img_uri: item.node.image.uri }} index={selectedIndex[index]} />
 			);
 		},
 		[selectedIndex],
@@ -78,13 +80,13 @@ export default PhotoSelect = props => {
 						<Text style={txt.noto36}>최근 항목 </Text>
 						<Bracket48 />
 						<TouchableOpacity onPress={() => checkOut()}>
-							<Text style={{fontSize: 25, marginLeft: 20, backgroundColor: 'yellow'}}>임시 확인 버튼</Text>
+							<Text style={{ fontSize: 25, marginLeft: 20, backgroundColor: 'yellow' }}>임시 확인 버튼</Text>
 						</TouchableOpacity>
 					</View>
 					<View style={[temp_style.mediaSelect]}>
 						{/* <Text>(O)mediaSelect(사진등록완료)</Text> */}
 						{/* <MediaSelect mediaList={photo} /> */}
-						<FlatList data={photo} numColumns={4} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled keyExtractor={item.key} />
+						<FlatList data={photo} numColumns={4} renderItem={({ item, index }) => renderItem(item, index)} scrollEnabled keyExtractor={item.key} />
 					</View>
 				</View>
 			</TouchableWithoutFeedback>
@@ -95,18 +97,6 @@ export default PhotoSelect = props => {
 PhotoSelect.defaultProps = {
 	onCheckOut: e => console.log(e),
 };
-// {photo.map((p, i) => {
-// 	return (
-// 		<Image
-// 			key={i}
-// 			style={{
-// 				width: 100,
-// 				height: 100,
-// 			}}
-// 			source={{ uri: p.node.image.uri }}
-// 		/>
-// 	);
-// })}
 
 // LocalMedia.defaultProps = {
 // 	data: {

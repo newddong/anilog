@@ -1,7 +1,7 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { SafeAreaView } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import LoginTemplete from 'Templete/LoginTemplete';
 
@@ -39,13 +39,14 @@ import AssignPetInfoB from 'Templete/AssignPetInfoB';
 import MainTabNavigation from './main_tab/MainTabNavigation';
 import SearchTabNavigation from './search_tab/SearchTabNavigation';
 
-import {PIC_SELECTION} from 'Root/i18n/msg';
+import { PIC_SELECTION } from 'Root/i18n/msg';
+import FeedListForHashTag from 'Root/component/templete/FeedListForHashTag';
 
 const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
 	return (
-		<SafeAreaView style={{flex: 1}}>
+		<SafeAreaView style={{ flex: 1 }}>
 			<NavigationContainer>
 				<RootStack.Navigator initialRouteName="MainTab">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
@@ -81,12 +82,15 @@ export default RootStackNavigation = () => {
 					<RootStack.Screen name="ApplyVolunteer" component={ApplyVolunteer} />
 					<RootStack.Screen name="FeedMediaTagEdit" component={FeedMediaTagEdit} />
 					<RootStack.Screen name="FeedWrite" component={FeedWrite} />
+
 					<RootStack.Screen name="FeedMissingWrite" component={FeedWrite} />
 					<RootStack.Screen name="FeedReportWrite" component={FeedWrite} />
 					<RootStack.Screen name="LocationPicker" component={LocationPicker} />
 
 					<RootStack.Screen name="SinglePhotoSelect" component={PhotoSelect} />
 					<RootStack.Screen name="MultiPhotoSelect" component={PhotoSelect} />
+					<RootStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
+
 
 					<RootStack.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
 					<RootStack.Screen name="AssignPetInfoA" component={AssignPetInfoA} />
