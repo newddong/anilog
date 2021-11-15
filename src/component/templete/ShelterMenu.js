@@ -9,6 +9,7 @@ import SocialInfoB from '../organism_ksw/SocialInfoB';
 import {btn_w280} from '../atom/btn/btn_style';
 import {FloatAddPet_126x92} from '../atom/icon';
 import {FloatAddArticle_126x92} from '../atom/icon';
+import AniButton from '../molecules/AniButton';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
@@ -68,7 +69,7 @@ export default ShelterMenu = props => {
 								<View style={[temp_style.profileImageLarge]}>
 									{/* <Text>(M)ProfileImageLarge</Text> */}
 									<ProfileImageLarge160
-										img_uri="https://hobbyen.co.kr/news/data/20200320/p1065592519623812_956_thum.jpg"
+										img_uri="https://img.insight.co.kr/static/2018/08/05/700/45666287b9lm5l1q9948.jpg"
 										shelterType="private"
 										userType="shelter"></ProfileImageLarge160>
 								</View>
@@ -94,17 +95,17 @@ export default ShelterMenu = props => {
 
 					{/* (btn_w280, Float) */}
 					<View style={[shelterMenu.btnView]}>
-						<TouchableOpacity onPress={moveToShelterInfoSetting}>
-							<View style={[btn_style.btn_w280]}>
-								<AniButton
-									btnTitle={'보호소 정보수정'}
-									btnStyle={'border'}
-									titleFontStyle={24}
-									btnLayout={btn_w280}
-									onPress={moveToShelterInfoSetting}
-								/>
-							</View>
-						</TouchableOpacity>
+						{/* <TouchableOpacity onPress={moveToShelterInfoSetting}> */}
+						<View style={[btn_style.btn_w280]}>
+							<AniButton
+								btnTitle={'보호소 정보수정'}
+								btnStyle={'border'}
+								titleFontStyle={24}
+								btnLayout={btn_w280}
+								onPress={moveToShelterInfoSetting}
+							/>
+						</View>
+						{/* </TouchableOpacity> */}
 
 						<TouchableOpacity onPress={moveToAssignProtectAnimalImage}>
 							<View style={[shelterMenu.btnView_floadAddPet_126x92]}>

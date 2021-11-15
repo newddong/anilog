@@ -77,12 +77,12 @@ export const assign_profile = StyleSheet.create({
 		width: 294 * DP,
 		height: 294 * DP,
 		borderRadius: 150 * DP,
-		backgroundColor:GRAY,
+		backgroundColor: GRAY,
 	},
 	btn_add: {
 		position: 'absolute',
 		opacity: 0.8,
-		width: 92* DP,
+		width: 92 * DP,
 		height: 92 * DP,
 		bottom: 10 * DP,
 		right: 10 * DP,
@@ -242,6 +242,7 @@ export const txt = StyleSheet.create({
 	noto30b: {
 		fontFamily: 'NotoSansKR-Bold',
 		fontSize: 30 * DP,
+		lineHeight: 42 * DP,
 	},
 	noto40b: {
 		fontFamily: 'NotoSansKR-Bold',
