@@ -13,7 +13,7 @@ import {styles} from '../atom/image/imageStyle';
  * }} props
  */
 export default ProtectedThumbnail = props => {
-	console.log('protected ' + JSON.stringify(props.data));
+	//console.log('protected ' + JSON.stringify(props.data));
 	const borderByStatus = () => {
 		if (props.data.status == 'emergency') {
 			return {

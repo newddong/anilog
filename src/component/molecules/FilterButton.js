@@ -44,7 +44,6 @@ export default FilterButton = props => {
 					style={[
 						txt.noto24,
 						{
-							fontSize: props.titleFontStyle * DP,
 							color: GRAY10,
 						},
 					]}>
@@ -58,8 +57,8 @@ export default FilterButton = props => {
 
 FilterButton.defaultProps = {
 	btnTitle: 'title',
-	titleFontSize: 24 * DP,
-	btnLayout: btn_w226,
+	titleFontSize: 24,
+	btnLayout: null,
 	onOn: e => console.log(e),
 	onOff: e => console.log(e),
 };

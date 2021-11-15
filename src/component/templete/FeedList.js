@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text, View, TouchableWithoutFeedback, FlatList } from 'react-native';
-import { Write94 } from '../atom/icon';
+import {Text, View, TouchableWithoutFeedback, FlatList} from 'react-native';
+import {Write94} from '../atom/icon';
 import Feed from '../organism/Feed';
-import { feedList, login_style, missingAnimalDetail, temp_style } from './style_templete';
+import {feedList, login_style, missingAnimalDetail, temp_style} from './style_templete';
 
 export default FeedList = props => {
 	const moveToFeedWrite = () => {
@@ -19,15 +19,13 @@ export default FeedList = props => {
 		<View style={[login_style.wrp_main, missingAnimalDetail.container]}>
 			{/* FeedList */}
 			<View style={[feedList.feedList]}>
-				<FlatList data={testData} renderItem={({ item }) => renderItem(item)} />
+				<FlatList data={testData} renderItem={({item}) => renderItem(item)} />
 			</View>
 
 			{/* FloatButton */}
-			<TouchableWithoutFeedback onPress={moveToFeedWrite}>
-				<View style={[temp_style.floatingBtn, feedList.floatingBtn]}>
-					<Write94 />
-				</View>
-			</TouchableWithoutFeedback>
+			<View style={[temp_style.floatingBtn, feedList.floatingBtn]}>
+				<Write94 onPress={moveToFeedWrite} />
+			</View>
 		</View>
 	);
 };

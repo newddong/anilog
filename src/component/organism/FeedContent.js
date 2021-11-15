@@ -1,14 +1,14 @@
 import React from 'react';
-import { Text, View, TouchableWithoutFeedback, TextInput, Linking } from 'react-native';
-import { organism_style, feedContent_style } from './style_organism';
+import {Text, View, TouchableWithoutFeedback, TextInput, Linking} from 'react-native';
+import {organism_style, feedContent_style} from './style_organism';
 import UserLocationLabel from 'Root/component/molecules/UserLocationLabel';
 import AniButton from 'Root/component/molecules/AniButton';
-import { btn_w130 } from 'Root/component/atom/btn/btn_style';
-import { useNavigation } from '@react-navigation/core';
-import { Bracket48, FavoriteTag48_Filled, Meatball50_GRAY20_Horizontal, Share48_Filled } from '../atom/icon';
-import { BLUE10, BLUE20, GRAY10 } from 'Root/config/color';
-import { txt } from 'Root/config/textstyle';
-import { Button } from 'react-native';
+import {btn_w130} from 'Root/component/atom/btn/btn_style';
+import {useNavigation} from '@react-navigation/core';
+import {Bracket48, FavoriteTag48_Filled, Meatball50_GRAY20_Horizontal, Share48_Filled} from '../atom/icon';
+import {BLUE10, BLUE20, GRAY10} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
+import {Button} from 'react-native';
 import FeedText from '../organism_ksw/FeedText';
 export default FeedContent = props => {
 	//Test용 데이터
@@ -21,10 +21,14 @@ export default FeedContent = props => {
 		text_intro: 'Text/Intro',
 	};
 
-	const moveToFeedListForHashTag = (tagText) => {
-		navigation.push('FeedListForHashTag', tagText);
+	const moveToFeedListForHashTag = tagText => {
+		const dummyHashData = {
+			keyword: tagText,
+			count: 10,
+			keywordBold: true,
+		};
+		navigation.push('FeedListForHashTag', dummyHashData);
 	};
-
 
 	return (
 		<View style={organism_style.feedContent}>
@@ -68,7 +72,7 @@ export default FeedContent = props => {
 								<Share48_Filled />
 							</View>
 							<View style={[organism_style.share_feedContent, feedContent_style.share]}>
-								<Text style={[txt.noto24, { color: GRAY10 }]}>공유</Text>
+								<Text style={[txt.noto24, {color: GRAY10}]}>공유</Text>
 							</View>
 						</View>
 					</View>
@@ -95,9 +99,13 @@ export default FeedContent = props => {
 				<Text>에 앉아있기를 좋아하는 거 같다.</Text>
  				*/}
 				<View style={{}}>
-					<FeedText text={'우리 #둥이는 언제나 창가에 앉아있끼를 좋아하는 것이 아닌가 호텔 캘리포니아'} />
+					<FeedText
+						text={
+							'우리 #둥이는 언제나 창가에 앉아있끼를 좋아하는 것이 아닌가 호텔 캘리포니아우리 #둥이는 언제나 창가에 앉아있끼를 좋아하는 것이 아닌가 호텔 캘리포니아우리 #둥이는 언제나 창가에 앉아있끼를 좋아하는 것이 아닌가 호텔 캘리포니아'
+						}
+						onHashClick={hashText => moveToFeedListForHashTag(hashText)}
+					/>
 				</View>
-
 			</View>
 			{/* line 3 */}
 			<View style={[organism_style.time_view_feedContent]}>
@@ -105,12 +113,11 @@ export default FeedContent = props => {
 					<Text>1일 전</Text>
 				</View>
 
-
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}
 				{props.data.addMore && (
 					<View style={[organism_style.addMore_view_feedContent]}>
 						<View style={[organism_style.addMore_feedContent]}>
-							<Text style={[txt.noto22, { color: GRAY10 }]}>더보기</Text>
+							<Text style={[txt.noto22, {color: GRAY10}]}>더보기</Text>
 						</View>
 						<View style={[organism_style.braket]}>
 							<Bracket48 />

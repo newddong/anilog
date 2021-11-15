@@ -471,19 +471,16 @@ export const temp_style = StyleSheet.create({
 	topTabNavigation_filled: {
 		width: 750 * DP,
 		height: 72 * DP,
-		backgroundColor: '#F2C8C8',
 		alignItems: 'center',
 	},
 	topTabNavigation_border: {
 		width: 750 * DP,
 		height: 70 * DP,
-		backgroundColor: '#F09F9F',
 		alignItems: 'center',
 	},
 	onOffSwitch: {
 		width: 84 * DP,
 		height: 36 * DP,
-		backgroundColor: 'pink',
 	},
 	controllableAccountList: {
 		width: 654 * DP,
@@ -512,7 +509,6 @@ export const temp_style = StyleSheet.create({
 	filterBtn: {
 		width: 306 * DP,
 		height: 60 * DP,
-		backgroundColor: '#D891C7',
 		alignItems: 'center',
 		marginRight: 42 * DP,
 	},
@@ -2576,26 +2572,22 @@ export const searchProtectRequest = StyleSheet.create({
 	filterView: {
 		width: 750 * DP,
 		height: 190 * DP,
-		backgroundColor: '#A7A7EF',
 		alignItems: 'center',
 		justifyContent: 'center',
 		inside: {
 			width: 654 * DP,
 			height: 126 * DP,
-			backgroundColor: '#B5DED8',
 		},
 		onOffBtnView: {
 			width: 344 * DP,
 			height: 36 * DP,
 			marginTop: 30 * DP,
 			flexDirection: 'row',
-			backgroundColor: 'yellow',
 			alignSelf: 'flex-end',
 		},
 		onOffBtnMsg: {
 			width: 244 * DP,
 			height: 32 * DP,
-			backgroundColor: 'pink',
 			alignSelf: 'center',
 		},
 		onOffSwitch: {
@@ -2604,7 +2596,6 @@ export const searchProtectRequest = StyleSheet.create({
 	},
 	animalNeedHelpList: {
 		marginTop: 30 * DP,
-		backgroundColor: 'yellow',
 		width: 654 * DP,
 		height: 958 * DP,
 		alignSelf: 'center',
@@ -2664,25 +2655,21 @@ export const appliesRecord = StyleSheet.create({
 export const protectRequestList = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'white',
 	},
 });
 export const missingReportList = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'white',
 	},
 	filterContainer: {
 		width: 750 * DP,
 		height: 110 * DP,
-		backgroundColor: '#A7A7EF',
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 	},
 	insideContainer: {
 		width: 654 * DP,
 		height: 60 * DP,
-		backgroundColor: 'yellow',
 		marginBottom: 10 * DP,
 	},
 	animalNeedHelpList: {
@@ -2690,12 +2677,10 @@ export const missingReportList = StyleSheet.create({
 		width: 654 * DP,
 		height: 1082 * DP,
 		alignSelf: 'center',
-		backgroundColor: 'yellow',
 	},
 	urget_write1: {
 		width: 110 * DP,
 		height: 110 * DP,
-		backgroundColor: '#E57E7E',
 		position: 'absolute',
 		bottom: 60 * DP,
 		right: 20 * DP,
@@ -2705,25 +2690,20 @@ export const missingReportList = StyleSheet.create({
 export const activationList = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	activityContainer: {
 		width: 654 * DP,
-		height: 1112 * DP,
 		marginTop: 70 * DP,
 		alignSelf: 'center',
-		backgroundColor: '#B5DED8',
 	},
 	activity: {
 		width: 654 * DP,
 		height: 258 * DP,
-		backgroundColor: 'pink',
 		marginBottom: 40 * DP,
 	},
 	activityNameContainer: {
 		width: 654 * DP,
 		height: 42 * DP,
-		backgroundColor: BLUE20,
 	},
 	activityName: {
 		marginLeft: 44.5 * DP,
@@ -2732,7 +2712,6 @@ export const activationList = StyleSheet.create({
 		width: 654 * DP,
 		height: 204 * DP,
 		marginTop: 12 * DP,
-		backgroundColor: '#EBC5C5',
 	},
 });
 export const activationDetail = StyleSheet.create({
