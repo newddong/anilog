@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
 	MAINCOLOR,
 	LINK,
@@ -1857,17 +1857,17 @@ export const temp_txt = StyleSheet.create({
 export const shelterMenu = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'yellow',
+		// backgroundColor: 'yellow',
 	},
 	shelterMenuStep1: {
-		backgroundColor: '#6F9B85',
+		// backgroundColor: '#6F9B85',
 		width: 750 * DP,
 		height: 550 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	shelterInfo: {
-		backgroundColor: '#BCC0DC',
+		// backgroundColor: '#BCC0DC',
 		width: 654 * DP,
 		height: 194 * DP,
 		justifyContent: 'center',
@@ -1892,7 +1892,7 @@ export const shelterMenu = StyleSheet.create({
 	shelterInfo_user_id: {
 		width: 420 * DP,
 		height: 58 * DP,
-		backgroundColor: '#D1E7F1',
+		// backgroundColor: '#D1E7F1',
 		marginTop: 27 * DP,
 		alignSelf: 'flex-end',
 		justifyContent: 'center',
@@ -1901,19 +1901,19 @@ export const shelterMenu = StyleSheet.create({
 	shelterInfo_contents: {
 		width: 420 * DP,
 		height: 82 * DP,
-		backgroundColor: '#FBC5C5',
+		// backgroundColor: '#FBC5C5',
 		alignSelf: 'flex-end',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	socialInfoB_4Items: {
-		backgroundColor: '#B0C0EC',
+		// backgroundColor: '#B0C0EC',
 		width: 662 * DP,
 		height: 106 * DP,
 		marginTop: 38 * DP,
 	},
 	btnView: {
-		backgroundColor: '#78BB95',
+		// backgroundColor: '#78BB95',
 		width: 654 * DP,
 		height: 92 * DP,
 		marginTop: 40 * DP,
@@ -1930,7 +1930,7 @@ export const shelterMenu = StyleSheet.create({
 	btnView_floadAddPet_126x92: {
 		width: 126 * DP,
 		height: 92 * DP,
-		backgroundColor: '#BF9547',
+		// backgroundColor: '#BF9547',
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginLeft: 82 * DP,
@@ -1938,7 +1938,7 @@ export const shelterMenu = StyleSheet.create({
 	btnView_floadArticle_126x92: {
 		width: 126 * DP,
 		height: 92 * DP,
-		backgroundColor: '#BF9547',
+		// backgroundColor: '#BF9547',
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginLeft: 40 * DP,
@@ -3341,7 +3341,7 @@ export const feedWrite = StyleSheet.create({
 });
 
 export const profile = StyleSheet.create({
-	container: { flex: 1 },
+	container: {flex: 1},
 	profileInfo: {
 		width: 750 * DP,
 		marginBottom: 30 * DP,

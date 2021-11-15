@@ -1,4 +1,5 @@
 import React from 'react';
+import {TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
 
 import heartFilled from './heartFilled';
 import heartBorder from './heartBorder';
@@ -134,7 +135,8 @@ const size110 = {width: 110 * DP, height: 110 * DP};
 const size126x92 = {width: 126 * DP, height: 92 * DP};
 
 const makeSvg = (component, style, color) => {
-	return props => React.createElement(component, {...style, ...props, fill: color});
+	return props => React.createElement(TouchableOpacity,{...props},React.createElement(component,{...style,fill:color}))
+	//return props => React.createElement(component, {...style, ...props, fill: color});
 };
 
 export const Heart30_Filled = makeSvg(heartFilled, size30, APRI10);
