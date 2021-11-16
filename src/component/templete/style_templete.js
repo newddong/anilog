@@ -830,12 +830,12 @@ export const temp_style = StyleSheet.create({
 	datePicker_assignProtectAnimal_depth1: {
 		width: 520 * DP,
 		height: 82 * DP,
-		backgroundColor: '#EDEDED',
+		backgroundColor: '#FFF',
 	},
 	inputForm_assignProtectAnimal: {
 		width: 654 * DP,
 		height: 224 * DP,
-		backgroundColor: '#A07A7A',
+		backgroundColor: '#FFF',
 	},
 	dropdownSelect_assignProtectAnimalInfo: {
 		width: 160 * DP,
@@ -1844,6 +1844,9 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	addpic: {
 		color: APRI10,
 		marginLeft: 12 * DP,
+	},
+	marginLeft16: {
+		marginLeft: 16 * DP,
 	},
 });
 

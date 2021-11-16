@@ -221,3 +221,4 @@ export const INFO_QUESTION = '정보/문의';
 //'계정' 은 상위에 존재 하므로 생략
 
 export const PLEASE_UPLOAD_PIC = '해당 동물의 특징이 잘 보이는 이미지를 올려주세요.';
+export const PLEASE_GIVE_ME_DATE_AND_PLACE = '해당 동물이 구조된 날짜와 장소를 알려 주세요.';
