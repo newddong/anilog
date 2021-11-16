@@ -14,7 +14,7 @@ export default AddFamilyAccount = props => {
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* (M)InputWithSearchIcon */}
 			<View style={[temp_style.inputWithSearchIcon, addFamilyAccount_style.inputWithSearchIcon]}>
-				<InputWithSearchIcon width={654} />
+				<InputWithSearchIcon width={654} placeholder={'가족 계정을 검색해주세요.'} />
 			</View>
 
 			{/* (O)AccountList */}

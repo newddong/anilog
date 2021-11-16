@@ -6,6 +6,13 @@ import ControllableAccount from './ControllableAccount';
 import {dummy_UserDescriptionLabel} from '../../config/dummyDate_json';
 import {controllableAccountList} from './style_organism';
 
+/**
+ *
+ * @param {{
+ * data : 'Object / UserDescriptionLabel Data 필요',
+ * onFollowBtnClick: void,
+ * }} props
+ */
 export default ControllableAccountList = props => {
 	const renderItem = (item, index) => {
 		return <ControllableAccount data={item} />;
@@ -13,14 +20,16 @@ export default ControllableAccountList = props => {
 
 	return (
 		<View style={controllableAccountList.container}>
-			<View style={[controllableAccountList.title]}>
-				<Text style={[txt.noto24, {color: GRAY10}]}>{props.title}</Text>
-			</View>
+			{props.title == null ? null : (
+				<View style={[controllableAccountList.title]}>
+					<Text style={[txt.noto24, {color: GRAY10}]}>{props.title}</Text>
+				</View>
+			)}
 			<FlatList data={dummy_UserDescriptionLabel} renderItem={({item, index}) => renderItem(item, index)} />
 		</View>
 	);
 };
 
 ControllableAccountList.defaultProps = {
-	title: 'title',
+	title: null,
 };

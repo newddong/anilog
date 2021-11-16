@@ -13,7 +13,7 @@ export default AnimalFromShelter = props => {
 			{/* <FlatList> */}
 			<View style={[temp_style.baseFlatList, baseInfo_style.list]}>
 				{/* (O)AnimalNeedHelpList */}
-				<AnimalNeedHelpList></AnimalNeedHelpList>
+				<AnimalNeedHelpList />
 			</View>
 			{/* </FlatList> */}
 		</View>

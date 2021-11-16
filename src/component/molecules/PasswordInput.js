@@ -17,6 +17,8 @@ import {Cross52, Eye52_APRI10, Eye52_GRAY20} from '../atom/icon';
  *onChange: 'Inut Value Change Callback',
  *onClear: '지우기 버튼(X) 클릭 Callback',
  *onShowPassword: 'Password 보이기 설정 Callback',
+ *description : 'String / title 우측 비밀번호 설정 포맷에 대한 설명'
+ *width : 'number / input의 크기 default = 654'
  * }} props
  */
 export default PasswordInput = props => {
@@ -78,10 +80,20 @@ export default PasswordInput = props => {
 			<View style={{height: 158 * DP}}>
 				{/* 모든 text에 fontPadding false 적용 잊지말것 */}
 				{/* parent에서 title이 props로 명시되어 있지 않을 경우 'title' string 으로 받음. */}
-				{props.title != '' && props.title != 'title' && <Text style={[txt.noto24, {color: APRI10, lineHeight: 40 * DP}]}> {props.title} </Text>}
-				{/* Description 아래는 height 90으로 고정 */}
-				{/* 하단테두리는 2px, APRI설정 */}
-				<View style={{height: 82 * DP, flexDirection: 'row', borderBottomWidth: 2 * DP, borderBottomColor: getBorderColor(), alignItems: 'center'}}>
+				<View style={{flexDirection: 'row'}}>
+					{props.title != '' && props.title != 'title' && <Text style={[txt.noto24, {color: APRI10, lineHeight: 40 * DP}]}> {props.title} </Text>}
+					{/* Description 아래는 height 90으로 고정 */}
+					{/* 하단테두리는 2px, APRI설정 */}
+					{props.description != null ? <Text style={[txt.noto24, {color: GRAY20, position: 'absolute', right: 0}]}>*{props.description}</Text> : null}
+				</View>
+				<View
+					style={{
+						height: 82 * DP,
+						flexDirection: 'row',
+						borderBottomWidth: 2 * DP,
+						borderBottomColor: getBorderColor(),
+						alignItems: 'center',
+					}}>
 					<TextInput
 						ref={inputRef}
 						placeholder={props.placeholder}
@@ -93,14 +105,15 @@ export default PasswordInput = props => {
 								//TextInput과 바깥 View와의 거리 24px, lineHeight는 글꼴크기와 일치
 								paddingLeft: 24 * DP,
 								lineHeight: 44 * DP,
-								width: input.length == 0 ? 190 * DP : null,
+								minWidth: 190 * DP,
+								width: props.width * DP,
 								//placeholder 상태일때 글꼴의 영향인지 placeholde'r' 마지막글자가 짤리는 현상 발생
 								//우선 width를 가변적으로 주는 방식으로 해결
 							},
 						]}
 					/>
 					{/* X버튼은 TextInput과 28px 차이, 최하단 View테두리와는 14px 차이 */}
-					<View style={{marginLeft: 120 * DP, paddingBottom: 7 * DP, flexDirection: 'row'}}>
+					<View style={{position: 'absolute', right: 0, paddingBottom: 7 * DP, flexDirection: 'row'}}>
 						<TouchableOpacity onPress={onShowPassword}>
 							<View style={{marginRight: 10 * DP}}>{pwdSecureState ? <Eye52_GRAY20 /> : <Eye52_APRI10 />}</View>
 						</TouchableOpacity>
@@ -124,4 +137,6 @@ PasswordInput.defaultProps = {
 	onChange: e => console.log(e), // pwd input 값이 변할 때마다 수행되는 함수
 	onClear: e => console.log(e), // X마크로 input값을 clear할 때마다 수행되는 함수
 	onShowPassword: e => console.log(e), // 눈마크를 Press하여 별표(*)화된 pwd값을 보이게 할 경우 수행되는 함수
+	description: null, // 암호 포맷에 관한 설명, title 우측에 붙는다
+	width: 654,
 };

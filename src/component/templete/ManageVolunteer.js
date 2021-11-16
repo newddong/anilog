@@ -6,6 +6,7 @@ import {Bracket48} from '../atom/icon';
 import VolunteerItemList from '../organism_ksw/VolunteerItemList';
 import {login_style, manageVolunteer} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
+import {dummy_volunteerItemList} from 'Root/config/dummyDate_json';
 
 export default ManageVolunteer = props => {
 	// 아직 navigate 관련 정해진 것이 없음
@@ -14,69 +15,6 @@ export default ManageVolunteer = props => {
 	// 	console.log(JSON.stringify(shelterData));
 	// 	navigation.push('ShelterVolunteerForm', shelterData);
 	// };
-
-	const testArray = [
-		{
-			//shelterLabel 출력을 위한 테스트 데이터
-			user_type: 'shelter',
-			shelter_name: '인천 우리 반려동물 보호소',
-			shelter_type: 'public',
-			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
-			location: '호주 시드니',
-		},
-		{
-			user_type: 'shelter',
-			shelter_name: '인천 우리 반려동물 보호소',
-			shelter_type: 'public',
-			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
-			location: '호주 시드니',
-		},
-		{
-			//shelterLabel 출력을 위한 테스트 데이터
-			user_type: 'shelter',
-			shelter_name: '인천 우리 반려동물 보호소',
-			shelter_type: 'private',
-			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
-			location: '호주 시드니',
-		},
-		{
-			user_type: 'shelter',
-			shelter_name: '인천 우리 반려동물 보호소',
-			shelter_type: 'private',
-			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
-			location: '호주 시드니',
-		},
-		{
-			//shelterLabel 출력을 위한 테스트 데이터
-			user_type: 'shelter',
-			shelter_name: '인천 교소도',
-			shelter_type: 'private',
-			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
-			location: '호주 시드니',
-		},
-		{
-			user_type: 'shelter',
-			shelter_name: '인천 우리 반려동물 보호소',
-			shelter_type: 'private',
-			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
-			location: '호주 시드니',
-		},
-		{
-			//shelterLabel 출력을 위한 테스트 데이터
-			user_type: 'shelter',
-			shelter_name: '인천 우리 반려동물 보호소',
-			shelter_type: 'private',
-			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
-			location: '호주 시드니',
-		},
-		{
-			user_type: 'shelter',
-			shelter_name: '인천 우리 반려동물 보호소',
-			shelter_type: 'private',
-			shelter_image: 'https://newsimg.sedaily.com/2019/05/31/1VJCSU05CZ_1.jpg',
-			location: '호주 시드니',
-		},
-	];
 
 	const [showMoreHistroy, setShowMoreHistory] = React.useState(false);
 
@@ -92,7 +30,7 @@ export default ManageVolunteer = props => {
 					<Text style={[txt.noto24, {color: GRAY20}]}>활동 예정중인 신청</Text>
 				</View>
 				<View style={[manageVolunteer.volunteerList]}>
-					<VolunteerItemList data={testArray} onVolunteerItemClick={e => moveToShelterVolunteerForm(e)} />
+					<VolunteerItemList data={dummy_volunteerItemList} onVolunteerItemClick={e => moveToShelterVolunteerForm(e)} />
 				</View>
 
 				{/* separator */}
@@ -103,7 +41,7 @@ export default ManageVolunteer = props => {
 					<Text style={[txt.noto24, {color: GRAY20}]}>지난 신청</Text>
 				</View>
 				<View style={[showMoreHistroy ? manageVolunteer.volunteerList : manageVolunteer.previous_volunteerList]}>
-					<VolunteerItemList data={testArray} onVolunteerItemClick={e => moveToShelterVolunteerForm(e)} />
+					<VolunteerItemList data={dummy_volunteerItemList} onVolunteerItemClick={e => moveToShelterVolunteerForm(e)} />
 				</View>
 
 				{/* 지난 내역 더보기 --> [클릭] => 지난 내역 더보기 Container는 사라짐 */}

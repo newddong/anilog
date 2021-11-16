@@ -27,7 +27,7 @@ export default Vaccination = props => {
 					<Text style={[txt.roboto28b, {color: 'white'}]}>{item.current_dueDate}</Text>
 				</View>
 				<View style={[vaccination.next_dueDate]}>
-					<Text style={[txt.roboto28b, {color: GRAY10}]}>{item.next_dueDate}</Text>
+					<Text style={[txt.roboto28, {color: GRAY10}]}>{item.next_dueDate}</Text>
 				</View>
 			</View>
 		);

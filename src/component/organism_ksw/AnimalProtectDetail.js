@@ -11,7 +11,7 @@ import {animalProtectDetail} from './style_organism';
 export default AnimalProtectDetail = props => {
 	const testData = {
 		kind: '개',
-		breed: '시고르자브종',
+		breed: '요크셔',
 		temp_protection_request: true,
 		adoption_days_remain: 10,
 		like: false,

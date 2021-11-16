@@ -23,7 +23,7 @@ export default UserInfoDetailSettting = props => {
 						</View>
 						{/* (M)TabSelectFilled_Type1 */}
 						<View style={[temp_style.tabSelectFilled_Type1]}>
-							<TabSelectFilled_Type1 items={['남자', '여자']} />
+							<TabSelectFilled_Type1 items={['남자', '여자']} width={500} />
 						</View>
 					</View>
 

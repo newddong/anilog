@@ -397,7 +397,6 @@ export const temp_style = StyleSheet.create({
 		height: 496 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: 'yellow',
 	},
 	userInfo: {
 		width: 654 * DP,
@@ -780,7 +779,6 @@ export const temp_style = StyleSheet.create({
 		height: 36 * DP,
 	},
 	inputNoTitle_assignPetInfo: {
-		width: 156 * DP,
 		height: 82 * DP,
 	},
 	text68_assignPetInfo: {
@@ -873,8 +871,10 @@ export const temp_style = StyleSheet.create({
 		width: 654 * DP,
 		// height: 1324 * DP,
 		marginTop: 40 * DP,
+		marginBottom: 60 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
+
 		// backgroundColor: '#F2C2C2',
 	},
 	FeedThumbnailList: {
@@ -1610,7 +1610,7 @@ export const changePassword_style = StyleSheet.create({
 		marginTop: 90 * DP,
 	},
 	btn_w654: {
-		marginTop: 110 * DP,
+		marginVertical: 110 * DP,
 	},
 });
 
@@ -2321,6 +2321,7 @@ export const petInfoSetting = StyleSheet.create({
 	},
 	btn_w242: {
 		marginTop: 30 * DP,
+		marginBottom: 40 * DP,
 	},
 	petAccountInfo: {
 		container: {
@@ -2653,22 +2654,26 @@ export const appliesRecord = StyleSheet.create({
 			height: 48 * DP,
 			marginBottom: 14 * DP,
 			flexDirection: 'row',
+			alignItems: 'center',
 			title: {
 				width: 214 * DP,
 				height: 48 * DP,
-				alignSelf: 'center',
+
+				alignItems: 'center',
+				justifyContent: 'center',
 			},
 			moreTxt: {
 				width: 100 * DP,
 				height: 48 * DP,
 				marginLeft: 290 * DP,
-				alignSelf: 'flex-end',
+
+				alignItems: 'center',
+				justifyContent: 'center',
 			},
 			moreBtn: {
 				width: 60 * DP,
-				height: 60 * DP,
-				backgroundColor: 'red',
-				alignSelf: 'center',
+				height: 48 * DP,
+				marginBottom: 10 * DP,
 				alignItems: 'center',
 				justifyContent: 'center',
 			},

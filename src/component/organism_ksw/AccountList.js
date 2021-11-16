@@ -1,34 +1,14 @@
 import React from 'react';
 import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {dummy_accountList} from 'Root/config/dummyDate_json';
 import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
 import {organism_style} from './style_organism';
 
 export default AccountList = props => {
-	const _dummyData = [
-		{
-			user_id: '하양이',
-			user_nickname: '하양이',
-			img_uri: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-			text_intro: '안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있...',
-		},
-		{
-			user_id: '구름이',
-			user_nickname: '구름이',
-			img_uri: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-			text_intro: 'Description',
-		},
-		{
-			user_id: '달리',
-			user_nickname: '달리',
-			img_uri: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-			text_intro: '안녕하세요',
-		},
-	];
-
-	const accountsLength = _dummyData.length;
+	const accountsLength = dummy_accountList.length;
 	let accountState = [];
 	Array(accountsLength)
-		.fill(_dummyData)
+		.fill(dummy_accountList)
 		.map((v, i) => {
 			accountState[i] = {state: false};
 		});
@@ -53,7 +33,7 @@ export default AccountList = props => {
 	};
 	return (
 		<View style={organism_style.accountList}>
-			<FlatList data={_dummyData} renderItem={({item, index}) => renderItem(item, index)} />
+			<FlatList data={dummy_accountList} renderItem={({item, index}) => renderItem(item, index)} />
 		</View>
 	);
 };

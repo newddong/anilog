@@ -12,7 +12,7 @@ export default PasswordChecker = props => {
 				<PasswordInput title={'현재 비밀번호'} />
 			</View>
 			<View style={[passwordChecker.passwordInput_resetMode]}>
-				<PasswordInput title={'비밀번호'} />
+				<PasswordInput title={'비밀번호'} description={'최소 8자 이상, 영문과 숫자만 입력 가능합니다.'} />
 			</View>
 			<View style={[passwordChecker.passwordInput_resetMode]}>
 				<PasswordInput title={'비밀번호 확인'} />

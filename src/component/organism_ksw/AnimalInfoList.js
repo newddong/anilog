@@ -17,9 +17,9 @@ export default AnimalInfoList = props => {
 			petNickname: 'Fizz',
 		},
 		{
-			img_uri: 'https://pbs.twimg.com/profile_images/378800000001640185/58d3ed41b88cadb9083e5b986758fd16_400x400.jpeg',
+			img_uri: 'https://images.mypetlife.co.kr/content/uploads/2019/09/09153001/dog-panting-1024x683.jpg',
 			petStatus: 'protected',
-			petNickname: 'Fizz',
+			petNickname: '피즈',
 		},
 	];
 
