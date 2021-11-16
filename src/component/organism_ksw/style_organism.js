@@ -365,7 +365,7 @@ export const profileMenu = StyleSheet.create({
 	title: {
 		width: 200 * DP,
 		height: 42 * DP,
-		marginLeft: 6 * DP,
+		marginLeft: 12 * DP,
 	},
 	bottomeContainer: {},
 	itemContainer: {

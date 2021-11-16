@@ -4,6 +4,7 @@ import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { GRAY10 } from 'Root/config/color';
 import { txt } from 'Root/config/textstyle';
 import { btn_w280 } from '../atom/btn/btn_style';
+import { FavoriteTag48_Filled, Paw48_APRI10, Setting46 } from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import ProfileImageLarge194 from '../molecules/ProfileImageLarge194';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
@@ -71,7 +72,20 @@ export default UserMenu = props => {
 
 				{/* UserMenu Page 하단 각종 메뉴는 ProfileMenu 안에 존재 */}
 				<View style={[temp_style.userMenu_step2, userMenu_style.horizontalLine]}>
-					<ProfileMenu menuTitle={'즐겨찾기'} menuItems={[['친구', '피드 게시글'], ['보호 요청', '커뮤니티']]} />
+					<ProfileMenu
+						menuTitle={'즐겨찾기'}
+						menuItems={[['친구', '피드 게시글'], ['보호 요청', '커뮤니티']]}
+						onClick={(clikedItem) => console.log(clikedItem)}
+						titleIcon={<FavoriteTag48_Filled />}
+					/>
+					<ProfileMenu
+						menuTitle={'나의 활동'} menuItems={[['내 게시글', '나를 태그한 글'], ['신청 내역', '동물 보호 현황'], ['커뮤니티', '쪽지함']]} onClick={(clikedItem) => console.log(clikedItem)}
+						titleIcon={<Paw48_APRI10 />}
+					/>
+					<ProfileMenu
+						menuTitle={'설정'} menuItems={[['정보/문의', '계정'], ['알림', '']]} onClick={(clikedItem) => console.log(clikedItem)}
+						titleIcon={<Setting46 />}
+					/>
 				</View>
 			</View>
 		</ScrollView>

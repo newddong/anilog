@@ -3,19 +3,24 @@ import React from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { GRAY10 } from 'Root/config/color';
 import { txt } from 'Root/config/textstyle';
-import { FavoriteTag46_Filled, NextMark, Paw46 } from '../atom/icon';
+import { FavoriteTag46_Filled, FavoriteTag48_Filled, NextMark, Paw46 } from '../atom/icon';
 import { profileMenu } from './style_organism';
 
 /**
  *
- * @param {{btnTitle : string,
+ * @param {{
  * menuItems : " ex) [ [ 'menu1', 'menu2'], ['menu3,''menu4']]  - 바깥 배열의 length는 메뉴의 층수, 안쪽 배열의 2가지 메뉴는 각 층별 왼쪽 오른쪽에 담겨질 메뉴 이름", 
  * menuTitle : string,
- * onPress : void
+ * onClick : void,
+ * titleIcon : 'Icon Component'
  * }} props
  */
 export default ProfileMenu = props => {
-	const navigation = useNavigation();
+
+	const menuClick = (menuName) => {
+		props.onClick(menuName)
+	}
+
 	const renderItem = (item, index) => {
 		return (
 			<View>
@@ -27,7 +32,7 @@ export default ProfileMenu = props => {
 								<Text style={[txt.noto24, { color: GRAY10 }]}>{item[0]}</Text>
 							</View>
 							<View style={[profileMenu.item_bracket]}>
-								<NextMark onPress={() => props.onClick(item[1])} />
+								<NextMark onPress={() => menuClick(item[0])} />
 							</View>
 						</View>
 						<View style={[profileMenu.vertical_separator]} />
@@ -36,7 +41,7 @@ export default ProfileMenu = props => {
 								<Text style={[txt.noto24, { color: GRAY10 }]}>{item[1]}</Text>
 							</View>
 							<View style={[profileMenu.item_bracket]}>
-								<NextMark onPress={() => props.onClick(item[1])} />
+								{item[1] == '' ? null : <NextMark onPress={() => menuClick(item[1])} />}
 							</View>
 						</View>
 					</View>
@@ -53,7 +58,7 @@ export default ProfileMenu = props => {
 			{/* 즐겨찾기 */}
 			<View style={[profileMenu.upperMenu]}>
 				<View style={[profileMenu.titleContainer]}>
-					<FavoriteTag46_Filled />
+					{props.titleIcon}
 					<View style={[profileMenu.title]}>
 						<Text style={[txt.noto24b, { color: GRAY10 }]}>{props.menuTitle}</Text>
 					</View>
@@ -67,6 +72,7 @@ export default ProfileMenu = props => {
 };
 
 ProfileMenu.defaultProps = {
+	titleIcon: <FavoriteTag48_Filled />,
 	menuTitle: '즐겨찾기',
 	onClick: e => console.log(e),
 	menuItems: [
