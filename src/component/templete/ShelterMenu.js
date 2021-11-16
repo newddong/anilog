@@ -108,11 +108,11 @@ export default ShelterMenu = props => {
 				break;
 			//정보/문의
 			case INFO_QUESTION:
-				navigation.push('ShelterProtectRequests');
+				alert('준비중입니다.');
 				break;
 			// 계정
 			case ACCOUNT:
-				navigation.push('ShelterProtectRequests');
+				nalert('준비중입니다.');
 				break;
 		}
 	};
@@ -167,16 +167,14 @@ export default ShelterMenu = props => {
 						</View>
 
 						{/* </TouchableOpacity> */}
-						<TouchableOpacity onPress={moveToAssignProtectAnimalImage}>
-							<View style={[shelterMenu.btnView_floadAddPet_126x92]}>
-								<FloatAddPet_126x92></FloatAddPet_126x92>
-							</View>
-						</TouchableOpacity>
-						<TouchableOpacity onPress={moveToAidRequestList}>
-							<View style={[shelterMenu.btnView_floadArticle_126x92]}>
-								<FloatAddArticle_126x92></FloatAddArticle_126x92>
-							</View>
-						</TouchableOpacity>
+
+						<View style={[shelterMenu.btnView_floadAddPet_126x92]}>
+							<FloatAddPet_126x92 onPress={moveToAssignProtectAnimalImage}></FloatAddPet_126x92>
+						</View>
+
+						<View style={[shelterMenu.btnView_floadArticle_126x92]}>
+							<FloatAddArticle_126x92 onPress={moveToAidRequestList}></FloatAddArticle_126x92>
+						</View>
 					</View>
 				</View>
 
