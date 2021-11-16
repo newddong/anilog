@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { APRI10, GRAY10, GRAY20, GRAY30, GRAY40, WHITE } from 'Root/config/color';
+import {StyleSheet} from 'react-native';
+import {APRI10, GRAY10, GRAY20, GRAY30, GRAY40, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
 
 export const BGCOLOR = '#B5DED8';
@@ -116,18 +116,20 @@ export const controllableAccount = StyleSheet.create({
 		width: 446 * DP,
 	},
 	rightContainer: {
+		height: 94 * DP,
+		position: 'absolute',
+		right: 0,
 		flexDirection: 'row',
 	},
 	btn_w108_controllableAccount: {
 		height: 54 * DP,
-		marginLeft: 20 * DP,
+		marginLeft: 10 * DP,
 		alignSelf: 'center',
 	},
 	cross46: {
-		marginLeft: 20 * DP,
+		marginLeft: 10 * DP,
 	},
 	check50: {
-		width: 80 * DP,
 		alignSelf: 'center',
 	},
 });
@@ -1232,5 +1234,5 @@ export const feedText = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		width: 654 * DP,
-	}
-})
+	},
+});
