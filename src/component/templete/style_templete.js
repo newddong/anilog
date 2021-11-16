@@ -2073,7 +2073,7 @@ export const editShelterInfo = StyleSheet.create({
 		marginTop: 80 * DP,
 	},
 	btn_w654: {
-		backgroundColor: '#DEB5B5',
+		backgroundColor: '#FFF',
 		marginTop: 110 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',

@@ -192,3 +192,6 @@ export const DEFAULT_PROFILE = 'https://consecutionjiujitsu.com/wp-content/uploa
 
 //잠시 임시저장 기능 관련 테스트용
 export let temp_inputLongText = '';
+
+//버튼
+export const COMPLETE_MODIFY = '수정 완료';
