@@ -8,13 +8,15 @@ import {APRI10, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {PLEASE_UPLOAD_PIC} from 'Root/i18n/msg';
 import SelectedMediaList from '../organism_ksw/SelectedMediaList';
+import {Camera54} from '../atom/icon';
+import AniButton from '../molecules/AniButton';
 
 export default AssignProtectAnimalImage = props => {
 	const navigation = useNavigation();
-	const moveToNext = () => {
+	const gotoNextStep = () => {
 		navigation.push('AssignProtectAnimalDate');
 	};
-	const moveToSinglePhotoSelect = () => {
+	const gotoSelectPicture = () => {
 		navigation.push('SinglePhotoSelect');
 	};
 
@@ -52,16 +54,15 @@ export default AssignProtectAnimalImage = props => {
 
 			{/* (A)Btn_w654 */}
 			<View style={[temp_style.btn_w226_assignProtectAnimal, assignProtectAnimal_style.btn_w226_view_image]}>
-				<TouchableOpacity onPress={moveToSinglePhotoSelect}>
-					<View style={[temp_style.image_assignProtectAnimal]}>
-						<Text>사진추가</Text>
-					</View>
-				</TouchableOpacity>
-				<TouchableOpacity onPress={moveToNext}>
-					<View style={[btn_style.btn_w226, assignProtectAnimal_style.btn_w226]}>
-						<Text>(A)Btn_w226</Text>
-					</View>
-				</TouchableOpacity>
+				<View style={[assignProtectAnimal_style.pic]}>
+					<Camera54 onPress={gotoSelectPicture} />
+					<TouchableOpacity onPress={gotoSelectPicture}>
+						<Text style={[txt.noto24, assignProtectAnimal_style.addpic]}>사진추가</Text>
+					</TouchableOpacity>
+				</View>
+				<View style={[btn_style.btn_w226, assignProtectAnimal_style.btn_w226]}>
+					<AniButton btnTitle={'다음'} btnStyle={'filled'} titleFontStyle={24} btnLayout={btn_w226} onPress={gotoNextStep} />
+				</View>
 			</View>
 		</View>
 	);

@@ -5,6 +5,8 @@ import { AlarmBadger48, Search48, BackArrow32 } from 'Atom/icon';
 import DP from 'Root/config/dp';
 import { txt } from 'Root/config/textstyle';
 import { WHITE, APRI10 } from 'Root/config/color';
+import Input24 from 'Molecules/Input24';
+import Input30 from 'Molecules/Input30';
 
 export default ConfirmInputHeader = ({ navigation, route, options, back }) => {
 
@@ -21,6 +23,9 @@ export default ConfirmInputHeader = ({ navigation, route, options, back }) => {
                     <BackArrow32 onPress={navigation.goBack} />
                 </View>
             </TouchableOpacity>
+            <View style={{marginBottom:20*DP,flex:1}}>
+            <Input24 descriptionType={'none'}/>
+            </View>
             <TouchableOpacity onPress={confirm}>
                 <View style={style.buttonContainer}>
                     <Text style={[txt.noto36b, { color: APRI10, lineHeight: 56 * DP }]}>확인</Text>
@@ -32,12 +37,13 @@ export default ConfirmInputHeader = ({ navigation, route, options, back }) => {
 
 const style = StyleSheet.create({
     headerContainer: {
-        alignItems: 'flex-end',
+        alignItems: 'center',
         justifyContent: 'space-between',
         height: 135 * DP,
         flexDirection: 'row',
         backgroundColor: WHITE,
         paddingHorizontal: 48 * DP,
+        paddingTop:30*DP,
     },
     buttonContainer: {
         flexDirection: 'row',

@@ -800,6 +800,7 @@ export const temp_style = StyleSheet.create({
 		backgroundColor: '#FFF',
 	},
 	image_assignProtectAnimal: {
+		flexDirection: 'row',
 		width: 160 * DP,
 		height: 54 * DP,
 		alignItems: 'center',
@@ -1831,6 +1832,18 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	},
 	text118: {
 		marginLeft: 10 * DP,
+	},
+	pic: {
+		flexDirection: 'row',
+		width: 160 * DP,
+		height: 54 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#FFF',
+	},
+	addpic: {
+		color: APRI10,
+		marginLeft: 12 * DP,
 	},
 });
 
