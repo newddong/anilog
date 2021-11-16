@@ -10,6 +10,9 @@ import AddressInput from '../organism_ksw/AddressInput';
 import InterestTagList from '../organism_ksw/InterestTagList';
 
 export default UserInfoDetailSettting = props => {
+	const onDateChange = date => {
+		console.log(date);
+	};
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* InputForm */}
@@ -23,7 +26,7 @@ export default UserInfoDetailSettting = props => {
 						</View>
 						{/* (M)TabSelectFilled_Type1 */}
 						<View style={[temp_style.tabSelectFilled_Type1]}>
-							<TabSelectFilled_Type1 items={['남자', '여자']} />
+							<TabSelectFilled_Type1 items={['남자', '여자']} width={500} />
 						</View>
 					</View>
 
@@ -34,7 +37,7 @@ export default UserInfoDetailSettting = props => {
 						</View>
 						{/* (M)TabSelectFilled_Type1 */}
 						<View style={[temp_style.tabSelectFilled_Type1]}>
-							<DatePicker />
+							<DatePicker onDateChange={date => onDateChange(date)} />
 						</View>
 					</View>
 

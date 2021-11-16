@@ -15,7 +15,7 @@ export default LinkedAccountList = props => {
 		<View style={linkedAccountList.container}>
 			<ScrollView contentContainerStyle={linkedAccountList.insideContainer}>
 				<View style={[linkedAccountList.accountList_step1]}>
-					<ControllableAccountList title={'함께 아는 친구'} />
+					<ControllableAccountList title={'팔로워'} showCrossMark={false} showCheckBox={false} />
 				</View>
 				<View style={[linkedAccountList.accountList_step2]}>
 					<ControllableAccountList title={'추천'} />

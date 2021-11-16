@@ -1,51 +1,12 @@
 import React from 'react';
 import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {GRAY10} from 'Root/config/color';
+import {dummy_petList} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
 import ProfileImageMedium120 from '../molecules/ProfileImageMedium120';
 import {petList} from './style_organism';
 
 export default PetList = props => {
-	const testData = [
-		{
-			img_uri:
-				'https://product.cdn.cevaws.com/var/storage/images/_aliases/reference/media/feliway-2017/images/kor-kr/1_gnetb-7sfmbx49emluey4a/6341829-1-kor-KR/1_gNETb-7SfMBX49EMLUeY4A.jpg',
-			petStatus: 'normal',
-			breed: '개냥이',
-			name: 'PetList',
-		},
-		{
-			img_uri:
-				'https://www.thoughtco.com/thmb/FyeEGYYlxuHCW9TsJO-iq_1YA7U=/2848x2136/filters:fill(auto,1)/Close-up_of_mole-56a12a2e3df78cf77268038c.jpg',
-			petStatus: 'protected',
-			breed: '땅굴',
-			name: '두더지',
-		},
-		{
-			img_uri: 'https://t1.daumcdn.net/cfile/tistory/2155B04D584FA5050A',
-			petStatus: 'adopted',
-			breed: '핏불',
-			name: '요네',
-		},
-		{
-			img_uri: 'https://pbs.twimg.com/profile_images/719984599456043009/whcMczoB_400x400.jpg',
-			petStatus: 'normal',
-			breed: '인천광역시 남동구',
-			name: '다리우스',
-		},
-		{
-			img_uri: 'https://t1.daumcdn.net/cfile/tistory/994D85495A5978580A',
-			petStatus: 'protected',
-			breed: '브리즈번',
-			name: '케넨',
-		},
-		{
-			img_uri: 'https://dimg.donga.com/wps/NEWS/IMAGE/2013/12/18/59635708.3.jpg',
-			petStatus: 'adopted',
-			breed: '세부',
-			name: '야스오',
-		},
-	];
 	const renderItem = (item, index) => {
 		return (
 			<View style={[petList.itemContainer]}>
@@ -66,7 +27,7 @@ export default PetList = props => {
 	return (
 		<View style={[petList.container]}>
 			<View style={[petList.insideContainer]}>
-				<FlatList data={testData} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
+				<FlatList data={dummy_petList} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
 			</View>
 		</View>
 	);

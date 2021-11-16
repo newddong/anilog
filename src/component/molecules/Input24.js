@@ -14,9 +14,10 @@ import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
  *alert_msg: 'String / 긴급메시지 ',
  *confirm_msg: 'String / 확인메시지 ',
  *info: string,
- *width: number,
+ *width: 'number / Input24의 전체 너비 default = 300',
  *showmsg : 'boolean / input 하단 alert_msg',
  *style:'StyleSheet',
+ *defaultValue : string
  * }} props
  */
 export default Input24 = props => {
@@ -80,9 +81,9 @@ export default Input24 = props => {
 	};
 
 	return (
-		<View style={{flexDirection: 'column'}}>
+		<View style={{flexDirection: 'column', width: props.width * DP}}>
 			{/* height 를 title과 alert_msg가 없을 때에는 공간을 차지하지 않도록 가변이 되도록 style을 수정*/}
-			
+
 			{console.log(typeof props.title)}
 			{console.log('props.title=' + props.title)}
 			{/* parent에서 title이 props로 명시되어 있지 않을 경우 'title' string 으로 받음. */}
@@ -98,13 +99,13 @@ export default Input24 = props => {
 					ref={inputRef}
 					onChangeText={text => onChange(text)}
 					placeholder={props.placeholder}
+					defaultValue={props.defaultValue}
 					style={[
 						txt.noto28,
 						props.style,
 						{
 							paddingLeft: 24 * DP,
 							lineHeight: 44 * DP,
-							width: props.width * DP,
 							minWidth: 300 * DP,
 						},
 					]}
@@ -112,7 +113,6 @@ export default Input24 = props => {
 			</View>
 
 			{getMsg()}
-			
 		</View>
 	);
 };
@@ -126,4 +126,5 @@ Input24.defaultProps = {
 	confirm_msg: 'confirm_msg',
 	info: null, //
 	width: 300,
+	defaultValue: null,
 };

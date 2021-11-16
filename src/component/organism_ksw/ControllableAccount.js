@@ -15,7 +15,7 @@ import {controllableAccount, organism_style} from './style_organism';
  * }} props
  */
 export default ControllableAccount = props => {
-	const [checkBox, setCheckBox] = React.useState(true); // Label 좌측 CheckBox 출력 Boolean
+	const [showCheckBox, setShowCheckBox] = React.useState(true); // Label 좌측 CheckBox 출력 Boolean
 	const [showCrossMark, setShowCrossMark] = React.useState(true); // 팔로잉 버튼 우측 Cross 출력 Boolean
 	const [following, setFollowing] = React.useState(false);
 
@@ -26,9 +26,14 @@ export default ControllableAccount = props => {
 	const onCrossMarkPress = () => {
 		props.onCrossMarkPress(props.data);
 	};
+
+	React.useEffect(() => {
+		props.showCrossMark ? setShowCrossMark(true) : setShowCrossMark(false);
+		props.showCheckBox ? setShowCheckBox(true) : setShowCheckBox(false);
+	}, [props]);
 	return (
 		<View style={[controllableAccount.container]}>
-			{checkBox ? (
+			{showCheckBox ? (
 				<View style={[controllableAccount.check50]}>
 					<CheckBox />
 				</View>
@@ -38,7 +43,7 @@ export default ControllableAccount = props => {
 			<View
 				style={[
 					organism_style.userDescriptionLabel,
-					checkBox || showCrossMark ? controllableAccount.userDescriptionLabel_checked : controllableAccount.userDescriptionLabel,
+					showCheckBox || showCrossMark ? controllableAccount.userDescriptionLabel_checked : controllableAccount.userDescriptionLabel,
 				]}>
 				<UserDescriptionLabel data={props.data} />
 			</View>
@@ -75,4 +80,6 @@ export default ControllableAccount = props => {
 };
 ControllableAccount.defaultProps = {
 	onFollowBtnClick: e => console.log(e),
+	showCrossMark: false,
+	showCheckBox: false,
 };

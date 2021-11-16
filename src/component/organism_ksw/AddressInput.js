@@ -5,7 +5,6 @@ import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import Input24 from '../molecules/Input24';
-import Input30 from '../molecules/Input30';
 import {btn_style, temp_style} from '../templete/style_templete';
 import {addressInput} from './style_organism';
 
@@ -18,7 +17,7 @@ export default AddressInput = props => {
 						<Text style={[txt.noto28, {color: GRAY10}]}>{props.title} </Text>
 					</View>
 					<View style={[addressInput.input24A]}>
-						<Input24 />
+						<Input24 width={388} placeholder={'주소 검색을 클릭해주세요'} />
 					</View>
 				</View>
 				<View style={[btn_style.btn_w226, addressInput.btn_w226]}>
@@ -26,7 +25,7 @@ export default AddressInput = props => {
 				</View>
 			</View>
 			<View style={[temp_style.inputNoTitle, addressInput.inputNoTitle]}>
-				<Input30 width={props.width} showTitle={false} placeholder={'세부 주소를 입력해 주세요.'} />
+				<Input24 width={654} placeholder={'세부 주소를 입력해 주세요.'} />
 			</View>
 		</View>
 	);

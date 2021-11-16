@@ -17,7 +17,7 @@ export default FollowerList = props => {
 					<InputWithSearchIcon />
 				</View>
 				<View style={[followerList.accountList_step1]}>
-					<ControllableAccountList title={'함께 아는 친구'} />
+					<ControllableAccountList showCrossMark={false} showCheckBox={false} />
 				</View>
 			</ScrollView>
 			<View style={[followerList.floatingBtn]}>

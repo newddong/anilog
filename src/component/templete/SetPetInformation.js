@@ -24,7 +24,7 @@ export default SetPetInformation = props => {
 			}
 			return year + month;
 		};
-		return <Text>{birthDate()}</Text>;
+		return <Text style={[txt.noto22]}>{birthDate()}</Text>;
 	};
 
 	return (
@@ -39,7 +39,7 @@ export default SetPetInformation = props => {
 					</View>
 					<View style={[temp_style.tabSelectFilled_Type1]}>
 						{/* <Text>tabSelectFilled_Type1</Text> */}
-						<TabSelectFilled_Type1 items={['남아', '여아']} onSelect={e => alert(e)} />
+						<TabSelectFilled_Type1 items={['남아', '여아']} onSelect={e => alert(e)} width={520} />
 					</View>
 				</View>
 				{/* DatePicker And Birth Time */}

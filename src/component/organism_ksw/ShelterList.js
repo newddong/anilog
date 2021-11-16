@@ -1,45 +1,10 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
+import {dummy_ShelterList} from 'Root/config/dummyDate_json';
 import ShelterLabel from './ShelterLabel';
 import {shelterList} from './style_organism';
 
 export default ShelterList = props => {
-	const testData = [
-		{
-			shelterType: 'private',
-			img_uri: 'https://upload.wikimedia.org/wikipedia/en/4/4b/DWG_KIA_logo.png',
-			name: '아이조아 요양보호소',
-			location: '서울시 마포구',
-			address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
-			phone_number: '010-8888-2053',
-		},
-		{
-			shelterType: 'public',
-			img_uri:
-				'https://ww.namu.la/s/a234128b588d1eeb5ebbeccadb31493976c7fad427b43e497d35c65b9a6187e9c071d8e7ceb9f66423ebbffc1aa6180f71cd352cf53ed76bfdc7bba5fc22fdc5959a7ac540097665c73bac148a882dac1ef072fe94a174159ed68e534e2b239141041fcde38c76cba2bf44a1fe62d89a',
-			name: 'EDG Gaming',
-			location: '베이징',
-			address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
-			phone_number: '010-8888-2053',
-		},
-		{
-			shelterType: 'private',
-			img_uri: 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/T1_logo.svg/1200px-T1_logo.svg.png',
-			name: 'T1',
-			location: '서울시 마포구',
-			address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
-			phone_number: '010-8888-2053',
-		},
-		{
-			shelterType: 'public',
-			img_uri:
-				'https://ww.namu.la/s/a234128b588d1eeb5ebbeccadb31493976c7fad427b43e497d35c65b9a6187e9c071d8e7ceb9f66423ebbffc1aa6180f71cd352cf53ed76bfdc7bba5fc22fdc5959a7ac540097665c73bac148a882dac1ef072fe94a174159ed68e534e2b239141041fcde38c76cba2bf44a1fe62d89a',
-			name: 'EDG Gaming',
-			location: '베이징',
-			address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
-			phone_number: '010-8888-2053',
-		},
-	];
 	const renderItem = (item, index) => {
 		return (
 			<View style={[shelterList.shelterLabel]}>
@@ -55,7 +20,7 @@ export default ShelterList = props => {
 	};
 	return (
 		<View style={[shelterList.container]}>
-			<FlatList data={testData} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} nestedScrollEnabled />
+			<FlatList data={dummy_ShelterList} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} nestedScrollEnabled />
 		</View>
 	);
 };

@@ -46,24 +46,7 @@ export default ApplyCompanionA = props => {
 				{/* addressInput */}
 				<View style={[temp_style.addressInput]}>
 					{/* <Text> (O)Address Input</Text> */}
-					<View style={[addressInput.container]}>
-						<View style={[addressInput.upperContainer]}>
-							<View>
-								<View style={[addressInput.titleContainer]}>
-									<Text style={[txt.noto24, {color: APRI10}]}>보호 장소 </Text>
-								</View>
-								<View style={[addressInput.input24A]}>
-									<Input24 width={400} />
-								</View>
-							</View>
-							<View style={[btn_style.btn_w226, addressInput.btn_w226]}>
-								<AniButton btnTitle={'주소 변경'} btnLayout={btn_w226} btnTheme={'shadow'} btnStyle={'filled'} titleFontStyle={24} />
-							</View>
-						</View>
-						<View style={[temp_style.inputNoTitle, addressInput.inputNoTitle]}>
-							<Input24 width={630} placeholder={'세부 주소를 입력해 주세요.'} />
-						</View>
-					</View>
+					<AddressInput />
 				</View>
 				<View style={[temp_style.input24A_applyCompanionA, applyCompanionA.input24A]}>
 					<View style={[addressInput.titleContainer]}>

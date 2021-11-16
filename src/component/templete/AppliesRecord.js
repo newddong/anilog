@@ -18,9 +18,9 @@ export default AppliesRecord = props => {
 					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>입양 신청 </Text>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.moreTxt]}>더보기 </Text>
-						<TouchableOpacity onPress={() => navigation.push('ApplyAdoptionList')} style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
-							<NextMark />
-						</TouchableOpacity>
+						<View style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
+							<NextMark onPress={() => navigation.push('ApplyAdoptionList')} />
+						</View>
 					</View>
 					<AnimalNeedHelp />
 				</View>
@@ -28,9 +28,9 @@ export default AppliesRecord = props => {
 					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>임시보호 신청 </Text>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.moreTxt]}>더보기 </Text>
-						<TouchableOpacity onPress={() => navigation.push('ApplyTempProtectList')} style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
-							<NextMark />
-						</TouchableOpacity>
+						<View style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
+							<NextMark onPress={() => navigation.push('ApplyTempProtectList')} />
+						</View>
 					</View>
 					<AnimalNeedHelp />
 				</View>
@@ -38,9 +38,9 @@ export default AppliesRecord = props => {
 					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>봉사활동 신청 </Text>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.moreTxt]}>더보기 </Text>
-						<TouchableOpacity onPress={() => navigation.push('ManageUserVolunteer')} style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
-							<NextMark />
-						</TouchableOpacity>
+						<View style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
+							<NextMark onPress={() => navigation.push('ManageUserVolunteer')} />
+						</View>
 					</View>
 					<ShelterList onShelterLabelClick={shelterInfo => navigation.push('UserVolunteerForm', shelterInfo)} />
 				</View>

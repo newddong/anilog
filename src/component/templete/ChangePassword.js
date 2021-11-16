@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {btn_w654} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import PasswordChecker from '../organism_ksw/PasswordChecker';
@@ -10,14 +10,16 @@ import {login_style, btn_style, temp_style, changePassword_style} from './style_
 
 export default ChangePassword = props => {
 	return (
-		<View style={[login_style.wrp_main, {flex: 1}]}>
-			<View style={[temp_style.passwordChecker_changePassword, changePassword_style.passwordChecker]}>
-				<PasswordChecker />
-			</View>
+		<ScrollView>
+			<View style={[login_style.wrp_main, {flex: 1}]}>
+				<View style={[temp_style.passwordChecker_changePassword, changePassword_style.passwordChecker]}>
+					<PasswordChecker />
+				</View>
 
-			<View style={[btn_style.btn_w654, changePassword_style.btn_w654]}>
-				<AniButton btnTitle={'확인'} btnLayout={btn_w654} disable={true} titleFontStyle={32} />
+				<View style={[btn_style.btn_w654, changePassword_style.btn_w654]}>
+					<AniButton btnTitle={'확인'} btnLayout={btn_w654} disable={true} titleFontStyle={32} />
+				</View>
 			</View>
-		</View>
+		</ScrollView>
 	);
 };

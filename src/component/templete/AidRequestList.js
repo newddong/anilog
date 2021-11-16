@@ -19,7 +19,7 @@ export default AidRequestList = props => {
 			</TouchableOpacity>
 			{/* AccountList */}
 			<View style={[aidRequestList.aidRequestList]}>
-				<AccountList></AccountList>
+				<AccountList />
 			</View>
 		</View>
 	);

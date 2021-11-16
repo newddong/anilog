@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {ScrollView, Text, TouchableOpacity, TouchableOpacityBase, View} from 'react-native';
 import {APRI10, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w242} from '../atom/btn/btn_style';
@@ -14,9 +14,12 @@ import {btn_style, login_style, petInfoSetting, temp_style} from './style_temple
 export default PetInfoSetting = props => {
 	const navigation = useNavigation();
 	const petData = props.route.params;
+	const changePetInfo = () => {
+		console.log('변경하기 클릭');
+	};
 	return (
 		<ScrollView>
-			<View contentContainerStyle={[login_style.wrp_main, petInfoSetting.container]}>
+			<View style={[login_style.wrp_main, petInfoSetting.container]}>
 				{/* profileContainer */}
 				<View style={[petInfoSetting.profileContainer]}>
 					<View style={[temp_style.petImageLabel, petInfoSetting.petImageLabel]}>
@@ -42,11 +45,14 @@ export default PetInfoSetting = props => {
 						</View>
 						<View style={[petInfoSetting.petAccountInfo.information]}>
 							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoTitle]}>종</Text>
-							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoContent]}>개</Text>
+							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoContent]}>{props.species}</Text>
+							<TouchableOpacity onPress={changePetInfo} style={{position: 'absolute', right: 0}}>
+								<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoContent]}>변경하기</Text>
+							</TouchableOpacity>
 						</View>
 						<View style={[petInfoSetting.petAccountInfo.information]}>
 							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoTitle]}>품종</Text>
-							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoContent]}>시고르자브종</Text>
+							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoContent]}>{props.breed}</Text>
 						</View>
 					</View>
 				</View>
@@ -83,11 +89,9 @@ export default PetInfoSetting = props => {
 							<View style={[petInfoSetting.petProfileMenu.menuTitle]}>
 								<Text style={[txt.noto30b, {color: GRAY10}]}>가족 계정 추가</Text>
 							</View>
-							<TouchableOpacity onPress={() => navigation.push('AddFamilyAccount')}>
-								<View style={[petInfoSetting.petProfileMenu.bracket50]}>
-									<NextMark />
-								</View>
-							</TouchableOpacity>
+							<View style={[petInfoSetting.petProfileMenu.bracket50]}>
+								<NextMark onPress={() => navigation.push('AddFamilyAccount')} />
+							</View>
 						</View>
 						<View style={[petInfoSetting.familyAccountSetting.infoMessage]}>
 							<Text style={[txt.noto22, {color: APRI10}]}>
@@ -135,4 +139,9 @@ export default PetInfoSetting = props => {
 			</View>
 		</ScrollView>
 	);
+};
+
+PetInfoSetting.defaultProps = {
+	species: '개',
+	breed: '웰시코기',
 };

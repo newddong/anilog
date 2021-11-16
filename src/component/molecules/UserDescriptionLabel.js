@@ -57,7 +57,7 @@ export default UserDescriptionLabel = props => {
 				{/* Text부분과 프로필이미지 사이의 거리 30 */}
 				{/* img_round_94의 height94이며 Text Box 2개의 height 총합은 86이었으므로 paddingVertical을 4씩 준다*/}
 
-				<View style={{flexDirection: 'row', backgroundColor: 'yellow'}}>
+				<View style={{flexDirection: 'row'}}>
 					<Text style={(txt.roboto28b, {color: validation ? APRI10 : BLACK})} numberOfLines={1} ellipsizeMode="tail">
 						{props.data.user_nickname}
 					</Text>

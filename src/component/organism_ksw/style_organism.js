@@ -85,7 +85,7 @@ export const organism_style = StyleSheet.create({
 		paddingHorizontal: 20 * DP,
 		paddingVertical: 10 * DP,
 		borderColor: APRI10,
-		borderWidth: 2 * DP,
+		borderWidth: 5 * DP,
 		borderRadius: 30 * DP,
 	},
 	cross46: {
@@ -559,7 +559,7 @@ export const vaccination = StyleSheet.create({
 		height: 38 * DP,
 		marginLeft: 26 * DP,
 		borderRadius: 10 * DP,
-		backgroundColor: GRAY20,
+		backgroundColor: GRAY40,
 		alignSelf: 'center',
 		alignItems: 'center',
 	},
@@ -1103,7 +1103,6 @@ export const animalNeedHelp = StyleSheet.create({
 export const animalNeedHelpList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		marginTop: 30 * DP,
 	},
 	itemContainer: {
 		marginBottom: 40 * DP,

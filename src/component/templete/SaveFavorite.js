@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/core';
 import {duration} from 'moment';
 import React from 'react';
 import {Text, View} from 'react-native';
+import {dummy_AccountHashList} from 'Root/config/dummyDate_json';
 import AccountHashList from '../organism_ksw/AccountHashList';
 import SelectStat from '../organism_ksw/SelectStat';
 import {login_style, temp_style, selectstat_view_style, saveFavorite} from './style_templete';
@@ -14,39 +15,7 @@ export default SaveFavorite = props => {
 	//계정 좌측 CheckBox 디스플레이 여부
 	const [checkBoxMode, setCheckBoxMode] = React.useState(true);
 	//checkBox On
-	const [_dummyData, set_dummyData] = React.useState([
-		{
-			type: 'user',
-			user_id: '호이비에르',
-			user_nickname: '호이비에르',
-			img_uri: 'https://image.fmkorea.com/files/attach/new/20201127/5665468/72559051/3225348401/53b8ed4f6bc4b0279580e62a98b2874d.png',
-			text_intro: 'Description',
-			checkBoxState: false,
-		},
-		{
-			type: 'user',
-			user_id: '솔 캠벨',
-			user_nickname: '솔 캠벨',
-			img_uri: 'https://t1.daumcdn.net/cfile/blog/1761514850DABAB00E',
-			text_intro: '주급루팡',
-			checkBoxState: false,
-		},
-		{
-			type: 'user',
-			user_id: '쿠티뉴',
-			user_nickname: '브페',
-			img_uri: 'https://image.fmkorea.com/files/attach/new/20210116/33854530/44810969/3330726962/63e62ae90fcd03b262e0a2a5dff7fbb4.jpeg',
-			text_intro: '레전드',
-			checkBoxState: false,
-		},
-		{
-			type: 'hash',
-			keyword: '#따봉도치',
-			keywordBold: true,
-			count: 920000,
-			checkBoxState: false,
-		},
-	]);
+	const [_dummyData, set_dummyData] = React.useState(dummy_AccountHashList);
 	//Check Box On
 	const showCheckBox = e => {
 		console.log('ShowCheckBox' + e);

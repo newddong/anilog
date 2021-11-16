@@ -5,34 +5,13 @@ import {AddItem64} from '../atom/icon';
 import AidRequest from './AidRequest';
 import {aidRequestList} from './style_organism';
 import {useNavigation} from '@react-navigation/core';
+import {dummy_AidRequestList} from 'Root/config/dummyDate_json';
 
 export default AidRequestList = props => {
 	const navigation = useNavigation();
 	const moveToAssignProtectAnimalImage = () => {
 		navigation.push('AssignProtectAnimalImage');
 	};
-	const testArray = [
-		{
-			kind: '개',
-			breed: '시고르자브종',
-			expected_age: 3,
-			weight: 1.4,
-			neutralization: true,
-			saved_point: '마포구 신수동',
-			male: true,
-			img_uri: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Warwick_16.jpg',
-		},
-		{
-			kind: '고양이',
-			breed: '멘탈브레이커',
-			expected_age: 5,
-			weight: 2.4,
-			neutralization: true,
-			saved_point: '마포구 협곡동',
-			male: false,
-			img_uri: 'https://static.inven.co.kr/column/2014/06/19/news/i3769211874.jpg',
-		},
-	];
 
 	const renderItem = (item, index) => {
 		return <View style={[aidRequestList.itemContainer]}>{index == 0 ? <AidRequest initList={true} /> : <AidRequest data={item} />}</View>;
@@ -48,7 +27,7 @@ export default AidRequestList = props => {
 					</View>
 				</View>
 			</TouchableOpacity>
-			<FlatList data={testArray} renderItem={({item, index}) => renderItem(item, index)} />
+			<FlatList data={dummy_AidRequestList} renderItem={({item, index}) => renderItem(item, index)} />
 		</View>
 	);
 };

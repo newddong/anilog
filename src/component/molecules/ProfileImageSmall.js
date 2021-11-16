@@ -27,7 +27,7 @@ import {styles} from '../atom/image/imageStyle';
 export default ProfileImageSmall = props => {
 	// 유저의 프로필 이미지를 표시,  유저의 종류(일반유저, 반려동물, 보호소)와 상태(임시보호중,입양,공립,사립)에 따라 아이콘을 표시
 	const petStatus = () => {
-		switch (props.petStatus) {
+		switch (props.data.petStatus) {
 			case 'normal':
 				return <Paw30_APRI10 />;
 			case 'protected':
@@ -39,7 +39,7 @@ export default ProfileImageSmall = props => {
 		}
 	};
 	const shelter_type = () => {
-		switch (props.shelterType) {
+		switch (props.data.shelterType) {
 			case 'public':
 				return <Public48 />;
 			case 'private':
@@ -59,7 +59,7 @@ export default ProfileImageSmall = props => {
 		}
 	};
 	const getSize = () => {
-		switch (props.size) {
+		switch (props.data.size) {
 			case 94:
 				return styles.img_round_94;
 			case 76:
@@ -73,7 +73,7 @@ export default ProfileImageSmall = props => {
 		}
 	};
 	const getHash = () => {
-		switch (props.size) {
+		switch (props.data.size) {
 			case 94:
 				return <HashLabel94 />;
 			case 76:
@@ -88,16 +88,18 @@ export default ProfileImageSmall = props => {
 	};
 	return (
 		<View style={getSize()}>
-			{props.userType == 'hash' ? getHash() : <Image source={{uri: props.img_uri}} style={getSize()} />}
+			{props.data.userType == 'hash' ? getHash() : <Image source={{uri: props.data.img_uri}} style={getSize()} />}
 			{userType()}
 		</View>
 	);
 };
 
 ProfileImageSmall.defaultProps = {
-	img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
-	userType: 'user', //required - 유저타입 pet user shelter hash
-	shelterType: 'none', // public private
-	petStatus: 'none', // normal protected adopted none
-	size: 94, // icon size
+	data: {
+		img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
+		userType: 'user', //required - 유저타입 pet user shelter hash
+		shelterType: 'none', // public private
+		petStatus: 'none', // normal protected adopted none
+		size: 94, // icon size
+	},
 };

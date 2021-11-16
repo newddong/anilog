@@ -9,6 +9,7 @@ import {APRI10, GRAY10, GRAY40, WHITE} from 'Root/config/color';
  *@param {{
  * items: 'Array / Tab Box에 담길 ItemList',
  * onSelect: void,
+ * width: number,
  * }} props
  */
 export default TabSelectFilled_Type1 = props => {
@@ -37,7 +38,7 @@ export default TabSelectFilled_Type1 = props => {
 			<TouchableOpacity
 				onPress={() => onSelect(index)}
 				style={{
-					width: (654 * DP) / props.items.length,
+					width: (props.width * DP) / props.items.length,
 					height: 82 * DP,
 					backgroundColor: selected[index].state ? APRI10 : GRAY40,
 					justifyContent: 'center',
@@ -62,4 +63,5 @@ export default TabSelectFilled_Type1 = props => {
 TabSelectFilled_Type1.defaultProps = {
 	items: [1, 2, 3, 4], //FlatList에 담길 배열 정보
 	onSelect: e => console.log(e), //Tab Press 이벤트
+	width: 654,
 };

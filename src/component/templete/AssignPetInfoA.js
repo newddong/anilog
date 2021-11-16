@@ -65,7 +65,7 @@ export default AssignPetInfoA = props => {
 				<View style={[temp_style.inputForm_assignPetInfo_line2, assignPetInfo_style.line2]}>
 					<Text style={[temp_style.text_assignPetInfo, txt.noto28, {color: GRAY10}]}>성별</Text>
 					<View style={[temp_style.tabSelectFilled_Type1, assignPetInfo_style.tabSelectFilled_Type1]}>
-						<TabSelectFilled_Type1 items={['남아', '여아']} />
+						<TabSelectFilled_Type1 items={['남아', '여아']} width={450} />
 					</View>
 				</View>
 
