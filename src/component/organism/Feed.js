@@ -1,15 +1,14 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {organism_style, feed_style} from './style_organism';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { organism_style, feed_style } from './style_organism';
 import FeedContent from './FeedContent';
-import {Comment48_Border, Like48_Border} from '../atom/icon';
+import { Comment48_Border, Like48_Border } from '../atom/icon';
 import FeedMedia_temp from '../molecules/FeedMedia_temp';
-import {useNavigation} from '@react-navigation/core';
-import {txt} from 'Root/config/textstyle';
-import {GRAY10} from 'Root/config/color';
+import { useNavigation } from '@react-navigation/core';
+import { txt } from 'Root/config/textstyle';
+import { GRAY10 } from 'Root/config/color';
 
 export default Feed = props => {
-	// console.log(props.data);
 	const navigation = useNavigation();
 	//FeedMedia 관련 정보
 	const _dummyData = {
@@ -69,7 +68,7 @@ export default Feed = props => {
 				<View style={[organism_style.recentComment_view, feed_style.recentComment_view]}>
 					<View style={organism_style.writerID_feed_view}>
 						<View style={organism_style.writerID_feed}>
-							<Text style={[txt.roboto24, {color: GRAY10}]}>태리우스</Text>
+							<Text style={[txt.roboto24, { color: GRAY10 }]}>태리우스</Text>
 						</View>
 					</View>
 					<View style={organism_style.commentText_view}>
