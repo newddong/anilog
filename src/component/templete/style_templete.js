@@ -3012,6 +3012,7 @@ export const feedList = StyleSheet.create({
 		flex: 1,
 	},
 	feedList: {
+		marginTop: 30 * DP,
 		width: 750 * DP,
 		// height: 2000 * DP,
 	},
@@ -3485,7 +3486,10 @@ export const linkedAccountList = StyleSheet.create({
 	container: {
 		flex: 1,
 		alignItems: 'center',
-		backgroundColor: WHITE
+		backgroundColor: WHITE,
+	},
+	insideContainer: {
+		width: 750 * DP,
 	},
 	accountList_step1: {
 		marginTop: 40 * DP,
@@ -3497,5 +3501,32 @@ export const linkedAccountList = StyleSheet.create({
 		position: 'absolute',
 		right: 30 * DP,
 		bottom: 40 * DP,
-	}
+	},
+});
+
+export const followerList = StyleSheet.create({
+	container: {
+		flex: 1,
+		alignItems: 'center',
+		backgroundColor: WHITE,
+	},
+	insideContainer: {
+		width: 750 * DP,
+		alignItems: 'center',
+	},
+
+	inputWitchSearch: {
+		marginTop: 38 * DP,
+	},
+	accountList_step1: {
+		marginTop: 40 * DP,
+	},
+	accountList_step2: {
+		marginTop: 70 * DP,
+	},
+	floatingBtn: {
+		position: 'absolute',
+		right: 30 * DP,
+		bottom: 40 * DP,
+	},
 });

@@ -1,14 +1,12 @@
 import React from 'react';
-import { FlatList, Text, View } from 'react-native';
-import { GRAY10 } from 'Root/config/color';
-import { txt } from 'Root/config/textstyle';
+import {FlatList, Text, View} from 'react-native';
+import {GRAY10} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
 import ControllableAccount from './ControllableAccount';
-import { dummy_UserDescriptionLabel } from '../../config/dummyDate_json';
-import { controllableAccountList } from './style_organism';
-
+import {dummy_UserDescriptionLabel} from '../../config/dummyDate_json';
+import {controllableAccountList} from './style_organism';
 
 export default ControllableAccountList = props => {
-
 	const renderItem = (item, index) => {
 		return <ControllableAccount data={item} />;
 	};
@@ -16,13 +14,13 @@ export default ControllableAccountList = props => {
 	return (
 		<View style={controllableAccountList.container}>
 			<View style={[controllableAccountList.title]}>
-				<Text style={[txt.noto24, { color: GRAY10 }]}>{props.title}</Text>
+				<Text style={[txt.noto24, {color: GRAY10}]}>{props.title}</Text>
 			</View>
-			<FlatList data={dummy_UserDescriptionLabel} renderItem={({ item, index }) => renderItem(item, index)} />
+			<FlatList data={dummy_UserDescriptionLabel} renderItem={({item, index}) => renderItem(item, index)} />
 		</View>
 	);
 };
 
 ControllableAccountList.defaultProps = {
-	title: 'title'
-}
+	title: 'title',
+};
