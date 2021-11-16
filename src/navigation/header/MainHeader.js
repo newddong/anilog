@@ -6,7 +6,7 @@ import DP from 'Screens/dp';
 import SvgWrapper, {SvgWrap} from 'Screens/svgwrapper';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {MAINCOLOR} from 'Screens/color';
-
+//deprecated
 export default MainHeader = ({navigation}) => {
 	const clickLogo = () => {
 		alert('Logo!');

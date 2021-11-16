@@ -6,7 +6,7 @@ import Backbutton from './icon_back.svg';
 import DP from 'Screens/dp';
 import SvgWrapper from 'Screens/svgwrapper';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-
+//deprecated
 export default StackHeader = ({navigation, route, options, back}) => {
 	
 	return (

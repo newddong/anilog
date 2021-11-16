@@ -6,7 +6,7 @@ import {MainTabFeed, MainTabMy, MainTabVideo, MainTabSaveAnimal} from 'Asset/ima
 import {txt} from 'Root/config/textstyle';
 import {tab, layout} from './maintabbar_style';
 import {MAINCOLOR, GRAY_MAINTAB} from 'Root/config/color';
-
+//deprecated
 export default function MainTabBar({state, descriptors, navigation}) {
 	const focusedOptions = descriptors[state.routes[state.index].key].options;
 	const icons = [
