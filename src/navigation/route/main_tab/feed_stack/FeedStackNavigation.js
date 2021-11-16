@@ -12,6 +12,7 @@ import FeedWrite from 'Root/component/templete/FeedWrite';
 import LogoHeader from 'Navigation/header/LogoHeader';
 import MeatBallHeader from 'Navigation/header/MeatBallHeader';
 import AlarmAndSearchHeader from 'Navigation/header/AlarmAndSearchHeader';
+import BookmarkHeader from 'Navigation/header/BookmarkHeader';
 
 const FeedStack = createStackNavigator();
 
@@ -27,6 +28,7 @@ export default FeedStackNavigation = () => {
 			<FeedStack.Screen name="UserTagFeedList" component={FeedList} />
 			<FeedStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} />
 			<FeedStack.Screen name="FeedCommentList" component={FeedCommentList} options={{header:props=><AlarmAndSearchHeader {...props}/>,title:'몰라'}}/>
+			<FeedStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} options={{header:props=><BookmarkHeader {...props}/>,title:'#해시태그'}} />
 		</FeedStack.Navigator>
 	);
 };

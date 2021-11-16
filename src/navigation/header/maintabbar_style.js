@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-
+//deprecated
 export const tab = StyleSheet.create({
 	wrap_main: {
 		flexDirection: 'row',

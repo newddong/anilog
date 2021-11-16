@@ -137,7 +137,7 @@ const size110 = { width: 110 * DP, height: 110 * DP };
 const size126x92 = { width: 126 * DP, height: 92 * DP };
 
 const makeSvg = (component, style, color) => {
-	return props => React.createElement(TouchableOpacity, { ...props }, React.createElement(component, { ...style, fill: color }))
+	return props => props.onPress?React.createElement(TouchableOpacity, { ...props }, React.createElement(component, { ...style, fill: color })):React.createElement(component,{...style,fill:color})
 	//return props => React.createElement(component, {...style, ...props, fill: color});
 };
 
