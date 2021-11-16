@@ -1,8 +1,8 @@
 import React from 'react';
-import { txt } from 'Root/config/textstyle';
-import { Text, View, TextInput } from 'react-native';
+import {txt} from 'Root/config/textstyle';
+import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
-import { APRI10, GRAY20, GRAY30, GREEN, RED10 } from 'Root/config/color';
+import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
 
 /**
  *
@@ -16,6 +16,7 @@ import { APRI10, GRAY20, GRAY30, GREEN, RED10 } from 'Root/config/color';
  *info: string,
  *width: number,
  *showmsg : 'boolean / input 하단 alert_msg',
+ *style:'StyleSheet',
  * }} props
  */
 export default Input24 = props => {
@@ -57,9 +58,9 @@ export default Input24 = props => {
 
 	const getDescription = () => {
 		if (props.descriptionType == 'info') {
-			return <Text style={[txt.noto22, { color: GRAY20, marginLeft: 20 * DP }]}> *{props.info} </Text>;
+			return <Text style={[txt.noto22, {color: GRAY20, marginLeft: 20 * DP}]}> *{props.info} </Text>;
 		} else if (props.descriptionType == 'star') {
-			return <Text style={[txt.noto28, { color: RED10, marginLeft: 120 * DP }]}>*</Text>;
+			return <Text style={[txt.noto28, {color: RED10, marginLeft: 120 * DP}]}>*</Text>;
 		} else if (props.descriptionType == 'none') {
 			return null;
 		}
@@ -67,51 +68,51 @@ export default Input24 = props => {
 
 	const getMsg = () => {
 		if (props.showmsg) {
-
 			if (input.length == 0) {
-				return <Text style={(txt.noto22, { color: RED10, lineHeight: 36 * DP })}></Text>;
+				return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}></Text>;
 			} else
 				return confirm ? (
-					<Text style={(txt.noto22, { color: GREEN, lineHeight: 36 * DP })}>{props.confirm_msg}</Text>
+					<Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>
 				) : (
-					<Text style={(txt.noto22, { color: RED10, lineHeight: 36 * DP })}>{props.alert_msg}</Text>
+					<Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>
 				);
 		}
 	};
 
 	return (
-		<View style={{ flexDirection: 'row' }}>
-			{/* height는 168로 고정 */}
-			<View style={{ height: 168 * DP }}>
-				{console.log(typeof props.title)}
-				{console.log('props.title=' + props.title)}
-				{/* parent에서 title이 props로 명시되어 있지 않을 경우 'title' string 으로 받음. */}
-				{props.title != '' && props.title != 'title' && (
-					<View style={{ flexDirection: 'row' }}>
-						<Text style={[txt.noto24, { color: APRI10 }]}> {props.title} </Text>
-						{getDescription()}
-					</View>
-				)}
-				{/* 하단테두리 2px이 있기 때문에 inputValue와 82px가 차이가 나도 -2한 80값을 height로 줌 */}
-				<View style={{ height: 80 * DP, borderBottomWidth: 2 * DP, borderBottomColor: setBorderColor() }}>
-					<TextInput
-						ref={inputRef}
-						onChangeText={text => onChange(text)}
-						placeholder={props.placeholder}
-						style={[
-							txt.noto28,
-							{
-								paddingLeft: 24 * DP,
-								lineHeight: 44 * DP,
-								width: props.width * DP,
-								minWidth: 300 * DP,
-							},
-						]}
-					/>
+		<View style={{flexDirection: 'column'}}>
+			{/* height 를 title과 alert_msg가 없을 때에는 공간을 차지하지 않도록 가변이 되도록 style을 수정*/}
+			
+			{console.log(typeof props.title)}
+			{console.log('props.title=' + props.title)}
+			{/* parent에서 title이 props로 명시되어 있지 않을 경우 'title' string 으로 받음. */}
+			{props.title != '' && props.title != 'title' && (
+				<View style={{flexDirection: 'row'}}>
+					<Text style={[txt.noto24, {color: APRI10}]}> {props.title}</Text>
+					{getDescription()}
 				</View>
-
-				{getMsg()}
+			)}
+			{/* 하단테두리 2px이 있기 때문에 inputValue와 82px가 차이가 나도 -2한 80값을 height로 줌 */}
+			<View style={{height: 80 * DP, borderBottomWidth: 2 * DP, borderBottomColor: setBorderColor()}}>
+				<TextInput
+					ref={inputRef}
+					onChangeText={text => onChange(text)}
+					placeholder={props.placeholder}
+					style={[
+						txt.noto28,
+						props.style,
+						{
+							paddingLeft: 24 * DP,
+							lineHeight: 44 * DP,
+							width: props.width * DP,
+							minWidth: 300 * DP,
+						},
+					]}
+				/>
 			</View>
+
+			{getMsg()}
+			
 		</View>
 	);
 };

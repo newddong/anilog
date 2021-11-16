@@ -13,13 +13,14 @@ import LogoHeader from 'Navigation/header/LogoHeader';
 import MeatBallHeader from 'Navigation/header/MeatBallHeader';
 import AlarmAndSearchHeader from 'Navigation/header/AlarmAndSearchHeader';
 import BookmarkHeader from 'Navigation/header/BookmarkHeader';
+import ConfirmInputHeader from 'Root/navigation/header/ConfirmInputHeader';
 
 const FeedStack = createStackNavigator();
 
 export default FeedStackNavigation = () => {
 	return (
 		<FeedStack.Navigator initialRouteName="MainHomeFeedList">
-			<FeedStack.Screen name="MainHomeFeedList" component={FeedList} options={{header:(props)=><LogoHeader {...props}/>}}/>
+			<FeedStack.Screen name="MainHomeFeedList" component={FeedList} options={{header:(props)=><ConfirmInputHeader {...props}/>}}/>
 			<FeedStack.Screen name="UserProfile" component={Profile} options={{header:(props)=><MeatBallHeader {...props}/>,title:'유저 프로필(유저 아이디)'}}/>
 			<FeedStack.Screen name="SocialRelation" component={SocialRelation} />
 			<FeedStack.Screen name="UserFeedList" component={FeedList} />
