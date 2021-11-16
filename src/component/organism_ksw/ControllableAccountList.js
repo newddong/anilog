@@ -1,29 +1,14 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import { FlatList, Text, View } from 'react-native';
+import { GRAY10 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
 import ControllableAccount from './ControllableAccount';
-import {controllableAccountList} from './style_organism';
+import { dummy_UserDescriptionLabel } from '../../config/dummyDate_json';
+import { controllableAccountList } from './style_organism';
+
 
 export default ControllableAccountList = props => {
-	const _dummyData = [
-		{
-			user_id: 'user_id',
-			user_nickname: 'user_nickname',
-			user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-			text_intro: 'Description',
-		},
-		{
-			user_id: 'user_id',
-			user_nickname: 'user_nickname2',
-			user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-			text_intro: 'Description2',
-		},
-		{
-			user_id: 'user_id',
-			user_nickname: 'user_nickname3',
-			user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-			text_intro: 'Description3',
-		},
-	];
+
 	const renderItem = (item, index) => {
 		return <ControllableAccount data={item} />;
 	};
@@ -31,9 +16,13 @@ export default ControllableAccountList = props => {
 	return (
 		<View style={controllableAccountList.container}>
 			<View style={[controllableAccountList.title]}>
-				<Text>title</Text>
+				<Text style={[txt.noto24, { color: GRAY10 }]}>{props.title}</Text>
 			</View>
-			<FlatList data={_dummyData} renderItem={({item, index}) => renderItem(item, index)} />
+			<FlatList data={dummy_UserDescriptionLabel} renderItem={({ item, index }) => renderItem(item, index)} />
 		</View>
 	);
 };
+
+ControllableAccountList.defaultProps = {
+	title: 'title'
+}

@@ -93,7 +93,6 @@ export const organism_style = StyleSheet.create({
 		height: 46 * DP,
 		marginLeft: 20 * DP,
 		alignSelf: 'center',
-		backgroundColor: 'yellow',
 	},
 	hashLabel: {
 		width: 654 * DP,
@@ -105,6 +104,7 @@ export const organism_style = StyleSheet.create({
 export const controllableAccount = StyleSheet.create({
 	container: {
 		width: 654 * DP,
+		height: 94 * DP,
 		flexDirection: 'row',
 		marginBottom: 40 * DP,
 		alignSelf: 'center',
@@ -115,8 +115,10 @@ export const controllableAccount = StyleSheet.create({
 	userDescriptionLabel_checked: {
 		width: 446 * DP,
 	},
+	rightContainer: {
+		flexDirection: 'row',
+	},
 	btn_w108_controllableAccount: {
-		width: 108 * DP,
 		height: 54 * DP,
 		marginLeft: 20 * DP,
 		alignSelf: 'center',
@@ -133,14 +135,12 @@ export const controllableAccount = StyleSheet.create({
 export const controllableAccountList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		backgroundColor: 'powderblue',
 		alignSelf: 'center',
 	},
 	title: {
 		width: 300 * DP,
 		height: 42 * DP,
 		marginBottom: 16 * DP,
-		backgroundColor: GRAY30,
 	},
 });
 

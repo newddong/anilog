@@ -15,7 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {serveruri, cookieReset} from 'Screens/server';
 import axios from 'axios';
 import {createPost, editPost} from 'Root/api/feedapi';
-
+//deprecated
 export default WriteHeader = ({navigation, route, options, back}) => {
 	const title = options.headerTitle !== undefined ? options.headerTitle : options.title !== undefined ? options.title : route.name;
 	const label_right_btn = route.name === 'photoTag' ? '완료' : '공유';

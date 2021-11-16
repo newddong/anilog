@@ -10,7 +10,7 @@ import FormTxtInput from 'Screens/common/formtxtinput';
 // import { CommonActions } from '@react-navigation/native';
 // import { useNavigationState } from '@react-navigation/native';
 import {searchTxtChange} from './uselist';
-
+//deprecated
 export default SearchHeader = (props) => {
 	
 	

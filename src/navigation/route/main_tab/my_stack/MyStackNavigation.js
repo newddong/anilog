@@ -42,9 +42,12 @@ import AnimalFromShelter from 'Templete/AnimalFromShelter';
 import AdoptorInformation from 'Templete/AdoptorInformation';
 import ManageVolunteer from 'Templete/ManageVolunteer';
 import ApplicationFormVolunteer from 'Templete/ApplicationFormVolunteer';
-import PhotoSelect from 'Root/component/templete/PhotoSelect';
+import PhotoSelect from 'Templete/PhotoSelect';
 import AnimalProtectRequestDetail from 'Templete/AnimalProtectRequestDetail';
-import SelectAccount from 'Root/component/templete/SelectAccount';
+import SelectAccount from 'Templete/SelectAccount';
+
+import ConfirmHeader from 'Navigation/header/ConfirmHeader';
+import SaveButtonHeader from 'Navigation/header/SaveButtonHeader';
 
 const MyStack = createStackNavigator();
 
@@ -69,7 +72,7 @@ export default MyStackNavigation = () => {
 			<MyStack.Screen name="PhotoSelect" component={PhotoSelect} />
 
 			<MyStack.Screen name="ChangePassword" component={ChangePassword} />
-			<MyStack.Screen name="UserInfoDetailSetting" component={UserInfoDetailSettting} />
+			<MyStack.Screen name="UserInfoDetailSetting" component={UserInfoDetailSettting} options={{header:props=><SaveButtonHeader {...props}/>,title:'프로필 상세 정보'}}/>
 
 			<MyStack.Screen name="PetInfoSetting" component={PetInfoSetting} />
 

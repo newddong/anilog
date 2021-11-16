@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import ParentComment from '../organism/ParentComment';
-import { dummy_ParentComment } from './dummyDate_json';
+import { dummy_ParentComment } from '../../config/dummyDate_json';
 
 /**
  *
