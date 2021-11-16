@@ -1,14 +1,15 @@
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
-import {GRAY10} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
-import {btn_w280} from '../atom/btn/btn_style';
+import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { GRAY10 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
+import { btn_w280 } from '../atom/btn/btn_style';
+import { FavoriteTag48_Filled, Paw48_APRI10, Setting46 } from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import ProfileImageLarge194 from '../molecules/ProfileImageLarge194';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
 import SocialInfoB from '../organism_ksw/SocialInfoB';
-import {login_style, temp_style, userMenu_style} from './style_templete';
+import { login_style, temp_style, userMenu_style } from './style_templete';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
@@ -35,7 +36,7 @@ export default UserMenu = props => {
 							</View>
 							{/* User 상태 메시지 */}
 							<View style={[userMenu_style.contents]}>
-								<Text style={[txt.noto24, {color: GRAY10}]}>우리 귀요미 쥬쥬랑 죠죠를 소개합니당 애교 덩어리 쥬쥬{'&'}시크 존멋탱 죠죠</Text>
+								<Text style={[txt.noto24, { color: GRAY10 }]}>우리 귀요미 쥬쥬랑 죠죠를 소개합니당 애교 덩어리 쥬쥬{'&'}시크 존멋탱 죠죠</Text>
 							</View>
 						</View>
 					</View>
@@ -71,7 +72,20 @@ export default UserMenu = props => {
 
 				{/* UserMenu Page 하단 각종 메뉴는 ProfileMenu 안에 존재 */}
 				<View style={[temp_style.userMenu_step2, userMenu_style.horizontalLine]}>
-					<ProfileMenu />
+					<ProfileMenu
+						menuTitle={'즐겨찾기'}
+						menuItems={[['친구', '피드 게시글'], ['보호 요청', '커뮤니티']]}
+						onClick={(clikedItem) => console.log(clikedItem)}
+						titleIcon={<FavoriteTag48_Filled />}
+					/>
+					<ProfileMenu
+						menuTitle={'나의 활동'} menuItems={[['내 게시글', '나를 태그한 글'], ['신청 내역', '동물 보호 현황'], ['커뮤니티', '쪽지함']]} onClick={(clikedItem) => console.log(clikedItem)}
+						titleIcon={<Paw48_APRI10 />}
+					/>
+					<ProfileMenu
+						menuTitle={'설정'} menuItems={[['정보/문의', '계정'], ['알림', '']]} onClick={(clikedItem) => console.log(clikedItem)}
+						titleIcon={<Setting46 />}
+					/>
 				</View>
 			</View>
 		</ScrollView>

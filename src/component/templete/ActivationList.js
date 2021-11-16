@@ -1,8 +1,8 @@
 import React from 'react';
-import {FlatList, Image, ScrollView, Text, View, TouchableOpacity} from 'react-native';
-import {GRAY10} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
-import {activationList, login_style, temp_style} from './style_templete';
+import { FlatList, Image, ScrollView, Text, View, TouchableOpacity } from 'react-native';
+import { GRAY10 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
+import { activationList, login_style, temp_style } from './style_templete';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
@@ -11,7 +11,7 @@ export default ActivationList = props => {
 	const dummy = [
 		{
 			title: '임시보호 참여하기',
-			image: 'http://www.petpaper.co.kr/news/photo/202006/780_710_2650.jpg',
+			image: 'https://t1.daumcdn.net/cafeattach/1YMOi/6a29e54280110d61d2fee57dc946518b5b712af9',
 		},
 		{
 			title: '반려동물 실종시 전단지 만들기',
@@ -33,7 +33,6 @@ export default ActivationList = props => {
 	];
 
 	const boxClick = category => {
-		console.log(category);
 		alert(category.title);
 	};
 
@@ -41,10 +40,10 @@ export default ActivationList = props => {
 		return (
 			<View style={[activationList.activity]}>
 				<View style={[activationList.activityNameContainer]}>
-					<Text style={[txt.noto28, {color: GRAY10}]}>{item.title}</Text>
+					<Text style={[txt.noto28, { color: GRAY10 }]}>{item.title}</Text>
 				</View>
 				<TouchableOpacity style={[activationList.activityImage]} onPress={() => boxClick(item)}>
-					<Image source={{uri: item.image}} style={{flex: 1}} resizeMode={'stretch'} />
+					<Image source={{ uri: item.image }} style={{ flex: 1 }} resizeMode={'stretch'} />
 				</TouchableOpacity>
 			</View>
 		);
@@ -54,7 +53,7 @@ export default ActivationList = props => {
 			<View style={[login_style.wrp_main, activationList.container]}>
 				{/* Activities Container */}
 				<View style={[activationList.activityContainer]}>
-					<FlatList data={dummy} renderItem={({item, index}) => renderItem(item, index)} />
+					<FlatList data={dummy} renderItem={({ item, index }) => renderItem(item, index)} />
 				</View>
 			</View>
 		</ScrollView>

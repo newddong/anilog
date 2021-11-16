@@ -348,7 +348,7 @@ export const socialInfoB = StyleSheet.create({
 export const profileMenu = StyleSheet.create({
 	container: {
 		width: 750 * DP,
-		height: 630 * DP,
+		marginBottom: 20 * DP,
 	},
 	upperMenu: {},
 	lowerMenu: {
@@ -365,7 +365,7 @@ export const profileMenu = StyleSheet.create({
 	title: {
 		width: 200 * DP,
 		height: 42 * DP,
-		marginLeft: 6 * DP,
+		marginLeft: 12 * DP,
 	},
 	bottomeContainer: {},
 	itemContainer: {
@@ -401,7 +401,6 @@ export const profileMenu = StyleSheet.create({
 		width: 100 * DP,
 		height: 50 * DP,
 		right: 30 * DP,
-		backgroundColor: 'red',
 	},
 	horizon_separator: {
 		width: 362 * DP,
