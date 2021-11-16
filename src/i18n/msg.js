@@ -192,3 +192,30 @@ export const DEFAULT_PROFILE = 'https://consecutionjiujitsu.com/wp-content/uploa
 
 //잠시 임시저장 기능 관련 테스트용
 export let temp_inputLongText = '';
+
+//버튼
+export const COMPLETE_MODIFY = '수정 완료';
+
+// Shelter MENU 버튼
+export const MANAGEMENT_OF_PROTECTED_ANIMAL = '보호동물 관리';
+export const PROTECTED_ANIMAL = '보호중인 동물';
+export const INQUERY_APPLICATION = '신청서 조회';
+export const FROM_MY_SHELTER = '나의보호소 출신동물';
+export const MANAGEMENT_OF_VOLUNTEER = '봉사활동 신청관리';
+
+export const FAVORITES = '즐겨찾기';
+export const FRIENDS = '친구';
+export const PEED_CONTENTS = '피드 게시글';
+export const REQ_PROTECTION_SAVE = '보호요청(저장)';
+export const COMUNITY = '커뮤니티';
+
+export const MY_ACTIVITY_IN_SHELTER = '나의 활동';
+export const MY_CONTENTS = '내 게시글';
+export const TAGED_CONTENTS_FOR_ME = '나를 태그한 글';
+export const APPLICATION_HISTORY = '신청 내역';
+export const UPLOADED_POST_FOR_REQ_PROTECTION = '보호요청 올린 게시글';
+export const NOTE_LIST = '쪽지함';
+
+export const SETTING = '설정';
+export const INFO_QUESTION = '정보/문의';
+//'계정' 은 상위에 존재 하므로 생략

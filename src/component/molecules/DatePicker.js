@@ -50,9 +50,9 @@ export default DatePicker = props => {
 					]}>
 					{selectedDate}
 				</Text>
-				<TouchableOpacity onPress={openCalendar} style={{position: 'absolute', right: 15 * DP}}>
-					<Calendar48_Border />
-				</TouchableOpacity>
+				<View style={{position: 'absolute', right: 15 * DP}}>
+					<Calendar48_Border onPress={openCalendar} />
+				</View>
 			</View>
 			<Calendar modalOn={btnStatus} modalOff={() => setBtnStatus(false)} selectDate={date => onDateChange(date)} />
 		</View>

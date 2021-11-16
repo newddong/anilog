@@ -3,7 +3,6 @@ import { TextInput, View, } from 'react-native';
 import { Lock60_Border, Lock60_Filled, Photo60, Send60 } from '../atom/icon';
 import { feedCommentList } from '../templete/style_templete';
 /**
- *
  * @param {{
  * onLockBtnClick : void ,
  * onChangeReplyInput : void,
