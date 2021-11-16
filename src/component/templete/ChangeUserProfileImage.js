@@ -12,6 +12,10 @@ import {login_style, btn_style, temp_style, changeUserProfileImage_style} from '
 
 export default ChangeUserProfileImage = props => {
 	const navigation = useNavigation();
+	const [confirmed, setConfirmed] = React.useState(false);
+	const onConfirmed = () => {
+		console.log('확인 클릭');
+	};
 	return (
 		<ScrollView>
 			<View style={[login_style.wrp_main, {flex: 1}]}>
@@ -27,21 +31,34 @@ export default ChangeUserProfileImage = props => {
 				<View style={[temp_style.profileNicknameChange, changeUserProfileImage_style.profileNicknameChange]}>
 					{/* (M)Input24 */}
 					<View style={[temp_style.input24_changeUserProfileImage, changeUserProfileImage_style.input24]}>
-						<Input24 title={'기존 닉네임'} />
+						<Input24 title={'기존 닉네임'} defaultValue={props.previous_nickname} width={654} />
 					</View>
 					{/* (M)Input24 */}
 					<View style={[temp_style.input24_changeUserProfileImage]}>
-						<Input24 title={'새 닉네임'} descriptionType={'info'} info={'2자 이상 15자 이내의 영문, 숫자의 입력만 가능합니다'} />
+						<Input24
+							title={'새 닉네임'}
+							descriptionType={'info'}
+							info={'2자 이상 15자 이내의 영문, 숫자의 입력만 가능합니다'}
+							placeholder={'새로운 닉네임을 적어주세요.'}
+							width={654}
+						/>
 					</View>
 				</View>
 
 				{/* (A)Btn_w654 */}
 				<View style={[btn_style.btn_w654, changeUserProfileImage_style.btn_w654]}>
-					<AniButton btnTitle={'확인'} disable={true} titleFontStyle={32} btnLayout={btn_w654} />
+					{!confirmed ? (
+						<AniButton btnTitle={'확인'} btnStyle={'filled'} btnTheme={'shadow'} titleFontStyle={32} btnLayout={btn_w654} onPress={onConfirmed} />
+					) : (
+						<AniButton btnTitle={'확인'} disable={true} titleFontStyle={32} btnLayout={btn_w654} />
+					)}
 				</View>
 			</View>
 		</ScrollView>
 	);
+};
+ChangeUserProfileImage.defaultProps = {
+	previous_nickname: 'Previous Nickname',
 };
 
 // Input24.defaultProps = {
