@@ -1,16 +1,16 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {GRAY10} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
-import {btn_w280} from '../atom/btn/btn_style';
-import {Bracket48} from '../atom/icon';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { GRAY10 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
+import { btn_w280 } from '../atom/btn/btn_style';
+import { Bracket48 } from '../atom/icon';
 import ActionButton from '../molecules/ActionButton';
 import AniButton from '../molecules/AniButton';
 import ProfileImageLarge160 from '../molecules/ProfileImageLarge160';
 import SocialInfoA from '../organism_ksw/SocialInfoA';
-import {NORMAL, PET, SHELTER} from 'Root/i18n/msg';
+import { NORMAL, PET, SHELTER } from 'Root/i18n/msg';
 
-import {organism_style, profileInfo_style} from './style_organism';
+import { organism_style, profileInfo_style } from './style_organism';
 
 export default ProfileInfo = props => {
 	// console.log('ProfileInfo / Props Data ' + JSON.stringify(props.data));
@@ -78,18 +78,16 @@ export default ProfileInfo = props => {
 
 			{/* Content */}
 			<View style={[organism_style.content_view_profileInfo, profileInfo_style.content_view]}>
-				<View style={[showMore ? profileInfo_style.content_expanded : profileInfo_style.content]}>
-					<Text style={[txt.noto24, {paddingVertical: 3}]}>
-						안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있어요!안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있어요!안녕하세요 5살 구름이와 3살
-						하늘이랑 함께 살고 있어요!안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있어요!
-					</Text>
-				</View>
-				<TouchableOpacity onPress={() => setShowMore(!showMore)} style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
-					<Text style={[txt.noto24, {color: GRAY10}]}>더보기 </Text>
-					<View style={showMore ? {transform: [{rotate: '180deg'}]} : null}>
-						<Bracket48 />
+				<Text ellipsizeMode={'tail'} numberOfLines={showMore ? null : 2} style={[txt.noto24, showMore ? profileInfo_style.content_expanded : profileInfo_style.content, { backgroundColor: 'yellow' }]}>
+					안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있어요! 안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있어요!안녕하세요 5살 구름이와 3살
+					하늘이랑 함께 살고 있어요!안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있어요!
+				</Text>
+				<View style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
+					<Text style={[txt.noto24, { color: GRAY10, backgroundColor: 'yellow' }]}>더보기 </Text>
+					<View style={showMore ? { transform: [{ rotate: '180deg' }] } : null}>
+						<Bracket48 onPress={() => setShowMore(!showMore)} />
 					</View>
-				</TouchableOpacity>
+				</View>
 			</View>
 
 			{/* btn_w280 */}

@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
 	MAINCOLOR,
 	LINK,
@@ -1706,7 +1706,6 @@ export const userMenu_style = StyleSheet.create({
 		// backgroundColor: '#BF9547',
 	},
 	horizontalLine: {
-		marginTop: 10 * DP,
 	},
 });
 
@@ -2630,7 +2629,6 @@ export const searchProtectRequest = StyleSheet.create({
 		},
 	},
 	animalNeedHelpList: {
-		marginTop: 30 * DP,
 		width: 654 * DP,
 		height: 958 * DP,
 		alignSelf: 'center',
@@ -3377,7 +3375,7 @@ export const feedWrite = StyleSheet.create({
 });
 
 export const profile = StyleSheet.create({
-	container: {flex: 1},
+	container: { flex: 1 },
 	profileInfo: {
 		width: 750 * DP,
 		marginBottom: 30 * DP,

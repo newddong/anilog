@@ -1,9 +1,9 @@
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import {Text, View, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
-import {NORMAL, PET, SHELTER} from 'Root/i18n/msg';
-import {Write94} from '../atom/icon';
+import { Text, View, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { NORMAL, PET, SHELTER } from 'Root/i18n/msg';
+import { Write94 } from '../atom/icon';
 import TabSelectFilled_Type2 from '../molecules/TabSelectFilled_Type2';
 import ProfileInfo from '../organism/ProfileInfo';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
@@ -11,7 +11,7 @@ import FeedThumbnailList from '../organism_ksw/FeedThumbnailList';
 import OwnerList from '../organism_ksw/OwnerList';
 import PetList from '../organism_ksw/PetList';
 import ProtectedPetList from '../organism_ksw/ProtectedPetList';
-import {login_style, profile, temp_style} from './style_templete';
+import { login_style, profile, temp_style } from './style_templete';
 
 export default Profile = props => {
 	const item = props.route.params;
@@ -109,22 +109,22 @@ export default Profile = props => {
 	};
 
 	return (
-		<ScrollView>
-			{/* 테스트용  */}
-			<View style={{width: '100%', height: 30, flexDirection: 'row', backgroundColor: 'yellow'}}>
-				<TouchableOpacity onPress={() => setUserType(NORMAL)} style={{width: 100, height: 15, backgroundColor: 'purple'}}>
-					<Text>NORMAL</Text>
-				</TouchableOpacity>
-				<TouchableOpacity onPress={() => setUserType(PET)} style={{width: 100, height: 15, backgroundColor: 'red'}}>
-					<Text>pet</Text>
-				</TouchableOpacity>
-				<TouchableOpacity onPress={() => setUserType(SHELTER)} style={{width: 100, height: 15, backgroundColor: 'lightgray'}}>
-					<Text>shelter</Text>
-				</TouchableOpacity>
-				<Text>{userType}</Text>
-			</View>
-			{/* 테스트용 종료 */}
-			<View style={[login_style.wrp_main, profile.container]}>
+		<View style={[login_style.wrp_main, profile.container]}>
+			<ScrollView>
+				{/* 테스트용 */}
+				<View style={{ width: '100%', height: 30, flexDirection: 'row', backgroundColor: 'yellow' }}>
+					<TouchableOpacity onPress={() => setUserType(NORMAL)} style={{ width: 100, height: 15, backgroundColor: 'lightblue' }}>
+						<Text>NORMAL</Text>
+					</TouchableOpacity>
+					<TouchableOpacity onPress={() => setUserType(PET)} style={{ width: 100, height: 15, backgroundColor: 'pink' }}>
+						<Text>pet</Text>
+					</TouchableOpacity>
+					<TouchableOpacity onPress={() => setUserType(SHELTER)} style={{ width: 100, height: 15, backgroundColor: 'lightgray' }}>
+						<Text>shelter</Text>
+					</TouchableOpacity>
+					<Text>{userType}</Text>
+				</View>
+				{/* 테스트용 종료 */}
 				<View style={[profile.profileInfo]}>
 					<ProfileInfo
 						data={dummyData}
@@ -140,8 +140,8 @@ export default Profile = props => {
 				<View style={[temp_style.tabSelectFilled_Type2, profile.tabSelectFilled_Type2]}>{getTabSelectList()}</View>
 				{showPetList()}
 				<View>
-					<ScrollView horizontal={false} style={{width: '100%', height: '100%'}}>
-						<ScrollView horizontal={true} style={{width: '100%', height: '100%'}}>
+					<ScrollView horizontal={false} style={{ width: '100%', height: '100%' }}>
+						<ScrollView horizontal={true} style={{ width: '100%', height: '100%' }}>
 							<View style={[temp_style.feedThumbnailList, profile.feedThumbNailList]}>{getThumbnailList()}</View>
 						</ScrollView>
 					</ScrollView>
@@ -151,7 +151,8 @@ export default Profile = props => {
 						<Write94 />
 					</View>
 				</TouchableWithoutFeedback>
-			</View>
-		</ScrollView>
+			</ScrollView>
+
+		</View >
 	);
 };

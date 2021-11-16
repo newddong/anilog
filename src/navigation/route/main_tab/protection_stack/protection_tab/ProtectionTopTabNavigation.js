@@ -1,33 +1,22 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import ProtectRequestList from 'Templete/ProtectRequestList';
 import MissingReportList from 'Templete/MissingReportList';
 import ActivationList from 'Templete/ActivationList';
-import DP from 'Root/config/dp';
-import { APRI10, GRAY10 } from 'Root/config/color';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { txt } from 'Root/config/textstyle';
 import TopTabNavigation_Border from 'Root/component/organism_ksw/TopTabNavigation_Border';
-import { useNavigation } from '@react-navigation/core';
-import Animated from 'react-native-reanimated';
 
 const ProtectionTab = createMaterialTopTabNavigator();
 
 export default ProtectionTopTabNavigation = () => {
-	const navigation = useNavigation();
 
 	return (
 		<ProtectionTab.Navigator
 			tabBar={({ state, descriptors, navigation, position }) => {
+				//pressedTab에는 TopTabNavigation에서 선택한 tab의 index정보가 존재
 				const onSelectTab = pressedTab => {
-					console.log("state routes ket" + JSON.stringify(state.routes[0].name))
-					navigation.emit({
-						type: 'ProtectRequestList',
-						target: state.routes[pressedTab].name,
-						canPreventDefault: true,
-					});
+
 					navigation.navigate({
+						//현재 Tab state가 가지는 routes들 중 pressedTab 인덱스
 						name: state.routes[pressedTab].name, merge: true
 					});
 				};

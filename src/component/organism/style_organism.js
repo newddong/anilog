@@ -249,7 +249,7 @@ export const organism_style = StyleSheet.create({
 	},
 	content_view_profileInfo: {
 		flexDirection: 'row',
-		width: 700 * DP,
+		width: 654 * DP,
 		// height: 80 * DP,
 	},
 	addMore_profileInfo: {
@@ -373,11 +373,12 @@ export const profileInfo_style = StyleSheet.create({
 	content: {
 		width: 492 * DP,
 		height: 80 * DP,
-		marginLeft: 48 * DP,
+		marginLeft: 40 * DP,
+
 	},
 	content_expanded: {
 		width: 492 * DP,
-		marginLeft: 48 * DP,
+		marginLeft: 40 * DP,
 	},
 	addMore: {
 		marginLeft: 46 * DP,
