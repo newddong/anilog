@@ -81,11 +81,12 @@ export default Input24 = props => {
 	};
 
 	return (
-		<View style={{flexDirection: 'column', width: props.width * DP}}>
+		
+		<View style={[props.width&&{width:props.width*DP},{flexDirection: 'column'}]}>{/* width props를 입력하지 않을 경우 Input컴포넌트의 부모의 width를 따라 넓이가 정해지도록 수정*/}
 			{/* height 를 title과 alert_msg가 없을 때에는 공간을 차지하지 않도록 가변이 되도록 style을 수정*/}
 
 			{console.log(typeof props.title)}
-			{console.log('props.title=' + props.title)}
+			{console.log('props.title=' + props.title + props.width)}
 			{/* parent에서 title이 props로 명시되어 있지 않을 경우 'title' string 으로 받음. */}
 			{props.title != '' && props.title != 'title' && (
 				<View style={{flexDirection: 'row'}}>
@@ -125,6 +126,5 @@ Input24.defaultProps = {
 	alert_msg: 'alert_msg',
 	confirm_msg: 'confirm_msg',
 	info: null, //
-	width: 300,
 	defaultValue: null,
 };
