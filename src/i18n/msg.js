@@ -219,3 +219,5 @@ export const NOTE_LIST = '쪽지함';
 export const SETTING = '설정';
 export const INFO_QUESTION = '정보/문의';
 //'계정' 은 상위에 존재 하므로 생략
+
+export const PLEASE_UPLOAD_PIC = '해당 동물의 특징이 잘 보이는 이미지를 올려주세요.';

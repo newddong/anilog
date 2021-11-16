@@ -799,7 +799,7 @@ export const temp_style = StyleSheet.create({
 		height: 36 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#707070',
+		backgroundColor: '#FFF',
 	},
 	image_assignProtectAnimal: {
 		width: 160 * DP,
