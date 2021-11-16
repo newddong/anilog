@@ -20,7 +20,7 @@ const ProtectionStack = createStackNavigator();
 
 export default ProtectionStackNavigation = () => {
     return (
-        <ProtectionStack.Navigator initialRouteName="Login">
+        <ProtectionStack.Navigator initialRouteName="SocialRelation">
             <ProtectionStack.Screen name="ProtectionTab" component={ProtectionTopTabNavigation} />
 
             <ProtectionStack.Screen name="UserProfile" component={Profile} />
@@ -32,7 +32,7 @@ export default ProtectionStackNavigation = () => {
             {/* <ProtectionStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} /> */}
             <ProtectionStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
             <ProtectionStack.Screen name="FeedCommentList" component={FeedCommentList} />
-            
+
             {/* <ProtectionStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} /> */}
             <ProtectionStack.Screen name="MissingAnimalDetail" component={MissingAnimalDetail} />
             <ProtectionStack.Screen name="ReportDetail" component={ReportDetail} />
