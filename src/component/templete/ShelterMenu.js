@@ -10,9 +10,29 @@ import {btn_w280} from '../atom/btn/btn_style';
 import {FloatAddPet_126x92} from '../atom/icon';
 import {FloatAddArticle_126x92} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
-
-// 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
-//ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
+import ProfileMenu from '../organism_ksw/ProfileMenu';
+import {Setting46, FavoriteTag48_Filled, Heart48_Filled, Paw46} from '../atom/icon';
+import {
+	MANAGEMENT_OF_PROTECTED_ANIMAL,
+	PROTECTED_ANIMAL,
+	INQUERY_APPLICATION,
+	FROM_MY_SHELTER,
+	MANAGEMENT_OF_VOLUNTEER,
+	FAVORITES,
+	FRIENDS,
+	PEED_CONTENTS,
+	REQ_PROTECTION_SAVE,
+	COMUNITY,
+	MY_ACTIVITY_IN_SHELTER,
+	MY_CONTENTS,
+	TAGED_CONTENTS_FOR_ME,
+	APPLICATION_HISTORY,
+	UPLOADED_POST_FOR_REQ_PROTECTION,
+	NOTE_LIST,
+	SETTING,
+	INFO_QUESTION,
+	ACCOUNT,
+} from 'Root/i18n/msg';
 
 export default ShelterMenu = props => {
 	const navigation = useNavigation();
@@ -26,35 +46,75 @@ export default ShelterMenu = props => {
 	const moveToAidRequestList = () => {
 		navigation.push('AidRequestList');
 	};
-	const moveToShelterProtectAnimalList = () => {
-		navigation.push('ShelterProtectAnimalList');
-	};
-	const moveToProtectApplyList = () => {
-		navigation.push('ProtectApplyList');
-	};
-	const moveToAnimalFromShelter = () => {
-		navigation.push('AnimalFromShelter');
-	};
-	const moveToManageShelterVolunteer = () => {
-		navigation.push('ManageShelterVolunteer');
-	};
-	const moveToSaveFavorite = () => {
-		navigation.push('SaveFavorite');
-	};
-	const moveFavoriteFeeds = () => {
-		navigation.push('FavoriteFeeds');
-	};
-	const moveToSaveAnimalRequest = () => {
-		navigation.push('SaveAnimalRequest');
-	};
-	const moveToUserFeeds = () => {
-		navigation.push('UserFeeds');
-	};
-	const moveToTagMeFeeds = () => {
-		navigation.push('TagMeFeeds');
-	};
-	const moveToShelterProtectRequests = () => {
-		navigation.push('ShelterProtectRequests');
+
+	//메뉴에 해당되는 네이게이션 이동
+	const click_menu = item_menu => {
+		switch (item_menu) {
+			// 보호중인 동물
+			case PROTECTED_ANIMAL:
+				navigation.push('ShelterProtectAnimalList');
+				break;
+			// 신청서 조회
+			case INQUERY_APPLICATION:
+				navigation.push('ProtectApplyList');
+				break;
+			//나의 보호소 출신 동물
+			case FROM_MY_SHELTER:
+				navigation.push('AnimalFromShelter');
+				break;
+			//봉사활동 신청 관리
+			case MANAGEMENT_OF_VOLUNTEER:
+				navigation.push('ManageShelterVolunteer');
+				break;
+			//친구
+			case FRIENDS:
+				navigation.push('SaveFavorite');
+				break;
+			//피드 게시글
+			case PEED_CONTENTS:
+				navigation.push('FavoriteFeeds');
+				break;
+			//보호요청(저장)
+			case REQ_PROTECTION_SAVE:
+				navigation.push('SaveAnimalRequest');
+				break;
+			//커뮤니티
+			case COMUNITY:
+				alert('준비중입니다.');
+				break;
+			//내 게시물
+			case MY_CONTENTS:
+				navigation.push('UserFeeds');
+				break;
+			// 나를 태그한 글
+			case TAGED_CONTENTS_FOR_ME:
+				navigation.push('TagMeFeeds');
+				break;
+			//신청내역
+			case APPLICATION_HISTORY:
+				alert('준비중입니다.');
+				break;
+			// 보호 요청 올린 게시글
+			case UPLOADED_POST_FOR_REQ_PROTECTION:
+				navigation.push('ShelterProtectRequests');
+				break;
+			//커뮤니티
+			case COMUNITY:
+				alert('준비중입니다.');
+				break;
+			// 신청내역
+			case NOTE_LIST:
+				alert('준비중입니다.');
+				break;
+			//정보/문의
+			case INFO_QUESTION:
+				navigation.push('ShelterProtectRequests');
+				break;
+			// 계정
+			case ACCOUNT:
+				navigation.push('ShelterProtectRequests');
+				break;
+		}
 	};
 
 	return (
@@ -105,8 +165,8 @@ export default ShelterMenu = props => {
 								onPress={moveToShelterInfoSetting}
 							/>
 						</View>
-						{/* </TouchableOpacity> */}
 
+						{/* </TouchableOpacity> */}
 						<TouchableOpacity onPress={moveToAssignProtectAnimalImage}>
 							<View style={[shelterMenu.btnView_floadAddPet_126x92]}>
 								<FloatAddPet_126x92></FloatAddPet_126x92>
@@ -122,63 +182,50 @@ export default ShelterMenu = props => {
 
 				{/* (O)ProfileMenul */}
 				<View style={[shelterMenu.profileMenu1]}>
-					<TouchableOpacity onPress={moveToShelterProtectAnimalList}>
-						<Text>보호중인 동물</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={moveToProtectApplyList}>
-						<Text>신청서 조회</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={moveToAnimalFromShelter}>
-						<Text>나의 보호소 출신 동물</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={moveToManageShelterVolunteer}>
-						<Text>봉사활동 신청 관리</Text>
-					</TouchableOpacity>
+					<ProfileMenu
+						menuTitle={MANAGEMENT_OF_PROTECTED_ANIMAL}
+						menuItems={[
+							[PROTECTED_ANIMAL, INQUERY_APPLICATION],
+							[FROM_MY_SHELTER, MANAGEMENT_OF_VOLUNTEER],
+						]}
+						// onClick={clikedItem => console.log(clikedItem)}
+						onClick={click_menu}
+						titleIcon={<Heart48_Filled />}
+					/>
 				</View>
 				<View style={[shelterMenu.profileMenu2]}>
-					<TouchableOpacity onPress={moveToSaveFavorite}>
-						<Text>친구</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={moveFavoriteFeeds}>
-						<Text>피드 게시글</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={moveToSaveAnimalRequest}>
-						<Text>보호요청(저장)</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={''}>
-						<Text>커뮤니티</Text>
-					</TouchableOpacity>
+					<ProfileMenu
+						menuTitle={FAVORITES}
+						menuItems={[
+							[FRIENDS, PEED_CONTENTS],
+							[REQ_PROTECTION_SAVE, COMUNITY],
+						]}
+						// onClick={clikedItem => console.log(clikedItem)}
+						onClick={click_menu}
+						titleIcon={<FavoriteTag48_Filled />}
+					/>
 				</View>
 				<View style={[shelterMenu.profileMenu3]}>
-					<TouchableOpacity onPress={moveToUserFeeds}>
-						<Text>내 게시글</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={moveToTagMeFeeds}>
-						<Text>나를 태그한 글</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={''}>
-						<Text>신청 내역</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={moveToShelterProtectRequests}>
-						<Text>보호요청 올린 게시글</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={''}>
-						<Text>커뮤니티</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={''}>
-						<Text>쪽지함</Text>
-					</TouchableOpacity>
+					<ProfileMenu
+						menuTitle={MY_ACTIVITY_IN_SHELTER}
+						menuItems={[
+							[MY_CONTENTS, TAGED_CONTENTS_FOR_ME],
+							[APPLICATION_HISTORY, UPLOADED_POST_FOR_REQ_PROTECTION],
+							[COMUNITY, NOTE_LIST],
+						]}
+						// onClick={clikedItem => console.log(clikedItem)}
+						onClick={click_menu}
+						titleIcon={<Paw46 />}
+					/>
 				</View>
 				<View style={[shelterMenu.profileMenu4]}>
-					<TouchableOpacity onPress={''}>
-						<Text>정보/문의</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={''}>
-						<Text>계정</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={''}>
-						<Text>알림</Text>
-					</TouchableOpacity>
+					<ProfileMenu
+						menuTitle={SETTING}
+						menuItems={[[INFO_QUESTION, ACCOUNT]]}
+						// onClick={clikedItem => console.log(clikedItem)}
+						onClick={click_menu}
+						titleIcon={<Setting46 />}
+					/>
 				</View>
 			</ScrollView>
 		</View>

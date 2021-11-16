@@ -9,12 +9,13 @@ import DatePicker from '../molecules/DatePicker';
 import {COMPLETE_MODIFY} from 'Root/i18n/msg';
 import {btn_w654} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
+import {useNavigation} from '@react-navigation/core';
 
 export default EditShelterInfo = props => {
 	const emailList = ['naver.com', 'nate.com', 'daum.net'];
 	const [selectedBirthDate, setSelectedBirthDate] = React.useState('2021.03.01');
-
-	const goto = () => {
+	const navigation = useNavigation();
+	const gotoNextStep = () => {
 		navigation.push('ShelterInfoSetting');
 	};
 

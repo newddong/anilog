@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
 	MAINCOLOR,
 	LINK,
@@ -1705,8 +1705,7 @@ export const userMenu_style = StyleSheet.create({
 		justifyContent: 'center',
 		// backgroundColor: '#BF9547',
 	},
-	horizontalLine: {
-	},
+	horizontalLine: {},
 });
 
 export const userInfoSetting_style = StyleSheet.create({
@@ -1900,14 +1899,14 @@ export const shelterMenu = StyleSheet.create({
 		// backgroundColor: 'yellow',
 	},
 	shelterMenuStep1: {
-		// backgroundColor: '#6F9B85',
+		backgroundColor: '#FFF',
 		width: 750 * DP,
 		height: 550 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	shelterInfo: {
-		// backgroundColor: '#BCC0DC',
+		backgroundColor: '#FFF',
 		width: 654 * DP,
 		height: 194 * DP,
 		justifyContent: 'center',
@@ -1984,33 +1983,30 @@ export const shelterMenu = StyleSheet.create({
 		marginLeft: 40 * DP,
 	},
 	profileMenu1: {
-		backgroundColor: '#7F8EF3',
+		backgroundColor: '#FFF',
 		width: 750 * DP,
-		height: 206 * DP,
 		marginTop: 10 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	profileMenu2: {
-		backgroundColor: '#7F8EF3',
+		backgroundColor: '#FFF',
 		width: 750 * DP,
-		height: 316 * DP,
 		marginTop: 10 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	profileMenu3: {
-		backgroundColor: '#7F8EF3',
+		backgroundColor: '#FFF',
 		width: 750 * DP,
-		height: 316 * DP,
 		marginTop: 10 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	profileMenu4: {
-		backgroundColor: '#7F8EF3',
+		backgroundColor: '#FFF',
 		width: 750 * DP,
-		height: 238 * DP,
+
 		marginTop: 10 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -3375,7 +3371,7 @@ export const feedWrite = StyleSheet.create({
 });
 
 export const profile = StyleSheet.create({
-	container: { flex: 1 },
+	container: {flex: 1},
 	profileInfo: {
 		width: 750 * DP,
 		marginBottom: 30 * DP,
