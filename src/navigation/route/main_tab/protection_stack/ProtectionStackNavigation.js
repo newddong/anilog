@@ -1,9 +1,6 @@
 import React from 'react';
-import { SafeAreaView, } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, } from '@react-navigation/stack';
 import Profile from "Templete/Profile";
-import SocialRelation from "Templete/SocialRelation";
 import FeedList from "Templete/FeedList";
 // import AnimalProtectRequestDetail from "Templete/AnimalProtectRequestDetail";
 import FeedListForHashTag from "Templete/FeedListForHashTag";
@@ -15,16 +12,17 @@ import ActivationDetail from "Templete/ActivationDetail";
 import ProtectionTopTabNavigation from "./protection_tab/ProtectionTopTabNavigation";
 
 import { PIC_SELECTION, } from 'Root/i18n/msg';
+import SocialRelationTopTabNavigation from './socialRelation_tab/SocialRelationTopTabNavigation';
 
 const ProtectionStack = createStackNavigator();
 
 export default ProtectionStackNavigation = () => {
     return (
-        <ProtectionStack.Navigator initialRouteName="SocialRelation">
+        <ProtectionStack.Navigator initialRouteName="SocialRelationTopTab">
             <ProtectionStack.Screen name="ProtectionTab" component={ProtectionTopTabNavigation} />
 
             <ProtectionStack.Screen name="UserProfile" component={Profile} />
-            <ProtectionStack.Screen name="SocialRelation" component={SocialRelation} />
+            <ProtectionStack.Screen name="SocialRelationTopTab" component={SocialRelationTopTabNavigation} />
             <ProtectionStack.Screen name="UserFeedList" component={FeedList} />
             <ProtectionStack.Screen name="HashFeedList" component={FeedList} />
             <ProtectionStack.Screen name="ProtectAnimalFeedList" component={FeedList} />

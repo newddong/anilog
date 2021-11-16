@@ -3484,3 +3484,22 @@ export const saveFavorite = StyleSheet.create({
 		// backgroundColor: '#F2C2C2',
 	},
 });
+
+export const linkedAccountList = StyleSheet.create({
+	container: {
+		flex: 1,
+		alignItems: 'center',
+		backgroundColor: WHITE
+	},
+	accountList_step1: {
+		marginTop: 40 * DP,
+	},
+	accountList_step2: {
+		marginTop: 70 * DP,
+	},
+	floatingBtn: {
+		position: 'absolute',
+		right: 30 * DP,
+		bottom: 40 * DP,
+	}
+});

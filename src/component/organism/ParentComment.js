@@ -6,7 +6,7 @@ import ChildCommentList from 'Root/component/organism/ChildCommentList';
 import UserLocationTimeLabel from '../molecules/UserLocationTimeLabel';
 import { Heart30_Border, Heart30_Filled, Meatball50_APRI10_Vertical } from '../atom/icon';
 import { txt } from 'Root/config/textstyle';
-import { dummy_userLocationTimeLabel } from '../organism_ksw/dummyDate_json';
+import { dummy_userLocationTimeLabel } from '../../config/dummyDate_json';
 
 
 /**
