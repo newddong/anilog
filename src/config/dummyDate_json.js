@@ -79,7 +79,7 @@ export const dummy_AidRequestList = [
 		neutralization: true,
 		saved_point: '마포구 신수동',
 		male: true,
-		img_uri: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Warwick_16.jpg',
+		img_uri: 'https://t1.daumcdn.net/liveboard/lifeanddogue/238e8725f1204586832ccdad42a0fa84.png',
 	},
 	{
 		kind: '고양이',
@@ -89,7 +89,8 @@ export const dummy_AidRequestList = [
 		neutralization: true,
 		saved_point: '마포구 협곡동',
 		male: false,
-		img_uri: 'https://static.inven.co.kr/column/2014/06/19/news/i3769211874.jpg',
+		img_uri:
+			'https://media-exp1.licdn.com/dms/image/C4E1BAQGMzwHQmC5FgA/company-background_10000/0/1556838783242?e=2159024400&v=beta&t=T6AMul5yOkLHk3XUUlYiVesQFOtRRNGCF993hJQfVwE',
 	},
 ];
 

@@ -21,10 +21,10 @@ export default AidRequestList = props => {
 		<View style={[aidRequestList.container]}>
 			<TouchableOpacity onPress={moveToAssignProtectAnimalImage}>
 				<View style={[aidRequestList.addProtectedPetContainer]}>
-					<Text style={[txt.noto30, aidRequestList.addProtectedPetText]}>보호중인 동물 추가하기</Text>
 					<View style={[aidRequestList.addProtectedPet_insideContainer]}>
-						<AddItem64 />
+						<AddItem64 onPress={moveToAssignProtectAnimalImage} />
 					</View>
+					<Text style={[txt.noto30, aidRequestList.addProtectedPetText]}>보호중인 동물 추가하기</Text>
 				</View>
 			</TouchableOpacity>
 			<FlatList data={dummy_AidRequestList} renderItem={({item, index}) => renderItem(item, index)} />

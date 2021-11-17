@@ -37,14 +37,17 @@ import {
 export default ShelterMenu = props => {
 	const navigation = useNavigation();
 
+	//보호소 정보 수정
 	const moveToShelterInfoSetting = () => {
 		navigation.push('ShelterInfoSetting');
 	};
+	//동물 추가
 	const moveToAssignProtectAnimalImage = () => {
 		navigation.push('AssignProtectAnimalImage');
 	};
-	const moveToAidRequestList = () => {
-		navigation.push('AidRequestList');
+	//게시물 추가
+	const moveToAidRequestAnimalList = () => {
+		navigation.push('AidRequestAnimalList');
 	};
 
 	//메뉴에 해당되는 네이게이션 이동
@@ -173,7 +176,7 @@ export default ShelterMenu = props => {
 						</View>
 
 						<View style={[shelterMenu.btnView_floadArticle_126x92]}>
-							<FloatAddArticle_126x92 onPress={moveToAidRequestList}></FloatAddArticle_126x92>
+							<FloatAddArticle_126x92 onPress={moveToAidRequestAnimalList}></FloatAddArticle_126x92>
 						</View>
 					</View>
 				</View>
