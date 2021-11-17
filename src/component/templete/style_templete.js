@@ -1847,6 +1847,9 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	marginLeft16: {
 		marginLeft: 16 * DP,
 	},
+	width118: {
+		width: 118 * DP,
+	},
 });
 
 export const selectstat_view_style = StyleSheet.create({
