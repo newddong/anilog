@@ -13,19 +13,39 @@ import {login_style, btn_style, temp_style, progressbar_style, assignUserProfile
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default AssignUserProfileImage = props => {
+	const [confirmed, setConfirmed] = React.useState(false);
+
 	const moveToAssignPetProfileImage = () => {
 		props.navigation.push('AssignPetProfileImage');
 	};
+
 	const selectPhoto = () => {
 		props.navigation.push('SinglePhotoSelect');
 	};
-	const onChangeNickName = text => {
-		console.log(text);
+
+	//중복 처리
+	const checkDuplicateNickname = nick => {
+		if (true) {
+			return true;
+		} else return false;
 	};
+
+	//닉네임 Validation
+	const nickName_validator = text => {
+		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
+		var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{1,15}$/;
+		if (regExp.test(text) && checkDuplicateNickname(text)) {
+			setConfirmed(true);
+		} else {
+			setConfirmed(false);
+		}
+	};
+
 	//반려동물 등록 from 모달창 아직 미구현
 	const goAssignPet = () => {
 		console.log();
 	};
+
 	return (
 		<KeyboardAvoidingView keyboardVerticalOffset={400}>
 			<View style={[login_style.wrp_main, {flex: 1}]}>
@@ -35,9 +55,9 @@ export default AssignUserProfileImage = props => {
 				</View>
 
 				{/* (M)ProfileImageSelect */}
-				<View style={[temp_style.profileImageSelect, assignUserProfileImage_style.profileImageSelect]}>
+				{/* <View style={[temp_style.profileImageSelect, assignUserProfileImage_style.profileImageSelect]}>
 					<ProfileImageSelect onClick={selectPhoto} />
-				</View>
+				</View> */}
 
 				{/* (M)Input30 */}
 				<View style={[temp_style.input30_assignUserProfileImage, assignUserProfileImage_style.input30]}>
@@ -48,13 +68,19 @@ export default AssignUserProfileImage = props => {
 						width={654}
 						confirm_msg={'사용 가능한 닉네임입니다.'}
 						alert_msg={'사용 불가능한 닉네임입니다.'}
-						onChange={text => onChangeNickName(text)}
+						placeholder={'닉네임을 입력해주세요.'}
+						onChange={text => nickName_validator(text)}
+						confirm={confirmed}
 					/>
 				</View>
 
 				{/* (A)Btn_w654 */}
 				<View style={[btn_style.btn_w654, assignUserProfileImage_style.btn_w654]}>
-					<AniButton btnTitle={'확인'} titleFontStyle={'32'} btnTheme={'shadow'} btnLayout={btn_w522} onPress={moveToAssignPetProfileImage} />
+					{confirmed ? (
+						<AniButton btnTitle={'확인'} titleFontStyle={'32'} btnTheme={'shadow'} btnLayout={btn_w522} onPress={moveToAssignPetProfileImage} />
+					) : (
+						<AniButton btnTitle={'확인'} titleFontStyle={'32'} disable={true} btnLayout={btn_w522} />
+					)}
 				</View>
 			</View>
 		</KeyboardAvoidingView>
