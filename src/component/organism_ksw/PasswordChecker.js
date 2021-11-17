@@ -6,11 +6,19 @@ import {passwordChecker} from './style_organism';
 export default PasswordChecker = props => {
 	//resetPwd가 true일 경우 pwdInput이 3개 출현 (현재암호 / 바꿀 암호 / 바꿀 암호 확인)
 	const [resetPwd, setResetPwd] = React.useState(props.isResetPwdMode);
+	const [isClear, setIsClear] = React.useState(false);
 
 	//ResetPwd관련 처리 필요
 	const onChangePwd = pwd => {
 		console.log('PRW' + pwd);
 		setPwdValid(true);
+	};
+	const onPressClear = () => {
+		setIsClear(true);
+		props.onPressClear();
+	};
+	const passwordValidator = pwd => {
+		props.passwordValidator(pwd);
 	};
 
 	return !resetPwd ? (
@@ -24,9 +32,9 @@ export default PasswordChecker = props => {
 					information={'최소 8자 이상, 영문과 숫자만 입력 가능합니다.'}
 					alert_msg={'비밀번호 작성 양식에 맞지 않습니다.'}
 					confirm_msg={'비밀번호 작성 양식과 일치합니다!'}
-					onChange={pwd => props.passwordValidator(pwd)}
+					onChange={pwd => passwordValidator(pwd)}
 					confirm={props.pwdValid}
-					onClear={() => props.onPressClear()}
+					onClear={onPressClear}
 				/>
 			</View>
 			<View style={[passwordChecker.passwordInput_doubleCheck]}>
@@ -37,6 +45,7 @@ export default PasswordChecker = props => {
 					confirm_msg={'비밀번호가 서로 일치합니다!'}
 					onChange={pwd => props.passwordChecker(pwd)}
 					confirm={props.pwdCheck}
+					clear={isClear}
 				/>
 			</View>
 		</View>

@@ -233,26 +233,15 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#DBD3EB',
 	},
-	habitationForm: {
-		width: 654 * DP,
-		height: 366 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#A07A7A',
-	},
 	textMsg_AssignUserProfileImage: {
-		width: 512 * DP,
-		height: 38 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DBD3EB',
 	},
 	input30_assignUserProfileImage: {
 		width: 654 * DP,
 		height: 204 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 	inputForm_assignShelterAddress: {
 		width: 654 * DP,
@@ -1250,6 +1239,22 @@ export const shelterCodeCheck_style = StyleSheet.create({
 export const assignUserHabitation_style = StyleSheet.create({
 	btn_w654: {
 		marginTop: 150 * DP,
+	},
+	textContainer: {
+		width: 654 * DP,
+	},
+	info_text: {
+		width: 654 * DP,
+		marginTop: 12 * DP,
+		color: GRAY10,
+		alignSelf: 'flex-start',
+	},
+	habitationForm: {
+		width: 654 * DP,
+		height: 366 * DP,
+		marginTop: 80 * DP,
+		justifyContent: 'space-between',
+		alignItems: 'center',
 	},
 });
 

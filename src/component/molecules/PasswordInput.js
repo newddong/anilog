@@ -20,7 +20,8 @@ import {Cross52, Eye52_APRI10, Eye52_GRAY20} from '../atom/icon';
  *onShowPassword: 'Password 보이기 설정 Callback',
  *description : 'String / title 우측 비밀번호 설정 포맷에 대한 설명'
  *width : 'number / input의 크기 default = 654'
- *validator : void
+ *validator : void,
+ *clear : 'boolean / 상단 비밀번호 Input에서 x마크 클릭 시 하단 비밀번화 확인란도 Clear시키는 조건 T/F',
  * }} props
  */
 export default PasswordInput = props => {
@@ -28,6 +29,11 @@ export default PasswordInput = props => {
 	const [confirm, setConfirm] = React.useState(props.confirm); // 암호 validation state
 	const [pwdSecureState, setPwdSecureState] = React.useState(true); // 암호 별표화 state
 	const inputRef = React.useRef();
+
+	React.useEffect(() => {
+		console.log('clear' + props.clear);
+		inputRef.current.clear();
+	}, [props.clear]);
 
 	//Input 하단 메시지 출력 분기
 	const getMsg = () => {
@@ -145,7 +151,7 @@ PasswordInput.defaultProps = {
 	title: 'title', //비밀번호란 상단 타이틀
 	placeholder: 'placeholder', //placeholder
 	information: 'information', // confirm state가 'normal'일 경우 출력될 하단 메시지
-	value: 'value', // pwd input 값
+	value: null, // pwd input 값
 	alert_msg: 'alert_msg', // confrim state가 false일 경우 출력될 하단 메시지
 	confirm: false,
 	confirm_msg: 'confirm_msg', // confirm state가 true일 경우 출력될 하단 메시지
@@ -154,5 +160,6 @@ PasswordInput.defaultProps = {
 	onShowPassword: e => console.log(e), // 눈마크를 Press하여 별표(*)화된 pwd값을 보이게 할 경우 수행되는 함수
 	description: null, // 암호 포맷에 관한 설명, title 우측에 붙는다
 	width: 654,
+	clear: false,
 	validator: e => console.log(e),
 };

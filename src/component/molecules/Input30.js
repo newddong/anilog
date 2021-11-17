@@ -24,7 +24,7 @@ import {TouchableOpacity} from 'react-native';
  */
 export default Input30 = props => {
 	const [input, setInput] = React.useState('');
-	const [confirm, setConfirm] = React.useState();
+	const [confirm, setConfirm] = React.useState(false);
 	const inputRef = React.useRef();
 
 	const onChange = text => {
@@ -36,7 +36,7 @@ export default Input30 = props => {
 	//Validator 조건확인이 안되었기에 테스트용으로 입력된 텍스트가
 	// 10자 이상일 때 confirmed가 되도록 작성
 	const validator = text => {
-		text.length < 10 ? setConfirm(false) : setConfirm(true);
+		// text.length < 10 ? setConfirm(false) : setConfirm(true);
 	};
 
 	const getMsg = () => {
@@ -97,6 +97,7 @@ export default Input30 = props => {
 							{
 								//TextInput과 바깥 View와의 거리 24px, lineHeight는 Text View크기와 일치
 								paddingLeft: 16 * DP,
+								textAlignVertical: 'bottom',
 								color: confirm ? BLACK : RED10,
 								width: props.width * DP,
 								// textAlign: 'center',
@@ -104,7 +105,7 @@ export default Input30 = props => {
 						]}
 					/>
 					{props.clearMark ? (
-						<TouchableOpacity onPress={onClear} style={{marginLeft: 120 * DP, paddingBottom: 14 * DP}}>
+						<TouchableOpacity onPress={onClear} style={{position: 'absolute', right: 0}}>
 							<Cross52 />
 						</TouchableOpacity>
 					) : null}
@@ -123,7 +124,7 @@ Input30.defaultProps = {
 	value: 'value',
 	alert_msg: 'alert_msg',
 	confirm_msg: 'confirm_msg',
-	clearMark: false,
+	clearMark: true,
 	onClear: e => console.log(e),
 	onChange: e => console.log(e),
 	width: 300, // TextInput 너비

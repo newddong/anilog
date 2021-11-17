@@ -21,10 +21,9 @@ export default UserPasswordCheck = props => {
 		user_password: pwd,
 	});
 
+	// 확인 버튼 클릭
 	const goToNextStep = () => {
 		setData({...data, user_password: pwd});
-		console.log(data);
-
 		props.navigation.push('AssignUserHabitation', data);
 	};
 
@@ -46,6 +45,7 @@ export default UserPasswordCheck = props => {
 		pwd == pwd_double && pwdValid ? setPwdCheck(true) : setPwdCheck(false);
 	};
 
+	//지우기버튼
 	const onPressClear = () => {
 		setPwdCheck('');
 	};
