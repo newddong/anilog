@@ -19,14 +19,16 @@ export default AidRequestList = props => {
 
 	return (
 		<View style={[aidRequestList.container]}>
-			<TouchableOpacity onPress={moveToAssignProtectAnimalImage}>
-				<View style={[aidRequestList.addProtectedPetContainer]}>
-					<View style={[aidRequestList.addProtectedPet_insideContainer]}>
-						<AddItem64 onPress={moveToAssignProtectAnimalImage} />
+			{props.nvName != 'ProtectApplyList' ? (
+				<TouchableOpacity onPress={moveToAssignProtectAnimalImage}>
+					<View style={[aidRequestList.addProtectedPetContainer]}>
+						<View style={[aidRequestList.addProtectedPet_insideContainer]}>
+							<AddItem64 onPress={moveToAssignProtectAnimalImage} />
+						</View>
+						<Text style={[txt.noto30, aidRequestList.addProtectedPetText]}>보호중인 동물 추가하기</Text>
 					</View>
-					<Text style={[txt.noto30, aidRequestList.addProtectedPetText]}>보호중인 동물 추가하기</Text>
-				</View>
-			</TouchableOpacity>
+				</TouchableOpacity>
+			) : null}
 			<FlatList data={dummy_AidRequestList} renderItem={({item, index}) => renderItem(item, index)} />
 		</View>
 	);

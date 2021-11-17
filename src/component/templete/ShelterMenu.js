@@ -55,11 +55,11 @@ export default ShelterMenu = props => {
 		switch (item_menu) {
 			// 보호중인 동물
 			case PROTECTED_ANIMAL:
-				navigation.push('ShelterProtectAnimalList');
+				navigation.navigate('ShelterProtectAnimalList', {otherParam: 'ShelterProtectAnimalList'});
 				break;
 			// 신청서 조회
 			case INQUERY_APPLICATION:
-				navigation.push('ProtectApplyList');
+				navigation.navigate('ProtectApplyList', {otherParam: 'ProtectApplyList'});
 				break;
 			//나의 보호소 출신 동물
 			case FROM_MY_SHELTER:

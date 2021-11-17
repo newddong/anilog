@@ -8,12 +8,12 @@ import AidRequestList from '../organism_ksw/AidRequestList';
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default AidRequestManage = props => {
+	console.log('props.otherParam=>' + props.route.params.otherParam);
 	return (
 		<View style={login_style.wrp_main}>
-			{/* <FlatList> */}
 			<View style={[temp_style.aidRequestList_aidRequestManage, baseInfo_style.list]}>
 				{/* (O)AnimalProtectDetails */}
-				<AidRequestList></AidRequestList>
+				<AidRequestList nvName={props.route.params.otherParam}></AidRequestList>
 			</View>
 			{/* </FlatList> */}
 		</View>
