@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Text, View, TouchableWithoutFeedback} from 'react-native';
+import Input24 from '../molecules/Input24';
 import {login_style, temp_style, btn_style, loginTemplete_style} from './style_templete';
 
 export default LoginTemplete = props => {
@@ -24,7 +25,7 @@ export default LoginTemplete = props => {
 
 			{/* LoginForm */}
 			<View style={temp_style.loginForm}>
-				<Text>LoginForm</Text>
+				<Input24 placeholder={'아이디를 작성해주세요'} width={520} />
 			</View>
 
 			{/* Btn_w522 */}

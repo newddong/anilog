@@ -14,8 +14,9 @@ import {controllableAccountList} from './style_organism';
  * }} props
  */
 export default ControllableAccountList = props => {
+	console.log(props.show);
 	const renderItem = (item, index) => {
-		return <ControllableAccount data={item} />;
+		return <ControllableAccount data={item} showCrossMark={props.showCrossMark} showCheckBox={props.showCheckBox} />;
 	};
 
 	return (
@@ -32,4 +33,6 @@ export default ControllableAccountList = props => {
 
 ControllableAccountList.defaultProps = {
 	title: null,
+	showCrossMark: false,
+	showCheckBox: false,
 };

@@ -197,7 +197,6 @@ export const temp_style = StyleSheet.create({
 		height: 346 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#707070',
 	},
 	stageBar: {
 		width: 654 * DP,

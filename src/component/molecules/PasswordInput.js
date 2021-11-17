@@ -84,6 +84,8 @@ export default PasswordInput = props => {
 					{props.title != '' && props.title != 'title' && <Text style={[txt.noto24, {color: APRI10, lineHeight: 40 * DP}]}> {props.title} </Text>}
 					{/* Description 아래는 height 90으로 고정 */}
 					{/* 하단테두리는 2px, APRI설정 */}
+
+					{/* Title 우측 description. props에서 받아오는 경우 출력, or null */}
 					{props.description != null ? <Text style={[txt.noto24, {color: GRAY20, position: 'absolute', right: 0}]}>*{props.description}</Text> : null}
 				</View>
 				<View
@@ -108,7 +110,6 @@ export default PasswordInput = props => {
 								minWidth: 190 * DP,
 								width: props.width * DP,
 								//placeholder 상태일때 글꼴의 영향인지 placeholde'r' 마지막글자가 짤리는 현상 발생
-								//우선 width를 가변적으로 주는 방식으로 해결
 							},
 						]}
 					/>
