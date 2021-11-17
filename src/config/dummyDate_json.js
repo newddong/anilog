@@ -414,7 +414,7 @@ export const dummy_AnimalNeedHelpList = [
 		location: '테트리스',
 		saved_location: '세이브포인트',
 		thumbnailData: {
-			img_uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU',
+			img_uri: 'http://pds.joins.com/news/component/htmlphoto_mmdata/201108/09/htm_2011080914431340004010-002.JPG',
 			gender: 'female',
 			status: 'onNegotiation', // protected, missing, reported, onNegotiation, adoption_available
 		},
