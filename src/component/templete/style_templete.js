@@ -893,17 +893,10 @@ export const temp_style = StyleSheet.create({
 	},
 	aidRequestList_aidRequestManage: {
 		width: 654 * DP,
-		height: 1384 * DP,
+		// height: 1384 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#E1E8FF',
-	},
-	aidRequestList_aidRequestManage: {
-		width: 654 * DP,
-		height: 1384 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#E1E8FF',
+		backgroundColor: '#FFF',
 	},
 	filterbutton_view: {
 		flexDirection: 'row',
