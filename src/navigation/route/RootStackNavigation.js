@@ -6,7 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import LoginTemplete from 'Templete/LoginTemplete';
 
 import AgreementCheck from 'Templete/AgreementCheck';
-import UserAssignMobile from 'Templete/UserAssignMobile';
+import UserAssignMobile from 'Root/component/templete/UserVerification';
 import UserAssignEmail from 'Templete/UserAssignEmail';
 import UserPasswordCheck from 'Templete/UserPasswordCheck';
 import AssignUserHabitation from 'Templete/AssignUserHabitation';
@@ -44,6 +44,7 @@ import FeedListForHashTag from 'Root/component/templete/FeedListForHashTag';
 
 import SimpleHeader from 'Navigation/header/SimpleHeader';
 import SendHeader from '../header/SendHeader';
+import UserVerification from 'Root/component/templete/UserVerification';
 
 const RootStack = createStackNavigator();
 
@@ -57,7 +58,7 @@ export default RootStackNavigation = () => {
 					<RootStack.Screen name="Search" component={SearchTabNavigation} />
 
 					<RootStack.Screen name="AgreementCheck" component={AgreementCheck} />
-					<RootStack.Screen name="UserAssignMobile" component={UserAssignMobile} />
+					<RootStack.Screen name="UserVerification" component={UserVerification} />
 					<RootStack.Screen name="UserAssignEmail" component={UserAssignEmail} />
 					<RootStack.Screen name="UserPasswordCheck" component={UserPasswordCheck} />
 					<RootStack.Screen name="AssignUserHabitation" component={AssignUserHabitation} />

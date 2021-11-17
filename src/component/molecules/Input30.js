@@ -99,7 +99,7 @@ export default Input30 = props => {
 								paddingLeft: 16 * DP,
 								color: confirm ? BLACK : RED10,
 								width: props.width * DP,
-								textAlign: 'center',
+								// textAlign: 'center',
 							},
 						]}
 					/>

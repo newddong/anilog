@@ -28,9 +28,7 @@ export default AgreementCheck = props => {
 
 	React.useEffect(() => {
 		//전체 동의 버튼을 누른 상태에서 마케팅 수신을 거부설정 한 경우
-		if (acceptAllState && !acceptanceState.is_marketting_Info) {
-			alert('마케팅 정보 수신 동의가 미선택 되었습니다.');
-		} else if (
+		if (
 			acceptanceState.is_donation_info &&
 			acceptanceState.is_location_service_info &&
 			acceptanceState.is_over_fourteen &&
@@ -47,7 +45,7 @@ export default AgreementCheck = props => {
 		const userAssignInfo = {
 			is_marketting_Info: acceptanceState.is_marketting_Info,
 		};
-		props.navigation.push('UserAssignMobile', userAssignInfo);
+		props.navigation.push('UserVerification', userAssignInfo);
 	};
 
 	const onPressAceeptAllBtn = state => {

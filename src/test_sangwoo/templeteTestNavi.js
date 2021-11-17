@@ -8,7 +8,7 @@ import FindAccount from 'Root/component/templete/FindAccount';
 import PasswordReset from 'Root/component/templete/PasswordReset';
 import SuggestAssign from 'Root/component/templete/SuggestAssign';
 import AgreementCheck from 'Root/component/templete/AgreementCheck';
-import UserAssignMobile from 'Root/component/templete/UserAssignMobile';
+import UserAssignMobile from 'Root/component/templete/UserVerification';
 import UserAssignEmail from 'Root/component/templete/UserAssignEmail';
 import UserPasswordCheck from 'Root/component/templete/UserPasswordCheck';
 import ShelterCodeCheck from 'Root/component/templete/ShelterCodeCheck';

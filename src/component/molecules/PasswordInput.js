@@ -14,6 +14,7 @@ import {Cross52, Eye52_APRI10, Eye52_GRAY20} from '../atom/icon';
  *value: string,
  *alert_msg: 'string / confrim state가 false일 경우 출력될 하단 메시지',
  *confirm_msg: 'string / confirm state가 true일 경우 출력될 하단 메시지',
+ *confirm : boolean,
  *onChange: 'Inut Value Change Callback',
  *onClear: '지우기 버튼(X) 클릭 Callback',
  *onShowPassword: 'Password 보이기 설정 Callback',
@@ -24,54 +25,63 @@ import {Cross52, Eye52_APRI10, Eye52_GRAY20} from '../atom/icon';
  */
 export default PasswordInput = props => {
 	const [input, setInput] = React.useState(''); // 암호 input text state
-	const [confirm, setConfirm] = React.useState(false); // 암호 validation state
+	const [confirm, setConfirm] = React.useState(props.confirm); // 암호 validation state
 	const [pwdSecureState, setPwdSecureState] = React.useState(true); // 암호 별표화 state
 	const inputRef = React.useRef();
 
+	//Input 하단 메시지 출력 분기
 	const getMsg = () => {
 		if (input.length == 0) {
 			return <Text style={(txt.noto22, {color: GRAY20, lineHeight: 36 * DP})}>{props.information}</Text>;
-		} else if (confirm == true) {
+		} else if (props.confirm == true) {
 			return <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>;
-		} else if (confirm == false) {
+		} else if (props.confirm == false) {
 			return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>;
-		} else return false;
+		} else return null;
 	};
+
+	//Input 언더라인 색깔 분기
 	const getBorderColor = () => {
 		if (input.length == 0) {
 			return GRAY30;
-		} else if (confirm == false) {
+		} else if (props.confirm == false) {
 			return APRI10;
-		} else if (confirm == true) {
+		} else if (props.confirm == true) {
 			return GREEN;
-		} else return false;
+		} else return null;
 	};
 
+	//Input Value Change Callback
 	const onChange = text => {
 		setInput(text);
 		props.onChange(text);
-		validator(text);
+		// validator(text);
 	};
 
+	//Validator인데 onChange가 있는데 굳이 있어야 하는가 의문?
 	const validator = text => {
 		//txt.length > 10 ? setConfirm(true) : setConfirm(false);
 		props.validator(text);
 	};
 
+	//지우기
 	const onClear = () => {
 		inputRef.current.clear();
 		props.onClear();
-		setConfirm();
+		setConfirm(false);
 		setInput('');
 	};
 
+	//fouce 처리 안되었을 때
 	const blur = () => {
 		inputRef.current.blur();
 	};
+	//focus 아닐 때
 	const focus = () => {
 		inputRef.current.focus();
 	};
 
+	//비밀번호 보이기 설정
 	const onShowPassword = () => {
 		setPwdSecureState(!pwdSecureState);
 		props.onShowPassword();
@@ -137,6 +147,7 @@ PasswordInput.defaultProps = {
 	information: 'information', // confirm state가 'normal'일 경우 출력될 하단 메시지
 	value: 'value', // pwd input 값
 	alert_msg: 'alert_msg', // confrim state가 false일 경우 출력될 하단 메시지
+	confirm: false,
 	confirm_msg: 'confirm_msg', // confirm state가 true일 경우 출력될 하단 메시지
 	onChange: e => console.log('Onchange' + e), // pwd input 값이 변할 때마다 수행되는 함수
 	onClear: e => console.log(e), // X마크로 input값을 clear할 때마다 수행되는 함수

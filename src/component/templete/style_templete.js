@@ -177,10 +177,8 @@ export const btn_style = StyleSheet.create({
 export const temp_style = StyleSheet.create({
 	passwordChecker: {
 		width: 654 * DP,
-		height: 406 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#A07A7A',
 	},
 	without_login: {
 		width: 750 * DP,
@@ -210,14 +208,11 @@ export const temp_style = StyleSheet.create({
 		height: 214 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#E09595',
 	},
 	phoneNumVerification: {
 		width: 654 * DP,
-		height: 402 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#A07A7A',
 	},
 	textMsg: {
 		width: 654 * DP,
@@ -229,8 +224,6 @@ export const temp_style = StyleSheet.create({
 	input30: {
 		width: 654 * DP,
 		height: 82 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
 		// backgroundColor: '#DEB5B5',
 	},
 	textMsg_AssignUserHabitation: {
@@ -320,10 +313,8 @@ export const temp_style = StyleSheet.create({
 	},
 	passwordChecker: {
 		width: 654 * DP,
-		height: 406 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 	profileImageSelect: {
 		width: 294 * DP,
@@ -546,7 +537,6 @@ export const temp_style = StyleSheet.create({
 		height: 122 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#D8B5DE',
 	},
 	feedContent: {
 		width: 654 * DP,
@@ -1190,6 +1180,10 @@ export const userAssign = StyleSheet.create({
 	},
 	btn_w654: {
 		marginTop: 110 * DP,
+	},
+	textMessageInside: {
+		width: 414 * DP,
+		textAlign: 'center',
 	},
 });
 
