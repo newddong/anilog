@@ -1,59 +1,116 @@
-import React, {useState} from 'react';
-import {Text, View, TouchableWithoutFeedback} from 'react-native';
+import React from 'react';
+import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import {GRAY10, GRAY20} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
+import {btn_w522} from '../atom/btn/btn_style';
+import {Kakao_Icon, Naver_Icon, NextMark, Instagram_Icon, Facebook_Icon} from '../atom/icon';
+import AniButton from '../molecules/AniButton';
+import CheckBox from '../molecules/CheckBox';
 import Input24 from '../molecules/Input24';
-import {login_style, temp_style, btn_style, loginTemplete_style} from './style_templete';
+import PasswordInput from '../molecules/PasswordInput';
+import {login_style, btn_style, loginTemplete_style} from './style_templete';
 
 export default LoginTemplete = props => {
 	const moveToMainTab = () => {
 		props.navigation.push('MainTab');
 	};
-	const moveToLogin = () => {
+	const moveToAssign = () => {
 		props.navigation.push('AgreementCheck');
 	};
 	const moveToShelterCodeCheck = () => {
 		props.navigation.push('ShelterCodeCheck');
 	};
+	//자동로그인 박스 클릭
+	const onCheckAutoLogin = state => {
+		console.log(state);
+	};
+	//아이디 저장 박스 클릭
+	const onCheckSaveId = state => {
+		console.log(state);
+	};
+	//Password Text Input Validator
+	const passwordValidator = text => {
+		console.log('Validator' + text);
+	};
+	//Id Text Input Validator
+	const idValidator = text => {
+		console.log('Id Validator ' + text);
+	};
 
 	return (
-		<View style={login_style.wrp_main}>
-			{/* confirm without login */}
-			<TouchableWithoutFeedback onPress={moveToMainTab}>
-				<View style={temp_style.without_login}>
-					<Text>로그인 없이 둘러보기</Text>
+		<ScrollView>
+			<View style={[login_style.wrp_main, {flex: 1}]}>
+				{/* confirm without login */}
+				<View style={loginTemplete_style.without_login}>
+					<View style={[loginTemplete_style.without_login_text]}>
+						<Text style={[txt.noto24, {color: GRAY10}]}>로그인 없이 둘러보기</Text>
+						<View style={[loginTemplete_style.nextBtnView]}>
+							<NextMark onPress={moveToMainTab} />
+						</View>
+					</View>
 				</View>
-			</TouchableWithoutFeedback>
 
-			{/* LoginForm */}
-			<View style={temp_style.loginForm}>
-				<Input24 placeholder={'아이디를 작성해주세요'} width={520} />
-			</View>
+				{/* LoginForm */}
+				<View style={[loginTemplete_style.loginForm]}>
+					<View style={[loginTemplete_style.idInput]}>
+						<Input24 placeholder={'아이디를 작성해주세요'} width={520} onChange={text => idValidator(text)} />
+					</View>
+					<View style={[loginTemplete_style.pwdInput]}>
+						<PasswordInput placeholder={'비밀번호를 작성해주세요'} width={520} validator={text => passwordValidator(text)} />
+					</View>
+					<View style={[loginTemplete_style.checkBox_loginFormContainer]}>
+						<View style={[loginTemplete_style.checkBox_loginForm]}>
+							<View style={[loginTemplete_style.checkBoxContainer]}>
+								<CheckBox value={'자동 로그인'} onCheck={state => onCheckAutoLogin(state)} />
+							</View>
+							<View style={[loginTemplete_style.checkBoxContainer]}>
+								<CheckBox value={'아이디저장'} onCheck={state => onCheckSaveId(state)} />
+							</View>
+						</View>
+					</View>
+				</View>
 
-			{/* Btn_w522 */}
-			<TouchableWithoutFeedback onPress={moveToMainTab}>
+				{/* Btn_w522 */}
 				<View style={[btn_style.btn_w522, loginTemplete_style.btn_w522_login]}>
-					<Text>Btn_w522(로그인)</Text>
+					<AniButton btnLayout={btn_w522} btnTitle={'로그인'} btnTheme={'shadow'} titleFontStyle={32} onPress={moveToMainTab} />
 				</View>
-			</TouchableWithoutFeedback>
 
-			{/* Btn_w522 */}
-			<TouchableWithoutFeedback onPress={moveToLogin}>
+				{/* Btn_w522 */}
 				<View style={[btn_style.btn_w522, loginTemplete_style.btn_w522_assign]}>
-					<Text>Btn_w522(회원가입)</Text>
+					<AniButton btnLayout={btn_w522} btnTitle={'회원가입'} btnStyle={'border'} btnTheme={'shadow'} titleFontStyle={32} onPress={moveToAssign} />
 				</View>
-			</TouchableWithoutFeedback>
 
-			{/* basic info */}
-			<View style={[login_style.basic_info, loginTemplete_style.basic_info]}>
-				<TouchableWithoutFeedback onPress={moveToShelterCodeCheck}>
-					<Text>보호소 등록</Text>
-				</TouchableWithoutFeedback>
-				<Text> | 내 계정 찾기 | 비밀번호 재설정</Text>
-			</View>
+				{/* basic info */}
+				<View style={[login_style.basic_info, loginTemplete_style.basic_info]}>
+					<TouchableOpacity onPress={moveToShelterCodeCheck}>
+						<Text style={[txt.noto24, {color: GRAY20}]}>보호소 등록</Text>
+					</TouchableOpacity>
+					<Text> | </Text>
+					<TouchableOpacity onPress={moveToShelterCodeCheck}>
+						<Text style={[txt.noto24, {color: GRAY20}]}> 내 계정 찾기 </Text>
+					</TouchableOpacity>
+					<Text> | </Text>
+					<TouchableOpacity onPress={moveToShelterCodeCheck}>
+						<Text style={[txt.noto24, {color: GRAY20}]}>비밀번호 재설정</Text>
+					</TouchableOpacity>
+				</View>
 
-			{/* social login */}
-			<View style={[login_style.social_info, loginTemplete_style.social_info]}>
-				<Text>소셜아이디로 로그인</Text>
+				{/* social login */}
+				<View style={[login_style.social_info, loginTemplete_style.social_info]}>
+					<View style={[loginTemplete_style.socialLogin_icon]}>
+						<Naver_Icon />
+					</View>
+					<View style={[loginTemplete_style.socialLogin_icon]}>
+						<Kakao_Icon />
+					</View>
+					<View style={[loginTemplete_style.socialLogin_icon]}>
+						<Instagram_Icon />
+					</View>
+					<View style={[loginTemplete_style.socialLogin_icon]}>
+						<Facebook_Icon />
+					</View>
+				</View>
 			</View>
-		</View>
+		</ScrollView>
 	);
 };

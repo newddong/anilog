@@ -460,3 +460,20 @@ export const dummy_familyAccountList = [
 		},
 	},
 ];
+
+export const applyComanionCheckList = [
+	'입양 혹은 임시보호를 하려는 당사자는 성인입니다',
+	'주거지 근처에 접종을 위해 주기적으로 갈 수 있는 동물병원이 있습니다',
+	'현재 함께 사는 동거인들에게 입양 혹은 임시보호의 동의를 받았거나 동거인이 없습니다.',
+	'입양 혹은 임시보호를 하려는 동물에 대한 배변 훈련 지식이 있습니다.',
+	'입양 혹은 임시보호를 하려는 동물 청결(손톱 손질, 목욕, 항문낭, 귀청결 등)에 대한 지식이 있습니다.',
+];
+
+export const userAssign_agreementCheckList = [
+	{text: '본인은 만 14세 이상입니다. (필수)', detail: false},
+	{text: '서비스 이용약관 동의 (필수)', detail: true},
+	{text: '개인정보 수집 이용약관 동의 (필수)', detail: true},
+	{text: '위치기반 서비스 이용약관 동의 (필수)', detail: true},
+	{text: '기부내역 이용약관 동의(필수)', detail: true},
+	{text: '이벤트 및 마케팅 정보 수신 동의 동의(선택)', detail: false},
+];

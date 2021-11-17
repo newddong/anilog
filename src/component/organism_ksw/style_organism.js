@@ -716,6 +716,7 @@ export const assignCheckListItem = StyleSheet.create({
 	container: {
 		width: 654 * DP,
 		height: 72 * DP,
+		alignItems: 'center',
 		flexDirection: 'row',
 	},
 	check50: {
@@ -726,6 +727,11 @@ export const assignCheckListItem = StyleSheet.create({
 		width: 592 * DP,
 		height: 72 * DP,
 		marginLeft: 12 * DP,
+		justifyContent: 'center',
+	},
+	detailText: {
+		position: 'absolute',
+		right: 0,
 	},
 });
 

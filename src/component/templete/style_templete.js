@@ -108,14 +108,12 @@ export const login_style = StyleSheet.create({
 		height: 40 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#A07A7A',
 	},
 	social_info: {
 		width: 410 * DP,
 		height: 130 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 });
 
@@ -138,7 +136,6 @@ export const btn_style = StyleSheet.create({
 		height: 92 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 	queryBtn: {
 		alignItems: 'flex-end',
@@ -192,29 +189,21 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#7E94D0',
 	},
-	loginForm: {
-		width: 522 * DP,
-		height: 346 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
+
 	stageBar: {
 		width: 654 * DP,
 		height: 32 * DP,
 	},
 	agreementCheckList: {
 		width: 654 * DP,
-		height: 542 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#A07A7A',
 	},
 	tabSelectBorder_Type1: {
 		width: 654 * DP,
 		height: 88 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 	textMassage: {
 		width: 654 * DP,
@@ -1118,11 +1107,44 @@ export const loginTemplete_style = StyleSheet.create({
 		backgroundColor: '#A07A7A',
 	},
 	without_login: {
-		width: 750 * DP,
+		width: 654 * DP,
 		height: 316 * DP,
+		marginTop: 80 * DP,
+	},
+	without_login_text: {
+		width: 278 * DP,
+		height: 50 * DP,
+		alignSelf: 'flex-end',
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#7E94D0',
+		flexDirection: 'row',
+	},
+	nextBtnView: {
+		marginLeft: 20 * DP,
+	},
+	loginForm: {
+		width: 522 * DP,
+		height: 346 * DP,
+	},
+	idInput: {
+		marginBottom: 30 * DP,
+	},
+	pwdInput: {},
+	checkBox_loginFormContainer: {
+		width: 522 * DP,
+		height: 89 * DP,
+		justifyContent: 'center',
+		alignItems: 'center',
+		alignSelf: 'center',
+	},
+	checkBox_loginForm: {
+		width: 432 * DP,
+		height: 50 * DP,
+		flexDirection: 'row',
+	},
+	checkBoxContainer: {
+		marginTop: 10 * DP,
+		marginHorizontal: 20 * DP,
 	},
 	btn_w522_login: {
 		marginTop: 62 * DP,
@@ -1134,7 +1156,13 @@ export const loginTemplete_style = StyleSheet.create({
 		marginTop: 32 * DP,
 	},
 	social_info: {
-		marginTop: 38 * DP,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		marginVertical: 38 * DP,
+	},
+	socialLogin_icon: {
+		width: 80 * DP,
+		height: 80 * DP,
 	},
 });
 
@@ -1153,6 +1181,13 @@ export const agreementCheck_style = StyleSheet.create({
 	},
 	btn_w654: {
 		marginTop: 110 * DP,
+		marginBottom: 50 * DP,
+	},
+	horizontalSepartor: {
+		width: 654 * DP,
+		height: 2 * DP,
+		marginVertical: 15 * DP,
+		backgroundColor: GRAY10,
 	},
 });
 

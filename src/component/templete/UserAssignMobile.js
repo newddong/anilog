@@ -6,6 +6,7 @@ import {login_style, btn_style, temp_style, progressbar_style, userAssign} from 
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default UserAssignMobile = props => {
+	console.log(props);
 	const moveToUserAssignEmail = () => {
 		props.navigation.push('UserAssignEmail');
 	};

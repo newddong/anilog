@@ -19,7 +19,8 @@ import {Cross46} from '../atom/icon';
  *showmsg : 'boolean / input 하단 alert_msg',
  *style:'StyleSheet',
  *defaultValue : string
- *showCrossMark : 'boolean / INPUT 오른쪽 지우기 마크(Cross) 출력여부, default = true'
+ *showCrossMark : 'boolean / INPUT 오른쪽 지우기 마크(Cross) 출력여부, default = true',
+ *onChange : void
  * }} props
  */
 export default Input24 = props => {
@@ -30,7 +31,7 @@ export default Input24 = props => {
 	//Validator 조건확인이 안되었기에 테스트용으로 입력된 텍스트가
 	// 10자 이상일 때 confirmed가 되도록 작성
 	const validator = text => {
-		text.length > 10 ? setConfirm(true) : setConfirm(false);
+		// text.length > 10 ? setConfirm(true) : setConfirm(false);
 	};
 
 	const setBorderColor = () => {
@@ -41,7 +42,7 @@ export default Input24 = props => {
 
 	const onChange = text => {
 		setInput(text);
-		//props.onChange(text);
+		props.onChange(text);
 		validator(text);
 	};
 
@@ -133,6 +134,7 @@ Input24.defaultProps = {
 	alert_msg: 'alert_msg',
 	confirm_msg: 'confirm_msg',
 	info: null, //
-	defaultValue: null,
-	showCrossMark: true,
+	defaultValue: null, // 기존 아이디 등 DefaultValue가 필요한 경우에 대한 처리
+	showCrossMark: true, //Input 최우측 X마크(지우기마크) 출력 여부
+	onChange: e => console.log(e),
 };

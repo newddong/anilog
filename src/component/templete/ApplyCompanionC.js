@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View} from 'react-native';
 import {APRI10, GRAY10} from 'Root/config/color';
+import {applyComanionCheckList} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
 import {btn_w176} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
@@ -45,7 +46,7 @@ export default ApplyCompanionD = props => {
 			</View>
 			{/* (O)AssignCheckList */}
 			<View style={[temp_style.assignCheckList, applyCompanionC.assignCheckList]}>
-				<AssignCheckList onCheck={(item, index, state) => getCheckList(item, index, state)} />
+				<AssignCheckList onCheck={(item, index, state) => getCheckList(item, index, state)} data={applyComanionCheckList} />
 			</View>
 			{/* (A)btn_w176 */}
 			<View style={[applyCompanionC.btnContainer]}>
