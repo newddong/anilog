@@ -3,7 +3,7 @@ import {txt} from 'Root/config/textstyle';
 import {Text, View, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
-import {APRI10} from 'Root/config/color';
+import {APRI10, GRAY40} from 'Root/config/color';
 
 /**
  *
@@ -35,7 +35,7 @@ export default DropdownSelect = props => {
 			<View
 				style={{
 					width: props.width * DP,
-					borderBottomColor: APRI10,
+					borderBottomColor: selectedItem == props.items[0] ? GRAY40 : APRI10,
 					borderBottomWidth: 2 * DP,
 					flexDirection: 'row',
 					alignItems: 'center',
@@ -49,13 +49,13 @@ export default DropdownSelect = props => {
 							paddingVertical: 16 * DP, // Value와 최상위 View와의 paddingVertical 16px
 							// textAlign: 'center',
 							marginRight: 40 * DP,
+							color: selectedItem == props.items[0] ? GRAY40 : null,
 						},
 					]}>
 					{selectedItem}
 				</Text>
 
-				<TouchableOpacity
-					onPress={() => setBtnStatus(!btnStatus)}
+				<View
 					style={{
 						height: 82 * DP,
 						width: 48 * DP,
@@ -65,8 +65,8 @@ export default DropdownSelect = props => {
 						right: 2 * DP,
 					}}>
 					{/* 버튼staus가 true일 경우 위화살표 방향, false일 경우 아래 화살표 방향 */}
-					{btnStatus ? <Arrow_Up_GRAY20 /> : <Arrow_Down_GRAY20 />}
-				</TouchableOpacity>
+					{btnStatus ? <Arrow_Up_GRAY20 onPress={() => setBtnStatus(!btnStatus)} /> : <Arrow_Down_GRAY20 onPress={() => setBtnStatus(!btnStatus)} />}
+				</View>
 			</View>
 		</View>
 	);

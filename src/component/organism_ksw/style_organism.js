@@ -222,14 +222,10 @@ export const phoneNumVerification = StyleSheet.create({
 	input30: {
 		height: 82 * DP,
 		marginBottom: 60 * DP,
-		backgroundColor: 'yellow',
-		justifyContent: 'flex-start',
-		alignItems: 'flex-start',
 	},
 	inputWithSelect: {
 		height: 82 * DP,
 		marginBottom: 60 * DP,
-		backgroundColor: 'yellow',
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
 	},
@@ -238,12 +234,12 @@ export const phoneNumVerification = StyleSheet.create({
 		height: 118 * DP,
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
-		backgroundColor: 'yellow',
 	},
 	btn_w226: {
-		marginLeft: 40 * DP,
-		marginTop: 6 * DP,
-		backgroundColor: WHITE,
+		position: 'absolute',
+		right: 0,
+		top: 10 * DP,
+		// marginLeft: 40 * DP,
 	},
 });
 
@@ -256,14 +252,12 @@ export const emailVerification = StyleSheet.create({
 	input30: {
 		height: 82 * DP,
 		marginBottom: 60 * DP,
-		backgroundColor: 'yellow',
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
 	},
 	inputWithSelect: {
 		height: 82 * DP,
 		marginBottom: 60 * DP,
-		backgroundColor: 'yellow',
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
 	},
@@ -272,12 +266,12 @@ export const emailVerification = StyleSheet.create({
 		height: 118 * DP,
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
-		backgroundColor: 'yellow',
 	},
 	btn_w226: {
-		marginLeft: 40 * DP,
-		marginTop: 6 * DP,
-		backgroundColor: WHITE,
+		position: 'absolute',
+		right: 0,
+		top: 10 * DP,
+		// marginLeft: 40 * DP,
 	},
 });
 
@@ -285,7 +279,6 @@ export const passwordChecker = StyleSheet.create({
 	container_initMode: {
 		width: 654 * DP,
 		height: 406 * DP,
-		backgroundColor: 'yellow',
 	},
 	container_resetMode: {
 		width: 654 * DP,

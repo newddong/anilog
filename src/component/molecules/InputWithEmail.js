@@ -12,6 +12,7 @@ import {APRI10, GRAY30} from 'Root/config/color';
  *placeholder: string,
  *defaultIndex: number,
  *value: string,
+ *width : number,
  *onClear: '지우기 버튼(x) 클릭 Callback',
  *onChange: 'Input Value Change Callback',
  * }} props
@@ -60,7 +61,9 @@ export default InputWithEmail = props => {
 						{
 							paddingLeft: 24 * DP,
 							lineHeight: 44 * DP,
-							width: input.length == 0 ? 190 * DP : null,
+							width: props.width * DP,
+
+							// width: input.length == 0 ? 190 * DP : null,
 							//X버튼을 누를 때마다 placeholder의 fontPadding이 적용되는 현상이 간헐적으로 발생
 							// 우선 X버튼 클릭이벤트 발생 시에도 강제적으로 width를 적용하여 해결
 						},
@@ -86,6 +89,7 @@ InputWithEmail.defaultProps = {
 	itemList: ['naver.com', 'daum.net', 'nate.com'],
 	placeholder: 'placeholder',
 	defaultIndex: 0,
+	width: 400,
 	value: null,
 	onClear: e => console.log(e),
 	onChange: e => console.log(e),

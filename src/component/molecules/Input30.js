@@ -23,12 +23,18 @@ import {TouchableOpacity} from 'react-native';
  * }} props
  */
 export default Input30 = props => {
-	const [input, setInput] = React.useState('');
-	const [confirm, setConfirm] = React.useState();
+	const [input, setInput] = React.useState();
+	const [confirmed, setConfirmed] = React.useState(false); //Confirm Msg 출력 Boolean
 	const inputRef = React.useRef();
 
+	// Validator는 부모 컴포넌트에서 실시 결과값 props.confirm  => prop.confirm의 변동에 따라 input30의 confirm state 변경 -
+	React.useEffect(() => {
+		props.confirm ? setConfirmed(true) : setConfirmed(false);
+	}, [props.confirm]);
+
+	// Input 값 변동 콜백
 	const onChange = text => {
-		validator(text);
+		// validator(text);
 		setInput(text);
 		props.onChange(text);
 	};
@@ -36,24 +42,26 @@ export default Input30 = props => {
 	//Validator 조건확인이 안되었기에 테스트용으로 입력된 텍스트가
 	// 10자 이상일 때 confirmed가 되도록 작성
 	const validator = text => {
-		text.length < 10 ? setConfirm(false) : setConfirm(true);
+		// text.length < 10 ? setConfirm(false) : setConfirm(true);
 	};
 
 	const getMsg = () => {
-		if (input.length == 0) {
+		if (input == undefined || input.length == 0) {
 			return null;
+		} else if (confirmed == true) {
+			return <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>;
+		} else if (confirmed == false) {
+			return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>;
 		}
-		return confirm ? (
-			<Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>
-		) : (
-			<Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>
-		);
 	};
 
 	const onClear = () => {
 		inputRef.current.clear();
-		props.onClear();
+		//지우기에서도 onChange에 빈 값을 넣어주어야 부모의 Confirmed값이 false로 바뀐다
+		//부모는 onChange로 넘어오는 값을 통해 Validator를 수행하기 때문
+		props.onChange('');
 		setInput('');
+		props.onClear();
 	};
 
 	const blur = () => {
@@ -84,7 +92,7 @@ export default Input30 = props => {
 					style={{
 						height: 80 * DP,
 						borderBottomWidth: 2 * DP,
-						borderBottomColor: input.length == 0 ? GRAY30 : APRI10,
+						borderBottomColor: input == undefined || input.length == 0 ? GRAY30 : APRI10,
 						flexDirection: 'row',
 						alignItems: 'center',
 					}}>
@@ -92,19 +100,21 @@ export default Input30 = props => {
 						ref={inputRef}
 						onChangeText={text => onChange(text)}
 						placeholder={props.placeholder}
+						value={input}
 						style={[
 							txt.roboto28,
 							{
 								//TextInput과 바깥 View와의 거리 24px, lineHeight는 Text View크기와 일치
 								paddingLeft: 16 * DP,
-								color: confirm ? BLACK : RED10,
+								textAlignVertical: 'bottom',
+								color: props.confirm ? BLACK : RED10,
 								width: props.width * DP,
-								textAlign: 'center',
+								// textAlign: 'center',
 							},
 						]}
 					/>
 					{props.clearMark ? (
-						<TouchableOpacity onPress={onClear} style={{marginLeft: 120 * DP, paddingBottom: 14 * DP}}>
+						<TouchableOpacity onPress={onClear} style={{position: 'absolute', right: 0}}>
 							<Cross52 />
 						</TouchableOpacity>
 					) : null}
@@ -123,7 +133,8 @@ Input30.defaultProps = {
 	value: 'value',
 	alert_msg: 'alert_msg',
 	confirm_msg: 'confirm_msg',
-	clearMark: false,
+	confirm: false,
+	clearMark: true,
 	onClear: e => console.log(e),
 	onChange: e => console.log(e),
 	width: 300, // TextInput 너비
