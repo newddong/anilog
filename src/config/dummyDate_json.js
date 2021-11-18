@@ -35,7 +35,7 @@ export const dummy_UserDescriptionLabel = [
 export const dummy_userLocationTimeLabel = {
 	user_id: 'user_id',
 	user_nickname: '통돌이 벤제마',
-	img_uri: 'https://storage.googleapis.com/cr-resource/image/8434cf341f6b7c0430ba2a3b3c13188d/pinetrees/600/bd3cd9c4d3ce612ebda65374de1d3b3a.jpg',
+	img_uri: null,
 	location: 'location',
 	time: '1',
 };
@@ -471,12 +471,12 @@ export const applyComanionCheckList = [
 ];
 
 export const userAssign_agreementCheckList = [
-	{ text: '본인은 만 14세 이상입니다. (필수)', detail: false },
-	{ text: '서비스 이용약관 동의 (필수)', detail: true },
-	{ text: '개인정보 수집 이용약관 동의 (필수)', detail: true },
-	{ text: '위치기반 서비스 이용약관 동의 (필수)', detail: true },
-	{ text: '기부내역 이용약관 동의(필수)', detail: true },
-	{ text: '이벤트 및 마케팅 정보 수신 동의 동의(선택)', detail: false },
+	{text: '본인은 만 14세 이상입니다. (필수)', detail: false},
+	{text: '서비스 이용약관 동의 (필수)', detail: true},
+	{text: '개인정보 수집 이용약관 동의 (필수)', detail: true},
+	{text: '위치기반 서비스 이용약관 동의 (필수)', detail: true},
+	{text: '기부내역 이용약관 동의(필수)', detail: true},
+	{text: '이벤트 및 마케팅 정보 수신 동의 동의(선택)', detail: false},
 ];
 
-export const initial_number = ['010', '02', '031', '033', '043', '041', '054', '055', '063', '061', '064']
+export const initial_number = ['010', '02', '031', '033', '043', '041', '054', '055', '063', '061', '064'];
