@@ -50,7 +50,8 @@ export default UserDescriptionLabel = props => {
 
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
-			<TouchableOpacity onPress={onClickLabel}>
+			{/* <TouchableOpacity onPress={onClickLabel}> */}
+			<TouchableOpacity onPress={moveToUserProfile}>
 				<Image source={{uri: props.data.img_uri}} style={styles.img_round_94} />
 			</TouchableOpacity>
 			<View style={{marginLeft: 30 * DP}}>
@@ -85,5 +86,5 @@ UserDescriptionLabel.defaultProps = {
 		showStatus: false,
 	},
 	// onLabelClick: e => console.log(e),
-	onLabelClick: e => consol1e.log(e),
+	onLabelClick: e => console.log(e),
 };

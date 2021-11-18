@@ -10,11 +10,11 @@ import {dummy_volunteerItemList} from 'Root/config/dummyDate_json';
 
 export default ManageVolunteer = props => {
 	// 아직 navigate 관련 정해진 것이 없음
-	// const navigation = useNavigation();
-	// const moveToShelterVolunteerForm = shelterData => {
-	// 	console.log(JSON.stringify(shelterData));
-	// 	navigation.push('ShelterVolunteerForm', shelterData);
-	// };
+	const navigation = useNavigation();
+	const moveToShelterVolunteerForm = shelterData => {
+		console.log(JSON.stringify(shelterData));
+		navigation.push('ShelterVolunteerForm', shelterData);
+	};
 
 	const [showMoreHistroy, setShowMoreHistory] = React.useState(false);
 

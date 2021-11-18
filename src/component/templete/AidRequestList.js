@@ -12,7 +12,7 @@ export default AidRequestAnimalList = props => {
 			{/* <FlatList> */}
 			<View style={[temp_style.aidRequestList_aidRequestManage, baseInfo_style.list]}>
 				{/* (O)AnimalProtectDetails */}
-				<AidRequestList target={props.param.target}></AidRequestList>
+				<AidRequestList></AidRequestList>
 			</View>
 			{/* </FlatList> */}
 		</View>

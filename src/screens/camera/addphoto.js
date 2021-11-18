@@ -13,14 +13,14 @@ import {
 	Alert,
 	FlatList,
 } from 'react-native';
-import {BLACK, GRAY, GRAY_BRIGHT, GRAY_PLACEHOLDER, MAINCOLOR, SLIGHT_BLACK, LINK, WHITE, RED, GRAY_TXT_INPUT} from 'Screens/color';
-import {CameraIconWhite, LocationPinIcon, PawIcon, DownBracketBlack, DownBracketGray} from 'Asset/image';
+import { BLACK, GRAY, GRAY_BRIGHT, GRAY_PLACEHOLDER, MAINCOLOR, SLIGHT_BLACK, LINK, WHITE, RED, GRAY_TXT_INPUT } from 'Screens/color';
+import { CameraIconWhite, LocationPinIcon, PawIcon, DownBracketBlack, DownBracketGray } from 'Asset/image';
 import DP from 'Screens/dp';
 import SvgWrapper from 'Screens/svgwrapper';
-import {TabContext} from 'tabContext';
+import { TabContext } from 'tabContext';
 import CameraRoll from '@react-native-community/cameraroll';
-import {hasAndroidPermission} from './camerapermission';
-import {requestPermission, reqeustCameraPermission} from 'permission';
+import { hasAndroidPermission } from './camerapermission';
+import { requestPermission, reqeustCameraPermission } from 'permission';
 import Photos from './photos';
 import FastImage from 'react-native-fast-image';
 // import Video from 'react-native-video';
@@ -29,18 +29,18 @@ export var exportUriList = []; //겔러리 속 사진들 로컬 주소
 export var exportUri = {}; //겔러리 속 사진 로컬 주소
 
 export default AddPhoto = props => {
-	return <TabContext.Consumer>{({tabVisible}) => <AddPhotoInner tabVisible={tabVisible} {...props} />}</TabContext.Consumer>;
+	return <TabContext.Consumer>{({ tabVisible }) => <AddPhotoInner tabVisible={tabVisible} {...props} />}</TabContext.Consumer>;
 };
 
 const AddPhotoInner = props => {
-	const count = React.useRef({count: 0, cursor: 0, subscriber: []}).current;
+	const count = React.useRef({ count: 0, cursor: 0, subscriber: [] }).current;
 	const uriList = React.useRef([]).current; //겔러리 속 사진들 로컬 주소
 	const page = React.useRef(0);
 	const selectedUri = React.useRef(); //겔러리 속 사진들 로컬 주소
-	const lasttoggle = React.useRef(() => {});
+	const lasttoggle = React.useRef(() => { });
 
 	const [isVideo, setVideo] = React.useState(false);
-	const [photolist, setPhotoList] = React.useState([{node:{uri:''}}]);
+	const [photolist, setPhotoList] = React.useState([{ node: { uri: '' } }]);
 	const [selectedPhoto, setSelectedPhoto] = React.useState([]);
 	const [last_selected_uri, setLastSelectedUri] = React.useState('');
 	const isSingle = props.route.name === 'AddSinglePhoto';
@@ -55,7 +55,7 @@ const AddPhotoInner = props => {
 		})
 			.then(r => {
 				page.current = r.page_info;
-				console.log('photolist  '+ JSON.stringify(r));
+				console.log('photolist  ' + JSON.stringify(r));
 				setPhotoList(photolist.concat(r.edges));
 			})
 			.catch(err => {
@@ -65,10 +65,10 @@ const AddPhotoInner = props => {
 
 	const loadPhotosMilsec = (lastTimeStamp) => {
 		const RequestNum = 100;
-		console.log('lasttimestamp       '+lastTimeStamp);
+		console.log('lasttimestamp       ' + lastTimeStamp);
 		CameraRoll.getPhotos({
 			first: RequestNum,
-			toTime:lastTimeStamp?(lastTimeStamp-1)*1000:0,
+			toTime: lastTimeStamp ? (lastTimeStamp - 1) * 1000 : 0,
 			assetType: 'All',
 			include: ['playableDuration'],
 		})
@@ -84,10 +84,11 @@ const AddPhotoInner = props => {
 
 	const scrollReachBottom = () => {
 		// loadPhotos(page.current);
-		console.log('scrolllist bottom   '+ JSON.stringify(photolist));
+		console.log('scrolllist bottom   ' + JSON.stringify(photolist));
 
-		loadPhotosMilsec(photolist[photolist.length-1].node.timestamp);
+		loadPhotosMilsec(photolist[photolist.length - 1].node.timestamp);
 	};
+
 	const test = () => {
 		// console.log(props.route.params);
 		console.log(selectedPhoto);
@@ -95,11 +96,11 @@ const AddPhotoInner = props => {
 
 	React.useEffect(() => {
 		exportUriList.splice(0);
-		if(props.route.params.selectedImages?.length>0){
+		if (props.route.params.selectedImages?.length > 0) {
 			console.log('선택한 이미지가 있음');
 			exportUriList = props.route.params.selectedImages;
-			setSelectedPhoto(props.route.params.selectedImages.map(v=>v));
-		}else{
+			setSelectedPhoto(props.route.params.selectedImages.map(v => v));
+		} else {
 			console.log('선택한 이미지가 없음');
 			setSelectedPhoto([]);
 		}
@@ -142,59 +143,59 @@ const AddPhotoInner = props => {
 		});
 	});
 
-	const renderList = ({item, index}) =>{
-		if(index===0){
+	const renderList = ({ item, index }) => {
+		if (index === 0) {
 			return <Photos isSingle={isSingle} isCamera navigation={props.navigation} />;
-		}else{
+		} else {
 			// return <Photos isSingle={isSingle} data={item.node} onPress={isSingle ? singleitemClick : itemClick} index={index} />
-			return <Photos isSingle={isSingle} data={item.node} onSelect={selectPhoto} onCancel={cancelPhoto} selectedList={selectedPhoto}/>
+			return <Photos isSingle={isSingle} data={item.node} onSelect={selectPhoto} onCancel={cancelPhoto} selectedList={selectedPhoto} />
 		}
 	};
 
 	const selectPhoto = (photo) => {
-		if(isSingle){
+		if (isSingle) {
 			exportUriList.splice(0);
 			exportUriList.push(photo);
-			setSelectedPhoto(exportUriList.map(v=>v));
+			setSelectedPhoto(exportUriList.map(v => v));
 			return;
 		}
 		exportUriList.push(photo);
-		setSelectedPhoto(exportUriList.map(v=>v));
+		setSelectedPhoto(exportUriList.map(v => v));
 	}
 
 	const cancelPhoto = (photo) => {
-		if(isSingle){
+		if (isSingle) {
 			exportUriList.splice(0);
-			setSelectedPhoto(exportUriList.map(v=>v));
+			setSelectedPhoto(exportUriList.map(v => v));
 			return;
 		}
-		exportUriList.forEach((v,i,a)=>{
-			if(v.uri===photo.uri)a.splice(i,1);
+		exportUriList.forEach((v, i, a) => {
+			if (v.uri === photo.uri) a.splice(i, 1);
 		});
-		setSelectedPhoto(exportUriList.map(v=>v));
+		setSelectedPhoto(exportUriList.map(v => v));
 	}
 
 	const clickcheck = () => {
 		// console.log(props.route.params);
 		// console.log(exportUriList);
 		// props.navigation.navigate(props.route.params?.navfrom,{})
-		props.navigation.navigate({name: props.route.params.navfrom, params: {localSelectedImages: exportUriList[0]}, merge: true});
+		props.navigation.navigate({ name: props.route.params.navfrom, params: { localSelectedImages: exportUriList[0] }, merge: true });
 		// props.navigation.navigate({name: props.route.params?.navfrom, params: {image: exportUriList[0]}, merge: true});
 	};
 
 	return (
 		<View style={lo.wrp_main}>
-			{selectedPhoto[selectedPhoto.length-1]?.isVideo ? (
-				<View/>
+			{selectedPhoto[selectedPhoto.length - 1]?.isVideo ? (
+				<View />
 				// <Video style={lo.box_img} source={{uri: selectedPhoto[selectedPhoto.length-1]?.uri}} muted />
 			) : (
-				<Image style={lo.box_img} source={{uri: selectedPhoto[selectedPhoto.length-1]?.uri}} />
+				<Image style={lo.box_img} source={{ uri: selectedPhoto[selectedPhoto.length - 1]?.uri }} />
 			)}
 			<View style={lo.box_title}>
 				<TouchableWithoutFeedback onPress={test}>
-					<View style={{flexDirection: 'row', alignItems: 'center'}}>
+					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 						<Text style={txt.noto36r}>최근 항목</Text>
-						<SvgWrapper style={{height: 12 * DP, width: 20 * DP, marginLeft: 14 * DP}} svg={<DownBracketBlack />} />
+						<SvgWrapper style={{ height: 12 * DP, width: 20 * DP, marginLeft: 14 * DP }} svg={<DownBracketBlack />} />
 					</View>
 				</TouchableWithoutFeedback>
 				{isSingle && (
