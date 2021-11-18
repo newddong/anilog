@@ -50,7 +50,7 @@ const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
 	return (
-		<SafeAreaView>
+		<SafeAreaView style={{flex: 1}}>
 			<NavigationContainer>
 				<RootStack.Navigator initialRouteName="MainTab">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
