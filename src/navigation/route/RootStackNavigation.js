@@ -1,7 +1,7 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { SafeAreaView, View, Dimensions, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import LoginTemplete from 'Templete/LoginTemplete';
 
@@ -39,20 +39,45 @@ import AssignPetInfoB from 'Templete/AssignPetInfoB';
 import MainTabNavigation from './main_tab/MainTabNavigation';
 import SearchTabNavigation from './search_tab/SearchTabNavigation';
 
-import {PIC_SELECTION} from 'Root/i18n/msg';
+import { PIC_SELECTION } from 'Root/i18n/msg';
 import FeedListForHashTag from 'Root/component/templete/FeedListForHashTag';
 
 import SimpleHeader from 'Navigation/header/SimpleHeader';
 import SendHeader from '../header/SendHeader';
 import UserVerification from 'Root/component/templete/UserVerification';
 
+import {Modal} from 'Root/component/modal/Modal';
+import TwoBtnModal from 'Root/component/molecules/TwoBtnModal';
+import OneBtnModal from 'Molecules/OneBtnModal';
+
 const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
+	const [isPop, setPop] = React.useState(false);
+	const [popupComponent, setPopupComponent] = React.useState(false);
+	Modal.popup = ()=>{
+
+	}
+	Modal.close = () => {
+		setPop(false);
+	}
+	Modal.popTwoBtn = (msg,noMsg,yesMsg,onNo,onYes) => {
+		setPopupComponent(<TwoBtnModal popUpMsg={msg} onNo={onNo} onYes={onYes} noMsg={noMsg} yesMsg={yesMsg}/>);
+		// setPopupComponent(<View style={{backgroundColor:'blue',height:80,width:80}}/>);
+		setPop(true);
+	}
+	Modal.popNoBtn = (msg,checker) => {
+
+	}
+	Modal.popOneBtn = (msg,okMsg,onOk) => {
+		setPopupComponent(<OneBtnModal popUpMsg={msg} onOk={onOk} okMsg={okMsg}/>);
+		setPop(true);
+	}
+
 	return (
-		<SafeAreaView style={{flex: 1}}>
+		<SafeAreaView style={{ flex: 1 }}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="AssignUserProfileImage">
+				<RootStack.Navigator initialRouteName="MainTab">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} />
@@ -85,17 +110,17 @@ export default RootStackNavigation = () => {
 
 					<RootStack.Screen name="ApplyVolunteer" component={ApplyVolunteer} />
 					<RootStack.Screen name="FeedMediaTagEdit" component={FeedMediaTagEdit} />
-					<RootStack.Screen name="FeedWrite" component={FeedWrite} options={{header: props => <SendHeader {...props} />, title: '게시물 작성'}} />
+					<RootStack.Screen name="FeedWrite" component={FeedWrite} options={{ header: props => <SendHeader {...props} />, title: '게시물 작성' }} />
 
 					<RootStack.Screen
 						name="FeedMissingWrite"
 						component={FeedWrite}
-						options={{header: props => <SendHeader {...props} />, title: '실종 게시물'}}
+						options={{ header: props => <SendHeader {...props} />, title: '실종 게시물' }}
 					/>
 					<RootStack.Screen
 						name="FeedReportWrite"
 						component={FeedWrite}
-						options={{header: props => <SendHeader {...props} />, title: '제보 게시물'}}
+						options={{ header: props => <SendHeader {...props} />, title: '제보 게시물' }}
 					/>
 					<RootStack.Screen name="LocationPicker" component={LocationPicker} />
 
@@ -108,6 +133,20 @@ export default RootStackNavigation = () => {
 					<RootStack.Screen name="AssignPetInfoB" component={AssignPetInfoB} />
 				</RootStack.Navigator>
 			</NavigationContainer>
+
+			{isPop&&<View style={popup.popupBackground}>
+				{popupComponent}
+			</View>}
 		</SafeAreaView>
 	);
 };
+
+
+const popup = StyleSheet.create({
+	popupBackground : {
+		// backgroundColor:'red',
+		height: Dimensions.get('screen').height,
+		width: Dimensions.get('screen').width,
+		position: 'absolute'
+	}
+})
