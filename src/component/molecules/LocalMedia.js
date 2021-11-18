@@ -13,16 +13,23 @@ import { Paw94x90 } from '../atom/icon';
  *index: 'number / 선택되는 순서 번호',
  *isSingleSelection: boolean,
  *onSelect: '선택 Callback',
+ *disable : '선택 불가 모드',
  * }} props
  */
 export default LocalMedia = props => {
 	const [selected, setSelected] = React.useState(false);
 
 	const onSelect = e => {
-		setSelected(!selected);
-		props.onSelect(props.data.img_uri);
-	};
-
+		console.log("PropsDisable", props.disable)
+		if (props.disable) {
+			!selected ? alert('5초과') : setSelected(!selected);
+			props.onSelect(props.data.img_uri, !selected);
+		}
+		else if (!props.disable) {
+			setSelected(!selected);
+			props.onSelect(props.data.img_uri, !selected);
+		};
+	}
 	const getStyleOfSelectedItem = () => {
 		return selected ? [styles.img_square_186, { borderWidth: 4 * DP, borderColor: APRI10, opacity: 0.6 }] : styles.img_square_186;
 	};
@@ -92,6 +99,8 @@ LocalMedia.defaultProps = {
 		duration: null,
 	},
 	index: 1,
+	disable: false,
 	isSingleSelection: true,
+	number: 1,
 	onSelect: e => console.log(e),
 };

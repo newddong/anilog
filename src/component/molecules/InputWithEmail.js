@@ -1,9 +1,10 @@
 import React from 'react';
-import {txt} from 'Root/config/textstyle';
-import {Text, View, TouchableOpacity, TextInput} from 'react-native';
+import { txt } from 'Root/config/textstyle';
+import { Text, View, TouchableOpacity, TextInput } from 'react-native';
 import DP from 'Root/config/dp';
-import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52} from '../atom/icon';
-import {APRI10, GRAY30} from 'Root/config/color';
+import { Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52 } from '../atom/icon';
+import { APRI10, GRAY30, RED10 } from 'Root/config/color';
+
 
 /**
  *
@@ -13,6 +14,8 @@ import {APRI10, GRAY30} from 'Root/config/color';
  *defaultIndex: number,
  *value: string,
  *width : number,
+ *title : string,
+ *title_star: boolean,
  *onClear: '지우기 버튼(x) 클릭 Callback',
  *onChange: 'Input Value Change Callback',
  * }} props
@@ -32,7 +35,6 @@ export default InputWithEmail = props => {
 	const onClear = () => {
 		inputRef.current.clear();
 		setInput(''); //email state를 null로 해주어야 borderColor가 GRAY30으로 반응한다
-
 		props.onClear();
 	};
 
@@ -47,10 +49,16 @@ export default InputWithEmail = props => {
 	return (
 		<View
 			style={{
-				height: 82 * DP,
-				flexDirection: 'row',
 			}}>
-			<View style={{flexDirection: 'row', alignItems: 'center', borderBottomWidth: 2 * DP, borderColor: input.length == 0 ? GRAY30 : APRI10}}>
+			{props.title != null
+				?
+				<View style={{ flexDirection: 'row', }}>
+					<Text style={[txt.noto24, { color: APRI10 }]}>{props.title}</Text>
+					<Text style={[txt.noto24, { color: RED10, marginLeft: 30 * DP, }]}>{props.title_star ? '*' : null}</Text>
+				</View>
+				: null
+			}
+			<View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 2 * DP, borderColor: input.length == 0 ? GRAY30 : APRI10 }}>
 				<TextInput
 					placeholder={props.placeholder}
 					value={props.value}
@@ -59,8 +67,10 @@ export default InputWithEmail = props => {
 					style={[
 						txt.noto28,
 						{
+							height: 82 * DP,
+
 							paddingLeft: 24 * DP,
-							lineHeight: 44 * DP,
+							// lineHeight: 44 * DP,
 							width: props.width * DP,
 
 							// width: input.length == 0 ? 190 * DP : null,
@@ -70,17 +80,19 @@ export default InputWithEmail = props => {
 					]}
 				/>
 				{input.length > 0 ? (
-					<TouchableOpacity onPress={onClear} style={{marginLeft: 40 * DP}}>
-						<Cross52 />
-					</TouchableOpacity>
+					<View style={{ marginLeft: 40 * DP }}>
+						<Cross52 onPress={onClear} />
+					</View>
 				) : (
 					false
 				)}
-				<Text style={[txt.roboto24b, {marginHorizontal: 24 * DP, lineHeight: 36 * DP}]}>@</Text>
-				<Text style={[txt.roboto28, {marginHorizontal: 24 * DP, lineHeight: 36 * DP}]}> {selectedItem} </Text>
-				<TouchableOpacity onPress={() => setBtnStatus(!btnStatus)} style={{marginLeft: 12 * DP}}>
-					{btnStatus ? <Arrow_Up_GRAY20 /> : <Arrow_Down_GRAY20 />}
-				</TouchableOpacity>
+				<View style={{ position: 'absolute', right: 10 * DP, flexDirection: 'row' }}>
+					<Text style={[txt.roboto24b, { marginHorizontal: 24 * DP, lineHeight: 36 * DP }]}>@</Text>
+					<Text style={[txt.roboto28, { marginHorizontal: 24 * DP, lineHeight: 36 * DP }]}> {selectedItem} </Text>
+					<View style={{ marginLeft: 12 * DP }}>
+						{btnStatus ? <Arrow_Up_GRAY20 onPress={() => setBtnStatus(!btnStatus)} /> : <Arrow_Down_GRAY20 onPress={() => setBtnStatus(!btnStatus)} />}
+					</View>
+				</View>
 			</View>
 		</View>
 	);
@@ -89,8 +101,10 @@ InputWithEmail.defaultProps = {
 	itemList: ['naver.com', 'daum.net', 'nate.com'],
 	placeholder: 'placeholder',
 	defaultIndex: 0,
-	width: 400,
+	width: 250,
 	value: null,
+	title: null,
+	title_star: false,
 	onClear: e => console.log(e),
 	onChange: e => console.log(e),
 };

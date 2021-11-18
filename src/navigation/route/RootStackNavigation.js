@@ -50,7 +50,7 @@ const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
 	return (
-		<SafeAreaView style={{flex: 1}}>
+		<SafeAreaView>
 			<NavigationContainer>
 				<RootStack.Navigator initialRouteName="MainTab">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
@@ -85,18 +85,9 @@ export default RootStackNavigation = () => {
 
 					<RootStack.Screen name="ApplyVolunteer" component={ApplyVolunteer} />
 					<RootStack.Screen name="FeedMediaTagEdit" component={FeedMediaTagEdit} />
-					<RootStack.Screen name="FeedWrite" component={FeedWrite} options={{header: props => <SendHeader {...props} />, title: '게시물 작성'}} />
 
-					<RootStack.Screen
-						name="FeedMissingWrite"
-						component={FeedWrite}
-						options={{header: props => <SendHeader {...props} />, title: '실종 게시물'}}
-					/>
-					<RootStack.Screen
-						name="FeedReportWrite"
-						component={FeedWrite}
-						options={{header: props => <SendHeader {...props} />, title: '제보 게시물'}}
-					/>
+					<RootStack.Screen name="FeedMissingWrite" component={FeedWrite} />
+					<RootStack.Screen name="FeedReportWrite" component={FeedWrite} />
 					<RootStack.Screen name="LocationPicker" component={LocationPicker} />
 
 					<RootStack.Screen name="SinglePhotoSelect" component={PhotoSelect} />
