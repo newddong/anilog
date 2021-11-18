@@ -1,17 +1,17 @@
-import { useNavigation } from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { btn_w226 } from '../atom/btn/btn_style';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {btn_w226} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
-import { login_style, temp_style, animalProtectRequestDetail_style, feedCommentList, accountPicker } from './style_templete';
+import {login_style, temp_style, animalProtectRequestDetail_style, feedCommentList, accountPicker} from './style_templete';
 import RescueImage from '../molecules/RescueImage';
-import { ScrollView } from 'react-native-gesture-handler';
-import { Lock60_Border, Lock60_Filled, Photo60, Send60 } from '../atom/icon';
+import {ScrollView} from 'react-native-gesture-handler';
+import {Lock60_Border, Lock60_Filled, Photo60, Send60} from '../atom/icon';
 
-import { txt } from 'Root/config/textstyle';
-import { APRI10, GRAY10, GRAY20 } from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
+import {APRI10, GRAY10, GRAY20} from 'Root/config/color';
 import ShelterSmallLabel from '../molecules/ShelterSmallLabel';
-import { FavoriteTag46_Filled, FavoriteTag48_Filled, Share48_Filled } from '../atom/icon';
+import {FavoriteTag46_Filled, FavoriteTag48_Filled, Share48_Filled} from '../atom/icon';
 import DP from 'Root/config/dp';
 import CommentList from '../organism_ksw/CommentList';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
@@ -36,7 +36,7 @@ export default AnimalProtectRequestDetail = props => {
 					<RescueImage text={'보호자 협의중'} />
 				</View>
 				<View style={[temp_style.requestProtect_view]}>
-					<Text style={[txt.noto24, temp_style.requestProtect, { color: GRAY10 }]}>보호요청</Text>
+					<Text style={[txt.noto24, temp_style.requestProtect, {color: GRAY10}]}>보호요청</Text>
 				</View>
 
 				{/* RescueContentTitle */}
@@ -55,11 +55,11 @@ export default AnimalProtectRequestDetail = props => {
 					<View style={[temp_style.button_animalProtectRequestDetail]}>
 						<View>
 							<FavoriteTag48_Filled />
-							<Text style={[txt.roboto24, { color: APRI10 }]}>1.2k</Text>
+							<Text style={[txt.roboto24, {color: APRI10}]}>1.2k</Text>
 						</View>
-						<View style={{ marginLeft: 30 * DP }}>
+						<View style={{marginLeft: 30 * DP}}>
 							<Share48_Filled />
-							<Text style={[txt.roboto24, { color: APRI10 }]}>공유</Text>
+							<Text style={[txt.roboto24, {color: APRI10}]}>공유</Text>
 						</View>
 					</View>
 				</View>
@@ -69,11 +69,11 @@ export default AnimalProtectRequestDetail = props => {
 					<View style={[animalProtectRequestDetail_style.rescueSummary_insideContainer]}>
 						<View style={[animalProtectRequestDetail_style.rescueSummary_insideItem]}>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>분류</Text>
-							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>{params.kind}</Text>
+							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>{props.kind}</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>품종</Text>
-							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>{params.breed}</Text>
+							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>{props.breed}</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>성별</Text>
-							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>{params.thumbnailData.gender}</Text>
+							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>{props.thumbnailData.gender}</Text>
 						</View>
 						<View style={[animalProtectRequestDetail_style.rescueSummary_insideItem]}>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>예상연령</Text>
@@ -85,7 +85,7 @@ export default AnimalProtectRequestDetail = props => {
 						</View>
 						<View style={[animalProtectRequestDetail_style.rescueSummary_insideItem]}>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>발견장소</Text>
-							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>{params.saved_location}</Text>
+							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>{props.saved_location}</Text>
 						</View>
 					</View>
 				</View>
@@ -100,7 +100,7 @@ export default AnimalProtectRequestDetail = props => {
 
 				{/* comment_count */}
 				<View style={[temp_style.comment_count_view]}>
-					<Text style={[txt.noto24, temp_style.comment_count, { color: GRAY10 }]}>댓글 5</Text>
+					<Text style={[txt.noto24, temp_style.comment_count, {color: GRAY10}]}>댓글 5</Text>
 				</View>
 
 				{/* (O)CommentList */}
@@ -110,7 +110,7 @@ export default AnimalProtectRequestDetail = props => {
 
 				{/* 보호요청 더 보기addMoreRequest */}
 				<View style={[temp_style.addMoreRequest_view]}>
-					<Text style={[txt.noto24, temp_style.addMoreRequest, { color: GRAY20 }]}>보호요청 더보기</Text>
+					<Text style={[txt.noto24, temp_style.addMoreRequest, {color: GRAY20}]}>보호요청 더보기</Text>
 				</View>
 
 				{/* AccountList */}
@@ -126,7 +126,7 @@ export default AnimalProtectRequestDetail = props => {
 						titleFontStyle={30}
 						onPress={() => navigation.push('ApplyProtectActivityA')}
 					/>
-					<View style={{ width: 62 * DP }} />
+					<View style={{width: 62 * DP}} />
 					<AniButton
 						btnLayout={btn_w226}
 						btnStyle={'filled'}
@@ -155,6 +155,22 @@ export default AnimalProtectRequestDetail = props => {
 			) : null}
 		</View>
 	);
+};
+
+AnimalProtectRequestDetail.defaultProps = {
+	adoption_days_remain: 10,
+	breed: '자연계 환수종',
+	kind: '고양이',
+	location: '자운',
+	registered_date: '2021-06-17',
+	saved_location: '경기도 강정동',
+	selected: true,
+	temp_protection_request: true,
+	thumbnailData: {
+		gender: 'male',
+		img_uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU',
+		status: 'missing',
+	},
 };
 
 // AniButton.defaultProps = {
