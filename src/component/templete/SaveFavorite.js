@@ -13,25 +13,38 @@ import {login_style, temp_style, selectstat_view_style, saveFavorite} from './st
 export default SaveFavorite = props => {
 	const navigation = useNavigation();
 	//계정 좌측 CheckBox 디스플레이 여부
-	const [checkBoxMode, setCheckBoxMode] = React.useState(true);
+	const [checkBoxMode, setCheckBoxMode] = React.useState(false);
 	//checkBox On
 	const [_dummyData, set_dummyData] = React.useState(dummy_AccountHashList);
+	const [selectCNT, setSelectCNT] = React.useState(0);
+
 	//Check Box On
 	const showCheckBox = e => {
-		console.log('ShowCheckBox' + e);
 		setCheckBoxMode(e);
+
+		//전체 선택을 처음 누를 경우 무조건 체크 박스가 모두 선택되도록 하기 위해 setSelectCNT값을 0으로 초기화.
+		setSelectCNT(0);
+
+		//취소를 누르고 다시 선택하기를 누를 경우 선택되어 있는 체크박스가 없게 하기 위해 false로 초기화.
+		let copy = [..._dummyData];
+		copy.map((v, i) => {
+			v.checkBoxState = false;
+		});
+		set_dummyData(copy);
 	};
 	//CheckBox Off
 	const hideCheckBox = e => {
 		setCheckBoxMode(e);
-		console.log('HideChekcBox' + e);
 	};
 
 	// 선택하기 => 전체 선택 클릭
 	const selectAll = () => {
+		//v.checkBoxState = !v.checkBoxState와 같이 할 경우 체크 박스 값들이 각각 다를 경우 그것의 반대로만 변경 될 뿐 모두 선택되거나 모두 취소 되지 않음.
+		setSelectCNT(selectCNT + 1);
 		let copy = [..._dummyData];
 		copy.map((v, i) => {
-			v.checkBoxState = !v.checkBoxState;
+			//카운트의 2로 나눈 나머지값을 이용해서 전체 선택 혹은 전체 취소가 되도록 함.
+			selectCNT % 2 == 0 ? (v.checkBoxState = true) : (v.checkBoxState = false);
 		});
 		set_dummyData(copy);
 	};
@@ -86,7 +99,7 @@ export default SaveFavorite = props => {
 				{/* <Text>(O)AccountHashList</Text> */}
 				<AccountHashList
 					data={_dummyData}
-					checkBoxMode={!checkBoxMode}
+					checkBoxMode={checkBoxMode}
 					onLabelClick={item => navigation.push('UserProfile', item)}
 					onHashClick={item => navigation.push('FeedListForHashTag', item)}
 					onCheckBox={(item, index) => onCheckBox(item, index)}
