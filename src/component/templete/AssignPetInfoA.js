@@ -17,8 +17,8 @@ import TabSelectFilled_Type1 from '../molecules/TabSelectFilled_Type1';
 
 export default AssignPetInfoA = props => {
 	const navigation = useNavigation();
-	const moveToAssignProtectAnimalAge = () => {
-		props.navigation.push('AssignProtectAnimalAge');
+	const gotoNextStep = () => {
+		props.route.name == 'AssignProtectAnimalType' ? props.navigation.push('AssignProtectAnimalAge') : props.navigation.push('AssignPetInfoB');
 	};
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
@@ -80,31 +80,20 @@ export default AssignPetInfoA = props => {
 
 			{/* (A)Btn_w654 */}
 			<View style={[temp_style.btn_w226_assignPetInfo, assignPetInfo_style.btn_w226_viewA]}>
-				<TouchableWithoutFeedback onPress={props.navigation.goBack}>
-					<View style={[btn_style.btn_w226]}>
-						{/* <Text>(A)Btn_w226(뒤로)</Text> */}
-						<AniButton
-							btnTitle={'뒤로'}
-							btnTheme={'shadow'}
-							btnStyle={'border'}
-							btnLayout={btn_w226}
-							titleFontStyle={24}
-							onPress={() => navigation.goBack()}
-						/>
-					</View>
-				</TouchableWithoutFeedback>
-				<TouchableWithoutFeedback onPress={moveToAssignProtectAnimalAge}>
-					<View style={[btn_style.btn_w226, assignPetInfo_style.btn_w226]}>
-						<AniButton
-							btnTitle={'다음'}
-							btnTheme={'shadow'}
-							btnStyle={'filled'}
-							btnLayout={btn_w226}
-							titleFontStyle={24}
-							onPress={() => navigation.push('AssignPetInfoB')}
-						/>
-					</View>
-				</TouchableWithoutFeedback>
+				<View style={[btn_style.btn_w226]}>
+					{/* <Text>(A)Btn_w226(뒤로)</Text> */}
+					<AniButton
+						btnTitle={'뒤로'}
+						btnTheme={'shadow'}
+						btnStyle={'border'}
+						btnLayout={btn_w226}
+						titleFontStyle={24}
+						onPress={() => navigation.goBack()}
+					/>
+				</View>
+				<View style={[btn_style.btn_w226, assignPetInfo_style.btn_w226]}>
+					<AniButton btnTitle={'다음'} btnTheme={'shadow'} btnStyle={'filled'} btnLayout={btn_w226} titleFontStyle={24} onPress={gotoNextStep} />
+				</View>
 			</View>
 		</View>
 	);

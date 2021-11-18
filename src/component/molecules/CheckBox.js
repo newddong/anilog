@@ -9,17 +9,20 @@ import AniButton from './AniButton';
  *
  * @param {{
  * state : boolean ,
- * value : 'boolean / 체크상태 여부',
+ * value : 'string / CheckBox 우측 텍스트',
  * disable : 'boolean / 버튼 사용 가능 여부,
  * onCheck : '박스가 체크될 시 수행되는 callBack함수'}} props
  */
 export default CheckBox = props => {
 	const [checked, setChecked] = React.useState(props.state); //체크상태 여부 boolean
-
 	const onCheck = () => {
 		setChecked(!checked);
-		props.onCheck(checked);
+		props.onCheck(!checked);
 	};
+
+	React.useEffect(() => {
+		setChecked(props.state);
+	}, [props.state]);
 
 	return (
 		<View style={{flexDirection: 'row'}}>

@@ -15,10 +15,10 @@ export default LinkedAccountList = props => {
 		<View style={linkedAccountList.container}>
 			<ScrollView contentContainerStyle={linkedAccountList.insideContainer}>
 				<View style={[linkedAccountList.accountList_step1]}>
-					<ControllableAccountList title={'팔로워'} showCrossMark={false} showCheckBox={false} />
+					<ControllableAccountList title={'팔로워'} />
 				</View>
 				<View style={[linkedAccountList.accountList_step2]}>
-					<ControllableAccountList title={'추천'} />
+					<ControllableAccountList title={'추천'} showCrossMark={true} />
 				</View>
 			</ScrollView>
 			<View style={[linkedAccountList.floatingBtn]}>

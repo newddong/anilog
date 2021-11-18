@@ -108,14 +108,12 @@ export const login_style = StyleSheet.create({
 		height: 40 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#A07A7A',
 	},
 	social_info: {
 		width: 410 * DP,
 		height: 130 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 });
 
@@ -138,7 +136,6 @@ export const btn_style = StyleSheet.create({
 		height: 92 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 	queryBtn: {
 		alignItems: 'flex-end',
@@ -180,10 +177,8 @@ export const btn_style = StyleSheet.create({
 export const temp_style = StyleSheet.create({
 	passwordChecker: {
 		width: 654 * DP,
-		height: 406 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#A07A7A',
 	},
 	without_login: {
 		width: 750 * DP,
@@ -192,44 +187,32 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#7E94D0',
 	},
-	loginForm: {
-		width: 522 * DP,
-		height: 346 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#707070',
-	},
+
 	stageBar: {
 		width: 654 * DP,
 		height: 32 * DP,
 	},
 	agreementCheckList: {
 		width: 654 * DP,
-		height: 542 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#A07A7A',
 	},
 	tabSelectBorder_Type1: {
 		width: 654 * DP,
 		height: 88 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 	textMassage: {
 		width: 654 * DP,
 		height: 214 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#E09595',
 	},
 	phoneNumVerification: {
 		width: 654 * DP,
-		height: 402 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#A07A7A',
 	},
 	textMsg: {
 		width: 654 * DP,
@@ -241,8 +224,6 @@ export const temp_style = StyleSheet.create({
 	input30: {
 		width: 654 * DP,
 		height: 82 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
 		// backgroundColor: '#DEB5B5',
 	},
 	textMsg_AssignUserHabitation: {
@@ -252,26 +233,15 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#DBD3EB',
 	},
-	habitationForm: {
-		width: 654 * DP,
-		height: 366 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#A07A7A',
-	},
 	textMsg_AssignUserProfileImage: {
-		width: 512 * DP,
-		height: 38 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DBD3EB',
 	},
 	input30_assignUserProfileImage: {
 		width: 654 * DP,
 		height: 204 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 	inputForm_assignShelterAddress: {
 		width: 654 * DP,
@@ -332,10 +302,8 @@ export const temp_style = StyleSheet.create({
 	},
 	passwordChecker: {
 		width: 654 * DP,
-		height: 406 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#DEB5B5',
 	},
 	profileImageSelect: {
 		width: 294 * DP,
@@ -558,7 +526,6 @@ export const temp_style = StyleSheet.create({
 		height: 122 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#D8B5DE',
 	},
 	feedContent: {
 		width: 654 * DP,
@@ -905,17 +872,10 @@ export const temp_style = StyleSheet.create({
 	},
 	aidRequestList_aidRequestManage: {
 		width: 654 * DP,
-		height: 1384 * DP,
+		// height: 1384 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#E1E8FF',
-	},
-	aidRequestList_aidRequestManage: {
-		width: 654 * DP,
-		height: 1384 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#E1E8FF',
+		backgroundColor: '#FFF',
 	},
 	filterbutton_view: {
 		flexDirection: 'row',
@@ -1119,11 +1079,44 @@ export const loginTemplete_style = StyleSheet.create({
 		backgroundColor: '#A07A7A',
 	},
 	without_login: {
-		width: 750 * DP,
+		width: 654 * DP,
 		height: 316 * DP,
+		marginTop: 80 * DP,
+	},
+	without_login_text: {
+		width: 278 * DP,
+		height: 50 * DP,
+		alignSelf: 'flex-end',
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#7E94D0',
+		flexDirection: 'row',
+	},
+	nextBtnView: {
+		marginLeft: 20 * DP,
+	},
+	loginForm: {
+		width: 522 * DP,
+		height: 346 * DP,
+	},
+	idInput: {
+		marginBottom: 30 * DP,
+	},
+	pwdInput: {},
+	checkBox_loginFormContainer: {
+		width: 522 * DP,
+		height: 89 * DP,
+		justifyContent: 'center',
+		alignItems: 'center',
+		alignSelf: 'center',
+	},
+	checkBox_loginForm: {
+		width: 432 * DP,
+		height: 50 * DP,
+		flexDirection: 'row',
+	},
+	checkBoxContainer: {
+		marginTop: 10 * DP,
+		marginHorizontal: 20 * DP,
 	},
 	btn_w522_login: {
 		marginTop: 62 * DP,
@@ -1135,7 +1128,13 @@ export const loginTemplete_style = StyleSheet.create({
 		marginTop: 32 * DP,
 	},
 	social_info: {
-		marginTop: 38 * DP,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		marginVertical: 38 * DP,
+	},
+	socialLogin_icon: {
+		width: 80 * DP,
+		height: 80 * DP,
 	},
 });
 
@@ -1154,6 +1153,13 @@ export const agreementCheck_style = StyleSheet.create({
 	},
 	btn_w654: {
 		marginTop: 110 * DP,
+		marginBottom: 50 * DP,
+	},
+	horizontalSepartor: {
+		width: 654 * DP,
+		height: 2 * DP,
+		marginVertical: 15 * DP,
+		backgroundColor: GRAY10,
 	},
 });
 
@@ -1163,6 +1169,10 @@ export const userAssign = StyleSheet.create({
 	},
 	btn_w654: {
 		marginTop: 110 * DP,
+	},
+	textMessageInside: {
+		width: 414 * DP,
+		textAlign: 'center',
 	},
 });
 
@@ -1229,6 +1239,22 @@ export const shelterCodeCheck_style = StyleSheet.create({
 export const assignUserHabitation_style = StyleSheet.create({
 	btn_w654: {
 		marginTop: 150 * DP,
+	},
+	textContainer: {
+		width: 654 * DP,
+	},
+	info_text: {
+		width: 654 * DP,
+		marginTop: 12 * DP,
+		color: GRAY10,
+		alignSelf: 'flex-start',
+	},
+	habitationForm: {
+		width: 654 * DP,
+		height: 366 * DP,
+		marginTop: 80 * DP,
+		justifyContent: 'space-between',
+		alignItems: 'center',
 	},
 });
 
@@ -1847,6 +1873,9 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	},
 	marginLeft16: {
 		marginLeft: 16 * DP,
+	},
+	width118: {
+		width: 118 * DP,
 	},
 });
 

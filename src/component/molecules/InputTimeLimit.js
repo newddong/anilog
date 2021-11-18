@@ -12,6 +12,7 @@ import {GRAY20, GRAY30, BLACK, RED10} from 'Root/config/color';
  *timelimit: 'number / 시간 제한 [단위:초]',
  *alert_msg: 'string / 경고 메시지',
  *timeout_msg: 'string / 시간 초과 메시지',
+ *width : num ,
  *onChange: 'Input Value Change Callback',
  *onClear: '지우기(X)버튼 클릭 Callback',
  *onStartTimer : 'Timer 시작 시 Callback',
@@ -99,7 +100,7 @@ export default InputTimeLimit = props => {
 
 	return (
 		<View style={{flexDirection: 'row'}}>
-			<View style={{height: 118 * DP}}>
+			<View style={{height: 118 * DP, width: props.width * DP}}>
 				{/* 하단테두리 2px이 있기 때문에 inputValue와 82px가 차이가 나도 -2한 80값을 height로 줌 */}
 				<View
 					style={{
@@ -112,6 +113,7 @@ export default InputTimeLimit = props => {
 						ref={inputRef}
 						onChangeText={text => onChange(text)}
 						placeholder={props.placeholder}
+						keyboardType={'number-pad'}
 						style={[
 							txt.roboto28,
 							{
@@ -122,7 +124,7 @@ export default InputTimeLimit = props => {
 							},
 						]}
 					/>
-					<View style={{marginLeft: 106 * DP, alignSelf: 'center'}}>
+					<View style={{position: 'absolute', alignSelf: 'center', right: 0}}>
 						<Text
 							style={[
 								txt.roboto28,
@@ -145,6 +147,7 @@ InputTimeLimit.defaultProps = {
 	timelimit: 180,
 	alert_msg: 'alert_msg',
 	timeout_msg: 'timeOut_msg',
+	width: 400,
 	onChange: e => console.log(e),
 	onClear: e => console.log(e),
 	onStartTimer: e => console.log(e),

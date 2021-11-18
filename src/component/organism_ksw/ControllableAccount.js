@@ -15,8 +15,8 @@ import {controllableAccount, organism_style} from './style_organism';
  * }} props
  */
 export default ControllableAccount = props => {
-	const [showCheckBox, setShowCheckBox] = React.useState(true); // Label 좌측 CheckBox 출력 Boolean
-	const [showCrossMark, setShowCrossMark] = React.useState(true); // 팔로잉 버튼 우측 Cross 출력 Boolean
+	const [showCheckBox, setShowCheckBox] = React.useState(props.showCheckBox); // Label 좌측 CheckBox 출력 Boolean
+	const [showCrossMark, setShowCrossMark] = React.useState(props.showCrossMark); // 팔로잉 버튼 우측 Cross 출력 Boolean
 	const [following, setFollowing] = React.useState(false);
 
 	const onFollowBtnClick = () => {

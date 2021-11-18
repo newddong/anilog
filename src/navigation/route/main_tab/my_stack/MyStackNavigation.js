@@ -32,7 +32,7 @@ import AssignProtectAnimalInfo from 'Templete/AssignProtectAnimalInfo';
 import ShelterMenu from 'Templete/ShelterMenu';
 import ShelterInfoSetting from 'Templete/ShelterInfoSetting';
 import EditShelterInfo from 'Templete/EditShelterInfo';
-import AidRequestList from 'Templete/AidRequestList';
+import AidRequestAnimalList from 'Templete/AidRequestList';
 import WriteAidRequest from 'Templete/WriteAidRequest';
 import AidRequestManage from 'Templete/AidRequestManage';
 // import ProtectApplicant from "Templete/ProtectApplicant";
@@ -53,7 +53,7 @@ const MyStack = createStackNavigator();
 
 export default MyStackNavigation = () => {
 	return (
-		<MyStack.Navigator initialRouteName="UserMenu">
+		<MyStack.Navigator initialRouteName="ShelterMenu">
 			<MyStack.Screen name="UserFeedList" component={FeedList} />
 			<MyStack.Screen name="UserFeeds" component={FavoriteFeeds} />
 			<MyStack.Screen name="HashFeedList" component={FeedList} />
@@ -109,7 +109,7 @@ export default MyStackNavigation = () => {
 			<MyStack.Screen name="AssignProtectAnimalType" component={AssignPetInfoA} />
 			<MyStack.Screen name="AssignProtectAnimalAge" component={AssignProtectAnimalInfo} />
 
-			<MyStack.Screen name="AidRequestList" component={AidRequestList} />
+			<MyStack.Screen name="AidRequestAnimalList" component={AidRequestAnimalList} />
 			<MyStack.Screen name="WriteAidRequest" component={WriteAidRequest} />
 
 			<MyStack.Screen name="ShelterProtectAnimalList" component={AidRequestManage} />

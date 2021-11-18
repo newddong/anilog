@@ -222,14 +222,10 @@ export const phoneNumVerification = StyleSheet.create({
 	input30: {
 		height: 82 * DP,
 		marginBottom: 60 * DP,
-		backgroundColor: 'yellow',
-		justifyContent: 'flex-start',
-		alignItems: 'flex-start',
 	},
 	inputWithSelect: {
 		height: 82 * DP,
 		marginBottom: 60 * DP,
-		backgroundColor: 'yellow',
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
 	},
@@ -238,12 +234,12 @@ export const phoneNumVerification = StyleSheet.create({
 		height: 118 * DP,
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
-		backgroundColor: 'yellow',
 	},
 	btn_w226: {
-		marginLeft: 40 * DP,
-		marginTop: 6 * DP,
-		backgroundColor: WHITE,
+		position: 'absolute',
+		right: 0,
+		top: 10 * DP,
+		// marginLeft: 40 * DP,
 	},
 });
 
@@ -256,14 +252,12 @@ export const emailVerification = StyleSheet.create({
 	input30: {
 		height: 82 * DP,
 		marginBottom: 60 * DP,
-		backgroundColor: 'yellow',
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
 	},
 	inputWithSelect: {
 		height: 82 * DP,
 		marginBottom: 60 * DP,
-		backgroundColor: 'yellow',
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
 	},
@@ -272,12 +266,12 @@ export const emailVerification = StyleSheet.create({
 		height: 118 * DP,
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
-		backgroundColor: 'yellow',
 	},
 	btn_w226: {
-		marginLeft: 40 * DP,
-		marginTop: 6 * DP,
-		backgroundColor: WHITE,
+		position: 'absolute',
+		right: 0,
+		top: 10 * DP,
+		// marginLeft: 40 * DP,
 	},
 });
 
@@ -285,7 +279,6 @@ export const passwordChecker = StyleSheet.create({
 	container_initMode: {
 		width: 654 * DP,
 		height: 406 * DP,
-		backgroundColor: 'yellow',
 	},
 	container_resetMode: {
 		width: 654 * DP,
@@ -716,6 +709,7 @@ export const assignCheckListItem = StyleSheet.create({
 	container: {
 		width: 654 * DP,
 		height: 72 * DP,
+		alignItems: 'center',
 		flexDirection: 'row',
 	},
 	check50: {
@@ -726,6 +720,11 @@ export const assignCheckListItem = StyleSheet.create({
 		width: 592 * DP,
 		height: 72 * DP,
 		marginLeft: 12 * DP,
+		justifyContent: 'center',
+	},
+	detailText: {
+		position: 'absolute',
+		right: 0,
 	},
 });
 
@@ -846,8 +845,7 @@ export const aidRequest = StyleSheet.create({
 		height: 174 * DP,
 		marginTop: 18 * DP,
 		borderRadius: 30 * DP,
-		borderColor: APRI10,
-		borderWidth: 2 * DP,
+		// borderColor: APRI10,
 		flexDirection: 'row',
 	},
 	leftContainer: {},
@@ -869,27 +867,27 @@ export const aidRequest = StyleSheet.create({
 		width: 440 * DP,
 		height: 138 * DP,
 		marginHorizontal: 20 * DP,
-		backgroundColor: 'pink',
+		// backgroundColor: 'pink',
 	},
 	right_upperMenu: {
 		width: 440 * DP,
 		height: 44 * DP,
-		backgroundColor: GRAY30,
+		// backgroundColor: GRAY30,
 	},
 	right_middleMenu: {
 		width: 440 * DP,
 		height: 36 * DP,
 		marginTop: 12 * DP,
 		flexDirection: 'row',
-		backgroundColor: 'wheat',
+		// backgroundColor: 'wheat',
 	},
 	right_middleMenu_title: {
 		height: 36 * DP,
-		backgroundColor: 'lavender',
+		// backgroundColor: 'lavender',
 	},
 	right_middleMenu_content: {
 		height: 36 * DP,
-		backgroundColor: 'palegreen',
+		// backgroundColor: 'palegreen',
 		paddingRight: 15 * DP,
 		marginLeft: 10 * DP,
 		marginRight: 10 * DP,
@@ -899,7 +897,15 @@ export const aidRequest = StyleSheet.create({
 		height: 36 * DP,
 		marginTop: 12 * DP,
 		flexDirection: 'row',
-		backgroundColor: 'lightgray',
+		// backgroundColor: 'lightgray',
+	},
+	borderColor_APRI10: {
+		borderWidth: 6 * DP,
+		borderColor: APRI10,
+	},
+	borderColor_GRAY10: {
+		borderWidth: 1 * DP,
+		borderColor: GRAY10,
 	},
 });
 
@@ -907,7 +913,7 @@ export const aidRequestList = StyleSheet.create({
 	container: {
 		width: 672 * DP,
 		height: 816 * DP,
-		backgroundColor: 'lightcyan',
+		// backgroundColor: 'lightcyan',
 	},
 	itemContainer: {
 		flexDirection: 'row',

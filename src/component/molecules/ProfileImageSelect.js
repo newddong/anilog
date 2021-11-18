@@ -12,7 +12,6 @@ import {styles} from '../atom/image/imageStyle';
  * }} props
  */
 export default ProfileImageSelect = props => {
-	console.log(props.selectedImageUri);
 	const onClick = e => {
 		props.onClick();
 	};

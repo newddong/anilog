@@ -78,7 +78,7 @@ export default InputWithSelect = props => {
 							lineHeight: 44 * DP,
 							//placeholder 상태일때 글꼴의 영향인지 placeholde'r' 마지막글자가 짤리는 현상 발생
 							//우선 width를 가변적으로 주는 방식으로 해결
-							width: props.width * DP, //Input란이 비었을 시 width 고정을 줌
+							width: props.width * DP,
 							paddingVertical: 16 * DP, // Value와 최상위 View와의 paddingVertical 16px
 							paddingLeft: 12 * DP, // Arrow버튼과 Value란 12px 차이
 						},

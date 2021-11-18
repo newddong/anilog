@@ -9,20 +9,48 @@ import {btn_style, temp_style} from '../templete/style_templete';
 import {emailVerification} from './style_organism';
 
 export default EmailVerification = props => {
+	const [timeOut, setTimeOut] = React.useState(false);
+	const onEndTimer = () => {
+		setTimeOut(true);
+	};
+
+	const requestReVerification = () => {
+		console.log('requestReVerification');
+	};
+	const requestVerification = () => {
+		console.log('requestVerification');
+	};
 	return (
 		<View style={[emailVerification.container]}>
 			<View style={[temp_style.input30, emailVerification.input30]}>
-				<Input30 showTitle={false} />
+				<Input30 showTitle={false} width={654} placeholder={'이름을 입력해주세요'} />
 			</View>
 			<View style={[temp_style.inputWithSelect, emailVerification.inputWithSelect]}>
-				<InputWithEmail />
+				<InputWithEmail width={330} placeholder={'이메일을 입력해주세요'} />
 			</View>
 			<View style={{flexDirection: 'row', backgroundColor: 'white'}}>
 				<View style={[emailVerification.inputTimeLimit]}>
-					<InputTimeLimit />
+					<InputTimeLimit
+						timelimit={5}
+						onEndTimer={onEndTimer}
+						placeholder={'인증번호 입력'}
+						timeout_msg={'인증 가능한 시간이 초과되었습니다.'}
+						alert_msg={'인증번호가 일치하지 않습니다.'}
+					/>
 				</View>
 				<View style={[btn_style.btn_w226, emailVerification.btn_w226]}>
-					<AniButton btnLayout={btn_w226} btnTitle={'인증요청'} btnTheme={'shadow'} btnStyle={'filled'} titleFontStyle={24} />
+					{timeOut ? (
+						<AniButton
+							btnLayout={btn_w226}
+							btnTitle={'인증 재요청'}
+							btnTheme={'shadow'}
+							btnStyle={'border'}
+							titleFontStyle={24}
+							onPress={requestReVerification}
+						/>
+					) : (
+						<AniButton btnLayout={btn_w226} btnTitle={'인증 요청'} btnTheme={'shadow'} titleFontStyle={24} onPress={requestVerification} />
+					)}
 				</View>
 			</View>
 		</View>

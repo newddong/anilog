@@ -1,11 +1,9 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import ProtectRequestList from 'Templete/ProtectRequestList';
-import MissingReportList from 'Templete/MissingReportList';
-import ActivationList from 'Templete/ActivationList';
 import TopTabNavigation_Border from 'Root/component/organism_ksw/TopTabNavigation_Border';
 import LinkedAccountList from 'Root/component/templete/LinkedAccountList';
 import FollowerList from 'Root/component/templete/FollowerList';
+import RecommendedAccountList from 'Root/component/templete/RecommendedAccountList';
 
 const SocialRelationTab = createMaterialTopTabNavigator();
 
@@ -42,7 +40,7 @@ export default SocialRelationTopTabNavigation = () => {
 			<SocialRelationTab.Screen name="LinkedAccountList" component={LinkedAccountList} />
 			<SocialRelationTab.Screen name="FollowerList" component={FollowerList} />
 			<SocialRelationTab.Screen name="FollowingList" component={FollowerList} />
-			<SocialRelationTab.Screen name="ActivationList2" component={ActivationList} />
+			<SocialRelationTab.Screen name="RecommendedAccountList" component={RecommendedAccountList} />
 		</SocialRelationTab.Navigator>
 	);
 };
