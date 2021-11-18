@@ -1,7 +1,5 @@
 import React from 'react';
 import {SafeAreaView, View, Dimensions, StyleSheet} from 'react-native';
-import {Modal} from '../../component/modal/Modal';
-
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -50,7 +48,7 @@ import UserVerification from 'Root/component/templete/UserVerification';
 
 import TwoBtnModal from 'Root/component/molecules/TwoBtnModal';
 import OneBtnModal from 'Molecules/OneBtnModal';
-
+import {Modal} from '../../component/modal/Modal';
 const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
