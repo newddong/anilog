@@ -85,5 +85,5 @@ UserDescriptionLabel.defaultProps = {
 		showStatus: false,
 	},
 	// onLabelClick: e => console.log(e),
-	onLabelClick: e => consol1e.log(e),
+	onLabelClick: e => console.log(e),
 };
