@@ -1025,6 +1025,18 @@ export const animalNeedHelp = StyleSheet.create({
 	container: {
 		width: 654 * DP,
 		// height: 214 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexDirection: 'column',
+	},
+	container_seleted: {
+		width: 702 * DP,
+		height: 374 * DP,
+		borderRadius: 30 * DP,
+		borderWidth: 5 * DP,
+		borderColor: APRI10,
+		alignItems: 'center',
+		justifyContent: 'center',
 		flexDirection: 'column',
 	},
 	checkBoxContainer: {
@@ -1111,13 +1123,17 @@ export const animalNeedHelp = StyleSheet.create({
 	container_basicInfo: {
 		flexDirection: 'row',
 	},
+	container_basicInfo_seleted: {
+		flexDirection: 'row',
+	},
 });
 
 export const animalNeedHelpList = StyleSheet.create({
 	container: {
-		width: 654 * DP,
+		width: 702 * DP,
 	},
 	itemContainer: {
+		alignItems: 'center',
 		marginBottom: 40 * DP,
 	},
 });

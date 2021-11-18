@@ -6,30 +6,37 @@ import {useNavigation} from '@react-navigation/core';
 import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
 
 export default AnimalNeedHelpList = props => {
+	AnimalNeedHelpList;
 	const navigation = useNavigation();
 
 	const renderItem = (item, index) => {
 		// console.log('index=>' + item.thumbnailData.status);
 		return (
-			<TouchableOpacity
-				style={[animalNeedHelpList.itemContainer]}
-				onPress={() => {
-					props.onItemClick(item);
-					// if (item.thumbnailData.status == 'missing') {
-					// 	navigation.navigate('MissingAnimalDetail');
-					// } else if (item.thumbnailData.status == 'reported') {
-					// 	navigation.navigate('ReportDetail');
-					// }
-					// //다른 route가 있을 경우 else if 확장 할 것
-					// else {
-					// }
-				}}>
+			// <TouchableOpacity
+			// style={[animalNeedHelpList.itemContainer]}
+			// 	onPress={() => {
+			// 		props.onItemClick(item);
+			// 		console.log('item.thumbnailData.status=>' + item.thumbnailData.status);
+			// 		// if (item.thumbnailData.status == 'missing') {
+			// 		// 	navigation.navigate('MissingAnimalDetail');
+			// 		// } else if (item.thumbnailData.status == 'reported') {
+			// 		// 	navigation.navigate('ReportDetail');
+			// 		// }
+			// 		// //다른 route가 있을 경우 else if 확장 할 것
+			// 		// else {
+			// 		// }
+			// 	}}>s
+
+			//marginBottom: 40 * DP,
+			<View style={[animalNeedHelpList.itemContainer]}>
 				<AnimalNeedHelp data={item} />
-			</TouchableOpacity>
+			</View>
+			// </TouchableOpacity>
 		);
 	};
 
 	return (
+		//width: 702 * DP
 		<View style={[animalNeedHelpList.container]}>
 			<FlatList data={dummy_AnimalNeedHelpList} renderItem={({item, index}) => renderItem(item, index)} nestedScrollEnabled />
 		</View>
