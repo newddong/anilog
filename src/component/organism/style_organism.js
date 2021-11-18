@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { GRAY10, GRAY20 } from 'Root/config/color';
+import {StyleSheet} from 'react-native';
+import {GRAY10, GRAY20} from 'Root/config/color';
 import DP from 'Root/config/dp';
 
 export const organism_style = StyleSheet.create({
@@ -50,7 +50,7 @@ export const organism_style = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	content_feedContent: {
-		flexDirection: 'row',
+		//	flexDirection: 'row',
 		width: 654 * DP,
 	},
 	time_view_feedContent: {
@@ -91,7 +91,9 @@ export const organism_style = StyleSheet.create({
 	button_view_feedContent: {
 		flexDirection: 'row',
 		width: 126 * DP,
-		alignItems: 'center',
+		position: 'absolute',
+		right: 0,
+		alignSelf: 'center',
 		justifyContent: 'space-between',
 	},
 	favoriteTag_view_feedContent: {
@@ -374,7 +376,6 @@ export const profileInfo_style = StyleSheet.create({
 		width: 492 * DP,
 		height: 80 * DP,
 		marginLeft: 40 * DP,
-
 	},
 	content_expanded: {
 		width: 492 * DP,

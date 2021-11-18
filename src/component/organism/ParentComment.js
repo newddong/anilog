@@ -1,13 +1,12 @@
 import React from 'react';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
-import { organism_style, parentComment } from './style_organism';
-import { styles } from '../atom/image/imageStyle';
+import {View, Image, Text, TouchableOpacity} from 'react-native';
+import {organism_style, parentComment} from './style_organism';
+import {styles} from '../atom/image/imageStyle';
 import ChildCommentList from 'Root/component/organism/ChildCommentList';
 import UserLocationTimeLabel from '../molecules/UserLocationTimeLabel';
-import { Heart30_Border, Heart30_Filled, Meatball50_APRI10_Vertical } from '../atom/icon';
-import { txt } from 'Root/config/textstyle';
-import { dummy_userLocationTimeLabel } from '../../config/dummyDate_json';
-
+import {Heart30_Border, Heart30_Filled, Meatball50_APRI10_Vertical} from '../atom/icon';
+import {txt} from 'Root/config/textstyle';
+import {dummy_userLocationTimeLabel} from '../../config/dummyDate_json';
 
 /**
  *
@@ -18,11 +17,15 @@ import { dummy_userLocationTimeLabel } from '../../config/dummyDate_json';
  * }} props
  */
 export default ParentComment = props => {
-
-	console.log(props)
+	console.log(props);
 	const meatballClick = () => {
-		console.log("meatBall click")
-	}
+		console.log('meatBall click');
+	};
+	const [likeState, setLikeState] = React.useState(true);
+
+	const onCLickHeart = () => {
+		setLikeState(!likeState);
+	};
 
 	return (
 		<View style={organism_style.parentComment}>
@@ -37,19 +40,16 @@ export default ParentComment = props => {
 			</View>
 			{/* 댓글 Dummy 이미지 및 대댓글 목록 */}
 			<View style={[organism_style.img_square_round_574, parentComment.img_square_round_574]}>
-				{props.parentComment.img_uri != null ?
-					<Image style={[styles.img_square_round_574]} source={{ uri: props.parentComment.img_uri }} />
-					: null}
+				{props.parentComment.img_uri != null ? <Image style={[styles.img_square_round_574]} source={{uri: props.parentComment.img_uri}} /> : null}
 			</View>
 			<View style={[parentComment.likeReplyButton]}>
 				{/* Data - 좋아요 상태 t/f */}
 				<View style={[parentComment.heart30]}>
-					{props.likeState ? <Heart30_Filled onPress={() => console.log('좋아요 클릭')} /> : <Heart30_Border />}
-
+					{likeState ? <Heart30_Filled onPress={onCLickHeart} /> : <Heart30_Border onPress={onCLickHeart} />}
 				</View>
 				<View style={[parentComment.likeCount]}>
 					{/* Data - 좋아요 숫자 */}
-					<Text style={(txt.roboto24, parentComment.likeCountText)}>{props.likeCount}</Text>
+					<Text style={(txt.roboto24, parentComment.likeCountText)}>{props.parentComment.likeCount}</Text>
 				</View>
 				<TouchableOpacity style={[parentComment.writeComment]} onPress={() => props.onPressReplyBtn()}>
 					<Text style={(txt.noto22, parentComment.writeCommentText)}>· 답글 쓰기</Text>
@@ -57,7 +57,7 @@ export default ParentComment = props => {
 			</View>
 			{/* Data - 대댓글List */}
 			<View style={[organism_style.childCommentList, parentComment.img_square_round_574]}>
-				<ChildCommentList onPressReplyBtn={(comment) => props.onPress_ChildComment_ReplyBtn(comment)} />
+				<ChildCommentList onPressReplyBtn={comment => props.onPress_ChildComment_ReplyBtn(comment)} />
 			</View>
 		</View>
 	);
@@ -69,7 +69,7 @@ ParentComment.defaultProps = {
 	parentComment: {
 		likeCount: 110,
 		img_uri: null,
-		likeState: false
+		likeState: false,
 	},
 };
 

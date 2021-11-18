@@ -3103,9 +3103,13 @@ export const missingAnimalDetail = StyleSheet.create({
 	feedContent: {
 		marginTop: 40 * DP,
 	},
-	commentList: {
-		marginTop: 62 * DP,
+	horizontal_separator: {
+		width: '95%',
+		marginVertical: 30 * DP,
+		backgroundColor: GRAY30,
+		height: 2,
 	},
+	commentList: {},
 });
 
 export const reportDetail = StyleSheet.create({

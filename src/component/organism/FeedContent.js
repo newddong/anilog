@@ -1,15 +1,17 @@
 import React from 'react';
-import { Text, View, TouchableWithoutFeedback, TextInput, Linking } from 'react-native';
-import { organism_style, feedContent_style } from './style_organism';
+import {Text, View, TouchableWithoutFeedback, TextInput, Linking} from 'react-native';
+import {organism_style, feedContent_style} from './style_organism';
 import UserLocationLabel from 'Root/component/molecules/UserLocationLabel';
 import AniButton from 'Root/component/molecules/AniButton';
-import { btn_w130 } from 'Root/component/atom/btn/btn_style';
-import { useNavigation } from '@react-navigation/core';
-import { Bracket48, FavoriteTag48_Filled, Meatball50_GRAY20_Horizontal, Share48_Filled } from '../atom/icon';
-import { BLUE10, BLUE20, GRAY10 } from 'Root/config/color';
-import { txt } from 'Root/config/textstyle';
-import { Button } from 'react-native';
+import {btn_w130} from 'Root/component/atom/btn/btn_style';
+import {useNavigation} from '@react-navigation/core';
+import {Bracket48, FavoriteTag48_Filled, Meatball50_GRAY20_Horizontal, Share48_Filled} from '../atom/icon';
+import {txt} from 'Root/config/textstyle';
+import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
+
 import FeedText from '../organism_ksw/FeedText';
+import DP from 'Root/config/dp';
+import {GRAY10} from 'Root/config/color';
 export default FeedContent = props => {
 	//Test용 데이터
 	const navigation = useNavigation();
@@ -29,6 +31,18 @@ export default FeedContent = props => {
 		};
 		navigation.push('FeedListForHashTag', dummyHashData);
 	};
+
+	const [btnStatus, setBtnStatus] = React.useState(false);
+
+	const [layout, setLayout] = React.useState({});
+	console.log('layout.height ', layout.height);
+	const onLayout = event => {
+		const {width, height} = event.nativeEvent.layout;
+		console.log(width, height);
+		setLayout({width, height});
+	};
+
+	const onClickShowMore = () => {};
 
 	return (
 		<View style={organism_style.feedContent}>
@@ -72,7 +86,7 @@ export default FeedContent = props => {
 								<Share48_Filled />
 							</View>
 							<View style={[organism_style.share_feedContent, feedContent_style.share]}>
-								<Text style={[txt.noto24, { color: GRAY10 }]}>공유</Text>
+								<Text style={[txt.noto24, {color: GRAY10}]}>공유</Text>
 							</View>
 						</View>
 					</View>
@@ -86,29 +100,47 @@ export default FeedContent = props => {
 				</View>
 			)}
 
-			{/* line 2 */}
-			<View style={[organism_style.content_feedContent, feedContent_style.content]}>
+			{/* FeedText */}
+			<View
+				style={[
+					organism_style.content_feedContent,
+					feedContent_style.content,
+					{
+						// FeedText의 높이가 120이상(3줄 이상)일 경우 maxheight가 지정되며, 아닐 경우 Maxheight는 없다
+						maxHeight: layout.height < 120 * DP ? null : 120 * DP,
+					},
+					{
+						//하지만 더보기를 누른다면 maxHeight 제한은 사라지며 본래의 크기를 보여준다
+						maxHeight: btnStatus ? null : 120 * DP,
+					},
+				]}
+				onLayout={onLayout}>
 				<FeedText
 					text={
-						'우리 #둥이는 언제나 창가에 앉아있끼를 좋아하는 것이 아닌가 호텔 캘리포니아우리 #둥이는 언제나 창가에 앉아있끼를 좋아하는 것이 아닌가 호텔 캘리포니아우리 #둥이는 언제나 창가에 앉아있끼를 좋아하는 것이 아닌가 호텔 캘리포니아'
+						'우리 #둥이는 언제나 창가에 앉아있끼를 좋아하는 것이 아닌가 호텔 캘리포니아우리 #둥이는 언제나 창가에 앉아있끼를 좋아하는 것이 아닌가 호텔 캘리포니아' +
+						'우리 #둥이는 언제나 창가에 앉아있끼를 좋아하는 것이 아닌가 호텔 캘리포니아우리 #둥이는 언제나 창가에 앉아있끼를 좋아하는 것이 아닌가 호텔 캘리포니아'
 					}
 					onHashClick={hashText => moveToFeedListForHashTag(hashText)}
 				/>
 			</View>
 			{/* line 3 */}
-			<View style={[organism_style.time_view_feedContent]}>
+			<View style={[organism_style.time_view_feedContent, {marginTop: btnStatus ? null : 10 * DP}]}>
 				<View style={[organism_style.time_feedContent]}>
 					<Text>1일 전</Text>
 				</View>
 
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}
-				{props.data.addMore && (
+				{layout.height > 120 * DP && (
 					<View style={[organism_style.addMore_view_feedContent]}>
 						<View style={[organism_style.addMore_feedContent]}>
-							<Text style={[txt.noto22, { color: GRAY10 }]}>더보기</Text>
+							<Text style={[txt.noto22, {color: GRAY10}]}>더보기</Text>
 						</View>
 						<View style={[organism_style.braket]}>
-							<Bracket48 />
+							{btnStatus ? (
+								<Arrow_Up_GRAY20 onPress={() => setBtnStatus(!btnStatus)} />
+							) : (
+								<Arrow_Down_GRAY20 onPress={() => setBtnStatus(!btnStatus)} />
+							)}
 						</View>
 					</View>
 				)}

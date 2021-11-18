@@ -35,8 +35,8 @@ export const dummy_UserDescriptionLabel = [
 export const dummy_userLocationTimeLabel = {
 	user_id: 'user_id',
 	user_nickname: '통돌이 벤제마',
-	img_uri: null,
-	location: 'location',
+	img_uri: 'https://cdn.imweb.me/upload/S20200605d0b93b390db0f/200c0a39675ca.png',
+	location: '서울시 송파구 방이골목',
 	time: '1',
 };
 

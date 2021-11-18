@@ -48,14 +48,14 @@ export default UserLocationTimeLabel = props => {
 				<Image source={{uri: imgUri}} style={styles.img_round_60} />
 				{/* image_round_76이 없으므로 style 작성 */}
 			</TouchableOpacity>
-			<View style={{marginLeft: 20 * DP, width: 300 * DP}}>
+			<View style={{marginLeft: 20 * DP}}>
 				{/* Text부분과 프로필이미지 사이의 거리 30 */}
 				{/* width 300은 비정상적인 길이에 대한 처리 */}
 				{/* img_round_94의 height94이며 Text Box 2개의 height 총합은 86이었으므로 paddingVertical을 4씩 준다*/}
-				<Text style={[txt.roboto24, {color: validation ? APRI10 : BLACK}]} numberOfLines={1} ellipsizeMode="tail">
+				<Text style={[txt.roboto24, {color: validation ? APRI10 : BLACK}]} numberOfLines={1}>
 					{props.data.user_nickname}
 				</Text>
-				<Text style={[txt.noto24, {lineHeight: 36 * DP, color: GRAY20}]} numberOfLines={1} ellipsizeMode="tail">
+				<Text style={[txt.noto24, {lineHeight: 36 * DP, color: GRAY20}]} numberOfLines={1}>
 					{props.data.location} · {props.data.time}일 전
 				</Text>
 				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}

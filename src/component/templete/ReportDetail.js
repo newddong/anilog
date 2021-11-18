@@ -17,6 +17,7 @@ export default ReportDetail = props => {
 	React.useEffect(() => {
 		LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 	}, []);
+
 	return (
 		<ScrollView>
 			<View style={[login_style.wrp_main, reportDetail.container]}>

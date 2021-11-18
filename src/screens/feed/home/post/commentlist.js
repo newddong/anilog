@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Modal, Text, View, StyleSheet, TouchableWithoutFeedback, ScrollView, TextInput, Keyboard, FlatList, Platform} from 'react-native';
+import {Image, Text, View, StyleSheet, TouchableWithoutFeedback, ScrollView, TextInput, Keyboard, FlatList, Platform} from 'react-native';
 import DP from 'Screens/dp';
 import SvgWrapper, {SvgWrap} from 'Screens/svgwrapper';
 import {GliderIcon, PictureIcon} from 'Asset/image';
@@ -55,7 +55,6 @@ export default CommentList = props => {
 		setEditComment({...editComment, images: [props.route.params.localSelectedImages]});
 	}, [props.route.params]);
 
-
 	const writeComment = () => {
 		if (editComment.content.length === 0) {
 			alert('댓글을 입력하세요');
@@ -93,7 +92,7 @@ export default CommentList = props => {
 						images: editComment.images[0].uri,
 					},
 					(result, user) => {
-						setComment.current({...result,user:user});
+						setComment.current({...result, user: user});
 						setEditComment({content: '', images: []});
 						setInput(false);
 						Keyboard.dismiss();
@@ -136,7 +135,7 @@ export default CommentList = props => {
 	const edit = (comment, setFn) => {
 		// console.log(comment)
 		setComment.current = setFn;
-		setEditComment({content: comment.comment, images: [{uri:comment.images[0]}], _id: comment._id});
+		setEditComment({content: comment.comment, images: [{uri: comment.images[0]}], _id: comment._id});
 		showInput();
 	};
 
