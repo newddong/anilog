@@ -4,7 +4,6 @@ import {APRI10, GRAY20, GRAY30, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
-import {useNavigation} from '@react-navigation/core';
 /**
  *
  * @param {{btnTitle : string,
@@ -16,7 +15,6 @@ import {useNavigation} from '@react-navigation/core';
  * onPress : Function   }} props
  */
 export default AniButton = props => {
-	const navigation = useNavigation();
 	const btnTheme = () => {
 		//btnTheme이 shadow일 경우 Button의 View에 아래의 style을 추가한다
 		if (props.btnTheme == 'shadow') {

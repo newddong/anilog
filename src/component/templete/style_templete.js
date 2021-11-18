@@ -22,7 +22,8 @@ export const login_style = StyleSheet.create({
 	wrp_main: {
 		// flex: 1,
 		alignItems: 'center',
-		backgroundColor: WHITE,
+		// justifyContent: 'center',
+		backgroundColor: '#FFF',
 	},
 	contents: {
 		// flex: 1,
@@ -114,6 +115,12 @@ export const login_style = StyleSheet.create({
 		height: 130 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	outside_main: {
+		// flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#FF00FF',
 	},
 });
 
@@ -841,10 +848,10 @@ export const temp_style = StyleSheet.create({
 	},
 	animalProtectDetails_adoptorInformation: {
 		width: 654 * DP,
-		height: 1386 * DP,
+		// height: 1386 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#C4C483',
+		backgroundColor: '#FFF',
 	},
 	aidRequestList_aidRequestManage: {
 		width: 654 * DP,
