@@ -1660,6 +1660,7 @@ export const addFamilyAccount_style = StyleSheet.create({
 	},
 	btn_w654: {
 		marginTop: 110 * DP,
+		marginBottom: 60 * DP,
 	},
 });
 
@@ -2260,7 +2261,7 @@ export const animalAdoption = StyleSheet.create({
 	},
 	instruction_icon_item_text: {
 		width: 126 * DP,
-		height: 74 * DP,
+		height: 36 * DP,
 		textAlign: 'center',
 	},
 	btn_w522: {
@@ -2486,6 +2487,7 @@ export const petInfoSetting = StyleSheet.create({
 			flexDirection: 'row',
 		},
 		bracket50: {
+			alignSelf: 'center',
 			marginLeft: 320 * DP,
 		},
 	},
@@ -2884,6 +2886,12 @@ export const applyVolunteer = StyleSheet.create({
 		width: 654 * DP,
 		marginTop: 40 * DP,
 	},
+	number_of_volunteerers: {
+		borderBottomColor: APRI10,
+		borderBottomWidth: 2 * DP,
+		width: 654 * DP,
+		height: 82 * DP,
+	},
 	participants_step1: {
 		width: 654 * DP,
 		height: 52 * DP,
@@ -2891,11 +2899,15 @@ export const applyVolunteer = StyleSheet.create({
 	},
 
 	participants_step2: {
-		width: 590 * DP,
+		width: 606 * DP,
 		marginTop: 20 * DP,
+	},
+	accountList: {
+		width: 528 * DP,
 	},
 	addParticipantBtn: {
 		width: 654 * DP,
+		marginLeft: 10 * DP,
 		flexDirection: 'row',
 	},
 	addParticipantTxt: {

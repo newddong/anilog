@@ -12,8 +12,6 @@ import {Private48, Public48} from '../atom/icon';
  * }} props
  */
 export default ShelterInfo = props => {
-	console.log('data', props.data);
-
 	const [imgUri, setImgUri] = React.useState(props.data.img_uri);
 
 	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정

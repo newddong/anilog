@@ -67,7 +67,7 @@ export default AssignPetProfileImage = props => {
 				{/* InputForm */}
 				<View style={[temp_style.inputForm_assignPetProfileImage, assignPetProfileImage_style.inputForm]}>
 					<View style={[temp_style.input30_assignPetProfileImage]}>
-						<Input30 showTitle={false} width={654} />
+						<Input30 showTitle={false} width={654} placeholder={'반려동물의 닉네임을 적어주세요.'} />
 					</View>
 					<View style={[temp_style.checkBox_assignPetProfileImage, assignPetProfileImage_style.checkBox]}>
 						<TouchableOpacity onPress={() => setProtect(!protect)}>{protect ? <Check50 /> : <Rect50_Border />}</TouchableOpacity>

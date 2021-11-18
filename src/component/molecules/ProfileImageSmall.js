@@ -25,7 +25,6 @@ import {styles} from '../atom/image/imageStyle';
  * }} props
  */
 export default ProfileImageSmall = props => {
-	console.log(props.data.img_uri);
 	// 유저의 프로필 이미지를 표시,  유저의 종류(일반유저, 반려동물, 보호소)와 상태(임시보호중,입양,공립,사립)에 따라 아이콘을 표시
 	const petStatus = () => {
 		switch (props.data.petStatus) {

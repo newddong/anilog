@@ -1,13 +1,9 @@
 import React from 'react';
-<<<<<<< HEAD
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, View, Dimensions, StyleSheet} from 'react-native';
+import {Modal} from '../../component/modal/Modal';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-=======
-import { SafeAreaView, View, Dimensions, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
->>>>>>> dc44d1754745f9be92d5b3a2eee88d09117da020
 
 import LoginTemplete from 'Templete/LoginTemplete';
 
@@ -52,7 +48,6 @@ import SimpleHeader from 'Navigation/header/SimpleHeader';
 import SendHeader from '../header/SendHeader';
 import UserVerification from 'Root/component/templete/UserVerification';
 
-import {Modal} from 'Root/component/modal/Modal';
 import TwoBtnModal from 'Root/component/molecules/TwoBtnModal';
 import OneBtnModal from 'Molecules/OneBtnModal';
 
@@ -61,24 +56,20 @@ const RootStack = createStackNavigator();
 export default RootStackNavigation = () => {
 	const [isPop, setPop] = React.useState(false);
 	const [popupComponent, setPopupComponent] = React.useState(false);
-	Modal.popup = ()=>{
-
-	}
+	Modal.popup = () => {};
 	Modal.close = () => {
 		setPop(false);
-	}
-	Modal.popTwoBtn = (msg,noMsg,yesMsg,onNo,onYes) => {
-		setPopupComponent(<TwoBtnModal popUpMsg={msg} onNo={onNo} onYes={onYes} noMsg={noMsg} yesMsg={yesMsg}/>);
+	};
+	Modal.popTwoBtn = (msg, noMsg, yesMsg, onNo, onYes) => {
+		setPopupComponent(<TwoBtnModal popUpMsg={msg} onNo={onNo} onYes={onYes} noMsg={noMsg} yesMsg={yesMsg} />);
 		// setPopupComponent(<View style={{backgroundColor:'blue',height:80,width:80}}/>);
 		setPop(true);
-	}
-	Modal.popNoBtn = (msg,checker) => {
-
-	}
-	Modal.popOneBtn = (msg,okMsg,onOk) => {
-		setPopupComponent(<OneBtnModal popUpMsg={msg} onOk={onOk} okMsg={okMsg}/>);
+	};
+	Modal.popNoBtn = (msg, checker) => {};
+	Modal.popOneBtn = (msg, okMsg, onOk) => {
+		setPopupComponent(<OneBtnModal popUpMsg={msg} onOk={onOk} okMsg={okMsg} />);
 		setPop(true);
-	}
+	};
 
 	return (
 		<SafeAreaView style={{flex: 1}}>
@@ -140,19 +131,16 @@ export default RootStackNavigation = () => {
 				</RootStack.Navigator>
 			</NavigationContainer>
 
-			{isPop&&<View style={popup.popupBackground}>
-				{popupComponent}
-			</View>}
+			{isPop && <View style={popup.popupBackground}>{popupComponent}</View>}
 		</SafeAreaView>
 	);
 };
 
-
 const popup = StyleSheet.create({
-	popupBackground : {
+	popupBackground: {
 		// backgroundColor:'red',
 		height: Dimensions.get('screen').height,
 		width: Dimensions.get('screen').width,
-		position: 'absolute'
-	}
-})
+		position: 'absolute',
+	},
+});

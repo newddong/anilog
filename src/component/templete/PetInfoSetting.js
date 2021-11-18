@@ -128,11 +128,9 @@ export default PetInfoSetting = props => {
 							<View style={[petInfoSetting.changeAdoptionStatus.menuTitle]}>
 								<Text style={[txt.noto30b, {color: GRAY10}]}>반려동물 입양 상태 변경</Text>
 							</View>
-							<TouchableOpacity onPress={() => navigation.push('AnimalAdoption')}>
-								<View style={[petInfoSetting.changeAdoptionStatus.bracket50]}>
-									<NextMark />
-								</View>
-							</TouchableOpacity>
+							<View style={[petInfoSetting.changeAdoptionStatus.bracket50]}>
+								<NextMark onPress={() => navigation.push('AnimalAdoption')} />
+							</View>
 						</View>
 					</View>
 				</View>

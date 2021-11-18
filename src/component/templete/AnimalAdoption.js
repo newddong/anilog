@@ -44,15 +44,18 @@ export default AnimalAdoption = props => {
 					<View style={[animalAdoption.instruction_icon]}>
 						<View style={[animalAdoption.instruction_icon_item]}>
 							<Paw62_APRI10 />
-							<Text style={[txt.noto20, animalAdoption.instruction_icon_item_text]}>일반 반려동물 아이콘</Text>
+							<Text style={[txt.noto20, animalAdoption.instruction_icon_item_text]}>일반 반려동물</Text>
+							<Text style={[txt.noto20, animalAdoption.instruction_icon_item_text]}>아이콘</Text>
 						</View>
 						<View style={[animalAdoption.instruction_icon_item]}>
 							<Paw62_YELL20 />
-							<Text style={[txt.noto20, animalAdoption.instruction_icon_item_text]}>임시 보호동물 아이콘</Text>
+							<Text style={[txt.noto20, animalAdoption.instruction_icon_item_text]}>임시 보호동물</Text>
+							<Text style={[txt.noto20, animalAdoption.instruction_icon_item_text]}>아이콘</Text>
 						</View>
 						<View style={[animalAdoption.instruction_icon_item]}>
 							<Paw62_Mixed />
-							<Text style={[txt.noto20, animalAdoption.instruction_icon_item_text]}>입양완료 아이콘</Text>
+							<Text style={[txt.noto20, animalAdoption.instruction_icon_item_text]}>입양완료</Text>
+							<Text style={[txt.noto20, animalAdoption.instruction_icon_item_text]}>아이콘</Text>
 						</View>
 					</View>
 				</View>
