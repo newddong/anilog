@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {APRI10, GRAY10, GRAY20, GRAY30, GRAY40, WHITE} from 'Root/config/color';
+import { StyleSheet } from 'react-native';
+import { APRI10, GRAY10, GRAY20, GRAY30, GRAY40, WHITE } from 'Root/config/color';
 import DP from 'Root/config/dp';
 
 export const BGCOLOR = '#B5DED8';
@@ -482,7 +482,7 @@ export const addressInput = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	titleContainer: {
-		width: 118 * DP,
+		flexDirection: 'row',
 		height: 46 * DP,
 	},
 	lowerContainer: {},

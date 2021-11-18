@@ -1,9 +1,9 @@
 import React from 'react';
-import {txt} from 'Root/config/textstyle';
-import {Text, View, TextInput} from 'react-native';
+import { txt } from 'Root/config/textstyle';
+import { Text, View, TextInput } from 'react-native';
 import DP from 'Root/config/dp';
-import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
-import {Cross46} from '../atom/icon';
+import { APRI10, GRAY20, GRAY30, GREEN, RED10 } from 'Root/config/color';
+import { Cross46 } from '../atom/icon';
 
 /**
  *
@@ -20,7 +20,9 @@ import {Cross46} from '../atom/icon';
  *style:'StyleSheet',
  *defaultValue : string
  *showCrossMark : 'boolean / INPUT 오른쪽 지우기 마크(Cross) 출력여부, default = true',
- *onChange : void
+ *onChange : void,
+ *onClear : void,
+ *showHttp : boolean,
  * }} props
  */
 export default Input24 = props => {
@@ -47,6 +49,8 @@ export default Input24 = props => {
 	};
 
 	const onClear = () => {
+		props.showHttp ? setInput('http://') : null
+
 		inputRef.current.clear();
 		props.onClear();
 		setInput('');
@@ -62,9 +66,9 @@ export default Input24 = props => {
 
 	const getDescription = () => {
 		if (props.descriptionType == 'info') {
-			return <Text style={[txt.noto22, {color: GRAY20, marginLeft: 20 * DP}]}> *{props.info} </Text>;
+			return <Text style={[txt.noto22, { color: GRAY20, marginLeft: 20 * DP }]}> *{props.info} </Text>;
 		} else if (props.descriptionType == 'star') {
-			return <Text style={[txt.noto28, {color: RED10, marginLeft: 120 * DP}]}>*</Text>;
+			return <Text style={[txt.noto28, { color: RED10, marginLeft: 60 * DP }]}>*</Text>;
 		} else if (props.descriptionType == 'none') {
 			return null;
 		}
@@ -73,32 +77,32 @@ export default Input24 = props => {
 	const getMsg = () => {
 		if (props.showmsg) {
 			if (input.length == 0) {
-				return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}></Text>;
+				return <Text style={(txt.noto22, { color: RED10, lineHeight: 36 * DP })}></Text>;
 			} else
 				return confirm ? (
-					<Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>
+					<Text style={(txt.noto22, { color: GREEN, lineHeight: 36 * DP })}>{props.confirm_msg}</Text>
 				) : (
-					<Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>
+					<Text style={(txt.noto22, { color: RED10, lineHeight: 36 * DP })}>{props.alert_msg}</Text>
 				);
 		}
 	};
 
 	return (
-		<View style={[props.width && {width: props.width * DP}, {flexDirection: 'column'}]}>
+		<View style={[props.width && { width: props.width * DP }, { flexDirection: 'column' }]}>
 			{/* width props를 입력하지 않을 경우 Input컴포넌트의 부모의 width를 따라 넓이가 정해지도록 수정*/}
 			{/* height 를 title과 alert_msg가 없을 때에는 공간을 차지하지 않도록 가변이 되도록 style을 수정*/}
 
-			{console.log(typeof props.title)}
-			{console.log('props.title=' + props.title + props.width)}
+			{/* {console.log(typeof props.title)} */}
+			{/* {console.log('props.title=' + props.title + props.width)} */}
 			{/* parent에서 title이 props로 명시되어 있지 않을 경우 'title' string 으로 받음. */}
 			{props.title != '' && props.title != 'title' && (
-				<View style={{flexDirection: 'row'}}>
-					<Text style={[txt.noto24, {color: APRI10}]}> {props.title}</Text>
+				<View style={{ flexDirection: 'row' }}>
+					<Text style={[txt.noto24, { color: APRI10 }]}> {props.title}</Text>
 					{getDescription()}
 				</View>
 			)}
 			{/* 하단테두리 2px이 있기 때문에 inputValue와 82px가 차이가 나도 -2한 80값을 height로 줌 */}
-			<View style={{height: 80 * DP, borderBottomWidth: 2 * DP, borderBottomColor: setBorderColor(), flexDirection: 'row', alignItems: 'center'}}>
+			<View style={{ height: 80 * DP, borderBottomWidth: 2 * DP, borderBottomColor: setBorderColor(), flexDirection: 'row', alignItems: 'center' }}>
 				<TextInput
 					ref={inputRef}
 					onChangeText={text => onChange(text)}
@@ -113,10 +117,11 @@ export default Input24 = props => {
 							minWidth: 300 * DP,
 						},
 					]}
-				/>
+				>{props.showHttp ? <Text>http://</Text> : null}
+				</TextInput>
 				{props.showCrossMark ? (
-					<View style={{position: 'absolute', right: 0}}>
-						<Cross46 />
+					<View style={{ position: 'absolute', right: 0 }}>
+						<Cross46 onPress={onClear} />
 					</View>
 				) : null}
 			</View>
@@ -136,5 +141,7 @@ Input24.defaultProps = {
 	info: null, //
 	defaultValue: null, // 기존 아이디 등 DefaultValue가 필요한 경우에 대한 처리
 	showCrossMark: true, //Input 최우측 X마크(지우기마크) 출력 여부
+	showHttp: false, //AssignShelterInformation에서 http:// 인풋 좌측에 놓기 위한 props
+	onClear: e => console.log(e),
 	onChange: e => console.log(e),
 };

@@ -1,9 +1,9 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, TextInput} from 'react-native';
-import {txt} from 'Root/config/textstyle';
+import { Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { txt } from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
-import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52} from '../atom/icon';
-import {APRI10, GRAY30} from 'Root/config/color';
+import { Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52 } from '../atom/icon';
+import { APRI10, GRAY30, RED10 } from 'Root/config/color';
 
 /**
  *
@@ -12,6 +12,9 @@ import {APRI10, GRAY30} from 'Root/config/color';
  *items: 'Array / Select 목록',
  *defaultIndex: number,
  *value: string,
+ *title : string,
+ *title_star : boolean,
+ *alert_msg : string,
  *onChange: 'Input Value Chgange Callback',
  *onClear: '지우기 버튼(X) 클릭 Callback',
  *width: 'number / TextInput 너비 , default=200',
@@ -44,7 +47,16 @@ export default InputWithSelect = props => {
 	};
 
 	return (
-		<View style={{flexDirection: 'row', height: 82 * DP}}>
+		<View style={{ height: 82 * DP }}>
+			{props.title != null
+				?
+				<View style={{ flexDirection: 'row' }}>
+					<Text style={[txt.noto24, { color: APRI10 }]}>{props.title}</Text>
+					<Text style={[txt.noto24, { color: RED10, marginLeft: 30 * DP, }]}>{props.title_star ? '*' : null}</Text>
+					<Text style={[txt.noto24, { color: RED10, marginLeft: 30 * DP }]}>{props.alert_msg}</Text>
+				</View>
+				: null
+			}
 			<View
 				style={{
 					flexDirection: 'row',
@@ -63,7 +75,7 @@ export default InputWithSelect = props => {
 					]}>
 					{selectedItem}
 				</Text>
-				<TouchableOpacity onPress={() => setBtnStatus(!btnStatus)} style={{marginLeft: 43 * DP}}>
+				<TouchableOpacity onPress={() => setBtnStatus(!btnStatus)} style={{ marginLeft: 43 * DP }}>
 					{/* BtnStatus가 true일 경우 아래방향 화살표, false일 경우 위방향 화살표 */}
 					{btnStatus ? <Arrow_Up_GRAY20 /> : <Arrow_Down_GRAY20 />}
 				</TouchableOpacity>
@@ -73,9 +85,8 @@ export default InputWithSelect = props => {
 					ref={inputRef}
 					onChangeText={text => onChange(text)}
 					style={[
-						txt.noto28,
+						txt.roboto28,
 						{
-							lineHeight: 44 * DP,
 							//placeholder 상태일때 글꼴의 영향인지 placeholde'r' 마지막글자가 짤리는 현상 발생
 							//우선 width를 가변적으로 주는 방식으로 해결
 							width: props.width * DP,
@@ -85,7 +96,7 @@ export default InputWithSelect = props => {
 					]}
 				/>
 				{input.length > 0 ? (
-					<TouchableOpacity onPress={onClear} style={{marginLeft: 120 * DP}}>
+					<TouchableOpacity onPress={onClear} style={{ position: 'absolute', right: 0 }}>
 						<Cross52 />
 					</TouchableOpacity>
 				) : (
@@ -100,6 +111,9 @@ InputWithSelect.defaultProps = {
 	items: ['default1', 'default2', 'default3', 'test3', 'test5'],
 	defaultIndex: 0, // props로 받은 itemList의 디폴트 인덱스
 	value: null,
+	title: null,
+	title_star: false,
+	alert_msg: null,
 	onChange: e => console.log(e),
 	onClear: e => console.log(e),
 	width: 200,

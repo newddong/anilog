@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
 	MAINCOLOR,
 	LINK,
@@ -141,7 +141,6 @@ export const btn_style = StyleSheet.create({
 		alignItems: 'flex-end',
 		width: 654 * DP,
 		height: 50 * DP,
-		backgroundColor: '#707070',
 	},
 	btn_w242: {
 		width: 242 * DP,
@@ -219,7 +218,6 @@ export const temp_style = StyleSheet.create({
 		height: 352 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#A07A7A',
 	},
 	input30: {
 		width: 654 * DP,
@@ -259,9 +257,6 @@ export const temp_style = StyleSheet.create({
 	input24A_assignShelterAddress: {
 		width: 654 * DP,
 		height: 112 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#EF9FE5',
 	},
 	addressInput: {
 		width: 654 * DP,
@@ -272,23 +267,7 @@ export const temp_style = StyleSheet.create({
 	inputWithSelect_assignShelterInformation: {
 		width: 654 * DP,
 		height: 122 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#D8B5DE',
-	},
-	inputWithEmail_assignShelterInformation: {
-		width: 654 * DP,
-		height: 122 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#D8B5DE',
-	},
-	input24A_assignShelterInformation: {
-		width: 654 * DP,
-		height: 122 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#D8B5DE',
+
 	},
 	input24A_applyCompanionA: {
 		width: 654 * DP,
@@ -3422,7 +3401,7 @@ export const feedWrite = StyleSheet.create({
 });
 
 export const profile = StyleSheet.create({
-	container: {flex: 1},
+	container: { flex: 1 },
 	profileInfo: {
 		width: 750 * DP,
 		marginBottom: 30 * DP,
