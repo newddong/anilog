@@ -25,6 +25,7 @@ import {styles} from '../atom/image/imageStyle';
  * }} props
  */
 export default ProfileImageSmall = props => {
+	console.log(props.data.img_uri);
 	// 유저의 프로필 이미지를 표시,  유저의 종류(일반유저, 반려동물, 보호소)와 상태(임시보호중,입양,공립,사립)에 따라 아이콘을 표시
 	const petStatus = () => {
 		switch (props.data.petStatus) {
@@ -49,7 +50,7 @@ export default ProfileImageSmall = props => {
 		}
 	};
 	const userType = () => {
-		switch (props.userType) {
+		switch (props.data.userType) {
 			case 'pet':
 				return <View style={{position: 'absolute'}}>{petStatus()}</View>;
 			case 'shelter':
@@ -88,7 +89,16 @@ export default ProfileImageSmall = props => {
 	};
 	return (
 		<View style={getSize()}>
-			{props.data.userType == 'hash' ? getHash() : <Image source={{uri: props.data.img_uri}} style={getSize()} />}
+			{props.data.userType == 'hash' ? (
+				getHash()
+			) : (
+				<Image
+					source={{
+						uri: 'https://previews.123rf.com/images/zolotinka/zolotinka1501/zolotinka150100003/35361122-%EB%8F%99%EB%AC%BC-%EB%B3%B4%ED%98%B8%EC%86%8C-%EB%B2%A1%ED%84%B0-%EC%95%84%EC%9D%B4%EC%BD%98-%EB%A1%9C%EA%B3%A0-%EA%B0%9C%EC%99%80-%EC%83%81%EC%9E%90%EC%97%90-%EA%B3%A0%EC%96%91%EC%9D%B4.jpg',
+					}}
+					style={getSize()}
+				/>
+			)}
 			{userType()}
 		</View>
 	);

@@ -1,14 +1,14 @@
 import React from 'react';
-import {FlatList, ScrollView, Text, View} from 'react-native';
-import {APRI10, GRAY10} from 'Root/config/color';
+import {ScrollView, Text, View} from 'react-native';
+import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
-import {AddItem92, Add_Pet, Add_Volunteer, Calendar48_Filled, Person48, Phone48} from '../atom/icon';
+import {Add_Volunteer, Calendar48_Filled, Person48, Phone48} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import Input30 from '../molecules/Input30';
 import ShelterInfo from '../molecules/ShelterInfo';
 import AccountList from '../organism_ksw/AccountList';
-import {login_style, applicationFormVolunteer, temp_txt, btn_style} from './style_templete';
+import {login_style, applicationFormVolunteer, btn_style} from './style_templete';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>

@@ -14,7 +14,7 @@ export const dummy_UserDescriptionLabel = [
 	{
 		user_id: 'user_id',
 		user_nickname: 'The Great Catsby',
-		img_uri: 'https://cdn.class101.net/images/a0366426-79cc-4df0-ab01-17f4ab1816c0',
+		img_uri: 'https://image.fmkorea.com/modules/point/icons/fmkorea10/31.gif?yzv',
 		text_intro: 'Description',
 	},
 	{
@@ -119,19 +119,6 @@ export const dummy_accountList = [
 		user_nickname: '하양이',
 		img_uri: 'https://file.mk.co.kr/meet/neds/2021/06/image_readtop_2021_535745_16226846584668330.jpg',
 		text_intro: '안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있...',
-	},
-	{
-		user_id: '구름이',
-		user_nickname: '구름이',
-		img_uri: 'https://static01.nyt.com/images/2016/03/30/universal/ko/well_cat-korean/well_cat-superJumbo-v2.jpg',
-		text_intro: 'Description',
-	},
-	{
-		user_id: '달리',
-		user_nickname: '달리',
-		img_uri:
-			'https://post-phinf.pstatic.net/MjAxNzA2MzBfMTIy/MDAxNDk4NzgyMDkyMTUx.ukh7-et-tZsr2LPbPe3ccs0XLwB7V_EVRrepf9b0jwYg.j3iBalwSrvtzxJ0BvuYm2zMSQe2gJ6Cd9erBK-QaMIAg.PNG/20170630_092030.png?type=w1200',
-		text_intro: '안녕하세요',
 	},
 ];
 
@@ -461,6 +448,15 @@ export const dummy_familyAccountList = [
 		},
 	},
 ];
+
+export const dummy_shelterInfo = {
+	img_uri:
+		'https://previews.123rf.com/images/zolotinka/zolotinka1501/zolotinka150100003/35361122-%EB%8F%99%EB%AC%BC-%EB%B3%B4%ED%98%B8%EC%86%8C-%EB%B2%A1%ED%84%B0-%EC%95%84%EC%9D%B4%EC%BD%98-%EB%A1%9C%EA%B3%A0-%EA%B0%9C%EC%99%80-%EC%83%81%EC%9E%90%EC%97%90-%EA%B3%A0%EC%96%91%EC%9D%B4.jpg',
+	shelter_name: '아이조아 보호소',
+	phone_number: '010-5533-2910',
+	address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
+	shelterType: 'private',
+};
 
 export const applyComanionCheckList = [
 	'입양 혹은 임시보호를 하려는 당사자는 성인입니다',

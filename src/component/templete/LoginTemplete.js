@@ -1,14 +1,14 @@
 import React from 'react';
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
-import { GRAY10, GRAY20 } from 'Root/config/color';
-import { txt } from 'Root/config/textstyle';
-import { btn_w522 } from '../atom/btn/btn_style';
-import { Kakao_Icon, Naver_Icon, NextMark, Instagram_Icon, Facebook_Icon } from '../atom/icon';
+import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import {GRAY10, GRAY20} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
+import {btn_w522} from '../atom/btn/btn_style';
+import {Kakao_Icon, Naver_Icon, NextMark, Instagram_Icon, Facebook_Icon} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import CheckBox from '../molecules/CheckBox';
 import Input24 from '../molecules/Input24';
 import PasswordInput from '../molecules/PasswordInput';
-import { login_style, btn_style, loginTemplete_style } from './style_templete';
+import {login_style, btn_style, loginTemplete_style} from './style_templete';
 
 export default LoginTemplete = props => {
 	const moveToMainTab = () => {
@@ -22,11 +22,11 @@ export default LoginTemplete = props => {
 	};
 	//자동로그인 박스 클릭
 	const onCheckAutoLogin = state => {
-		console.log(state);
+		console.log('자동로그인', state);
 	};
 	//아이디 저장 박스 클릭
 	const onCheckSaveId = state => {
-		console.log(state);
+		console.log('아이디저장', state);
 	};
 	//Password Text Input Validator
 	const passwordValidator = text => {
@@ -38,11 +38,11 @@ export default LoginTemplete = props => {
 	};
 
 	return (
-		<View style={[login_style.wrp_main, { flex: 1 }]}>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* confirm without login */}
 			<View style={loginTemplete_style.without_login}>
 				<View style={[loginTemplete_style.without_login_text]}>
-					<Text style={[txt.noto24, { color: GRAY10 }]}>로그인 없이 둘러보기</Text>
+					<Text style={[txt.noto24, {color: GRAY10}]}>로그인 없이 둘러보기</Text>
 					<View style={[loginTemplete_style.nextBtnView]}>
 						<NextMark onPress={moveToMainTab} />
 					</View>
@@ -55,7 +55,7 @@ export default LoginTemplete = props => {
 					<Input24 placeholder={'아이디를 작성해주세요'} width={520} onChange={text => idValidator(text)} />
 				</View>
 				<View style={[loginTemplete_style.pwdInput]}>
-					<PasswordInput placeholder={'비밀번호를 작성해주세요'} width={520} validator={text => passwordValidator(text)} />
+					<PasswordInput placeholder={'비밀번호를 작성해주세요'} width={520} validator={text => passwordValidator(text)} information={''} />
 				</View>
 				<View style={[loginTemplete_style.checkBox_loginFormContainer]}>
 					<View style={[loginTemplete_style.checkBox_loginForm]}>
@@ -82,15 +82,15 @@ export default LoginTemplete = props => {
 			{/* basic info */}
 			<View style={[login_style.basic_info, loginTemplete_style.basic_info]}>
 				<TouchableOpacity onPress={moveToShelterCodeCheck}>
-					<Text style={[txt.noto24, { color: GRAY20 }]}>보호소 등록</Text>
+					<Text style={[txt.noto24, {color: GRAY20}]}>보호소 등록</Text>
 				</TouchableOpacity>
 				<Text> | </Text>
 				<TouchableOpacity onPress={moveToShelterCodeCheck}>
-					<Text style={[txt.noto24, { color: GRAY20 }]}> 내 계정 찾기 </Text>
+					<Text style={[txt.noto24, {color: GRAY20}]}> 내 계정 찾기 </Text>
 				</TouchableOpacity>
 				<Text> | </Text>
 				<TouchableOpacity onPress={moveToShelterCodeCheck}>
-					<Text style={[txt.noto24, { color: GRAY20 }]}>비밀번호 재설정</Text>
+					<Text style={[txt.noto24, {color: GRAY20}]}>비밀번호 재설정</Text>
 				</TouchableOpacity>
 			</View>
 
@@ -109,7 +109,6 @@ export default LoginTemplete = props => {
 					<Facebook_Icon />
 				</View>
 			</View>
-
 		</View>
 	);
 };

@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
 	MAINCOLOR,
 	LINK,
@@ -267,7 +267,6 @@ export const temp_style = StyleSheet.create({
 	inputWithSelect_assignShelterInformation: {
 		width: 654 * DP,
 		height: 122 * DP,
-
 	},
 	input24A_applyCompanionA: {
 		width: 654 * DP,
@@ -276,8 +275,6 @@ export const temp_style = StyleSheet.create({
 	datePicker_assignShelterInformation: {
 		width: 654 * DP,
 		height: 122 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
 	},
 	passwordChecker: {
 		width: 654 * DP,
@@ -2177,9 +2174,7 @@ export const applicationFormVolunteer = StyleSheet.create({
 
 	participants_step2: {
 		width: 590 * DP,
-		alignSelf: 'flex-end',
-		justifyContent: 'center',
-		alignItems: 'center',
+		marginTop: 20 * DP,
 	},
 	addParticipantBtn: {
 		width: 654 * DP,
@@ -2200,7 +2195,6 @@ export const applicationFormVolunteer = StyleSheet.create({
 		width: 590 * DP,
 		height: 42 * DP,
 		marginTop: 10 * DP,
-		marginLeft: 64 * DP,
 	},
 	btn_w226: {
 		height: 90 * DP,
@@ -2822,15 +2816,94 @@ export const activationDetail = StyleSheet.create({
 export const applyVolunteer = StyleSheet.create({
 	container: {
 		flex: 1,
-		alignItems: 'center',
-		alignContent: 'center',
-		backgroundColor: '#ACC4D6',
 	},
 	btn_w226: {
 		marginTop: 110 * DP,
 		alignSelf: 'flex-end',
 		marginRight: 48 * DP,
 		marginBottom: 68 * DP,
+	},
+	shelterInfo: {
+		width: 702 * DP,
+		height: 246 * DP,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: 'white',
+		marginTop: 30 * DP,
+	},
+	viewForm: {
+		width: 654 * DP,
+		marginTop: 40 * DP,
+	},
+	viewForm_step1: {
+		width: 654 * DP,
+		height: 52 * DP,
+		flexDirection: 'row',
+	},
+	icon48: {
+		width: 48 * DP,
+		height: 48 * DP,
+	},
+	title: {
+		width: 590 * DP,
+		height: 42 * DP,
+		marginLeft: 16 * DP,
+		marginTop: 4 * DP,
+		marginBottom: 10 * DP,
+		flexDirection: 'row',
+	},
+	volunteerDateList: {
+		width: 606 * DP,
+		height: 52 * DP,
+		marginTop: 30 * DP,
+		alignSelf: 'center',
+		flexDirection: 'row',
+	},
+	volunteerDateList_text: {
+		alignSelf: 'center',
+	},
+	volunteerDateList_cross: {
+		position: 'absolute',
+		right: 0,
+		justifyContent: 'center',
+	},
+	viewForm_step2: {
+		width: 590 * DP,
+		height: 168 * DP,
+		marginTop: 22 * DP,
+		marginLeft: 64 * DP,
+	},
+	participants: {
+		width: 654 * DP,
+		marginTop: 40 * DP,
+	},
+	participants_step1: {
+		width: 654 * DP,
+		height: 52 * DP,
+		flexDirection: 'row',
+	},
+
+	participants_step2: {
+		width: 590 * DP,
+		marginTop: 20 * DP,
+	},
+	addParticipantBtn: {
+		width: 654 * DP,
+		flexDirection: 'row',
+	},
+	addParticipantTxt: {
+		color: APRI10,
+		alignSelf: 'center',
+		justifyContent: 'center',
+		marginLeft: 30 * DP,
+	},
+	participants_contact: {
+		width: 654 * DP,
+		marginTop: 40 * DP,
+	},
+	participants_contact_text: {
+		width: 590 * DP,
+		marginTop: 10 * DP,
 	},
 });
 
@@ -3401,7 +3474,7 @@ export const feedWrite = StyleSheet.create({
 });
 
 export const profile = StyleSheet.create({
-	container: { flex: 1 },
+	container: {flex: 1},
 	profileInfo: {
 		width: 750 * DP,
 		marginBottom: 30 * DP,

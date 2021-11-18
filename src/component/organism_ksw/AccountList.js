@@ -27,7 +27,7 @@ export default AccountList = props => {
 			<TouchableOpacity
 				style={[cliked[index].state ? organism_style.userDescriptionLabel_clicked : organism_style.userDescriptionLabel]}
 				onPress={() => makeBorder(index)}>
-				<UserDescriptionLabel data={item} />
+				<UserDescriptionLabel data={item} width={606} />
 			</TouchableOpacity>
 		);
 	};

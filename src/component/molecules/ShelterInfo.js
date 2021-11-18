@@ -12,6 +12,8 @@ import {Private48, Public48} from '../atom/icon';
  * }} props
  */
 export default ShelterInfo = props => {
+	console.log('data', props.data);
+
 	const [imgUri, setImgUri] = React.useState(props.data.img_uri);
 
 	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정
@@ -20,6 +22,13 @@ export default ShelterInfo = props => {
 			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
 		}
 	});
+
+	const profileImageSmall_data = {
+		img_uri: imgUri,
+		userType: 'shelter',
+		shelterType: props.data.shelterType,
+		size: 94,
+	};
 
 	const getStatusMark = () => {
 		switch (props.data.shelter_type) {
@@ -37,10 +46,10 @@ export default ShelterInfo = props => {
 			<View style={{width: 654 * DP, height: 94 * DP, marginTop: 30 * DP, marginHorizontal: 24 * DP, flexDirection: 'row'}}>
 				<TouchableOpacity>
 					{/*<Image source={{uri: imgUri}} style={styles.img_round_94} />*/}
-					<ProfileImageSmall size={94} shelterType={props.data.shelterType} userType={'shelter'} img_uri={imgUri} />
+					<ProfileImageSmall data={profileImageSmall_data} />
 				</TouchableOpacity>
 				<View style={{position: 'absolute', left: 66 * DP, top: 46 * DP}}>{getStatusMark()}</View>
-				<Text style={[txt.noto28b, {marginLeft: 50 * DP, paddingVertical: 26 * DP, justifyContent: 'center'}]}>{props.data.name}</Text>
+				<Text style={[txt.noto28b, {marginLeft: 50 * DP, paddingVertical: 26 * DP, justifyContent: 'center'}]}>{props.data.shelter_name}</Text>
 			</View>
 			<View style={{width: 654 * DP, height: 72 * DP, marginTop: 10 * DP}}>
 				<Text style={[txt.noto24, {alignSelf: 'flex-end', color: GRAY10}]}>{props.data.address}</Text>
@@ -52,7 +61,8 @@ export default ShelterInfo = props => {
 
 ShelterInfo.defaultProps = {
 	data: {
-		img_uri: 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+		img_uri:
+			'https://previews.123rf.com/images/zolotinka/zolotinka1501/zolotinka150100003/35361122-%EB%8F%99%EB%AC%BC-%EB%B3%B4%ED%98%B8%EC%86%8C-%EB%B2%A1%ED%84%B0-%EC%95%84%EC%9D%B4%EC%BD%98-%EB%A1%9C%EA%B3%A0-%EA%B0%9C%EC%99%80-%EC%83%81%EC%9E%90%EC%97%90-%EA%B3%A0%EC%96%91%EC%9D%B4.jpg',
 		shelter_name: '아이조아 보호소',
 		phone_number: '010-5533-2910',
 		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',

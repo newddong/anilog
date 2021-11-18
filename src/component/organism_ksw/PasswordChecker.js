@@ -43,6 +43,7 @@ export default PasswordChecker = props => {
 					placeholder={'비밀번호를 한 번 더 적어주세요.'}
 					alert_msg={'비밀번호가 일치하지 않습니다.'}
 					confirm_msg={'비밀번호가 서로 일치합니다!'}
+					information={''}
 					onChange={pwd => props.passwordChecker(pwd)}
 					confirm={props.pwdCheck}
 					clear={isClear}

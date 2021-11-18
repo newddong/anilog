@@ -10,7 +10,8 @@ import Calendar from 'Root/test_sangwoo/calendar';
  * @param {{
  * width : 'number / 전체 DatePicker의 너비',
  * onDateChange : '달력에서 날짜가 선택되었을 때 실행되는 CallBack',
- * defaultDate : 'ex) 2021.05.01  처음 설정되어 있는 날짜'
+ * defaultDate : 'ex) 2021.05.01  처음 설정되어 있는 날짜',
+ * title : string,
  * }} props
  */
 export default DatePicker = props => {
@@ -32,6 +33,11 @@ export default DatePicker = props => {
 				width: props.width * DP,
 				height: 82 * DP,
 			}}>
+			{props.title != '' && props.title != 'title' && (
+				<View style={{flexDirection: 'row'}}>
+					<Text style={[txt.noto24, {color: APRI10}]}> {props.title}</Text>
+				</View>
+			)}
 			<View
 				style={{
 					borderBottomColor: APRI10,
@@ -61,6 +67,7 @@ export default DatePicker = props => {
 DatePicker.defaultProps = {
 	value: null,
 	width: 520, //전체 DatePicker의 너비
+	title: 'title',
 	onDateChange: e => console.log(e),
 	defaultDate: '2021.05.01',
 };

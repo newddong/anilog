@@ -33,6 +33,7 @@ export default PasswordInput = props => {
 	React.useEffect(() => {
 		console.log('clear' + props.clear);
 		inputRef.current.clear();
+		setInput('');
 	}, [props.clear]);
 
 	//Input 하단 메시지 출력 분기
@@ -74,7 +75,7 @@ export default PasswordInput = props => {
 	const onClear = () => {
 		inputRef.current.clear();
 		props.onClear();
-		setConfirm(false);
+		// setConfirm(false);
 		setInput('');
 	};
 
@@ -134,14 +135,13 @@ export default PasswordInput = props => {
 					/>
 					{/* X버튼은 TextInput과 28px 차이, 최하단 View테두리와는 14px 차이 */}
 					<View style={{position: 'absolute', right: 0, paddingBottom: 7 * DP, flexDirection: 'row'}}>
-						<TouchableOpacity onPress={onShowPassword}>
-							<View style={{marginRight: 10 * DP}}>{pwdSecureState ? <Eye52_GRAY20 /> : <Eye52_APRI10 />}</View>
-						</TouchableOpacity>
-						<TouchableOpacity onPress={onClear}>
-							<Cross52 />
-						</TouchableOpacity>
+						<View style={{marginRight: 10 * DP}}>
+							{pwdSecureState ? <Eye52_GRAY20 onPress={onShowPassword} /> : <Eye52_APRI10 onPress={onShowPassword} />}
+						</View>
+						<Cross52 onPress={onClear} />
 					</View>
 				</View>
+
 				{getMsg()}
 			</View>
 		</View>

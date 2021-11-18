@@ -1,7 +1,7 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {SafeAreaView} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import LoginTemplete from 'Templete/LoginTemplete';
 
@@ -39,7 +39,7 @@ import AssignPetInfoB from 'Templete/AssignPetInfoB';
 import MainTabNavigation from './main_tab/MainTabNavigation';
 import SearchTabNavigation from './search_tab/SearchTabNavigation';
 
-import { PIC_SELECTION } from 'Root/i18n/msg';
+import {PIC_SELECTION} from 'Root/i18n/msg';
 import FeedListForHashTag from 'Root/component/templete/FeedListForHashTag';
 
 import SimpleHeader from 'Navigation/header/SimpleHeader';
@@ -50,9 +50,9 @@ const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
+		<SafeAreaView style={{flex: 1}}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="Login">
+				<RootStack.Navigator initialRouteName="ApplyVolunteer">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} />
@@ -85,17 +85,17 @@ export default RootStackNavigation = () => {
 
 					<RootStack.Screen name="ApplyVolunteer" component={ApplyVolunteer} />
 					<RootStack.Screen name="FeedMediaTagEdit" component={FeedMediaTagEdit} />
-					<RootStack.Screen name="FeedWrite" component={FeedWrite} options={{ header: props => <SendHeader {...props} />, title: '게시물 작성' }} />
+					<RootStack.Screen name="FeedWrite" component={FeedWrite} options={{header: props => <SendHeader {...props} />, title: '게시물 작성'}} />
 
 					<RootStack.Screen
 						name="FeedMissingWrite"
 						component={FeedWrite}
-						options={{ header: props => <SendHeader {...props} />, title: '실종 게시물' }}
+						options={{header: props => <SendHeader {...props} />, title: '실종 게시물'}}
 					/>
 					<RootStack.Screen
 						name="FeedReportWrite"
 						component={FeedWrite}
-						options={{ header: props => <SendHeader {...props} />, title: '제보 게시물' }}
+						options={{header: props => <SendHeader {...props} />, title: '제보 게시물'}}
 					/>
 					<RootStack.Screen name="LocationPicker" component={LocationPicker} />
 

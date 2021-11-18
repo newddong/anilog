@@ -20,7 +20,7 @@ export default ControllableAccountList = props => {
 	};
 
 	return (
-		<View style={controllableAccountList.container}>
+		<View style={[controllableAccountList.container]}>
 			{props.title == null ? null : (
 				<View style={[controllableAccountList.title]}>
 					<Text style={[txt.noto24, {color: GRAY10}]}>{props.title}</Text>

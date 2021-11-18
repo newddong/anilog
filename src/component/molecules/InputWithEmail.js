@@ -1,10 +1,9 @@
 import React from 'react';
-import { txt } from 'Root/config/textstyle';
-import { Text, View, TouchableOpacity, TextInput } from 'react-native';
+import {txt} from 'Root/config/textstyle';
+import {Text, View, TouchableOpacity, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
-import { Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52 } from '../atom/icon';
-import { APRI10, GRAY30, RED10 } from 'Root/config/color';
-
+import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52} from '../atom/icon';
+import {APRI10, GRAY30, RED10} from 'Root/config/color';
 
 /**
  *
@@ -47,18 +46,14 @@ export default InputWithEmail = props => {
 	};
 
 	return (
-		<View
-			style={{
-			}}>
-			{props.title != null
-				?
-				<View style={{ flexDirection: 'row', }}>
-					<Text style={[txt.noto24, { color: APRI10 }]}>{props.title}</Text>
-					<Text style={[txt.noto24, { color: RED10, marginLeft: 30 * DP, }]}>{props.title_star ? '*' : null}</Text>
+		<View style={{}}>
+			{props.title != null ? (
+				<View style={{flexDirection: 'row'}}>
+					<Text style={[txt.noto24, {color: APRI10}]}>{props.title}</Text>
+					<Text style={[txt.noto24, {color: RED10, marginLeft: 30 * DP}]}>{props.title_star ? '*' : null}</Text>
 				</View>
-				: null
-			}
-			<View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 2 * DP, borderColor: input.length == 0 ? GRAY30 : APRI10 }}>
+			) : null}
+			<View style={{flexDirection: 'row', alignItems: 'center', borderBottomWidth: 2 * DP, borderColor: input.length == 0 ? GRAY30 : APRI10}}>
 				<TextInput
 					placeholder={props.placeholder}
 					value={props.value}
@@ -80,17 +75,21 @@ export default InputWithEmail = props => {
 					]}
 				/>
 				{input.length > 0 ? (
-					<View style={{ marginLeft: 40 * DP }}>
+					<View style={{marginLeft: 40 * DP}}>
 						<Cross52 onPress={onClear} />
 					</View>
 				) : (
 					false
 				)}
-				<View style={{ position: 'absolute', right: 10 * DP, flexDirection: 'row' }}>
-					<Text style={[txt.roboto24b, { marginHorizontal: 24 * DP, lineHeight: 36 * DP }]}>@</Text>
-					<Text style={[txt.roboto28, { marginHorizontal: 24 * DP, lineHeight: 36 * DP }]}> {selectedItem} </Text>
-					<View style={{ marginLeft: 12 * DP }}>
-						{btnStatus ? <Arrow_Up_GRAY20 onPress={() => setBtnStatus(!btnStatus)} /> : <Arrow_Down_GRAY20 onPress={() => setBtnStatus(!btnStatus)} />}
+				<View style={{position: 'absolute', right: 10 * DP, flexDirection: 'row'}}>
+					<Text style={[txt.roboto24b, {marginHorizontal: 24 * DP, lineHeight: 36 * DP}]}>@</Text>
+					<Text style={[txt.roboto28, {marginHorizontal: 24 * DP, lineHeight: 36 * DP}]}> {selectedItem} </Text>
+					<View style={{marginLeft: 12 * DP}}>
+						{btnStatus ? (
+							<Arrow_Up_GRAY20 onPress={() => setBtnStatus(!btnStatus)} />
+						) : (
+							<Arrow_Down_GRAY20 onPress={() => setBtnStatus(!btnStatus)} />
+						)}
 					</View>
 				</View>
 			</View>

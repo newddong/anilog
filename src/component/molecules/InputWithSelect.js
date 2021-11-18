@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, TextInput } from 'react-native';
-import { txt } from 'Root/config/textstyle';
+import {Text, View, TouchableOpacity, TextInput} from 'react-native';
+import {txt} from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
-import { Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52 } from '../atom/icon';
-import { APRI10, GRAY30, RED10 } from 'Root/config/color';
+import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52} from '../atom/icon';
+import {APRI10, GRAY30, RED10} from 'Root/config/color';
 
 /**
  *
@@ -18,6 +18,7 @@ import { APRI10, GRAY30, RED10 } from 'Root/config/color';
  *onChange: 'Input Value Chgange Callback',
  *onClear: '지우기 버튼(X) 클릭 Callback',
  *width: 'number / TextInput 너비 , default=200',
+ *keyboardType : 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'number-pad' | 'decimal-pad',
  * }} props
  */
 export default InputWithSelect = props => {
@@ -47,16 +48,14 @@ export default InputWithSelect = props => {
 	};
 
 	return (
-		<View style={{ height: 82 * DP }}>
-			{props.title != null
-				?
-				<View style={{ flexDirection: 'row' }}>
-					<Text style={[txt.noto24, { color: APRI10 }]}>{props.title}</Text>
-					<Text style={[txt.noto24, { color: RED10, marginLeft: 30 * DP, }]}>{props.title_star ? '*' : null}</Text>
-					<Text style={[txt.noto24, { color: RED10, marginLeft: 30 * DP }]}>{props.alert_msg}</Text>
+		<View style={{height: 82 * DP}}>
+			{props.title != null ? (
+				<View style={{flexDirection: 'row'}}>
+					<Text style={[txt.noto24, {color: APRI10}]}>{props.title}</Text>
+					<Text style={[txt.noto24, {color: RED10, marginLeft: 30 * DP}]}>{props.title_star ? '*' : null}</Text>
+					<Text style={[txt.noto24, {color: RED10, marginLeft: 30 * DP}]}>{props.alert_msg}</Text>
 				</View>
-				: null
-			}
+			) : null}
 			<View
 				style={{
 					flexDirection: 'row',
@@ -75,14 +74,15 @@ export default InputWithSelect = props => {
 					]}>
 					{selectedItem}
 				</Text>
-				<TouchableOpacity onPress={() => setBtnStatus(!btnStatus)} style={{ marginLeft: 43 * DP }}>
+				<View style={{marginLeft: 43 * DP}}>
 					{/* BtnStatus가 true일 경우 아래방향 화살표, false일 경우 위방향 화살표 */}
-					{btnStatus ? <Arrow_Up_GRAY20 /> : <Arrow_Down_GRAY20 />}
-				</TouchableOpacity>
+					{btnStatus ? <Arrow_Up_GRAY20 onPress={() => setBtnStatus(!btnStatus)} /> : <Arrow_Down_GRAY20 onPress={() => setBtnStatus(!btnStatus)} />}
+				</View>
 				<TextInput
 					placeholder={props.placeholder}
 					value={props.value}
 					ref={inputRef}
+					keyboardType={props.keyboardType}
 					onChangeText={text => onChange(text)}
 					style={[
 						txt.roboto28,
@@ -96,9 +96,9 @@ export default InputWithSelect = props => {
 					]}
 				/>
 				{input.length > 0 ? (
-					<TouchableOpacity onPress={onClear} style={{ position: 'absolute', right: 0 }}>
-						<Cross52 />
-					</TouchableOpacity>
+					<View style={{position: 'absolute', right: 0}}>
+						<Cross52 onPress={onClear} />
+					</View>
 				) : (
 					false
 				)}
@@ -116,5 +116,6 @@ InputWithSelect.defaultProps = {
 	alert_msg: null,
 	onChange: e => console.log(e),
 	onClear: e => console.log(e),
-	width: 200,
+	width: 480,
+	keyboardType: 'default',
 };

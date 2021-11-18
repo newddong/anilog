@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { APRI10, GRAY10, GRAY20, GRAY30, GRAY40, WHITE } from 'Root/config/color';
+import {StyleSheet} from 'react-native';
+import {APRI10, GRAY10, GRAY20, GRAY30, GRAY40, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
 
 export const BGCOLOR = '#B5DED8';
@@ -72,18 +72,14 @@ export const organism_style = StyleSheet.create({
 		width: 674 * DP,
 	},
 	userDescriptionLabel: {
-		width: 674 * DP,
-		height: 134 * DP,
+		width: 654 * DP,
+		height: 94 * DP,
 		marginBottom: 20 * DP,
-		paddingHorizontal: 20 * DP,
-		paddingVertical: 10 * DP,
 	},
 	userDescriptionLabel_clicked: {
 		width: 654 * DP,
 		height: 134 * DP,
 		marginBottom: 20 * DP,
-		paddingHorizontal: 20 * DP,
-		paddingVertical: 10 * DP,
 		borderColor: APRI10,
 		borderWidth: 5 * DP,
 		borderRadius: 30 * DP,
@@ -111,9 +107,15 @@ export const controllableAccount = StyleSheet.create({
 	},
 	userDescriptionLabel: {
 		width: 460 * DP,
+
+		justifyContent: 'center',
+		alignItems: 'flex-start',
 	},
 	userDescriptionLabel_checked: {
 		width: 446 * DP,
+
+		justifyContent: 'center',
+		alignItems: 'flex-start',
 	},
 	rightContainer: {
 		height: 94 * DP,
