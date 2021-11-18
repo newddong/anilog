@@ -106,6 +106,7 @@ export default Input24 = props => {
 						props.style,
 						{
 							paddingLeft: 24 * DP,
+							height:'100%', //ios에서 안드로이드와 동작 일치시키기 위함
 							lineHeight: 44 * DP,
 							minWidth: 300 * DP,
 						},
