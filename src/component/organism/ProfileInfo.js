@@ -1,16 +1,16 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import { GRAY10 } from 'Root/config/color';
-import { txt } from 'Root/config/textstyle';
-import { btn_w280 } from '../atom/btn/btn_style';
-import { Bracket48 } from '../atom/icon';
+import {Text, View, TouchableOpacity} from 'react-native';
+import {GRAY10} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
+import {btn_w280} from '../atom/btn/btn_style';
+import {Bracket48} from '../atom/icon';
 import ActionButton from '../molecules/ActionButton';
 import AniButton from '../molecules/AniButton';
 import ProfileImageLarge160 from '../molecules/ProfileImageLarge160';
 import SocialInfoA from '../organism_ksw/SocialInfoA';
-import { NORMAL, PET, SHELTER } from 'Root/i18n/msg';
+import {NORMAL, PET, SHELTER} from 'Root/i18n/msg';
 import Dropdown from '../molecules/Dropdown';
-import { organism_style, profileInfo_style } from './style_organism';
+import {organism_style, profileInfo_style} from './style_organism';
 import {Modal} from 'Root/component/modal/Modal';
 
 export default ProfileInfo = props => {
@@ -79,13 +79,18 @@ export default ProfileInfo = props => {
 
 			{/* Content */}
 			<View style={[organism_style.content_view_profileInfo, profileInfo_style.content_view]}>
-				<Text ellipsizeMode={'tail'} numberOfLines={showMore ? null : 2} style={[txt.noto24, showMore ? profileInfo_style.content_expanded : profileInfo_style.content, { backgroundColor: 'yellow' }]}>
+				<Text
+					ellipsizeMode={'tail'}
+					numberOfLines={showMore ? null : 2}
+					style={[txt.noto24, showMore ? profileInfo_style.content_expanded : profileInfo_style.content, {backgroundColor: '#FFF'}]}>
 					안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있어요! 안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있어요!안녕하세요 5살 구름이와 3살
 					하늘이랑 함께 살고 있어요!안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있어요!
 				</Text>
 				<View style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
-					<Text style={[txt.noto24, { color: GRAY10, backgroundColor: 'yellow' }]}>더보기 </Text>
-					<View style={showMore ? { transform: [{ rotate: '180deg' }] } : null}>
+					<TouchableOpacity onPress={() => setShowMore(!showMore)}>
+						<Text style={[txt.noto24, {color: GRAY10, backgroundColor: '#FFF'}]}>더보기 </Text>
+					</TouchableOpacity>
+					<View style={showMore ? {transform: [{rotate: '180deg'}]} : null}>
 						<Bracket48 onPress={() => setShowMore(!showMore)} />
 					</View>
 				</View>
@@ -95,15 +100,27 @@ export default ProfileInfo = props => {
 			<View style={[organism_style.btn_w280_view_profileInfo, profileInfo_style.btn_w280_view]}>
 				<View style={[organism_style.btn_w280_profileInfo, profileInfo_style.btn_w280]}>
 					{followState ? (
-						<Dropdown buttonComponent={
-						<AniButton
-							btnTitle={'팔로우 중'}
-							btnStyle={'filled'}
-							titleFontStyle={30}
-							btnLayout={btn_w280}
-							// onPress={() => {setFollowState(!followState);Modal.popTwoBtn('팝업 테스트중입니다.\ndsdfsf','취소','확인',()=>{alert('노노')},()=>{alert('예스')})}}
-							onPress={() => {setFollowState(!followState);Modal.popOneBtn('팝업 테스트중입니다.\ndsdfsf','확인',()=>{console.log('ddd');Modal.popOneBtn('ddd','az',()=>{console.log('ddddt');Modal.close()})})}}
-						/>}/>
+						<Dropdown
+							buttonComponent={
+								<AniButton
+									btnTitle={'팔로우 중'}
+									btnStyle={'filled'}
+									titleFontStyle={30}
+									btnLayout={btn_w280}
+									// onPress={() => {setFollowState(!followState);Modal.popTwoBtn('팝업 테스트중입니다.\ndsdfsf','취소','확인',()=>{alert('노노')},()=>{alert('예스')})}}
+									onPress={() => {
+										setFollowState(!followState);
+										Modal.popOneBtn('팝업 테스트중입니다.\ndsdfsf', '확인', () => {
+											console.log('ddd');
+											Modal.popOneBtn('ddd', 'az', () => {
+												console.log('ddddt');
+												Modal.close();
+											});
+										});
+									}}
+								/>
+							}
+						/>
 					) : (
 						<AniButton
 							btnTitle={'팔로우'}
