@@ -1,45 +1,57 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Dimensions, TouchableWithoutFeedback} from 'react-native';
 import {Modal} from 'Component/modal/Modal';
 
-
 export default Dropdown = props => {
-    const container = React.useRef();
-	const [toggle,setToggle] = React.useState(false);
-    const onPressOverride = () => {
-		console.log('override!');
-        setToggle(!toggle);
-        // Modal.popOneBtn('모달','오',()=>{Modal.close()})
-        container.current.measure((fx,fy,width,height,px,py)=>{
-            Modal.popSelect(<View style={{position:'absolute',width:100,height:100,top:py,left:px,backgroundColor:'blue'}}/>);
-        })
+	const container = React.useRef();
+	const isClick = React.useRef(false);
+
+	const onPressOverride = () => {
+		click();
 		props.buttonComponent.props.onPress();
 	};
-	const button = React.cloneElement(props.buttonComponent, {...props.buttonComponent.props, onPress: onPressOverride});
+
+	const onOpenOverride = () => {
+		click();
+		props.buttonComponent.props.onOpen();
+	};
+	const onCloseOverride = () => {
+		click();
+		props.buttonComponent.props.onClose();
+	};
+
+	const click = () => {
+		!isClick.current &&
+			container.current.measure((fx, fy, width, height, px, py) => {
+				const dropdownList = React.cloneElement(props.dropdownList, {
+					style: [{position: 'absolute', top: py, left: px}, props.dropdownList.props.style],
+				});
+				Modal.popDrop(
+					<TouchableWithoutFeedback onPress={Modal.close}>
+						<View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: '#fff0'}}>
+							{dropdownList}
+						</View>
+					</TouchableWithoutFeedback>,
+				);
+			});
+		isClick.current && Modal.close();
+		isClick.current = !isClick.current;
+	};
+
+	const button = React.cloneElement(props.buttonComponent, {
+		...props.buttonComponent.props,
+		onPress: onPressOverride,
+		onClose: onCloseOverride,
+		onOpen: onOpenOverride,
+	});
 
 	return (
-		<View ref={ref=>container.current=ref} 
-        onLayout={(e)=>{
-            // container.current.measure((fx, fy, width, height, px, py)=>{
-                // console.log('Component width is: ' + width);
-				// console.log('Component height is: ' + height);
-				// console.log('X offset to frame: ' + fx);
-				// console.log('Y offset to frame: ' + fy);
-				// console.log('X offset to page: ' + px);
-				// console.log('Y offset to page: ' + py);
-            // })
-        }
-    }>
-			{/* {props.buttonComponent} */}
+		<View ref={ref => (container.current = ref)} onLayout={e => {}}>
 			{button}
 		</View>
 	);
 };
 
-DropdownSelect.defaultProps = {};
-
-const style = StyleSheet.create({
-	default: {
-		backgroundColor: 'red',
-	},
-});
+Dropdown.defaultProps = {
+	dropdownList: <View style={{position: 'absolute', width: 100, height: 100, backgroundColor: 'blue'}} />,
+};

@@ -4,5 +4,5 @@ export const Modal = {
     close:()=>{},
     popNoBtn:()=>{},
     popOneBtn:()=>{},
-    popSelect:()=>{},
+    popDrop:()=>{},
 };

@@ -18,7 +18,7 @@ import {Arrow_Down_APRI10, Arrow_Down_GRAY30, Arrow_Down_White, Arrow_Up_APRI10,
  */
 export default ActionButton = props => {
 	//btn의 초기상태 - false는 아직 버튼이 오픈되지 않은 상태
-	const [btnStatus, setBtnStatus] = React.useState(false);
+	const [btnStatus, setBtnStatus] = React.useState(props.initState);
 
 	const btnTxtColor = () => {
 		//txt Color의 종류는 3가지 - white, APRI10, GRAY20
@@ -54,7 +54,8 @@ export default ActionButton = props => {
 	//클릭 이벤트
 	const onPress = e => {
 		setBtnStatus(!btnStatus);
-		btnStatus ? props.onOpen() : props.onClose();
+		// btnStatus ? props.onOpen() : props.onClose();
+		btnStatus&&(props.onClose()||true)||props.onOpen();
 	};
 
 	//액션버튼 본체
@@ -90,6 +91,7 @@ export default ActionButton = props => {
 };
 
 ActionButton.defaultProps = {
+	initState: false,
 	btnTitle: 'BTN_W654', //버튼의 제목
 	disable: false, // 버튼탭 사용불가 상태 boolean
 	btnLayout: btn_w226, // 버튼의 레이아웃(width, height, radius 등의 수치 결정)

@@ -81,7 +81,7 @@ export default RootStackNavigation = () => {
 		!isPop&&setPop(true);
 	};
 
-	Modal.popSelect = (component) => {
+	Modal.popDrop = (component) => {
 		popIn(component);
 		!isPop&&setPop(true);
 	}
