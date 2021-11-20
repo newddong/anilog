@@ -96,21 +96,23 @@ export default ProfileInfo = props => {
 				<View style={[organism_style.btn_w280_profileInfo, profileInfo_style.btn_w280]}>
 					{followState ? (
 						<Dropdown buttonComponent={
-						<AniButton
+							<AniButton
 							btnTitle={'팔로우 중'}
 							btnStyle={'filled'}
 							titleFontStyle={30}
 							btnLayout={btn_w280}
 							// onPress={() => {setFollowState(!followState);Modal.popTwoBtn('팝업 테스트중입니다.\ndsdfsf','취소','확인',()=>{alert('노노')},()=>{alert('예스')})}}
-							onPress={() => {setFollowState(!followState);Modal.popOneBtn('팝업 테스트중입니다.\ndsdfsf','확인',()=>{console.log('ddd');Modal.popOneBtn('ddd','az',()=>{console.log('ddddt');Modal.close()})})}}
-						/>}/>
+							onPress={() => {setFollowState(!followState)}}
+							/>}
+						/>
 					) : (
 						<AniButton
 							btnTitle={'팔로우'}
 							btnStyle={'border'}
 							titleFontStyle={30}
 							btnLayout={btn_w280}
-							onPress={() => setFollowState(!followState)}
+							onPress={() => {Modal.popOneBtn('nobtasdsafn','확인',()=>{Modal.close()})
+							}}
 						/>
 					)}
 				</View>

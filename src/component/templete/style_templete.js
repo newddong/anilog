@@ -466,7 +466,7 @@ export const temp_style = StyleSheet.create({
 		width: 654 * DP,
 		height: 958 * DP,
 		alignSelf: 'center',
-		backgroundColor: '#B5DED8',
+		backgroundColor: '#FFF',
 	},
 	animalNeedHelp: {
 		width: 654 * DP,
@@ -707,10 +707,10 @@ export const temp_style = StyleSheet.create({
 		height: 416 * DP,
 		backgroundColor: '#B0C7D8',
 	},
-	animalNeedHelpList: {
-		width: 750 * DP,
-		height: 770 * DP,
-	},
+	// animalNeedHelpList: {
+	// 	width: 750 * DP,
+	// 	height: 770 * DP,
+	// },
 	radioBox_assignPetInfo: {
 		width: 520 * DP,
 		height: 46 * DP,
@@ -866,28 +866,28 @@ export const temp_style = StyleSheet.create({
 		height: 60 * DP,
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		backgroundColor: '#B5DED8',
+		backgroundColor: '#FFF',
 	},
 	filterbutton: {
 		width: 306 * DP,
 		height: 60 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#D891C7',
+		backgroundColor: '#FFF',
 	},
 	meatball50: {
 		width: 50 * DP,
 		height: 50 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#D891C7',
+		backgroundColor: '#FFF',
 	},
 	baseFlatList_protectRequestList: {
 		width: 654 * DP,
-		height: 1286 * DP,
+		// height: 1286 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#C4C483',
+		backgroundColor: '#FFF',
 	},
 	rescueContentScroll_view: {
 		width: 654 * DP,

@@ -5,12 +5,16 @@ import {animalNeedHelpList} from './style_organism';
 import {useNavigation} from '@react-navigation/core';
 import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
 
+/**
+ *
+ *@param {{
+ *nowRoute: parentName,
+ * }} props
+ */
 export default AnimalNeedHelpList = props => {
-	AnimalNeedHelpList;
 	const navigation = useNavigation();
 
 	const renderItem = (item, index) => {
-		// console.log('index=>' + item.thumbnailData.status);
 		return (
 			// <TouchableOpacity
 			// style={[animalNeedHelpList.itemContainer]}
@@ -29,7 +33,7 @@ export default AnimalNeedHelpList = props => {
 
 			//marginBottom: 40 * DP,
 			<View style={[animalNeedHelpList.itemContainer]}>
-				<AnimalNeedHelp data={item} />
+				<AnimalNeedHelp data={item} parentRoute={props.nowRoute} />
 			</View>
 			// </TouchableOpacity>
 		);

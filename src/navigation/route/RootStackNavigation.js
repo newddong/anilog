@@ -46,26 +46,37 @@ import SimpleHeader from 'Navigation/header/SimpleHeader';
 import SendHeader from '../header/SendHeader';
 import UserVerification from 'Root/component/templete/UserVerification';
 
-import TwoBtnModal from 'Root/component/molecules/TwoBtnModal';
+import TwoBtnModal from 'Molecules/TwoBtnModal';
 import OneBtnModal from 'Molecules/OneBtnModal';
+import NoBtnModal from 'Molecules/NoBtnModal';
 import { Modal } from '../../component/modal/Modal';
 const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
 	const [isPop, setPop] = React.useState(false);
-	const [popupComponent, setPopupComponent] = React.useState(false);
-	Modal.popup = () => { };
+	const [popupComponent, setPopupComponent] = React.useState([]);
+
+	const popIn = (Component) => {
+		const component = React.cloneElement(Component, { key: popupComponent.length });
+		setPopupComponent([component, ...popupComponent]);
+	};
+
 	Modal.close = () => {
-		setPop(false);
+		popupComponent.shift();
+		setPopupComponent([...popupComponent]);
+		popupComponent.length === 0 && setPop(false);
+
 	};
 	Modal.popTwoBtn = (msg, noMsg, yesMsg, onNo, onYes) => {
-		setPopupComponent(<TwoBtnModal popUpMsg={msg} onNo={onNo} onYes={onYes} noMsg={noMsg} yesMsg={yesMsg} />);
-		// setPopupComponent(<View style={{backgroundColor:'blue',height:80,width:80}}/>);
+		popIn(<TwoBtnModal popUpMsg={msg} onNo={onNo} onYes={onYes} noMsg={noMsg} yesMsg={yesMsg} />);
 		setPop(true);
 	};
-	Modal.popNoBtn = (msg, checker) => { };
+	Modal.popNoBtn = (msg) => {
+		popIn(<NoBtnModal popUpMsg={msg} />);
+		setPop(true);
+	};
 	Modal.popOneBtn = (msg, okMsg, onOk) => {
-		setPopupComponent(<OneBtnModal popUpMsg={msg} onOk={onOk} okMsg={okMsg} />);
+		popIn(<OneBtnModal popUpMsg={msg} onOk={onOk} okMsg={okMsg} />);
 		setPop(true);
 	};
 

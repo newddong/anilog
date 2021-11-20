@@ -16,22 +16,34 @@ export default AnimalNeedHelp = props => {
 	const data = props.data.thumbnailData; //ProtectedThumbnail 컴포넌트에 필요한 data fields
 	const navigation = useNavigation();
 	const [selected, setSelected] = React.useState(false); //클릭한 상태에 따라 입양처 보기, 게시글 보기
+	const prouteName = props.parentRoute;
 
 	const changeSelete = () => {
 		setSelected(!selected);
 		console.log('selected=>' + selected);
+		console.log('props.parentRoute=>' + prouteName);
+		navigation.push('UserProfile', props.data.user_id);
 	};
 
 	return (
 		<>
 			<TouchableOpacity onPress={changeSelete}>
-				<View style={[selected ? animalNeedHelp.container_seleted : animalNeedHelp.container]}>
+				<View
+					style={[
+						props.parentRoute != 'ShelterProtectRequests'
+							? selected
+								? animalNeedHelp.container_seleted
+								: animalNeedHelp.container
+							: animalNeedHelp.container,
+					]}>
 					<View style={[animalNeedHelp.container_basicInfo]}>
 						{/* CheckBox */}
-						{checkBox ? (
-							<View style={[animalNeedHelp.checkBoxContainer]}>
-								<Rect48_Border />
-							</View>
+						{props.parentRoute != 'ShelterProtectRequests' ? (
+							selected ? (
+								<View style={[animalNeedHelp.checkBoxContainer]}>
+									<Rect48_Border />
+								</View>
+							) : null
 						) : null}
 						<View style={[animalNeedHelp.protectedThumbnail_container]}>
 							{/* Pet Thumbnail */}
@@ -72,26 +84,28 @@ export default AnimalNeedHelp = props => {
 							</View>
 						</View>
 					</View>
-					{selected && (
-						<View style={[animalNeedHelp.sideBtn_view]}>
-							<AniButton
-								btnLayout={[btn_w276]}
-								btnTitle={'게시글 보기'}
-								btnTheme={'shadow'}
-								btnStyle={'filled'}
-								titleFontStyle={24}
-								onPress={() => navigation.push('ProtectRequestManage')}
-							/>
-							<AniButton
-								btnLayout={[btn_w276]}
-								btnTitle={'입양처 보기'}
-								btnTheme={'shadow'}
-								btnStyle={'filled'}
-								titleFontStyle={24}
-								onPress={() => navigation.push('AdoptorInformation')}
-							/>
-						</View>
-					)}
+					{props.parentRoute != 'ShelterProtectRequests'
+						? selected && (
+								<View style={[animalNeedHelp.sideBtn_view]}>
+									<AniButton
+										btnLayout={[btn_w276]}
+										btnTitle={'게시글 보기'}
+										btnTheme={'shadow'}
+										btnStyle={'filled'}
+										titleFontStyle={24}
+										onPress={() => navigation.push('ProtectRequestManage')}
+									/>
+									<AniButton
+										btnLayout={[btn_w276]}
+										btnTitle={'입양처 보기'}
+										btnTheme={'shadow'}
+										btnStyle={'filled'}
+										titleFontStyle={24}
+										onPress={() => navigation.push('AdoptorInformation')}
+									/>
+								</View>
+						  )
+						: null}
 				</View>
 			</TouchableOpacity>
 		</>

@@ -15,11 +15,8 @@ import {Modal} from 'Component/modal/Modal';
  * }} props
  */
 export default NoBtnModal = props => {
-    const pressOk = () => {
-        props.onOk();
-        Modal.close();
-    }
 
+    
     return (
         <View style={style.background}>
             <View style={[style.popUpWindow,style.shadow]}>
