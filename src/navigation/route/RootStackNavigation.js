@@ -49,7 +49,7 @@ import UserVerification from 'Root/component/templete/UserVerification';
 import TwoBtnModal from 'Molecules/TwoBtnModal';
 import OneBtnModal from 'Molecules/OneBtnModal';
 import NoBtnModal from 'Molecules/NoBtnModal';
-import {Modal} from '../../component/modal/Modal';
+import {Modal} from 'Component/modal/Modal';
 const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
@@ -61,6 +61,7 @@ export default RootStackNavigation = () => {
 		setPopupComponent([component,...popupComponent]);
 	};
 	
+
 	Modal.close = () => {
 		popupComponent.shift();
 		setPopupComponent([...popupComponent]);
@@ -69,16 +70,21 @@ export default RootStackNavigation = () => {
 	};
 	Modal.popTwoBtn = (msg, noMsg, yesMsg, onNo, onYes) => {
 		popIn(<TwoBtnModal popUpMsg={msg} onNo={onNo} onYes={onYes} noMsg={noMsg} yesMsg={yesMsg} />);
-		setPop(true);
+		!isPop&&setPop(true);
 	};
 	Modal.popNoBtn = (msg) => {
 		popIn(<NoBtnModal popUpMsg={msg} />);
-		setPop(true);
+		!isPop&&setPop(true);
 	};
 	Modal.popOneBtn = (msg, okMsg, onOk) => {
 		popIn(<OneBtnModal popUpMsg={msg} onOk={onOk} okMsg={okMsg}/>);
-		setPop(true);
+		!isPop&&setPop(true);
 	};
+
+	Modal.popSelect = (component) => {
+		popIn(component);
+		!isPop&&setPop(true);
+	}
 
 	return (
 		<SafeAreaView style={{flex: 1}}>

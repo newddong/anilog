@@ -93,8 +93,9 @@ export default ProfileInfo = props => {
 
 			{/* btn_w280 */}
 			<View style={[organism_style.btn_w280_view_profileInfo, profileInfo_style.btn_w280_view]}>
+				
 				<View style={[organism_style.btn_w280_profileInfo, profileInfo_style.btn_w280]}>
-					{followState ? (
+					{followState||true ? (
 						<Dropdown buttonComponent={
 							<AniButton
 							btnTitle={'팔로우 중'}
@@ -111,12 +112,12 @@ export default ProfileInfo = props => {
 							btnStyle={'border'}
 							titleFontStyle={30}
 							btnLayout={btn_w280}
-							onPress={() => {Modal.popOneBtn('nobtasdsafn','확인',()=>{Modal.close()})
+							onPress={() => {setFollowState(!followState);Modal.popOneBtn('nobtasdsafn','확인',()=>{Modal.close()})
 							}}
 						/>
 					)}
 				</View>
-				<View style={[organism_style.ActionButton_profileInfo, profileInfo_style.btn_w280]}>{getButton()}</View>
+				<View style={[organism_style.ActionButton_profileInfo, profileInfo_style.btn_w280]}>{getButton()}</View>			
 			</View>
 		</View>
 	);
