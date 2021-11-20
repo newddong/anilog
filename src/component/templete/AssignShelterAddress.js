@@ -1,9 +1,9 @@
 import React from 'react';
-import {Text, View, TouchableWithoutFeedback} from 'react-native';
-import {login_style, btn_style, temp_style, progressbar_style, assignShelterAddress_style} from './style_templete';
-import {APRI10, GRAY10} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
-import {btn_w654} from '../atom/btn/btn_style';
+import { Text, View, TouchableWithoutFeedback } from 'react-native';
+import { login_style, btn_style, temp_style, progressbar_style, assignShelterAddress_style } from './style_templete';
+import { APRI10, GRAY10 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
+import { btn_w654 } from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import Stagebar from '../molecules/Stagebar';
 import Input24 from '../molecules/Input24';
@@ -42,13 +42,13 @@ export default AssignShelterAddress = props => {
 			city: '서울시',
 			district: '마포구',
 		};
-		setData({...data, shelter_address: {city: dummy_addr.city, district: dummy_addr.district}});
+		setData({ ...data, shelter_address: { city: dummy_addr.city, district: dummy_addr.district } });
 	};
 
 	//세부주소
 	const onChangeDeatilAddress = addr => {
 		console.log(addr);
-		setData({...data, shelter_address: {neighbor: addr}});
+		setData({ ...data, shelter_address: { neighbor: addr } });
 	};
 
 	//주소찾기 클릭
@@ -59,11 +59,11 @@ export default AssignShelterAddress = props => {
 	//보호소 이름
 	const onChaneName = name => {
 		console.log(name);
-		setData({...data, shelter_name: name});
+		setData({ ...data, shelter_name: name });
 	};
 
 	return (
-		<View style={[login_style.wrp_main, {flex: 1}]}>
+		<View style={[login_style.wrp_main, { flex: 1 }]}>
 			{/* (M)StageBar	 */}
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
@@ -76,11 +76,11 @@ export default AssignShelterAddress = props => {
 						borderWidth: 4 * DP,
 						borderColor: APRI10,
 					}} //배경이 되는 bar의 style, width props으로 너비결정됨
-					insideBarStyle={{height: 20 * DP, backgroundColor: APRI10, borderRadius: 5 * DP}} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+					insideBarStyle={{ height: 20 * DP, backgroundColor: APRI10, borderRadius: 5 * DP }} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
 					current={2} //현재 단계를 정의
 					maxstage={4} //전체 단계를 정의
 					width={600 * DP} //bar의 너비
-					textStyle={[txt.roboto24, {marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10}]} //text의 스타일
+					textStyle={[txt.roboto24, { marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10 }]} //text의 스타일
 				/>
 			</View>
 

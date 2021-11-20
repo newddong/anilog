@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Image, TouchableOpacity} from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import DP from 'Root/config/dp';
-import {Cancel62} from '../atom/icon';
-import {styles} from '../atom/image/imageStyle';
+import { Cancel62 } from '../atom/icon';
+import { styles } from '../atom/image/imageStyle';
 
 /**
  *
@@ -12,14 +12,15 @@ import {styles} from '../atom/image/imageStyle';
  * }} props
  */
 export default SelectedMedia410 = props => {
+
 	const onDelete = e => {
-		alert('삭제작업');
 		props.onDelete();
 	};
+
 	return (
 		<View style={styles.img_square_round_410}>
-			<Image source={{uri: props.media_uri}} style={styles.img_square_round_410} />
-			<TouchableOpacity onPress={onDelete} style={{position: 'absolute', right: 20 * DP, top: 20 * DP}}>
+			<Image source={{ uri: props.media_uri }} style={styles.img_square_round_410} />
+			<TouchableOpacity onPress={onDelete} style={{ position: 'absolute', right: 20 * DP, top: 20 * DP }}>
 				<Cancel62 />
 			</TouchableOpacity>
 		</View>

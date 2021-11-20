@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { organism_style, feed_style } from './style_organism';
 import FeedContent from './FeedContent';
 import { Comment48_Border, Like48_Border } from '../atom/icon';
@@ -7,6 +7,7 @@ import FeedMedia_temp from '../molecules/FeedMedia_temp';
 import { useNavigation } from '@react-navigation/core';
 import { txt } from 'Root/config/textstyle';
 import { GRAY10 } from 'Root/config/color';
+import { missingAnimalDetail, temp_style } from '../templete/style_templete';
 
 export default Feed = props => {
 	const navigation = useNavigation();
@@ -20,11 +21,14 @@ export default Feed = props => {
 	};
 
 	return (
-		<View style={organism_style.feed}>
+		<View style={[organism_style.feed,]}>
 			{/* (O)FeedContent */}
-			<FeedContent />
+			{/* FlatList안에 ScrollView는 작동하지않는걸까 */}
+			<ScrollView contentContainerStyle={{ backgroundColor: 'lightblue', }}>
+				<FeedContent />
+			</ScrollView>
 			{/* FeedMedia */}
-			<View style={organism_style.feedMedia_feed}>
+			<View style={[organism_style.feedMedia_feed,]}>
 				<FeedMedia_temp
 					data={_dummyData}
 					img_uri={'https://static-cdn.jtvnw.net/jtv_user_pictures/586d3387-d926-4f20-b207-12a4a600d237-profile_image-300x300.jpg'}

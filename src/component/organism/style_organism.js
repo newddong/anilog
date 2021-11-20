@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {GRAY10, GRAY20} from 'Root/config/color';
+import { StyleSheet } from 'react-native';
+import { GRAY10, GRAY20 } from 'Root/config/color';
 import DP from 'Root/config/dp';
 
 export const organism_style = StyleSheet.create({
@@ -19,11 +19,13 @@ export const organism_style = StyleSheet.create({
 		width: 448 * DP,
 	},
 	feed: {
-		flexDirection: 'column',
+		// flexDirection: 'column',
+		alignItems: 'center',
 		width: 750 * DP,
+		marginTop: 30 * DP,
 		// alignItems: 'center',
 		// justifyContent: 'center',
-		// backgroundColor: 'yellow',
+		// backgroundColor: 'lightblue',
 	},
 	feedMedia: {
 		width: 750 * DP,
@@ -136,7 +138,6 @@ export const organism_style = StyleSheet.create({
 	feedMedia_feed: {
 		width: 750 * DP,
 		height: 750 * DP,
-		marginTop: 45 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},

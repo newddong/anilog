@@ -1,8 +1,9 @@
 import React from 'react';
-import {Text, View, TouchableWithoutFeedback, FlatList} from 'react-native';
-import {Write94} from '../atom/icon';
+import { Text, View, TouchableWithoutFeedback, FlatList, ScrollView } from 'react-native';
+import { WHITE } from 'Root/config/color';
+import { Write94 } from '../atom/icon';
 import Feed from '../organism/Feed';
-import {feedList, login_style, missingAnimalDetail, temp_style} from './style_templete';
+import { feedList, login_style, missingAnimalDetail, temp_style } from './style_templete';
 
 export default FeedList = props => {
 	const moveToFeedWrite = () => {
@@ -12,14 +13,14 @@ export default FeedList = props => {
 	const testData = [1];
 
 	const renderItem = item => {
-		return <Feed data={item} />;
+		return <Feed data={item} />
 	};
 
 	return (
-		<View style={[login_style.wrp_main, missingAnimalDetail.container]}>
+		<View style={[login_style.wrp_main, {}]}>
 			{/* FeedList */}
 			<View style={[feedList.feedList]}>
-				<FlatList data={testData} renderItem={({item}) => renderItem(item)} />
+				<FlatList data={testData} renderItem={({ item }) => renderItem(item)} nestedScrollEnabled />
 			</View>
 
 			{/* FloatButton */}
