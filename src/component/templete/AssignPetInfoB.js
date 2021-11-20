@@ -15,9 +15,11 @@ import DatePicker from '../molecules/DatePicker';
 
 export default AssignPetInfoB = props => {
 	const navigation = useNavigation();
+
 	const moveToMainTab = () => {
 		props.navigation.push('MainTab');
 	};
+
 	//생녈월일 계산 함수
 	const [selectedBirthDate, setSelectedBirthDate] = React.useState('2021.03.01');
 	const getBirthDate = () => {
@@ -41,6 +43,7 @@ export default AssignPetInfoB = props => {
 		alert('등록이 완료되었습니다');
 		navigation.navigate('MainTab');
 	}
+
 	return (
 		<View style={[login_style.wrp_main, { flex: 1 }]}>
 			{/* (M)StageBar	 */}

@@ -1,7 +1,9 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
-import {txt} from 'Root/config/textstyle';
-import {feedText} from './style_organism';
+import { Dimensions, FlatList, Text, View } from 'react-native';
+import { txt } from 'Root/config/textstyle';
+import { feedText } from './style_organism';
+import DP from 'Root/config/dp';
+
 
 export default FeedText = props => {
 	const origin_text = props.text; //FeedContent에서 보내주는 Feed 글 내용
@@ -13,15 +15,24 @@ export default FeedText = props => {
 	for (let i = 0; i < char.length; i++) {
 		char[i] = origin_text.charAt(i);
 	}
+	const num_of_char = 30
 
-	const textLength = parseInt(props.text.length / 28); //줄을 나누기 위한 길이 설정 => 현재 30글자마다 한줄
+	React.useEffect(() => {
+
+		const HEIGHT = Dimensions.get('screen').height;
+		const Width = Dimensions.get('screen').width;
+		console.log(Width)
+	})
+
+
+	const textLength = parseInt(props.text.length / num_of_char); //줄을 나누기 위한 길이 설정 => 현재 30글자마다 한줄
 
 	const sliced = []; // 각 30글자가 담겨질 배열 선언
 
 	sliced.length = textLength; // 30글자 박스들의 길이 - 총 62자의 피드글이라면 length = 2
 	// 각 sliced에 30글자 씩 담는 반복문
 	for (let i = 0; i <= textLength; i++) {
-		sliced[i] = char.slice(i * 28, (i + 1) * 28);
+		sliced[i] = char.slice(i * num_of_char, (i + 1) * num_of_char);
 	}
 
 	// FlatList로 각 줄의 View 출력
@@ -45,7 +56,7 @@ export default FeedText = props => {
 			};
 		});
 		return (
-			<View style={{flexDirection: 'row'}}>
+			<View style={{ flexDirection: 'row' }}>
 				{valueInfos.map((v, idx) => {
 					//valueInfos에는 위에서 split한 값들의 str, isHt, idxArr 값이 들어있다.
 					const isLast = idx === valueInfos.length - 1; //마지막 split의 마지막 글자여부 Boolean
@@ -53,12 +64,12 @@ export default FeedText = props => {
 						<Text
 							key={idx}
 							// split된 값들의 isHT(hashTag로 시작하는가?)가 True일 경우 글자색은 blue이며
-							style={[txt.noto28, v.isHT ? {color: 'blue', height: 40 * DP, textDecorationLine: 'underline'} : {height: 40 * DP}]}
+							style={[txt.noto28, v.isHT ? { color: 'blue', height: 40 * DP, textDecorationLine: 'underline' } : { height: 40 * DP }]}
 							// 클릭이벤트가 부여된다. 해쉬로 시작하는 텍스트 Split가 아닐 경우 이벤트는 null
 							onPress={() => (v.isHT ? props.onHashClick(v.str) : null)}>
 							{v.str}
 							{/* 각 split의 마지막 글자인 경우 띄어쓰기를 부여,   */}
-							{!isLast && <Text style={{backgroundColor: 'transparent'}}> </Text>}
+							{!isLast && <Text style={{ backgroundColor: 'transparent' }}> </Text>}
 						</Text>
 					);
 				})}
@@ -68,7 +79,7 @@ export default FeedText = props => {
 
 	return (
 		<View style={feedText.container}>
-			<FlatList data={sliced} renderItem={({item, index}) => renderItem(item, index)} />
+			<FlatList data={sliced} renderItem={({ item, index }) => renderItem(item, index)} />
 		</View>
 	);
 };

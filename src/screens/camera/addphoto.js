@@ -88,7 +88,6 @@ const AddPhotoInner = props => {
 
 		loadPhotosMilsec(photolist[photolist.length - 1].node.timestamp);
 	};
-
 	const test = () => {
 		// console.log(props.route.params);
 		console.log(selectedPhoto);

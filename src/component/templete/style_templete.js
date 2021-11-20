@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
 	MAINCOLOR,
 	LINK,
@@ -3091,8 +3091,9 @@ export const userIdentification = StyleSheet.create({
 
 export const missingAnimalDetail = StyleSheet.create({
 	container: {
-		alignItems: 'center',
-		flex: 1,
+	},
+	insideContainer: {
+		width: 750 * DP, alignItems: 'center'
 	},
 	poster: {
 		width: 618 * DP,
@@ -3137,9 +3138,7 @@ export const feedList = StyleSheet.create({
 		flex: 1,
 	},
 	feedList: {
-		marginTop: 30 * DP,
 		width: 750 * DP,
-		// height: 2000 * DP,
 	},
 	floatingBtn: {
 		position: 'absolute',
@@ -3163,6 +3162,7 @@ export const feedCommentList = StyleSheet.create({
 	},
 	commentList: {
 		width: 750 * DP,
+		marginTop: 20 * DP,
 		alignItems: 'center',
 		// backgroundColor: 'yellow',
 	},
@@ -3172,17 +3172,23 @@ export const feedCommentList = StyleSheet.create({
 		marginLeft: 48 * DP,
 		alignSelf: 'flex-start',
 	},
+	addedImageContainer: {
+		width: 606 * DP,
+		height: 606 * DP,
+		marginVertical: 30 * DP,
+	},
 	editComment: {
-		width: 694 * DP,
-		height: 108 * DP,
-		flexDirection: 'row',
+		width: 654 * DP,
+		// height: 94 * DP,
+		// flexDirection: 'row',
 		alignItems: 'center',
+		justifyContent: 'center',
 		position: 'absolute',
 		backgroundColor: WHITE,
 		bottom: 0,
 	},
 	replyTextInput: {
-		width: 474 * DP,
+		width: 453 * DP,
 		height: 108 * DP,
 		marginLeft: 20 * DP,
 		fontSize: 28 * DP,
@@ -3497,7 +3503,7 @@ export const feedWrite = StyleSheet.create({
 });
 
 export const profile = StyleSheet.create({
-	container: {flex: 1},
+	container: { flex: 1 },
 	profileInfo: {
 		width: 750 * DP,
 		marginBottom: 30 * DP,

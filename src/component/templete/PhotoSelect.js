@@ -7,6 +7,7 @@ import { login_style, temp_style, photoSelect } from './style_templete';
 import CameraRoll from '@react-native-community/cameraroll';
 import { item } from 'Root/screens/common/style_address';
 export default PhotoSelect = props => {
+
 	const moveToSingPhotoSelect = () => {
 		props.navigation.push('AssignPetInfoB');
 	};
@@ -24,7 +25,8 @@ export default PhotoSelect = props => {
 	const [selectDisable, setSelectDisable] = React.useState(false)
 	const [delectedIndex, setDeletedIndex] = React.useState()
 
-	React.useEffect(() => {
+
+	const loadPhotosMilsec = () => {
 		CameraRoll.getPhotos({
 			first: 20,
 			assetType: 'Photos',
@@ -34,11 +36,44 @@ export default PhotoSelect = props => {
 				console.log(err);
 			});
 		return () => { };
-	});
+	}
 
 	React.useEffect(() => {
-		// console.log(selectedIndex)
-	}, [selectedIndex])
+		if (Platform.OS === 'ios') {
+			// loadPhotos();
+			loadPhotosMilsec();
+		} else {
+			try {
+				const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+				PermissionsAndroid.check(permission).then(isPermit => {
+					if (isPermit) {
+						// loadPhotos();
+						loadPhotosMilsec();
+					} else {
+						PermissionsAndroid.request(permission).then(result => {
+							console.log(result);
+							if (result === 'granted') {
+								// loadPhotos();
+								loadPhotosMilsec();
+							} else {
+								alert('기기의 사진 접근권한을 허용해 주세요');
+							}
+						});
+					}
+				});
+			} catch (err) {
+				console.warn(err);
+			}
+		}
+	}, []);
+
+	React.useEffect(() => {
+		props.navigation.addListener('focus', () => {
+			// loadPhotos();
+			loadPhotosMilsec();
+		});
+	});
+
 
 	const onSelect = (img, state, index) => {
 		let photoArray_dummy = [...photoArray];
@@ -70,37 +105,31 @@ export default PhotoSelect = props => {
 		else if (number == 6) {
 			console.log('5초과')
 		}
-		//  else if (number < 6 && !state) {
-		// 	console.log("False처리", img)
-		// 	setNumber(number - 1) // 클릭한 media가 false로 바뀌는 경우 -1
-		// 	const isImg = (element) => element == img
-		// 	const false_img = photoArray.findIndex(isImg)
-		// 	let photoArray_dummy = [...photoArray];
-		// 	photoArray_dummy.splice(false_img, 1)
-		// 	setPhotoArray(photoArray_dummy);
-
-		// 	console.log(false_img)
-		// 	// console.log(photoArray.findIndex(img))
-		// }
 
 	};
 
 	const renderItem = React.useCallback(
 		(item, index) => {
 
+			//Single로 PhotoSelect가 호출된 경우 LocalMedia는 단일 선택모드로 실행되며, Multiple로 호출된 경우 사진 다중 선택모드로 실행
 			return props.route.name == 'SinglePhotoSelect'
 				?
-				<LocalMedia isSingleSelection={false} onSelect={(img_uri, state) => onSelect(img_uri, state, index)} data={{ img_uri: item.node.image.uri }} index={selectedIndex[index]}
-					disable={selectDisable} number={number} />
+				<LocalMedia isSingleSelection={true} onSelect={(img_uri, state) => onSelect(img_uri, state, index)} data={{ img_uri: item.node.image.uri }} />
 				:
-				<LocalMedia isSingleSelection={false} onSelect={e => onSelect(e, index)} data={{ img_uri: item.node.image.uri }} index={selectedIndex[index]} />
+				<LocalMedia
+					isSingleSelection={false}
+					disable={selectDisable}
+					number={number}
+					onSelect={e => onSelect(e, index)}
+					data={{ img_uri: item.node.image.uri }}
+					index={selectedIndex[index]} />
 		},
 		[selectedIndex],
 	);
 
 	const checkOut = () => {
 		props.onCheckOut(photoArray);
-		console.log(props.route.params)
+		console.log('params', props.route.params)
 
 		props.navigation.navigate(props.route.params, photoArray);
 		// props.navigation.goBack()
@@ -124,7 +153,7 @@ export default PhotoSelect = props => {
 					<View style={[photoSelect.recentPhotoTitle]}>
 						<Text style={txt.noto36}>최근 항목 </Text>
 						<Bracket48 />
-						<TouchableOpacity onPress={() => checkOut()}>
+						<TouchableOpacity onPress={checkOut}>
 							<Text style={{ fontSize: 25, marginLeft: 20, backgroundColor: 'yellow' }}>임시 확인 버튼</Text>
 						</TouchableOpacity>
 					</View>
