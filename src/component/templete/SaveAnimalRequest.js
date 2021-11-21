@@ -75,30 +75,30 @@ export default SaveAnimalRequest = props => {
 
 	React.useEffect(() => {
 		_dummyData.map((v, i) => {
-			console.log(i + ' : ' + v.checkBoxState);
+			// console.log(i + ' : ' + v.checkBoxState);
 		});
 	}, [_dummyData]);
 
-	const navigationGo = (status, id) => {
-		console.log('status , id => ' + status + '_' + id);
+	const navigationGo = (status, user_id) => {
+		console.log('status , id => ' + status + '_' + user_id);
 		switch (status) {
 			case 'adoption_available':
-				navigation.push('UserProfile', id);
+				navigation.push('UserProfile', {userId: user_id});
 				break;
 			case 'emergency':
-				navigation.push('UserProfile', id);
+				navigation.push('UserProfile', {userId: user_id});
 				break;
 			case 'missing':
-				navigation.push('UserProfile', id);
+				navigation.push('UserProfile', {userId: user_id});
 				break;
 			case 'reported':
-				navigation.push('UserProfile', id);
+				navigation.push('UserProfile', {userId: user_id});
 				break;
 			case 'onNegotiation':
-				navigation.push('UserProfile', id);
+				navigation.push('UserProfile', {userId: user_id});
 				break;
 			case 'adopted':
-				navigation.push('UserProfile', id);
+				navigation.push('UserProfile', {userId: user_id});
 				break;
 		}
 	};

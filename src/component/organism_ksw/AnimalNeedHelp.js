@@ -30,7 +30,7 @@ export default AnimalNeedHelp = props => {
 
 					<View style={[animalNeedHelp.protectedThumbnail_container]}>
 						{/* Pet Thumbnail */}
-						<ProtectedThumbnail data={props.data.thumbnailData} onLabelClick={e => props.onLabelClick(e)} />
+						<ProtectedThumbnail data={props.data.thumbnailData} onLabelClick={(status, id) => props.onLabelClick(status, id)} />
 					</View>
 					{/* Pet Info */}
 					<View style={[animalNeedHelp.detailContainer]}>

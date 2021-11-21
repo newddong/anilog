@@ -21,7 +21,7 @@ export default AnimalNeedHelpList = props => {
 				<AnimalNeedHelp
 					data={item}
 					checkBoxMode={props.checkBoxMode}
-					onLabelClick={e => props.onLabelClick(e)}
+					onLabelClick={(status, id) => props.onLabelClick(status, id)}
 					onHashClick={() => props.onHashClick(item)}
 					onCheckBox={e => props.onCheckBox(e, index)}
 				/>
