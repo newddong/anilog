@@ -11,22 +11,28 @@ import {login_style, btn_style, temp_style, selectstat_view_style, saveAnimalReq
 
 export default SaveAnimalRequest = props => {
 	const [selectMode, setSelectMode] = React.useState(false);
+	const [selectAllClick, setSelectAllClick] = React.useState(false);
 
 	const checkSelectMode = e => {
 		console.log('checkSelectMode=>' + e);
 		setSelectMode(e);
 	};
 
+	const checkSelectAllClick = () => {
+		console.log('checkSelectAllClick=>' + selectAllClick);
+		setSelectAllClick(!selectAllClick);
+	};
+
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* SelectStat	 */}
 			<View style={[temp_style.selectstat_view]}>
-				<SelectStat onSelectMode={e => checkSelectMode(e)} />
+				<SelectStat onSelectMode={e => checkSelectMode(e)} onSelectAllClick={checkSelectAllClick} />
 			</View>
 
 			{/* <FlatList> */}
 			<View style={[temp_style.AnimalNeedHelpList]}>
-				<AnimalNeedHelpList listType={props.route.params.listType} mode={selectMode} />
+				<AnimalNeedHelpList listType={props.route.params.listType} mode={selectMode} allClick={selectAllClick} />
 			</View>
 			{/* </FlatList> */}
 		</View>

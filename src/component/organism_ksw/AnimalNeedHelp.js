@@ -12,12 +12,10 @@ import AniButton from '../molecules/AniButton';
 
 export default AnimalNeedHelp = props => {
 	const [checkBox, setCheckBox] = React.useState(false); //각 동물 item 옆 체크박스 View 생성여부
-
-	// const [selected, setSelected] = React.useState(true); //각 동물 item 옆 체크박스 View 생성여부
-	const data = props.data.thumbnailData; //ProtectedThumbnail 컴포넌트에 필요한 data fields
-	const navigation = useNavigation();
 	const [selected, setSelected] = React.useState(false); //클릭한 상태에 따라 입양처 보기, 게시글 보기
 	const parentListType = props.parentListType;
+	const navigation = useNavigation();
+	const data = props.data.thumbnailData; //ProtectedThumbnail 컴포넌트에 필요한 data fields
 
 	const changeSelete = () => {
 		setSelected(!selected);
@@ -40,7 +38,9 @@ export default AnimalNeedHelp = props => {
 					<View style={[animalNeedHelp.container_basicInfo]}>
 						{/* CheckBox */}
 						{props.parentListType == 'checkBox' ? (
-							props.mode ? (
+							props.allClick ? (
+								<View style={[animalNeedHelp.checkBoxContainer]}>{<Check48 />}</View>
+							) : props.mode ? (
 								<View style={[animalNeedHelp.checkBoxContainer]}>{checkBox ? <Check48 /> : <Rect48_Border />}</View>
 							) : null
 						) : null}
