@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w276} from '../atom/btn/btn_style';
-import {FavoriteTag48_Border, FavoriteTag48_Filled, Male48, Rect48_Border} from '../atom/icon';
+import {FavoriteTag48_Border, FavoriteTag48_Filled, Male48, Rect48_Border, Check48} from '../atom/icon';
 import ProtectedThumbnail from '../molecules/ProtectedThumbnail';
 import {animalNeedHelp} from './style_organism';
 import {useNavigation} from '@react-navigation/core';
@@ -12,17 +12,22 @@ import AniButton from '../molecules/AniButton';
 
 export default AnimalNeedHelp = props => {
 	const [checkBox, setCheckBox] = React.useState(false); //각 동물 item 옆 체크박스 View 생성여부
+
 	// const [selected, setSelected] = React.useState(true); //각 동물 item 옆 체크박스 View 생성여부
 	const data = props.data.thumbnailData; //ProtectedThumbnail 컴포넌트에 필요한 data fields
 	const navigation = useNavigation();
 	const [selected, setSelected] = React.useState(false); //클릭한 상태에 따라 입양처 보기, 게시글 보기
-	const prouteName = props.parentRoute;
+	const parentListType = props.parentListType;
 
 	const changeSelete = () => {
 		setSelected(!selected);
 		console.log('selected=>' + selected);
-		console.log('props.parentRoute=>' + prouteName);
-		navigation.push('UserProfile', props.data.user_id);
+		console.log('props.parentListType=>' + parentListType);
+		//parentListType 타입이 original 형식에서만 네비게이션 작동
+		if (parentListType == 'original') navigation.push('UserProfile', props.data.user_id);
+		if (props.parentListType == 'checkBox') {
+			setCheckBox(!checkBox);
+		}
 	};
 
 	return (
@@ -30,19 +35,13 @@ export default AnimalNeedHelp = props => {
 			<TouchableOpacity onPress={changeSelete}>
 				<View
 					style={[
-						props.parentRoute != 'ShelterProtectRequests'
-							? selected
-								? animalNeedHelp.container_seleted
-								: animalNeedHelp.container
-							: animalNeedHelp.container,
+						props.parentListType == 'twoBtn' ? (selected ? animalNeedHelp.container_seleted : animalNeedHelp.container) : animalNeedHelp.container,
 					]}>
 					<View style={[animalNeedHelp.container_basicInfo]}>
 						{/* CheckBox */}
-						{props.parentRoute != 'ShelterProtectRequests' ? (
-							selected ? (
-								<View style={[animalNeedHelp.checkBoxContainer]}>
-									<Rect48_Border />
-								</View>
+						{props.parentListType == 'checkBox' ? (
+							props.mode ? (
+								<View style={[animalNeedHelp.checkBoxContainer]}>{checkBox ? <Check48 /> : <Rect48_Border />}</View>
 							) : null
 						) : null}
 						<View style={[animalNeedHelp.protectedThumbnail_container]}>
@@ -67,7 +66,7 @@ export default AnimalNeedHelp = props => {
 									) : null}
 								</View>
 								{/* 좋아요 State Tag */}
-								<View style={[animalNeedHelp.detail_upper_tag]}>{props.data.like ? <FavoriteTag48_Filled /> : <FavoriteTag48_Border />}</View>
+								{/* <View style={[animalNeedHelp.detail_upper_tag]}>{props.data.like ? <FavoriteTag48_Filled /> : <FavoriteTag48_Border />}</View> */}
 							</View>
 							<View style={[animalNeedHelp.detail_lowerMenu]}>
 								{/* 동물 종류 및 품종 */}
@@ -84,7 +83,7 @@ export default AnimalNeedHelp = props => {
 							</View>
 						</View>
 					</View>
-					{props.parentRoute != 'ShelterProtectRequests'
+					{props.parentListType == 'twoBtn'
 						? selected && (
 								<View style={[animalNeedHelp.sideBtn_view]}>
 									<AniButton

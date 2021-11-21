@@ -10,10 +10,12 @@ import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 export default AnimalFromShelter = props => {
 	return (
 		<View style={login_style.wrp_main}>
+			{console.log('props.route.params.listType=>' + props.route.params.listType)}
+
 			{/* <FlatList> */}
 			<View style={[temp_style.baseFlatList, baseInfo_style.list]}>
 				{/* (O)AnimalNeedHelpList */}
-				<AnimalNeedHelpList />
+				<AnimalNeedHelpList listType={props.route.params.listType} />
 			</View>
 			{/* </FlatList> */}
 		</View>
