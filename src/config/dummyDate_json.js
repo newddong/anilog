@@ -360,12 +360,14 @@ export const dummy_AnimalNeedHelpList = [
 		location: '자운동',
 		saved_location: '경기도 강정동',
 		thumbnailData: {
+			user_id: 1,
 			img_uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU',
 			gender: 'male',
 			status: 'missing', // protected, missing, reported, onNegotiation, adoption_available
 		},
 	},
 	{
+		user_id: 2,
 		kind: '개',
 		breed: '푸들',
 		temp_protection_request: false,
@@ -374,6 +376,7 @@ export const dummy_AnimalNeedHelpList = [
 		location: '성수동',
 		saved_location: '성수역 부근',
 		thumbnailData: {
+			user_id: 1,
 			img_uri:
 				'https://post-phinf.pstatic.net/MjAxOTEyMTFfMSAg/MDAxNTc2MDYwOTk2MzM4.hRAOmfp1PuPj0EX4jTatEZyVMn0gU2YdWra6NWJdkV8g.cCgMDCRnyoXJnCzQ6lBd91rDScNFTk0vzp9C7a__C_kg.JPEG/20191203-%EC%9E%84%EC%8B%9C%EB%B3%B4%ED%98%B8_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg?type=w1200',
 			gender: 'female',
@@ -381,6 +384,7 @@ export const dummy_AnimalNeedHelpList = [
 		},
 	},
 	{
+		user_id: 3,
 		kind: '개',
 		breed: '토종 삽살',
 		temp_protection_request: true,
@@ -388,12 +392,14 @@ export const dummy_AnimalNeedHelpList = [
 		location: '테트리스',
 		saved_location: '세이브포인트',
 		thumbnailData: {
+			user_id: 1,
 			img_uri: 'https://blog.kakaocdn.net/dn/bny7V5/btqD9iCy2Al/KT4pZZtNVbncoKzxTMtyU1/img.jpg',
 			gender: 'female',
 			status: 'emergency', // protected, missing, reported, onNegotiation, adoption_available
 		},
 	},
 	{
+		user_id: 4,
 		kind: null,
 		breed: null,
 		temp_protection_request: true,
@@ -401,6 +407,7 @@ export const dummy_AnimalNeedHelpList = [
 		location: '테트리스',
 		saved_location: '세이브포인트',
 		thumbnailData: {
+			user_id: 1,
 			img_uri: 'http://pds.joins.com/news/component/htmlphoto_mmdata/201108/09/htm_2011080914431340004010-002.JPG',
 			gender: 'female',
 			status: 'onNegotiation', // protected, missing, reported, onNegotiation, adoption_available

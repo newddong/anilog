@@ -9,104 +9,87 @@ import {animalNeedHelp} from './style_organism';
 import {useNavigation} from '@react-navigation/core';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import AniButton from '../molecules/AniButton';
+import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
 
 export default AnimalNeedHelp = props => {
-	const [checkBox, setCheckBox] = React.useState(false); //각 동물 item 옆 체크박스 View 생성여부
-	const [selected, setSelected] = React.useState(false); //클릭한 상태에 따라 입양처 보기, 게시글 보기
-	const parentListType = props.parentListType;
 	const navigation = useNavigation();
-	const data = props.data.thumbnailData; //ProtectedThumbnail 컴포넌트에 필요한 data fields
-
-	const changeSelete = () => {
-		setSelected(!selected);
-		console.log('selected=>' + selected);
-		console.log('props.parentListType=>' + parentListType);
-		//parentListType 타입이 original 형식에서만 네비게이션 작동
-		if (parentListType == 'original') navigation.push('UserProfile', props.data.user_id);
-		if (props.parentListType == 'checkBox') {
-			setCheckBox(!checkBox);
-		}
-	};
 
 	return (
 		<>
-			<TouchableOpacity onPress={changeSelete}>
-				<View
-					style={[
-						props.parentListType == 'twoBtn' ? (selected ? animalNeedHelp.container_seleted : animalNeedHelp.container) : animalNeedHelp.container,
-					]}>
-					<View style={[animalNeedHelp.container_basicInfo]}>
-						{/* CheckBox */}
-						{props.parentListType == 'checkBox' ? (
-							props.allClick ? (
-								<View style={[animalNeedHelp.checkBoxContainer]}>{<Check48 />}</View>
-							) : props.mode ? (
-								<View style={[animalNeedHelp.checkBoxContainer]}>{checkBox ? <Check48 /> : <Rect48_Border />}</View>
-							) : null
-						) : null}
-						<View style={[animalNeedHelp.protectedThumbnail_container]}>
-							{/* Pet Thumbnail */}
-							<ProtectedThumbnail data={data} />
+			<View style={[animalNeedHelp.container]}>
+				<View style={[animalNeedHelp.container_basicInfo]}>
+					{/* CheckBox */}
+					{props.checkBoxMode ? (
+						<View style={[animalNeedHelp.checkBoxContainer]}>
+							<CheckBox
+								state={props.data.checkBoxState}
+								onCheck={() => props.onCheckBox(props.data.type == 'hash' ? props.data.keyword : props.data.user_nickname)}
+							/>
 						</View>
-						{/* Pet Info */}
-						<View style={[animalNeedHelp.detailContainer]}>
-							<View style={[animalNeedHelp.detail_upperMenu]}>
-								{/* 임보요청 출력 true, false */}
-								<View style={[animalNeedHelp.detail_upper_petStateContainer]}>
-									{props.data.temp_protection_request ? (
-										<View style={[animalNeedHelp.detail_upper_petState]}>
-											<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>임보요청</Text>
-										</View>
-									) : null}
-									{/* 입양가능날짜 출력 T/F */}
-									{props.data.adoption_days_remain != null ? (
-										<View style={[animalNeedHelp.detail_upper_petState]}>
-											<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>{props.data.adoption_days_remain}일 후 입양가능</Text>
-										</View>
-									) : null}
-								</View>
-								{/* 좋아요 State Tag */}
-								{/* <View style={[animalNeedHelp.detail_upper_tag]}>{props.data.like ? <FavoriteTag48_Filled /> : <FavoriteTag48_Border />}</View> */}
+					) : null}
+
+					<View style={[animalNeedHelp.protectedThumbnail_container]}>
+						{/* Pet Thumbnail */}
+						<ProtectedThumbnail data={props.data.thumbnailData} onLabelClick={e => props.onLabelClick(e)} />
+					</View>
+					{/* Pet Info */}
+					<View style={[animalNeedHelp.detailContainer]}>
+						<View style={[animalNeedHelp.detail_upperMenu]}>
+							{/* 임보요청 출력 true, false */}
+							<View style={[animalNeedHelp.detail_upper_petStateContainer]}>
+								{props.data.temp_protection_request ? (
+									<View style={[animalNeedHelp.detail_upper_petState]}>
+										<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>임보요청</Text>
+									</View>
+								) : null}
+								{/* 입양가능날짜 출력 T/F */}
+								{props.data.adoption_days_remain != null ? (
+									<View style={[animalNeedHelp.detail_upper_petState]}>
+										<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>{props.data.adoption_days_remain}일 후 입양가능</Text>
+									</View>
+								) : null}
 							</View>
-							<View style={[animalNeedHelp.detail_lowerMenu]}>
-								{/* 동물 종류 및 품종 */}
-								<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
-									<Text style={[txt.noto30b]}>{props.data.kind}</Text>
-									<Text style={[txt.noto28, animalNeedHelp.breedText]}>{props.data.breed}</Text>
-								</View>
-								{/* 보호요청 관련 Details */}
-								<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
-									<Text style={[txt.noto24]}>등록일 : {props.data.registered_date}</Text>
-									<Text style={[txt.noto24]}>보호장소 : {props.data.location}</Text>
-									<Text style={[txt.noto24]}>구조지역 : {props.data.saved_location}</Text>
-								</View>
+							{/* 좋아요 State Tag */}
+							{/* <View style={[animalNeedHelp.detail_upper_tag]}>{props.data.like ? <FavoriteTag48_Filled /> : <FavoriteTag48_Border />}</View> */}
+						</View>
+						<View style={[animalNeedHelp.detail_lowerMenu]}>
+							{/* 동물 종류 및 품종 */}
+							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
+								<Text style={[txt.noto30b]}>{props.data.kind}</Text>
+								<Text style={[txt.noto28, animalNeedHelp.breedText]}>{props.data.breed}</Text>
+							</View>
+							{/* 보호요청 관련 Details */}
+							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
+								<Text style={[txt.noto24]}>등록일 : {props.data.registered_date}</Text>
+								<Text style={[txt.noto24]}>보호장소 : {props.data.location}</Text>
+								<Text style={[txt.noto24]}>구조지역 : {props.data.saved_location}</Text>
 							</View>
 						</View>
 					</View>
-					{props.parentListType == 'twoBtn'
-						? selected && (
-								<View style={[animalNeedHelp.sideBtn_view]}>
-									<AniButton
-										btnLayout={[btn_w276]}
-										btnTitle={'게시글 보기'}
-										btnTheme={'shadow'}
-										btnStyle={'filled'}
-										titleFontStyle={24}
-										onPress={() => navigation.push('ProtectRequestManage')}
-									/>
-									<AniButton
-										btnLayout={[btn_w276]}
-										btnTitle={'입양처 보기'}
-										btnTheme={'shadow'}
-										btnStyle={'filled'}
-										titleFontStyle={24}
-										onPress={() => navigation.push('AdoptorInformation')}
-									/>
-								</View>
-						  )
-						: null}
 				</View>
-			</TouchableOpacity>
+				{props.parentListType == 'twoBtn'
+					? selected && (
+							<View style={[animalNeedHelp.sideBtn_view]}>
+								<AniButton
+									btnLayout={[btn_w276]}
+									btnTitle={'게시글 보기'}
+									btnTheme={'shadow'}
+									btnStyle={'filled'}
+									titleFontStyle={24}
+									onPress={() => navigation.push('ProtectRequestManage')}
+								/>
+								<AniButton
+									btnLayout={[btn_w276]}
+									btnTitle={'입양처 보기'}
+									btnTheme={'shadow'}
+									btnStyle={'filled'}
+									titleFontStyle={24}
+									onPress={() => navigation.push('AdoptorInformation')}
+								/>
+							</View>
+					  )
+					: null}
+			</View>
 		</>
 	);
 };

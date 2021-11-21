@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Image} from 'react-native';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
 import {GRAY10, RED10, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
@@ -61,28 +61,34 @@ export default ProtectedThumbnail = props => {
 		}
 	};
 
+	const onClickLabel = () => {
+		props.onLabelClick(props.data.status, props.data.user_id);
+	};
+
 	return (
 		<View style={styles.img_square_round_214}>
-			<Image source={{uri: props.data.img_uri}} style={[styles.img_square_round_214, borderByStatus()]} />
-			{/* 펫 성별마크 */}
-			<View style={{position: 'absolute', right: 10 * DP, top: 10 * DP}}>{props.data.gender == 'male' ? <Male48 /> : <Female48 />}</View>
-			{/* 펫 보호상태 */}
-			<View
-				style={[
-					getStatusContainerStyle(),
-					{
-						position: 'absolute',
-						width: '100%',
-						height: 36 * DP,
-						opacity: 1,
-						bottom: 0,
-						borderBottomLeftRadius: 30 * DP,
-						borderBottomRightRadius: 30 * DP,
-					},
-				]}>
-				<Text style={[txt.noto24, {color: WHITE, textAlign: 'center', lineHeight: 32 * DP}]}>{getStatusText()}</Text>
-			</View>
-			{getEmergencyMsg()}
+			<TouchableOpacity onPress={onClickLabel}>
+				<Image source={{uri: props.data.img_uri}} style={[styles.img_square_round_214, borderByStatus()]} />
+				{/* 펫 성별마크 */}
+				<View style={{position: 'absolute', right: 10 * DP, top: 10 * DP}}>{props.data.gender == 'male' ? <Male48 /> : <Female48 />}</View>
+				{/* 펫 보호상태 */}
+				<View
+					style={[
+						getStatusContainerStyle(),
+						{
+							position: 'absolute',
+							width: '100%',
+							height: 36 * DP,
+							opacity: 1,
+							bottom: 0,
+							borderBottomLeftRadius: 30 * DP,
+							borderBottomRightRadius: 30 * DP,
+						},
+					]}>
+					<Text style={[txt.noto24, {color: WHITE, textAlign: 'center', lineHeight: 32 * DP}]}>{getStatusText()}</Text>
+				</View>
+				{getEmergencyMsg()}
+			</TouchableOpacity>
 		</View>
 	);
 };
