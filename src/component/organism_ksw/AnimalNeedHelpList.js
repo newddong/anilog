@@ -33,7 +33,7 @@ export default AnimalNeedHelpList = props => {
 
 			//marginBottom: 40 * DP,
 			<View style={[animalNeedHelpList.itemContainer]}>
-				<AnimalNeedHelp data={item} parentRoute={props.nowRoute} />
+				<AnimalNeedHelp data={item} parentListType={props.listType} mode={props.mode} />
 			</View>
 			// </TouchableOpacity>
 		);

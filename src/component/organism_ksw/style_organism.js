@@ -1023,6 +1023,7 @@ export const animalNeedHelp = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		flexDirection: 'column',
+		item_bracket: '#FF00FF',
 	},
 	container_seleted: {
 		width: 702 * DP,
@@ -1036,7 +1037,10 @@ export const animalNeedHelp = StyleSheet.create({
 	},
 	checkBoxContainer: {
 		width: 80 * DP,
+		marginLeft: 48 * DP,
 		justifyContent: 'center',
+		alignItems: 'center',
+		// backgroundColor: '#00FF00',
 	},
 	protectedThumbnail_container: {
 		width: 214 * DP,
@@ -1117,6 +1121,7 @@ export const animalNeedHelp = StyleSheet.create({
 	},
 	container_basicInfo: {
 		flexDirection: 'row',
+		// backgroundColor: '#FF00FF',
 	},
 	container_basicInfo_seleted: {
 		flexDirection: 'row',

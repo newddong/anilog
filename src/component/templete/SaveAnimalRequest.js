@@ -10,16 +10,23 @@ import {login_style, btn_style, temp_style, selectstat_view_style, saveAnimalReq
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default SaveAnimalRequest = props => {
+	const [selectMode, setSelectMode] = React.useState(false);
+
+	const checkSelectMode = e => {
+		console.log('checkSelectMode=>' + e);
+		setSelectMode(e);
+	};
+
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* SelectStat	 */}
 			<View style={[temp_style.selectstat_view]}>
-				<SelectStat />
+				<SelectStat onSelectMode={e => checkSelectMode(e)} />
 			</View>
 
 			{/* <FlatList> */}
 			<View style={[temp_style.AnimalNeedHelpList]}>
-				<AnimalNeedHelpList />
+				<AnimalNeedHelpList listType={props.route.params.listType} mode={selectMode} />
 			</View>
 			{/* </FlatList> */}
 		</View>
