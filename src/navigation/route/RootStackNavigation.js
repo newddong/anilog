@@ -1,13 +1,11 @@
 import React from 'react';
-import {SafeAreaView, View, Dimensions, StyleSheet} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { SafeAreaView, View, Dimensions, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import LoginTemplete from 'Templete/LoginTemplete';
 
 import AgreementCheck from 'Templete/AgreementCheck';
-import UserAssignMobile from 'Root/component/templete/UserVerification';
-import UserAssignEmail from 'Templete/UserAssignEmail';
 import UserPasswordCheck from 'Templete/UserPasswordCheck';
 import AssignUserHabitation from 'Templete/AssignUserHabitation';
 import AssignUserProfileImage from 'Templete/AssignUserProfileImage';
@@ -39,7 +37,7 @@ import AssignPetInfoB from 'Templete/AssignPetInfoB';
 import MainTabNavigation from './main_tab/MainTabNavigation';
 import SearchTabNavigation from './search_tab/SearchTabNavigation';
 
-import {PIC_SELECTION} from 'Root/i18n/msg';
+import { PIC_SELECTION } from 'Root/i18n/msg';
 import FeedListForHashTag from 'Root/component/templete/FeedListForHashTag';
 
 import SimpleHeader from 'Navigation/header/SimpleHeader';
@@ -49,45 +47,45 @@ import UserVerification from 'Root/component/templete/UserVerification';
 import TwoBtnModal from 'Molecules/TwoBtnModal';
 import OneBtnModal from 'Molecules/OneBtnModal';
 import NoBtnModal from 'Molecules/NoBtnModal';
-import {Modal} from 'Component/modal/Modal';
+import { Modal } from 'Component/modal/Modal';
 const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
 	const [isPop, setPop] = React.useState(false);
 	const [popupComponent, setPopupComponent] = React.useState([]);
-	
+
 	const popIn = (Component) => {
-		const component = React.cloneElement(Component,{key:popupComponent.length});
-		setPopupComponent([component,...popupComponent]);
+		const component = React.cloneElement(Component, { key: popupComponent.length });
+		setPopupComponent([component, ...popupComponent]);
 	};
-	
+
 
 	Modal.close = () => {
 		popupComponent.shift();
 		setPopupComponent([...popupComponent]);
-		popupComponent.length===0&&setPop(false);
-		
+		popupComponent.length === 0 && setPop(false);
+
 	};
 	Modal.popTwoBtn = (msg, noMsg, yesMsg, onNo, onYes) => {
 		popIn(<TwoBtnModal popUpMsg={msg} onNo={onNo} onYes={onYes} noMsg={noMsg} yesMsg={yesMsg} />);
-		!isPop&&setPop(true);
+		!isPop && setPop(true);
 	};
 	Modal.popNoBtn = (msg) => {
 		popIn(<NoBtnModal popUpMsg={msg} />);
-		!isPop&&setPop(true);
+		!isPop && setPop(true);
 	};
 	Modal.popOneBtn = (msg, okMsg, onOk) => {
-		popIn(<OneBtnModal popUpMsg={msg} onOk={onOk} okMsg={okMsg}/>);
-		!isPop&&setPop(true);
+		popIn(<OneBtnModal popUpMsg={msg} onOk={onOk} okMsg={okMsg} />);
+		!isPop && setPop(true);
 	};
 
 	Modal.popDrop = (component) => {
 		popIn(component);
-		!isPop&&setPop(true);
+		!isPop && setPop(true);
 	}
 
 	return (
-		<SafeAreaView style={{flex: 1}}>
+		<SafeAreaView style={{ flex: 1 }}>
 			<NavigationContainer>
 				<RootStack.Navigator initialRouteName="MainTab">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
@@ -96,7 +94,7 @@ export default RootStackNavigation = () => {
 
 					<RootStack.Screen name="AgreementCheck" component={AgreementCheck} />
 					<RootStack.Screen name="UserVerification" component={UserVerification} />
-					<RootStack.Screen name="UserAssignEmail" component={UserAssignEmail} />
+					{/* <RootStack.Screen name="UserAssignEmail" component={UserAssignEmail} /> */}
 					<RootStack.Screen name="UserPasswordCheck" component={UserPasswordCheck} />
 					<RootStack.Screen name="AssignUserHabitation" component={AssignUserHabitation} />
 					<RootStack.Screen name="AssignUserProfileImage" component={AssignUserProfileImage} />
@@ -122,17 +120,17 @@ export default RootStackNavigation = () => {
 
 					<RootStack.Screen name="ApplyVolunteer" component={ApplyVolunteer} />
 					<RootStack.Screen name="FeedMediaTagEdit" component={FeedMediaTagEdit} />
-					<RootStack.Screen name="FeedWrite" component={FeedWrite} options={{header: props => <SendHeader {...props} />, title: '게시물 작성'}} />
+					<RootStack.Screen name="FeedWrite" component={FeedWrite} options={{ header: props => <SendHeader {...props} />, title: '게시물 작성' }} />
 
 					<RootStack.Screen
 						name="FeedMissingWrite"
 						component={FeedWrite}
-						options={{header: props => <SendHeader {...props} />, title: '실종 게시물'}}
+						options={{ header: props => <SendHeader {...props} />, title: '실종 게시물' }}
 					/>
 					<RootStack.Screen
 						name="FeedReportWrite"
 						component={FeedWrite}
-						options={{header: props => <SendHeader {...props} />, title: '제보 게시물'}}
+						options={{ header: props => <SendHeader {...props} />, title: '제보 게시물' }}
 					/>
 					<RootStack.Screen name="LocationPicker" component={LocationPicker} />
 
