@@ -1,10 +1,13 @@
 import React from 'react';
-import {View, TouchableOpacity, TouchableWithoutFeedback, Text} from 'react-native';
+import { View, TouchableOpacity, TouchableWithoutFeedback, Text } from 'react-native';
 import AniButton from 'Molecules/AniButton';
 import ActionButton from 'Molecules/ActionButton';
 import Dropdown from 'Molecules/Dropdown';
-import {btn_w280, btn_w226} from 'Atom/btn/btn_style';
-import {APRI10} from 'Root/config/color';
+import { btn_w280, btn_w226 } from 'Atom/btn/btn_style';
+import { APRI10, WHITE} from 'Root/config/color';
+import DP from 'Root/config/dp';
+import { Modal } from 'Component/modal/Modal';
+import {txt} from 'Root/config/textstyle';
 
 /**
  *
@@ -14,18 +17,38 @@ import {APRI10} from 'Root/config/color';
  * disable : boolean,
  * titleFontStyle : number,
  * onOpen : Function,
- * onClose : Function
+ * onClose : Function,
+ * onSelect : Function,
  * }} props
  */
 export default ProfileDropdown = props => {
+	const onClose = () => {
+		props.onClose();
+		Modal.close();
+	}
 	return (
 		<Dropdown
-			buttonComponent={<ActionButton {...props} />}
+			buttonComponent={<ActionButton {...props} initState={false} noStateChange/>}
 			dropdownList={
-				<View>
-					<TouchableWithoutFeedback onPress={() => {}}>
-						<View style={{width: props.btnLayout.width, height: 80, backgroundColor: APRI10}}></View>
-					</TouchableWithoutFeedback>
+				<View style={{backgroundColor:APRI10,borderRadius:40*DP,alignItems:'center' }}>
+					<ActionButton {...props} initState noStateChange onClose={onClose}/>
+					{props.menu.map((v, i) =>
+						<TouchableWithoutFeedback onPress={()=>props.onSelect(v,i)} key={i}>
+							<View style={{ width: props.btnLayout.width,marginVertical:15*DP}}>
+								<Text style={[
+									txt.noto24b,
+									{
+										fontSize: props.titleFontStyle * DP,
+										textAlign:'center',
+										color  : WHITE,
+									}
+								]}>
+									{v}
+								</Text>
+							</View>
+						</TouchableWithoutFeedback>
+					)
+					}
 				</View>
 			}
 		/>
@@ -40,4 +63,5 @@ ProfileDropdown.defaultProps = {
 	btnStyle: 'border', // 버튼스타일 filled border noBorder
 	onOpen: e => console.log(e),
 	onClose: e => console.log(e),
+	onSelect:(v,i)=> console.log(i+':'+v)
 };

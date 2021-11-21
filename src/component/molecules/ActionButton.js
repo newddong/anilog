@@ -13,7 +13,9 @@ import {Arrow_Down_APRI10, Arrow_Down_GRAY30, Arrow_Down_White, Arrow_Up_APRI10,
  * disable : boolean,
  * titleFontStyle : number,
  * onOpen : Function,
- * onClose : Function
+ * onClose : Function,
+ * initState : '버튼의 초기상태 false이면 close, true이면 open',
+ * noStateChange : '버튼의 on, off를 변경하지 않음, initState가 false이면 onOpen, true이면 onClose만 실행'
  * }} props
  */
 export default ActionButton = props => {
@@ -53,7 +55,7 @@ export default ActionButton = props => {
 
 	//클릭 이벤트
 	const onPress = e => {
-		setBtnStatus(!btnStatus);
+		!props.noStateChange&&setBtnStatus(!btnStatus);
 		// btnStatus ? props.onOpen() : props.onClose();
 		btnStatus&&(props.onClose()||true)||props.onOpen();
 	};
@@ -91,6 +93,7 @@ export default ActionButton = props => {
 };
 
 ActionButton.defaultProps = {
+	noStateChange : false,
 	initState: false,
 	btnTitle: 'BTN_W654', //버튼의 제목
 	disable: false, // 버튼탭 사용불가 상태 boolean

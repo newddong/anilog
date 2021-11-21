@@ -5,6 +5,8 @@ import {Text, View, Image, ScrollView, Dimensions, SafeAreaView, StyleSheet, Tou
 import {BackArrow32, Meatball50_GRAY20_Horizontal} from 'Atom/icon';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
+import MeatBallDropdown from 'Molecules/MeatBallDropdown';
+import { btn_w280 } from 'Root/component/atom/btn/btn_style';
 
 export default MeatBallHeader = ({navigation, route, options, back}) => {
 	return (
@@ -15,7 +17,16 @@ export default MeatBallHeader = ({navigation, route, options, back}) => {
 				</View>
 			</TouchableOpacity>
 			<Text style={txt.roboto40b}>{options.title}</Text>
-			<Meatball50_GRAY20_Horizontal />
+			<MeatBallDropdown 
+				btnTitle={'팔로우 중'}
+				btnStyle={'filled'}
+				titleFontStyle={30}
+				btnLayout={btn_w280}
+				menu={['메뉴1','메뉴2','메뉴3','메뉴4']}
+				onSelect={(v,i)=>console.log(v+':'+i)}
+				// onOpen={()=>{alert('open')}}
+				// onClose={()=>{alert('close')}}
+			/>
 		</View>
 	);
 };

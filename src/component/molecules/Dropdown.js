@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text, Dimensions, TouchableWithoutFeedback} from 'react-native';
 import {Modal} from 'Component/modal/Modal';
+import DP from 'Root/config/dp';
 
 export default Dropdown = props => {
 	const container = React.useRef();
@@ -9,6 +10,7 @@ export default Dropdown = props => {
 	const onPressOverride = () => {
 		click();
 		props.buttonComponent.props.onPress();
+		isClick.current = !isClick.current;
 	};
 
 	const onOpenOverride = () => {
@@ -16,7 +18,8 @@ export default Dropdown = props => {
 		props.buttonComponent.props.onOpen();
 	};
 	const onCloseOverride = () => {
-		click();
+		Modal.close();
+		console.log('close')
 		props.buttonComponent.props.onClose();
 	};
 
@@ -24,7 +27,7 @@ export default Dropdown = props => {
 		!isClick.current &&
 			container.current.measure((fx, fy, width, height, px, py) => {
 				const dropdownList = React.cloneElement(props.dropdownList, {
-					style: [{position: 'absolute', top: py, left: px}, props.dropdownList.props.style],
+					style: [{position: 'absolute', top: py, left: px,paddingBottom:15*DP}, props.dropdownList.props.style],
 				});
 				Modal.popDrop(
 					<TouchableWithoutFeedback onPress={Modal.close}>
@@ -35,7 +38,7 @@ export default Dropdown = props => {
 				);
 			});
 		isClick.current && Modal.close();
-		isClick.current = !isClick.current;
+		
 	};
 
 	const button = React.cloneElement(props.buttonComponent, {

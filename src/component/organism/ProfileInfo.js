@@ -99,25 +99,13 @@ export default ProfileInfo = props => {
 			<View style={[organism_style.btn_w280_view_profileInfo, profileInfo_style.btn_w280_view]}>
 				<View style={[organism_style.btn_w280_profileInfo, profileInfo_style.btn_w280]}>
 					{followState || true ? (
-						// <Dropdown
-						// 	buttonComponent={
-						// 		<AniButton
-						// 			btnTitle={'팔로우 중'}
-						// 			btnStyle={'filled'}
-						// 			titleFontStyle={30}
-						// 			btnLayout={btn_w280}
-						// 			// onPress={() => {setFollowState(!followState);Modal.popTwoBtn('팝업 테스트중입니다.\ndsdfsf','취소','확인',()=>{alert('노노')},()=>{alert('예스')})}}
-						// 			onPress={() => {
-						// 				setFollowState(!followState);
-						// 			}}
-						// 		/>
-						// 	}
-						// />
 						<ProfileDropdown 
 							btnTitle={'팔로우 중'}
 							btnStyle={'filled'}
 							titleFontStyle={30}
 							btnLayout={btn_w280}
+							menu={['메뉴1','메뉴2','메뉴3','메뉴4']}
+							onSelect={(v,i)=>console.log(v+':'+i)}
 							// onOpen={()=>{alert('open')}}
 							// onClose={()=>{alert('close')}}
 						/>
