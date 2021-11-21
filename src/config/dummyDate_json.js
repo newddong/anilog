@@ -476,3 +476,27 @@ export const userAssign_agreementCheckList = [
 ];
 
 export const initial_number = ['010', '02', '031', '033', '043', '041', '054', '055', '063', '061', '064'];
+
+export const dummy_ActivationList = [
+	{
+		title: '임시보호 참여하기',
+		image: 'https://t1.daumcdn.net/cafeattach/1YMOi/6a29e54280110d61d2fee57dc946518b5b712af9',
+	},
+	{
+		title: '반려동물 실종시 전단지 만들기',
+		image: 'https://www.korea.kr/newsWeb/resources/attaches/2018.08/13/j(10)(1).jpg',
+	},
+	{
+		title: '임시보호 가이드 댕댕이 편',
+		image: 'https://i.ytimg.com/vi/_sGXBdriPls/maxresdefault.jpg',
+	},
+	{
+		title: '임시보호 가이드 냥이 편',
+		image: 'https://blog.kakaocdn.net/dn/dqxd2e/btqF9CkxulW/VGaLWC0cEGxKTDsMQLEge1/img.png',
+	},
+	{
+		title: '입양하기',
+		image:
+			'https://post-phinf.pstatic.net/MjAxODA1MjVfMTI0/MDAxNTI3MjI0ODM0NjUy.3W_Gofc55O0KiKsFbSQHtDFcszORyaJanPV1c4kQrREg.--OIU53Y4G2wigHZQfha9IkpyA2yWsT3W9GH66I3ZcYg.PNG/mug_obj_152722483276385125.png?type=w1080',
+	},
+];

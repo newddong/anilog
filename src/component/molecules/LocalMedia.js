@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
-import { txt } from 'Root/config/textstyle';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
+import {txt} from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
-import { styles } from '../atom/image/imageStyle';
-import { APRI10, WHITE } from 'Root/config/color';
-import { Paw94x90 } from '../atom/icon';
+import {styles} from '../atom/image/imageStyle';
+import {APRI10, WHITE} from 'Root/config/color';
+import {Paw94x90} from '../atom/icon';
 
 /**
  *
@@ -20,18 +20,17 @@ export default LocalMedia = props => {
 	const [selected, setSelected] = React.useState(false);
 
 	const onSelect = e => {
-		console.log("PropsDisable", props.disable)
+		// console.log("PropsDisable", props.disable)
 		if (props.disable) {
 			!selected ? alert('5초과') : setSelected(!selected);
 			props.onSelect(props.data.img_uri, !selected);
-		}
-		else if (!props.disable) {
+		} else if (!props.disable) {
 			setSelected(!selected);
 			props.onSelect(props.data.img_uri, !selected);
-		};
-	}
+		}
+	};
 	const getStyleOfSelectedItem = () => {
-		return selected ? [styles.img_square_186, { borderWidth: 4 * DP, borderColor: APRI10, opacity: 0.6 }] : styles.img_square_186;
+		return selected ? [styles.img_square_186, {borderWidth: 4 * DP, borderColor: APRI10, opacity: 0.6}] : styles.img_square_186;
 	};
 
 	const getImageOfSelectedItem = () => {
@@ -80,10 +79,10 @@ export default LocalMedia = props => {
 
 	return (
 		<TouchableOpacity onPress={onSelect} style={styles.img_square_186}>
-			<Image source={{ uri: props.data.img_uri }} style={getStyleOfSelectedItem()} />
+			<Image source={{uri: props.data.img_uri}} style={getStyleOfSelectedItem()} />
 			{getImageOfSelectedItem()}
 			{props.data.isVideo ? (
-				<Text style={[txt.roboto22, { color: WHITE, position: 'absolute', left: 10 * DP, bottom: 6 * DP }]}>{props.data.duration}</Text>
+				<Text style={[txt.roboto22, {color: WHITE, position: 'absolute', left: 10 * DP, bottom: 6 * DP}]}>{props.data.duration}</Text>
 			) : (
 				false
 			)}

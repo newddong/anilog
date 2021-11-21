@@ -27,15 +27,23 @@ export default FeedWrite = props => {
 	const [showReportForm, setShowRepotForm] = React.useState(false); //제보버튼
 	const [showActionButton, setShowActionButton] = React.useState(false); // 긴급게시(하얀버전) 클릭 시 - 실종/제보 버튼 출력 Boolean
 
-	const [completed, setCompleted] = React.useState(false); // HashTag 입력란 확인용 테스트 State
-	const [feedText, setFeedText] = React.useState(''); //
-	const [draft, setDraft] = React.useState();
+	const [feedText, setFeedText] = React.useState(''); //피드 TextInput Value
 
 	//긴급 게시 버튼 관련 분기 처리
 	React.useEffect(() => {
 		// 실종버튼, 제보버튼, pet목록이 작동 중이지 않을 때는 긴급버튼목록이 출력
 		showLostAnimalForm || showReportForm || showPetAccountList ? setShowUrgentBtns(false) : setShowUrgentBtns(true);
 	}, [showLostAnimalForm, showReportForm]);
+
+	//긴급버튼 중 - 실종 클릭
+	const onPressMissingWrite = () => {
+		setShowLostAnimalForm(true);
+	};
+
+	//긴급버튼 중 - 제보 클릭
+	const onPressReportWrite = () => {
+		setShowRepotForm(true);
+	};
 
 	//Text 안에 있는 HashTag된 텍스트 클릭 시 FeedListForHashTag 로 이동
 	const moveToFeedListForHashTag = tagText => {
@@ -216,75 +224,11 @@ export default FeedWrite = props => {
 		}
 	};
 
-	const getValueInfos = feedText => {
-		if (feedText.length === 0) {
-			return [];
-		}
-		const splitedArr = feedText.split(' ');
-		let idx = 0;
-		const valueInfos = splitedArr.map(str => {
-			const idxArr = [idx, idx + str.length - 1];
-			idx += str.length + 1;
-			return {
-				str,
-				isHT: str.startsWith('#'),
-				idxArr,
-			};
-		});
-		return valueInfos;
-	};
-
-	let valueInfos = getValueInfos(feedText);
-
-	//테스트용 해쉬태그 InputView
-	const getFeedContent = feedText => {
-		//
-		if (feedText.length == 0) {
-			return null;
-		} else {
-			console.log('TExt : ' + feedText);
-			const splitedArr = feedText.split(' ');
-			let idx = 0;
-			const valueInfos = splitedArr.map(str => {
-				const idxArr = [idx, idx + str.length - 1];
-				idx += str.length + 1;
-				return {
-					str,
-					isHT: str.startsWith('#'),
-					idxArr,
-				};
-			});
-			return valueInfos.map((v, idx) => {
-				const [firstIdx, lastIdx] = v.idxArr;
-				let value = feedText.slice(firstIdx, lastIdx + 1);
-				const isLast = idx === valueInfos.length - 1;
-				if (v.isHT) {
-					return (
-						<Text key={idx} style={{color: 'blue', backgroundColor: 'pink', height: 20}} onPress={() => moveToFeedListForHashTag(value)}>
-							{value}
-							{!isLast && <Text style={{backgroundColor: 'transparent'}}> </Text>}
-						</Text>
-					);
-				}
-				return (
-					<Text key={idx}>
-						{value}
-						{!isLast && <Text> </Text>}
-					</Text>
-				);
-			});
-		}
-	};
-
-	const makeDraft = () => {
-		setDraft(feedText);
-		setCompleted(true);
-	};
 	return (
 		<View style={[login_style.wrp_main, feedWrite.container]}>
 			{/* 테스트용 */}
 			<ScrollView contentContainerStyle={{width: 750 * DP, alignItems: 'center'}}>
-				<View style={{flexDirection: 'row'}}>
+				{/* <View style={{flexDirection: 'row'}}>
 					<TouchableOpacity
 						onPress={() => setShowLostAnimalForm(!showLostAnimalForm)}
 						style={{width: 100, height: 20, backgroundColor: 'black', marginLeft: 7}}>
@@ -300,13 +244,14 @@ export default FeedWrite = props => {
 						style={{width: 100, height: 20, backgroundColor: 'blue', marginLeft: 7}}>
 						<Text style={{color: 'white'}}>RepotForm {showReportForm ? 'On' : 'off'}</Text>
 					</TouchableOpacity>
-				</View>
+				</View> */}
 				{/* 테스트용 종료 */}
-				<View style={[temp_style.feedTextEdit, feedWrite.feedTextEdit, {backgroundColor: 'yellow'}]}>
+				<View style={[temp_style.feedTextEdit, feedWrite.feedTextEdit]}>
 					{/* 피드 글 작성 */}
 					<TextInput
+						textAlignVertical={'top'}
 						multiline={true}
-						style={{color: 'blue', backgroundColor: 'yellow', flex: 1}}
+						style={{color: 'blue', flex: 1}}
 						placeholder="무엇을 할까요?"
 						onChangeText={text => setFeedText(text)}></TextInput>
 				</View>
@@ -314,9 +259,9 @@ export default FeedWrite = props => {
 				{/* Input Text 하단 언더라인 */}
 				<View style={{width: 654 * DP, height: 2 * DP, marginVertical: 40 * DP, backgroundColor: APRI10}} />
 
-				<View style={{width: 654 * DP, height: 300 * DP, backgroundColor: 'lightblue', flexDirection: 'row'}}>
+				{/* <View style={{width: 654 * DP, height: 300 * DP, backgroundColor: 'lightblue', flexDirection: 'row'}}>
 					{completed ? getFeedContent(draft) : null}
-				</View>
+				</View> */}
 
 				{setWriteModeState()}
 				{/* 긴급 게시물 관련 버튼 컨테이너 */}
@@ -326,12 +271,12 @@ export default FeedWrite = props => {
 					{showActionButton ? (
 						<View>
 							<View style={[feedWrite.urgentBtnItemContainer]}>
-								<TouchableWithoutFeedback onPress={moveToFeedMissingWrite}>
+								<TouchableWithoutFeedback onPress={onPressMissingWrite}>
 									<Text style={[txt.noto32, {color: WHITE}]}>실종</Text>
 								</TouchableWithoutFeedback>
 							</View>
 							<View style={[feedWrite.urgentBtnItemContainer]}>
-								<TouchableWithoutFeedback onPress={moveToFeedReportWrite}>
+								<TouchableWithoutFeedback onPress={onPressReportWrite}>
 									<Text style={[txt.noto32, {color: WHITE}]}>제보</Text>
 								</TouchableWithoutFeedback>
 							</View>

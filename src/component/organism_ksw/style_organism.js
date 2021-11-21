@@ -655,7 +655,7 @@ export const childComment = StyleSheet.create({
 	},
 	writeCommentText: {
 		color: GRAY20,
-		includeFontPadding: false,
+		// includeFontPadding: false,
 	},
 });
 
@@ -1126,6 +1126,7 @@ export const animalNeedHelp = StyleSheet.create({
 export const animalNeedHelpList = StyleSheet.create({
 	container: {
 		width: 702 * DP,
+		marginTop: 20 * DP,
 	},
 	itemContainer: {
 		alignItems: 'center',

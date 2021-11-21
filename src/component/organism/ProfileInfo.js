@@ -83,12 +83,12 @@ export default ProfileInfo = props => {
 				<Text
 					ellipsizeMode={'tail'}
 					numberOfLines={showMore ? null : 2}
-					style={[txt.noto24, showMore ? profileInfo_style.content_expanded : profileInfo_style.content, {backgroundColor: 'yellow'}]}>
+					style={[txt.noto24, showMore ? profileInfo_style.content_expanded : profileInfo_style.content]}>
 					안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있어요! 안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있어요!안녕하세요 5살 구름이와 3살
 					하늘이랑 함께 살고 있어요!안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있어요!
 				</Text>
 				<View style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
-					<Text style={[txt.noto24, {color: GRAY10, backgroundColor: 'yellow'}]}>더보기 </Text>
+					<Text style={[txt.noto24, {color: GRAY10}]}>더보기 </Text>
 					<View style={showMore ? {transform: [{rotate: '180deg'}]} : null}>
 						<Bracket48 onPress={() => setShowMore(!showMore)} />
 					</View>
@@ -99,13 +99,13 @@ export default ProfileInfo = props => {
 			<View style={[organism_style.btn_w280_view_profileInfo, profileInfo_style.btn_w280_view]}>
 				<View style={[organism_style.btn_w280_profileInfo, profileInfo_style.btn_w280]}>
 					{followState || true ? (
-						<ProfileDropdown 
+						<ProfileDropdown
 							btnTitle={'팔로우 중'}
 							btnStyle={'filled'}
 							titleFontStyle={30}
 							btnLayout={btn_w280}
-							menu={['메뉴1','메뉴2','메뉴3','메뉴4']}
-							onSelect={(v,i)=>console.log(v+':'+i)}
+							menu={['메뉴1', '메뉴2', '메뉴3', '메뉴4']}
+							onSelect={(v, i) => console.log(v + ':' + i)}
 							// onOpen={()=>{alert('open')}}
 							// onClose={()=>{alert('close')}}
 						/>

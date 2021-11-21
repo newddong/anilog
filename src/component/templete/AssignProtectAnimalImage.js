@@ -21,7 +21,7 @@ export default AssignProtectAnimalImage = props => {
 	};
 
 	return (
-		<View style={login_style.wrp_main}>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* (M)StageBar	 */}
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar

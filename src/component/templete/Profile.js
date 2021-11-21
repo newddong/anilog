@@ -1,9 +1,9 @@
-import { useNavigation } from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import { Text, View, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { NORMAL, PET, SHELTER } from 'Root/i18n/msg';
-import { Write94 } from '../atom/icon';
+import {Text, View, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {NORMAL, PET, SHELTER} from 'Root/i18n/msg';
+import {Write94} from '../atom/icon';
 import TabSelectFilled_Type2 from '../molecules/TabSelectFilled_Type2';
 import ProfileInfo from '../organism/ProfileInfo';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
@@ -11,12 +11,12 @@ import FeedThumbnailList from '../organism_ksw/FeedThumbnailList';
 import OwnerList from '../organism_ksw/OwnerList';
 import PetList from '../organism_ksw/PetList';
 import ProtectedPetList from '../organism_ksw/ProtectedPetList';
-import { login_style, profile, temp_style } from './style_templete';
+import {login_style, profile, temp_style} from './style_templete';
 
 export default Profile = props => {
 	const item = props.route.params;
 	const navigation = useNavigation();
-	const [userType, setUserType] = React.useState(SHELTER); //NORMAL, PET, SHELTER
+	const [userType, setUserType] = React.useState(NORMAL); //NORMAL, PET, SHELTER
 	const [petStatus, setPetStatus] = React.useState('adopted'); // 현재 로드되어 있는 profile의 userType이 PET인 경우 그 펫의 상태 state
 	const [tabMenuSelected, setTabMenuSelected] = React.useState(0);
 	const [showOwnerState, setShowOwnerState] = React.useState(true); // 현재 로드되어 있는 profile의 userType이 Pet인 경우 반려인 계정 Tab의 Open 여부
@@ -34,19 +34,15 @@ export default Profile = props => {
 			// 반려동물 보이기 true
 			if (tabMenuSelected == 0) {
 				return (
-					<View style={[profile.feedListContainer]}>
-						<View style={[profile.petList]}>
-							<PetList />
-						</View>
+					<View style={[profile.petList]}>
+						<PetList />
 					</View>
 				);
 				// 보호활동 보이기 true
 			} else if (tabMenuSelected == 2) {
 				return (
-					<View style={[profile.feedListContainer]}>
-						<View style={[profile.protectedPetList]}>
-							<ProtectedPetList onClickLabel={item => navigation.push('UserProfile', item)} />
-						</View>
+					<View style={[profile.protectedPetList]}>
+						<ProtectedPetList onClickLabel={item => navigation.push('UserProfile', item)} />
 					</View>
 				);
 			} else {
@@ -112,7 +108,7 @@ export default Profile = props => {
 		<View style={[login_style.wrp_main, profile.container]}>
 			<ScrollView>
 				{/* 테스트용 */}
-				<View style={{ width: '100%', height: 30, flexDirection: 'row', backgroundColor: 'yellow' }}>
+				{/* <View style={{ width: '100%', height: 30, flexDirection: 'row', backgroundColor: 'yellow' }}>
 					<TouchableOpacity onPress={() => setUserType(NORMAL)} style={{ width: 100, height: 15, backgroundColor: 'lightblue' }}>
 						<Text>NORMAL</Text>
 					</TouchableOpacity>
@@ -123,7 +119,7 @@ export default Profile = props => {
 						<Text>shelter</Text>
 					</TouchableOpacity>
 					<Text>{userType}</Text>
-				</View>
+				</View> */}
 				{/* 테스트용 종료 */}
 				<View style={[profile.profileInfo]}>
 					<ProfileInfo
@@ -140,8 +136,8 @@ export default Profile = props => {
 				<View style={[temp_style.tabSelectFilled_Type2, profile.tabSelectFilled_Type2]}>{getTabSelectList()}</View>
 				{showPetList()}
 				<View>
-					<ScrollView horizontal={false} style={{ width: '100%', height: '100%' }}>
-						<ScrollView horizontal={true} style={{ width: '100%', height: '100%' }}>
+					<ScrollView horizontal={false} style={{width: '100%', height: '100%'}}>
+						<ScrollView horizontal={true} style={{width: '100%', height: '100%'}}>
 							<View style={[temp_style.feedThumbnailList, profile.feedThumbNailList]}>{getThumbnailList()}</View>
 						</ScrollView>
 					</ScrollView>
@@ -152,7 +148,6 @@ export default Profile = props => {
 					</View>
 				</TouchableWithoutFeedback>
 			</ScrollView>
-
-		</View >
+		</View>
 	);
 };

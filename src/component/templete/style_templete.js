@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
 	MAINCOLOR,
 	LINK,
@@ -679,7 +679,7 @@ export const temp_style = StyleSheet.create({
 	},
 	feedTextEdit: {
 		width: 654 * DP,
-		height: 248 * DP,
+		minHeight: 200 * DP,
 		backgroundColor: 'white',
 	},
 	selectedMediaList: {
@@ -1758,6 +1758,7 @@ export const userInfoSetting_style = StyleSheet.create({
 export const assignPetProfileImage_style = StyleSheet.create({
 	textMsg: {
 		marginTop: 12 * DP,
+		alignItems: 'flex-start',
 	},
 	profileImageSelect: {
 		marginTop: 70 * DP,
@@ -2778,13 +2779,11 @@ export const activationList = StyleSheet.create({
 export const activationDetail = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 	imageContainer: {
 		width: 654 * DP,
 		height: 728 * DP,
 		marginTop: 70 * DP,
-		backgroundColor: '#A07A7A',
 		alignSelf: 'center',
 	},
 	titleContainer: {
@@ -2793,32 +2792,27 @@ export const activationDetail = StyleSheet.create({
 		marginTop: 40 * DP,
 		flexDirection: 'row',
 		alignSelf: 'center',
-		backgroundColor: 'yellow',
 	},
 	titleText: {
 		width: 518 * DP,
 		height: 54 * DP,
-		backgroundColor: '#A1C5A5',
 	},
 
 	heartContainer: {
 		width: 48 * DP,
 		height: 84 * DP,
 		marginLeft: 10 * DP,
-		backgroundColor: '#95E29F',
 	},
 	shareContainer: {
 		width: 48 * DP,
 		height: 84 * DP,
 		marginLeft: 30 * DP,
-		backgroundColor: '#95E29F',
 	},
 	contentContainer: {
 		width: 654 * DP,
 		height: 322 * DP,
 		marginTop: 10 * DP,
 		alignSelf: 'center',
-		backgroundColor: 'pink',
 	},
 });
 
@@ -3090,10 +3084,10 @@ export const userIdentification = StyleSheet.create({
 });
 
 export const missingAnimalDetail = StyleSheet.create({
-	container: {
-	},
+	container: {},
 	insideContainer: {
-		width: 750 * DP, alignItems: 'center'
+		width: 750 * DP,
+		alignItems: 'center',
 	},
 	poster: {
 		width: 618 * DP,
@@ -3117,7 +3111,7 @@ export const reportDetail = StyleSheet.create({
 	container: {
 		// backgroundColor: '#ACC4D6',
 		alignItems: 'center',
-		flex: 1,
+		// flex: 1,
 	},
 	img_square_750: {
 		marginTop: 20 * DP,
@@ -3373,7 +3367,7 @@ export const feedWrite = StyleSheet.create({
 		height: 1408 * DP,
 	},
 	feedTextEdit: {
-		marginTop: 40 * DP,
+		marginTop: 10 * DP,
 	},
 	buttonContainer: {
 		flexDirection: 'row',
@@ -3503,7 +3497,7 @@ export const feedWrite = StyleSheet.create({
 });
 
 export const profile = StyleSheet.create({
-	container: { flex: 1 },
+	container: {flex: 1},
 	profileInfo: {
 		width: 750 * DP,
 		marginBottom: 30 * DP,

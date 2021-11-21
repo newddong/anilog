@@ -1,17 +1,17 @@
 import React from 'react';
-import { Dimensions, Text, View } from 'react-native';
-import { organism_style, feedContent_style } from './style_organism';
+import {Dimensions, Text, View} from 'react-native';
+import {organism_style, feedContent_style} from './style_organism';
 import UserLocationLabel from 'Root/component/molecules/UserLocationLabel';
 import AniButton from 'Root/component/molecules/AniButton';
-import { btn_w130 } from 'Root/component/atom/btn/btn_style';
-import { useNavigation } from '@react-navigation/core';
-import { FavoriteTag48_Filled, Meatball50_GRAY20_Horizontal, Share48_Filled } from '../atom/icon';
-import { txt } from 'Root/config/textstyle';
-import { Arrow_Down_GRAY20, Arrow_Up_GRAY20 } from '../atom/icon';
+import {btn_w130} from 'Root/component/atom/btn/btn_style';
+import {useNavigation} from '@react-navigation/core';
+import {FavoriteTag48_Filled, Meatball50_GRAY20_Horizontal, Share48_Filled} from '../atom/icon';
+import {txt} from 'Root/config/textstyle';
+import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
 
 import FeedText from '../organism_ksw/FeedText';
 import DP from 'Root/config/dp';
-import { GRAY10 } from 'Root/config/color';
+import {GRAY10} from 'Root/config/color';
 export default FeedContent = props => {
 	const navigation = useNavigation();
 
@@ -26,10 +26,9 @@ export default FeedContent = props => {
 	//화면전환 시 isGotHeight는 초기값으로 가서 차후 호출 시, Height를 다시 받아오도록 함
 	React.useEffect(() => {
 		navigation.addListener('blur', () => {
-			setIsGotHeight(true)
-		})
-
-	})
+			setIsGotHeight(true);
+		});
+	});
 
 	const moveToFeedListForHashTag = tagText => {
 		const dummyHashData = {
@@ -42,39 +41,37 @@ export default FeedContent = props => {
 
 	const [btnStatus, setBtnStatus] = React.useState(false); //더보기 Arrow방향 false면 아래
 
-	const [isGotHeight, setIsGotHeight] = React.useState(false) //이미 한 번 받아온 최초 Height가 있다면 true
+	const [isGotHeight, setIsGotHeight] = React.useState(false); //이미 한 번 받아온 최초 Height가 있다면 true
 
 	const [layout, setLayout] = React.useState({}); // 초기의 Layout
 
 	//FeedText가 담긴 View 의 onLayout
 	const onLayout = event => {
-		const { width, height } = event.nativeEvent.layout;
+		const {width, height} = event.nativeEvent.layout;
 		if (!isGotHeight) {
-			console.log(width, height);
-			setLayout({ width, height });
-			setIsGotHeight(true)
-		}
-		else {
-			console.log("Already Got Height!", width, height);
+			// console.log(width, height);
+			setLayout({width, height});
+			setIsGotHeight(true);
+		} else {
+			// console.log("Already Got Height!", width, height);
 		}
 	};
 
 	// FeedText View의 maxHeight설정
 	const getMaxHeight = () => {
-		console.log('getMAx', layout.height)
+		// console.log('getMAx', layout.height);
 		if (btnStatus) {
-			return null
+			return null;
 		} else if (layout.height > 120 * DP) {
-			return 120 * DP
+			return 120 * DP;
 		} else {
-			null
+			null;
 		}
-	}
+	};
 
 	const onClickMeatball = () => {
-		console.log('meatball')
-	}
-
+		console.log('meatball');
+	};
 
 	return (
 		<View style={[organism_style.feedContent, {}]}>
@@ -118,7 +115,7 @@ export default FeedContent = props => {
 								<Share48_Filled />
 							</View>
 							<View style={[organism_style.share_feedContent, feedContent_style.share]}>
-								<Text style={[txt.noto24, { color: GRAY10 }]}>공유</Text>
+								<Text style={[txt.noto24, {color: GRAY10}]}>공유</Text>
 							</View>
 						</View>
 					</View>
@@ -139,18 +136,15 @@ export default FeedContent = props => {
 					feedContent_style.content,
 					{
 						// FeedText의 높이가 120이상(3줄 이상)일 경우 maxheight가 지정되며, 아닐 경우 Maxheight는 없다
-						height: getMaxHeight()
+						height: getMaxHeight(),
 						// maxHeight: getMaxHeight()
 					},
 					{
-
 						//하지만 더보기를 누른다면 maxHeight 제한은 사라지며 본래의 크기를 보여준다
 						// maxHeight: btnStatus ? null : 120 * DP,
 					},
 				]}
-
-				onLayout={onLayout}
-			>
+				onLayout={onLayout}>
 				<FeedText
 					text={
 						'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. That is not a propblem ' +
@@ -161,7 +155,7 @@ export default FeedContent = props => {
 				/>
 			</View>
 			{/* 피드 작성 날짜  3 */}
-			<View style={[organism_style.time_view_feedContent, { marginTop: btnStatus ? null : 10 * DP }]}>
+			<View style={[organism_style.time_view_feedContent, {marginTop: btnStatus ? null : 10 * DP}]}>
 				<View style={[organism_style.time_feedContent]}>
 					<Text>1일 전</Text>
 				</View>
@@ -170,7 +164,7 @@ export default FeedContent = props => {
 				{layout.height > 120 * DP && (
 					<View style={[organism_style.addMore_view_feedContent]}>
 						<View style={[organism_style.addMore_feedContent]}>
-							<Text style={[txt.noto22, { color: GRAY10 }]}>더보기</Text>
+							<Text style={[txt.noto22, {color: GRAY10}]}>더보기</Text>
 						</View>
 						<View style={[organism_style.braket]}>
 							{btnStatus ? (

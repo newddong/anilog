@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { GRAY10, GRAY20 } from 'Root/config/color';
+import {StyleSheet} from 'react-native';
+import {GRAY10, GRAY20} from 'Root/config/color';
 import DP from 'Root/config/dp';
 
 export const organism_style = StyleSheet.create({
@@ -428,6 +428,6 @@ export const parentComment = StyleSheet.create({
 	},
 	writeCommentText: {
 		color: GRAY20,
-		includeFontPadding: false,
+		// includeFontPadding: false,
 	},
 });
