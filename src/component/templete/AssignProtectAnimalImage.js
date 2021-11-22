@@ -26,14 +26,18 @@ export default AssignProtectAnimalImage = props => {
 	}, [data])
 
 	React.useEffect(() => {
+
 		if (props.route.params == null) {
 			// setImgSelected('https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg')
-		} else {
+		} else if (props.route.params.length == 0) {
 			let copy = [...imageList]
 			console.log('copy', copy)
 			copy.push({ media_uri: props.route.params })
 			setImageList(copy)
 			setData({ ...data, protect_animal_photos: copy })
+		} else if (props.route.params.length > 0) {
+			console.log('route', props.route.params)
+			setImageList(props.route.params)
 		}
 	}, [props.route.params]);
 

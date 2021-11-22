@@ -17,7 +17,7 @@ import { Paw94x90 } from '../atom/icon';
  * }} props
  */
 export default LocalMedia = props => {
-	// console.log(props.data)
+	// console.log(props.index)
 	const [selected, setSelected] = React.useState(false);
 
 	React.useEffect(() => {

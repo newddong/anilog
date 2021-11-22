@@ -22,7 +22,7 @@ export default SelectedMediaList = props => {
 	const renderItem = (item, index) => {
 		return (
 			<View style={[selectedMediaList.itemContainer]}>
-				<SelectedMedia layout={props.layout} media_uri={item.media_uri} onDelete={() => onDelete(index)} />
+				<SelectedMedia layout={props.layout} media_uri={item} onDelete={() => onDelete(index)} />
 			</View>
 		);
 	};
