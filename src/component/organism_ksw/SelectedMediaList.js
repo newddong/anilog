@@ -14,7 +14,6 @@ import { selectedMediaList } from './style_organism';
  * }} props
  */
 export default SelectedMediaList = props => {
-
 	const onDelete = index => {
 		props.onDelete(index)
 	}

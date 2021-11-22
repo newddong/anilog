@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableWithoutFeedback, Image, ScrollView, FlatList, TouchableOpacity, PermissionsAndroid } from 'react-native';
+import { Text, View, Image, ScrollView, FlatList, TouchableOpacity, PermissionsAndroid } from 'react-native';
 import { txt } from 'Root/config/textstyle';
 import { Bracket48 } from '../atom/icon';
 import LocalMedia from '../molecules/LocalMedia';
@@ -11,6 +11,7 @@ export default PhotoSelect = props => {
 
 	const [photo, setPhotos] = React.useState([]); // 페이지 하단에 출력되는 사진목록들
 	const [photoArray, setPhotoArray] = React.useState([]); // 선택된 사진목록들 (다중선택 모드)
+	const [selectedPhoto, setSelectedPhoto] = React.useState()
 	const [selectedIndex, setSelectedIndex] = React.useState([1, 2, 3, 4, 5]); // 선택된 사진의 index (다중선택모드)
 	const [number, setNumber] = React.useState(1);
 	const [selectDisable, setSelectDisable] = React.useState(false);
@@ -105,6 +106,7 @@ export default PhotoSelect = props => {
 				if (number == 5) { //5번째 선택일 경우 우선 다음부턴 선택이 불가능하도록 SelectDisable을 True로 만듦
 					setSelectDisable(true)
 				}
+				setSelectedPhoto(img)
 				copy = [...selectedIndex]
 				copy[index] = number //선택한 사진의 selectIndex에는 number(1~5까지 진행된다) 부여
 				if (photoArray.length < 5) { //photo uri리스트가 5개 이상일 경우 더이상 담지않는다
@@ -129,7 +131,7 @@ export default PhotoSelect = props => {
 						copy[i] = copy[i] - 1
 					}
 				})
-				setSelectedIndex(copy)//인덱스 정보 최종 반영
+				setSelectedIndex(copy)
 
 			}
 
@@ -186,7 +188,7 @@ export default PhotoSelect = props => {
 			<View style={[temp_style.img_square_750]}>
 				<Image
 					source={{
-						uri: selectedPhotos,
+						uri: selectedPhoto,
 					}}
 					style={[temp_style.img_square_750]}
 				/>

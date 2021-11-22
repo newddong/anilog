@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, StyleSheet, Text, Dimensions, TouchableWithoutFeedback} from 'react-native';
-import {Modal} from 'Component/modal/Modal';
+import { View, StyleSheet, Text, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { Modal } from 'Component/modal/Modal';
 import DP from 'Root/config/dp';
+import AniButton from './AniButton';
 
 export default Dropdown = props => {
 	const container = React.useRef();
@@ -27,18 +28,18 @@ export default Dropdown = props => {
 		!isClick.current &&
 			container.current.measure((fx, fy, width, height, px, py) => {
 				const dropdownList = React.cloneElement(props.dropdownList, {
-					style: [{position: 'absolute', top: py, left: px,paddingBottom:15*DP}, props.dropdownList.props.style],
+					style: [{ position: 'absolute', top: py, left: px, paddingBottom: 15 * DP }, props.dropdownList.props.style],
 				});
 				Modal.popDrop(
 					<TouchableWithoutFeedback onPress={Modal.close}>
-						<View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: '#fff0'}}>
+						<View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: '#fff0' }}>
 							{dropdownList}
 						</View>
 					</TouchableWithoutFeedback>,
 				);
 			});
 		isClick.current && Modal.close();
-		
+
 	};
 
 	const button = React.cloneElement(props.buttonComponent, {
@@ -49,12 +50,15 @@ export default Dropdown = props => {
 	});
 
 	return (
-		<View ref={ref => (container.current = ref)} onLayout={e => {}}>
+		<View ref={ref => (container.current = ref)} onLayout={e => { }}>
 			{button}
 		</View>
 	);
 };
 
 Dropdown.defaultProps = {
-	dropdownList: <View style={{position: 'absolute', width: 100, height: 100, backgroundColor: 'blue'}} />,
+	dropdownList: <View style={{ position: 'absolute', width: 100, height: 100, backgroundColor: 'blue' }} />,
+	buttonComponent: <AniButton />,
+
+
 };

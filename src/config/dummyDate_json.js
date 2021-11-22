@@ -198,12 +198,11 @@ export const dummy_protectedPetList = [
 ];
 
 export const dummy_selectedMediaList = [
-	{
-		media_uri: 'https://opgg-static.akamaized.net/images/lol/champion/Teemo.png?image=c_scale,q_auto,w_140&v=1635906101',
-	},
-	{
-		media_uri: 'https://i.ytimg.com/vi/kZJYqUoTinA/maxresdefault.jpg',
-	},
+	'https://opgg-static.akamaized.net/images/lol/champion/Teemo.png?image=c_scale,q_auto,w_140&v=1635906101',
+
+
+	'https://i.ytimg.com/vi/kZJYqUoTinA/maxresdefault.jpg',
+
 ];
 
 export const dummy_petList = [

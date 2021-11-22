@@ -17,14 +17,21 @@ import TabSelectFilled_Type1 from '../molecules/TabSelectFilled_Type1';
 
 export default AssignPetInfoA = props => {
 	const navigation = useNavigation();
+	const isProtectAnimalRoute = props.route.params.route == 'AssignProtectAnimalType'
+	// console.log(isProtectAnimalRoute)
 
 	const [data, setData] = React.useState({
-		...props.route.params,
+		...props.route.params.data,
 		pet_species: null,
 		pet_species_detail: null,
 		pet_sex: 'male',
 		pet_neutralization: 'unknown'
 	})
+
+
+	React.useEffect(() => {
+		console.log('data', data)
+	}, [data])
 
 	//성별 선택 
 	const onSelectGender = item => {
@@ -60,8 +67,9 @@ export default AssignPetInfoA = props => {
 						borderColor: APRI10,
 					}} //배경이 되는 bar의 style, width props으로 너비결정됨
 					insideBarStyle={{ width: 80 * DP, height: 20 * DP, backgroundColor: APRI10, borderRadius: 18 * DP }} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
-					current={2} //현재 단계를 정의
-					maxstage={3} //전체 단계를 정의
+
+					current={isProtectAnimalRoute ? 3 : 2} //현재 단계를 정의
+					maxstage={isProtectAnimalRoute ? 4 : 3} //전체 단계를 정의
 					width={600 * DP} //bar의 너비
 					textStyle={[txt.roboto24, { marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10 }]} //text의 스타일
 				/>
