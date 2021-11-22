@@ -63,5 +63,6 @@ ProfileDropdown.defaultProps = {
 	btnStyle: 'border', // 버튼스타일 filled border noBorder
 	onOpen: e => console.log(e),
 	onClose: e => console.log(e),
-	onSelect:(v,i)=> console.log(i+':'+v)
+	onSelect:(v,i)=> console.log(i+':'+v),
+	menu:[]
 };

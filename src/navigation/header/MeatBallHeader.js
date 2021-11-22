@@ -18,12 +18,9 @@ export default MeatBallHeader = ({navigation, route, options, back}) => {
 			</TouchableOpacity>
 			<Text style={txt.roboto40b}>{options.title}</Text>
 			<MeatBallDropdown 
-				btnTitle={'팔로우 중'}
-				btnStyle={'filled'}
-				titleFontStyle={30}
-				btnLayout={btn_w280}
 				menu={['메뉴1','메뉴2','메뉴3','메뉴4']}
 				onSelect={(v,i)=>console.log(v+':'+i)}
+				horizontal
 				// onOpen={()=>{alert('open')}}
 				// onClose={()=>{alert('close')}}
 			/>
