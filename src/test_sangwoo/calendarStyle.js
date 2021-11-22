@@ -1,14 +1,20 @@
-import {StyleSheet} from 'react-native';
-import {APRI10, LIGHT_SALMON, MIDNIGHT_BLUE, PALETUR} from 'Root/config/color';
-import { txt } from 'Root/config/textstyle';
+import { StyleSheet } from 'react-native';
+import { APRI10, BLUE10, GRAY10, LIGHT_SALMON, MIDNIGHT_BLUE, PALETUR, WHITE } from 'Root/config/color';
 import DP from 'Root/config/dp';
 export const styles = StyleSheet.create({
 	outside: {
+		width: '100%',
+		height: '60%',
+		marginTop: 200 * DP,
 		backgroundColor: 'white',
-		justifyContent: 'center',
-		borderRadius: 40 * DP,
-		width: 658 * DP,
-		height: 792 * DP, 
+		alignItems: 'center',
+		alignSelf: 'center',
+		// borderRadius: 40 * DP,
+	},
+	popUpWindow: {
+		// backgroundColor: BLUE10,
+		alignItems: 'center',
+
 	},
 	headerCont: {
 		flexDirection: 'row',
@@ -80,11 +86,31 @@ export const styles = StyleSheet.create({
 	days_this_month: {
 		width: 94 * DP,
 		height: 54 * DP,
-		justifyContent: 'center', alignItems:'center'
+		justifyContent: 'center', alignItems: 'center'
 	},
 	today: {
 		width: 94 * DP,
 		height: 54 * DP,
-		justifyContent: 'center', alignItems:'center' 
+		justifyContent: 'center', alignItems: 'center'
 	},
+
+	msg: {
+		marginBottom: 30 * DP,
+		color: GRAY10,
+		textAlign: 'center'
+	},
+	buttonContainer: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+	},
+	shadow: {
+		shadowColor: '#000000',
+		shadowOpacity: 0.27,
+		shadowRadius: 4.65,
+		shadowOffset: {
+			width: 1 * DP,
+			height: 2 * DP,
+		},
+		elevation: 2,
+	}
 });

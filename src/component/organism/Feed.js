@@ -24,9 +24,7 @@ export default Feed = props => {
 		<View style={[organism_style.feed,]}>
 			{/* (O)FeedContent */}
 			{/* FlatList안에 ScrollView는 작동하지않는걸까 */}
-			<ScrollView contentContainerStyle={{ backgroundColor: 'lightblue', }}>
-				<FeedContent />
-			</ScrollView>
+			<FeedContent />
 			{/* FeedMedia */}
 			<View style={[organism_style.feedMedia_feed,]}>
 				<FeedMedia_temp

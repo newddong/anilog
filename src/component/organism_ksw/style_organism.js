@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {APRI10, GRAY10, GRAY20, GRAY30, GRAY40, WHITE} from 'Root/config/color';
+import { StyleSheet } from 'react-native';
+import { APRI10, GRAY10, GRAY20, GRAY30, GRAY40, WHITE } from 'Root/config/color';
 import DP from 'Root/config/dp';
 
 export const BGCOLOR = '#B5DED8';
@@ -1006,11 +1006,11 @@ export const animalInfoList = StyleSheet.create({
 export const selectedMediaList = StyleSheet.create({
 	container: {
 		width: 750 * DP,
-		height: 190 * DP,
+		// height: 190 * DP,
 	},
 	itemContainer: {
-		width: 190 * DP,
-		height: 190 * DP,
+		// width: 190 * DP,
+		// height: 190 * DP,
 		marginRight: 30 * DP,
 		backgroundColor: 'white',
 	},

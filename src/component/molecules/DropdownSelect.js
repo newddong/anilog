@@ -1,9 +1,10 @@
 import React from 'react';
-import {txt} from 'Root/config/textstyle';
-import {Text, View, TouchableOpacity} from 'react-native';
+import { txt } from 'Root/config/textstyle';
+import { Text, View, TouchableOpacity } from 'react-native';
 import DP from 'Root/config/dp';
-import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
-import {APRI10, GRAY40} from 'Root/config/color';
+import { Arrow_Down_GRAY20, Arrow_Up_GRAY20 } from '../atom/icon';
+import { APRI10, GRAY40 } from 'Root/config/color';
+import Dropdown from './Dropdown';
 
 /**
  *
@@ -31,7 +32,7 @@ export default DropdownSelect = props => {
 	}, [selectedItem]);
 
 	return (
-		<View style={{height: 82 * DP, flexDirection: 'row'}}>
+		<View style={{ height: 82 * DP, flexDirection: 'row' }}>
 			<View
 				style={{
 					width: props.width * DP,
@@ -54,7 +55,6 @@ export default DropdownSelect = props => {
 					]}>
 					{selectedItem}
 				</Text>
-
 				<View
 					style={{
 						height: 82 * DP,

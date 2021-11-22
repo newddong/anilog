@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Image, TouchableOpacity} from 'react-native';
-import {AddItem92} from '../atom/icon';
-import {styles} from '../atom/image/imageStyle';
+import { View, Image, TouchableOpacity } from 'react-native';
+import { AddItem92 } from '../atom/icon';
+import { styles } from '../atom/image/imageStyle';
 
 /**
  *
@@ -19,8 +19,8 @@ export default ProfileImageSelect = props => {
 	return (
 		<TouchableOpacity onPress={onClick} style={styles.img_round_294}>
 			{/* ProfileImage uri가 null일 경우와 아닌 경우의 분기 */}
-			<Image style={styles.img_round_294} source={{uri: props.selectedImageUri}} />
-			<View style={{position: 'absolute', right: 0, bottom: 0}}>
+			<Image style={styles.img_round_294} source={{ uri: props.selectedImageUri }} />
+			<View style={{ position: 'absolute', right: 0, bottom: 0 }}>
 				<AddItem92 />
 			</View>
 		</TouchableOpacity>

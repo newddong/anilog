@@ -17,11 +17,9 @@ export default FeedList = props => {
 	};
 
 	return (
-		<View style={[login_style.wrp_main, {}]}>
+		<View style={[login_style.wrp_main, { flex: 1, backgroundColor: WHITE }]}>
 			{/* FeedList */}
-			<View style={[feedList.feedList]}>
-				<FlatList data={testData} renderItem={({ item }) => renderItem(item)} nestedScrollEnabled />
-			</View>
+			<FlatList data={testData} renderItem={({ item }) => renderItem(item)} nestedScrollEnabled />
 
 			{/* FloatButton */}
 			<View style={[temp_style.floatingBtn, feedList.floatingBtn]}>

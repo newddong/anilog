@@ -48,6 +48,8 @@ import TwoBtnModal from 'Molecules/TwoBtnModal';
 import OneBtnModal from 'Molecules/OneBtnModal';
 import NoBtnModal from 'Molecules/NoBtnModal';
 import { Modal } from 'Component/modal/Modal';
+import DatePicker from 'Root/component/molecules/DatePicker';
+import Calendar from 'Root/test_sangwoo/calendar';
 const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
@@ -70,10 +72,12 @@ export default RootStackNavigation = () => {
 		popIn(<TwoBtnModal popUpMsg={msg} onNo={onNo} onYes={onYes} noMsg={noMsg} yesMsg={yesMsg} />);
 		!isPop && setPop(true);
 	};
+
 	Modal.popNoBtn = (msg) => {
 		popIn(<NoBtnModal popUpMsg={msg} />);
 		!isPop && setPop(true);
 	};
+
 	Modal.popOneBtn = (msg, okMsg, onOk) => {
 		popIn(<OneBtnModal popUpMsg={msg} onOk={onOk} okMsg={okMsg} />);
 		!isPop && setPop(true);
@@ -83,6 +87,19 @@ export default RootStackNavigation = () => {
 		popIn(component);
 		!isPop && setPop(true);
 	}
+
+	Modal.popCalendar = (visible, onOff, date) => {
+		popIn(<Calendar modalOn={visible} modalOff={onOff} selectDate={date} />)
+		!isPop && setPop(true);
+
+	}
+
+	// const openCalendar = () => {
+	// 	console.log('openCale')
+	// 	Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date))
+	// 	setShowCalendar(true);
+	// };
+
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>

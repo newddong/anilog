@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
 	MAINCOLOR,
 	LINK,
@@ -168,7 +168,7 @@ export const btn_style = StyleSheet.create({
 	},
 	btn_w226: {
 		width: 226 * DP,
-		height: 70 * DP,
+		// height: 70 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -529,7 +529,6 @@ export const temp_style = StyleSheet.create({
 	aidRequest: {
 		width: 654 * DP,
 		height: 174 * DP,
-		backgroundColor: '#E1E8FF',
 		accountInfo_depth2: {
 			flexDirection: 'row',
 		},
@@ -679,7 +678,7 @@ export const temp_style = StyleSheet.create({
 	},
 	feedTextEdit: {
 		width: 654 * DP,
-		minHeight: 200 * DP,
+		minHeight: 248 * DP,
 		backgroundColor: 'white',
 	},
 	selectedMediaList: {
@@ -745,7 +744,6 @@ export const temp_style = StyleSheet.create({
 	textMsg_assignProtectAnimal: {
 		width: 654 * DP,
 		height: 36 * DP,
-		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#FFF',
 	},
@@ -1831,9 +1829,10 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	},
 	selectedMediaList: {
 		marginTop: 70 * DP,
+		marginLeft: 10 * DP,
 	},
 	btn_w226_view_image: {
-		marginTop: 110 * DP,
+		marginVertical: 110 * DP,
 	},
 	inputform: {
 		marginTop: 60 * DP,
@@ -1844,13 +1843,27 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	text118: {
 		marginLeft: 10 * DP,
 	},
-	pic: {
-		flexDirection: 'row',
-		width: 160 * DP,
-		height: 54 * DP,
+	addPhoto: {
+		// backgroundColor: 'yellow',
+		width: 600 * DP,
+		height: 150 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#FFF',
+		flexDirection: 'row',
+		borderRadius: 40 * DP,
+		borderWidth: 2 * DP,
+		borderColor: GRAY10
+	},
+	addPhotoText: {
+		textAlignVertical: 'center',
+		textAlign: 'center', color: GRAY10, alignSelf: 'center'
+	},
+	pic: {
+		flexDirection: 'row',
+		alignSelf: 'flex-start',
+		width: 654 * DP,
+		alignItems: 'center',
+		height: 54 * DP,
 	},
 	addpic: {
 		color: APRI10,
@@ -3324,7 +3337,6 @@ export const manageVolunteer = StyleSheet.create({
 
 export const writeAidRequest = StyleSheet.create({
 	container: {
-		backgroundColor: '#ACC4D6',
 		alignItems: 'center',
 		flex: 1,
 	},
@@ -3339,7 +3351,6 @@ export const writeAidRequest = StyleSheet.create({
 		height: 54 * DP,
 		marginLeft: 48 * DP,
 		marginTop: 38 * DP,
-		backgroundColor: 'powderblue',
 		alignSelf: 'flex-start',
 		flexDirection: 'row',
 	},
@@ -3365,9 +3376,6 @@ export const feedWrite = StyleSheet.create({
 		backgroundColor: '#96A8B5',
 		alignItems: 'center',
 		height: 1408 * DP,
-	},
-	feedTextEdit: {
-		marginTop: 10 * DP,
 	},
 	buttonContainer: {
 		flexDirection: 'row',
@@ -3497,7 +3505,7 @@ export const feedWrite = StyleSheet.create({
 });
 
 export const profile = StyleSheet.create({
-	container: {flex: 1},
+	container: { flex: 1 },
 	profileInfo: {
 		width: 750 * DP,
 		marginBottom: 30 * DP,
