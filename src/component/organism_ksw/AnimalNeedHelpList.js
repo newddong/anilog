@@ -18,9 +18,11 @@ export default AnimalNeedHelpList = props => {
 		return (
 			//marginBottom: 40 * DP,
 			<View style={[animalNeedHelpList.itemContainer]}>
+				{console.log('AnimalNeedHelpList:props.borderMode=>' + props.borderMode)}
 				<AnimalNeedHelp
 					data={item}
 					checkBoxMode={props.checkBoxMode}
+					borderMode={props.borderMode}
 					onLabelClick={(status, id) => props.onLabelClick(status, id)}
 					onHashClick={() => props.onHashClick(item)}
 					onCheckBox={e => props.onCheckBox(e, index)}
