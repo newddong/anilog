@@ -20,6 +20,10 @@ export default Feed = props => {
 		alert_title: '실 종',
 	};
 
+	const onSelectFeedMedia = () => {
+		console.log('onSelectFeedMedia')
+	}
+
 	return (
 		<View style={[organism_style.feed,]}>
 			{/* (O)FeedContent */}
@@ -30,6 +34,7 @@ export default Feed = props => {
 				<FeedMedia_temp
 					data={_dummyData}
 					img_uri={'https://static-cdn.jtvnw.net/jtv_user_pictures/586d3387-d926-4f20-b207-12a4a600d237-profile_image-300x300.jpg'}
+					onSelect={onSelectFeedMedia}
 				/>
 			</View>
 			{/* comment*/}

@@ -1,18 +1,18 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {GRAY10} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
-import {btn_w280} from '../atom/btn/btn_style';
-import {Bracket48} from '../atom/icon';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { GRAY10 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
+import { btn_w280 } from '../atom/btn/btn_style';
+import { Bracket48 } from '../atom/icon';
 import ActionButton from '../molecules/ActionButton';
 import AniButton from '../molecules/AniButton';
 import ProfileImageLarge160 from '../molecules/ProfileImageLarge160';
 import SocialInfoA from '../organism_ksw/SocialInfoA';
-import {NORMAL, PET, SHELTER} from 'Root/i18n/msg';
+import { NORMAL, PET, SHELTER } from 'Root/i18n/msg';
 import Dropdown from '../molecules/Dropdown';
 import ProfileDropdown from 'Molecules/ProfileDropdown';
-import {organism_style, profileInfo_style} from './style_organism';
-import {Modal} from 'Root/component/modal/Modal';
+import { organism_style, profileInfo_style } from './style_organism';
+import { Modal } from 'Root/component/modal/Modal';
 
 export default ProfileInfo = props => {
 	// console.log('ProfileInfo / Props Data ' + JSON.stringify(props.data));
@@ -32,12 +32,23 @@ export default ProfileInfo = props => {
 		props.onHideOwnerBtnClick();
 	};
 
-	// props.data의 유저타입에 따라  NORMAL - [팔로우, 반려동물] PET - [팔로우, 반려인계정 OR 입양하기] , SHELTER - [팔로우, 봉사활동 ]
+	//보호소 계정의 봉사활동 버튼 클릭
+	const onPressVolunteer = () => {
+		props.volunteerBtnClick()
+	}
+
+	// 펫 계정 => 입양하기 버튼 클릭
+	const onPressAdoption = () => {
+		props.adoptionBtnClick()
+	}
+
+	// props.data의 유저타입에 따라 다른 버튼이 출력
+	// NORMAL - [팔로우, 반려동물] / PET - [팔로우, 반려인계정 OR 입양하기] / SHELTER - [팔로우, 봉사활동 ]
 	const getButton = () => {
 		if (props.dummyData.userType == PET) {
 			if (props.dummyData.petStatus == 'protected') {
 				return (
-					<AniButton btnTitle={'입양 하기'} btnStyle={'border'} titleFontStyle={30} btnLayout={btn_w280} onPress={() => props.adoptionBtnClick()} />
+					<AniButton btnTitle={'입양 하기'} btnStyle={'border'} titleFontStyle={30} btnLayout={btn_w280} onPress={onPressAdoption} />
 				);
 			} else
 				return (
@@ -63,7 +74,7 @@ export default ProfileInfo = props => {
 			);
 		}
 		return (
-			<AniButton btnTitle={'봉사 활동'} btnStyle={'border'} titleFontStyle={30} btnLayout={btn_w280} onPress={() => props.volunteerBtnClick()} />
+			<AniButton btnTitle={'봉사 활동'} btnStyle={'border'} titleFontStyle={30} btnLayout={btn_w280} onPress={onPressVolunteer} />
 		);
 	};
 	return (
@@ -88,8 +99,8 @@ export default ProfileInfo = props => {
 					하늘이랑 함께 살고 있어요!안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있어요!
 				</Text>
 				<View style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
-					<Text style={[txt.noto24, {color: GRAY10}]}>더보기 </Text>
-					<View style={showMore ? {transform: [{rotate: '180deg'}]} : null}>
+					<Text style={[txt.noto24, { color: GRAY10 }]}>더보기 </Text>
+					<View style={showMore ? { transform: [{ rotate: '180deg' }] } : null}>
 						<Bracket48 onPress={() => setShowMore(!showMore)} />
 					</View>
 				</View>
@@ -106,8 +117,8 @@ export default ProfileInfo = props => {
 							btnLayout={btn_w280}
 							menu={['메뉴1', '메뉴2', '메뉴3', '메뉴4']}
 							onSelect={(v, i) => console.log(v + ':' + i)}
-							// onOpen={()=>{alert('open')}}
-							// onClose={()=>{alert('close')}}
+						// onOpen={()=>{alert('open')}}
+						// onClose={()=>{alert('close')}}
 						/>
 					) : (
 						<AniButton

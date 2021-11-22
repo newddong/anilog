@@ -1,5 +1,6 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import { FlatList, Text, View } from 'react-native';
+import { dummy_feedThumbnailList } from 'Root/config/dummyDate_json';
 import FeedThumnail from '../molecules/FeedThumnail';
 
 export default FeedThumbnailList = props => {
@@ -10,5 +11,5 @@ export default FeedThumbnailList = props => {
 		return <FeedThumnail data={item} onSelect={e => props.onClickThumnail(e)} selectMode={props.selectMode} />;
 	};
 
-	return <FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} numColumns={NUMCOLUMNS} />;
+	return <FlatList data={dummy_feedThumbnailList} renderItem={({ item, index }) => renderItem(item, index)} numColumns={NUMCOLUMNS} />;
 };

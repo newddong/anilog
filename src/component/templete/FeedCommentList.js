@@ -12,9 +12,15 @@ export default FeedCommentList = props => {
 	const navigation = useNavigation();
 	const [editComment, setEditComment] = React.useState(false); //답글 쓰기 클릭 state
 	const [privateComment, setPrivateComment] = React.useState(false); // 공개 설정 클릭 state
-	// const [postPhoto, setPostPhoto] = React.useState(false);
+	const [photo, setPhoto] = React.useState();
 
-	const dummy_ParentComment = [1, 2];
+	React.useEffect(() => {
+		console.log('routeparmas', props.route.params)
+		if (props.route.params == null) {
+		} else if (props.route.params.length > 0) {
+			setPhoto(props.route.params)
+		}
+	}, [props.route.params]);
 
 	//답글 쓰기 => Input 작성 후 보내기 클릭 콜백 함수
 	const onWrite = () => {
@@ -29,8 +35,12 @@ export default FeedCommentList = props => {
 
 	// 답글 쓰기 -> 이미지버튼 클릭 콜백함수
 	const onAddPhoto = () => {
-		navigation.push('MultiPhotoSelect', props.route.name);
+		navigation.push('SinglePhotoSelect', props.route.name);
 	};
+
+	const onDeleteImage = () => {
+		setPhoto()
+	}
 
 	// 답글 쓰기 -> Input value 변경 콜백함수
 	const onChangeReplyInput = text => {
@@ -46,7 +56,6 @@ export default FeedCommentList = props => {
 	const onChildReplyBtnClick = comment => {
 		setEditComment(!editComment);
 	};
-
 	return (
 		<View style={[login_style.wrp_main, feedCommentList.container]}>
 			<ScrollView>
@@ -65,7 +74,9 @@ export default FeedCommentList = props => {
 					onChangeReplyInput={text => onChangeReplyInput(text)}
 					onLockBtnClick={onLockBtnClick}
 					onWrite={onWrite}
+					onDeleteImage={onDeleteImage}
 					privateComment={privateComment}
+					photo={photo}
 				/>
 			) : null}
 		</View>

@@ -1,15 +1,15 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
-import {txt} from 'Root/config/textstyle';
-import {login_style, temp_style, editShelterInfo, btn_style, assignPetInfo_style} from './style_templete';
+import { ScrollView, Text, View } from 'react-native';
+import { txt } from 'Root/config/textstyle';
+import { login_style, temp_style, editShelterInfo, btn_style, assignPetInfo_style } from './style_templete';
 import AddressInput from '../organism_ksw/AddressInput';
 import Input30 from '../molecules/Input30';
 import InputWithEmail from '../molecules/InputWithEmail';
 import DatePicker from '../molecules/DatePicker';
-import {COMPLETE_MODIFY} from 'Root/i18n/msg';
-import {btn_w654} from '../atom/btn/btn_style';
+import { COMPLETE_MODIFY } from 'Root/i18n/msg';
+import { btn_w654 } from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 
 export default EditShelterInfo = props => {
 	const emailList = ['naver.com', 'nate.com', 'daum.net'];
@@ -25,7 +25,7 @@ export default EditShelterInfo = props => {
 				{/* shelterInfoForm */}
 				<View style={[editShelterInfo.shelterInfoForm]}>
 					{/* Input30 단위 */}
-					<View style={{flexDirection: 'row', alignSelf: 'flex-start'}}>
+					<View style={{ flexDirection: 'row', alignSelf: 'flex-start' }}>
 						<View style={[editShelterInfo.category]}>
 							<View style={[editShelterInfo.text]}>
 								<Text style={txt.noto28}>보호소</Text>
@@ -37,10 +37,10 @@ export default EditShelterInfo = props => {
 					</View>
 					{/* addressInput */}
 					<View style={[editShelterInfo.addressInput]}>
-						<AddressInput width={654}></AddressInput>
+						<AddressInput width={654} title={'나의 지역'} />
 					</View>
 					{/* Input30 단위 */}
-					<View style={{flexDirection: 'row', alignSelf: 'flex-start'}}>
+					<View style={{ flexDirection: 'row', alignSelf: 'flex-start' }}>
 						<View style={[editShelterInfo.category]}>
 							<View style={[editShelterInfo.text]}>
 								<Text>전화번호</Text>
@@ -51,7 +51,7 @@ export default EditShelterInfo = props => {
 						</View>
 					</View>
 					{/* Input30 단위 */}
-					<View style={{flexDirection: 'row', alignSelf: 'flex-start'}}>
+					<View style={{ flexDirection: 'row', alignSelf: 'flex-start' }}>
 						<View style={[editShelterInfo.category]}>
 							<View style={[editShelterInfo.text]}>
 								<Text>이메일</Text>
@@ -61,7 +61,7 @@ export default EditShelterInfo = props => {
 							<InputWithEmail itemList={emailList} placeholder={'placeholder'} value={null} defaultIndex={0} />
 						</View>
 					</View>
-					<View style={{flexDirection: 'row', alignSelf: 'flex-start'}}>
+					<View style={{ flexDirection: 'row', alignSelf: 'flex-start' }}>
 						<View style={[editShelterInfo.category]}>
 							<View style={[editShelterInfo.text]}>
 								<Text>홈페이지</Text>
@@ -71,7 +71,7 @@ export default EditShelterInfo = props => {
 							<Input30 showTitle={false} width={520} placeholder={'http://'} />
 						</View>
 					</View>
-					<View style={{flexDirection: 'row', alignSelf: 'flex-start'}}>
+					<View style={{ flexDirection: 'row', alignSelf: 'flex-start' }}>
 						<View style={[editShelterInfo.category]}>
 							<View style={[editShelterInfo.text]}>
 								<Text>설립일</Text>

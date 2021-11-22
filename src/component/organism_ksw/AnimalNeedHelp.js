@@ -1,15 +1,15 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {GRAY10} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
-import {btn_w276} from '../atom/btn/btn_style';
-import {FavoriteTag48_Border, FavoriteTag48_Filled, Male48, Rect48_Border, Check48} from '../atom/icon';
+import { View, Text } from 'react-native';
+import { GRAY10 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
+import { btn_w276 } from '../atom/btn/btn_style';
+import { FavoriteTag48_Border, FavoriteTag48_Filled, Male48, Rect48_Border, Check48 } from '../atom/icon';
 import ProtectedThumbnail from '../molecules/ProtectedThumbnail';
-import {animalNeedHelp} from './style_organism';
-import {useNavigation} from '@react-navigation/core';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { animalNeedHelp } from './style_organism';
+import { useNavigation } from '@react-navigation/core';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import AniButton from '../molecules/AniButton';
-import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
+import { dummy_AnimalNeedHelpList } from 'Root/config/dummyDate_json';
 
 export default AnimalNeedHelp = props => {
 	const [selected, setSelected] = React.useState(false);
@@ -86,25 +86,25 @@ export default AnimalNeedHelp = props => {
 				</View>
 				{props.borderMode == true
 					? selected && (
-							<View style={[animalNeedHelp.sideBtn_view]}>
-								<AniButton
-									btnLayout={[btn_w276]}
-									btnTitle={'게시글 보기'}
-									btnTheme={'shadow'}
-									btnStyle={'filled'}
-									titleFontStyle={24}
-									onPress={() => navigation.push('ProtectRequestManage')}
-								/>
-								<AniButton
-									btnLayout={[btn_w276]}
-									btnTitle={'입양처 보기'}
-									btnTheme={'shadow'}
-									btnStyle={'filled'}
-									titleFontStyle={24}
-									onPress={() => navigation.push('AdoptorInformation')}
-								/>
-							</View>
-					  )
+						<View style={[animalNeedHelp.sideBtn_view]}>
+							<AniButton
+								btnLayout={[btn_w276]}
+								btnTitle={'게시글 보기'}
+								btnTheme={'shadow'}
+								btnStyle={'filled'}
+								titleFontStyle={24}
+								onPress={() => navigation.push('ProtectRequestManage')}
+							/>
+							<AniButton
+								btnLayout={[btn_w276]}
+								btnTitle={'입양처 보기'}
+								btnTheme={'shadow'}
+								btnStyle={'filled'}
+								titleFontStyle={24}
+								onPress={() => navigation.push('AdoptorInformation')}
+							/>
+						</View>
+					)
 					: null}
 			</View>
 		</>
@@ -129,6 +129,7 @@ AnimalNeedHelp.defaultProps = {
 		},
 	},
 	selected: false,
+	onLabelClick: e => console.log(e),
 };
 
 // ProtectedThumbnail.defaultProps = {

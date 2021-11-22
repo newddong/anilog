@@ -2960,6 +2960,7 @@ export const applyCompanionA = StyleSheet.create({
 export const applyCompanionB = StyleSheet.create({
 	container: {
 		flex: 1,
+		alignItems: 'center'
 	},
 	inputForm: {
 		marginTop: 40 * DP,
