@@ -6,6 +6,14 @@ import { ImageList48, VideoPlay48, VideoPlay_Feed } from '../atom/icon';
 import { styles } from '../atom/image/imageStyle';
 import { BLACK, RED10, WHITE } from 'Root/config/color';
 
+
+
+/**
+ *
+ * @param {{
+ *	onSelect: 'Callback',
+ * }} props
+ */
 export default FeedMedia_temp = props => {
 	// console.log(props.data.medias);
 	const onSelect = () => {
@@ -114,6 +122,6 @@ FeedMedia_temp.defaultProps = {
 		emergency: false,
 	},
 
-	// onSelect: e => console.log(e),
+	onSelect: e => console.log(e),
 	img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
 };

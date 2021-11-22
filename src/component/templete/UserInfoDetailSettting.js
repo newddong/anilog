@@ -1,10 +1,10 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
-import {GRAY10} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
+import { ScrollView, Text, View } from 'react-native';
+import { GRAY10 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
 import TabSelectFilled_Type1 from '../molecules/TabSelectFilled_Type1';
 import DatePicker from 'Root/component/molecules/DatePicker';
-import {login_style, btn_style, temp_style, userInfoDetailSettting_style} from './style_templete';
+import { login_style, btn_style, temp_style, userInfoDetailSettting_style } from './style_templete';
 import InputWithSelect from '../molecules/InputWithSelect';
 import AddressInput from '../organism_ksw/AddressInput';
 import InterestTagList from '../organism_ksw/InterestTagList';
@@ -14,7 +14,7 @@ export default UserInfoDetailSettting = props => {
 		console.log(date);
 	};
 	return (
-		<View style={[login_style.wrp_main, {flex: 1}]}>
+		<View style={[login_style.wrp_main, { flex: 1 }]}>
 			{/* InputForm */}
 			<ScrollView>
 				<View style={[temp_style.inputForm_userInfoDetailSettting, userInfoDetailSettting_style.inputForm]}>
@@ -22,7 +22,7 @@ export default UserInfoDetailSettting = props => {
 					<View style={[userInfoDetailSettting_style.inputForm_detail]}>
 						{/* Text */}
 						<View style={[temp_style.text_userInfoDetailSettting, userInfoDetailSettting_style.text]}>
-							<Text style={[txt.noto28, {color: GRAY10}]}>성별</Text>
+							<Text style={[txt.noto28, { color: GRAY10 }]}>성별</Text>
 						</View>
 						{/* (M)TabSelectFilled_Type1 */}
 						<View style={[temp_style.tabSelectFilled_Type1]}>
@@ -33,7 +33,7 @@ export default UserInfoDetailSettting = props => {
 					<View style={[userInfoDetailSettting_style.inputForm_detail]}>
 						{/* Text */}
 						<View style={[temp_style.text_userInfoDetailSettting, userInfoDetailSettting_style.text]}>
-							<Text style={[txt.noto28, {color: GRAY10}]}>생일</Text>
+							<Text style={[txt.noto28, { color: GRAY10 }]}>생일</Text>
 						</View>
 						{/* (M)TabSelectFilled_Type1 */}
 						<View style={[temp_style.tabSelectFilled_Type1]}>
@@ -44,7 +44,7 @@ export default UserInfoDetailSettting = props => {
 					<View style={[userInfoDetailSettting_style.inputWithSelect]}>
 						{/* Text */}
 						<View style={[temp_style.text_userInfoDetailSettting, userInfoDetailSettting_style.text]}>
-							<Text style={[txt.noto28, {color: GRAY10}]}>전화번호</Text>
+							<Text style={[txt.noto28, { color: GRAY10 }]}>전화번호</Text>
 						</View>
 						{/* (M)TabSelectFilled_Type1 */}
 						<View style={[temp_style.tabSelectFilled_Type1]}>
@@ -55,7 +55,7 @@ export default UserInfoDetailSettting = props => {
 
 					{/* (O)AddressInput */}
 					<View style={[temp_style.addressInput]}>
-						<AddressInput />
+						<AddressInput title={'나의 지역'} />
 					</View>
 
 					<View style={[userInfoDetailSettting_style.tagListContainer]}>

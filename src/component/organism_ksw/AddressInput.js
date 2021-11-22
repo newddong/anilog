@@ -38,14 +38,15 @@ export default AddressInput = props => {
 
 	return (
 		<View style={[addressInput.container]}>
-			<View style={[addressInput.upperContainer]}>
+			<View style={[addressInput.upperContainer,]}>
 				<View style={[addressInput.input24A,]}>
 					<Input24
 						width={388}
 						placeholder={'주소 찾기를 눌러주세요'}
 						onChange={addr => onChangeAddress(addr)}
-						title={'보호소 주소'}
+						title={props.title}
 						descriptionType={'star'}
+						showCrossMark={false}
 					/>
 				</View>
 				<View style={[btn_style.btn_w226, addressInput.btn_w226]}>

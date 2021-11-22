@@ -490,13 +490,13 @@ export const addressInput = StyleSheet.create({
 	lowerContainer: {},
 	input24A: {
 		width: 388 * DP,
-		height: 80 * DP,
-		justifyContent: 'flex-start',
 		alignSelf: 'flex-start',
 	},
 	btn_w226: {
 		marginLeft: 40 * DP,
-		marginTop: 60 * DP,
+		justifyContent: 'flex-end',
+		marginBottom: 10 * DP,
+		// marginTop: 60 * DP,
 	},
 	inputNoTitle: {
 		marginTop: 24 * DP,

@@ -7,13 +7,12 @@ import {styles} from '../atom/image/imageStyle';
 import {BLACK, RED10, WHITE} from 'Root/config/color';
 
 export default FeedThumbnail = props => {
-	const [selected, setSelected] = React.useState(false);
-	const [selectMode, setSelectMode] = React.useState(false);
+	const [selected, setSelected] = React.useState(props.data.checkBoxState);
+	// const [selectMode, setSelectMode] = React.useState(props.data.selectMode);
 
 	const onSelect = () => {
 		props.onSelect(props.data.feed_id);
 		setSelected(!selected);
-		setSelectMode(props.selectMode);
 	};
 
 	const getFeedIcon = () => {
@@ -28,8 +27,9 @@ export default FeedThumbnail = props => {
 	return (
 		<TouchableOpacity onPress={onSelect}>
 			{/* Select된 상태일 때 불투명도 40% 적용 및 배경색  Black */}
-			{selectMode ? (
-				<View style={selected ? {opacity: 0.4, backgroundColor: BLACK} : false}>
+			{console.log('selectMode =-=>' + props.selectMode + ' __ ' + 'props.data.checkBoxState =>' + props.data.checkBoxState)}
+			{props.selectMode ? (
+				<View style={props.data.checkBoxState ? {opacity: 0.4, backgroundColor: BLACK} : false}>
 					<Image source={{uri: props.data.img_uri}} style={styles.img_square_246} />
 					<View style={{position: 'absolute', top: 20 * DP, left: 20 * DP}}>{getFeedIcon()}</View>
 				</View>
@@ -54,7 +54,7 @@ export default FeedThumbnail = props => {
 			) : (
 				false
 			)}
-			{selected && selectMode ? (
+			{selected && props.selectMode ? (
 				<View style={{position: 'absolute', top: 14 * DP, right: 10 * DP}}>
 					<Check50 />
 				</View>
