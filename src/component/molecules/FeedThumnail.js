@@ -7,8 +7,7 @@ import {styles} from '../atom/image/imageStyle';
 import {BLACK, RED10, WHITE} from 'Root/config/color';
 
 export default FeedThumbnail = props => {
-	const [selected, setSelected] = React.useState(props.data.checkBoxState);
-	// const [selectMode, setSelectMode] = React.useState(props.data.selectMode);
+	const [selected, setSelected] = React.useState(false);
 
 	const onSelect = () => {
 		props.onSelect(props.data.feed_id);
@@ -24,18 +23,36 @@ export default FeedThumbnail = props => {
 			return <ImageList48 />;
 		} else return false;
 	};
+
+	const checkDisplay = () => {
+		if (props.selectMode && (selected || props.data.checkBoxState)) {
+			return (
+				<View style={{position: 'absolute', top: 14 * DP, right: 10 * DP}}>
+					<Check50 />
+				</View>
+			);
+		}
+	};
+
+	const checkSelecte = () => {
+		if ((props.selectMode && selected) || (props.selectMode && props.data.checkBoxState)) {
+			return (
+				<View style={[{opacity: 0.4, backgroundColor: BLACK}]}>
+					<Image source={{uri: props.data.img_uri}} style={styles.img_square_246} />
+				</View>
+			);
+		} else if (!props.data.checkBoxState || !selected) {
+			return <Image source={{uri: props.data.img_uri}} style={styles.img_square_246} />;
+		}
+	};
+
 	return (
 		<TouchableOpacity onPress={onSelect}>
 			{/* Select된 상태일 때 불투명도 40% 적용 및 배경색  Black */}
-			{console.log('selectMode =-=>' + props.selectMode + ' __ ' + 'props.data.checkBoxState =>' + props.data.checkBoxState)}
-			{props.selectMode ? (
-				<View style={props.data.checkBoxState ? {opacity: 0.4, backgroundColor: BLACK} : false}>
-					<Image source={{uri: props.data.img_uri}} style={styles.img_square_246} />
-					<View style={{position: 'absolute', top: 20 * DP, left: 20 * DP}}>{getFeedIcon()}</View>
-				</View>
-			) : (
-				<Image source={{uri: props.data.img_uri}} style={styles.img_square_246} />
-			)}
+
+			{/* 그림인지 영상인지 표기(무조건 표기) */}
+			<View style={{position: 'absolute', top: 20 * DP, left: 20 * DP}}>{getFeedIcon()}</View>
+			{checkSelecte()}
 			{props.data.alert_title != '' && props.data.alert_title != undefined ? (
 				<View
 					style={{
@@ -54,13 +71,8 @@ export default FeedThumbnail = props => {
 			) : (
 				false
 			)}
-			{selected && props.selectMode ? (
-				<View style={{position: 'absolute', top: 14 * DP, right: 10 * DP}}>
-					<Check50 />
-				</View>
-			) : (
-				false
-			)}
+			{/* 클릭하거나 전체 선택시 체크 표기 - 모드는 선택하기 모드여야 함. */}
+			{checkDisplay()}
 		</TouchableOpacity>
 	);
 };
