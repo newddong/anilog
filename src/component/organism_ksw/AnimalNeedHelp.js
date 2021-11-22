@@ -12,11 +12,54 @@ import AniButton from '../molecules/AniButton';
 import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
 
 export default AnimalNeedHelp = props => {
+	const [selected, setSelected] = React.useState(false);
 	const navigation = useNavigation();
+
+	const checkSelected = () => {
+		setSelected(!selected);
+	};
+
+	const contents = () => {
+		return (
+			<View style={[animalNeedHelp.detailContainer]}>
+				<View style={[animalNeedHelp.detail_upperMenu]}>
+					{/* 임보요청 출력 true, false */}
+					<View style={[animalNeedHelp.detail_upper_petStateContainer]}>
+						{props.data.temp_protection_request ? (
+							<View style={[animalNeedHelp.detail_upper_petState]}>
+								<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>임보요청</Text>
+							</View>
+						) : null}
+						{/* 입양가능날짜 출력 T/F */}
+						{props.data.adoption_days_remain != null ? (
+							<View style={[animalNeedHelp.detail_upper_petState]}>
+								<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>{props.data.adoption_days_remain}일 후 입양가능</Text>
+							</View>
+						) : null}
+					</View>
+					{/* 좋아요 State Tag */}
+					{/* <View style={[animalNeedHelp.detail_upper_tag]}>{props.data.like ? <FavoriteTag48_Filled /> : <FavoriteTag48_Border />}</View> */}
+				</View>
+				<View style={[animalNeedHelp.detail_lowerMenu]}>
+					{/* 동물 종류 및 품종 */}
+					<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
+						<Text style={[txt.noto30b]}>{props.data.kind}</Text>
+						<Text style={[txt.noto28, animalNeedHelp.breedText]}>{props.data.breed}</Text>
+					</View>
+					{/* 보호요청 관련 Details */}
+					<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
+						<Text style={[txt.noto24]}>등록일 : {props.data.registered_date}</Text>
+						<Text style={[txt.noto24]}>보호장소 : {props.data.location}</Text>
+						<Text style={[txt.noto24]}>구조지역 : {props.data.saved_location}</Text>
+					</View>
+				</View>
+			</View>
+		);
+	};
 
 	return (
 		<>
-			<View style={[animalNeedHelp.container]}>
+			<View style={[selected ? animalNeedHelp.container_seleted : animalNeedHelp.container]}>
 				<View style={[animalNeedHelp.container_basicInfo]}>
 					{/* CheckBox */}
 					{props.checkBoxMode ? (
@@ -27,47 +70,21 @@ export default AnimalNeedHelp = props => {
 							/>
 						</View>
 					) : null}
-
 					<View style={[animalNeedHelp.protectedThumbnail_container]}>
 						{/* Pet Thumbnail */}
 						<ProtectedThumbnail data={props.data.thumbnailData} onLabelClick={(status, id) => props.onLabelClick(status, id)} />
 					</View>
 					{/* Pet Info */}
-					<View style={[animalNeedHelp.detailContainer]}>
-						<View style={[animalNeedHelp.detail_upperMenu]}>
-							{/* 임보요청 출력 true, false */}
-							<View style={[animalNeedHelp.detail_upper_petStateContainer]}>
-								{props.data.temp_protection_request ? (
-									<View style={[animalNeedHelp.detail_upper_petState]}>
-										<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>임보요청</Text>
-									</View>
-								) : null}
-								{/* 입양가능날짜 출력 T/F */}
-								{props.data.adoption_days_remain != null ? (
-									<View style={[animalNeedHelp.detail_upper_petState]}>
-										<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>{props.data.adoption_days_remain}일 후 입양가능</Text>
-									</View>
-								) : null}
-							</View>
-							{/* 좋아요 State Tag */}
-							{/* <View style={[animalNeedHelp.detail_upper_tag]}>{props.data.like ? <FavoriteTag48_Filled /> : <FavoriteTag48_Border />}</View> */}
-						</View>
-						<View style={[animalNeedHelp.detail_lowerMenu]}>
-							{/* 동물 종류 및 품종 */}
-							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
-								<Text style={[txt.noto30b]}>{props.data.kind}</Text>
-								<Text style={[txt.noto28, animalNeedHelp.breedText]}>{props.data.breed}</Text>
-							</View>
-							{/* 보호요청 관련 Details */}
-							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
-								<Text style={[txt.noto24]}>등록일 : {props.data.registered_date}</Text>
-								<Text style={[txt.noto24]}>보호장소 : {props.data.location}</Text>
-								<Text style={[txt.noto24]}>구조지역 : {props.data.saved_location}</Text>
-							</View>
-						</View>
-					</View>
+					{/* borderMode가 true일 경우에만 TouchableOpacity가 가능하도록 함. */}
+					{props.borderMode ? (
+						<TouchableOpacity onPress={checkSelected}>
+							<View>{contents()}</View>
+						</TouchableOpacity>
+					) : (
+						<View>{contents()}</View>
+					)}
 				</View>
-				{props.parentListType == 'twoBtn'
+				{props.borderMode == true
 					? selected && (
 							<View style={[animalNeedHelp.sideBtn_view]}>
 								<AniButton

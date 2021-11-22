@@ -64,7 +64,7 @@ export default ShelterMenu = props => {
 			//나의 보호소 출신 동물
 			case FROM_MY_SHELTER:
 				//listType: 'original'- 클릭시 해당 UserProfile로 go, 'twoBtn' - 클릭시 외곽 선 표출, , 'checkBox' - 해당 페이지에서 바로 체크박스 표출
-				navigation.push('AnimalFromShelter', {listType: 'twoBtn'});
+				navigation.push('AnimalFromShelter', {borderMode: true});
 				break;
 			//봉사활동 신청 관리
 			case MANAGEMENT_OF_VOLUNTEER:
@@ -81,7 +81,7 @@ export default ShelterMenu = props => {
 			//보호요청(저장)
 			case REQ_PROTECTION_SAVE:
 				//listType: 'original'- 클릭시 해당 UserProfile로 go, 'twoBtn' - 클릭시 외곽 선 표출, , 'checkBox' - 해당 페이지에서 선택하기 시 체크박스 표출
-				navigation.push('SaveAnimalRequest', {listType: 'checkBox'});
+				navigation.push('SaveAnimalRequest');
 				break;
 			//커뮤니티
 			case COMUNITY:
@@ -101,7 +101,7 @@ export default ShelterMenu = props => {
 				break;
 			// 보호 요청 올린 게시글
 			case UPLOADED_POST_FOR_REQ_PROTECTION:
-				navigation.push('ShelterProtectRequests', {listType: 'original'});
+				navigation.push('ShelterProtectRequests');
 				break;
 			//커뮤니티
 			case COMUNITY:
@@ -117,7 +117,7 @@ export default ShelterMenu = props => {
 				break;
 			// 계정
 			case ACCOUNT:
-				nalert('준비중입니다.');
+				alert('준비중입니다.');
 				break;
 		}
 	};
