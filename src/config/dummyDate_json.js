@@ -537,3 +537,70 @@ export const _dummyData_favoriteFeeds = [
 		img_uri: 'https://i.pinimg.com/originals/96/02/ee/9602ee8abb93b9100335c49c147e4098.jpg',
 	},
 ];
+
+export const dummy_feedThumbnailList = [
+	{
+		feed_id: 'dog7',
+		isVideo: true,
+		//Video가 포함되어 있는 dummyData의 경우 FeedThumbnail에서 재생표시( '▶')가 나타난다
+		medias: [1, 2, 3, 'Video'],
+		alert_title: '실종',
+		img_uri:
+			'https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fhappypet%2F9075e36d837244bd84cc370a63444825.jpg',
+	},
+	{
+		feed_id: 'dog2',
+		isVideo: true,
+		medias: [1, 2, 3, 4],
+		alert_title: '',
+		img_uri: 'https://t1.daumcdn.net/cfile/tistory/9925F03C5AD486B033',
+	},
+	{
+		feed_id: 'dog3',
+		isVideo: false,
+		medias: [1, 2, 3, 'Video'],
+		alert_title: '',
+		img_uri: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201901/20/28017477-0365-4a43-b546-008b603da621.jpg',
+	},
+	{
+		feed_id: 'dog4',
+		isVideo: true,
+		medias: [1, 2, 3, 'Video'],
+		alert_title: '실종',
+		img_uri: 'https://t1.daumcdn.net/cfile/blog/2547A74C52B3D5D40B',
+	},
+	{
+		feed_id: 'dog6',
+		isVideo: true,
+		medias: [1, 2, 3, 4],
+		alert_title: '구조',
+		img_uri: 'https://i.pinimg.com/originals/96/02/ee/9602ee8abb93b9100335c49c147e4098.jpg',
+	},
+];
+
+export const dummy_ownerList = [
+	{
+		img_uri: 'https://pbs.twimg.com/profile_images/719984599456043009/whcMczoB_400x400.jpg',
+		name: '엄마',
+	},
+	{
+		img_uri: 'https://t1.daumcdn.net/cfile/tistory/994D85495A5978580A',
+		name: '아빠',
+	},
+	{
+		img_uri: 'https://dimg.donga.com/wps/NEWS/IMAGE/2013/12/18/59635708.3.jpg',
+		name: '고종사촌',
+	},
+	{
+		img_uri: 'https://pbs.twimg.com/profile_images/719984599456043009/whcMczoB_400x400.jpg',
+		name: '장모의딸',
+	},
+	{
+		img_uri: 'https://t1.daumcdn.net/cfile/tistory/994D85495A5978580A',
+		name: '케넨',
+	},
+	{
+		img_uri: 'https://dimg.donga.com/wps/NEWS/IMAGE/2013/12/18/59635708.3.jpg',
+		name: '야스오',
+	},
+];

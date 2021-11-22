@@ -1,9 +1,10 @@
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import {Text, View, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
-import {NORMAL, PET, SHELTER} from 'Root/i18n/msg';
-import {Write94} from '../atom/icon';
+import { Text, View, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { dummy_AnimalNeedHelpList } from 'Root/config/dummyDate_json';
+import { NORMAL, PET, SHELTER } from 'Root/i18n/msg';
+import { Write94 } from '../atom/icon';
 import TabSelectFilled_Type2 from '../molecules/TabSelectFilled_Type2';
 import ProfileInfo from '../organism/ProfileInfo';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
@@ -11,12 +12,12 @@ import FeedThumbnailList from '../organism_ksw/FeedThumbnailList';
 import OwnerList from '../organism_ksw/OwnerList';
 import PetList from '../organism_ksw/PetList';
 import ProtectedPetList from '../organism_ksw/ProtectedPetList';
-import {login_style, profile, temp_style} from './style_templete';
+import { login_style, profile, temp_style } from './style_templete';
 
 export default Profile = props => {
 	const item = props.route.params;
 	const navigation = useNavigation();
-	const [userType, setUserType] = React.useState(NORMAL); //NORMAL, PET, SHELTER
+	const [userType, setUserType] = React.useState(SHELTER); //NORMAL, PET, SHELTER
 	const [petStatus, setPetStatus] = React.useState('adopted'); // 현재 로드되어 있는 profile의 userType이 PET인 경우 그 펫의 상태 state
 	const [tabMenuSelected, setTabMenuSelected] = React.useState(0);
 	const [showOwnerState, setShowOwnerState] = React.useState(true); // 현재 로드되어 있는 profile의 userType이 Pet인 경우 반려인 계정 Tab의 Open 여부
@@ -24,9 +25,37 @@ export default Profile = props => {
 		userType: userType,
 		petStatus: petStatus,
 	};
+
+	//보호소프로필의 보호활동 탭의 피드 썸네일 클릭
+	const onClick_ProtectedThumbLabel = (status, user_id, item) => {
+		console.log(status, user_id, item)
+		navigation.push('AnimalProtectRequestDetail', item)
+	}
+
+	//프로필의 피드탭의 피드 썸네일 클릭
+	const onClick_Thumbnail_FeedTab = () => {
+		navigation.push('UserFeedList')
+	}
+
+	//프로필의 태그탭의 피드 썸네일 클릭
+	const onClick_Thumbnail_TagTab = () => {
+		navigation.push('UserTagFeedList')
+	}
+
+	//프로필의 보호활동 탭의 피드 썸네일 클릭
+	const onClick_Thumbnail_ProtectTab = () => {
+		navigation.push('ProtectAnimalFeedList')
+	}
+
+	//보호소프로필의 피드 및 태그 탭 썸네일 클릭
+	const onClick_FeedThumbnail_ShelterProfile = () => {
+		console.log('보호소프로필의 피드 및 태그 탭 => Thumbnail 클릭')
+	}
+
 	const moveToFeedWrite = () => {
 		props.navigation.push('FeedWrite');
 	};
+
 	//TabSelect 하단 AccountList => userType NORMAL일 경우
 	const showPetList = () => {
 		//유저타입 - 사람
@@ -57,10 +86,8 @@ export default Profile = props => {
 			// 반려동물 보이기 true
 			if (!showOwnerState) {
 				return (
-					<View style={[profile.feedListContainer]}>
-						<View style={[profile.petList]}>
-							<OwnerList />
-						</View>
+					<View style={[profile.petList]}>
+						<OwnerList onClickLabel={e => console.log(e)} />
 					</View>
 				);
 				// 보호활동 보이기 true
@@ -73,22 +100,22 @@ export default Profile = props => {
 		if (userType == PET || userType == NORMAL) {
 			if (tabMenuSelected == 0) {
 				//피드
-				return <FeedThumbnailList onClickThumnail={() => navigation.push('UserFeedList')} />;
+				return <FeedThumbnailList onClickThumnail={onClick_Thumbnail_FeedTab} />;
 			} else if (tabMenuSelected == 1) {
 				//태그
-				return <FeedThumbnailList onClickThumnail={() => navigation.push('UserTagFeedList')} />;
+				return <FeedThumbnailList onClickThumnail={onClick_Thumbnail_TagTab} />;
 			} else if (tabMenuSelected == 2) {
 				//보호활동
-				return <FeedThumbnailList onClickThumnail={() => navigation.push('ProtectAnimalFeedList')} />;
+				return <FeedThumbnailList onClickThumnail={onClick_Thumbnail_ProtectTab} />;
 			}
 		} else if (userType == SHELTER) {
 			//보호소프로필 상태에서 보호활동 Tab을 눌렀을 경우에는 요보호동물 리스트를 출력
 			return tabMenuSelected == 2 ? (
 				//요보호동물 클릭할 경우 해당 동물의 상태 Detail Screen으로 이동
-				<AnimalNeedHelpList onItemClick={item => navigation.push('AnimalProtectRequestDetail', item)} />
+				<AnimalNeedHelpList data={dummy_AnimalNeedHelpList} onLabelClick={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)} />
 			) : (
 				// 그 이외의 피드, 태그 탭 상태에서는 Feed리스트를 출력
-				<FeedThumbnailList onClickThumnail={() => console.log('보호소프로필의 피드 및 태그 탭 => Thumbnail 클릭')} />
+				<FeedThumbnailList onClickThumnail={onClick_FeedThumbnail_ShelterProfile} />
 			);
 		}
 	};
@@ -136,18 +163,19 @@ export default Profile = props => {
 				<View style={[temp_style.tabSelectFilled_Type2, profile.tabSelectFilled_Type2]}>{getTabSelectList()}</View>
 				{showPetList()}
 				<View>
-					<ScrollView horizontal={false} style={{width: '100%', height: '100%'}}>
-						<ScrollView horizontal={true} style={{width: '100%', height: '100%'}}>
+					<ScrollView horizontal={false} style={{ width: '100%', height: '100%' }}>
+						<ScrollView horizontal={true} style={{ width: '100%', height: '100%' }}>
 							<View style={[temp_style.feedThumbnailList, profile.feedThumbNailList]}>{getThumbnailList()}</View>
 						</ScrollView>
 					</ScrollView>
 				</View>
-				<TouchableWithoutFeedback onPress={moveToFeedWrite}>
-					<View style={[temp_style.floatingBtn, profile.floatingBtn]}>
-						<Write94 />
-					</View>
-				</TouchableWithoutFeedback>
+
 			</ScrollView>
+			<TouchableWithoutFeedback onPress={moveToFeedWrite}>
+				<View style={[temp_style.floatingBtn, profile.floatingBtn]}>
+					<Write94 />
+				</View>
+			</TouchableWithoutFeedback>
 		</View>
 	);
 };
