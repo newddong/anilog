@@ -204,15 +204,6 @@ export const dummy_selectedMediaList = [
 	{
 		media_uri: 'https://i.ytimg.com/vi/kZJYqUoTinA/maxresdefault.jpg',
 	},
-	{
-		media_uri: 'https://opgg-static.akamaized.net/images/lol/champion/Kled.png?image=c_scale,q_auto,w_140&v=1635906101',
-	},
-	{
-		media_uri: 'https://opgg-static.akamaized.net/images/lol/champion/KogMaw.png?image=c_scale,q_auto,w_140&v=1635906101',
-	},
-	{
-		media_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
-	},
 ];
 
 export const dummy_petList = [
@@ -474,12 +465,12 @@ export const applyComanionCheckList = [
 ];
 
 export const userAssign_agreementCheckList = [
-	{text: '본인은 만 14세 이상입니다. (필수)', detail: false},
-	{text: '서비스 이용약관 동의 (필수)', detail: true},
-	{text: '개인정보 수집 이용약관 동의 (필수)', detail: true},
-	{text: '위치기반 서비스 이용약관 동의 (필수)', detail: true},
-	{text: '기부내역 이용약관 동의(필수)', detail: true},
-	{text: '이벤트 및 마케팅 정보 수신 동의 동의(선택)', detail: false},
+	{ text: '본인은 만 14세 이상입니다. (필수)', detail: false },
+	{ text: '서비스 이용약관 동의 (필수)', detail: true },
+	{ text: '개인정보 수집 이용약관 동의 (필수)', detail: true },
+	{ text: '위치기반 서비스 이용약관 동의 (필수)', detail: true },
+	{ text: '기부내역 이용약관 동의(필수)', detail: true },
+	{ text: '이벤트 및 마케팅 정보 수신 동의 동의(선택)', detail: false },
 ];
 
 export const initial_number = ['010', '02', '031', '033', '043', '041', '054', '055', '063', '061', '064'];

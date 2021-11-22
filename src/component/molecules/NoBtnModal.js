@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity,SafeAreaView,StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet } from 'react-native';
 import AniButton from 'Molecules/AniButton';
 import { btn_w226 } from 'Atom/btn/btn_style';
-import {WHITE,GRAY10} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
+import { WHITE, GRAY10 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
-import {Modal} from 'Component/modal/Modal';
+import { Modal } from 'Component/modal/Modal';
 
 /**
  *
@@ -16,11 +16,11 @@ import {Modal} from 'Component/modal/Modal';
  */
 export default NoBtnModal = props => {
 
-    
+
     return (
         <View style={style.background}>
-            <View style={[style.popUpWindow,style.shadow]}>
-                <Text style={[txt.noto28,style.msg]}>{props.popUpMsg}</Text>
+            <View style={[style.popUpWindow, style.shadow]}>
+                <Text style={[txt.noto28, style.msg]}>{props.popUpMsg}</Text>
             </View>
         </View>
     );
@@ -35,29 +35,32 @@ NoBtnModal.defaultProps = {
 }
 
 const style = StyleSheet.create({
-    background : {
-        backgroundColor:'#0009',
+    background: {
+        backgroundColor: '#0009',
         flex: 1,
-        justifyContent:'center',
-        alignItems:'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    popUpWindow : {
-        width:614*DP,
-        backgroundColor:WHITE,
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius:40*DP,
+    popUpWindow: {
+        width: 614 * DP,
+        backgroundColor: WHITE,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 40 * DP,
+        minHeight: 170 * DP,
     },
-    msg:{
-        marginBottom:30*DP,
-        color:GRAY10,
-        textAlign:'center'
+    msg: {
+        // marginBottom: 30 * DP,
+        // marginTop: 30 * DP,
+        textAlignVertical: 'center',
+        color: GRAY10,
+        textAlign: 'center',
     },
     buttonContainer: {
-        flexDirection:'row',
-        justifyContent:'center',
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
-    shadow:{
+    shadow: {
         shadowColor: '#000000',
         shadowOpacity: 0.27,
         shadowRadius: 4.65,

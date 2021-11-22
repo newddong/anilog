@@ -1,10 +1,11 @@
 import React from 'react';
-import {txt} from 'Root/config/textstyle';
-import {Text, View, TouchableOpacity} from 'react-native';
+import { txt } from 'Root/config/textstyle';
+import { Text, View, TouchableOpacity } from 'react-native';
 import DP from 'Root/config/dp';
-import {Calendar48_Border} from '../atom/icon';
-import {APRI10} from 'Root/config/color';
+import { Calendar48_Border } from '../atom/icon';
+import { APRI10 } from 'Root/config/color';
 import Calendar from 'Root/test_sangwoo/calendar';
+import { Modal } from '../modal/Modal';
 /**
  *
  * @param {{
@@ -15,18 +16,29 @@ import Calendar from 'Root/test_sangwoo/calendar';
  * }} props
  */
 export default DatePicker = props => {
-	const [btnStatus, setBtnStatus] = React.useState(false);
+	const [showCalendar, setShowCalendar] = React.useState(false);
 	const [selectedDate, setSelectedDate] = React.useState(props.defaultDate);
 
 	const onDateChange = date => {
+
+		// setShowCalendar(false);
 		setSelectedDate(date);
-		setBtnStatus(false);
+		Modal.close()
 		props.onDateChange(date);
 	};
 
+	const closeCalendar = () => {
+		console.log('close')
+		Modal.close()
+
+	}
+
 	const openCalendar = () => {
-		setBtnStatus(true);
+		console.log('openCale')
+		Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date))
+		setShowCalendar(true);
 	};
+
 	return (
 		<View
 			style={{
@@ -34,8 +46,8 @@ export default DatePicker = props => {
 				height: 82 * DP,
 			}}>
 			{props.title != '' && props.title != 'title' && (
-				<View style={{flexDirection: 'row'}}>
-					<Text style={[txt.noto24, {color: APRI10}]}> {props.title}</Text>
+				<View style={{ flexDirection: 'row' }}>
+					<Text style={[txt.noto24, { color: APRI10 }]}> {props.title}</Text>
 				</View>
 			)}
 			<View
@@ -56,11 +68,11 @@ export default DatePicker = props => {
 					]}>
 					{selectedDate}
 				</Text>
-				<View style={{position: 'absolute', right: 15 * DP}}>
+				<View style={{ position: 'absolute', right: 15 * DP }}>
 					<Calendar48_Border onPress={openCalendar} />
 				</View>
 			</View>
-			<Calendar modalOn={btnStatus} modalOff={() => setBtnStatus(false)} selectDate={date => onDateChange(date)} />
+			{/* <Calendar modalOn={showCalendar} modalOff={() => setShowCalendar(false)} selectDate={date => onDateChange(date)} /> */}
 		</View>
 	);
 };

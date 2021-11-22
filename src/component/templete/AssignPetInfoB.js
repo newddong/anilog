@@ -9,19 +9,23 @@ import { btn_w226 } from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import { login_style, btn_style, temp_style, progressbar_style, assignPetInfo_style } from './style_templete';
 import DatePicker from '../molecules/DatePicker';
+import { Modal } from '../modal/Modal';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default AssignPetInfoB = props => {
+	console.log(props.route.params)
 	const navigation = useNavigation();
 
-	const moveToMainTab = () => {
-		props.navigation.push('MainTab');
-	};
+	const [data, setData] = React.useState({
+		...props.route.params,
+		pet_birthday: null,
+		pet_weight: null
+	})
+	const [selectedBirthDate, setSelectedBirthDate] = React.useState('2021.03.01');
 
 	//생녈월일 계산 함수
-	const [selectedBirthDate, setSelectedBirthDate] = React.useState('2021.03.01');
 	const getBirthDate = () => {
 		const today = new Date().getTime();
 		let split = selectedBirthDate.split('.');
@@ -39,9 +43,25 @@ export default AssignPetInfoB = props => {
 		return <Text>{birthDate()}</Text>;
 	};
 
+	//생일이 지정되었을 때
+	const onSelectBirthDate = date => {
+		setData({ ...data, pet_birthday: date })
+	}
+
+	//체중 Input Value 바뀌었을 때
+	const onChangeKg = kg => {
+		setData({ ...data, pet_weight: kg })
+	}
+
+	//등록 완료
 	const onRegister = () => {
-		alert('등록이 완료되었습니다');
-		navigation.navigate('MainTab');
+		Modal.popNoBtn('반려동물 등록 중입니다.')
+		setTimeout(() => {
+			Modal.close()
+			Modal.popNoBtn('반려동물 등록이 완료되었습니다.')
+			Modal.close()
+			navigation.navigate('MainTab');
+		}, 1000);
 	}
 
 	return (
@@ -77,7 +97,7 @@ export default AssignPetInfoB = props => {
 				<View style={[temp_style.inputForm_assignPetInfo_line1]}>
 					<Text style={[txt.noto28, temp_style.text_assignPetInfo, { color: GRAY10 }]}>생일</Text>
 					<View style={[temp_style.datePicker_assignPetInfo_depth1, assignPetInfo_style.datePicker_depth1]}>
-						<DatePicker width={290} onDateChange={e => setSelectedBirthDate(e)} defaultDate={selectedBirthDate} />
+						<DatePicker width={290} onDateChange={date => onSelectBirthDate(date)} defaultDate={selectedBirthDate} />
 					</View>
 					<Text style={[temp_style.text218_assignPetInfo, assignPetInfo_style.text218]}>{getBirthDate()}</Text>
 				</View>
@@ -86,7 +106,7 @@ export default AssignPetInfoB = props => {
 				<View style={[temp_style.inputForm_assignPetInfo_line2, assignPetInfo_style.line2]}>
 					<Text style={[txt.noto28, temp_style.text_assignPetInfo, { color: GRAY10 }]}>체중</Text>
 					<View style={[temp_style.inputNoTitle_assignPetInfo, assignPetInfo_style.inputNoTitle]}>
-						<Input30 showTitle={false} width={200} placeholder={'몸무게 입력'} />
+						<Input30 showmsg={false} confirm={true} showTitle={false} width={200} placeholder={'몸무게 입력'} clearMark={false} onChange={kg => onChangeKg(kg)} />
 					</View>
 					<Text style={[temp_style.text68_assignPetInfo, assignPetInfo_style.text68, txt.noto28]}>kg</Text>
 				</View>
@@ -94,30 +114,26 @@ export default AssignPetInfoB = props => {
 
 			{/* (A)Btn_w654 */}
 			<View style={[temp_style.btn_w226_assignPetInfo, assignPetInfo_style.btn_w226_viewB]}>
-				<TouchableWithoutFeedback onPress={props.navigation.goBack}>
-					<View style={[btn_style.btn_w226]}>
-						<AniButton
-							btnTitle={'뒤로'}
-							btnTheme={'shadow'}
-							btnStyle={'border'}
-							btnLayout={btn_w226}
-							titleFontStyle={24}
-							onPress={() => navigation.goBack()}
-						/>
-					</View>
-				</TouchableWithoutFeedback>
-				<TouchableWithoutFeedback onPress={moveToMainTab}>
-					<View style={[btn_style.btn_w226, assignPetInfo_style.btn_w226]}>
-						<AniButton
-							btnTitle={'등록'}
-							btnTheme={'shadow'}
-							btnStyle={'filled'}
-							btnLayout={btn_w226}
-							titleFontStyle={24}
-							onPress={onRegister}
-						/>
-					</View>
-				</TouchableWithoutFeedback>
+				<View style={[btn_style.btn_w226]}>
+					<AniButton
+						btnTitle={'뒤로'}
+						btnTheme={'shadow'}
+						btnStyle={'border'}
+						btnLayout={btn_w226}
+						titleFontStyle={24}
+						onPress={() => navigation.goBack()}
+					/>
+				</View>
+				<View style={[btn_style.btn_w226, assignPetInfo_style.btn_w226]}>
+					<AniButton
+						btnTitle={'등록'}
+						btnTheme={'shadow'}
+						btnStyle={'filled'}
+						btnLayout={btn_w226}
+						titleFontStyle={24}
+						onPress={onRegister}
+					/>
+				</View>
 			</View>
 		</View>
 	);

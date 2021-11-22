@@ -11,7 +11,7 @@ const MainTabNav = createBottomTabNavigator();
 export default MainTabNavigation = () => {
 	const [tab, setTab] = useState(true);
 	return (
-		<MainTabNav.Navigator initialRouteName={'FEED'}>
+		<MainTabNav.Navigator initialRouteName={'MY'}>
 			<MainTabNav.Screen name="FEED" component={FeedStackNavigation} />
 			<MainTabNav.Screen name="PROTECTION" component={ProtectionStackNavigation} />
 			<MainTabNav.Screen name="COMMUNITY" component={Temp} />

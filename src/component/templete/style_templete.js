@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
 	MAINCOLOR,
 	LINK,
@@ -168,7 +168,7 @@ export const btn_style = StyleSheet.create({
 	},
 	btn_w226: {
 		width: 226 * DP,
-		height: 70 * DP,
+		// height: 70 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -1831,9 +1831,10 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	},
 	selectedMediaList: {
 		marginTop: 70 * DP,
+		marginLeft: 10 * DP,
 	},
 	btn_w226_view_image: {
-		marginTop: 110 * DP,
+		marginVertical: 110 * DP,
 	},
 	inputform: {
 		marginTop: 60 * DP,
@@ -1843,6 +1844,21 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	},
 	text118: {
 		marginLeft: 10 * DP,
+	},
+	addPhoto: {
+		// backgroundColor: 'yellow',
+		width: 600 * DP,
+		height: 150 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexDirection: 'row',
+		borderRadius: 40 * DP,
+		borderWidth: 2 * DP,
+		borderColor: GRAY10
+	},
+	addPhotoText: {
+		textAlignVertical: 'center',
+		textAlign: 'center', color: GRAY10, alignSelf: 'center'
 	},
 	pic: {
 		flexDirection: 'row',
@@ -3497,7 +3513,7 @@ export const feedWrite = StyleSheet.create({
 });
 
 export const profile = StyleSheet.create({
-	container: {flex: 1},
+	container: { flex: 1 },
 	profileInfo: {
 		width: 750 * DP,
 		marginBottom: 30 * DP,

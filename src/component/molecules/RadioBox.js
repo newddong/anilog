@@ -1,9 +1,9 @@
 import React from 'react';
-import {txt} from 'Root/config/textstyle';
-import {Text, View, TouchableOpacity, FlatList} from 'react-native';
+import { txt } from 'Root/config/textstyle';
+import { Text, View, TouchableOpacity, FlatList } from 'react-native';
 import DP from 'Root/config/dp';
-import {GRAY20} from 'Root/config/color';
-import {RadioChecked48, RadioUnchecked48} from '../atom/icon';
+import { GRAY20 } from 'Root/config/color';
+import { RadioChecked48, RadioUnchecked48 } from '../atom/icon';
 
 /**
  *
@@ -21,7 +21,7 @@ export default RadioBox = props => {
 	Array(tabLength)
 		.fill(props.items)
 		.map((v, i) => {
-			tabState[i] = {tabName: v[i], state: false};
+			tabState[i] = { tabName: v[i], state: false };
 		});
 	// tabState[0].state = true;
 
@@ -50,17 +50,18 @@ export default RadioBox = props => {
 			checkedItems.includes(i) ? (copyState[i].state = true) : (copyState[i].state = false);
 		}
 		setSelected(copyState);
-		props.onSelect(tabState[index].tabName);
+		// props.onSelect(tabState[index].tabName);
+		props.onSelect(index);
 	};
 
-	const renderItem = ({item, index}) => {
+	const renderItem = ({ item, index }) => {
 		return (
 			<TouchableOpacity onPress={() => onSelect(index)}>
-				<View style={{height: 82 * DP, flexDirection: 'row'}}>
-					<View style={{marginLeft: props.horizontal ? 25 * DP : 0}}>
-						<View style={{height: 82 * DP}}>{selected[index].state ? <RadioChecked48 /> : <RadioUnchecked48 />}</View>
+				<View style={{ height: 82 * DP, flexDirection: 'row' }}>
+					<View style={{ marginLeft: props.horizontal ? 25 * DP : 0 }}>
+						<View style={{ height: 82 * DP }}>{selected[index].state ? <RadioChecked48 /> : <RadioUnchecked48 />}</View>
 					</View>
-					<Text style={[txt.noto28, {color: GRAY20, lineHeight: 46 * DP, marginLeft: 12 * DP, textAlign: 'center'}]}>{item}</Text>
+					<Text style={[txt.noto28, { color: GRAY20, lineHeight: 46 * DP, marginLeft: 12 * DP, textAlign: 'center' }]}>{item}</Text>
 				</View>
 			</TouchableOpacity>
 		);

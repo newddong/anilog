@@ -1,8 +1,8 @@
 import React from 'react';
-import {txt} from 'Root/config/textstyle';
-import {Text, TouchableOpacity, FlatList} from 'react-native';
+import { txt } from 'Root/config/textstyle';
+import { Text, TouchableOpacity, FlatList } from 'react-native';
 import DP from 'Root/config/dp';
-import {APRI10, GRAY10, GRAY40, WHITE} from 'Root/config/color';
+import { APRI10, GRAY10, GRAY40, WHITE } from 'Root/config/color';
 
 /**
  *
@@ -18,7 +18,7 @@ export default TabSelectFilled_Type1 = props => {
 	Array(tabLength)
 		.fill(props.items)
 		.map((v, i) => {
-			tabState[i] = {tabName: v[i], state: false};
+			tabState[i] = { tabName: v[i], state: false };
 		});
 	tabState[0].state = true;
 	const [selected, setSelected] = React.useState(tabState);
@@ -30,10 +30,11 @@ export default TabSelectFilled_Type1 = props => {
 			i == index ? (copyState[i].state = true) : (copyState[i].state = false);
 		}
 		setSelected(copyState);
-		props.onSelect(copyState[index].tabName);
+		// props.onSelect(copyState[index].tabName);
+		props.onSelect(index);
 	};
 
-	const renderItem = ({item, index}) => {
+	const renderItem = ({ item, index }) => {
 		return (
 			<TouchableOpacity
 				onPress={() => onSelect(index)}

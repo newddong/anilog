@@ -19,30 +19,20 @@ export default PhotoSelect = props => {
 	const [number, setNumber] = React.useState(1);
 	const [selectDisable, setSelectDisable] = React.useState(false);
 
-
-	const [data, setData] = React.useState([])
-	const getSelectedStateList = (length) => {
-
-		let copy2 = [...photo]
-		copy2.map((v, i) => {
-			copy2[i] = {
-				img_uri: v.node.image.uri,
-				state: false
-			}
-			console.log('v', v.node.image.uri)
-		})
-		setData(copy2)
-	}
-
-
-	const loadPhotosMilsec = async () => {
+	const loadPhotosMilsec = () => {
 		CameraRoll.getPhotos({
 			first: 20,
 			assetType: 'Photos',
 		})
 			.then(r => {
-				setPhotos(r.edges)
-				getSelectedStateList(r.edges.length)
+				let copy = [...r.edges]
+				copy.map((v, i) => {
+					copy[i] = {
+						img_uri: v.node.image.uri
+						, state: false
+					}
+				})
+				setPhotos(copy)
 
 			})
 			.catch(err => {
@@ -82,35 +72,36 @@ export default PhotoSelect = props => {
 
 	React.useEffect(() => {
 		props.navigation.addListener('focus', () => {
-			// loadPhotos();
 			loadPhotosMilsec();
 		});
 	});
 
-	React.useEffect(() => {
-		console.log('data', data)
-	}, [data])
+	const checkOut = () => {
+		props.onCheckOut(photoArray);
+		console.log('체크아웃 - 보낼 Photo의 img_uri', photoArray)
+		console.log('Photoselect에서 체크아웃 - 돌아갈 navigation 네임 ', props.route.params);
+		props.navigation.navigate(props.route.params, photoArray);
+	};
 
 	const onSelect = (img, state, index) => {
 		//단일선택모드
 		if (isSingle) {
 			//선택
 			if (state) {
-
-				let copy = [...data]
+				let copy = [...photo]
 				copy.map((v, i) => {
 					i == index ? copy[i].state = true : copy[i].state = false
 				})
-				console.log('index', copy[index])
-				console.log('copy', copy)
-				setData(copy)
+				setPhotos(copy)
+				setPhotoArray(img)
 			}
 			//선택취소
 		} else if (!state) {
 			copy[index].state = false
-			setData(copy)
+			setPhotos(copy)
 
 		}
+		//다중선택모드
 		else {
 			let photoArray_dummy = [...photoArray];
 			console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@');
@@ -142,37 +133,49 @@ export default PhotoSelect = props => {
 		}
 	};
 
+	// const renderItem = React.useCallback(
+	// 	(item, index) => {
+	// 		console.log('item', item)
+	// 		//Single로 PhotoSelect가 호출된 경우 LocalMedia는 단일 선택모드로 실행되며, Multiple로 호출된 경우 사진 다중 선택모드로 실행
+	// 		return props.route.name == 'SinglePhotoSelect' ? (
+	// 			<LocalMedia
+	// 				isSingleSelection={true}
+	// 				onSelect={(img_uri, state) => onSelect(img_uri, state, index)}
+	// 				data={item}
+	// 			/>
+	// 		) : (
+	// 			<LocalMedia
+	// 				isSingleSelection={false}
+	// 				disable={selectDisable}
+	// 				number={number}
+	// 				onSelect={e => onSelect(e, index)}
+	// 				data={{ img_uri: item.node.image.uri }}
+	// 				index={selectedIndex[index]}
+	// 			/>
+	// 		);
+	// 	},
+	// 	[selectedIndex],
+	// );
 
-	const renderItem = React.useCallback(
-		(item, index) => {
-
-			//Single로 PhotoSelect가 호출된 경우 LocalMedia는 단일 선택모드로 실행되며, Multiple로 호출된 경우 사진 다중 선택모드로 실행
-			return props.route.name == 'SinglePhotoSelect' ? (
-				<LocalMedia
-					isSingleSelection={true}
-					onSelect={(img_uri, state) => onSelect(img_uri, state, index)}
-					data={item}
-				// selectedIndex={mediaData[index]}
-				/>
-			) : (
-				<LocalMedia
-					isSingleSelection={false}
-					disable={selectDisable}
-					number={number}
-					onSelect={e => onSelect(e, index)}
-					data={{ img_uri: item.node.image.uri }}
-					index={selectedIndex[index]}
-				/>
-			);
-		},
-		[selectedIndex],
-	);
-
-	const checkOut = () => {
-		props.onCheckOut(photoArray);
-		console.log('params', props.route.params);
-		props.navigation.navigate(props.route.params, photoArray);
-	};
+	const renderItem = (item, index) => {
+		//Single로 PhotoSelect가 호출된 경우 LocalMedia는 단일 선택모드로 실행되며, Multiple로 호출된 경우 사진 다중 선택모드로 실행
+		return props.route.name == 'SinglePhotoSelect' ? (
+			<LocalMedia
+				isSingleSelection={true}
+				onSelect={(img_uri, state) => onSelect(img_uri, state, index)}
+				data={item}
+			/>
+		) : (
+			<LocalMedia
+				isSingleSelection={false}
+				disable={selectDisable}
+				number={number}
+				onSelect={e => onSelect(e, index)}
+				data={item}
+				index={selectedIndex[index]}
+			/>
+		);
+	}
 
 	return (
 		<View style={(login_style.wrp_main, photoSelect.container)}>
@@ -193,13 +196,18 @@ export default PhotoSelect = props => {
 					<Text style={txt.noto36}>최근 항목 </Text>
 					<Bracket48 />
 					<TouchableOpacity onPress={checkOut}>
+						{/* Test용 */}
 						<Text style={{ fontSize: 25, marginLeft: 20, backgroundColor: 'yellow' }}>임시 확인 버튼</Text>
 					</TouchableOpacity>
 				</View>
 				<View style={[temp_style.mediaSelect]}>
-					{/* <Text>(O)mediaSelect(사진등록완료)</Text> */}
 					{/* <MediaSelect mediaList={photo} /> */}
-					<FlatList data={isSingle ? data : photo} numColumns={4} renderItem={({ item, index }) => renderItem(item, index)} scrollEnabled keyExtractor={item.key} />
+					<FlatList
+						data={photo}
+						numColumns={4}
+						renderItem={({ item, index }) => renderItem(item, index)}
+						scrollEnabled
+						keyExtractor={item.key} />
 				</View>
 			</ScrollView>
 		</View>
