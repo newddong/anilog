@@ -48,7 +48,7 @@ export default DropdownSelect = props => {
 			<View
 				style={{
 					width: props.width * DP,
-					borderBottomColor: selectedItem == props.items[0] ? GRAY40 : APRI10,
+					borderBottomColor: APRI10,
 					borderBottomWidth: 2 * DP,
 					flexDirection: 'row',
 					alignItems: 'center',
@@ -62,7 +62,6 @@ export default DropdownSelect = props => {
 							paddingVertical: 16 * DP, // Value와 최상위 View와의 paddingVertical 16px
 							// textAlign: 'center',
 							marginRight: 40 * DP,
-							color: selectedItem == props.items[0] ? BLACK : null,
 						},
 					]}>
 					{selectedItem}

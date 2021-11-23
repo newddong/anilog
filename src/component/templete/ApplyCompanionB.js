@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
@@ -27,16 +28,43 @@ export default ApplyCompanionC = props => {
 	})
 
 	const [companionList, setCompanionList] = React.useState([])
+	const [tempData, setTempData] = React.useState([]) //임시저장 정보가 들어갈 컨테이너
+
+	//임시저장값 호출
+	React.useEffect(() => {
+		_retrieveData()
+	}, [])
 
 	React.useEffect(() => {
-		console.log('companion', companionList)
+		if (tempData.length > 0) {
+			let temp = JSON.parse(tempData)
+			setCompanionList(temp)
+		}
+	}, [tempData])
+
+
+
+	React.useEffect(() => {
+		setData({ ...data, protect_act_companion_history: companionList })
 	}, [companionList])
 
-	React.useEffect(() => {
-		// data.protect_act_address != null && data.protect_act_phone_number != null ? setConfirmed(true) : setConfirmed(false)
-		console.log('data', data)
-	}, [data])
+	//임시저장 버튼 클릭
+	const tempSave = () => {
+		AsyncStorage.setItem('tempData_applyCompanionB', JSON.stringify(data.protect_act_companion_history))
+	}
 
+	//임시저장한 값을 AsyncStorage에서 호출
+	const _retrieveData = async () => {
+		try {
+			await AsyncStorage.getItem('tempData_applyCompanionB', (err, res) => {
+				res != null ? setTempData(res) : null
+			})
+		} catch (error) {
+			console.log('error', JSON.stringify(error))
+		}
+	};
+
+	//반려 생활 추가를 누를 시 빈 CompanionForm이 추가됨
 	const onPressAddCompanion = () => {
 		let copy = [...companionList]
 		copy.length = copy.length + 1
@@ -45,9 +73,6 @@ export default ApplyCompanionC = props => {
 
 	//itemIndex번째 반려동물의 '종' 선택 콜백, value에는 선택한 item의 String , selectedIndex에는 선택한 Item의 Index가 담겨있음
 	const onSelectSpecies = (value, selectedIndex, itemIndex) => {
-		console.log('value', value)
-		console.log('selectedIndex', selectedIndex)
-		console.log('itemIndex', itemIndex)
 		let copy = [...companionList]
 		copy[itemIndex] = {
 			...copy[itemIndex],
@@ -58,28 +83,32 @@ export default ApplyCompanionC = props => {
 
 	//itemIndex번째 반려동물의 '나이' 선택 콜백, value에는 선택한 item의 String , selectedIndex에는 선택한 Item의 Index가 담겨있음
 	const onSelectAge = (value, selectedIndex, itemIndex) => {
-		console.log('value', value)
-		console.log('selectedIndex', selectedIndex)
-		console.log('itemIndex', itemIndex)
+		let copy = [...companionList]
+		copy[itemIndex] = {
+			...copy[itemIndex],
+			companion_pet_age: value
+		}
+		setCompanionList(copy)
 	}
 
 	//itemIndex번째 반려동물의 '반려생활 기간' 선택 콜백, value에는 선택한 item의 String , selectedIndex에는 선택한 Item의 Index가 담겨있음
-	const onSelectDuration = (value, selectedIndex, itemIndex) => {
-		console.log('value', value)
-		console.log('selectedIndex', selectedIndex)
-		console.log('itemIndex', itemIndex)
+	const onSelectPeriod = (value, selectedIndex, itemIndex) => {
+		let copy = [...companionList]
+		copy[itemIndex] = {
+			...copy[itemIndex],
+			companion_pet_period: value
+		}
+		setCompanionList(copy)
 	}
 
 	//itemIndex번째 반려동물의 '반려생활 상태' 선택 콜백, value에는 선택한 item의 String , selectedIndex에는 선택한 Item의 Index가 담겨있음
 	const onSelectStatus = (value, selectedIndex, itemIndex) => {
-		console.log('value', value)
-		console.log('selectedIndex', selectedIndex)
-		console.log('itemIndex', itemIndex)
-	}
-
-	//임시저장 버튼 클릭
-	const tempSave = () => {
-
+		let copy = [...companionList]
+		copy[itemIndex] = {
+			...copy[itemIndex],
+			companion_pet_current_status: value
+		}
+		setCompanionList(copy)
 	}
 
 	//다음버튼 클릭
@@ -111,8 +140,9 @@ export default ApplyCompanionC = props => {
 						items={companionList}
 						onSelectSpecies={(v, i, index) => onSelectSpecies(v, i, index)}
 						onSelectAge={(v, i, index) => onSelectAge(v, i, index)}
-						onSelectDuration={(v, i, index) => onSelectDuration(v, i, index)}
+						onSelectDuration={(v, i, index) => onSelectPeriod(v, i, index)}
 						onSelectStatus={(v, i, index) => onSelectStatus(v, i, index)}
+						tempData={tempData}
 					/>
 				</View>
 
@@ -135,10 +165,8 @@ export default ApplyCompanionC = props => {
 					</View>
 					<View style={[btn_style.btn_w176, applyCompanionC.btn_w176]}>
 						<AniButton
-							btnStyle={'filled'}
 							btnLayout={btn_w176}
 							btnTitle={'다음'}
-							titleFontStyle={24}
 							onPress={goToNextStep}
 						/>
 					</View>
