@@ -61,8 +61,8 @@ ProfileDropdown.defaultProps = {
 	btnLayout: btn_w226, // 버튼의 레이아웃(width, height, radius 등의 수치 결정)
 	titleFontStyle: 24, // 버튼 title의 폰트 크기
 	btnStyle: 'border', // 버튼스타일 filled border noBorder
-	onOpen: e => console.log(e),
-	onClose: e => console.log(e),
+	onOpen: e => console.log('profileDropdownOpen'),
+	onClose: e => console.log('profileDropdownClose'),
 	onSelect:(v,i)=> console.log(i+':'+v),
 	menu:[]
 };

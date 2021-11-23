@@ -15,21 +15,38 @@ import {Meatball50_APRI10_Horizontal, Meatball50_GRAY20_Horizontal, Meatball50_G
  * horizontal : '버튼 방향 true일경우 horizon, false는 vertical'
  * onOpen : Function,
  * onClose : Function,
+ * onPress : Function,
  * }} props
  */
-export default MeatballButton = props => {
+export default MeatballButton =React.forwardRef( (props,ref) => {
+	React.useImperativeHandle(ref,()=>({
+		press:()=>{
+			onPress();
+		}
+	}))
 	const [isOpen, setOpen] = React.useState(props.initState);
-
 	const onPress = e => {
         // setOpen(!isOpen);
-        console.log('MeatPrees')
-		!props.noStateChange && setOpen(!isOpen);
+        console.log('MeatBallButton onPress');
+		// !props.noStateChange && setOpen(!isOpen);
 		// isOpen ? props.onOpen() : props.onClose();
-		(isOpen && (props.onClose() || true)) || props.onOpen();
+		(isOpen && (onClose() || true)) || onOpen();
 	};
+	
+	const onOpen = () => {
+		console.log('MeatBallButton onOpen');
+		!props.noStateChange&&setOpen(true);
+		props.onOpen();
+	}
+
+	const onClose = () => {
+		console.log('MeatBallButton onClose');
+		!props.noStateChange&&setOpen(false);
+		props.onClose();
+	}
 
 	return (
-		<TouchableOpacity onPress={onPress}>
+		<TouchableOpacity onPress={onPress} >
 			{isOpen ? (
 				props.horizontal ? (
 					<Meatball50_APRI10_Horizontal />
@@ -43,13 +60,14 @@ export default MeatballButton = props => {
 			)}
 		</TouchableOpacity>
 	);
-};
+});
 
 MeatballButton.defaultProps = {
 	disable: false, // 버튼탭 사용불가 상태 boolean
 	initState: false,
 	noStateChange: false,
 	horizontal: true, // 버튼 방향 true일경우 horizon, false는 vertical
-	onOpen: e => console.log('OpenMeatball'),
-	onClose: e => console.log('CloseMeatball'),
+	onOpen: e => console.log('MeatBallButton onOpen Default'),
+	onClose: e => console.log('MeatBallButton onClose Default'),
+	onPress: e => console.log('MeatBallButton onPress Default')
 };

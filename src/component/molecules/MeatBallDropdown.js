@@ -62,8 +62,8 @@ MeatBallDropdown.defaultProps = {
     disable: false, // 버튼탭 사용불가 상태 boolean
     titleFontStyle: 24, // 버튼 title의 폰트 크기
     btnStyle: 'border', // 버튼스타일 filled border noBorder
-    onOpen: e => console.log('onOpenDefault'),
-    onClose: e => console.log('onClosedefault'),
+    onOpen: e => console.log('MeatBallDropdown onOpen Default'),
+    onClose: e => console.log('MeatBallDropdown onClose Default'),
     onSelect: (v, i) => console.log(i + ':' + v),
     menu:[],
     horizontal:true
