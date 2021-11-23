@@ -1,39 +1,53 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import CompanionForm from './CompanionForm';
-import {companionFormList} from './style_organism';
+import { companionFormList } from './style_organism';
 
+
+/**
+ *
+ * @param {{
+ * onSelectSpecies : void,
+ * onSelectAge:void,
+ * onSelectDuration :void,
+ * onSelectStatus :void,
+ * }} props
+ */
 export default CompanionFormList = props => {
-	const testList = [
-		{
-			breed: 0,
-			age: 0,
-			duration: 0,
-		},
-		{
-			breed: 1,
-			age: 1,
-			duration: 1,
-		},
-	];
+
+	console.log('items CompanionFormList ', props.items)
+	const [companionList, setCompanionList] = React.useState([])
+
+	React.useEffect(() => {
+		console.log(props.items.length)
+		props.items.length == 0 ? setCompanionList(1) : setCompanionList(props.items)
+	}, [props.items])
 
 	const renderItem = (item, index) => {
 		return (
 			<View style={[companionFormList.companionFormContainer]}>
-				<CompanionForm data={item} />
+				<CompanionForm
+					data={item}
+					onSelectSpecies={(v, i) => props.onSelectSpecies(v, i, index)}
+					onSelectAge={(v, i) => props.onSelectAge(v, i, index)}
+					onSelectDuration={(v, i) => props.onSelectDuration(v, i, index)}
+					onSelectStatus={(v, i) => props.onSelectStatus(v, i, index)}
+				/>
 			</View>
 		);
 	};
 
 	return (
 		<View style={[companionFormList.container]}>
-			<FlatList data={testList} renderItem={({item, index}) => renderItem(item, index)} />
+			<FlatList data={companionList} renderItem={({ item, index }) => renderItem(item, index)} />
 		</View>
 	);
 };
 
-// value: null,
-// itemList: [1, 2, 3, 4], //DropDown될 리스트 목록
-// defaultIndex: 0, // DropDown Default상태의 index
-// width: 180, //Select+Text 부분의 width Default=180(5글자)
-// onChange: e => console.log(e),
+CompanionFormList.defaultProps = {
+	items: [],
+	onSelectSpecies: e => console.log(e),
+	onSelectAge: e => console.log(e),
+	onSelectDuration: e => console.log(e),
+	onSelectStatus: e => console.log(e)
+}

@@ -1,9 +1,9 @@
 import React from 'react';
-import {txt} from 'Root/config/textstyle';
-import {Text, View, TouchableWithoutFeedback} from 'react-native';
+import { txt } from 'Root/config/textstyle';
+import { Text, View, TouchableWithoutFeedback } from 'react-native';
 import DP from 'Root/config/dp';
-import {Check50, Rect48_GRAY30, Rect50_Border} from '../atom/icon';
-import {GRAY10, GRAY20} from 'Root/config/color';
+import { Check50, Rect48_GRAY30, Rect50_Border } from '../atom/icon';
+import { GRAY10, GRAY20 } from 'Root/config/color';
 import AniButton from './AniButton';
 /**
  *
@@ -11,7 +11,8 @@ import AniButton from './AniButton';
  * state : boolean ,
  * value : 'string / CheckBox 우측 텍스트',
  * disable : 'boolean / 버튼 사용 가능 여부,
- * onCheck : '박스가 체크될 시 수행되는 callBack함수'}} props
+ * onCheck : '박스가 체크될 시 수행되는 callBack함수'
+ * }} props
  */
 export default CheckBox = props => {
 	const [checked, setChecked] = React.useState(props.state); //체크상태 여부 boolean
@@ -25,7 +26,7 @@ export default CheckBox = props => {
 	}, [props.state]);
 
 	return (
-		<View style={{flexDirection: 'row'}}>
+		<View style={{ flexDirection: 'row' }}>
 			{props.disable ? <Rect48_GRAY30 /> : checked ? <Check50 onPress={onCheck} /> : <Rect50_Border onPress={onCheck} />}
 			<Text
 				style={[

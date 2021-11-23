@@ -1,11 +1,11 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {login_style, temp_style, shelterInfoSetting, temp_txt} from './style_templete';
-import {useNavigation} from '@react-navigation/core';
-import {btn_w114, btn_w242} from '../atom/btn/btn_style';
+import { ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { login_style, temp_style, shelterInfoSetting, temp_txt } from './style_templete';
+import { useNavigation } from '@react-navigation/core';
+import { btn_w114, btn_w242 } from '../atom/btn/btn_style';
 import ProfileImageLarge160 from '../molecules/ProfileImageLarge160';
-import {txt} from 'Root/screens/assign/style_assign';
+import { txt } from 'Root/screens/assign/style_assign';
 import AniButton from '../molecules/AniButton';
 
 export default ShelterInfoSetting = props => {
@@ -25,16 +25,16 @@ export default ShelterInfoSetting = props => {
 	};
 
 	return (
-		<View style={(login_style.wrp_main, shelterInfoSetting.container)}>
+		<View style={login_style.wrp_main}>
 			{/* ProfileImage & btn_w242*/}
-			<ScrollView>
+			<ScrollView contentContainerStyle={[shelterInfoSetting.container,]}>
 				<View style={[shelterInfoSetting.shelterInfoSetting_step1]}>
 					<View style={[temp_style.profileImageLarge]}>
 						<ProfileImageLarge160 userType="shelter" shelterType="private"></ProfileImageLarge160>
 					</View>
 
 					<View style={[shelterInfoSetting.btn_w242]}>
-						<AniButton btnTitle={'프로필 변경'} btnStyle={'filled'} titleFontStyle={24} btnLayout={btn_w242} onPress={moveToChangeUserProfileImage} />
+						<AniButton btnTitle={'프로필 변경'} titleFontStyle={24} btnLayout={btn_w242} onPress={moveToChangeUserProfileImage} />
 					</View>
 				</View>
 

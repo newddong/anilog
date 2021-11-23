@@ -4,10 +4,10 @@ import AniButton from 'Molecules/AniButton';
 import ActionButton from 'Molecules/ActionButton';
 import Dropdown from 'Molecules/Dropdown';
 import { btn_w280, btn_w226 } from 'Atom/btn/btn_style';
-import { APRI10, WHITE} from 'Root/config/color';
+import { APRI10, WHITE } from 'Root/config/color';
 import DP from 'Root/config/dp';
 import { Modal } from 'Component/modal/Modal';
-import {txt} from 'Root/config/textstyle';
+import { txt } from 'Root/config/textstyle';
 
 /**
  *
@@ -28,19 +28,19 @@ export default ProfileDropdown = props => {
 	}
 	return (
 		<Dropdown
-			buttonComponent={<ActionButton {...props} initState={false} noStateChange/>}
+			buttonComponent={<ActionButton {...props} initState={false} noStateChange />}
 			dropdownList={
-				<View style={{backgroundColor:APRI10,borderRadius:40*DP,alignItems:'center' }}>
-					<ActionButton {...props} initState noStateChange onClose={onClose}/>
+				<View style={{ backgroundColor: APRI10, borderRadius: 40 * DP, alignItems: 'center' }}>
+					<ActionButton {...props} initState noStateChange onClose={onClose} />
 					{props.menu.map((v, i) =>
-						<TouchableWithoutFeedback onPress={()=>props.onSelect(v,i)} key={i}>
-							<View style={{ width: props.btnLayout.width,marginVertical:15*DP}}>
+						<TouchableWithoutFeedback onPress={() => props.onSelect(v, i)} key={i}>
+							<View style={{ width: props.btnLayout.width, marginVertical: 15 * DP }}>
 								<Text style={[
 									txt.noto24b,
 									{
 										fontSize: props.titleFontStyle * DP,
-										textAlign:'center',
-										color  : WHITE,
+										textAlign: 'center',
+										color: WHITE,
 									}
 								]}>
 									{v}
@@ -61,8 +61,8 @@ ProfileDropdown.defaultProps = {
 	btnLayout: btn_w226, // 버튼의 레이아웃(width, height, radius 등의 수치 결정)
 	titleFontStyle: 24, // 버튼 title의 폰트 크기
 	btnStyle: 'border', // 버튼스타일 filled border noBorder
-	onOpen: e => console.log(e),
-	onClose: e => console.log(e),
-	onSelect:(v,i)=> console.log(i+':'+v),
-	menu:[]
+	onOpen: e => console.log('onOpen', e),
+	onClose: e => console.log('onClose', e),
+	onSelect: (v, i) => console.log(i + ':' + v),
+	menu: []
 };

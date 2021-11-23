@@ -277,7 +277,7 @@ export const emailVerification = StyleSheet.create({
 	},
 });
 
-export const passwordChecker = StyleSheet.create({
+export const passwordChecker_style = StyleSheet.create({
 	container_initMode: {
 		width: 654 * DP,
 		height: 406 * DP,
@@ -1265,3 +1265,17 @@ export const feedText = StyleSheet.create({
 		width: 654 * DP,
 	},
 });
+
+export const stagebar_style = StyleSheet.create({
+	backgroundBar: {
+		width: 400 * DP,
+		height: 20 * DP,
+		backgroundColor: 'white',
+		borderRadius: 20 * DP,
+		borderWidth: 4 * DP,
+		borderColor: APRI10,
+	},
+	insideBar: { width: 80 * DP, height: 20 * DP, backgroundColor: APRI10, borderRadius: 18 * DP },
+	text: { marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10 },
+});
+

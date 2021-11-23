@@ -9,12 +9,16 @@ import AniButton from '../molecules/AniButton';
 import InputWithSelect from '../molecules/InputWithSelect';
 import Stagebar from '../molecules/Stagebar';
 import AddressInput from '../organism_ksw/AddressInput';
-import { addressInput } from '../organism_ksw/style_organism';
+import { addressInput, stagebar_style } from '../organism_ksw/style_organism';
 import { applyCompanionA, btn_style, login_style, temp_style } from './style_templete';
+
+
+// DB 참조할 테이블 : ProtectionActivityApplicantObject
+
 
 export default ApplyCompanionA = props => {
 	const navigation = useNavigation();
-	const isProtect = props.route.name == 'ApplyProtectActivityA'
+	const isProtect = props.route.name == 'ApplyProtectActivityA' //임시보호 신청여부 , false일 경우 자동으로 입양모드 전환
 	const [confirmed, setConfirmed] = React.useState(false)
 	console.log('Apply Companion A / Route Name ' + props.route.name);
 
@@ -32,7 +36,7 @@ export default ApplyCompanionA = props => {
 		data.protect_act_address != null && data.protect_act_phone_number != null ? setConfirmed(true) : setConfirmed(false)
 	}, [data])
 
-	//주소찾기
+	//주소찾기 버튼 클릭
 	const goToAddressSearch = () => {
 
 	}
@@ -42,7 +46,7 @@ export default ApplyCompanionA = props => {
 		setData({ ...data, protect_act_phone_number: num })
 	}
 
-	//주소
+	//주소 입력
 	const onChangeAddress = addr => {
 		setData({
 			...data, protect_act_address: {
@@ -52,7 +56,7 @@ export default ApplyCompanionA = props => {
 		})
 	}
 
-	//세부주소
+	//세부주소 입력
 	const onChangeDeatilAddress = addr => {
 		setData({
 			...data, protect_act_address: {
@@ -71,20 +75,12 @@ export default ApplyCompanionA = props => {
 			{/* stageBar */}
 			<View style={[temp_style.stageBar, applyCompanionA.stageBar]}>
 				<Stagebar
-					style={{}} //전체 container style, text와 bar를 감싸는 view의 style
-					backgroundBarStyle={{
-						width: 400 * DP,
-						height: 20 * DP,
-						backgroundColor: 'white',
-						borderRadius: 20 * DP,
-						borderWidth: 4 * DP,
-						borderColor: APRI10,
-					}} //배경이 되는 bar의 style, width props으로 너비결정됨
-					insideBarStyle={{ width: 80 * DP, height: 20 * DP, backgroundColor: APRI10, borderRadius: 18 * DP }} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+					backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨
+					insideBarStyle={stagebar_style.insideBar} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
 					current={1} //현재 단계를 정의
 					maxstage={4} //전체 단계를 정의
 					width={600 * DP} //bar의 너비
-					textStyle={[txt.roboto24, { marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10 }]} //text의 스타일
+					textStyle={[txt.roboto24, stagebar_style.text]} //text의 스타일
 				/>
 			</View>
 			{/* textMSg */}
@@ -101,14 +97,13 @@ export default ApplyCompanionA = props => {
 					<View style={[addressInput.titleContainer]}>
 						<Text style={[txt.noto24, { color: APRI10 }]}>연락처 </Text>
 					</View>
-					<InputWithSelect onChange={num => onChangePhoneNum(num)} items={mobile_carrier} width={360} placeholder={'연락처를 입력해주세요.'} />
+					<InputWithSelect onChange={num => onChangePhoneNum(num)} keyboardType={'number-pad'} items={mobile_carrier} width={360} placeholder={'연락처를 입력해주세요.'} />
 				</View>
 			</View>
 			{/* (A)Btn_w654 */}
 			<View style={[btn_style.btn_w654, applyCompanionA.btn_w654]}>
 				{confirmed
 					? <AniButton
-						btnStyle={'filled'}
 						btnTitle={'확인'}
 						titleFontStyle={40}
 						btnLayout={btn_w654}
@@ -122,7 +117,6 @@ export default ApplyCompanionA = props => {
 						onPress={goToNextStep}
 					/>
 				}
-
 			</View>
 		</View>
 	);

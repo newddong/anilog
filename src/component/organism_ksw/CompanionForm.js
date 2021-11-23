@@ -1,15 +1,45 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import DropdownSelect from '../molecules/DropdownSelect';
-import {companionForm} from './style_organism';
+import { Text, View } from 'react-native';
+import { GRAY10 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
+import { COMPANION_DURATION, COMPANION_STATUS, PET_AGE, PET_KIND } from 'Root/i18n/msg';
+import NormalDropDown from '../molecules/NormalDropDown';
+import { companionForm } from './style_organism';
 
+
+/**
+ *
+ * @param {{
+ * onSelectSpecies : void,
+ * onSelectAge:void,
+ * onSelectDuration :void,
+ * onSelectStatus :void,
+ * }} props
+ */
 export default CompanionForm = props => {
-	// 품종, 나이, 반려동물 기간 항목들에 들어갈 배열정보는 고정
-	// props.data.breed , props.data.age, props.data.duration에는 각각 해당 데이터와 일치하는 index가 담김
-	// 예)한 반려동물은 품종이 index 0(개냥이), 나이가 index 1(10세이상), 키운 기간 index 2(15년이상)
-	const testBreed = ['개냥이', '고양이', '트리케라톱스'];
-	const testAge = ['15세 이상', '10세 이상', '5세 이상'];
-	const testDuration = ['1년 이상', '5년 이상', '15년 이상'];
+
+	//종 선택 콜백
+	const onSelectSpecies = (v, i) => {
+		props.onSelectSpecies(v, i)
+	}
+
+	//나이 선택 콜백
+	const onSelectAge = (v, i) => {
+		props.onSelectAge(v, i)
+
+	}
+
+	//반려생활 기간 콜백
+	const onSelectDuration = (v, i) => {
+		props.onSelectDuration(v, i)
+
+	}
+
+	//반려생활 상태 콜백
+	const onSelectStatus = (v, i) => {
+		props.onSelectStatus(v, i)
+
+	}
 
 	return (
 		<View style={[companionForm.container]}>
@@ -17,36 +47,53 @@ export default CompanionForm = props => {
 				<View style={[companionForm.upperMenu]}>
 					<View style={[companionForm.inputItem]}>
 						<View style={[companionForm.fieldName]}>
-							<Text>종</Text>
+							<Text style={[txt.noto24, { color: GRAY10 }]}>종</Text>
 						</View>
 						<View style={[companionForm.dropDownSelect]}>
-							<DropdownSelect items={testBreed} defaultIndex={props.data.breed} />
+							<NormalDropDown
+								menu={PET_KIND}
+								onSelect={(v, i) => onSelectSpecies(v, i)}
+							/>
 						</View>
 					</View>
 					<View style={[companionForm.inputItem]}>
 						<View style={[companionForm.fieldName]}>
-							<Text>나이</Text>
+							<Text style={[txt.noto24, { color: GRAY10 }]}>나이</Text>
 						</View>
 						<View style={[companionForm.dropDownSelect]}>
-							<DropdownSelect items={testAge} defaultIndex={props.data.age} />
+							<NormalDropDown
+								menu={PET_AGE}
+								onSelect={(v, i) => onSelectAge(v, i)}
+							/>
 						</View>
 					</View>
 					<View style={[companionForm.inputItem]}>
 						<View style={[companionForm.fieldName]}>
-							<Text>반려생활 기간</Text>
+							<Text style={[txt.noto24, { color: GRAY10 }]}>반려생활 기간</Text>
 						</View>
 						<View style={[companionForm.dropDownSelect]}>
-							<DropdownSelect items={testDuration} defaultIndex={props.data.duration} />
+							<NormalDropDown
+								menu={COMPANION_DURATION}
+								onSelect={(v, i) => onSelectDuration(v, i)}
+							/>
 						</View>
 					</View>
 				</View>
 				<View style={[companionForm.lowerMenu]}>
-					<DropdownSelect items={['무지개 다리를 건넜어요']} width={634} />
+					<NormalDropDown
+						menu={COMPANION_STATUS}
+						onSelect={(v, i) => onSelectStatus(v, i)}
+						width={654}
+					/>
 				</View>
 			</View>
 		</View>
 	);
 };
+
+CompanionForm.defaultProps = {
+
+}
 
 // value: null,
 // itemList: [1, 2, 3, 4], //DropDown될 리스트 목록

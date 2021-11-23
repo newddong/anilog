@@ -604,3 +604,4 @@ export const dummy_ownerList = [
 		name: '야스오',
 	},
 ];
+

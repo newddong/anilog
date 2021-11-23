@@ -1,9 +1,16 @@
 import React from 'react';
-import {View, StyleSheet, Text, Dimensions, TouchableWithoutFeedback} from 'react-native';
-import {Modal} from 'Component/modal/Modal';
+import { View, StyleSheet, Text, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { Modal } from 'Component/modal/Modal';
 import DP from 'Root/config/dp';
 import AniButton from './AniButton';
 
+/**
+ *
+ * @param {{
+ * buttonComponent : '',
+ * dropdownList : '',
+ * }} props
+ */
 export default Dropdown = props => {
 	const container = React.useRef();
 	const isClick = React.useRef(false);
@@ -27,7 +34,7 @@ export default Dropdown = props => {
 		props.buttonComponent.props.onClose();
 	};
 
-	const positionY = (py,height) => {
+	const positionY = (py, height) => {
 		if (props.alignBottom) {
 			return py + height;
 		} else {
@@ -35,10 +42,10 @@ export default Dropdown = props => {
 		}
 	};
 
-	const positionX = (px,width)=> {
-		if(props.alignRight){
+	const positionX = (px, width) => {
+		if (props.alignRight) {
 			return px - width;
-		}else{
+		} else {
 			return px;
 		}
 
@@ -49,13 +56,13 @@ export default Dropdown = props => {
 			container.current.measure((fx, fy, width, height, px, py) => {
 				const dropdownList = React.cloneElement(props.dropdownList, {
 					style: [
-						{position: 'absolute', top: positionY(py,height), left: positionX(px,width), paddingBottom: 15 * DP},
+						{ position: 'absolute', top: positionY(py, height), left: positionX(px, width), paddingBottom: 15 * DP },
 						props.dropdownList.props.style,
 					],
 				});
 				Modal.popDrop(
 					<TouchableWithoutFeedback onPress={Modal.close}>
-						<View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: '#fff0'}}>{dropdownList}</View>
+						<View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: '#fff0' }}>{dropdownList}</View>
 					</TouchableWithoutFeedback>,
 				);
 			});
@@ -70,15 +77,15 @@ export default Dropdown = props => {
 	});
 
 	return (
-		<View ref={ref => (container.current = ref)} onLayout={e => {}}>
+		<View ref={ref => (container.current = ref)} onLayout={e => { }} >
 			{button}
 		</View>
 	);
 };
 
 Dropdown.defaultProps = {
-	dropdownList: <View style={{position: 'absolute', width: 100, height: 100, backgroundColor: 'blue'}} />,
-	buttonComponent: <AniButton />,
+	dropdownList: <View style={{ position: 'absolute', width: 100, height: 100, backgroundColor: 'blue' }} />,
+	buttonComponent: <View style={{ position: 'absolute', width: 100, height: 100, backgroundColor: 'white' }} />,
 	alignBottom: false,
 	alignRight: false,
 };

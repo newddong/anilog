@@ -1,10 +1,10 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {APRI10, GRAY30} from 'Root/config/color';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { APRI10, GRAY30 } from 'Root/config/color';
 import DP from 'Root/config/dp';
-import {txt} from 'Root/config/textstyle';
-import {btn_w226} from '../atom/btn/btn_style';
-import {Arrow_Down_APRI10, Arrow_Down_GRAY30, Arrow_Down_White, Arrow_Up_APRI10, Arrow_Up_GRAY30, Arrow_Up_White} from '../atom/icon';
+import { txt } from 'Root/config/textstyle';
+import { btn_w226 } from '../atom/btn/btn_style';
+import { Arrow_Down_APRI10, Arrow_Down_GRAY30, Arrow_Down_White, Arrow_Up_APRI10, Arrow_Up_GRAY30, Arrow_Up_White } from '../atom/icon';
 /**
  *
  * @param {{btnTitle : string,
@@ -36,9 +36,9 @@ export default ActionButton = props => {
 	const border = () => {
 		//border는 btnStyle='border' or disable=true 인 경우 발생
 		if (props.disable) {
-			return {borderColor: GRAY30, borderWidth: 4 * DP};
+			return { borderColor: GRAY30, borderWidth: 4 * DP };
 		} else if (props.btnStyle == 'border') {
-			return {borderColor: APRI10, borderWidth: 4 * DP};
+			return { borderColor: APRI10, borderWidth: 4 * DP };
 		}
 	};
 
@@ -55,9 +55,9 @@ export default ActionButton = props => {
 
 	//클릭 이벤트
 	const onPress = e => {
-		!props.noStateChange&&setBtnStatus(!btnStatus);
+		!props.noStateChange && setBtnStatus(!btnStatus);
 		// btnStatus ? props.onOpen() : props.onClose();
-		btnStatus&&(props.onClose()||true)||props.onOpen();
+		btnStatus && (props.onClose() || true) || props.onOpen();
 	};
 
 	//액션버튼 본체
@@ -93,13 +93,13 @@ export default ActionButton = props => {
 };
 
 ActionButton.defaultProps = {
-	noStateChange : false,
+	noStateChange: false,
 	initState: false,
 	btnTitle: 'BTN_W654', //버튼의 제목
 	disable: false, // 버튼탭 사용불가 상태 boolean
 	btnLayout: btn_w226, // 버튼의 레이아웃(width, height, radius 등의 수치 결정)
 	titleFontStyle: 24, // 버튼 title의 폰트 크기
 	btnStyle: 'border', // 버튼스타일 filled border noBorder
-	onOpen: e => console.log(e),
-	onClose: e => console.log(e),
+	onOpen: e => console.log('actionButton Open', e),
+	onClose: e => console.log('actionButton close', e),
 };
