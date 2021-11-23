@@ -104,7 +104,7 @@ export default RootStackNavigation = () => {
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="MainTab">
+				<RootStack.Navigator initialRouteName="ApplyProtectActivityA">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} />

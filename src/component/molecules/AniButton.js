@@ -1,9 +1,9 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
-import {APRI10, GRAY20, GRAY30, WHITE} from 'Root/config/color';
+import { Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { APRI10, GRAY20, GRAY30, WHITE } from 'Root/config/color';
 import DP from 'Root/config/dp';
-import {txt} from 'Root/config/textstyle';
-import {btn_w226} from '../atom/btn/btn_style';
+import { txt } from 'Root/config/textstyle';
+import { btn_w226 } from '../atom/btn/btn_style';
 /**
  *
  * @param {{btnTitle : string,
@@ -11,7 +11,7 @@ import {btn_w226} from '../atom/btn/btn_style';
  * btnStyle : 'filled' | 'border' | 'noborder' | undefined,
  * btnLayout : Component ,
  * disable : boolean,
- * titleFontStyle : number,
+ * titleFontStyle : 'Title 글꼴크기 , default = 24',
  * onPress : Function   }} props
  */
 export default AniButton = props => {
@@ -43,9 +43,9 @@ export default AniButton = props => {
 	//default는 APRI10, Gray의 경우 GRAY20
 	const border = () => {
 		if (props.btnStyle == 'border' && props.btnTheme == 'gray') {
-			return {borderColor: GRAY20, borderWidth: 4 * DP};
+			return { borderColor: GRAY20, borderWidth: 4 * DP };
 		} else if (props.btnStyle == 'border') {
-			return {borderColor: APRI10, borderWidth: 4 * DP};
+			return { borderColor: APRI10, borderWidth: 4 * DP };
 		}
 	};
 
@@ -66,7 +66,7 @@ export default AniButton = props => {
 
 	const insideView = () => {
 		return (
-			<View style={[props.btnLayout, btnTheme(), border(), {backgroundColor: btnStyle(), justifyContent: 'center'}]}>
+			<View style={[props.btnLayout, btnTheme(), border(), { backgroundColor: btnStyle(), justifyContent: 'center' }]}>
 				<Text
 					style={[
 						txt.noto24b,

@@ -1,10 +1,17 @@
 import React from 'react';
-import {View, StyleSheet, Text, Dimensions, TouchableWithoutFeedback} from 'react-native';
-import {Modal} from 'Component/modal/Modal';
+import { View, StyleSheet, Text, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { Modal } from 'Component/modal/Modal';
 import DP from 'Root/config/dp';
 import AniButton from './AniButton';
 
-export default Dropdown = React.forwardRef((props,ref) => {
+/**
+ *
+ * @param {{
+ * buttonComponent : '',
+ * dropdownList : '',
+ * }} props
+ */
+export default Dropdown = props => {
 	const container = React.useRef();
 	const isClick = React.useRef(false);
 
@@ -40,10 +47,10 @@ export default Dropdown = React.forwardRef((props,ref) => {
 		}
 	};
 
-	const positionX = (px,width)=> {
-		if(props.alignRight){
+	const positionX = (px, width) => {
+		if (props.alignRight) {
 			return px - width;
-		}else{
+		} else {
 			return px;
 		}
 
@@ -54,7 +61,7 @@ export default Dropdown = React.forwardRef((props,ref) => {
 			container.current.measure((fx, fy, width, height, px, py) => {
 				const dropdownList = React.cloneElement(props.dropdownList, {
 					style: [
-						{position: 'absolute', top: positionY(py,height), left: positionX(px,width), paddingBottom: 15 * DP},
+						{ position: 'absolute', top: positionY(py, height), left: positionX(px, width), paddingBottom: 15 * DP },
 						props.dropdownList.props.style,
 					],
 				});
@@ -80,11 +87,11 @@ export default Dropdown = React.forwardRef((props,ref) => {
 			{button}
 		</View>
 	);
-});
+};
 
 Dropdown.defaultProps = {
-	dropdownList: <View style={{position: 'absolute', width: 100, height: 100, backgroundColor: 'blue'}} />,
-	buttonComponent: <AniButton />,
+	dropdownList: <View style={{ position: 'absolute', width: 100, height: 100, backgroundColor: 'blue' }} />,
+	buttonComponent: <View style={{ position: 'absolute', width: 100, height: 100, backgroundColor: 'white' }} />,
 	alignBottom: false,
 	alignRight: false,
 };

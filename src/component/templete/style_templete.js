@@ -267,7 +267,7 @@ export const temp_style = StyleSheet.create({
 	},
 	addressInput: {
 		width: 654 * DP,
-		height: 238 * DP,
+		// height: 238 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -277,7 +277,7 @@ export const temp_style = StyleSheet.create({
 	},
 	input24A_applyCompanionA: {
 		width: 654 * DP,
-		height: 122 * DP,
+		// height: 122 * DP,
 	},
 	datePicker_assignShelterInformation: {
 		width: 654 * DP,
@@ -2059,6 +2059,7 @@ export const shelterMenu = StyleSheet.create({
 export const shelterInfoSetting = StyleSheet.create({
 	container: {
 		flex: 1,
+		alignItems: 'center'
 	},
 	shelterInfoSetting_step1: {
 		width: 750 * DP,
@@ -2070,7 +2071,7 @@ export const shelterInfoSetting = StyleSheet.create({
 	btn_w242: {
 		width: 280 * DP,
 		height: 60 * DP,
-		// backgroundColor: '#FBE0AF',
+		alignItems: 'center',
 		marginTop: 30 * DP,
 	},
 	shelterInfoSetting_step2: {

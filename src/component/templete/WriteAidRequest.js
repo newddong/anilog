@@ -11,7 +11,7 @@ export default WriteAidRequest = props => {
 
 	//사진 추가 클릭
 	const gotoSelectPicture = () => {
-		navigation.push('MultiPhotoSelect', props.route.name);
+		props.navigation.push('MultiPhotoSelect', props.route.name);
 	};
 
 	return (

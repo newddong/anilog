@@ -167,7 +167,7 @@ export const SHELTER = 'shelter';
 export const mobile_carrier = ['SKT 텔레콤', 'LGU+', 'KT', '알뜰'];
 
 //반려동물 종류
-export const pet_kind = ['개', '고양이', '새', '여우', '거북이', '햄스터'];
+export const PET_KIND = ['개', '고양이', '새', '여우', '거북이', '햄스터'];
 //테스트용 Array
 export const testArray = [
 	'테스트용 Array',
@@ -222,3 +222,8 @@ export const INFO_QUESTION = '정보/문의';
 
 export const PLEASE_UPLOAD_PIC = '해당 동물의 특징이 잘 보이는 이미지를 올려주세요.';
 export const PLEASE_GIVE_ME_DATE_AND_PLACE = '해당 동물이 구조된 날짜와 장소를 알려 주세요.';
+
+// CompanionForm (반려 생활 추가) , ApplyCompanion참조
+export const PET_AGE = ['1세 이하', '5세 이하', '10세 이하', '15세 이하', '15세 이상']
+export const COMPANION_DURATION = ['1년 이하', '5년 이하', '10년 이하', '15년 이하', '15년 이상']
+export const COMPANION_STATUS = ['함께 생활하고 있어요.', '잠시 떨어져 있어요.', '무지개 다리를 건넜어요.']
