@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { Text, View, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { dummy_AnimalNeedHelpList } from 'Root/config/dummyDate_json';
+import { dummy_AnimalNeedHelpList, dummy_ShelterProtectAnimalObject } from 'Root/config/dummyDate_json';
 import { NORMAL, PET, SHELTER } from 'Root/i18n/msg';
 import { Write94 } from '../atom/icon';
 import TabSelectFilled_Type2 from '../molecules/TabSelectFilled_Type2';
@@ -110,7 +110,7 @@ export default Profile = props => {
 			//보호소프로필 상태에서 보호활동 Tab을 눌렀을 경우에는 요보호동물 리스트를 출력
 			return tabMenuSelected == 2 ? (
 				//보호활동탭의 동물 List 썸네일 클릭할 경우 해당 동물의 상태 Detail Screen으로 이동
-				<AnimalNeedHelpList data={dummy_AnimalNeedHelpList} onLabelClick={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)} />
+				<AnimalNeedHelpList data={dummy_ShelterProtectAnimalObject} onLabelClick={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)} />
 			) : (
 				// 그 이외의 피드, 태그 탭 상태에서는 Feed리스트를 출력
 				<FeedThumbnailList onClickThumnail={onClick_FeedThumbnail_ShelterProfile} />

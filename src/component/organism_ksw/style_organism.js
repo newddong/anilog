@@ -321,8 +321,6 @@ export const socialInfoB = StyleSheet.create({
 		width: 500 * DP,
 		height: 106 * DP,
 		flexDirection: 'row',
-
-		// backgroundColor: BGCOLOR,
 	},
 	socialInfo: {
 		width: 164 * DP,
@@ -330,10 +328,9 @@ export const socialInfoB = StyleSheet.create({
 		marginRight: 4 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
-		// backgroundColor: 'pink',
 	},
 	number: {
-		width: 80 * DP,
+		width: 130 * DP,
 		height: 50 * DP,
 		textAlign: 'center',
 	},
@@ -1131,11 +1128,11 @@ export const animalNeedHelp = StyleSheet.create({
 export const animalNeedHelpList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		marginTop: 20 * DP,
+		// marginTop: 20 * DP,
 	},
 	itemContainer: {
 		alignItems: 'center',
-		marginBottom: 40 * DP,
+		marginBottom: 20 * DP,
 	},
 });
 

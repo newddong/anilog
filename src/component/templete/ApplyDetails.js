@@ -20,28 +20,39 @@ export default ApplyDetails = props => {
 
 	React.useEffect(() => {
 		// console.log('data details', data)
+		// Modal.close()
 	}, [data])
 
-	const isProtectRoute = props.route.name == 'ApplyProtectActivityE'
-	console.log(isProtectRoute)
 
-	const goToProfile = () => {
-		Modal.close()
-		navigation.navigate('UserProfile')
+	//실제 DB에 넣는 작업이 행해질 부분 / Modal 순서까지만 구현
+	const REGISTER = () => {
+		setTimeout(() => {
+			Modal.popNoBtn('신청이 완료 되었습니다. #enter 보호소마다 심사의 기간과 기준이 다르며, 상황에 따라 연락이 가지 않을 수도 있음을 알려드립니다.')
+		}, 1000);
+		setTimeout(() => {
+			Modal.close()
+			navigation.navigate('UserProfile')
+		}, 4000);
 	}
 
-	const onRegister = () => {
-		Modal.popTwoBtn(isProtectRoute ? '이 내용으로 보호 활동 신청을 하시겠습니까?' : '위 내용으로 입양 신청을 하시겠습니까?', '취소', '확인', () => Modal.close(), goToProfile)
+	//모달창에서 최종 확인을 클릭
+	const onFinalize = () => {
+		Modal.close()
+		REGISTER()
+	}
+
+	//등록버튼 클릭
+	const onPressRegister = () => {
+		const isProtectRoute = props.route.name == 'ApplyProtectActivityE' //임시보호 루트로 왔는지 여부 확인 - 아닐 경우 입양 루트
+		Modal.popTwoBtn(isProtectRoute ? '이 내용으로 보호 활동 신청을 하시겠습니까?' : '위 내용으로 입양 신청을 하시겠습니까?', '취소', '확인', () => Modal.close(), onFinalize)
 	}
 
 	return (
 		<View style={[login_style.wrp_main, applyDetails.container]}>
 			<ScrollView>
-
 				<View style={[temp_style.animalProtectDetails, applyDetails.animalProtectDetails]}>
 					<AnimalProtectDetail data={data} />
 				</View>
-
 				<View style={[applyDetails.btnContainer,]}>
 					<View style={[btn_style.btn_w226, applyDetails.btn_w226]}>
 						<AniButton btnStyle={'border'} btnLayout={btn_w226} btnTitle={'뒤로'} onPress={() => navigation.goBack()} />
@@ -53,7 +64,7 @@ export default ApplyDetails = props => {
 							<AniButton
 								btnLayout={btn_w226}
 								btnTitle={'신청'}
-								onPress={onRegister}
+								onPress={onPressRegister}
 							/>
 						)}
 					</View>

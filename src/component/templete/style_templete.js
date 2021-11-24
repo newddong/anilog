@@ -1681,7 +1681,7 @@ export const userMenu_style = StyleSheet.create({
 	},
 	contents: {
 		width: 420 * DP,
-		height: 92 * DP,
+		height: 111 * DP,
 	},
 	socialInfoB: {
 		width: 500 * DP,
@@ -2680,7 +2680,6 @@ export const appliesRecord = StyleSheet.create({
 	},
 	record: {
 		width: 654 * DP,
-		height: 276 * DP,
 		marginTop: 30 * DP,
 		alignItems: 'center',
 		alignSelf: 'center',
@@ -2700,9 +2699,9 @@ export const appliesRecord = StyleSheet.create({
 			title: {
 				width: 214 * DP,
 				height: 48 * DP,
-
 				alignItems: 'center',
 				justifyContent: 'center',
+				color: GRAY20
 			},
 			moreTxt: {
 				width: 100 * DP,

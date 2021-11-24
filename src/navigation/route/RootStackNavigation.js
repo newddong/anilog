@@ -50,6 +50,7 @@ import NoBtnModal from 'Molecules/NoBtnModal';
 import { Modal } from 'Component/modal/Modal';
 import DatePicker from 'Root/component/molecules/DatePicker';
 import Calendar from 'Root/test_sangwoo/calendar';
+import Camera from 'Root/component/templete/Camera';
 const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
@@ -153,6 +154,8 @@ export default RootStackNavigation = () => {
 
 					<RootStack.Screen name="SinglePhotoSelect" component={PhotoSelect} />
 					<RootStack.Screen name="MultiPhotoSelect" component={PhotoSelect} />
+					{/* 카메라 컴포넌트 임시 추가 */}
+					<RootStack.Screen name="Camera" component={Camera} />
 					<RootStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
 
 					<RootStack.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
