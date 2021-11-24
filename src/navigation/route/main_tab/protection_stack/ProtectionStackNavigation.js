@@ -16,7 +16,7 @@ const ProtectionStack = createStackNavigator();
 
 export default ProtectionStackNavigation = () => {
 	return (
-		<ProtectionStack.Navigator initialRouteName="ActivationDetail">
+		<ProtectionStack.Navigator initialRouteName="MissingAnimalDetail">
 			<ProtectionStack.Screen name="ProtectionTab" component={MissingAnimalDetail} />
 
 			<ProtectionStack.Screen name="UserProfile" component={Profile} />

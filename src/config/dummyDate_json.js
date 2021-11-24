@@ -603,10 +603,14 @@ export const dummy_ownerList = [
 	},
 ];
 
-export const missing_user_info = {
+export const dummy_missing_user_info = {
 	user_nickname: 'winter',
 	user_id: 'radio',
 	img_uri: 'https://i.ytimg.com/vi/ERAMkP92arE/maxresdefault.jpg',
-	location: '공덕역',
+	location: '서울',
 	text_intro: 'Text/Intro',
+	missing_data:
+		'생후 2개월때 #제주도펫샵에서 데려온 #둥이인데 너무나 보고 싶습니다. ' +
+		'유난히 #창가에 앉아서 별을 보는 것을 좋아하던 녀석이였는데 이렇게 하루아침에 없어지다니 너무 그립네요.' +
+		'#우유 먹는것도 좋아하고 #공놀이도 좋아하던 리버야 ~  도대체 어디에 있니 .......',
 };

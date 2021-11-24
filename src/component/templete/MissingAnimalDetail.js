@@ -6,6 +6,7 @@ import {Post_dog} from 'Asset/image';
 import FeedContent from '../organism/FeedContent';
 import CommentList from '../organism_ksw/CommentList';
 import {useNavigation} from '@react-navigation/core';
+import {dummy_missing_user_info} from 'Root/config/dummyDate_json';
 
 export default MissingAnimalDetail = props => {
 	const navigation = useNavigation();
@@ -86,7 +87,7 @@ export default MissingAnimalDetail = props => {
 					<SvgWrap svg={<Post_dog />} />
 				</View>
 				<View style={[temp_style.feedContent, missingAnimalDetail.feedContent]}>
-					<FeedContent />
+					<FeedContent user_info={dummy_missing_user_info} />
 				</View>
 				<View style={missingAnimalDetail.horizontal_separator} />
 				<View style={[temp_style.commentList, missingAnimalDetail.commentList]}>
