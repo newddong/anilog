@@ -1,9 +1,9 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {APRI10, BLACK, GRAY20} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { APRI10, BLACK, GRAY20 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
 import CheckBox from '../molecules/CheckBox';
-import {assignCheckListItem} from './style_organism';
+import { assignCheckListItem } from './style_organism';
 
 /**
  *
@@ -23,14 +23,14 @@ export default AssignCheckListItem = props => {
 	return (
 		<View style={[assignCheckListItem.container]}>
 			<View style={[assignCheckListItem.check50]}>
-				<CheckBox onCheck={e => onCheck(e)} state={props.state} />
+				<CheckBox onCheck={e => onCheck(e)} state={props.data.state} />
 			</View>
 			<View style={[assignCheckListItem.textContainer]}>
-				<Text style={[txt.noto24, {color: chekced ? APRI10 : BLACK}]}>{props.data.text}</Text>
+				<Text style={[txt.noto24, { color: chekced ? APRI10 : BLACK }]}>{props.data.text}</Text>
 			</View>
 			{props.data.detail ? (
 				<TouchableOpacity onPress={() => props.onPressDetail()} style={[assignCheckListItem.detailText]}>
-					<Text style={[txt.roboto24b, {color: GRAY20, textDecorationLine: 'underline'}]}>보기</Text>
+					<Text style={[txt.roboto24b, { color: GRAY20, textDecorationLine: 'underline' }]}>보기</Text>
 				</TouchableOpacity>
 			) : null}
 		</View>
