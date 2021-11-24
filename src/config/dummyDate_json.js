@@ -624,3 +624,18 @@ export const missing_user_info = {
 		'유난히 #창가에 앉아서 별을 보는 것을 좋아하던 녀석이였는데 이렇게 하루아침에 없어지다니 너무 그립네요.' +
 		'#우유 먹는것도 좋아하고 #공놀이도 좋아하던 리버야 ~  도대체 어디에 있니 .......',
 };
+
+export const report_user_info = {
+	user_nickname: '워너원',
+	user_id: 'win',
+	img_uri: 'https://cdn.topstarnews.net/news/photo/201810/493240_153149_154.jpg',
+	location: '제주도',
+	text_intro: 'Text/Intro',
+	tipOff: true,
+	report_date: '2021.10.20',
+	report_place: '경기도 김포시 김포한강 8로',
+	calcData: '2일전',
+	commentCnt: 3,
+	missing_data:
+		'이현동 큰 사거리 #맥도날드 공사장 근처에서 갈색 #말티즈가 혼자 돌아다니는걸 봤어요. 목걸이는 없고 애가 굉장히 잠이 부족해 보였어요. 마치 이틀동안 밤샘한 동료 같았어요. 나름 깨끗한거 보니 잃어버린지 얼마되지 않은것 같아사 제보합니다.!',
+};

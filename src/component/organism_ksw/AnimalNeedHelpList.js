@@ -1,9 +1,9 @@
 import React from 'react';
-import { FlatList, TouchableOpacity, View, Text } from 'react-native';
+import {FlatList, TouchableOpacity, View, Text, ScrollView} from 'react-native';
 import AnimalNeedHelp from './AnimalNeedHelp';
-import { animalNeedHelpList } from './style_organism';
-import { useNavigation } from '@react-navigation/core';
-import { dummy_AnimalNeedHelpList } from 'Root/config/dummyDate_json';
+import {animalNeedHelpList} from './style_organism';
+import {useNavigation} from '@react-navigation/core';
+import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
 
 /**
  *
@@ -13,10 +13,9 @@ import { dummy_AnimalNeedHelpList } from 'Root/config/dummyDate_json';
  * }} props
  */
 export default AnimalNeedHelpList = props => {
-
 	const onLabelClick = (status, id, item) => {
-		props.onLabelClick(status, id, item)
-	}
+		props.onLabelClick(status, id, item);
+	};
 
 	const renderItem = (item, index) => {
 		return (
@@ -36,9 +35,13 @@ export default AnimalNeedHelpList = props => {
 	};
 
 	return (
-		//width: 702 * DP
-		<View style={[animalNeedHelpList.container,]}>
-			<FlatList data={props.data} renderItem={({ item, index }) => renderItem(item, index)} nestedScrollEnabled />
+		//  width: 702 * DP
+		<View style={[animalNeedHelpList.container]}>
+			<ScrollView horizontal={false}>
+				<ScrollView horizontal={true}>
+					<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} nestedScrollEnabled />
+				</ScrollView>
+			</ScrollView>
 		</View>
 	);
 };

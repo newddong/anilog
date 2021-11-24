@@ -34,7 +34,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 	};
 
 	return (
-		<ScrollView>
+		<ScrollView style={{flex: 1}}>
 			<View style={[login_style.wrp_main, protectRequestList.container]}>
 				<View style={[searchProtectRequest.filterView]}>
 					<View style={[searchProtectRequest.filterView.inside]}>

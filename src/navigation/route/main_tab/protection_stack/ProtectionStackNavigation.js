@@ -11,13 +11,14 @@ import ActivationDetail from 'Templete/ActivationDetail';
 
 import {PIC_SELECTION} from 'Root/i18n/msg';
 import SocialRelationTopTabNavigation from './socialRelation_tab/SocialRelationTopTabNavigation';
+import ProtectionTopTabNavigation from './protection_tab/ProtectionTopTabNavigation';
 
 const ProtectionStack = createStackNavigator();
 
 export default ProtectionStackNavigation = () => {
 	return (
-		<ProtectionStack.Navigator initialRouteName="MissingAnimalDetail">
-			<ProtectionStack.Screen name="ProtectionTab" component={MissingAnimalDetail} />
+		<ProtectionStack.Navigator initialRouteName="ProtectionTab">
+			<ProtectionStack.Screen name="ProtectionTab" component={ProtectionTopTabNavigation} />
 
 			<ProtectionStack.Screen name="UserProfile" component={Profile} />
 			<ProtectionStack.Screen name="SocialRelationTopTab" component={SocialRelationTopTabNavigation} />
