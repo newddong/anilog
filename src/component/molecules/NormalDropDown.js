@@ -17,6 +17,7 @@ import DropdownSelect from './DropdownSelect';
  * btnLayout : '버튼의 레이아웃 ex)btn_w226' ,
  * disable : boolean,
  * titleFontStyle : number,
+ * defaultIndex : '미선택 상태에서 보여지는 item의 index',
  * width :'number / DropDown 길이'
  * onOpen : Function,
  * onClose : Function,
@@ -25,11 +26,9 @@ import DropdownSelect from './DropdownSelect';
  */
 export default NormalDropDown = props => {
 
+	console.log('default', props.defaultIndex)
 	const [selectedIndex, setSelectedIndex] = React.useState(0)
 
-	const onClose = () => {
-		Modal.close()
-	}
 	const onSelect = (v, i) => {
 		setSelectedIndex(i)
 		Modal.close()
@@ -40,7 +39,7 @@ export default NormalDropDown = props => {
 
 	return (
 		<Dropdown
-			buttonComponent={<DropdownSelect items={props.menu} selectedIndex={selectedIndex} defaultIndex={0} width={props.width} />}
+			buttonComponent={<DropdownSelect items={props.menu} selectedIndex={props.defaultIndex != null ? props.defaultIndex : selectedIndex} defaultIndex={props.defaultIndex} width={props.width} />}
 			dropdownList={
 				<View style={{ backgroundColor: WHITE, borderRadius: 10 * DP, alignItems: 'center', borderWidth: 4 * DP }}>
 					{props.menu.map((v, i) =>
@@ -87,7 +86,8 @@ NormalDropDown.defaultProps = {
 	disable: false, // 버튼탭 사용불가 상태 boolean
 	btnLayout: btn_w226, // 버튼의 레이아웃(width, height, radius 등의 수치 결정)
 	titleFontStyle: 24, // 버튼 title의 폰트 크기
-	btnStyle: 'border', // 버튼스타일 filled border noBorder
+	btnStyle: 'border', // 버튼스타일 filled border noBorder,
+	defaultIndex: null,
 	onOpen: e => console.log(e),
 	onClose: e => console.log(e),
 	onSelect: (v, i) => console.log(i + ':' + v),

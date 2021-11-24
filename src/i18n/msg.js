@@ -226,4 +226,4 @@ export const PLEASE_GIVE_ME_DATE_AND_PLACE = '해당 동물이 구조된 날짜�
 // CompanionForm (반려 생활 추가) , ApplyCompanion참조
 export const PET_AGE = ['1세 이하', '5세 이하', '10세 이하', '15세 이하', '15세 이상']
 export const COMPANION_DURATION = ['1년 이하', '5년 이하', '10년 이하', '15년 이하', '15년 이상']
-export const COMPANION_STATUS = ['함께 생활하고 있어요.', '잠시 떨어져 있어요.', '무지개 다리를 건넜어요.']
+export const COMPANION_STATUS = ['함께 생활하고 있어요.', '입양이 되었어요.', '무지개 다리를 건넜어요.']

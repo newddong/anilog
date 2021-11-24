@@ -5,25 +5,25 @@ import SvgWrapper, {SvgWrap} from 'Screens/svgwrapper';
 import {MainTabFeed, MainTabMy, MainTabVideo, MainTabSaveAnimal} from 'Asset/image_v2';
 import {txt} from 'Root/config/textstyle';
 import {tab, layout} from './style_BottomTab';
-import {MAINCOLOR, GRAY_MAINTAB} from 'Root/config/color';
+import {APRI10,GRAY20 } from 'Root/config/color';
+import {FeedTabFilled,FeedTabBorder,AnimalSavingTabBorder,AnimalSavingTabFilled,CommunityTabBorder,CommunityTabFilled,MyTabBorder,MyTabFilled} from 'Atom/icon';
 
 export default function BottomTab({state, descriptors, navigation}) {
 	const focusedOptions = descriptors[state.routes[state.index].key].options;
 	const icons = [
-		<MainTabFeed fill={GRAY_MAINTAB} />,
-		<MainTabSaveAnimal fill={GRAY_MAINTAB} />,
-		<MainTabVideo fill={GRAY_MAINTAB} />,
-		<MainTabMy fill={GRAY_MAINTAB} />,
+		<FeedTabBorder/>,
+		<AnimalSavingTabBorder/>,
+		<CommunityTabBorder/>,
+		<MyTabBorder/>,
 	];
 	const iconsFocused = [
-		<MainTabFeed fill={MAINCOLOR} />,
-		<MainTabSaveAnimal fill={MAINCOLOR} />,
-		<MainTabVideo fill={MAINCOLOR} />,
-		<MainTabMy fill={MAINCOLOR} />,
+		<FeedTabFilled/>,
+		<AnimalSavingTabFilled/>,
+		<CommunityTabFilled/>,
+		<MyTabFilled/>,
 	];
 
-	const iconstyle = [tab.tab_feed, tab.tab_animal_saving, tab.tab_video, tab.tab_my];
-	const iconlayout = [layout.tab_feed, layout.tab_animal_saving, layout.tab_video, layout.tab_my];
+	const iconlayout = [tab.tab_feed, tab.tab_animal_saving, tab.tab_community, tab.tab_my];
 
 	if (focusedOptions.tabBarVisible === false) {
 		return null;
@@ -38,7 +38,7 @@ export default function BottomTab({state, descriptors, navigation}) {
 					const label = options.tabBarLabel !== undefined ? options.tabBarLabel : options.title !== undefined ? options.title : route.name;
 
 					const isFocused = state.index === index;
-					const color = isFocused ? MAINCOLOR : GRAY_MAINTAB;
+					const color = isFocused ? APRI10 : GRAY20;
 					const textStyle = isFocused ? txt.noto22b : txt.noto22;
 					const textStyleEng = isFocused ? txt.roboto22b : txt.roboto22;
 
@@ -50,7 +50,7 @@ export default function BottomTab({state, descriptors, navigation}) {
 						});
 
 						if (!isFocused && !event.defaultPrevented) {
-							navigation.navigate(route.name);
+							navigation.navigate({name:route.name,merge:true});
 						}
 					};
 
@@ -63,10 +63,10 @@ export default function BottomTab({state, descriptors, navigation}) {
 
 					const renderTab = index => {
 						return (
-							<View style={[tab.hitboxLayout, iconstyle[index]]}>
-								<SvgWrapper style={iconlayout[index]} svg={isFocused ? iconsFocused[index] : icons[index]} />
-
-								<Text style={[{color: color}, index === 3 ? textStyleEng : textStyle, {lineHeight: 36 * DP}]}>{label}</Text>
+							<View style={[tab.hitboxLayout,iconlayout[index]]}>
+								{/* <SvgWrapper style={iconlayout[index]} svg={isFocused ? iconsFocused[index] : icons[index]} /> */}
+								{isFocused?iconsFocused[index]:icons[index]}
+								<Text style={[index === 3 ? textStyleEng : textStyle,{color: color,lineHeight:36*DP,marginTop:7*DP}]}>{label}</Text>
 							</View>
 						);
 					};

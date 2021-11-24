@@ -1,8 +1,9 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { GRAY10 } from 'Root/config/color';
+import { GRAY10, GRAY40 } from 'Root/config/color';
 import { txt } from 'Root/config/textstyle';
 import { COMPANION_DURATION, COMPANION_STATUS, PET_AGE, PET_KIND } from 'Root/i18n/msg';
+import { Cross52 } from '../atom/icon';
 import NormalDropDown from '../molecules/NormalDropDown';
 import { companionForm } from './style_organism';
 
@@ -14,9 +15,24 @@ import { companionForm } from './style_organism';
  * onSelectAge:void,
  * onSelectDuration :void,
  * onSelectStatus :void,
+ * onDelete : void,
  * }} props
  */
 export default CompanionForm = props => {
+
+	console.log('props.item최종', props.data)
+	const getIndex_species = element => element == props.data.companion_pet_species
+	const getIndex_age = element => element == props.data.companion_pet_age
+	const getIndex_period = element => element == props.data.companion_pet_period
+	const getIndex_status = element => element == props.data.companion_pet_current_status
+	const species_index = PET_KIND.findIndex(getIndex_species)
+	const age_index = PET_AGE.findIndex(getIndex_age)
+	const period_index = COMPANION_DURATION.findIndex(getIndex_period)
+	const status_index = COMPANION_STATUS.findIndex(getIndex_status)
+	console.log(species_index)
+	console.log(age_index)
+	console.log(period_index)
+	console.log(status_index)
 
 	//종 선택 콜백
 	const onSelectSpecies = (v, i) => {
@@ -53,6 +69,7 @@ export default CompanionForm = props => {
 							<NormalDropDown
 								menu={PET_KIND}
 								onSelect={(v, i) => onSelectSpecies(v, i)}
+								defaultIndex={species_index != null ? species_index : 0}
 							/>
 						</View>
 					</View>
@@ -64,6 +81,8 @@ export default CompanionForm = props => {
 							<NormalDropDown
 								menu={PET_AGE}
 								onSelect={(v, i) => onSelectAge(v, i)}
+								defaultIndex={age_index != null ? age_index : 0}
+
 							/>
 						</View>
 					</View>
@@ -75,6 +94,7 @@ export default CompanionForm = props => {
 							<NormalDropDown
 								menu={COMPANION_DURATION}
 								onSelect={(v, i) => onSelectDuration(v, i)}
+								defaultIndex={period_index != null ? period_index : 0}
 							/>
 						</View>
 					</View>
@@ -84,15 +104,25 @@ export default CompanionForm = props => {
 						menu={COMPANION_STATUS}
 						onSelect={(v, i) => onSelectStatus(v, i)}
 						width={654}
+						defaultIndex={status_index != null ? status_index : 0}
 					/>
 				</View>
+			</View>
+			<View style={{ position: 'absolute', right: -5, top: -5, borderRadius: 50, backgroundColor: GRAY40 }}>
+				<Cross52 onPress={() => props.onDelete()} />
 			</View>
 		</View>
 	);
 };
 
 CompanionForm.defaultProps = {
-
+	data: {
+		companion_pet_species: PET_KIND[0],
+		companion_pet_age: PET_AGE[0],
+		companion_pet_period: COMPANION_DURATION[0],
+		companion_pet_current_status: COMPANION_STATUS[0]
+	},
+	onDelete: e => console.log(e)
 }
 
 // value: null,
