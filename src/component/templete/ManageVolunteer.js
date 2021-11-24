@@ -23,7 +23,7 @@ export default ManageVolunteer = props => {
 	};
 
 	return (
-		<ScrollView>
+		<ScrollView style={{flex: 1}}>
 			<View style={[login_style.wrp_main, manageVolunteer.container]}>
 				{/* VolunteerList */}
 				<View style={[manageVolunteer.title]}>

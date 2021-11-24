@@ -124,7 +124,7 @@ export default ShelterMenu = props => {
 
 	return (
 		<View style={(login_style.wrp_main, shelterMenu.container)}>
-			<ScrollView>
+			<ScrollView style={{flex: 1}}>
 				<View style={[shelterMenu.shelterMenuStep1]}>
 					{/* Shelter Info*/}
 					<View style={[shelterMenu.shelterInfo]}>
