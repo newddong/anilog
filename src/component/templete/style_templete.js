@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
 	MAINCOLOR,
 	LINK,
@@ -464,7 +464,6 @@ export const temp_style = StyleSheet.create({
 	},
 	animalNeedHelpList: {
 		width: 654 * DP,
-		height: 958 * DP,
 		alignSelf: 'center',
 		backgroundColor: '#FFF',
 	},
@@ -1852,11 +1851,13 @@ export const assignProtectAnimal_style = StyleSheet.create({
 		flexDirection: 'row',
 		borderRadius: 40 * DP,
 		borderWidth: 2 * DP,
-		borderColor: GRAY10
+		borderColor: GRAY10,
 	},
 	addPhotoText: {
 		textAlignVertical: 'center',
-		textAlign: 'center', color: GRAY10, alignSelf: 'center'
+		textAlign: 'center',
+		color: GRAY10,
+		alignSelf: 'center',
 	},
 	pic: {
 		flexDirection: 'row',
@@ -2059,7 +2060,7 @@ export const shelterMenu = StyleSheet.create({
 export const shelterInfoSetting = StyleSheet.create({
 	container: {
 		flex: 1,
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	shelterInfoSetting_step1: {
 		width: 750 * DP,
@@ -2669,8 +2670,8 @@ export const searchProtectRequest = StyleSheet.create({
 	},
 	animalNeedHelpList: {
 		width: 654 * DP,
-		height: 958 * DP,
 		alignSelf: 'center',
+		backgroundColor: '#FFF',
 	},
 });
 
@@ -2751,8 +2752,8 @@ export const missingReportList = StyleSheet.create({
 	animalNeedHelpList: {
 		marginTop: 30 * DP,
 		width: 654 * DP,
-		height: 1082 * DP,
 		alignSelf: 'center',
+		backgroundColor: '#FFF',
 	},
 	urget_write1: {
 		width: 110 * DP,
@@ -2961,7 +2962,7 @@ export const applyCompanionA = StyleSheet.create({
 export const applyCompanionB = StyleSheet.create({
 	container: {
 		flex: 1,
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	inputForm: {
 		marginTop: 40 * DP,
@@ -3507,7 +3508,7 @@ export const feedWrite = StyleSheet.create({
 });
 
 export const profile = StyleSheet.create({
-	container: { flex: 1 },
+	container: {flex: 1},
 	profileInfo: {
 		width: 750 * DP,
 		marginBottom: 30 * DP,

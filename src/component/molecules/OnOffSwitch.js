@@ -1,8 +1,8 @@
 import React from 'react';
-import { txt } from 'Root/config/textstyle';
-import { Text, View, TouchableOpacity } from 'react-native';
+import {txt} from 'Root/config/textstyle';
+import {Text, View, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
-import { APRI10, GRAY40, WHITE } from 'Root/config/color';
+import {APRI10, GRAY40, WHITE} from 'Root/config/color';
 
 /**
  *
@@ -18,7 +18,12 @@ export default OnOffSwitch = props => {
 	return (
 		<View>
 			{btnStatus ? (
-				<TouchableOpacity onPress={() => setBtnStatus(!btnStatus)}>
+				<TouchableOpacity
+					onPress={() => {
+						setBtnStatus(!btnStatus);
+						props.onSwtichOn();
+					}}>
+					{console.log('btnStatus=>' + btnStatus)}
 					<View
 						style={{
 							width: 84 * DP,
@@ -27,14 +32,19 @@ export default OnOffSwitch = props => {
 							borderRadius: 18 * DP,
 							justifyContent: 'center',
 							alignItems: 'center',
-							backgroundColor: APRI10
+							backgroundColor: APRI10,
 						}}>
-						<Text style={[txt.roboto20, { color: WHITE }]}> On </Text>
-						<View style={{ width: 28 * DP, height: 28 * DP, borderRadius: 30, backgroundColor: WHITE }} />
+						<Text style={[txt.roboto20, {color: WHITE}]}> On </Text>
+						<View style={{width: 28 * DP, height: 28 * DP, borderRadius: 30, backgroundColor: WHITE}} />
 					</View>
 				</TouchableOpacity>
 			) : (
-				<TouchableOpacity onPress={() => setBtnStatus(!btnStatus)}>
+				<TouchableOpacity
+					onPress={() => {
+						setBtnStatus(!btnStatus);
+						props.onSwtichOff();
+					}}>
+					{console.log('btnStatus=>' + btnStatus)}
 					<View
 						style={{
 							width: 84 * DP,
@@ -45,8 +55,8 @@ export default OnOffSwitch = props => {
 							alignItems: 'center',
 							backgroundColor: GRAY40,
 						}}>
-						<View style={{ width: 28 * DP, height: 28 * DP, borderRadius: 30, backgroundColor: WHITE }} />
-						<Text style={[txt.roboto20, { color: WHITE }]}> Off </Text>
+						<Text style={[txt.roboto20, {color: WHITE}]}> Off </Text>
+						<View style={{width: 28 * DP, height: 28 * DP, borderRadius: 30, backgroundColor: WHITE}} />
 					</View>
 				</TouchableOpacity>
 			)}

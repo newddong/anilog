@@ -4,7 +4,6 @@ import AnimalNeedHelp from './AnimalNeedHelp';
 import {animalNeedHelpList} from './style_organism';
 import {useNavigation} from '@react-navigation/core';
 import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
-
 /**
  *
  *@param {{

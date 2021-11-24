@@ -230,3 +230,6 @@ export const COMPANION_STATUS = ['함께 생활하고 있어요.', '입양이 �
 
 //버튼
 export const SHARE = '공유';
+
+//안내 메세지
+export const ONLY_CONTENT_FOR_ADOPTION = '입양 가능한 게시글만 보기';
