@@ -200,9 +200,7 @@ export const dummy_protectedPetList = [
 export const dummy_selectedMediaList = [
 	'https://opgg-static.akamaized.net/images/lol/champion/Teemo.png?image=c_scale,q_auto,w_140&v=1635906101',
 
-
 	'https://i.ytimg.com/vi/kZJYqUoTinA/maxresdefault.jpg',
-
 ];
 
 export const dummy_petList = [
@@ -616,4 +614,11 @@ export const dummy_adoptorInfo = {
 	user_nickname: '닮은 테이',
 	img_uri: 'http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040004/07/01/0400040701_1165_011.043.jpg',
 	text_intro: '철권형아, 버거집사장',
+};
+export const missing_user_info = {
+	user_nickname: 'winter',
+	user_id: 'radio',
+	img_uri: 'https://i.ytimg.com/vi/ERAMkP92arE/maxresdefault.jpg',
+	location: '공덕역',
+	text_intro: 'Text/Intro',
 };
