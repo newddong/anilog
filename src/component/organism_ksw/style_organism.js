@@ -710,9 +710,9 @@ export const companionFormList = StyleSheet.create({
 export const assignCheckListItem = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		height: 72 * DP,
+		height: 50 * DP,
 		alignItems: 'center',
-		flexDirection: 'row',
+		flexDirection: 'row'
 	},
 	check50: {
 		width: 50 * DP,
@@ -737,7 +737,7 @@ export const assignCheckList = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	assignCheckListItem: {
-		marginBottom: 40 * DP,
+		marginBottom: 30 * DP,
 	},
 });
 
