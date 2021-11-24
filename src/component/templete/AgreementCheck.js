@@ -14,92 +14,77 @@ import {login_style, btn_style, temp_style, progressbar_style, agreementCheck_st
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default AgreementCheck = props => {
-	let user_agreement = {
+	const user_agreement = React.useRef({
 		is_over_fourteen: false, //14살 이상
 		is_service: false, //서비스 동의
 		is_personal_Info: false, //개인정보 제공 동의
 		is_location_service_info: false, //위치정보 제공 동의
 		is_donation_info: false, //기부정보 제공 동의
 		is_marketting_Info: false, //마케팅정보 제공 동의
-	};
+	}).current;
+	
 	const [permissionToNext, setPermissionToNext] = React.useState(false);
-	const [acceptanceState, setAcceptanceState] = React.useState(user_agreement);
 	const [acceptAllState, setAcceptAllState] = React.useState(false);
 
-	React.useEffect(() => {
-		//전체 동의 버튼을 누른 상태에서 마케팅 수신을 거부설정 한 경우
+	const goToNextStep = () => {
+		props.navigation.push('UserVerification', user_agreement);
+	};
+
+	const onPressAceeptAllBtn = state => {
+		Object.keys(user_agreement).forEach(key=>{user_agreement[key]=state});
+		setAcceptAllState(state);
+	};
+
+	const permissionCheck = ()=>{
 		if (
-			acceptanceState.is_donation_info &&
-			acceptanceState.is_location_service_info &&
-			acceptanceState.is_over_fourteen &&
-			acceptanceState.is_personal_Info &&
-			acceptanceState.is_service
+			user_agreement.is_donation_info &&
+			user_agreement.is_location_service_info &&
+			user_agreement.is_over_fourteen &&
+			user_agreement.is_personal_Info &&
+			user_agreement.is_service
 		) {
 			setPermissionToNext(true);
 		} else {
 			setPermissionToNext(false);
 		}
-		
-	}, [acceptanceState]);
+	}
 
-	const goToNextStep = () => {
-		const userAssignInfo = {
-			is_marketting_Info: acceptanceState.is_marketting_Info,
-		};
-		console.log(acceptanceState);
-		props.navigation.push('UserVerification', acceptanceState);
-	};
-
-	const onPressAceeptAllBtn = state => {
-		let copy = acceptanceState;
-		copy = {
-			is_over_fourteen: state, //14살 이상
-			is_service: state, //서비스 동의
-			is_personal_Info: state, //개인정보 제공 동의
-			is_location_service_info: state, //위치정보 제공 동의
-			is_donation_info: state, //기부정보 제공 동의
-			is_marketting_Info: state, //마케팅정보 제공 동의
-		};
-		setAcceptanceState({...copy});
-		setAcceptAllState(state);
-	};
-	const onPressAcceptItem = (text, index, state) => {
-		// text - 동의 내역, index - 리스트 인덱스 , state - T/F 상태
-		let copy = acceptanceState;
+	const onPressAcceptItem = (text, index, isCheck) => {
+		// text - 동의 내역, index - 리스트 인덱스 , isCheck - T/F 상태
 		switch (index) {
 			case 0:
-				copy.is_over_fourteen = state;
-				setAcceptanceState({...copy});
+				user_agreement.is_over_fourteen = isCheck;
 				break;
 			case 1:
-				copy.is_service = state;
-				setAcceptanceState({...copy});
+				user_agreement.is_service = isCheck;
 				break;
 			case 2:
-				copy.is_personal_Info = state;
-				setAcceptanceState({...copy});
+				user_agreement.is_personal_Info = isCheck;
 				break;
 			case 3:
-				copy.is_location_service_info = state;
-				setAcceptanceState({...copy});
+				user_agreement.is_location_service_info = isCheck;
 				break;
 			case 4:
-				copy.is_donation_info = state;
-				setAcceptanceState({...copy});
+				user_agreement.is_donation_info = isCheck;
 				break;
 			case 5:
-				copy.is_marketting_Info = state;
-				setAcceptanceState({...copy});
+				user_agreement.is_marketting_Info = isCheck;
 				break;
 		}
-		
+		permissionCheck();
 	};
+
 	const onPressDetail = index => {
 		console.log(index + 'index 항목 더보기 클릭');
 	};
+	
 	return (
 		<ScrollView contentContainerStyle={{flex:1,backgroundColor:'red'}}>
+			
 			<View style={[login_style.wrp_main, {flex: 1}]}>
+			<TouchableWithoutFeedback onPress={()=>console.log(user_agreement)}>
+				<View style={{backgroundColor:'red',height:30,width:30,position:'absolute',top:0,left:0}}></View>
+				</TouchableWithoutFeedback>
 				{/* (M)StageBar	 */}
 				<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 					<Stagebar
@@ -122,13 +107,13 @@ export default AgreementCheck = props => {
 
 				{/* AgreementCheckList */}
 				<View style={[temp_style.agreementCheckList, agreementCheck_style.agreementCheckList]}>
-					<AssignCheckListItem data={{text: '아래 항목에 전체 동의합니다', detail: false}} onCheck={state => onPressAceeptAllBtn(state)} />
+					<AssignCheckListItem data={{text: '아래 항목에 전체 동의합니다', detail: false}} onCheck={onPressAceeptAllBtn} />
 					<View style={[agreementCheck_style.horizontalSepartor]} />
 					<AssignCheckList
 						items={userAssign_agreementCheckList}
-						onCheck={(text, index, state) => onPressAcceptItem(text, index, state)}
-						state={acceptAllState}
-						onPressDetail={index => onPressDetail(index)}
+						onCheck={onPressAcceptItem}
+						isCheckAll={acceptAllState}
+						onPressDetail={onPressDetail}
 					/>
 				</View>
 
