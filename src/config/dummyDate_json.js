@@ -338,70 +338,53 @@ export const dummy_volunteerItemList = [
 	},
 ];
 
+// Title : ShelterProtectAnimalObject
+
+
 export const dummy_AnimalNeedHelpList = [
 	{
-		kind: '고양이',
-		breed: '미분류',
-		temp_protection_request: true,
-		adoption_days_remain: 10,
-		registered_date: '2021-06-17',
-		location: '자운동',
-		saved_location: '경기도 강정동',
-		thumbnailData: {
-			user_id: 1,
-			img_uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU',
-			gender: 'male',
-			status: 'missing', // protected, missing, reported, onNegotiation, adoption_available
-		},
-	},
-	{
-		user_id: 2,
-		kind: '개',
-		breed: '푸들',
-		temp_protection_request: false,
-		adoption_days_remain: 15,
-		registered_date: '2021-06-17',
-		location: '성수동',
-		saved_location: '성수역 부근',
-		thumbnailData: {
-			user_id: 2,
-			img_uri:
-				'https://post-phinf.pstatic.net/MjAxOTEyMTFfMSAg/MDAxNTc2MDYwOTk2MzM4.hRAOmfp1PuPj0EX4jTatEZyVMn0gU2YdWra6NWJdkV8g.cCgMDCRnyoXJnCzQ6lBd91rDScNFTk0vzp9C7a__C_kg.JPEG/20191203-%EC%9E%84%EC%8B%9C%EB%B3%B4%ED%98%B8_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg?type=w1200',
-			gender: 'female',
-			status: 'reported', // protected, missing, reported, onNegotiation, adoption_available
-		},
-	},
-	{
-		user_id: 3,
-		kind: '개',
-		breed: '토종 삽살',
-		temp_protection_request: true,
-		registered_date: '2021-06-17',
-		location: '테트리스',
-		saved_location: '세이브포인트',
-		thumbnailData: {
-			user_id: 3,
-			img_uri: 'https://blog.kakaocdn.net/dn/bny7V5/btqD9iCy2Al/KT4pZZtNVbncoKzxTMtyU1/img.jpg',
-			gender: 'female',
-			status: 'emergency', // protected, missing, reported, onNegotiation, adoption_available
-		},
-	},
-	{
-		user_id: 4,
-		kind: null,
-		breed: null,
-		temp_protection_request: true,
-		registered_date: '2021-06-17',
-		location: '테트리스',
-		saved_location: '세이브포인트',
-		thumbnailData: {
-			user_id: 4,
-			img_uri: 'http://pds.joins.com/news/component/htmlphoto_mmdata/201108/09/htm_2011080914431340004010-002.JPG',
-			gender: 'female',
-			status: 'onNegotiation', // protected, missing, reported, onNegotiation, adoption_available
-		},
+		protect_animal_photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU'], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '자운동', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '러브숏', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'male', //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //중성화 여부
+		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: '1.2', //몸무게
+
+		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_adoption_days_remain: 10,
+		protect_animal_protect_request: true,
+		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
+		//임시보호가 되면 protect로 변경
+		//입양을 가게 되면 상태가 adopt로 변경
+		//임시보호, 입양 협의중이면 discuss로 변경
+		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
+
+		protect_animal_writer_id: null,// Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
+
+		protect_animal_protect_request_id: null, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
+		protect_animal_adoptor_id: null, //Mongodb_ID(ref:UserObject), //입양자
+		protect_animal_protector_id: null, //Mongodb_ID(ref:UserObject), //임시보호자
+		protect_animal_protector_discussion_id: null,// Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
 	},
 ];
+
+export const dummy_user_shelter = {
+	user_type: 'shelter',
+	user_profile_uri: 'https://www.urbanbrush.net/web/wp-content/uploads/edd/2017/09/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7-2017-09-03-%EC%98%A4%ED%9B%84-11.40.12-548x548.png',
+	shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+	shelter_name: '아름보호소', //보호소 이름
+	shelter_address: {
+		city: '서울시', //시,도 
+		district: '마포구', //군,구
+		neighbor: '용강동 89-77' //동,읍,면
+	}, //보호소 주소
+	shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+	shelter_delegate_contact_number: '010-9645-0422', //보호소 대표 전화번호, 휴대폰 번호
+	shelter_foundation_date: '2021-11-07', //보호소 설립일
+}
 
 export const dummy_myPetList = [
 	{
@@ -454,20 +437,43 @@ export const dummy_shelterInfo = {
 };
 
 export const applyComanionCheckList = [
-	'입양 혹은 임시보호를 하려는 당사자는 성인입니다',
-	'주거지 근처에 접종을 위해 주기적으로 갈 수 있는 동물병원이 있습니다',
-	'현재 함께 사는 동거인들에게 입양 혹은 임시보호의 동의를 받았거나 동거인이 없습니다.',
-	'입양 혹은 임시보호를 하려는 동물에 대한 배변 훈련 지식이 있습니다.',
-	'입양 혹은 임시보호를 하려는 동물 청결(손톱 손질, 목욕, 항문낭, 귀청결 등)에 대한 지식이 있습니다.',
+	{
+		text: '입양 혹은 임시보호를 하려는 당사자는 성인입니다',
+		detail: false,
+		state: false
+	},
+	{
+		text: '주거지 근처에 접종을 위해 주기적으로 갈 수 있는 동물병원이 있습니다',
+		detail: false,
+		state: false
+
+	},
+	{
+		text: '현재 함께 사는 동거인들에게 입양 혹은 임시보호의 동의를 받았거나 동거인이 없습니다.',
+		detail: false,
+		state: false
+
+	},
+	{
+		text: '입양 혹은 임시보호를 하려는 동물에 대한 배변 훈련 지식이 있습니다.',
+		detail: false,
+		state: false
+
+	},
+	{
+		text: '입양 혹은 임시보호를 하려는 동물 청결(손톱 손질, 목욕, 항문낭, 귀청결 등)에 대한 지식이 있습니다.',
+		detail: false,
+		state: false
+	},
 ];
 
 export const userAssign_agreementCheckList = [
-	{text: '본인은 만 14세 이상입니다. (필수)', detail: false},
-	{text: '서비스 이용약관 동의 (필수)', detail: true},
-	{text: '개인정보 수집 이용약관 동의 (필수)', detail: true},
-	{text: '위치기반 서비스 이용약관 동의 (필수)', detail: true},
-	{text: '기부내역 이용약관 동의(필수)', detail: true},
-	{text: '이벤트 및 마케팅 정보 수신 동의 동의(선택)', detail: false},
+	{ text: '본인은 만 14세 이상입니다. (필수)', detail: false },
+	{ text: '서비스 이용약관 동의 (필수)', detail: true },
+	{ text: '개인정보 수집 이용약관 동의 (필수)', detail: true },
+	{ text: '위치기반 서비스 이용약관 동의 (필수)', detail: true },
+	{ text: '기부내역 이용약관 동의(필수)', detail: true },
+	{ text: '이벤트 및 마케팅 정보 수신 동의 동의(선택)', detail: false },
 ];
 
 export const initial_number = ['010', '02', '031', '033', '043', '041', '054', '055', '063', '061', '064'];
@@ -603,6 +609,12 @@ export const dummy_ownerList = [
 	},
 ];
 
+export const dummy_adoptorInfo = {
+	user_id: 'Tei_0409',
+	user_nickname: '닮은 테이',
+	img_uri: 'http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040004/07/01/0400040701_1165_011.043.jpg',
+	text_intro: '철권형아, 버거집사장',
+};
 export const missing_user_info = {
 	user_nickname: 'winter',
 	user_id: 'radio',

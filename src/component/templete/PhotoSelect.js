@@ -73,11 +73,12 @@ export default PhotoSelect = props => {
 		});
 	});
 
+	//확인
 	const checkOut = () => {
 		props.onCheckOut(photoArray);
 		console.log('체크아웃 - 보낼 Photo의 img_uri', photoArray)
 		console.log('Photoselect에서 체크아웃 - 돌아갈 navigation 네임 ', props.route.params);
-		props.navigation.navigate(props.route.params, photoArray);
+		props.navigation.navigate(props.route.params, { photo: photoArray });
 	};
 
 	const onSelect = (img, state, index) => { //img - img_uri, state - 선택인지, 선택해제인지 여부 , index - 전체 사진 목록 중 선택한 사진의 index

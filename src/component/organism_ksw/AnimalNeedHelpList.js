@@ -13,10 +13,9 @@ import { dummy_AnimalNeedHelpList } from 'Root/config/dummyDate_json';
  * }} props
  */
 export default AnimalNeedHelpList = props => {
-	const navigation = useNavigation();
 
-	const onLabelClick = (status, id) => {
-		props.onLabelClick(status, id)
+	const onLabelClick = (status, id, item) => {
+		props.onLabelClick(status, id, item)
 	}
 
 	const renderItem = (item, index) => {
@@ -38,7 +37,7 @@ export default AnimalNeedHelpList = props => {
 
 	return (
 		//width: 702 * DP
-		<View style={[animalNeedHelpList.container]}>
+		<View style={[animalNeedHelpList.container,]}>
 			<FlatList data={props.data} renderItem={({ item, index }) => renderItem(item, index)} nestedScrollEnabled />
 		</View>
 	);

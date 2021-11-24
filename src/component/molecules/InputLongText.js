@@ -1,8 +1,8 @@
 import React from 'react';
-import {txt} from 'Root/config/textstyle';
-import {Text, View, TextInput} from 'react-native';
+import { txt } from 'Root/config/textstyle';
+import { Text, View, TextInput } from 'react-native';
 import DP from 'Root/config/dp';
-import {APRI10, GRAY10, GRAY30} from 'Root/config/color';
+import { APRI10, GRAY10, GRAY30 } from 'Root/config/color';
 /**
  *
  * @param {{
@@ -13,9 +13,12 @@ import {APRI10, GRAY10, GRAY30} from 'Root/config/color';
  * }} props
  */
 export default InputLongText = props => {
-	console.log('value ' + JSON.stringify(props.value));
 	const [content, setContent] = React.useState('');
 	const inputRef = React.useRef();
+
+	React.useEffect(() => {
+		props.value != null ? setContent(props.value) : null
+	}, [props.value])
 
 	const blur = () => {
 		inputRef.current.blur();
@@ -35,7 +38,7 @@ export default InputLongText = props => {
 	};
 
 	return (
-		<View style={{flexDirection: 'row'}}>
+		<View style={{ flexDirection: 'row' }}>
 			<View
 				style={{
 					width: 710 * DP,
@@ -46,17 +49,17 @@ export default InputLongText = props => {
 					alignItems: 'center',
 					justifyContent: 'center',
 				}}>
-				<View style={{width: 654 * DP, height: 344 * DP}}>
+				<View style={{ width: 654 * DP, height: 344 * DP }}>
 					<TextInput
-						style={[txt.noto24, {width: 654 * DP, height: 314 * DP, textAlignVertical: 'top'}]}
+						style={[txt.noto24, { width: 654 * DP, height: 314 * DP, textAlignVertical: 'top' }]}
 						onChangeText={text => onChange(text)}
 						placeholder={props.placeholder}
 						multiline={true}
 						ref={inputRef}
 						defaultValue={props.value}
 					/>
-					<View style={{width: 95 * DP, height: 30 * DP, alignSelf: 'flex-end'}}>
-						<Text style={[txt.roboto24, {color: GRAY10}]}>
+					<View style={{ width: 95 * DP, height: 30 * DP, alignSelf: 'flex-end' }}>
+						<Text style={[txt.roboto24, { color: GRAY10 }]}>
 							{content.length}/{props.maxlength}
 						</Text>
 					</View>
@@ -67,7 +70,7 @@ export default InputLongText = props => {
 };
 InputLongText.defaultProps = {
 	placeholder: 'placeholder',
-	value: 'value',
+	value: null,
 	maxlength: 500,
 	onChange: e => console.log(e),
 };

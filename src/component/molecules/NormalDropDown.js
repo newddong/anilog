@@ -26,7 +26,6 @@ import DropdownSelect from './DropdownSelect';
  */
 export default NormalDropDown = props => {
 
-	console.log('default', props.defaultIndex)
 	const [selectedIndex, setSelectedIndex] = React.useState(0)
 
 	const onSelect = (v, i) => {
@@ -39,7 +38,7 @@ export default NormalDropDown = props => {
 
 	return (
 		<Dropdown
-			buttonComponent={<DropdownSelect items={props.menu} selectedIndex={props.defaultIndex != null ? props.defaultIndex : selectedIndex} defaultIndex={props.defaultIndex} width={props.width} />}
+			buttonComponent={<DropdownSelect items={props.menu} selectedIndex={selectedIndex} defaultIndex={props.defaultIndex} width={props.width} />}
 			dropdownList={
 				<View style={{ backgroundColor: WHITE, borderRadius: 10 * DP, alignItems: 'center', borderWidth: 4 * DP }}>
 					{props.menu.map((v, i) =>

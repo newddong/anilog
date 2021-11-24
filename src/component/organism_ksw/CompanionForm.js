@@ -20,19 +20,26 @@ import { companionForm } from './style_organism';
  */
 export default CompanionForm = props => {
 
-	console.log('props.item최종', props.data)
-	const getIndex_species = element => element == props.data.companion_pet_species
-	const getIndex_age = element => element == props.data.companion_pet_age
-	const getIndex_period = element => element == props.data.companion_pet_period
-	const getIndex_status = element => element == props.data.companion_pet_current_status
-	const species_index = PET_KIND.findIndex(getIndex_species)
-	const age_index = PET_AGE.findIndex(getIndex_age)
-	const period_index = COMPANION_DURATION.findIndex(getIndex_period)
-	const status_index = COMPANION_STATUS.findIndex(getIndex_status)
-	console.log(species_index)
-	console.log(age_index)
-	console.log(period_index)
-	console.log(status_index)
+	// console.log('props.item최종', props.data)
+	// const getIndex_species = element => element == props.data.companion_pet_species
+	// const getIndex_age = element => element == props.data.companion_pet_age
+	// const getIndex_period = element => element == props.data.companion_pet_period
+	// const getIndex_status = element => element == props.data.companion_pet_current_status
+	// const species_index = PET_KIND.findIndex(getIndex_species)
+	// const age_index = PET_AGE.findIndex(getIndex_age)
+	// const period_index = COMPANION_DURATION.findIndex(getIndex_period)
+	// const status_index = COMPANION_STATUS.findIndex(getIndex_status)
+	// console.log(species_index)
+	// console.log(age_index)
+	// console.log(period_index)
+	// console.log(status_index)
+
+	// const [isTempData, setIsTempData] = React.useState(false)
+
+	// React.useEffect(() => {
+	// 	props.data.temp ? setIsTempData(true) : setIsTempData(false)
+	// 	console.log('isTempData', isTempData)
+	// }, [props.data.temp])
 
 	//종 선택 콜백
 	const onSelectSpecies = (v, i) => {
@@ -69,7 +76,7 @@ export default CompanionForm = props => {
 							<NormalDropDown
 								menu={PET_KIND}
 								onSelect={(v, i) => onSelectSpecies(v, i)}
-								defaultIndex={species_index != null ? species_index : 0}
+							// defaultIndex={isTempData ? species_index : 0}
 							/>
 						</View>
 					</View>
@@ -81,7 +88,7 @@ export default CompanionForm = props => {
 							<NormalDropDown
 								menu={PET_AGE}
 								onSelect={(v, i) => onSelectAge(v, i)}
-								defaultIndex={age_index != null ? age_index : 0}
+							// defaultIndex={isTempData ? age_index : 0}
 
 							/>
 						</View>
@@ -94,7 +101,7 @@ export default CompanionForm = props => {
 							<NormalDropDown
 								menu={COMPANION_DURATION}
 								onSelect={(v, i) => onSelectDuration(v, i)}
-								defaultIndex={period_index != null ? period_index : 0}
+							// defaultIndex={isTempData ? period_index : 0}
 							/>
 						</View>
 					</View>
@@ -104,7 +111,7 @@ export default CompanionForm = props => {
 						menu={COMPANION_STATUS}
 						onSelect={(v, i) => onSelectStatus(v, i)}
 						width={654}
-						defaultIndex={status_index != null ? status_index : 0}
+					// defaultIndex={isTempData ? status_index : 0}
 					/>
 				</View>
 			</View>
@@ -120,7 +127,8 @@ CompanionForm.defaultProps = {
 		companion_pet_species: PET_KIND[0],
 		companion_pet_age: PET_AGE[0],
 		companion_pet_period: COMPANION_DURATION[0],
-		companion_pet_current_status: COMPANION_STATUS[0]
+		companion_pet_current_status: COMPANION_STATUS[0],
+		temp: false
 	},
 	onDelete: e => console.log(e)
 }
