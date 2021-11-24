@@ -200,9 +200,7 @@ export const dummy_protectedPetList = [
 export const dummy_selectedMediaList = [
 	'https://opgg-static.akamaized.net/images/lol/champion/Teemo.png?image=c_scale,q_auto,w_140&v=1635906101',
 
-
 	'https://i.ytimg.com/vi/kZJYqUoTinA/maxresdefault.jpg',
-
 ];
 
 export const dummy_petList = [
@@ -464,12 +462,12 @@ export const applyComanionCheckList = [
 ];
 
 export const userAssign_agreementCheckList = [
-	{ text: '본인은 만 14세 이상입니다. (필수)', detail: false },
-	{ text: '서비스 이용약관 동의 (필수)', detail: true },
-	{ text: '개인정보 수집 이용약관 동의 (필수)', detail: true },
-	{ text: '위치기반 서비스 이용약관 동의 (필수)', detail: true },
-	{ text: '기부내역 이용약관 동의(필수)', detail: true },
-	{ text: '이벤트 및 마케팅 정보 수신 동의 동의(선택)', detail: false },
+	{text: '본인은 만 14세 이상입니다. (필수)', detail: false},
+	{text: '서비스 이용약관 동의 (필수)', detail: true},
+	{text: '개인정보 수집 이용약관 동의 (필수)', detail: true},
+	{text: '위치기반 서비스 이용약관 동의 (필수)', detail: true},
+	{text: '기부내역 이용약관 동의(필수)', detail: true},
+	{text: '이벤트 및 마케팅 정보 수신 동의 동의(선택)', detail: false},
 ];
 
 export const initial_number = ['010', '02', '031', '033', '043', '041', '054', '055', '063', '061', '064'];
@@ -605,3 +603,10 @@ export const dummy_ownerList = [
 	},
 ];
 
+export const missing_user_info = {
+	user_nickname: 'winter',
+	user_id: 'radio',
+	img_uri: 'https://i.ytimg.com/vi/ERAMkP92arE/maxresdefault.jpg',
+	location: '공덕역',
+	text_intro: 'Text/Intro',
+};
