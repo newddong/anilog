@@ -1139,8 +1139,8 @@ export const agreementCheck_style = StyleSheet.create({
 	horizontalSepartor: {
 		width: 654 * DP,
 		height: 2 * DP,
-		marginVertical: 15 * DP,
-		backgroundColor: GRAY10,
+		marginVertical: 20 * DP,
+		backgroundColor: GRAY30,
 	},
 });
 

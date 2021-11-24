@@ -8,19 +8,26 @@ import {useNavigation} from '@react-navigation/core';
 import {FavoriteTag48_Filled, Meatball50_GRAY20_Horizontal, Share48_Filled} from '../atom/icon';
 import {txt} from 'Root/config/textstyle';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
-
 import FeedText from '../organism_ksw/FeedText';
 import DP from 'Root/config/dp';
 import {GRAY10} from 'Root/config/color';
+import {SHARE} from 'Root/i18n/msg';
+
 export default FeedContent = props => {
 	const navigation = useNavigation();
+	const dumy_data = props.data;
+	const location = '모델하우스 앞 공터';
 
-	const test_data = {
+	let temp_data = {
 		user_nickname: 'user_nickname',
 		user_id: 'user_id',
 		img_uri: 'https://i.ytimg.com/vi/ERAMkP92arE/maxresdefault.jpg',
 		location: 'location',
 		text_intro: 'Text/Intro',
+		feedText_contents:
+			'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. That is not a propblem ' +
+			'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. 다른 강아지들은 높은곳을 무서워한다는데 정말 알 수가 없네요ㅎㅎㅎ' +
+			'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. 다른 강아지들은 높은곳을 무서워한다는데 정말 알 수가 없네요ㅎㅎㅎ',
 	};
 
 	//화면전환 시 isGotHeight는 초기값으로 가서 차후 호출 시, Height를 다시 받아오도록 함
@@ -79,7 +86,11 @@ export default FeedContent = props => {
 			<View style={[organism_style.userLocationLabel_view_feedContent]}>
 				{/* UserLocationLabel */}
 				<View style={[organism_style.userLocationLabel_feedContent]}>
-					<UserLocationLabel data={test_data} onLabelClick={() => navigation.push('UserProfile')} />
+					{dumy_data != undefined ? (
+						<UserLocationLabel data={dumy_data} onLabelClick={() => navigation.push('UserProfile')} />
+					) : (
+						<UserLocationLabel data={temp_data} onLabelClick={() => navigation.push('UserProfile')} />
+					)}
 				</View>
 
 				{/* type값이 status일 경우 status 버튼이 나오고 그렇지 않으면 다른 버튼 표기 */}
@@ -115,7 +126,7 @@ export default FeedContent = props => {
 								<Share48_Filled />
 							</View>
 							<View style={[organism_style.share_feedContent, feedContent_style.share]}>
-								<Text style={[txt.noto24, {color: GRAY10}]}>공유</Text>
+								<Text style={[txt.noto24, {color: GRAY10}]}>{SHARE}</Text>
 							</View>
 						</View>
 					</View>
@@ -125,7 +136,8 @@ export default FeedContent = props => {
 			{/* line 1-1 (제보관련 내용) */}
 			{props.data.tipOff && (
 				<View style={[organism_style.tipOff_feedContent, feedContent_style.tipOff]}>
-					<Text>제보 날짜: 20201.10.22\n제보장소: 경기도 김포시 김포한강8로 16-6 인근 비닐 하우스</Text>
+					<Text style={[txt.noto28]}>제보 날짜: {dumy_data.report_date}</Text>
+					<Text style={[txt.noto28]}>제보 장소: {dumy_data.report_place}</Text>
 				</View>
 			)}
 
@@ -145,19 +157,16 @@ export default FeedContent = props => {
 					},
 				]}
 				onLayout={onLayout}>
-				<FeedText
-					text={
-						'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. That is not a propblem ' +
-						'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. 다른 강아지들은 높은곳을 무서워한다는데 정말 알 수가 없네요ㅎㅎㅎ' +
-						'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. 다른 강아지들은 높은곳을 무서워한다는데 정말 알 수가 없네요ㅎㅎㅎ'
-					}
-					onHashClick={hashText => moveToFeedListForHashTag(hashText)}
-				/>
+				{dumy_data != undefined ? (
+					<FeedText text={dumy_data.missing_data} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
+				) : (
+					<FeedText text={temp_data.feedText_contents} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
+				)}
 			</View>
 			{/* 피드 작성 날짜  3 */}
 			<View style={[organism_style.time_view_feedContent, {marginTop: btnStatus ? null : 10 * DP}]}>
 				<View style={[organism_style.time_feedContent]}>
-					<Text>1일 전</Text>
+					<Text>{dumy_data.calcData}</Text>
 				</View>
 
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}
@@ -184,7 +193,7 @@ FeedContent.defaultProps = {
 	data: {
 		type: 'button',
 		addMore: true,
-		tipOff: false,
+		tipOff: true,
 		content: 'comment 내용을 넣어야 합니다.',
 	},
 };

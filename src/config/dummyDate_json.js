@@ -362,29 +362,30 @@ export const dummy_ShelterProtectAnimalObject = [
 		//임시보호, 입양 협의중이면 discuss로 변경
 		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
 
-		protect_animal_writer_id: null,// Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
+		protect_animal_writer_id: null, // Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
 
 		protect_animal_protect_request_id: null, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
 		protect_animal_adoptor_id: null, //Mongodb_ID(ref:UserObject), //입양자
 		protect_animal_protector_id: null, //Mongodb_ID(ref:UserObject), //임시보호자
-		protect_animal_protector_discussion_id: null,// Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
+		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
 	},
 ];
 
 export const dummy_user_shelter = {
 	user_type: 'shelter',
-	user_profile_uri: 'https://www.urbanbrush.net/web/wp-content/uploads/edd/2017/09/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7-2017-09-03-%EC%98%A4%ED%9B%84-11.40.12-548x548.png',
+	user_profile_uri:
+		'https://www.urbanbrush.net/web/wp-content/uploads/edd/2017/09/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7-2017-09-03-%EC%98%A4%ED%9B%84-11.40.12-548x548.png',
 	shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
 	shelter_name: '아름보호소', //보호소 이름
 	shelter_address: {
-		city: '서울시', //시,도 
+		city: '서울시', //시,도
 		district: '마포구', //군,구
-		neighbor: '용강동 89-77' //동,읍,면
+		neighbor: '용강동 89-77', //동,읍,면
 	}, //보호소 주소
 	shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
 	shelter_delegate_contact_number: '010-9645-0422', //보호소 대표 전화번호, 휴대폰 번호
 	shelter_foundation_date: '2021-11-07', //보호소 설립일
-}
+};
 
 export const dummy_myPetList = [
 	{
@@ -440,30 +441,27 @@ export const applyComanionCheckList = [
 	{
 		text: '입양 혹은 임시보호를 하려는 당사자는 성인입니다',
 		detail: false,
-		state: false
+		state: false,
 	},
 	{
 		text: '주거지 근처에 접종을 위해 주기적으로 갈 수 있는 동물병원이 있습니다',
 		detail: false,
-		state: false
-
+		state: false,
 	},
 	{
 		text: '현재 함께 사는 동거인들에게 입양 혹은 임시보호의 동의를 받았거나 동거인이 없습니다.',
 		detail: false,
-		state: false
-
+		state: false,
 	},
 	{
 		text: '입양 혹은 임시보호를 하려는 동물에 대한 배변 훈련 지식이 있습니다.',
 		detail: false,
-		state: false
-
+		state: false,
 	},
 	{
 		text: '입양 혹은 임시보호를 하려는 동물 청결(손톱 손질, 목욕, 항문낭, 귀청결 등)에 대한 지식이 있습니다.',
 		detail: false,
-		state: false
+		state: false,
 	},
 ];
 
@@ -615,12 +613,32 @@ export const dummy_adoptorInfo = {
 	img_uri: 'http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040004/07/01/0400040701_1165_011.043.jpg',
 	text_intro: '철권형아, 버거집사장',
 };
+
 export const missing_user_info = {
 	user_nickname: 'winter',
 	user_id: 'radio',
 	img_uri: 'https://i.ytimg.com/vi/ERAMkP92arE/maxresdefault.jpg',
-	location: '공덕역',
+	location: '서울',
 	text_intro: 'Text/Intro',
+	missing_data:
+		'생후 2개월때 #제주도펫샵에서 데려온 #둥이인데 너무나 보고 싶습니다. ' +
+		'유난히 #창가에 앉아서 별을 보는 것을 좋아하던 녀석이였는데 이렇게 하루아침에 없어지다니 너무 그립네요.' +
+		'#우유 먹는것도 좋아하고 #공놀이도 좋아하던 리버야 ~  도대체 어디에 있니 .......',
+};
+
+export const report_user_info = {
+	user_nickname: '워너원',
+	user_id: 'win',
+	img_uri: 'https://cdn.topstarnews.net/news/photo/201810/493240_153149_154.jpg',
+	location: '제주도',
+	text_intro: 'Text/Intro',
+	tipOff: true,
+	report_date: '2021.10.20',
+	report_place: '경기도 김포시 김포한강 8로',
+	calcData: '2일전',
+	commentCnt: 3,
+	missing_data:
+		'이현동 큰 사거리 #맥도날드 공사장 근처에서 갈색 #말티즈가 혼자 돌아다니는걸 봤어요. 목걸이는 없고 애가 굉장히 잠이 부족해 보였어요. 마치 이틀동안 밤샘한 동료 같았어요. 나름 깨끗한거 보니 잃어버린지 얼마되지 않은것 같아사 제보합니다.!',
 };
 
 export const dummy_userObject = {

@@ -1,8 +1,8 @@
 import React from 'react';
-import { FlatList } from 'react-native';
-import { View } from 'react-native';
+import {FlatList} from 'react-native';
+import {View} from 'react-native';
 import AssignCheckListItem from './AssignCheckListItem';
-import { assignCheckList } from './style_organism';
+import {assignCheckList} from './style_organism';
 
 /**
  *
@@ -13,19 +13,27 @@ import { assignCheckList } from './style_organism';
  * }} props
  */
 export default AssignCheckList = props => {
+	const [isCheckAll,setCheckAll] = React.useState(false);
+	React.useEffect(()=>{
+		
+		setCheckAll(props.isCheckAll);
+	},[props.isCheckAll])
+
 
 	const renderItem = (item, index) => {
 		return (
-			<View style={[assignCheckList.assignCheckListItem]}>
+			<View style={[assignCheckList.assignCheckListItem]} key={index}>
 				<AssignCheckListItem
 					data={item}
-					onCheck={state => props.onCheck(item, index, state)}
+					onCheck={isCheck => props.onCheck(item, index, isCheck)}
+					isCheck={isCheckAll}
 					onPressDetail={() => props.onPressDetail(index)}
 				/>
 			</View>
 		);
 	};
-	return <FlatList data={props.items} renderItem={({ item, index }) => renderItem(item, index)}></FlatList>;
+	return (props.items.map((item,index)=>renderItem(item,index)));
+	// return <FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)}></FlatList>;
 };
 
 AssignCheckList.defaultProps = {

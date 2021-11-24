@@ -6,6 +6,7 @@ import {Post_dog} from 'Asset/image';
 import FeedContent from '../organism/FeedContent';
 import CommentList from '../organism_ksw/CommentList';
 import {useNavigation} from '@react-navigation/core';
+import {dummy_missing_user_info} from 'Root/config/dummyDate_json';
 
 export default MissingAnimalDetail = props => {
 	const navigation = useNavigation();
@@ -86,9 +87,11 @@ export default MissingAnimalDetail = props => {
 					<SvgWrap svg={<Post_dog />} />
 				</View>
 				<View style={[temp_style.feedContent, missingAnimalDetail.feedContent]}>
-					<FeedContent />
+					{/* DB에서 가져오는 제보 피드글 데이터를 FeedContent에 넘겨준다. */}
+					<FeedContent data={dummy_missing_user_info} />
 				</View>
 				<View style={missingAnimalDetail.horizontal_separator} />
+				{/* 댓글에 관한 내용 - API에서 넘겨주는 값 확인 후 재수정 필요*/}
 				<View style={[temp_style.commentList, missingAnimalDetail.commentList]}>
 					<CommentList onPressReplyBtn={onReplyBtnClick} onPress_ChildComment_ReplyBtn={comment => onChildReplyBtnClick(comment)} />
 				</View>
