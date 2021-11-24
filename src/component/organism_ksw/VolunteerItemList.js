@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View, ScrollView} from 'react-native';
 import {GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {volunteerItemList} from './style_organism';
@@ -18,7 +18,11 @@ export default VolunteerItemList = props => {
 
 	return (
 		<View style={[volunteerItemList.container]}>
-			<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} />
+			<ScrollView horizontal={false}>
+				<ScrollView horizontal={true}>
+					<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} />
+				</ScrollView>
+			</ScrollView>
 		</View>
 	);
 };

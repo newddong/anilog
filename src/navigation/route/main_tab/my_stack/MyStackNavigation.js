@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import Profile from 'Templete/Profile';
 import SocialRelation from 'Templete/SocialRelation';
 import FeedList from 'Templete/FeedList';
@@ -53,7 +53,7 @@ const MyStack = createStackNavigator();
 
 export default MyStackNavigation = () => {
 	return (
-		<MyStack.Navigator initialRouteName="AnimalProtectRequestDetail">
+		<MyStack.Navigator initialRouteName="ShelterMenu">
 			<MyStack.Screen name="UserFeedList" component={FeedList} />
 			<MyStack.Screen name="UserFeeds" component={FavoriteFeeds} />
 			<MyStack.Screen name="HashFeedList" component={FeedList} />
@@ -75,7 +75,7 @@ export default MyStackNavigation = () => {
 			<MyStack.Screen
 				name="UserInfoDetailSetting"
 				component={UserInfoDetailSettting}
-				options={{ header: props => <SaveButtonHeader {...props} />, title: '프로필 상세 정보' }}
+				options={{header: props => <SaveButtonHeader {...props} />, title: '프로필 상세 정보'}}
 			/>
 
 			<MyStack.Screen name="PetInfoSetting" component={PetInfoSetting} />
