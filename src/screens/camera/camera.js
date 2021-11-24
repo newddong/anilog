@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, ScrollView, Image, StyleSheet, TouchableWithoutFeedback} from 'react-native';
+import { View, Text, Button, ScrollView, Image, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 // import { RNCamera } from 'react-native-camera';
 import CameraRoll from '@react-native-community/cameraroll';
 import DP from 'Screens/dp';
@@ -7,8 +7,8 @@ import DP from 'Screens/dp';
 export default Camera = () => {
 	const camera = React.useRef();
 	const takePicture = async () => {
-		if(camera.current){
-			const options = { quality: 1, base64: false, writeExif:true};
+		if (camera.current) {
+			const options = { quality: 1, base64: false, writeExif: true };
 			const data = await camera.current.takePictureAsync(options);
 			CameraRoll.save(data.uri);
 			console.log(data);
@@ -17,7 +17,7 @@ export default Camera = () => {
 
 	return (
 		<View style={style.wrp_main}>
-			{/* <View style={style.view_camera}> */}
+			<View style={style.view_camera}>
 				{/* <RNCamera
 					ref={(ref)=> {camera.current = ref}}
 					style={style.view_camera}
@@ -41,12 +41,12 @@ export default Camera = () => {
 				
 
 				</RNCamera> */}
-			{/* </View> */}
-			
-			<TouchableWithoutFeedback onPress={takePicture}>
-			<View style={style.btn_camera}>
-				<Text>카메라</Text>
 			</View>
+
+			<TouchableWithoutFeedback onPress={takePicture}>
+				<View style={style.btn_camera}>
+					<Text>카메라</Text>
+				</View>
 			</TouchableWithoutFeedback>
 		</View>
 	);
@@ -54,16 +54,19 @@ export default Camera = () => {
 
 
 const style = StyleSheet.create({
-	wrp_main:{
-		flex:1,
-		backgroundColor:'red',
+	wrp_main: {
+		flex: 1,
+		backgroundColor: 'red',
 	},
-	view_camera:{
-		flex:0.7,
+	view_camera: {
+		flex: 0.7,
 	},
-	btn_camera:{
-		top:20*DP,
-		height: 200*DP,
-		backgroundColor:'yellow'
+	btn_camera: {
+		top: 20 * DP,
+		height: 200 * DP,
+		backgroundColor: 'yellow'
 	}
 })
+Camera.defaultProps = {
+
+}

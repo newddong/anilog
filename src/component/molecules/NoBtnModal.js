@@ -52,6 +52,8 @@ const style = StyleSheet.create({
     msg: {
         // marginBottom: 30 * DP,
         // marginTop: 30 * DP,
+        maxWidth: 466 * DP, // 상우 추가
+        padding: 40 * DP, // 상우 추가
         textAlignVertical: 'center',
         color: GRAY10,
         textAlign: 'center',

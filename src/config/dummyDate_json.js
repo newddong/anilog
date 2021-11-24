@@ -340,7 +340,8 @@ export const dummy_volunteerItemList = [
 
 // Title : ShelterProtectAnimalObject
 
-export const dummy_AnimalNeedHelpList = [
+
+export const dummy_ShelterProtectAnimalObject = [
 	{
 		protect_animal_photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU'], //보호중인 동물 사진
 		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
@@ -465,12 +466,12 @@ export const applyComanionCheckList = [
 ];
 
 export const userAssign_agreementCheckList = [
-	{text: '본인은 만 14세 이상입니다. (필수)', detail: false},
-	{text: '서비스 이용약관 동의 (필수)', detail: true},
-	{text: '개인정보 수집 이용약관 동의 (필수)', detail: true},
-	{text: '위치기반 서비스 이용약관 동의 (필수)', detail: true},
-	{text: '기부내역 이용약관 동의(필수)', detail: true},
-	{text: '이벤트 및 마케팅 정보 수신 동의 동의(선택)', detail: false},
+	{ text: '본인은 만 14세 이상입니다. (필수)', detail: false },
+	{ text: '서비스 이용약관 동의 (필수)', detail: true },
+	{ text: '개인정보 수집 이용약관 동의 (필수)', detail: true },
+	{ text: '위치기반 서비스 이용약관 동의 (필수)', detail: true },
+	{ text: '기부내역 이용약관 동의(필수)', detail: true },
+	{ text: '이벤트 및 마케팅 정보 수신 동의 동의(선택)', detail: false },
 ];
 
 export const initial_number = ['010', '02', '031', '033', '043', '041', '054', '055', '063', '061', '064'];
@@ -639,3 +640,41 @@ export const report_user_info = {
 	missing_data:
 		'이현동 큰 사거리 #맥도날드 공사장 근처에서 갈색 #말티즈가 혼자 돌아다니는걸 봤어요. 목걸이는 없고 애가 굉장히 잠이 부족해 보였어요. 마치 이틀동안 밤샘한 동료 같았어요. 나름 깨끗한거 보니 잃어버린지 얼마되지 않은것 같아사 제보합니다.!',
 };
+
+export const dummy_userObject = {
+	_id: 1, //temp
+	user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+	user_agreement: {
+		is_over_fourteen: true, //14살 이상
+		is_service: true, //서비스 동의
+		is_personal_Info: true, //개인정보 제공 동의
+		is_location_service_info: true, //위치정보 제공 동의
+		is_donation_info: true, //기부정보 제공 동의
+		is_marketting_Info: false //마케팅정보 제공 동의
+	}, //회원가입 동의항목 동의여부
+	user_name: '권상우', //실명
+	user_nickname: '덴데', //닉네임
+	user_phone_number: '010-9645-0422', //휴대폰번호
+	user_mobile_company: 'LG U+', //가입된 통신사
+	user_is_verified_phone_number: true, //폰번호 인증여부
+	user_email: 'lanad01@naver.com', //이메일
+	user_is_verified_email: false, //이메일 인증여부
+	user_password: '121212', //패스워드
+	user_address: {
+		city: '서울시', //시,도 
+		district: '마포구', //군,구
+		neighbor: '신수동 89-77' //동,읍,면
+	}, //회원주소
+	user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
+	user_Introduction: '권상우는 연예계에서 없어선 안 될 배우다. 드라마와 영화, 두 분야를 오가며 시청자와 관객의 부름을 받는 배우는 생각보다 많지 않다. 호감도와 연기력, 두 가지 모두를 갖춰야 전방위 활동이 가능하다.',
+	user_birthday: '1991-12-21', //필요한지 검토 필요
+	// user_interests : Array<{
+	//             location : String, 
+	//             activity : String
+	//             }>, //관심사 항목 키워드
+	user_upload_count: 142142, //업로드 게시물 숫자
+	user_follow_count: 12324, //팔로우 숫자
+	user_follower_count: 1245667, //팔로워 숫자
+	user_denied: false, //유저의 차단여부
+	user_register_date: '2021-11-24', //가입일
+}

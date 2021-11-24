@@ -195,6 +195,8 @@ export let temp_inputLongText = '';
 
 //버튼
 export const COMPLETE_MODIFY = '수정 완료';
+export const MY_INFO_MODIFY = '내 정보 수정' // usermenu
+export const MY_COMPANION = '나의 반려동물' //userMenu
 
 // Shelter MENU 버튼
 export const MANAGEMENT_OF_PROTECTED_ANIMAL = '보호동물 관리';
@@ -219,6 +221,11 @@ export const NOTE_LIST = '쪽지함';
 export const SETTING = '설정';
 export const INFO_QUESTION = '정보/문의';
 //'계정' 은 상위에 존재 하므로 생략
+
+//User Menu 버튼 
+export const INFO = '알림'
+export const ANIMAL_PROTECTION_STATE = '동물 보호 현황'
+export const PROTECTION_REQUEST = '보호 요청'
 
 export const PLEASE_UPLOAD_PIC = '해당 동물의 특징이 잘 보이는 이미지를 올려주세요.';
 export const PLEASE_GIVE_ME_DATE_AND_PLACE = '해당 동물이 구조된 날짜와 장소를 알려 주세요.';
