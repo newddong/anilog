@@ -16,32 +16,43 @@ import DP from 'Root/config/dp';
 import CommentList from '../organism_ksw/CommentList';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import ReplyWriteBox from '../organism_ksw/ReplyWriteBox';
+import { dummy_AnimalNeedHelpList, dummy_user_shelter } from 'Root/config/dummyDate_json';
 
 export default AnimalProtectRequestDetail = props => {
 	const navigation = useNavigation();
-	//route.params 임시 내역
-	// {"adoption_days_remain": 10, "breed": "자연계 환수종", "kind": "고양이", "location": "자운",
-	// "registered_date": "2021-06-17", "saved_location": "경기도 강정동", "selected": true, "temp_protection_request": true,
-	// "thumbnailData": {"gender": "male", "img_uri": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU", "status": "missing"}}
+	//AnimalNeedHelp Item의 썸네일을 클릭하면, 보호 중인 동물 Data와 보호 중인 보호소 Data가 함께 AnimalProtectRequestDetail로 온다
+	console.log('props.route.params / AnimalProtectRequestDetail', props.route.params)
 
-	const [editComment, setEditComment] = React.useState(false);
-	const [privateComment, setPrivateComment] = React.useState(false);
-	const [photo, setPhoto] = React.useState();
+	const [data, setData] = React.useState()
+	const [editComment, setEditComment] = React.useState(false); // 댓글 쓰기 클릭
+	const [privateComment, setPrivateComment] = React.useState(false); // 팝업된 댓글창에서 비밀글 상태
+	const [photo, setPhoto] = React.useState(); // PhotoSelect에서 가져온 Photo uri 	
+	const [shelterData, setShelterData] = React.useState() // shelterSmallLabel에 사용할 보호소 정보
+
+
+	//PhotoSelect로 가서 가져온 사진이 존재하는 경우
+	React.useEffect(() => {
+		// console.log('params photo', props.route.params.photo)
+		if (props.route.params.photo == null) {
+		} else if (props.route.params.photo.length > 0) {
+			setPhoto(props.route.params.photo)
+		}
+	}, [props.route.params.photo]);
 
 	React.useEffect(() => {
-		console.log('routeparmas', props.route.params)
-		if (props.route.params == null) {
-		} else if (props.route.params.length > 0) {
-			setPhoto(props.route.params)
-		}
-	}, [props.route.params]);
+		setShelterData(dummy_user_shelter)
+		setData(props.route.params)
+	}, [props.route.params])
 
+
+	//임시보호 버튼 클릭
 	const onPressProtectRequest = () => {
-		navigation.push('ApplyProtectActivityA')
+		navigation.push('ApplyProtectActivityA', { protect_request_pet_data: data })
 	}
 
+	//입양하기 버튼 클릭
 	const onPressAdoptionRequest = () => {
-		navigation.push('ApplyAnimalAdoptionA')
+		navigation.push('ApplyAnimalAdoptionA', { protect_request_pet_data: data })
 	}
 
 	//답글 쓰기 => Input 작성 후 보내기 클릭 콜백 함수
@@ -60,6 +71,7 @@ export default AnimalProtectRequestDetail = props => {
 		navigation.push('SinglePhotoSelect', props.route.name);
 	};
 
+	// 답글 쓰기 -> 이미지버튼 클릭 -> 이미지 가져오기 -> X마크 클릭
 	const onDeleteImage = () => {
 		setPhoto()
 	}
@@ -79,10 +91,15 @@ export default AnimalProtectRequestDetail = props => {
 		setEditComment(!editComment);
 	};
 
+	//보호요청 더보기의 Thumnail클릭
+	const onClick_ProtectedThumbLabel = (status, user_id, item) => {
+		navigation.push('AnimalProtectRequestDetail', item)
+	}
+
 
 	return (
 		<View style={[login_style.wrp_main, animalProtectRequestDetail_style.container]}>
-			<ScrollView>
+			<ScrollView  >
 				{/* 임시보호 후보자 협의 중 사진 */}
 				<View style={[temp_style.rescueImage]}>
 					<RescueImage text={'보호자 협의중'} />
@@ -100,7 +117,7 @@ export default AnimalProtectRequestDetail = props => {
 				<View style={[temp_style.shelterSmallLabel_view_animalProtectRequestDetail]}>
 					{/* RescueContentTitle */}
 					<View style={[temp_style.shelterSmallLabel_animalProtectRequestDetail]}>
-						<ShelterSmallLabel />
+						<ShelterSmallLabel data={shelterData} />
 					</View>
 					{/* Buttons */}
 					<View style={[temp_style.button_animalProtectRequestDetail]}>
@@ -149,9 +166,6 @@ export default AnimalProtectRequestDetail = props => {
 					</Text>
 				</View>
 
-
-
-				{/* (O)CommentList */}
 				<View style={[temp_style.commentList]}>
 					<CommentList onPressReplyBtn={onReplyBtnClick} onPress_ChildComment_ReplyBtn={onChildReplyBtnClick} />
 				</View>
@@ -163,7 +177,7 @@ export default AnimalProtectRequestDetail = props => {
 
 				{/* AccountList */}
 				<View style={[accountPicker.accountList]}>
-					<AnimalNeedHelpList />
+					<AnimalNeedHelpList data={dummy_AnimalNeedHelpList} onLabelClick={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)} />
 				</View>
 
 				<View style={[animalProtectRequestDetail_style.btnContainer]}>
@@ -177,7 +191,6 @@ export default AnimalProtectRequestDetail = props => {
 					<View style={{ width: 62 * DP }} />
 					<AniButton
 						btnLayout={btn_w226}
-						btnStyle={'filled'}
 						btnTitle={'입양 신청'}
 						titleFontStyle={30}
 						onPress={onPressAdoptionRequest}

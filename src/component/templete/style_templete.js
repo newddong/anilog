@@ -492,7 +492,7 @@ export const temp_style = StyleSheet.create({
 	},
 	animalProtectDetails: {
 		width: 654 * DP,
-		height: 1316 * DP,
+		// height: 1316 * DP,
 	},
 	img_square_750: {
 		width: 750 * DP,
@@ -1139,8 +1139,8 @@ export const agreementCheck_style = StyleSheet.create({
 	horizontalSepartor: {
 		width: 654 * DP,
 		height: 2 * DP,
-		marginVertical: 15 * DP,
-		backgroundColor: GRAY10,
+		marginVertical: 20 * DP,
+		backgroundColor: GRAY30,
 	},
 });
 
@@ -3049,7 +3049,7 @@ export const applyDetails = StyleSheet.create({
 	btnContainer: {
 		width: 654 * DP,
 		height: 70 * DP,
-		marginTop: 80 * DP,
+		marginTop: 40 * DP,
 		marginBottom: 30 * DP,
 		flexDirection: 'row',
 	},
@@ -3535,7 +3535,7 @@ export const profile = StyleSheet.create({
 
 export const animalProtectRequestDetail_style = StyleSheet.create({
 	container: {
-		flex: 0,
+		width: 750 * DP,
 	},
 	requestProtect: {
 		marginTop: 30 * DP,

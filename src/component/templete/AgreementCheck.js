@@ -39,13 +39,15 @@ export default AgreementCheck = props => {
 		} else {
 			setPermissionToNext(false);
 		}
+		
 	}, [acceptanceState]);
 
 	const goToNextStep = () => {
 		const userAssignInfo = {
 			is_marketting_Info: acceptanceState.is_marketting_Info,
 		};
-		props.navigation.push('UserVerification', userAssignInfo);
+		console.log(acceptanceState);
+		props.navigation.push('UserVerification', acceptanceState);
 	};
 
 	const onPressAceeptAllBtn = state => {
@@ -90,12 +92,13 @@ export default AgreementCheck = props => {
 				setAcceptanceState({...copy});
 				break;
 		}
+		
 	};
 	const onPressDetail = index => {
 		console.log(index + 'index 항목 더보기 클릭');
 	};
 	return (
-		<ScrollView>
+		<ScrollView contentContainerStyle={{flex:1,backgroundColor:'red'}}>
 			<View style={[login_style.wrp_main, {flex: 1}]}>
 				{/* (M)StageBar	 */}
 				<View style={[temp_style.stageBar, progressbar_style.stageBar]}>

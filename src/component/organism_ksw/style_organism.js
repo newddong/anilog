@@ -710,9 +710,9 @@ export const companionFormList = StyleSheet.create({
 export const assignCheckListItem = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		height: 72 * DP,
+		height: 50 * DP,
 		alignItems: 'center',
-		flexDirection: 'row',
+		flexDirection: 'row'
 	},
 	check50: {
 		width: 50 * DP,
@@ -737,7 +737,7 @@ export const assignCheckList = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	assignCheckListItem: {
-		marginBottom: 40 * DP,
+		marginBottom: 30 * DP,
 	},
 });
 
@@ -1130,7 +1130,7 @@ export const animalNeedHelp = StyleSheet.create({
 
 export const animalNeedHelpList = StyleSheet.create({
 	container: {
-		width: 702 * DP,
+		width: 654 * DP,
 		marginTop: 20 * DP,
 	},
 	itemContainer: {
@@ -1148,7 +1148,7 @@ export const animalProtectDetail = StyleSheet.create({
 	},
 	details_container: {
 		width: 654 * DP,
-		paddingBottom: 100 * DP,
+		// paddingBottom: 100 * DP,
 	},
 	detail: {
 		width: 654 * DP,
@@ -1165,7 +1165,7 @@ export const animalProtectDetail = StyleSheet.create({
 		alignSelf: 'center',
 	},
 	detail_content: {
-		width: 590 * DP,
+		width: 550 * DP,
 		marginTop: 6 * DP,
 		marginLeft: 64 * DP,
 		minHeight: 50 * DP,

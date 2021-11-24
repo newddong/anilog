@@ -4,6 +4,7 @@ import React from 'react';
 import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { APRI10, GRAY10 } from 'Root/config/color';
 import { txt } from 'Root/config/textstyle';
+import { COMPANION_DURATION, COMPANION_STATUS, PET_AGE, PET_KIND } from 'Root/i18n/msg';
 import { btn_w176 } from '../atom/btn/btn_style';
 import { AddItem64 } from '../atom/icon';
 import AniButton from '../molecules/AniButton';
@@ -30,19 +31,10 @@ export default ApplyCompanionC = props => {
 	const [companionList, setCompanionList] = React.useState([])
 	const [tempData, setTempData] = React.useState([]) //임시저장 정보가 들어갈 컨테이너
 
-	//임시저장값 호출
-	React.useEffect(() => {
-		_retrieveData()
-	}, [])
-
-	React.useEffect(() => {
-		if (tempData.length > 0) {
-			let temp = JSON.parse(tempData)
-			setCompanionList(temp)
-		}
-	}, [tempData])
-
-
+	// //임시저장값 호출
+	// React.useEffect(() => {
+	// 	// _retrieveData()
+	// }, [])
 
 	React.useEffect(() => {
 		setData({ ...data, protect_act_companion_history: companionList })
@@ -53,21 +45,38 @@ export default ApplyCompanionC = props => {
 		AsyncStorage.setItem('tempData_applyCompanionB', JSON.stringify(data.protect_act_companion_history))
 	}
 
-	//임시저장한 값을 AsyncStorage에서 호출
-	const _retrieveData = async () => {
-		try {
-			await AsyncStorage.getItem('tempData_applyCompanionB', (err, res) => {
-				res != null ? setTempData(res) : null
-			})
-		} catch (error) {
-			console.log('error', JSON.stringify(error))
-		}
-	};
+	// //임시저장한 값을 AsyncStorage에서 호출
+	// const _retrieveData = async () => {
+	// 	try {
+	// 		await AsyncStorage.getItem('tempData_applyCompanionB', (err, res) => {
+	// 			res != null ? setTempData(res) : null
+	// 		})
+	// 	} catch (error) {
+	// 		console.log('error', JSON.stringify(error))
+	// 	}
+	// };
+
+	React.useEffect(() => {
+		console.log('comp', companionList)
+	}, [companionList])
+	const [isTempDataAdded, setIsTempDataAdded] = React.useState(false)
 
 	//반려 생활 추가를 누를 시 빈 CompanionForm이 추가됨
 	const onPressAddCompanion = () => {
 		let copy = [...companionList]
-		copy.length = copy.length + 1
+		if (tempData.length > 0 && !isTempDataAdded) {
+			tempData.map((v, i) => {
+				copy.push(tempData[i])
+			})
+			setIsTempDataAdded(true)
+		}
+		// copy.length = copy.length + 1
+		copy.push({
+			companion_pet_species: PET_KIND[0],
+			companion_pet_age: PET_AGE[0],
+			companion_pet_period: COMPANION_DURATION[0],
+			companion_pet_current_status: COMPANION_STATUS[0]
+		})
 		setCompanionList(copy)
 	}
 
@@ -113,8 +122,18 @@ export default ApplyCompanionC = props => {
 
 	//다음버튼 클릭
 	const goToNextStep = () => {
-		props.route.name == 'ApplyProtectActivityB' ? navigation.push('ApplyProtectActivityC') : navigation.push('ApplyAnimalAdoptionC')
+		props.route.name == 'ApplyProtectActivityB' ? navigation.push('ApplyProtectActivityC', data) : navigation.push('ApplyAnimalAdoptionC', data)
 	}
+
+	const onDelteCompanion = index => {
+		let copy = [...companionList]
+		copy.splice(index, 1)
+		setCompanionList(copy)
+	}
+
+	// const deleteAs = () => {
+	// 	AsyncStorage.removeItem('tempData_applyCompanionB')
+	// }
 
 	return (
 		<View style={[login_style.wrp_main,]}>
@@ -142,7 +161,8 @@ export default ApplyCompanionC = props => {
 						onSelectAge={(v, i, index) => onSelectAge(v, i, index)}
 						onSelectDuration={(v, i, index) => onSelectPeriod(v, i, index)}
 						onSelectStatus={(v, i, index) => onSelectStatus(v, i, index)}
-						tempData={tempData}
+						onDelete={index => onDelteCompanion(index)}
+					// tempData={tempData}
 					/>
 				</View>
 
@@ -153,6 +173,9 @@ export default ApplyCompanionC = props => {
 						<TouchableOpacity onPress={onPressAddCompanion}>
 							<Text style={[txt.noto30, { color: APRI10 }]}>반려 생활 추가</Text>
 						</TouchableOpacity>
+						{/* <TouchableOpacity onPress={deleteAs}>
+							<Text style={[txt.noto30, { color: APRI10 }]}>어싱크 체크</Text>
+						</TouchableOpacity> */}
 					</View>
 				</View>
 				{/* 3개 버튼 */}

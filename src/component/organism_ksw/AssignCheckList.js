@@ -15,7 +15,7 @@ import {assignCheckList} from './style_organism';
 export default AssignCheckList = props => {
 	const renderItem = (item, index) => {
 		return (
-			<View style={[assignCheckList.assignCheckListItem]}>
+			<View style={[assignCheckList.assignCheckListItem]} key={index}>
 				<AssignCheckListItem
 					data={item}
 					onCheck={state => props.onCheck(item, index, state)}
@@ -25,7 +25,8 @@ export default AssignCheckList = props => {
 			</View>
 		);
 	};
-	return <FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)}></FlatList>;
+	return (props.items.map((item,index)=>renderItem(item,index)));
+	// return <FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)}></FlatList>;
 };
 
 AssignCheckList.defaultProps = {

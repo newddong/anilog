@@ -49,7 +49,7 @@ export default PhoneNumVerification = props => {
 					width={654}
 					items={mobile_carrier}
 					placeholder={'휴대폰 번호 입력(-제외)'}
-					onChange={phoneNum => onPhoneNumberInputChange(phoneNum45)}
+					onChange={phoneNum => onPhoneNumberInputChange(phoneNum)}
 				/>
 			</View>
 			<View style={{flexDirection: 'row'}}>

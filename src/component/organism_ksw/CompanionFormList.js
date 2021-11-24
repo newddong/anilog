@@ -17,13 +17,21 @@ import { companionFormList } from './style_organism';
 export default CompanionFormList = props => {
 
 	const [companionList, setCompanionList] = React.useState([])
-	console.log('temp', props.tempData)
+	// console.log('temp in FormList', props.tempData)
+
+
+	// React.useEffect(() => {
+	// 	console.log('props.tempdata.length', props.tempData.length)
+	// 	props.tempData.length == 0 ? null : setCompanionList(props.tempData)
+	// }, [props.tempData])
 
 	React.useEffect(() => {
-		props.items.length == 0 ? setCompanionList(1) : setCompanionList(props.items)
+		setCompanionList(props.items)
 	}, [props.items])
 
 	const renderItem = (item, index) => {
+		// console.log('item in renderite', item)
+
 		return (
 			<View style={[companionFormList.companionFormContainer]}>
 				<CompanionForm
@@ -51,5 +59,5 @@ CompanionFormList.defaultProps = {
 	onSelectAge: e => console.log(e),
 	onSelectDuration: e => console.log(e),
 	onSelectStatus: e => console.log(e),
-	onDelete: e => console.log(e)
+	onDelete: e => console.log(e),
 }

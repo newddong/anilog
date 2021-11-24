@@ -13,7 +13,6 @@ import { styles } from '../atom/image/imageStyle';
  * }} props
  */
 export default ProtectedThumbnail = props => {
-	//console.log('protected ' + JSON.stringify(props.data));
 	const borderByStatus = () => {
 		if (props.data.status == 'emergency') {
 			return {
@@ -46,7 +45,7 @@ export default ProtectedThumbnail = props => {
 
 	const getStatusText = () => {
 		switch (props.data.status) {
-			case 'adoption_available':
+			case 'rescue':
 				return '입양가능';
 			case 'emergency':
 				return '입양가능';

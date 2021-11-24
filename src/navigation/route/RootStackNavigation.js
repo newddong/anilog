@@ -104,13 +104,13 @@ export default RootStackNavigation = () => {
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="MainTab">
+				<RootStack.Navigator initialRouteName="ApplyProtectActivityB">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
-					<RootStack.Screen name="Login" component={LoginTemplete} />
+					<RootStack.Screen name="Login" component={LoginTemplete} options={{headerShown:false}} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} />
 
-					<RootStack.Screen name="AgreementCheck" component={AgreementCheck} />
-					<RootStack.Screen name="UserVerification" component={UserVerification} />
+					<RootStack.Screen name="AgreementCheck" component={AgreementCheck} options={{header:props=><SimpleHeader {...props}/>,title:'회원가입'}} />
+					<RootStack.Screen name="UserVerification" component={UserVerification} options={{header:props=><SimpleHeader {...props}/>,title:'회원가입'}}/>
 					{/* <RootStack.Screen name="UserAssignEmail" component={UserAssignEmail} /> */}
 					<RootStack.Screen name="UserPasswordCheck" component={UserPasswordCheck} />
 					<RootStack.Screen name="AssignUserHabitation" component={AssignUserHabitation} />

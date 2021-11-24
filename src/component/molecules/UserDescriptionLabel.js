@@ -1,11 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
-import {APRI10, BLACK, GRAY10} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { APRI10, BLACK, GRAY10 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
-import {styles} from '../atom/image/imageStyle';
-import {useNavigation} from '@react-navigation/core';
+import { styles } from '../atom/image/imageStyle';
+import { useNavigation } from '@react-navigation/core';
 
 /**
  *
@@ -16,7 +16,7 @@ import {useNavigation} from '@react-navigation/core';
  */
 export default UserDescriptionLabel = props => {
 	const [validation, setValidation] = React.useState(false);
-	const [imgUri, setImgUri] = React.useState(props.data.user_image);
+	const [imgUri, setImgUri] = React.useState(props.data.img_uri);
 
 	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정
 	React.useEffect(() => {
@@ -35,7 +35,7 @@ export default UserDescriptionLabel = props => {
 			return token;
 		};
 		getItem();
-		return () => {};
+		return () => { };
 	});
 
 	const navigation = useNavigation();
@@ -50,28 +50,29 @@ export default UserDescriptionLabel = props => {
 	};
 
 	return (
-		<View style={{flexDirection: 'row', alignItems: 'center', width: props.width != null ? props.width : null}}>
+		<View style={{ flexDirection: 'row', alignItems: 'center', width: props.width != null ? props.width : null }}>
 			{/* <TouchableOpacity onPress={onClickLabel}> */}
 			<TouchableOpacity onPress={moveToUserProfile}>
-				<Image source={{uri: props.data.img_uri}} style={styles.img_round_94} />
+				<Image source={{ uri: 'https://t1.daumcdn.net/cfile/tistory/996EF0475F82CD3C03' }} style={[styles.img_round_94, { backgroundColor: 'yellow' }]} />
 			</TouchableOpacity>
-			<View style={{marginLeft: 30 * DP}}>
+			<View style={{ marginLeft: 30 * DP }}>
 				{/* Text부분과 프로필이미지 사이의 거리 30 */}
 				{/* img_round_94의 height94이며 Text Box 2개의 height 총합은 86이었으므로 paddingVertical을 4씩 준다*/}
 
-				<View style={{flexDirection: 'row'}}>
-					<Text style={(txt.roboto28b, {color: validation ? APRI10 : BLACK})} numberOfLines={1} ellipsizeMode="tail">
+				<View style={{ flexDirection: 'row' }}>
+					<Text style={(txt.roboto28b, { color: validation ? APRI10 : BLACK })} numberOfLines={1} ellipsizeMode="tail">
 						{props.data.user_nickname}
 					</Text>
 
-					{props.data.showStatus ? <Text style={[txt.noto22, {color: APRI10, alignSelf: 'center', paddingLeft: 10 * DP}]}> STATUS</Text> : null}
+					{props.data.showStatus ? <Text style={[txt.noto22, { color: APRI10, alignSelf: 'center', paddingLeft: 10 * DP }]}> STATUS</Text> : null}
 
 					{/* user_nickname Text박스에 비해 y축이 4가 크다 => paddingTop : 4 *  DP  */}
 				</View>
 
-				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
+				<Text style={[txt.noto24, { lineHeight: 44 * DP, color: GRAY10 }]} numberOfLines={1} ellipsizeMode="tail">
 					{props.data.text_intro}
 				</Text>
+
 				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
 			</View>
 		</View>
