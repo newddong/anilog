@@ -340,7 +340,7 @@ export const dummy_volunteerItemList = [
 
 // Title : ShelterProtectAnimalObject
 
-export const dummy_AnimalNeedHelpList = [
+export const dummy_ShelterProtectAnimalObject = [
 	{
 		protect_animal_photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU'], //보호중인 동물 사진
 		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)

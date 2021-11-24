@@ -18,7 +18,7 @@ import { Arrow_Down_APRI10, Arrow_Down_GRAY30, Arrow_Down_White, Arrow_Up_APRI10
  * noStateChange : '버튼의 on, off를 변경하지 않음, initState가 false이면 onOpen, true이면 onClose만 실행'
  * }} props
  */
-export default ActionButton = props => {
+export default ActionButton = React.forwardRef((props,ref) => {
 	//btn의 초기상태 - false는 아직 버튼이 오픈되지 않은 상태
 	const [btnStatus, setBtnStatus] = React.useState(props.initState);
 
@@ -90,7 +90,7 @@ export default ActionButton = props => {
 			</View>
 		</TouchableOpacity>
 	);
-};
+});
 
 ActionButton.defaultProps = {
 	noStateChange: false,

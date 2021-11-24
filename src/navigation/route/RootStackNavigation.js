@@ -50,6 +50,7 @@ import NoBtnModal from 'Molecules/NoBtnModal';
 import {Modal} from 'Component/modal/Modal';
 import DatePicker from 'Root/component/molecules/DatePicker';
 import Calendar from 'Root/test_sangwoo/calendar';
+import Camera from 'Root/component/templete/Camera';
 const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
@@ -100,7 +101,7 @@ export default RootStackNavigation = () => {
 	return (
 		<SafeAreaView style={{flex: 1}}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="MainTab">
+				<RootStack.Navigator initialRouteName="Login">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} options={{headerShown: false}} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} />
@@ -116,9 +117,9 @@ export default RootStackNavigation = () => {
 						options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}
 					/>
 					{/* <RootStack.Screen name="UserAssignEmail" component={UserAssignEmail} /> */}
-					<RootStack.Screen name="UserPasswordCheck" component={UserPasswordCheck} />
-					<RootStack.Screen name="AssignUserHabitation" component={AssignUserHabitation} />
-					<RootStack.Screen name="AssignUserProfileImage" component={AssignUserProfileImage} />
+					<RootStack.Screen name="UserPasswordCheck" component={UserPasswordCheck} options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}/>
+					<RootStack.Screen name="AssignUserHabitation" component={AssignUserHabitation} options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}/>
+					<RootStack.Screen name="AssignUserProfileImage" component={AssignUserProfileImage} options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}/>
 
 					<RootStack.Screen name="ShelterCodeCheck" component={ShelterCodeCheck} />
 					<RootStack.Screen name="ShelterAssignEntrance" component={ShelterAssignEntrance} />
@@ -157,6 +158,8 @@ export default RootStackNavigation = () => {
 
 					<RootStack.Screen name="SinglePhotoSelect" component={PhotoSelect} />
 					<RootStack.Screen name="MultiPhotoSelect" component={PhotoSelect} />
+					{/* 카메라 컴포넌트 임시 추가 */}
+					<RootStack.Screen name="Camera" component={Camera} />
 					<RootStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
 
 					<RootStack.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />

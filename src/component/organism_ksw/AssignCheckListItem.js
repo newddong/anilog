@@ -10,35 +10,43 @@ import { assignCheckListItem } from './style_organism';
  *@param {{
  *data: 'Object / text, detail 필요',
  *onCheck : void,
- *state : 'boolean / 체크박스 상태'
+ *isCheck : 'boolean / 체크박스 초기 상태'
  *onPressDetail : void
  * }} props
  */
 export default AssignCheckListItem = props => {
-	const [chekced, setChecked] = React.useState(props.state);
-	const onCheck = e => {
-		setChecked(e);
-		props.onCheck(e);
+	const [chekced, setChecked] = React.useState(props.isCheck);
+	const onCheck = isCheck => {
+		setChecked(isCheck);
+		props.onCheck(isCheck);
 	};
+	const onPressDetail = ()=>{
+		props.onPressDetail();
+	}
+
+	React.useEffect(()=>{
+		setChecked(props.isCheck);
+	},[props.isCheck]);
+
 	return (
 		<View style={[assignCheckListItem.container]}>
 			<View style={[assignCheckListItem.check50]}>
-				<CheckBox onCheck={e => onCheck(e)} state={props.data.state} />
+				<CheckBox onCheck={onCheck} isCheck={chekced} />
 			</View>
 			<View style={[assignCheckListItem.textContainer]}>
 				<Text style={[txt.noto24, { color: chekced ? APRI10 : BLACK }]}>{props.data.text}</Text>
 			</View>
 			{props.data.detail ? (
-				<TouchableOpacity onPress={() => props.onPressDetail()} style={[assignCheckListItem.detailText]}>
+				<TouchableOpacity onPress={onPressDetail} style={[assignCheckListItem.detailText]}>
 					<Text style={[txt.roboto24b, { color: GRAY20, textDecorationLine: 'underline' }]}>보기</Text>
 				</TouchableOpacity>
-			) : null}
+			) : false}
 		</View>
 	);
 };
 
 AssignCheckListItem.defaultProps = {
-	state: false,
+	isCheck: false,
 	data: {
 		text: 'Defatult',
 		detail: false,

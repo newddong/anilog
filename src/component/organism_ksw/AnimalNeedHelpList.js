@@ -49,15 +49,3 @@ AnimalNeedHelpList.defaultProps = {
 	data: dummy_AnimalNeedHelpList,
 	onLabelClick: e => console.log(e),
 };
-// AnimalNeedHelp.defaultProps = {
-// 	temp_protection_request: true,
-// 	adoption_days_remain: 10,
-// 	registered_date: '2021-06-17',
-// 	location: '자운',
-// 	saved_location: '경기도 강정동',
-// 	data: {
-// 		img_uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU',
-// 		gender: 'female',
-// 		status: 'protected', , // protected, missing, reported, onNegotiation, adoption_available
-// 	},
-// };

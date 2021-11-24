@@ -29,6 +29,8 @@ export default PhotoSelect = props => {
 						, state: false
 					}
 				})
+				copy.splice(0, 0, true) //목록 첫 인덱스는 Default Camera Icon (사진직접찍기 기능)
+				console.log(copy)
 				setPhotos(copy)
 
 			})
@@ -73,6 +75,10 @@ export default PhotoSelect = props => {
 		});
 	});
 
+	const takePicture = () => {
+		props.navigation.push('Camera', props.route.name)
+	}
+
 	//확인
 	const checkOut = () => {
 		props.onCheckOut(photoArray);
@@ -90,12 +96,15 @@ export default PhotoSelect = props => {
 				copy.map((v, i) => {
 					i == index ? copy[i].state = true : copy[i].state = false
 				})
+				setSelectedPhoto(img)
 				setPhotos(copy)
 				setPhotoArray(img)
 			}
 			//선택취소
 			else if (!state) {
+				let copy = [...photo]
 				copy[index].state = false
+				setSelectedPhoto('https://us.123rf.com/450wm/azvector/azvector1803/azvector180300135/96983949-카메라-아이콘-플랫-카메라-기호-격리-아이콘-기호-벡터.jpg?ver=6')
 				setPhotos(copy)
 			}
 		}
@@ -164,7 +173,13 @@ export default PhotoSelect = props => {
 	};
 
 	const renderItem = (item, index) => {
-		//Single로 PhotoSelect가 호출된 경우 LocalMedia는 단일 선택모드로 실행되며, Multiple로 호출된 경우 사진 다중 선택모드로 실행
+		if (index == 0) {
+			return (
+				<TouchableOpacity style={{ flex: 1 }} onPress={takePicture} >
+					<Image source={{ uri: 'https://us.123rf.com/450wm/azvector/azvector1803/azvector180300135/96983949-카메라-아이콘-플랫-카메라-기호-격리-아이콘-기호-벡터.jpg?ver=6' }} style={{ flex: 1 }} />
+				</TouchableOpacity>
+			)
+		}		//Single로 PhotoSelect가 호출된 경우 LocalMedia는 단일 선택모드로 실행되며, Multiple로 호출된 경우 사진 다중 선택모드로 실행
 		return props.route.name == 'SinglePhotoSelect' ? (
 			<LocalMedia
 				isSingleSelection={true}

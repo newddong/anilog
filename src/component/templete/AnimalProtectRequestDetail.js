@@ -6,12 +6,11 @@ import AniButton from '../molecules/AniButton';
 import { login_style, temp_style, animalProtectRequestDetail_style, feedCommentList, accountPicker } from './style_templete';
 import RescueImage from '../molecules/RescueImage';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Lock60_Border, Lock60_Filled, Photo60, Send60 } from '../atom/icon';
 
 import { txt } from 'Root/config/textstyle';
 import { APRI10, GRAY10, GRAY20 } from 'Root/config/color';
 import ShelterSmallLabel from '../molecules/ShelterSmallLabel';
-import { FavoriteTag46_Filled, FavoriteTag48_Filled, Share48_Filled } from '../atom/icon';
+import { FavoriteTag48_Filled, Share48_Filled } from '../atom/icon';
 import DP from 'Root/config/dp';
 import CommentList from '../organism_ksw/CommentList';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
@@ -20,14 +19,17 @@ import { dummy_AnimalNeedHelpList, dummy_user_shelter } from 'Root/config/dummyD
 
 export default AnimalProtectRequestDetail = props => {
 	const navigation = useNavigation();
-	//AnimalNeedHelp Item의 썸네일을 클릭하면, 보호 중인 동물 Data와 보호 중인 보호소 Data가 함께 AnimalProtectRequestDetail로 온다
-	console.log('props.route.params / AnimalProtectRequestDetail', props.route.params)
+	// 위 페이지 AnimalProtectRequestDetail는 AnimalNeedHelp Item의 썸네일을 클릭할 경우 호출. 
+	// params 는 [ 보호동물 Data, 보호소 Data ]
+	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
+	// console.log('props.route.params / AnimalProtectRequestDetail', props.route.params)
 
-	const [data, setData] = React.useState()
+	const [data, setData] = React.useState({ ...props.route.params })
 	const [editComment, setEditComment] = React.useState(false); // 댓글 쓰기 클릭
 	const [privateComment, setPrivateComment] = React.useState(false); // 팝업된 댓글창에서 비밀글 상태
-	const [photo, setPhoto] = React.useState(); // PhotoSelect에서 가져온 Photo uri 	
+	const [photo, setPhoto] = React.useState(props.route.params.photo); // PhotoSelect에서 가져온 Photo uri 	
 	const [shelterData, setShelterData] = React.useState() // shelterSmallLabel에 사용할 보호소 정보
+
 
 
 	//PhotoSelect로 가서 가져온 사진이 존재하는 경우
