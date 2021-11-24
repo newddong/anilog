@@ -4,6 +4,7 @@ import {Text, View} from 'react-native';
 import {login_style, reportDetail, temp_style} from './style_templete';
 import FeedContent from '../organism/FeedContent';
 import {useNavigation} from '@react-navigation/core';
+import {report_user_info} from 'Root/config/dummyDate_json';
 
 export default ReportDetail = props => {
 	const navigation = useNavigation();
@@ -27,9 +28,18 @@ export default ReportDetail = props => {
 		});
 	});
 
+	const [data, setData] = React.useState({
+		comment_photo_uri: '', //댓글 첨부 이미지 uri
+		comment_contents: '', //댓글 내용
+		comment_is_secure: '', //true일때는 writer와 댓글이 달린 게시글 작성자만 볼수있음,
+		comment_feed_id: '', //댓글이 작성된 피드 게시물
+	});
+
 	//답글 쓰기 => Input 작성 후 보내기 클릭 콜백 함수
 	const onWrite = () => {
 		console.log('onWrite', replyText);
+		console.log('commentData=>' + commentData.comment_contentsdsf);
+		setCommentData({...commentData, comment_contents: replyText, comment_is_secure: privateComment, comment_feed_id: ''});
 	};
 
 	// 답글 쓰기 -> 자물쇠버튼 클릭 콜백함수
@@ -68,16 +78,19 @@ export default ReportDetail = props => {
 			<ScrollView contentContainerStyle={[reportDetail.container]}>
 				{/* Img_square_750 */}
 				<View style={[temp_style.img_square_750, reportDetail.img_square_750]}>
+					{/* 제보사진 */}
 					<Image
 						source={{
-							uri: 'https://cdn.mkhealth.co.kr/news/photo/202102/52163_52859_5928.jpg',
+							uri: 'https://d3n24gmmpz5ort.cloudfront.net/2021/06/e795f2c38f3a23449d39d1c7a545c392/2-2.jpg',
 						}}
 						style={[temp_style.img_square_750]}
 					/>
 				</View>
 				<View style={[temp_style.feedContent, reportDetail.feedContent]}>
-					<FeedContent />
+					{/* DB에서 가져오는 제보 피드글 데이터를 FeedContent에 넘겨준다. */}
+					<FeedContent data={report_user_info} />
 				</View>
+				{/* 댓글에 관한 내용 - API에서 넘겨주는 값 확인 후 재수정 필요*/}
 				<View style={[temp_style.commentList, reportDetail.commentList]}>
 					<CommentList onPressReplyBtn={onReplyBtnClick} onPress_ChildComment_ReplyBtn={comment => onChildReplyBtnClick(comment)} />
 				</View>
