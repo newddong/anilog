@@ -95,7 +95,7 @@ export default InputWithSelect = props => {
 						},
 					]}
 				/>
-				{input.length > 0 ? (
+				{input.length>0 ? (
 					<View style={{position: 'absolute', right: 0}}>
 						<Cross52 onPress={onClear} />
 					</View>

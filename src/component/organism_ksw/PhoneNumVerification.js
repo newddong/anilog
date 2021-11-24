@@ -42,14 +42,14 @@ export default PhoneNumVerification = props => {
 	return (
 		<View style={[phoneNumVerification.container]}>
 			<View style={[temp_style.input30, phoneNumVerification.input30]}>
-				<Input30 showTitle={false} width={654} placeholder={'이름 입력'} onChange={text => onNameInputChange(text)} />
+				<Input30 showTitle={false} width={654} placeholder={'이름 입력'} onChange={onNameInputChange} />
 			</View>
 			<View style={[temp_style.inputWithSelect, phoneNumVerification.inputWithSelect]}>
 				<InputWithSelect
 					width={654}
 					items={mobile_carrier}
 					placeholder={'휴대폰 번호 입력(-제외)'}
-					onChange={phoneNum => onPhoneNumberInputChange(phoneNum)}
+					onChange={onPhoneNumberInputChange}
 				/>
 			</View>
 			<View style={{flexDirection: 'row'}}>
@@ -58,7 +58,7 @@ export default PhoneNumVerification = props => {
 						width={400}
 						timelimit={5}
 						onEndTimer={onEndTimer}
-						onChange={verified_num => onVerificationNumberChange(verified_num)}
+						onChange={onVerificationNumberChange}
 						placeholder={'인증번호 입력'}
 						timeout_msg={'인증 가능한 시간이 초과되었습니다.'}
 						alert_msg={'인증번호가 일치하지 않습니다.'}

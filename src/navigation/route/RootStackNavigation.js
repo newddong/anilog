@@ -100,7 +100,7 @@ export default RootStackNavigation = () => {
 	return (
 		<SafeAreaView style={{flex: 1}}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="MainTab">
+				<RootStack.Navigator initialRouteName="Login">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} options={{headerShown: false}} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} />
@@ -116,9 +116,9 @@ export default RootStackNavigation = () => {
 						options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}
 					/>
 					{/* <RootStack.Screen name="UserAssignEmail" component={UserAssignEmail} /> */}
-					<RootStack.Screen name="UserPasswordCheck" component={UserPasswordCheck} />
-					<RootStack.Screen name="AssignUserHabitation" component={AssignUserHabitation} />
-					<RootStack.Screen name="AssignUserProfileImage" component={AssignUserProfileImage} />
+					<RootStack.Screen name="UserPasswordCheck" component={UserPasswordCheck} options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}/>
+					<RootStack.Screen name="AssignUserHabitation" component={AssignUserHabitation} options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}/>
+					<RootStack.Screen name="AssignUserProfileImage" component={AssignUserProfileImage} options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}/>
 
 					<RootStack.Screen name="ShelterCodeCheck" component={ShelterCodeCheck} />
 					<RootStack.Screen name="ShelterAssignEntrance" component={ShelterAssignEntrance} />

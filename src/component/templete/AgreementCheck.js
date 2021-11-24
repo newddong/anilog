@@ -22,20 +22,22 @@ export default AgreementCheck = props => {
 		is_donation_info: false, //기부정보 제공 동의
 		is_marketting_Info: false, //마케팅정보 제공 동의
 	}).current;
-	
+
 	const [permissionToNext, setPermissionToNext] = React.useState(false);
 	const [acceptAllState, setAcceptAllState] = React.useState(false);
 
 	const goToNextStep = () => {
-		props.navigation.push('UserVerification', user_agreement);
+		props.navigation.push('UserVerification',{user_agreement:user_agreement});
 	};
 
 	const onPressAceeptAllBtn = state => {
-		Object.keys(user_agreement).forEach(key=>{user_agreement[key]=state});
+		Object.keys(user_agreement).forEach(key => {
+			user_agreement[key] = state;
+		});
 		setAcceptAllState(state);
 	};
 
-	const permissionCheck = ()=>{
+	const permissionCheck = () => {
 		if (
 			user_agreement.is_donation_info &&
 			user_agreement.is_location_service_info &&
@@ -47,7 +49,7 @@ export default AgreementCheck = props => {
 		} else {
 			setPermissionToNext(false);
 		}
-	}
+	};
 
 	const onPressAcceptItem = (text, index, isCheck) => {
 		// text - 동의 내역, index - 리스트 인덱스 , isCheck - T/F 상태
@@ -77,14 +79,13 @@ export default AgreementCheck = props => {
 	const onPressDetail = index => {
 		console.log(index + 'index 항목 더보기 클릭');
 	};
-	
+
 	return (
-		<ScrollView contentContainerStyle={{flex:1,backgroundColor:'red'}}>
-			
+		<ScrollView contentContainerStyle={{flex: 1, backgroundColor: 'red'}}>
 			<View style={[login_style.wrp_main, {flex: 1}]}>
-			<TouchableWithoutFeedback onPress={()=>console.log(user_agreement)}>
-				<View style={{backgroundColor:'red',height:30,width:30,position:'absolute',top:0,left:0}}></View>
-				</TouchableWithoutFeedback>
+				{/* <TouchableWithoutFeedback onPress={() => console.log(user_agreement)}>
+					<View style={{backgroundColor: 'red', height: 30, width: 30, position: 'absolute', top: 0, left: 0}}></View>
+				</TouchableWithoutFeedback> */}
 				{/* (M)StageBar	 */}
 				<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 					<Stagebar
