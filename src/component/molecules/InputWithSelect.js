@@ -69,8 +69,8 @@ export default InputWithSelect = props => {
 				<NormalDropDown
 					menu={props.items}
 					width={200}
-					defaultIndex={props.defaultIndex ? props.defaultIndex : null}
-					onSelect={(v, i) => onSelectDropDown(v, i)}
+					defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
+					onSelect={onSelectDropDown}
 				/>
 				<TextInput
 					placeholder={props.placeholder}
@@ -78,7 +78,7 @@ export default InputWithSelect = props => {
 					ref={inputRef}
 					defaultValue={props.defaultInput}
 					keyboardType={props.keyboardType}
-					onChangeText={text => onChange(text)}
+					onChangeText={onChange}
 					style={[
 						txt.roboto28,
 						{
@@ -112,9 +112,9 @@ InputWithSelect.defaultProps = {
 	title_star: false,
 	alert_msg: null,
 	defaultInput: null,
-	onChange: e => console.log(e),
-	onClear: e => console.log(e),
-	onSelectDropDown: e => console.log(e),
+	onChange: e => console.log('InputWithSelect Default onChange   ',e),
+	onClear: e => console.log('InputWithSelect Default onClear   ',e),
+	onSelectDropDown: e => console.log('InputWithSelect Default onSelectDropDown   ',e),
 	width: 480,
 	keyboardType: 'default',
 };

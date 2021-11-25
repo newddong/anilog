@@ -47,6 +47,8 @@ import UserVerification from 'Root/component/templete/UserVerification';
 import TwoBtnModal from 'Molecules/TwoBtnModal';
 import OneBtnModal from 'Molecules/OneBtnModal';
 import NoBtnModal from 'Molecules/NoBtnModal';
+import PopupSelect from 'Molecules/PopupSelect';
+
 import { Modal } from 'Component/modal/Modal';
 import DatePicker from 'Root/component/molecules/DatePicker';
 import Calendar from 'Root/test_sangwoo/calendar';
@@ -92,6 +94,11 @@ export default RootStackNavigation = () => {
 		!isPop && setPop(true);
 	};
 
+	Modal.popupSelect = () => {
+		popIn(<PopupSelect />);
+		!isPop && setPop(true);
+	}
+
 	// const openCalendar = () => {
 	// 	console.log('openCale')
 	// 	Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date))
@@ -101,7 +108,7 @@ export default RootStackNavigation = () => {
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="MainTab">
+				<RootStack.Navigator initialRouteName="Login">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} options={{ headerShown: false }} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} />
