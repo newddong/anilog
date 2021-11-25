@@ -170,3 +170,89 @@ export const dummy_MissingReportList = [
 		missing_animal_date: '2021-11-29', //실종일
 	},
 ];
+
+export const dummy_AppliesRecord_protect = [
+	{
+		//@FeedObject
+		feed_type: 'feed',
+
+		protect_animal_photos: ['https://newspenguin.com/news/photo/202006/1837_5156_215.jpg'], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '자운동', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '하이엠', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'male', //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //중성화 여부
+		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: '1.2', //몸무게
+
+		protect_animal_status: 'discuss', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_adoption_days_remain: 23,
+		protect_animal_protect_request: true,
+		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
+		//임시보호가 되면 protect로 변경
+		//입양을 가게 되면 상태가 adopt로 변경
+		//임시보호, 입양 협의중이면 discuss로 변경
+		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
+
+		protect_request_date: '2021-03-01', //등록일
+		shelter_name: '서울보호소', //보호소 이름 (보호장소)
+		protect_animal_rescue_location: '반포대교 밑', //구조지역
+	},
+
+	{
+		//@FeedObject
+		feed_type: 'feed',
+
+		protect_animal_photos: ['https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202109/19/7266c35b-f00e-4582-937a-61321be44667.jpg'], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '라이컷', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'male', //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //중성화 여부
+		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: '1.2', //몸무게
+
+		protect_animal_status: 'discuss', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_adoption_days_remain: 2,
+		protect_animal_protect_request: true,
+		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
+		//임시보호가 되면 protect로 변경
+		//입양을 가게 되면 상태가 adopt로 변경
+		//임시보호, 입양 협의중이면 discuss로 변경
+		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
+
+		protect_request_date: '2021-08-22', //등록일
+		shelter_name: '익산보호소', //보호소 이름 (보호장소)
+		protect_animal_rescue_location: '김포공원', //구조지역
+	},
+];
+
+export const dummy_AppliesRecord_rescue = [
+	{
+		//@FeedObject
+		feed_type: 'feed',
+
+		protect_animal_photos: ['http://www.cctvnews.co.kr/news/photo/202009/209212_209761_1939.jpg'], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_species: '강아지', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '말티즈', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'female', //보호중인 동물의 성별
+		protect_animal_neutralization: 'no', //중성화 여부
+		protect_animal_estimate_age: '2개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: '1.2', //몸무게
+
+		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_adoption_days_remain: 3,
+		protect_animal_protect_request: true,
+		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
+		//임시보호가 되면 protect로 변경
+		//입양을 가게 되면 상태가 adopt로 변경
+		//임시보호, 입양 협의중이면 discuss로 변경
+		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
+
+		protect_request_date: '2021-09-24', //등록일
+		shelter_name: '경기도보호소', //보호소 이름 (보호장소)
+		protect_animal_rescue_location: '남산타워', //구조지역
+	},
+];
