@@ -16,29 +16,40 @@ export default ChangePassword = ({route, navigation}) => {
 
 	//현재 비밀번호, 새로운 비밀번호의 양식, 새로운 비밀번호 확인 모두 통과 시 확인 버튼이 활성화
 	React.useEffect(() => {
+		console.log('pre', presentPwdValid);
+		console.log('double', pwdCheck);
+		console.log('form', pwdValid);
 		presentPwdValid && pwdCheck && pwdValid ? setConfirmed(true) : setConfirmed(false);
 	}, [presentPwdValid, pwdCheck, pwdValid]);
 
 	//암호 양식
 	const passwordValidator = pwd => {
-		console.log(pwd);
 		// '최소 8자 이상(~30자 이하), 영문과 숫자만 입력 가능합니다.'
 		var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,30}$/;
 		if (regExp.test(pwd)) {
 			setPwd(pwd);
 			setPwdValid(true);
+			return true;
 		} else {
 			setPwdValid(false);
+			return false;
 		}
 	};
 	//비밀번호 더블체크, 비밀번호와 비밀번호 확인이 일치하며, 비밀번호 작성양식에도 통과한 경우에만 pwdCheck값이 True
 	const passwordChecker = pwd_double => {
+		console.log('%%%%%%%%%', pwd_double);
 		pwd == pwd_double && pwdValid ? setPwdCheck(true) : setPwdCheck(false);
 	};
 
 	//현재 비밀번호 입력값이 실제 DB와 일치하는지 여부
 	const checkPresentPwd = pwd => {
-		pwd == route.params ? setPresentPwdValid(true) : setPresentPwdValid(false);
+		if (pwd == route.params) {
+			setPresentPwdValid(true);
+			return true;
+		} else {
+			setPresentPwdValid(false);
+			return false;
+		}
 	};
 
 	//지우기버튼
@@ -53,6 +64,11 @@ export default ChangePassword = ({route, navigation}) => {
 			setPwdCheck(false);
 		}
 	};
+
+	const onChangePwd = pwd => {
+		console.log('onChangePwd    ' + pwd);
+		// user_data.user_password = pwd;
+	}; //오로지 인풋값 변화만을 감지, validation 로직과는 분리
 
 	//확인 버튼 클릭
 	const onPressConfirm = () => {
@@ -78,6 +94,7 @@ export default ChangePassword = ({route, navigation}) => {
 						pwdValid={pwdValid}
 						pwdCheck={pwdCheck}
 						onPressClear={kind => onPressClear(kind)}
+						onChangePwd={pwd => onChangePwd(pwd)}
 						presentPwdValid={presentPwdValid}
 					/>
 				</View>

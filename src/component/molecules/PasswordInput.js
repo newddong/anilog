@@ -4,6 +4,7 @@ import {Text, View, TouchableOpacity, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
 import {Cross52, Eye52_APRI10, Eye52_GRAY20} from '../atom/icon';
+import {BackgroundColor} from 'chalk';
 
 /**
  *
@@ -39,6 +40,10 @@ export default PasswordInput = React.forwardRef((props, ref) => {
 			validator(text);
 		},
 	}));
+
+	React.useEffect(() => {
+		props.confirm ? setConfirm(true) : setConfirm(false);
+	}, [props.confirm]);
 
 	const [input, setInput] = React.useState(''); // 암호 input text state
 	const [confirm, setConfirm] = React.useState(props.confirm); // 암호 validation state
@@ -83,7 +88,7 @@ export default PasswordInput = React.forwardRef((props, ref) => {
 	//Validator인데 onChange가 있는데 굳이 있어야 하는가 의문? onChange내부에 validator루틴을 넣을수 있도록 해서 사용자가 값을 입력시마다 validator가 true인지 false인지 판단하여
 	//검증 로직을 외부(부모)에서 넣을수 있도록 함
 	const validator = text => {
-		//txt.length > 10 ? setConfirm(true) : setConfirm(false);
+		console.log('props.validator text', props.validator(text));
 		setConfirm(props.validator(text));
 	};
 
@@ -139,9 +144,11 @@ export default PasswordInput = React.forwardRef((props, ref) => {
 								minWidth: 190 * DP,
 								width: props.width * DP,
 								//placeholder 상태일때 글꼴의 영향인지 placeholde'r' 마지막글자가 짤리는 현상 발생
+								backgroundColor: 'yellow',
 							},
 						]}
 					/>
+					{/* /* X버튼은 TextInput과 28px 차이, 최하단 View테두리와는 14px 차이, 텍스트 길이가 1 이상일 경우에만 보여짐(입력값이 없을때 보여질 필요 없음) */}
 					{input.length > 0 && (
 						<View style={{position: 'absolute', right: 0, paddingBottom: 7 * DP, flexDirection: 'row'}}>
 							<View style={{marginRight: 10 * DP}}>
@@ -150,16 +157,8 @@ export default PasswordInput = React.forwardRef((props, ref) => {
 							<Cross52 onPress={onClear} />
 						</View>
 					)}
-					{/* /* X버튼은 TextInput과 28px 차이, 최하단 View테두리와는 14px 차이, 텍스트 길이가 1 이상일 경우에만 보여짐(입력값이 없을때 보여질 필요 없음) */}
-					{input.length > 0 && (
-						<View style={{position: 'absolute', right: 0, paddingBottom: 7 * DP, flexDirection: 'row'}}>
-							<View style={{marginRight: 10 * DP}}>
-								{pwdSecureState ? <Eye52_GRAY20 onPress={onShowPassword} /> : <Eye52_APRI10 onPress={onShowPassword} />}
-							</View>
-						</View>
-					)}
-					{getMsg()}
 				</View>
+				{getMsg()}
 			</View>
 		</View>
 	);

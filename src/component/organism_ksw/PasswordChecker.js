@@ -74,9 +74,14 @@ export default PasswordChecker = props => {
 
 	const passwordMatcher = pwdcheck => {
 		let isValid = props.passwordValidator(passwordValue.current);
-		let isMatch = passwordValue.current === pwdcheck;
+		let isMatch = passwordValue.current == pwdcheck;
+		props.passwordChecker(pwdcheck);
 		props.onConfirmAndChecked && props.onConfirmAndChecked(isValid && isMatch);
 		return isMatch;
+	};
+
+	const compare_curr_pwd = pwd => {
+		props.checkPresentPwd(pwd);
 	};
 	console.log('render');
 	//props.isResetPwdMode가 true일 경우 pwdInput이 3개 출현 (현재암호 / 바꿀 암호 / 바꿀 암호 확인)
@@ -91,9 +96,10 @@ export default PasswordChecker = props => {
 					information={PASSWORD_FORM_DESCRIPTION}
 					alert_msg={FORM_UNMATCHED_DESC}
 					confirm_msg={FORM_MATCHED_DESC}
-					onChange={pwd => passwordValidator(pwd)}
-					confirm={props.pwdValid}
-					onClear={() => onPressClear('new')}
+					onChange={onChangePwd}
+					validator={passwordValidator}
+					// confirm={props.pwdValid} confirm은 validator의 값 반환여부에 따라 컴포넌트 내부에서 결정
+					onClear={onPressClear}
 				/>
 			</View>
 			<View style={[passwordChecker_style.passwordInput_doubleCheck]}>
@@ -103,12 +109,11 @@ export default PasswordChecker = props => {
 					alert_msg={PASSWORD_UNMATCHED}
 					confirm_msg={PASSWORD_CHECK_MATCHED}
 					information={''}
-					confirm={props.pwdCheck}
-					clear={isClear}
-					onChange={passwordChecker}
 					validator={passwordMatcher}
+					// confirm={props.pwdCheck}
 					ref={checkerRef}
 					onClear={onPressCheckClear}
+					// clear={isClear} 삭제 onPressClear주석 참조
 				/>
 			</View>
 		</View>
@@ -124,6 +129,7 @@ export default PasswordChecker = props => {
 					alert_msg={PASSWORD_UNMATCHED}
 					confirm_msg={PASSWORD_CHECK_MATCHED}
 					information={CURRENT_PWD_INFO}
+					validator={compare_curr_pwd}
 					onClear={() => onPressClear('cur')}
 				/>
 			</View>
@@ -135,22 +141,23 @@ export default PasswordChecker = props => {
 					alert_msg={FORM_UNMATCHED_DESC}
 					confirm_msg={FORM_MATCHED_DESC}
 					information={''}
-					onChange={passwordValidator}
-					confirm={props.pwdValid}
-					onClear={() => onPressClear('new')}
+					onChange={onChangePwd}
+					ref={passwordCheck}
+					validator={passwordValidator}
+					// confirm={props.pwdValid} confirm은 validator의 값 반환여부에 따라 컴포넌트 내부에서 결정
+					onClear={onPressClear}
 				/>
 			</View>
 			<View style={[passwordChecker_style.passwordInput_resetMode]}>
 				<PasswordInput
 					title={NEW_PWD_CHECK_TITLE}
 					placeholder={NEW_PWD_CHECK_TITLE}
-					confirm={props.pwdCheck}
 					information={PWD_CHECK_INFO}
 					alert_msg={PASSWORD_UNMATCHED}
 					confirm_msg={PASSWORD_CHECK_MATCHED}
-					onClear={() => onPressClear('check')}
-					onChange={passwordChecker}
-					confirm={props.pwdValid}
+					ref={checkerRef}
+					onClear={onPressCheckClear}
+					validator={passwordMatcher}
 				/>
 			</View>
 		</View>
