@@ -28,46 +28,44 @@ import DropdownSelect from './DropdownSelect';
  */
 export default NormalDropDown = props => {
 	//Default로 선택되어 있어야 하는 경우 ex)프로필 수정 혹은 임시저장된 데이터 호출 시에는 기존 데이터와 일치하는 Default값을 보여주어야 함
-	const [selectedIndex, setSelectedIndex] = React.useState(props.defaultIndex ? props.defaultIndex : 0);
-
+	const [value, setValue] = React.useState(props.menu[props.defaultIndex ? props.defaultIndex : 0]);
 	const onSelect = (v, i) => {
-		setSelectedIndex(i);
-		Modal.close();
-		props.onClose();
+		setValue(v);
 		props.onSelect(v, i);
+		dropdown.current.button.current.press();
 	};
+	const dropdown = React.useRef();
 
 	return (
 		<Dropdown
-			buttonComponent={
-				<DropdownSelect
-					items={props.menu}
-					selectedIndex={selectedIndex}
-					// defaultIndex={props.defaultIndex}
-					width={props.width}
-				/>
-			}
+			alignBottom
+			ref={dropdown}
+			buttonComponent={<DropdownSelect width={props.width} value={value} />}
 			dropdownList={
 				<View style={{backgroundColor: WHITE, borderRadius: 10 * DP, alignItems: 'center', borderWidth: 2 * DP}}>
-					{props.menu.map((v, i) => (
-						<View key={i}>
-							<TouchableWithoutFeedback onPress={() => onSelect(v, i)}>
-								<View style={[styles.itemContainer, {width: props.width != null ? props.width * DP : props.btnLayout.width}]}>
-									<Text
-										style={[
-											txt.noto28b,
-											{
-												fontSize: props.titleFontStyle * DP,
-												textAlign: 'center',
-											},
-										]}>
-										{v}
-									</Text>
+					<TouchableWithoutFeedback>
+						<View>
+							{props.menu.map((v, i) => (
+								<View key={i}>
+									<TouchableWithoutFeedback onPress={() => onSelect(v, i)}>
+										<View style={[styles.itemContainer, {width: props.width != null ? props.width * DP : props.btnLayout.width}]}>
+											<Text
+												style={[
+													txt.noto28b,
+													{
+														fontSize: props.titleFontStyle * DP,
+														textAlign: 'center',
+													},
+												]}>
+												{v}
+											</Text>
+										</View>
+									</TouchableWithoutFeedback>
+									<View style={[styles.separator, {width: props.width != null ? props.width * DP : props.btnLayout.width}]} />
 								</View>
-							</TouchableWithoutFeedback>
-							<View style={[styles.separator, {width: props.width != null ? props.width * DP : props.btnLayout.width}]} />
+							))}
 						</View>
-					))}
+					</TouchableWithoutFeedback>
 				</View>
 			}
 		/>
@@ -93,8 +91,8 @@ NormalDropDown.defaultProps = {
 	titleFontStyle: 24, // 버튼 title의 폰트 크기
 	btnStyle: 'border', // 버튼스타일 filled border noBorder,
 	defaultIndex: null,
-	onOpen: e => console.log(e),
-	onClose: e => console.log(e),
-	onSelect: (v, i) => console.log(i + ':' + v),
+	onOpen: e => console.log('NormalDropDown Default onOpen  ', e),
+	onClose: e => console.log('NormalDropDown Default onClose  ', e),
+	onSelect: (v, i) => console.log('NormalDropDown Default onSelect  ', i + ':' + v),
 	menu: [],
 };

@@ -44,7 +44,7 @@ export default UserPasswordCheck = props => {
 	const onConfirmAndChecked = (finished) => {
 		// console.log('check    '+finished);
 		setPwdValid(finished);
-	}
+	};
 
 	return (
 		<View style={[login_style.wrp_main, { flex: 1 }]}>

@@ -832,6 +832,44 @@ export const dummy_userObject = [
 		user_register_date: '2021-11-24', //가입일
 	},
 	{
+		_id: 3, //temp
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_agreement: {
+			is_over_fourteen: true, //14살 이상
+			is_service: true, //서비스 동의
+			is_personal_Info: true, //개인정보 제공 동의
+			is_location_service_info: true, //위치정보 제공 동의
+			is_donation_info: true, //기부정보 제공 동의
+			is_marketting_Info: false, //마케팅정보 제공 동의
+		}, //회원가입 동의항목 동의여부
+		user_name: '하알라', //실명
+		user_nickname: 'aldne', //닉네임
+		user_gender: 'male',
+		user_phone_number: '010-9645-0422', //휴대폰번호
+		user_mobile_company: 'LG U+', //가입된 통신사
+		user_is_verified_phone_number: true, //폰번호 인증여부
+		user_email: 'lanad03@naver.com', //이메일
+		user_is_verified_email: false, //이메일 인증여부
+		user_password: '121212', //패스워드
+		user_address: {
+			city: '서울시', //시,도
+			district: '포천구', //군,구
+			neighbor: '용소 89-77', //동,읍,면
+		}, //회원주소
+		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
+		user_Introduction: 'Telling me about yourself. ',
+		user_birthday: '1991-12-21', //필요한지 검토 필요
+		user_interests: {
+			location: ['마포', '용산', '남산'],
+			activity: ['산책', '펫카페'],
+		},
+		user_upload_count: 142142, //업로드 게시물 숫자
+		user_follow_count: 12324, //팔로우 숫자
+		user_follower_count: 1245667, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+		user_register_date: '2021-11-24', //가입일
+	},
+	{
 		_id: 2, //temp
 		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
 		user_agreement: {

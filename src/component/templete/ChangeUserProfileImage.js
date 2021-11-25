@@ -1,57 +1,97 @@
-import { useNavigation } from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import { ScrollView, Text, View } from 'react-native';
-import { btn_w654 } from '../atom/btn/btn_style';
+import {ScrollView, Text, View} from 'react-native';
+import {dummy_userObject} from 'Root/config/dummyDate_json';
+import {AVAILABLE_NICK, DEFAULT_PROFILE, NEW_NICK_REQUEST, NEW_NICK_TITLE, NICKNAME_FORM, PREVIOUS_NICK_TITLE, UNAVAILABLE_NICK} from 'Root/i18n/msg';
+import {btn_w654} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import Input24 from '../molecules/Input24';
 import ProfileImageSelect from '../molecules/ProfileImageSelect';
-import { login_style, btn_style, temp_style, changeUserProfileImage_style } from './style_templete';
+import {login_style, btn_style, temp_style, changeUserProfileImage_style} from './style_templete';
 
-// 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
-//ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
+export default ChangeUserProfileImage = ({route}) => {
+	// console.log('route / Profile', route.params);
 
-export default ChangeUserProfileImage = props => {
+	const [data, setData] = React.useState(route.params);
+	const [newNick, setNewNick] = React.useState('');
 	const navigation = useNavigation();
 	const [confirmed, setConfirmed] = React.useState(false);
+
 	const onConfirmed = () => {
-		console.log('확인 클릭');
+		navigation.goBack();
+	};
+
+	const selectPhoto = () => {
+		navigation.push('SinglePhotoSelect', route.name);
+	};
+
+	//중복 처리
+	const checkDuplicateNickname = nick => {
+		const result = false;
+		const exist_dup = dummy_userObject.filter(e => e.user_nickname == nick);
+		console.log('exist dup', exist_dup[0].user_nickname);
+		return result;
+	};
+
+	//닉네임 Validation
+	const nickName_validator = text => {
+		setNewNick(text);
+		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
+		// 영문자, 소문자, 숫자, "-","_" 로만 구성된 길이 2~10자리 사이의 문자열
+		var regExp = /^[a-zA-Z0-9_-]{2,15}$/;
+		regExp.test(text) && checkDuplicateNickname(text) ? setConfirmed(true) : setConfirmed(false);
+	};
+
+	//새 닉네임 지우기 마크 클릭
+	const onClearNickname = () => {
+		setConfirmed(false);
 	};
 	return (
 		<ScrollView>
-			<View style={[login_style.wrp_main, { flex: 1 }]}>
-				{/* (M)ProfileImageSelect */}
+			<View style={[login_style.wrp_main, {flex: 1}]}>
 				<View style={[temp_style.profileImageSelect, changeUserProfileImage_style.profileImageSelect]}>
-					<ProfileImageSelect
-						selectedImageUri={'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png'}
-						onClick={() => navigation.push('SinglePhotoSelect', props.route.name)}
-					/>
+					<ProfileImageSelect selectedImageUri={data ? data.user_profile_uri : DEFAULT_PROFILE} onClick={selectPhoto} />
 				</View>
-
-				{/* ProfileNicknameChange */}
 				<View style={[temp_style.profileNicknameChange, changeUserProfileImage_style.profileNicknameChange]}>
-					{/* (M)Input24 */}
+					{/* 기존 닉네임 */}
 					<View style={[temp_style.input24_changeUserProfileImage, changeUserProfileImage_style.input24]}>
-						<Input24 title={'기존 닉네임'} defaultValue={props.previous_nickname} width={654} />
+						<Input24
+							title={PREVIOUS_NICK_TITLE}
+							defaultValue={data ? data.user_nickname : ''}
+							width={654}
+							descriptionType={'none'}
+							editable={false}
+							showCrossMark={false}
+						/>
 					</View>
-					{/* (M)Input24 */}
+
 					<View style={[temp_style.input24_changeUserProfileImage]}>
 						<Input24
-							title={'새 닉네임'}
+							onChange={text => nickName_validator(text)}
+							title={NEW_NICK_TITLE}
 							descriptionType={'info'}
-							info={'2자 이상 15자 이내의 영문, 숫자의 입력만 가능합니다'}
-							placeholder={'새로운 닉네임을 적어주세요.'}
+							info={NICKNAME_FORM}
+							placeholder={NEW_NICK_REQUEST}
+							showmsg={true}
+							confirm={confirmed}
+							alert_msg={UNAVAILABLE_NICK}
+							confirm_msg={AVAILABLE_NICK}
 							width={654}
+							onClear={onClearNickname}
 						/>
 					</View>
 				</View>
 
 				{/* (A)Btn_w654 */}
 				<View style={[btn_style.btn_w654, changeUserProfileImage_style.btn_w654]}>
-					{!confirmed ? (
-						<AniButton btnTitle={'확인'} btnStyle={'filled'} btnTheme={'shadow'} titleFontStyle={32} btnLayout={btn_w654} onPress={onConfirmed} />
-					) : (
-						<AniButton btnTitle={'확인'} disable={true} titleFontStyle={32} btnLayout={btn_w654} />
-					)}
+					<AniButton
+						btnTitle={'확인'}
+						btnTheme={'shadow'}
+						titleFontStyle={32}
+						btnLayout={btn_w654}
+						onPress={onConfirmed}
+						disable={confirmed ? false : true}
+					/>
 				</View>
 			</View>
 		</ScrollView>

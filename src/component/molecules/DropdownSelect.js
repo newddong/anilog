@@ -1,11 +1,11 @@
 import React from 'react';
-import { txt } from 'Root/config/textstyle';
-import { Text, View, TouchableOpacity } from 'react-native';
+import {txt} from 'Root/config/textstyle';
+import {Text, View, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
-import { Arrow_Down_GRAY20, Arrow_Up_GRAY20 } from '../atom/icon';
-import { APRI10, BLACK, GRAY40 } from 'Root/config/color';
+import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
+import {APRI10, BLACK, GRAY40} from 'Root/config/color';
 import Dropdown from './Dropdown';
-
+import {Modal} from 'Component/modal/Modal';
 /**
  *
  * @param {{
@@ -19,32 +19,36 @@ import Dropdown from './Dropdown';
  *	textStyle: 'Text Style',
  * }} props
  */
-export default DropdownSelect = props => {
+export default DropdownSelect = React.forwardRef((props, ref) => {
+	React.useImperativeHandle(ref, () => ({
+		press: () => {
+			onPress();
+		},
+	}));
+
 	// Dropdown 화살표의 state - True일 경우 opened 상태 / False일 경우 closed 상태
 	const [btnStatus, setBtnStatus] = React.useState(false);
-	// Dropdown에서 현재 선택된 항목 State, 처음 Mount시 itemList[defaultIndex]를 반환
-	const [selectedItem, setSelectedItem] = React.useState(props.items[props.defaultIndex]);
 
 	const onPress = () => {
-		setBtnStatus(!btnStatus)
-		props.onPress()
-	}
+		console.log('DropdownSelect onPress');
+		// setBtnStatus(!btnStatus);
+		// Modal.popupSelect();
+		(btnStatus && (onClose() || true)) || onOpen();
+	};
+	const onOpen = () => {
+		console.log('DropdownSelect onOpen');
+		setBtnStatus(true);
+		props.onOpen();
+	};
 
-	React.useEffect(() => {
-		setSelectedItem(props.items[props.selectedIndex])
-		setBtnStatus(!btnStatus)
-	}, [props.selectedIndex])
-
-	React.useEffect(() => {
-		//selectedItem이 DropDown 선택으로 인해 바뀌면 수행되는 함수
-		//현재 Dropdown은 미구현 상태
-		onChange = () => {
-			props.onChange(txt);
-		};
-	}, [selectedItem]);
+	const onClose = () => {
+		console.log('DropdownSelect onClose');
+		setBtnStatus(false);
+		props.onClose();
+	};
 
 	return (
-		<TouchableOpacity onPress={onPress} style={{ height: 82 * DP, flexDirection: 'row' }}>
+		<TouchableOpacity onPress={onPress} style={{height: 82 * DP, flexDirection: 'row'}}>
 			<View
 				style={{
 					width: props.width * DP,
@@ -64,7 +68,7 @@ export default DropdownSelect = props => {
 							marginRight: 40 * DP,
 						},
 					]}>
-					{selectedItem}
+					{props.value}
 				</Text>
 				<View
 					style={{
@@ -81,14 +85,13 @@ export default DropdownSelect = props => {
 			</View>
 		</TouchableOpacity>
 	);
-};
+});
 DropdownSelect.defaultProps = {
-	value: null,
-	items: [1, 2, 3, 4], //DropDown될 리스트 목록
-	defaultIndex: 0, // DropDown Default상태의 index
-	selectedIndex: 0, //현재 선택 Index
+	value: '',
 	width: 180, //Select+Text 부분의 width Default=180(5글자)
-	onChange: e => console.log('dropdown', e),
-	onPress: e => console.log('dropdown', e),
+	onChange: e => console.log('DropdownSelect Default onChange', e),
+	onPress: e => console.log('DropdownSelect Default onPress', e),
+	onClose: e => console.log('DropdownSelect Default onClose  ', e),
+	onOpen: e => console.log('DropdownSelect Default onOpen', e),
 	textStyle: null,
 };

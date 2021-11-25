@@ -251,3 +251,27 @@ export const INTEREST_ACT = '관심 활동';
 
 //TabSelect
 export const GENDER_TAB_SELECT = ['남자', '여자'];
+
+//PasswordChecker
+export const PASSWORD_TITLE = '비밀번호';
+export const PASSWORD_CHECK_TITLE = '비밀번호 확인';
+export const NEW_PWD_TITLE = '새로운 비밀번호';
+export const CURRENT_PWD_TITLE = '현재 비밀번호';
+export const PASSWORD_UNMATCHED = '비밀번호가 일치하지 않습니다.';
+export const PASSWORD_CHECK_MATCHED = '비밀번호가 서로 일치합니다.';
+export const PASSWORD_FORM_DESCRIPTION = '최소 8자 이상, 영문과 숫자만 입력 가능합니다.';
+export const CURRENT_PWD_INFO = '현재 비밀번호를 적어주세요.';
+export const FORM_UNMATCHED_DESC = '비밀번호 작성 양식에 맞지 않습니다.';
+export const FORM_MATCHED_DESC = '비밀번호 작성 양식과 일치합니다!';
+export const NEW_PWD_CHECK_TITLE = '새로운 비밀번호 확인';
+export const NEW_PWD_PLACEHOLDER = '새로운 비밀번호 확인';
+export const PWD_CHECK_INFO = '비밀번호를 다시 한 번 적어주세요.';
+
+//Nickname 설정 관련
+export const NICKNAME_FORM = '2자 이상 15자 이내의 영문, 숫자의 입력만 가능합니다';
+export const NEW_NICK_REQUEST = '새로운 닉네임을 적어주세요.';
+export const PREVIOUS_NICK_TITLE = '기존 닉네임';
+
+export const NEW_NICK_TITLE = '새 닉네임';
+export const UNAVAILABLE_NICK = '사용 불가한 닉네임입니다.';
+export const AVAILABLE_NICK = '사용 가능한 닉네임입니다!';

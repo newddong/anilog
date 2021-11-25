@@ -13,12 +13,14 @@ import {Cross46} from '../atom/icon';
  *descriptionType: 'star' | 'info' | 'none',
  *value: string,
  *alert_msg: 'String / 긴급메시지 ',
+ *confirm : 'Boolean',
  *confirm_msg: 'String / 확인메시지 ',
  *info: string,
  *width: 'number / Input24의 전체 너비 default = 300',
  *showmsg : 'boolean / input 하단 alert_msg',
  *style:'StyleSheet',
- *defaultValue : string
+ *defaultValue : string,
+ *editable : 'Boolean',
  *showCrossMark : 'boolean / INPUT 오른쪽 지우기 마크(Cross) 출력여부, default = true',
  *onChange : void,
  *onClear : void,
@@ -29,6 +31,10 @@ export default Input24 = props => {
 	const [input, setInput] = React.useState('');
 	const [confirm, setConfirm] = React.useState(false);
 	const inputRef = React.useRef();
+
+	React.useEffect(() => {
+		props.confirm ? setConfirm(true) : setConfirm(false);
+	}, [props.confirm]);
 
 	//Validator 조건확인이 안되었기에 테스트용으로 입력된 텍스트가
 	// 10자 이상일 때 confirmed가 되도록 작성
@@ -108,6 +114,7 @@ export default Input24 = props => {
 					onChangeText={text => onChange(text)}
 					placeholder={props.placeholder}
 					defaultValue={props.defaultValue}
+					editable={props.editable}
 					style={[
 						txt.noto28,
 						props.style,
@@ -120,7 +127,7 @@ export default Input24 = props => {
 					]}>
 					{props.showHttp ? <Text>http://</Text> : null}
 				</TextInput>
-				{input.length>0 ? (
+				{input.length > 0 ? (
 					<View style={{position: 'absolute', right: 0}}>
 						<Cross46 onPress={onClear} />
 					</View>
@@ -138,7 +145,9 @@ Input24.defaultProps = {
 	value: 'value',
 	showMsg: false,
 	alert_msg: 'alert_msg',
+	confirm: false,
 	confirm_msg: 'confirm_msg',
+	editable: true,
 	info: null, //
 	defaultValue: null, // 기존 아이디 등 DefaultValue가 필요한 경우에 대한 처리
 	showCrossMark: true, //Input 최우측 X마크(지우기마크) 출력 여부

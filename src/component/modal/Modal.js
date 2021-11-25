@@ -5,5 +5,6 @@ export const Modal = {
     popNoBtn: () => { },
     popOneBtn: () => { },
     popDrop: () => { },
-    popCalendar: () => { }
+    popCalendar: () => { },
+    popupSelect: () => { }
 };

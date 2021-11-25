@@ -43,9 +43,14 @@ export default UserVerification = props => {
 		console.log(name);
 	};
 	const onPhoneNumberInputChange = phone_num => {
-		console.log(phone_num);
+		console.log('Userverification onPhoneNumberInputChange      ',phone_num);
 		user_data.user_phone_number=phone_num;
 	};
+	const onMobileCompanyInputChange = (company,index) => {
+		console.log('Userverification onMobileCompanyInputChange      ',company, index);
+		user_data.user_mobile_company=company;
+	}
+
 	const verificationRequest = () => {
 		console.log(verified_num);
 		setVerified(true);
@@ -98,6 +103,7 @@ export default UserVerification = props => {
 							onVerificationNumberChange={onVerificationNumberChange}
 							onNameInputChange={onNameInputChange}
 							onPhoneNumberInputChange={onPhoneNumberInputChange}
+							onMobileCompanyInputChange={onMobileCompanyInputChange}
 						/>
 					</View>
 				) : (

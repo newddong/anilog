@@ -16,7 +16,8 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params);
 
 	React.useEffect(() => {
-		console.log('data', data.user_address);
+		// console.log('data', data);
+		navigation.setParams(data);
 	}, [data]);
 
 	//생일 값 변경 콜백
@@ -30,31 +31,46 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	};
 
 	const onChangeAddress = addr => {
-		setData({
-			...data,
-			user_address: {
-				city: addr,
-				district: addr,
-			},
-		});
+		let copy = {...data}; //Json 부분 변경 방법
+		copy.user_address.city = addr;
+		copy.user_address.district = addr;
+		setData(copy);
 	};
 
 	const onChangeDeatilAddress = addr => {
-		setData({
-			...data,
-			...user_address,
-			neighbor: addr,
-		});
+		let copy = {...data};
+		copy.user_address.neighbor = addr;
+		setData(copy);
+	};
+
+	const onChangePhoneNum = num => {
+		setData({...data, user_phone_number: num});
 	};
 
 	//관심지역 태그 X마크 삭제클릭
 	const onDeleteInterestRegion = index => {
-		console.log('i', index);
+		let copy = data.user_interests.location;
+		copy.splice(index, 1);
+		setData({
+			...data,
+			user_interests: {
+				location: copy,
+				activity: data.user_interests.activity,
+			},
+		});
 	};
 
 	//관심활동 태그 X마크 삭제 클릭
 	const onDeleteInterestAct = index => {
-		console.log('i', index);
+		let copy = data.user_interests.activity;
+		copy.splice(index, 1);
+		setData({
+			...data,
+			user_interests: {
+				location: data.user_interests.location,
+				activity: copy,
+			},
+		});
 	};
 
 	//유저의 통신사 정보와 일치하도록 DropDown의 디폴트 값을 적용
@@ -62,6 +78,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 		const found = mobile_carrier.findIndex(e => e == data.user_mobile_company);
 		return found;
 	};
+
 	return (
 		<ScrollView>
 			<View style={[login_style.wrp_main, {flex: 1}]}>
@@ -91,10 +108,11 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 						</View>
 						<View style={[userInfoDetailSettting_style.phone_num_input]}>
 							<InputWithSelect
+								onChange={num => onChangePhoneNum(num)}
 								onSelectDropDown={(v, i) => onSelectMobileCompany(v, i)}
 								items={mobile_carrier}
 								placeholder={INPUT_PHONE_NUM}
-								width={350}
+								width={300}
 								defaultIndex={getDefault()}
 								defaultInput={data ? data.user_phone_number : ''}
 							/>

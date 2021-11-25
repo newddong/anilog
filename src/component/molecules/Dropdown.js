@@ -12,7 +12,11 @@ import AniButton from './AniButton';
  * horizontalOffset : '',
  * }} props
  */
-export default Dropdown = props => {
+export default Dropdown = React.forwardRef((props,ref) => {
+	React.useImperativeHandle(ref,()=>({
+		button:buttonref
+	}));
+
 	const container = React.useRef();
 	const isClick = React.useRef(false);
 
@@ -34,6 +38,7 @@ export default Dropdown = props => {
 		Modal.close();
 		props.buttonComponent.props.onClose();
 	};
+
 	const closeDropdown = () => {
 		console.log('closeDropDown');
 		Modal.close();
@@ -80,15 +85,14 @@ export default Dropdown = props => {
 		onPress: onPressOverride,
 		onClose: onCloseOverride,
 		onOpen: onOpenOverride,
-		ref: buttonref
-		}
-	);
+		ref: buttonref,
+	});
 	return (
 		<View ref={container} onLayout={e => {}}>
 			{button}
 		</View>
 	);
-};
+});
 
 Dropdown.defaultProps = {
 	dropdownList: <View style={{position: 'absolute', width: 100, height: 100, backgroundColor: 'blue'}} />,
