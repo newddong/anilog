@@ -4,6 +4,7 @@ import {txt} from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52} from '../atom/icon';
 import {APRI10, GRAY30, RED10} from 'Root/config/color';
+import NormalDropDown from './NormalDropDown';
 
 /**
  *
@@ -11,20 +12,19 @@ import {APRI10, GRAY30, RED10} from 'Root/config/color';
  *placeholder: string,
  *items: 'Array / Select 목록',
  *defaultIndex: number,
+ *defaultInput : string,
  *value: string,
  *title : string,
  *title_star : boolean,
  *alert_msg : string,
  *onChange: 'Input Value Chgange Callback',
  *onClear: '지우기 버튼(X) 클릭 Callback',
+ *onSelectDropDown : '드롭다운 선택 콜백',
  *width: 'number / TextInput 너비 , default=200',
  *keyboardType : 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'number-pad' | 'decimal-pad',
  * }} props
  */
 export default InputWithSelect = props => {
-	const [btnStatus, setBtnStatus] = React.useState(false);
-	// Dropdown에서 현재 선택된 항목 State, 처음 Mount시 itemList[defaultIndex]를 반환
-	const [selectedItem, setSelectedItem] = React.useState(props.items[props.defaultIndex]);
 	const [input, setInput] = React.useState('');
 	const inputRef = React.useRef();
 
@@ -47,6 +47,11 @@ export default InputWithSelect = props => {
 		inputRef.current.focus();
 	};
 
+	const onSelectDropDown = (v, i) => {
+		console.log('드롭다운 선택확인 ', v, i);
+		props.onSelectDropDown(v, i);
+	};
+
 	return (
 		<View style={{height: 82 * DP}}>
 			{props.title != null ? (
@@ -59,43 +64,35 @@ export default InputWithSelect = props => {
 			<View
 				style={{
 					flexDirection: 'row',
-					borderBottomWidth: 2 * DP,
-					// 현재 선택상태인 드롭다운아이템이 itemList props의 defaultIndex와 일치하는지 여부
-					borderColor: input.length == 0 ? GRAY30 : APRI10,
 					alignItems: 'center',
 				}}>
-				<Text
-					style={[
-						txt.roboto28,
-						{
-							paddingLeft: 24 * DP,
-							lineHeight: 44 * DP,
-						},
-					]}>
-					{selectedItem}
-				</Text>
-				<View style={{marginLeft: 43 * DP}}>
-					{/* BtnStatus가 true일 경우 아래방향 화살표, false일 경우 위방향 화살표 */}
-					{btnStatus ? <Arrow_Up_GRAY20 onPress={() => setBtnStatus(!btnStatus)} /> : <Arrow_Down_GRAY20 onPress={() => setBtnStatus(!btnStatus)} />}
-				</View>
+				<NormalDropDown
+					menu={props.items}
+					width={200}
+					defaultIndex={props.defaultIndex ? props.defaultIndex : null}
+					onSelect={(v, i) => onSelectDropDown(v, i)}
+				/>
 				<TextInput
 					placeholder={props.placeholder}
 					value={props.value}
 					ref={inputRef}
+					defaultValue={props.defaultInput}
 					keyboardType={props.keyboardType}
 					onChangeText={text => onChange(text)}
 					style={[
 						txt.roboto28,
 						{
-							//placeholder 상태일때 글꼴의 영향인지 placeholde'r' 마지막글자가 짤리는 현상 발생
-							//우선 width를 가변적으로 주는 방식으로 해결
 							width: props.width * DP,
 							paddingVertical: 16 * DP, // Value와 최상위 View와의 paddingVertical 16px
-							paddingLeft: 12 * DP, // Arrow버튼과 Value란 12px 차이
+							paddingLeft: 15 * DP, // Arrow버튼과 Value란 12px 차이
+							marginLeft: 20 * DP,
+							marginTop: 15 * DP,
+							borderBottomWidth: 2 * DP,
+							borderColor: input.length == 0 ? GRAY30 : APRI10,
 						},
 					]}
 				/>
-				{input.length>0 ? (
+				{input.length > 0 ? (
 					<View style={{position: 'absolute', right: 0}}>
 						<Cross52 onPress={onClear} />
 					</View>
@@ -114,8 +111,10 @@ InputWithSelect.defaultProps = {
 	title: null,
 	title_star: false,
 	alert_msg: null,
+	defaultInput: null,
 	onChange: e => console.log(e),
 	onClear: e => console.log(e),
+	onSelectDropDown: e => console.log(e),
 	width: 480,
 	keyboardType: 'default',
 };

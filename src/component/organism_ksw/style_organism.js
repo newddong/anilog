@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { APRI10, GRAY10, GRAY20, GRAY30, GRAY40, WHITE } from 'Root/config/color';
+import {StyleSheet} from 'react-native';
+import {APRI10, GRAY10, GRAY20, GRAY30, GRAY40, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
 
 export const BGCOLOR = '#B5DED8';
@@ -432,12 +432,11 @@ export const myPetList = StyleSheet.create({
 export const interestTagList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		height: 236 * DP,
 	},
 	titleContainer: {
 		width: 654 * DP,
 		height: 70 * DP,
-		marginTop: 44 * DP,
+		marginTop: 20 * DP,
 		flexDirection: 'row',
 	},
 	title: {
@@ -709,7 +708,7 @@ export const assignCheckListItem = StyleSheet.create({
 		width: 654 * DP,
 		height: 50 * DP,
 		alignItems: 'center',
-		flexDirection: 'row'
+		flexDirection: 'row',
 	},
 	check50: {
 		width: 50 * DP,
@@ -1057,7 +1056,7 @@ export const animalNeedHelp = StyleSheet.create({
 	},
 	detail_upperMenu: {
 		width: 410 * DP,
-		height: 48 * DP,
+		// height: 48 * DP,
 		flexDirection: 'row',
 	},
 	detail_upper_petStateContainer: {
@@ -1083,7 +1082,6 @@ export const animalNeedHelp = StyleSheet.create({
 		right: 0,
 	},
 	detail_lowerMenu: {
-		marginTop: 6 * DP,
 		width: 410 * DP,
 		height: 160 * DP,
 	},
@@ -1122,6 +1120,9 @@ export const animalNeedHelp = StyleSheet.create({
 	},
 	container_basicInfo_seleted: {
 		flexDirection: 'row',
+	},
+	lowerMenu_kindAndBreed_marginTop: {
+		marginTop: 6 * DP,
 	},
 });
 
@@ -1272,7 +1273,6 @@ export const stagebar_style = StyleSheet.create({
 		borderWidth: 4 * DP,
 		borderColor: APRI10,
 	},
-	insideBar: { width: 80 * DP, height: 20 * DP, backgroundColor: APRI10, borderRadius: 18 * DP },
-	text: { marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10 },
+	insideBar: {width: 80 * DP, height: 20 * DP, backgroundColor: APRI10, borderRadius: 18 * DP},
+	text: {marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10},
 });
-

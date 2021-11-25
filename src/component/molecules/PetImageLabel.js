@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, Image, Text, TouchableOpacity} from 'react-native';
-import {GRAY10} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
-import {Paw62_APRI10, Paw62_Mixed, Paw62_YELL20} from '../atom/icon';
-import {styles} from '../atom/image/imageStyle';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { GRAY10 } from 'Root/config/color';
+import { txt } from 'Root/config/textstyle';
+import { Paw62_APRI10, Paw62_Mixed, Paw62_YELL20 } from '../atom/icon';
+import { styles } from '../atom/image/imageStyle';
 
 /**
  *
@@ -17,9 +17,9 @@ export default PetImageLabel = props => {
 	// 반려동물의 프로필 이미지를 표시, 상태(임시보호중,입양)에 따라 아이콘을 표시
 	const petStatus = () => {
 		switch (props.petStatus) {
-			case 'protected':
+			case 'protect':
 				return <Paw62_YELL20 />;
-			case 'adopted':
+			case 'adopt':
 				return <Paw62_Mixed />;
 			default:
 				return <Paw62_APRI10 />;
@@ -27,10 +27,10 @@ export default PetImageLabel = props => {
 	};
 
 	return (
-		<View style={{width: 180 * DP, height: 180 * DP}}>
-			<Image source={{uri: props.img_uri}} style={styles.img_round_180} />
-			<View style={{position: 'absolute'}}>{petStatus()}</View>
-			<Text style={[txt.noto28, {color: GRAY10, textAlign: 'center'}]}>{props.petNickname}</Text>
+		<View style={{ width: 180 * DP, height: 180 * DP }}>
+			<Image source={{ uri: props.img_uri }} style={styles.img_round_180} />
+			<View style={{ position: 'absolute' }}>{petStatus()}</View>
+			<Text style={[txt.noto28, { color: GRAY10, textAlign: 'center' }]}>{props.petNickname}</Text>
 		</View>
 	);
 };

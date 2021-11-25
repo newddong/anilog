@@ -8,6 +8,8 @@ import {useNavigation} from '@react-navigation/core';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import AniButton from '../molecules/AniButton';
 import {FavoriteTag48_Border, FavoriteTag48_Filled} from '../atom/icon';
+import {color} from 'react-native-reanimated';
+import {RED10} from 'Root/config/color';
 
 export default AnimalNeedHelp = props => {
 	const [selected, setSelected] = React.useState(false);
@@ -34,45 +36,68 @@ export default AnimalNeedHelp = props => {
 	//우상단 즐겨찾기 깃발 아이콘 클릭 콜백
 	const onPressFavoriteTag = () => {
 		setFavorite(!favorite);
+		props.onFavoriteTag(favorite);
 	};
 
 	const contents = () => {
 		return (
 			<View style={[animalNeedHelp.detailContainer]}>
 				<View style={[animalNeedHelp.detail_upperMenu]}>
-					{/* 임보요청 출력 true, false */}
-					<View style={[animalNeedHelp.detail_upper_petStateContainer]}>
-						{props.data.protect_animal_protect_request ? (
-							<View style={[animalNeedHelp.detail_upper_petState]}>
-								<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>임보요청</Text>
-							</View>
-						) : null}
-						{/* 입양가능날짜 출력 T/F */}
-						{props.data.protect_animal_adoption_days_remain != null ? (
-							<View style={[animalNeedHelp.detail_upper_petState]}>
-								<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>
-									{props.data.protect_animal_adoption_days_remain}일 후 입양가능
-								</Text>
-							</View>
-						) : null}
-					</View>
+					{props.data.feed_type == 'feed' && (
+						// 임보요청 출력 true, false
+						<View style={[animalNeedHelp.detail_upper_petStateContainer]}>
+							{props.data.protect_animal_protect_request ? (
+								<View style={[animalNeedHelp.detail_upper_petState]}>
+									<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>임보요청</Text>
+								</View>
+							) : null}
+							{/* 입양가능날짜 출력 T/F */}
+							{props.data.protect_animal_adoption_days_remain != null ? (
+								<View style={[animalNeedHelp.detail_upper_petState]}>
+									<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>
+										{props.data.protect_animal_adoption_days_remain}일 후 입양가능
+									</Text>
+								</View>
+							) : null}
+						</View>
+					)}
 					{/* 좋아요 State Tag */}
 					<View style={[animalNeedHelp.detail_upper_tag]}>
 						{favorite ? <FavoriteTag48_Filled onPress={onPressFavoriteTag} /> : <FavoriteTag48_Border onPress={onPressFavoriteTag} />}
 					</View>
 				</View>
 				<View style={[animalNeedHelp.detail_lowerMenu]}>
-					{/* 동물 종류 및 품종 */}
-					<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
-						<Text style={[txt.noto30b]}>{props.data.protect_animal_species}</Text>
-						<Text style={[txt.noto28, animalNeedHelp.breedText]}>{props.data.protect_animal_species_detail}</Text>
-					</View>
-					{/* 보호요청 관련 Details */}
-					<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
-						<Text style={[txt.noto24]}>등록일 : {props.data.protect_request_date}</Text>
-						<Text style={[txt.noto24]}>보호장소 : {props.data.shelter_name}</Text>
-						<Text style={[txt.noto24]}>구조지역 : {props.data.protect_animal_rescue_location}</Text>
-					</View>
+					{props.data.feed_type == 'feed' && (
+						<>
+							{/* 동물 종류 및 품종 */}
+							<View style={[animalNeedHelp.lowerMenu_kindAndBreed, animalNeedHelp.lowerMenu_kindAndBreed_marginTop]}>
+								<Text style={[txt.noto30b]}>{props.data.protect_animal_species}</Text>
+								<Text style={[txt.noto28, animalNeedHelp.breedText]}>{props.data.protect_animal_species_detail}</Text>
+							</View>
+							{/* 보호요청 관련 Details */}
+							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
+								<Text style={[txt.noto24]}>등록일 : {props.data.protect_request_date}</Text>
+								<Text style={[txt.noto24]}>보호장소 : {props.data.shelter_name}</Text>
+								<Text style={[txt.noto24]}>구조지역 : {props.data.protect_animal_rescue_location}</Text>
+							</View>
+						</>
+					)}
+					{(props.data.feed_type == 'missing' || props.data.feed_type == 'report') && (
+						<>
+							{/* 동물 종류 및 품종 */}
+							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
+								<Text style={[txt.noto30b, {color: RED10}]}>{props.data.missing_animal_species}</Text>
+								<Text style={[txt.noto28, {color: RED10}, animalNeedHelp.breedText]}>{props.data.missing_animal_species_detail}</Text>
+							</View>
+							{/* 실종/제보 관련 Details */}
+							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
+								<Text style={[txt.noto24, {color: RED10}]}>실종일: {props.data.missing_animal_date}</Text>
+								<Text style={[txt.noto24, {color: RED10}]}>나이:{props.data.missing_animal_age} / 성별:</Text>
+								<Text style={[txt.noto24]}>실종위치: {props.data.missing_animal_lost_location}</Text>
+								<Text style={[txt.noto24]}>특징: {props.data.missing_animal_features}</Text>
+							</View>
+						</>
+					)}
 				</View>
 			</View>
 		);

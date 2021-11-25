@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
-import { GRAY10, RED10, WHITE } from 'Root/config/color';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
+import {GRAY10, RED10, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
-import { txt } from 'Root/config/textstyle';
-import { Mercy_Killing, Female48, Male48 } from '../atom/icon';
-import { styles } from '../atom/image/imageStyle';
+import {txt} from 'Root/config/textstyle';
+import {Mercy_Killing, Female48, Male48} from '../atom/icon';
+import {styles} from '../atom/image/imageStyle';
 
 /**
  *
@@ -25,7 +25,7 @@ export default ProtectedThumbnail = props => {
 
 	const getEmergencyMsg = () => {
 		return props.data.status == 'emergency' ? (
-			<View style={{ position: 'absolute', alignSelf: 'center', bottom: 46 * DP }}>
+			<View style={{position: 'absolute', alignSelf: 'center', bottom: 46 * DP}}>
 				<Mercy_Killing />
 			</View>
 		) : (
@@ -35,12 +35,12 @@ export default ProtectedThumbnail = props => {
 
 	const getStatusContainerStyle = () => {
 		if (props.data.status == 'missing') {
-			return { backgroundColor: RED10 };
+			return {backgroundColor: RED10};
 		} else if (props.data.status == 'reported') {
-			return { backgroundColor: 'pink' };
+			return {backgroundColor: 'pink'};
 		} else if (props.data.status == 'emergency') {
-			return { backgroundColor: RED10, borderWidth: 2 * DP, borderColor: RED10 };
-		} else return { backgroundColor: GRAY10 };
+			return {backgroundColor: RED10, borderWidth: 2 * DP, borderColor: RED10};
+		} else return {backgroundColor: GRAY10};
 	};
 
 	const getStatusText = () => {
@@ -53,8 +53,10 @@ export default ProtectedThumbnail = props => {
 				return '실종';
 			case 'reported':
 				return '제보';
-			case 'onNegotiation':
+			case 'discuss':
 				return '협의 중';
+			case 'adopted':
+				return '입양완료';
 			case 'adopted':
 				return '입양완료';
 		}
@@ -67,9 +69,9 @@ export default ProtectedThumbnail = props => {
 	return (
 		<View style={styles.img_square_round_214}>
 			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{ uri: props.data.img_uri }} style={[styles.img_square_round_214, borderByStatus()]} />
+				<Image source={{uri: props.data.img_uri}} style={[styles.img_square_round_214, borderByStatus()]} />
 				{/* 펫 성별마크 */}
-				<View style={{ position: 'absolute', right: 10 * DP, top: 10 * DP }}>{props.data.gender == 'male' ? <Male48 /> : <Female48 />}</View>
+				<View style={{position: 'absolute', right: 10 * DP, top: 10 * DP}}>{props.data.gender == 'male' ? <Male48 /> : <Female48 />}</View>
 				{/* 펫 보호상태 */}
 				<View
 					style={[
@@ -84,7 +86,7 @@ export default ProtectedThumbnail = props => {
 							borderBottomRightRadius: 30 * DP,
 						},
 					]}>
-					<Text style={[txt.noto24, { color: WHITE, textAlign: 'center', lineHeight: 32 * DP }]}>{getStatusText()}</Text>
+					<Text style={[txt.noto24, {color: WHITE, textAlign: 'center', lineHeight: 32 * DP}]}>{getStatusText()}</Text>
 				</View>
 				{getEmergencyMsg()}
 			</TouchableOpacity>
@@ -98,5 +100,5 @@ ProtectedThumbnail.defaultProps = {
 		gender: 'female',
 		status: 'adoption_available', // protected, missing, reported, onNegotiation, adoption_available, adopted
 	},
-	onLabelClick: e => console.log(e)
+	onLabelClick: e => console.log(e),
 };

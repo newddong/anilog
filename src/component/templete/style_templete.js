@@ -574,7 +574,7 @@ export const temp_style = StyleSheet.create({
 		// backgroundColor: '#B3EBB5',
 	},
 	userText_userInfoSetting: {
-		width: 450 * DP,
+		width: 600 * DP,
 		height: 82 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -1637,14 +1637,17 @@ export const userInfoDetailSettting_style = StyleSheet.create({
 		flexDirection: 'row',
 		marginBottom: 52 * DP,
 	},
-
+	phone_num_input: {
+		width: 520 * DP,
+		height: 82 * DP,
+		// backgroundColor: '#EDEDED',
+	},
 	tagListContainer: {
 		width: 654 * DP,
-		marginTop: 80 * DP,
+		marginTop: 60 * DP,
 	},
 	interestTagList: {
 		width: 654 * DP,
-		height: 236 * DP,
 	},
 });
 
@@ -1700,7 +1703,6 @@ export const userMenu_style = StyleSheet.create({
 		flexDirection: 'row',
 		marginTop: 30 * DP,
 		width: 610 * DP,
-		height: 60 * DP,
 		alignItems: 'center',
 	},
 
@@ -2702,7 +2704,7 @@ export const appliesRecord = StyleSheet.create({
 				height: 48 * DP,
 				alignItems: 'center',
 				justifyContent: 'center',
-				color: GRAY20
+				color: GRAY20,
 			},
 			moreTxt: {
 				width: 100 * DP,

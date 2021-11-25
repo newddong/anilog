@@ -164,7 +164,7 @@ export const PET = 'pet';
 export const SHELTER = 'shelter';
 
 //통신사
-export const mobile_carrier = ['SKT 텔레콤', 'LGU+', 'KT', '알뜰'];
+export const mobile_carrier = ['SKT 텔레콤', 'LG U+', 'KT', '알뜰'];
 
 //반려동물 종류
 export const PET_KIND = ['개', '고양이', '새', '여우', '거북이', '햄스터'];
@@ -195,8 +195,9 @@ export let temp_inputLongText = '';
 
 //버튼
 export const COMPLETE_MODIFY = '수정 완료';
-export const MY_INFO_MODIFY = '내 정보 수정' // usermenu
-export const MY_COMPANION = '나의 반려동물' //userMenu
+export const MY_INFO_MODIFY = '내 정보 수정'; // usermenu
+export const MY_COMPANION = '나의 반려동물'; //userMenu
+export const MODIFY_PROFILE = '프로필 변경';
 
 // Shelter MENU 버튼
 export const MANAGEMENT_OF_PROTECTED_ANIMAL = '보호동물 관리';
@@ -222,10 +223,10 @@ export const SETTING = '설정';
 export const INFO_QUESTION = '정보/문의';
 //'계정' 은 상위에 존재 하므로 생략
 
-//User Menu 버튼 
-export const INFO = '알림'
-export const ANIMAL_PROTECTION_STATE = '동물 보호 현황'
-export const PROTECTION_REQUEST = '보호 요청'
+//User Menu 버튼
+export const INFO = '알림';
+export const ANIMAL_PROTECTION_STATE = '동물 보호 현황';
+export const PROTECTION_REQUEST = '보호 요청';
 
 export const PLEASE_UPLOAD_PIC = '해당 동물의 특징이 잘 보이는 이미지를 올려주세요.';
 export const PLEASE_GIVE_ME_DATE_AND_PLACE = '해당 동물이 구조된 날짜와 장소를 알려 주세요.';
@@ -240,3 +241,13 @@ export const SHARE = '공유';
 
 //안내 메세지
 export const ONLY_CONTENT_FOR_ADOPTION = '입양 가능한 게시글만 보기';
+
+//Input PlaceHolder 관련
+export const INPUT_PHONE_NUM = '휴대전화번호 입력';
+
+//UserInfoDetailSettings
+export const INTEREST_REGION = '관심 지역';
+export const INTEREST_ACT = '관심 활동';
+
+//TabSelect
+export const GENDER_TAB_SELECT = ['남자', '여자'];

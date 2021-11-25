@@ -1,11 +1,11 @@
 import React from 'react';
-import { txt } from 'Root/config/textstyle';
-import { Text, View, TouchableOpacity } from 'react-native';
+import {txt} from 'Root/config/textstyle';
+import {Text, View, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
-import { Calendar48_Border } from '../atom/icon';
-import { APRI10 } from 'Root/config/color';
+import {Calendar48_Border} from '../atom/icon';
+import {APRI10} from 'Root/config/color';
 import Calendar from 'Root/test_sangwoo/calendar';
-import { Modal } from '../modal/Modal';
+import {Modal} from '../modal/Modal';
 /**
  *
  * @param {{
@@ -17,25 +17,22 @@ import { Modal } from '../modal/Modal';
  */
 export default DatePicker = props => {
 	const [showCalendar, setShowCalendar] = React.useState(false);
-	const [selectedDate, setSelectedDate] = React.useState(props.defaultDate);
+	const [selectedDate, setSelectedDate] = React.useState(props.defaultDate ? props.defaultDate : '2021-11-06');
 
 	const onDateChange = date => {
-
-		// setShowCalendar(false);
 		setSelectedDate(date);
-		Modal.close()
+		Modal.close();
 		props.onDateChange(date);
 	};
 
 	const closeCalendar = () => {
-		console.log('close')
-		Modal.close()
-
-	}
+		console.log('close');
+		Modal.close();
+	};
 
 	const openCalendar = () => {
-		console.log('openCale')
-		Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date))
+		console.log('openCale');
+		Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date));
 		setShowCalendar(true);
 	};
 
@@ -46,8 +43,8 @@ export default DatePicker = props => {
 				height: 82 * DP,
 			}}>
 			{props.title != '' && props.title != 'title' && (
-				<View style={{ flexDirection: 'row' }}>
-					<Text style={[txt.noto24, { color: APRI10 }]}> {props.title}</Text>
+				<View style={{flexDirection: 'row'}}>
+					<Text style={[txt.noto24, {color: APRI10}]}> {props.title}</Text>
 				</View>
 			)}
 			<View
@@ -68,7 +65,7 @@ export default DatePicker = props => {
 					]}>
 					{selectedDate}
 				</Text>
-				<View style={{ position: 'absolute', right: 15 * DP }}>
+				<View style={{position: 'absolute', right: 15 * DP}}>
 					<Calendar48_Border onPress={openCalendar} />
 				</View>
 			</View>
@@ -81,5 +78,4 @@ DatePicker.defaultProps = {
 	width: 520, //전체 DatePicker의 너비
 	title: 'title',
 	onDateChange: e => console.log(e),
-	defaultDate: '2021.05.01',
 };

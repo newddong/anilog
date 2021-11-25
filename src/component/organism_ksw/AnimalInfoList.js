@@ -1,39 +1,28 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
-import {txt} from 'Root/config/textstyle';
+import { FlatList, Text, View } from 'react-native';
+import { txt } from 'Root/config/textstyle';
 import AnimalInfo from './AnimalInfo';
-import {animalInfoList} from './style_organism';
+import { animalInfoList } from './style_organism';
 
 export default AnimalInfoList = props => {
-	const testData = [
-		{
-			img_uri: 'https://pbs.twimg.com/profile_images/378800000001640185/58d3ed41b88cadb9083e5b986758fd16_400x400.jpeg',
-			petStatus: 'protected',
-			petNickname: 'Fizz',
-		},
-		{
-			img_uri: 'https://pbs.twimg.com/profile_images/378800000001640185/58d3ed41b88cadb9083e5b986758fd16_400x400.jpeg',
-			petStatus: 'protected',
-			petNickname: 'Fizz',
-		},
-		{
-			img_uri: 'https://images.mypetlife.co.kr/content/uploads/2019/09/09153001/dog-panting-1024x683.jpg',
-			petStatus: 'protected',
-			petNickname: '피즈',
-		},
-	];
+
+	const [data, setData] = React.useState(props.items)
+
+	React.useEffect(() => {
+		setData(props.items)
+	}, [props.items])
 
 	const renderItem = (item, index) => {
 		return (
-			<View style={[animalInfoList.itemContainer]}>
-				<AnimalInfo />
+			<View style={[animalInfoList.itemContainer,]}>
+				<AnimalInfo data={item} />
 			</View>
 		);
 	};
 
 	return (
 		<View style={[animalInfoList.container]}>
-			<FlatList data={testData} renderItem={({item, index}) => renderItem(item, index)} />
+			<FlatList data={data} renderItem={({ item, index }) => renderItem(item, index)} />
 		</View>
 	);
 };

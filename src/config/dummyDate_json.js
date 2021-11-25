@@ -790,3 +790,213 @@ export const dummy_MissingReportList = [
 		missing_animal_features: '혼자만의 시간을 자주 가질려고 했었음', //실종 동물의 특징
 	},
 ];
+
+export const dummy_userObject = [
+	{
+		_id: 1, //temp
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_agreement: {
+			is_over_fourteen: true, //14살 이상
+			is_service: true, //서비스 동의
+			is_personal_Info: true, //개인정보 제공 동의
+			is_location_service_info: true, //위치정보 제공 동의
+			is_donation_info: true, //기부정보 제공 동의
+			is_marketting_Info: false, //마케팅정보 제공 동의
+		}, //회원가입 동의항목 동의여부
+		user_name: '권상우', //실명
+		user_nickname: '덴데', //닉네임
+		user_gender: 'female',
+		user_phone_number: '010-9645-0422', //휴대폰번호
+		user_mobile_company: 'LG U+', //가입된 통신사
+		user_is_verified_phone_number: true, //폰번호 인증여부
+		user_email: 'lanad01@naver.com', //이메일
+		user_is_verified_email: false, //이메일 인증여부
+		user_password: '121212', //패스워드
+		user_address: {
+			city: '서울시', //시,도
+			district: '마포구', //군,구
+			neighbor: '신수동 89-77', //동,읍,면
+		}, //회원주소
+		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
+		user_Introduction:
+			'권상우는 연예계에서 없어선 안 될 배우다. 드라마와 영화, 두 분야를 오가며 시청자와 관객의 부름을 받는 배우는 생각보다 많지 않다. 호감도와 연기력, 두 가지 모두를 갖춰야 전방위 활동이 가능하다.',
+		user_birthday: '1991.12.21', //필요한지 검토 필요
+		user_interests: {
+			location: ['마포', '용산', '남산'],
+			activity: ['산책', '펫카페'],
+		},
+		user_upload_count: 142142, //업로드 게시물 숫자
+		user_follow_count: 12324, //팔로우 숫자
+		user_follower_count: 1245667, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+		user_register_date: '2021-11-24', //가입일
+	},
+	{
+		_id: 2, //temp
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_agreement: {
+			is_over_fourteen: true, //14살 이상
+			is_service: true, //서비스 동의
+			is_personal_Info: true, //개인정보 제공 동의
+			is_location_service_info: true, //위치정보 제공 동의
+			is_donation_info: true, //기부정보 제공 동의
+			is_marketting_Info: false, //마케팅정보 제공 동의
+		}, //회원가입 동의항목 동의여부
+		user_name: '귄도간', //실명
+		user_nickname: '데일리', //닉네임
+		user_gender: 'male',
+		user_phone_number: '010-9645-0422', //휴대폰번호
+		user_mobile_company: 'LG U+', //가입된 통신사
+		user_is_verified_phone_number: true, //폰번호 인증여부
+		user_email: 'lanad02@naver.com', //이메일
+		user_is_verified_email: false, //이메일 인증여부
+		user_password: '121212', //패스워드
+		user_address: {
+			city: '서울시', //시,도
+			district: '용산구', //군,구
+			neighbor: '구월동 89-77', //동,읍,면
+		}, //회원주소
+		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
+		user_Introduction: 'Telling me about yourself. ',
+		user_birthday: '1991-12-21', //필요한지 검토 필요
+		user_interests: {
+			location: ['마포', '용산', '남산'],
+			activity: ['산책', '펫카페'],
+		},
+		user_upload_count: 142142, //업로드 게시물 숫자
+		user_follow_count: 12324, //팔로우 숫자
+		user_follower_count: 1245667, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+		user_register_date: '2021-11-24', //가입일
+	},
+];
+
+export const dummy_UserObject_pet = [
+	{
+		_id: 11, //temp
+		user_type: 'pet', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_profile_uri: 'https://t1.daumcdn.net/liveboard/holapet/0e5f90af436e4c218343073164a5f657.JPG',
+		user_nickname: '하양이',
+		pet_is_temp_protection: true, //반려동물이 임시보호 중인지 여부
+		pet_species: '개', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+		pet_species_detail: '리트리버', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+		pet_sex: 'female', //반려동물의 성별
+		pet_neutralization: 'unknown', //반려동물 중성화 여부
+		pet_birthday: '2020-12-03', //반려동물 생일
+		pet_weight: '1.5', //반려동물 몸무게
+		pet_status: 'protect',
+		pet_adopter: null, //반려동물 입양자
+		pet_protector: 1, //반려동물 임시보호자
+	},
+	{
+		_id: 12, //temp
+		user_type: 'pet', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_profile_uri: 'https://i.pinimg.com/236x/d7/3d/30/d73d30cb3d816a517a11025dc6851c4f--the-ojays.jpg',
+		user_nickname: '구룸이',
+		pet_is_temp_protection: true, //반려동물이 임시보호 중인지 여부
+		pet_species: '고양이', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+		pet_species_detail: '도사견', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+		pet_sex: 'female', //반려동물의 성별
+		pet_neutralization: 'yes', //반려동물 중성화 여부
+		pet_birthday: '2020-12-21', //반려동물 생일
+		pet_weight: '1.5', //반려동물 몸무게
+		pet_status: 'protect',
+		pet_adopter: null, //반려동물 입양자
+		pet_protector: 1, //반려동물 임시보호자
+	},
+	{
+		_id: 13, //temp
+		user_type: 'pet', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_profile_uri: 'https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG',
+		user_nickname: '앵지',
+		pet_is_temp_protection: true, //반려동물이 임시보호 중인지 여부
+		pet_species: '악어', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+		pet_species_detail: '스크류 엘리게이터', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+		pet_sex: 'female', //반려동물의 성별
+		pet_neutralization: 'unknown', //반려동물 중성화 여부
+		pet_birthday: '2020-12-03', //반려동물 생일
+		pet_weight: '350', //반려동물 몸무게
+		pet_status: 'protect',
+		pet_adopter: null, //반려동물 입양자
+		pet_protector: 1, //반려동물 임시보호자
+	},
+	{
+		_id: 14, //temp
+		user_type: 'pet', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_profile_uri: 'https://t1.daumcdn.net/cfile/blog/2547A74C52B3D5D40B',
+		user_nickname: '명수',
+		pet_is_temp_protection: true, //반려동물이 임시보호 중인지 여부
+		pet_species: '새', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+		pet_species_detail: '청사초롱', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+		pet_sex: 'female', //반려동물의 성별
+		pet_neutralization: 'no', //반려동물 중성화 여부
+		pet_birthday: '2020-12-03', //반려동물 생일
+		pet_weight: '0.5', //반려동물 몸무게
+		pet_status: 'protect',
+		pet_adopter: null, //반려동물 입양자
+		pet_protector: 1, //반려동물 임시보호자
+	},
+];
+
+export const dummy_ProtectAnimalObject = [
+	{
+		_id: 1, // 고유아이디
+		protect_animal_id: 11, //임시보호중인 동물
+		protect_protector_id: 1, //임시보호자 계정 id
+		protect_animal_date: '2021-10-23', //생성일시
+		protect_animal_update_date: '2021-10-25', //수정일시
+		protect_animal_is_delete: false, //삭제여부
+	},
+	{
+		_id: 2, // 고유아이디
+		protect_animal_id: 12, //임시보호중인 동물
+		protect_protector_id: 1, //임시보호자 계정 id
+		protect_animal_date: '2021-10-23', //생성일시
+		protect_animal_update_date: '2021-10-25', //수정일시
+		protect_animal_is_delete: false, //삭제여부
+	},
+	{
+		_id: 3, // 고유아이디
+		protect_animal_id: 13, //임시보호중인 동물
+		protect_protector_id: 2, //임시보호자 계정 id
+		protect_animal_date: '2021-10-23', //생성일시
+		protect_animal_update_date: '2021-10-25', //수정일시
+		protect_animal_is_delete: false, //삭제여부
+	},
+];
+
+export const dummy_CompanionObject = [
+	//반려동물 관계 - 주인이 2개 이상, 펫이 2개이상은 상식적이다
+	{
+		_id: 1,
+		companion_pet_id: 11, //반려동물
+		companion_user_id: 1, //주인 계정
+		companion_date: '2021-11-20', //생성일시
+		companion_update_date: '2021-11-21', //수정일시
+		companion_is_delete: false, //삭제여부
+	},
+	{
+		_id: 2,
+		companion_pet_id: 12, //반려동물
+		companion_user_id: 1, //주인 계정
+		companion_date: '2021-11-20', //생성일시
+		companion_update_date: '2021-11-21', //수정일시
+		companion_is_delete: false, //삭제여부
+	},
+	{
+		_id: 3,
+		companion_pet_id: 13, //반려동물
+		companion_user_id: 2, //주인 계정
+		companion_date: '2021-11-20', //생성일시
+		companion_update_date: '2021-11-21', //수정일시
+		companion_is_delete: false, //삭제여부
+	},
+	{
+		_id: 4,
+		companion_pet_id: 13, //반려동물
+		companion_user_id: 2, //주인 계정
+		companion_date: '2021-11-20', //생성일시
+		companion_update_date: '2021-11-21', //수정일시
+		companion_is_delete: false, //삭제여부
+	},
+];
