@@ -13,6 +13,7 @@ import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
  */
 export default AnimalNeedHelpList = props => {
 	const onLabelClick = (status, id, item) => {
+		console.log('status=>' + status + ' id=>' + id + ' item=>' + props.item);
 		props.onLabelClick(status, id, item);
 	};
 
@@ -20,7 +21,7 @@ export default AnimalNeedHelpList = props => {
 		return (
 			//marginBottom: 40 * DP,
 			<View style={[animalNeedHelpList.itemContainer]}>
-				{/* {console.log('AnimalNeedHelpList:props.borderMode=>' + props.borderMode)} */}
+				{console.log('item:item._id=>' + item._id)}
 				<AnimalNeedHelp
 					data={item}
 					checkBoxMode={props.checkBoxMode}
@@ -39,7 +40,7 @@ export default AnimalNeedHelpList = props => {
 		<View style={[animalNeedHelpList.container]}>
 			<ScrollView horizontal={false}>
 				<ScrollView horizontal={true}>
-					<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} nestedScrollEnabled />
+					<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} />
 				</ScrollView>
 			</ScrollView>
 		</View>

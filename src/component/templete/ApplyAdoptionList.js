@@ -9,6 +9,14 @@ import {login_style, temp_style, baseInfo_style} from './style_templete';
 
 export default ApplyAdoptionList = props => {
 	const navigation = useNavigation();
+	const onOff_FavoriteTag = (value, index) => {
+		// console.log('즐겨찾기=>' + value + ' ' + index);
+	};
+	const onLabelClick = item => {
+		// console.log('onLabelClick !!');
+		navigation.push('ApplyAdoptionDetails', item);
+	};
+
 	console.log(props.route.name);
 	return (
 		<View style={login_style.wrp_main}>
@@ -16,11 +24,14 @@ export default ApplyAdoptionList = props => {
 			<View style={[temp_style.baseFlatList, baseInfo_style.list]}>
 				{/* (O)AnimalNeedHelpList */}
 				<AnimalNeedHelpList
+					data={props.route.params}
 					onItemClick={
 						props.route.name == 'ApplyTempProtectList'
-							? () => navigation.push('ApplyTempProtectDetails')
-							: () => navigation.push('ApplyAdoptionDetails')
+							? () => navigation.push('ApplyTempProtectDetails', props.route.params)
+							: () => navigation.push('ApplyAdoptionDetails', props.route.params)
 					}
+					onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
+					onLabelClick={(status, id, item) => onLabelClick(item)}
 				/>
 			</View>
 			{/* </FlatList> */}

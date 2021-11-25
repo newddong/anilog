@@ -63,7 +63,8 @@ export default ProtectedThumbnail = props => {
 	};
 
 	const onClickLabel = () => {
-		props.onLabelClick(props.data.status, props.data.user_id);
+		console.log('protect_request_status=>' + props.data.protect_request_status + ' _id=>' + props.data._id);
+		props.onLabelClick(props.data.protect_request_status, props.data._id);
 	};
 
 	return (

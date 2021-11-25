@@ -9,16 +9,20 @@ import ShelterList from '../organism_ksw/ShelterList';
 import {appliesRecord, login_style} from './style_templete';
 
 export default AppliesRecord = props => {
+	//첫번째 값만 신청내역에 보여주기 위함. AnimalNeedHelpList가 배열 데이터를 다루기 때문에 반드시 객체가 배열이어야 함.
+	const dummy_protect = [...dummy_AppliesRecord_protect.slice(0, 1)];
+	const dummy_rescue = [...dummy_AppliesRecord_rescue.slice(0, 1)];
+
 	const [data, setData] = React.useState({
 		favorite: '',
 	});
 
 	const navigation = useNavigation();
 	const showMoreAdoption = () => {
-		navigation.push('ApplyAdoptionList');
+		navigation.push('ApplyAdoptionList', dummy_AppliesRecord_rescue);
 	};
 	const showMoreProtection = () => {
-		navigation.push('ApplyTempProtectList');
+		navigation.push('ApplyTempProtectList', dummy_AppliesRecord_protect);
 	};
 	const showMoreVolunteer = () => {
 		navigation.push('ManageUserVolunteer');
@@ -37,7 +41,7 @@ export default AppliesRecord = props => {
 							<NextMark onPress={showMoreAdoption} />
 						</View>
 					</View>
-					<AnimalNeedHelpList data={dummy_AppliesRecord_rescue} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
+					<AnimalNeedHelpList data={dummy_rescue} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
 				</View>
 				<View style={[appliesRecord.record]}>
 					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
@@ -47,7 +51,7 @@ export default AppliesRecord = props => {
 							<NextMark onPress={showMoreProtection} />
 						</View>
 					</View>
-					<AnimalNeedHelpList data={dummy_AppliesRecord_protect} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
+					<AnimalNeedHelpList data={dummy_protect} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
 				</View>
 				<View style={[appliesRecord.shelterList_container]}>
 					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
