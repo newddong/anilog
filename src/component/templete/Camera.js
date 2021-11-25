@@ -3,7 +3,7 @@ import { View, Text, Button, ScrollView, Image, StyleSheet, TouchableWithoutFeed
 // import { RNCamera } from 'react-native-camera';
 import CameraRoll from '@react-native-community/cameraroll';
 import DP from 'Screens/dp';
-import { RNCamera } from 'react-native-camera';
+// import { RNCamera } from 'react-native-camera';
 
 export default Camera = () => {
     const camera = React.useRef();
@@ -19,7 +19,7 @@ export default Camera = () => {
     return (
         <View style={style.wrp_main}>
             <View style={style.view_camera}>
-                <RNCamera
+                {/* <RNCamera
                     ref={(ref) => { camera.current = ref }}
                     style={style.view_camera}
                     type={RNCamera.Constants.Type.back}
@@ -42,7 +42,7 @@ export default Camera = () => {
 
 
 
-                </RNCamera>
+                </RNCamera> */}
             </View>
 
             <TouchableWithoutFeedback onPress={takePicture}>
