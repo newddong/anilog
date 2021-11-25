@@ -1056,7 +1056,7 @@ export const animalNeedHelp = StyleSheet.create({
 	},
 	detail_upperMenu: {
 		width: 410 * DP,
-		height: 48 * DP,
+		// height: 48 * DP,
 		flexDirection: 'row',
 	},
 	detail_upper_petStateContainer: {
@@ -1082,7 +1082,6 @@ export const animalNeedHelp = StyleSheet.create({
 		right: 0,
 	},
 	detail_lowerMenu: {
-		marginTop: 6 * DP,
 		width: 410 * DP,
 		height: 160 * DP,
 	},
@@ -1121,6 +1120,9 @@ export const animalNeedHelp = StyleSheet.create({
 	},
 	container_basicInfo_seleted: {
 		flexDirection: 'row',
+	},
+	lowerMenu_kindAndBreed_marginTop: {
+		marginTop: 6 * DP,
 	},
 });
 
