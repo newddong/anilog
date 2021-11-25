@@ -49,9 +49,9 @@ export default UserPasswordCheck = props => {
 	return (
 		<View style={[login_style.wrp_main, { flex: 1 }]}>
 			{/* (M)StageBar	 */}
-			{/* <TouchableWithoutFeedback onPress={() => console.log(user_data)}>
+			<TouchableWithoutFeedback onPress={() => console.log(user_data)}>
 				<View style={{ backgroundColor: 'red', height: 30, width: 30, position: 'absolute', top: 0, left: 0 }}></View>
-			</TouchableWithoutFeedback> */}
+			</TouchableWithoutFeedback>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
 					style={{}} //전체 container style, text와 bar를 감싸는 view의 style

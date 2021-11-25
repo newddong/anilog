@@ -68,9 +68,24 @@ export default AssignUserHabitation = props => {
 			</View>
 			{/* HabitationForm */}
 			<View style={[assignUserHabitation_style.habitationForm]}>
-				<DropdownSelect width={522} items={['시를 선택해 주세요', '서울시']} onChange={onSelectCity} />
-				<DropdownSelect width={522} items={['구를 선택해 주세요', '동작구']} onChange={onSelectDistrict} />
-				<DropdownSelect width={522} items={['동을 선택해 주세요', '가운동']} onChange={onSelectNeighbor} />
+				<NormalDropDown
+						menu={['시를 선택해 주세요', '서울시']}
+						width={522}
+						defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
+						onSelect={onSelectCity}
+					/>
+					<NormalDropDown
+						menu={['구를 선택해 주세요', '동작구']}
+						width={522}
+						defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
+						onSelect={onSelectDistrict}
+					/>
+					<NormalDropDown
+						menu={['동을 선택해 주세요', '가운동']}
+						width={522}
+						defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
+						onSelect={onSelectNeighbor}
+					/>
 			</View>
 
 			{/* (A)Btn_w654 */}

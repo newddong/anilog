@@ -36,6 +36,9 @@ export default PhoneNumVerification = props => {
 	const onPhoneNumberInputChange = number => {
 		props.onPhoneNumberInputChange(number);
 	};
+	const onMobileCompanyInputChange = (company,index) => {
+		props.onMobileCompanyInputChange(company,index);
+	}
 	const onVerificationNumberChange = verified_num => {
 		props.onVerificationNumberChange(verified_num);
 	};
@@ -50,6 +53,7 @@ export default PhoneNumVerification = props => {
 					items={mobile_carrier}
 					placeholder={'휴대폰 번호 입력(-제외)'}
 					onChange={onPhoneNumberInputChange}
+					onSelectDropDown={onMobileCompanyInputChange}
 				/>
 			</View>
 			<View style={{flexDirection: 'row'}}>
@@ -89,6 +93,7 @@ PhoneNumVerification.defaultProps = {
 	requestVerification: e => console.log(e),
 	onPhoneNumberInputChange: e => console.log(e),
 	onVerificationNumberChange: e => console.log(e),
+	onMobileCompanyInputChange: e => console.log(e),
 };
 
 // btnTitle: 'title', //버튼의 제목
