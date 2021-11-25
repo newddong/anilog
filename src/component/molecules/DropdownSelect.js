@@ -5,7 +5,7 @@ import DP from 'Root/config/dp';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
 import {APRI10, BLACK, GRAY40} from 'Root/config/color';
 import Dropdown from './Dropdown';
-
+import {Modal} from 'Component/modal/Modal';
 /**
  *
  * @param {{
@@ -26,41 +26,26 @@ export default DropdownSelect = React.forwardRef((props, ref) => {
 		},
 	}));
 
-	const [isOpen, setOpen] = React.useState(props.initState);
-
 	// Dropdown 화살표의 state - True일 경우 opened 상태 / False일 경우 closed 상태
 	const [btnStatus, setBtnStatus] = React.useState(false);
-	// Dropdown에서 현재 선택된 항목 State, 처음 Mount시 itemList[defaultIndex]를 반환
-	const [selectedItem, setSelectedItem] = React.useState(props.items[props.defaultIndex]);
 
 	const onPress = () => {
-		console.log('onPress / DropDownSelect');
-		setBtnStatus(!btnStatus);
-		props.onPress();
-		(isOpen && (onClose() || true)) || onOpen();
+		console.log('DropdownSelect onPress');
+		// setBtnStatus(!btnStatus);
+		// Modal.popupSelect();
+		(btnStatus && (onClose() || true)) || onOpen();
 	};
 	const onOpen = () => {
-		!props.noStateChange && setOpen(true);
+		console.log('DropdownSelect onOpen');
+		setBtnStatus(true);
 		props.onOpen();
 	};
 
 	const onClose = () => {
-		!props.noStateChange && setOpen(false);
+		console.log('DropdownSelect onClose');
+		setBtnStatus(false);
 		props.onClose();
 	};
-
-	React.useEffect(() => {
-		setSelectedItem(props.items[props.selectedIndex]);
-		setBtnStatus(!btnStatus);
-	}, [props.selectedIndex]);
-
-	React.useEffect(() => {
-		//selectedItem이 DropDown 선택으로 인해 바뀌면 수행되는 함수
-		//현재 Dropdown은 미구현 상태
-		onChange = () => {
-			props.onChange(txt);
-		};
-	}, [selectedItem]);
 
 	return (
 		<TouchableOpacity onPress={onPress} style={{height: 82 * DP, flexDirection: 'row'}}>
@@ -83,7 +68,7 @@ export default DropdownSelect = React.forwardRef((props, ref) => {
 							marginRight: 40 * DP,
 						},
 					]}>
-					{selectedItem}
+					{props.value}
 				</Text>
 				<View
 					style={{
@@ -102,16 +87,11 @@ export default DropdownSelect = React.forwardRef((props, ref) => {
 	);
 });
 DropdownSelect.defaultProps = {
-	disable: false, // 버튼탭 사용불가 상태 boolean
-	initState: false,
-	noStateChange: false,
-	horizontal: true, // 버튼 방향 true일경우 horizon, false는 vertical
-	value: null,
-	items: [1, 2, 3, 4], //DropDown될 리스트 목록
-	defaultIndex: 0, // DropDown Default상태의 index
-	selectedIndex: 0, //현재 선택 Index
+	value: '',
 	width: 180, //Select+Text 부분의 width Default=180(5글자)
-	onChange: e => console.log('onChange / DropdownSelect', e),
-	onPress: e => console.log('onPress / DropdownSelect', e),
+	onChange: e => console.log('DropdownSelect Default onChange', e),
+	onPress: e => console.log('DropdownSelect Default onPress', e),
+	onClose: e => console.log('DropdownSelect Default onClose  ', e),
+	onOpen: e => console.log('DropdownSelect Default onOpen', e),
 	textStyle: null,
 };

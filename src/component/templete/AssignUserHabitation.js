@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, TouchableWithoutFeedback} from 'react-native';
 import {APRI10, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w522} from '../atom/btn/btn_style';
@@ -7,6 +7,7 @@ import AniButton from '../molecules/AniButton';
 import DropdownSelect from '../molecules/DropdownSelect';
 import Stagebar from '../molecules/Stagebar';
 import {login_style, btn_style, temp_style, progressbar_style, assignUserHabitation_style} from './style_templete';
+import { Modal } from 'Component/modal/Modal';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
@@ -39,6 +40,9 @@ export default AssignUserHabitation = props => {
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* (M)StageBar	 */}
+			<TouchableWithoutFeedback onPress={() => console.log(data)}>
+				<View style={{ backgroundColor: 'red', height: 30, width: 30, position: 'absolute', top: 0, left: 0 }}></View>
+			</TouchableWithoutFeedback>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
 					style={{}} //전체 container style, text와 bar를 감싸는 view의 style
@@ -64,9 +68,24 @@ export default AssignUserHabitation = props => {
 			</View>
 			{/* HabitationForm */}
 			<View style={[assignUserHabitation_style.habitationForm]}>
-				<DropdownSelect width={522} items={['시를 선택해 주세요', '서울시']} onChange={selectedItem => onSelectCity(selectedItem)} />
-				<DropdownSelect width={522} items={['구를 선택해 주세요', '동작구']} onChange={selectedItem => onSelectDistrict(selectedItem)} />
-				<DropdownSelect width={522} items={['동을 선택해 주세요', '가운동']} onChange={selectedItem => onSelectNeighbor(selectedItem)} />
+				<NormalDropDown
+						menu={['시를 선택해 주세요', '서울시']}
+						width={522}
+						defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
+						onSelect={onSelectCity}
+					/>
+					<NormalDropDown
+						menu={['구를 선택해 주세요', '동작구']}
+						width={522}
+						defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
+						onSelect={onSelectDistrict}
+					/>
+					<NormalDropDown
+						menu={['동을 선택해 주세요', '가운동']}
+						width={522}
+						defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
+						onSelect={onSelectNeighbor}
+					/>
 			</View>
 
 			{/* (A)Btn_w654 */}

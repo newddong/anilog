@@ -20,11 +20,26 @@ import {Cross52, Eye52_APRI10, Eye52_GRAY20} from '../atom/icon';
  *onShowPassword: 'Password 보이기 설정 Callback',
  *description : 'String / title 우측 비밀번호 설정 포맷에 대한 설명'
  *width : 'number / input의 크기 default = 654'
- *validator : void,
+ *validator : return 값이 boolean인 함수, T/F상태에 따라 confirm이 바뀜,
  *clear : 'boolean / 상단 비밀번호 Input에서 x마크 클릭 시 하단 비밀번화 확인란도 Clear시키는 조건 T/F',
  * }} props
  */
-export default PasswordInput = props => {
+export default PasswordInput = React.forwardRef((props, ref) => {
+	React.useImperativeHandle(ref, () => ({
+		blur: () => {
+			inputRef.current.blur();
+		},
+		focus: () => {
+			inputRef.current.focus();
+		},
+		clear: () => {
+			onClear();
+		},
+		valid: text => {
+			validator(text);
+		},
+	}));
+
 	const [input, setInput] = React.useState(''); // 암호 input text state
 	const [confirm, setConfirm] = React.useState(props.confirm); // 암호 validation state
 	const [pwdSecureState, setPwdSecureState] = React.useState(true); // 암호 별표화 state
@@ -40,9 +55,9 @@ export default PasswordInput = props => {
 	const getMsg = () => {
 		if (input.length == 0) {
 			return <Text style={(txt.noto22, {color: GRAY20, lineHeight: 36 * DP})}>{props.information}</Text>;
-		} else if (props.confirm == true) {
+		} else if (confirm == true) {
 			return <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>;
-		} else if (props.confirm == false) {
+		} else if (confirm == false) {
 			return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>;
 		} else return null;
 	};
@@ -51,9 +66,9 @@ export default PasswordInput = props => {
 	const getBorderColor = () => {
 		if (input.length == 0) {
 			return GRAY30;
-		} else if (props.confirm == false) {
+		} else if (confirm == false) {
 			return APRI10;
-		} else if (props.confirm == true) {
+		} else if (confirm == true) {
 			return GREEN;
 		} else return null;
 	};
@@ -61,31 +76,24 @@ export default PasswordInput = props => {
 	//Input Value Change Callback
 	const onChange = text => {
 		setInput(text);
-		props.onChange(text);
-		// validator(text);
+		props.onChange && props.onChange(text);
+		props.validator && validator(text); //부모에서 validator함수를 정의해주어야 validator를 실행
 	};
 
-	//Validator인데 onChange가 있는데 굳이 있어야 하는가 의문?
+	//Validator인데 onChange가 있는데 굳이 있어야 하는가 의문? onChange내부에 validator루틴을 넣을수 있도록 해서 사용자가 값을 입력시마다 validator가 true인지 false인지 판단하여
+	//검증 로직을 외부(부모)에서 넣을수 있도록 함
 	const validator = text => {
 		//txt.length > 10 ? setConfirm(true) : setConfirm(false);
-		props.validator(text);
+		setConfirm(props.validator(text));
 	};
 
 	//지우기
+	//forwardRef를 통해 PasswordInput컴포넌트의 레퍼런스를 부모 영역에서 참조 ref.current.clear() 같은 명령형으로 사용 가능
+	//onClear의 경우 x버튼을 눌렸을 경우 부모 컴포넌트에게 내용을 삭제했다는 알림을 보내기 위한 용도임
 	const onClear = () => {
 		inputRef.current.clear();
-		props.onClear();
-		// setConfirm(false);
 		setInput('');
-	};
-
-	//fouce 처리 안되었을 때
-	const blur = () => {
-		inputRef.current.blur();
-	};
-	//focus 아닐 때
-	const focus = () => {
-		inputRef.current.focus();
+		props.onClear('');
 	};
 
 	//비밀번호 보이기 설정
@@ -120,7 +128,7 @@ export default PasswordInput = props => {
 						maxLength={30}
 						ref={inputRef}
 						placeholder={props.placeholder}
-						onChangeText={text => onChange(text)}
+						onChangeText={onChange}
 						secureTextEntry={pwdSecureState} //암호 별모양 표시 boolean
 						style={[
 							txt.noto28,
@@ -142,13 +150,21 @@ export default PasswordInput = props => {
 							<Cross52 onPress={onClear} />
 						</View>
 					)}
+					{/* /* X버튼은 TextInput과 28px 차이, 최하단 View테두리와는 14px 차이, 텍스트 길이가 1 이상일 경우에만 보여짐(입력값이 없을때 보여질 필요 없음) */}
+					{input.length > 0 && (
+						<View style={{position: 'absolute', right: 0, paddingBottom: 7 * DP, flexDirection: 'row'}}>
+							<View style={{marginRight: 10 * DP}}>
+								{pwdSecureState ? <Eye52_GRAY20 onPress={onShowPassword} /> : <Eye52_APRI10 onPress={onShowPassword} />}
+							</View>
+						</View>
+					)}
+					{getMsg()}
 				</View>
-
-				{getMsg()}
 			</View>
 		</View>
 	);
-};
+});
+
 PasswordInput.defaultProps = {
 	title: 'title', //비밀번호란 상단 타이틀
 	placeholder: 'placeholder', //placeholder
@@ -157,11 +173,11 @@ PasswordInput.defaultProps = {
 	alert_msg: 'alert_msg', // confrim state가 false일 경우 출력될 하단 메시지
 	confirm: false,
 	confirm_msg: 'confirm_msg', // confirm state가 true일 경우 출력될 하단 메시지
-	onChange: e => console.log('Onchange' + e), // pwd input 값이 변할 때마다 수행되는 함수
-	onClear: e => console.log(e), // X마크로 input값을 clear할 때마다 수행되는 함수
-	onShowPassword: e => console.log(e), // 눈마크를 Press하여 별표(*)화된 pwd값을 보이게 할 경우 수행되는 함수
+	onChange: e => console.log('onChange' + e), // pwd input 값이 변할 때마다 수행되는 함수
+	onClear: e => console.log('PasswordInput onClear : ' + e), // X마크로 input값을 clear할 때마다 수행되는 함수
+	onShowPassword: e => console.log('PasswordInput onShowPassword' + e), // 눈마크를 Press하여 별표(*)화된 pwd값을 보이게 할 경우 수행되는 함수
 	description: null, // 암호 포맷에 관한 설명, title 우측에 붙는다
 	width: 654,
 	clear: false,
-	validator: e => console.log(e),
+	validator: e => console.log('PasswordInput validator' + e),
 };

@@ -12,7 +12,11 @@ import AniButton from './AniButton';
  * horizontalOffset : '',
  * }} props
  */
-export default Dropdown = props => {
+export default Dropdown = React.forwardRef((props,ref) => {
+	React.useImperativeHandle(ref,()=>({
+		button:buttonref
+	}));
+
 	const container = React.useRef();
 	const isClick = React.useRef(false);
 
@@ -88,7 +92,7 @@ export default Dropdown = props => {
 			{button}
 		</View>
 	);
-};
+});
 
 Dropdown.defaultProps = {
 	dropdownList: <View style={{position: 'absolute', width: 100, height: 100, backgroundColor: 'blue'}} />,
