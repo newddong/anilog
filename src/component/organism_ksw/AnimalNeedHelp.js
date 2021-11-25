@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { txt } from 'Root/config/textstyle';
-import { btn_w276 } from '../atom/btn/btn_style';
+import {View, Text} from 'react-native';
+import {txt} from 'Root/config/textstyle';
+import {btn_w276} from '../atom/btn/btn_style';
 import ProtectedThumbnail from '../molecules/ProtectedThumbnail';
-import { animalNeedHelp } from './style_organism';
-import { useNavigation } from '@react-navigation/core';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {animalNeedHelp} from './style_organism';
+import {useNavigation} from '@react-navigation/core';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import AniButton from '../molecules/AniButton';
-import { FavoriteTag48_Border, FavoriteTag48_Filled } from '../atom/icon';
+import {FavoriteTag48_Border, FavoriteTag48_Filled} from '../atom/icon';
 
 export default AnimalNeedHelp = props => {
 	const [selected, setSelected] = React.useState(false);
@@ -15,8 +15,8 @@ export default AnimalNeedHelp = props => {
 	const [thumbnailData, setThumbnailData] = React.useState({
 		img_uri: props.data.protect_animal_photos[0],
 		gender: props.data.protect_animal_sex,
-		status: props.data.protect_animal_status
-	})
+		status: props.data.protect_animal_status,
+	});
 	const navigation = useNavigation();
 
 	const checkSelected = () => {
@@ -27,14 +27,14 @@ export default AnimalNeedHelp = props => {
 		setThumbnailData({
 			img_uri: props.data.protect_animal_photos[0],
 			gender: props.data.protect_animal_sex,
-			status: props.data.protect_animal_status
-		})
-	}, [props.data])
+			status: props.data.protect_animal_status,
+		});
+	}, [props.data]);
 
 	//우상단 즐겨찾기 깃발 아이콘 클릭 콜백
 	const onPressFavoriteTag = () => {
-		setFavorite(!favorite)
-	}
+		setFavorite(!favorite);
+	};
 
 	const contents = () => {
 		return (
@@ -50,12 +50,16 @@ export default AnimalNeedHelp = props => {
 						{/* 입양가능날짜 출력 T/F */}
 						{props.data.protect_animal_adoption_days_remain != null ? (
 							<View style={[animalNeedHelp.detail_upper_petState]}>
-								<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>{props.data.protect_animal_adoption_days_remain}일 후 입양가능</Text>
+								<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>
+									{props.data.protect_animal_adoption_days_remain}일 후 입양가능
+								</Text>
 							</View>
 						) : null}
 					</View>
 					{/* 좋아요 State Tag */}
-					<View style={[animalNeedHelp.detail_upper_tag]}>{favorite ? <FavoriteTag48_Filled onPress={onPressFavoriteTag} /> : <FavoriteTag48_Border onPress={onPressFavoriteTag} />}</View>
+					<View style={[animalNeedHelp.detail_upper_tag]}>
+						{favorite ? <FavoriteTag48_Filled onPress={onPressFavoriteTag} /> : <FavoriteTag48_Border onPress={onPressFavoriteTag} />}
+					</View>
 				</View>
 				<View style={[animalNeedHelp.detail_lowerMenu]}>
 					{/* 동물 종류 및 품종 */}
@@ -65,8 +69,8 @@ export default AnimalNeedHelp = props => {
 					</View>
 					{/* 보호요청 관련 Details */}
 					<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
-						<Text style={[txt.noto24]}>등록일 : {props.data.protect_animal_rescue_date}</Text>
-						<Text style={[txt.noto24]}>보호장소 : {props.data.protect_animal_rescue_location}</Text>
+						<Text style={[txt.noto24]}>등록일 : {props.data.protect_request_date}</Text>
+						<Text style={[txt.noto24]}>보호장소 : {props.data.shelter_name}</Text>
 						<Text style={[txt.noto24]}>구조지역 : {props.data.protect_animal_rescue_location}</Text>
 					</View>
 				</View>
@@ -103,21 +107,21 @@ export default AnimalNeedHelp = props => {
 				</View>
 				{props.borderMode == true
 					? selected && (
-						<View style={[animalNeedHelp.sideBtn_view]}>
-							<AniButton
-								btnLayout={[btn_w276]}
-								btnTitle={'게시글 보기'}
-								btnTheme={'shadow'}
-								onPress={() => navigation.push('ProtectRequestManage')}
-							/>
-							<AniButton
-								btnLayout={[btn_w276]}
-								btnTitle={'입양처 보기'}
-								btnTheme={'shadow'}
-								onPress={() => navigation.push('AdoptorInformation')}
-							/>
-						</View>
-					)
+							<View style={[animalNeedHelp.sideBtn_view]}>
+								<AniButton
+									btnLayout={[btn_w276]}
+									btnTitle={'게시글 보기'}
+									btnTheme={'shadow'}
+									onPress={() => navigation.push('ProtectRequestManage')}
+								/>
+								<AniButton
+									btnLayout={[btn_w276]}
+									btnTitle={'입양처 보기'}
+									btnTheme={'shadow'}
+									onPress={() => navigation.push('AdoptorInformation')}
+								/>
+							</View>
+					  )
 					: null}
 			</View>
 		</>
@@ -143,13 +147,12 @@ const dummy_AnimalNeedHelpList = [
 		//입양을 가게 되면 상태가 adopt로 변경
 		//임시보호, 입양 협의중이면 discuss로 변경
 		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
-		protect_animal_writer_id: null,// Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
+		protect_animal_writer_id: null, // Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
 		protect_animal_protect_request_id: null, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
 		protect_animal_adoptor_id: null, //Mongodb_ID(ref:UserObject), //입양자
 		protect_animal_protector_id: null, //Mongodb_ID(ref:UserObject), //임시보호자
-		protect_animal_protector_discussion_id: null,// Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
+		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
 	},
-
 ];
 
 AnimalNeedHelp.defaultProps = {

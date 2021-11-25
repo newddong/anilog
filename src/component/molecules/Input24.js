@@ -120,7 +120,7 @@ export default Input24 = props => {
 					]}>
 					{props.showHttp ? <Text>http://</Text> : null}
 				</TextInput>
-				{props.showCrossMark ? (
+				{input.length>0 ? (
 					<View style={{position: 'absolute', right: 0}}>
 						<Cross46 onPress={onClear} />
 					</View>

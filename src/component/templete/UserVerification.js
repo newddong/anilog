@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, ScrollView} from 'react-native';
+import {Text, View, ScrollView,TouchableWithoutFeedback} from 'react-native';
 import {APRI10, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w654} from '../atom/btn/btn_style';
@@ -14,20 +14,21 @@ import {login_style, btn_style, temp_style, progressbar_style, userAssign} from 
 // 이메일부분 삭제 컨펌 나면 삭제 실시 예정
 
 export default UserVerification = props => {
-	const [data, setData] = React.useState({
+	const user_data = React.useRef({
 		...props.route.params,
 		user_name: 'name',
 		user_phone_number: '01096450422',
 		user_mobile_company: 'SKT',
-	});
+	}).current;
+
 
 	const [tabState, setTabState] = React.useState(0);
 	const [verified, setVerified] = React.useState(false);
 	const [verified_num, setVerified_num] = React.useState();
 
 	const goToNextStep = () => {
-		console.log(data);
-		props.navigation.push('UserPasswordCheck', data);
+		console.log(user_data);
+		props.navigation.push('UserPasswordCheck', user_data);
 	};
 
 	const changeTabState = state => {
@@ -38,17 +39,16 @@ export default UserVerification = props => {
 		setVerified_num(num);
 	};
 	const onNameInputChange = name => {
-		setData({...data, user_name: name});
+		user_data.user_name = name;
 		console.log(name);
 	};
 	const onPhoneNumberInputChange = phone_num => {
 		console.log(phone_num);
-		setData({...data, user_phone_number: phone_num});
+		user_data.user_phone_number=phone_num;
 	};
 	const verificationRequest = () => {
 		console.log(verified_num);
 		setVerified(true);
-
 		console.log('requestVerification');
 	};
 	const reVerificationRequest = () => {
@@ -56,6 +56,9 @@ export default UserVerification = props => {
 	};
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
+			{/* <TouchableWithoutFeedback onPress={() => console.log(user_data)}>
+				<View style={{backgroundColor: 'red', height: 30, width: 30, position: 'absolute', top: 0, left: 0}}></View>
+			</TouchableWithoutFeedback> */}
 			<ScrollView>
 				{/* (M)StageBar	 */}
 				<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
@@ -90,11 +93,11 @@ export default UserVerification = props => {
 				{tabState == 0 ? (
 					<View style={[temp_style.phoneNumVerification]}>
 						<PhoneNumVerification
-							requestVerification={() => verificationRequest()}
-							requestReVerification={() => reVerificationRequest()}
-							onVerificationNumberChange={verifed_num => onVerificationNumberChange(verifed_num)}
-							onNameInputChange={name => onNameInputChange(name)}
-							onPhoneNumberInputChange={phone_num => onPhoneNumberInputChange(phone_num)}
+							requestVerification={verificationRequest}
+							requestReVerification={reVerificationRequest}
+							onVerificationNumberChange={onVerificationNumberChange}
+							onNameInputChange={onNameInputChange}
+							onPhoneNumberInputChange={onPhoneNumberInputChange}
 						/>
 					</View>
 				) : (

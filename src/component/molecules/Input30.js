@@ -24,7 +24,7 @@ import { TouchableOpacity } from 'react-native';
  * }} props
  */
 export default Input30 = props => {
-	const [input, setInput] = React.useState();
+	const [input, setInput] = React.useState('');
 	const [confirmed, setConfirmed] = React.useState(false); //Confirm Msg 출력 Boolean
 	const inputRef = React.useRef();
 
@@ -39,6 +39,11 @@ export default Input30 = props => {
 		setInput(text);
 		props.onChange(text);
 	};
+
+	React.useEffect(()=>{
+
+	},[input])
+
 
 	//Validator 조건확인이 안되었기에 테스트용으로 입력된 텍스트가
 	// 10자 이상일 때 confirmed가 되도록 작성
@@ -117,11 +122,11 @@ export default Input30 = props => {
 							},
 						]}
 					/>
-					{props.clearMark ? (
+					{input.length>0 ? (
 						<TouchableOpacity onPress={onClear} style={{ position: 'absolute', right: 0 }}>
 							<Cross52 />
 						</TouchableOpacity>
-					) : null}
+					) : false}
 				</View>
 				{getMsg()}
 			</View>
