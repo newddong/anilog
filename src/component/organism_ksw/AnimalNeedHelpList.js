@@ -13,7 +13,6 @@ import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
  */
 export default AnimalNeedHelpList = props => {
 	const onLabelClick = (status, id, item) => {
-		console.log('status=>' + status + ' id=>' + id + ' item=>' + props.item);
 		props.onLabelClick(status, id, item);
 	};
 
