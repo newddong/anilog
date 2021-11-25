@@ -28,6 +28,7 @@ export default AnimalNeedHelpList = props => {
 					onLabelClick={(status, id) => onLabelClick(status, id, item)}
 					onHashClick={() => props.onHashClick(item)}
 					onCheckBox={e => props.onCheckBox(e, index)}
+					onFavoriteTag={e => props.onFavoriteTag(e, index)}
 				/>
 			</View>
 		);

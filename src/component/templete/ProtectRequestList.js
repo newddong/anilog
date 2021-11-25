@@ -7,7 +7,7 @@ import {btn_w306} from '../atom/btn/btn_style';
 import {GRAY10} from 'Root/config/color';
 import OnOffSwitch from '../molecules/OnOffSwitch';
 import {txt} from 'Root/config/textstyle';
-import {dummy_ProtectRequestList} from 'Root/config/dummyDate_json';
+import {dummy_ProtectRequestList} from 'Root/config/dummy_data_hjs';
 import {ONLY_CONTENT_FOR_ADOPTION} from 'Root/i18n/msg';
 
 //@UserObject
@@ -33,7 +33,6 @@ import {ONLY_CONTENT_FOR_ADOPTION} from 'Root/i18n/msg';
 
 export default ProtectRequestList = ({navigation, route}) => {
 	const [data, setData] = React.useState({
-		filterValue: '',
 		protectArea: '',
 		kindFilter: '',
 	});
@@ -60,6 +59,9 @@ export default ProtectRequestList = ({navigation, route}) => {
 	const onOn_kindFilter = () => {
 		alert('동물 종류 필터 버튼 온');
 	};
+	const onOff_FavoriteTag = (value, index) => {
+		console.log('즐겨찾기=>' + value + ' ' + index);
+	};
 
 	return (
 		<ScrollView style={{flex: 1}}>
@@ -85,7 +87,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 					</View>
 				</View>
 				<View style={[searchProtectRequest.animalNeedHelpList]}>
-					<AnimalNeedHelpList data={dummy_ProtectRequestList} />
+					<AnimalNeedHelpList data={dummy_ProtectRequestList} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
 				</View>
 			</View>
 		</ScrollView>
