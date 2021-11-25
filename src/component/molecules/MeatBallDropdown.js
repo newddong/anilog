@@ -35,7 +35,8 @@ export default MeatBallDropdown = props => {
 			buttonComponent={<MeatballButton {...props} initState={false} />}
 			dropdownList={
 				<View>
-					<TouchableWithoutFeedback>{/*부모의 터치 이벤트를 dropdownList로 오지 않도록 차단 더 세련된 방법을 찾아야함*/}
+					<TouchableWithoutFeedback>
+						{/*부모의 터치 이벤트를 dropdownList로 오지 않도록 차단 더 세련된 방법을 찾아야함*/}
 						<View style={[style.dropdownList, style.shadow]}>
 							{props.menu.map((v, i) => (
 								<TouchableWithoutFeedback onPress={() => props.onSelect(v, i)} key={i}>
