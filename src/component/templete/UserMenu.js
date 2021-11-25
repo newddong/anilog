@@ -57,10 +57,10 @@ export default UserMenu = props => {
 				navigation.push('TagMeFeeds');
 				break;
 			case '신청 내역':
-				navigation.push('AppliesRecord');
+				navigation.push('AppliesRecord');// ShelterProtectAnimalObject
 				break;
 			case '동물 보호 현황':
-				navigation.push('AnimalProtectList');
+				navigation.push('AnimalProtectList'); //ProtectAnimalObject
 				break;
 			// case '쪽지함':
 			// 	return navigation.push('AnimalProtectList')
