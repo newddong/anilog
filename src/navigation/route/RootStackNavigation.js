@@ -50,7 +50,7 @@ import NoBtnModal from 'Molecules/NoBtnModal';
 import {Modal} from 'Component/modal/Modal';
 import DatePicker from 'Root/component/molecules/DatePicker';
 import Calendar from 'Root/test_sangwoo/calendar';
-import Camera from 'Root/component/templete/Camera';
+// import Camera from 'Root/component/templete/Camera';
 const RootStack = createStackNavigator();
 
 export default RootStackNavigation = () => {
@@ -117,9 +117,21 @@ export default RootStackNavigation = () => {
 						options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}
 					/>
 					{/* <RootStack.Screen name="UserAssignEmail" component={UserAssignEmail} /> */}
-					<RootStack.Screen name="UserPasswordCheck" component={UserPasswordCheck} options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}/>
-					<RootStack.Screen name="AssignUserHabitation" component={AssignUserHabitation} options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}/>
-					<RootStack.Screen name="AssignUserProfileImage" component={AssignUserProfileImage} options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}/>
+					<RootStack.Screen
+						name="UserPasswordCheck"
+						component={UserPasswordCheck}
+						options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}
+					/>
+					<RootStack.Screen
+						name="AssignUserHabitation"
+						component={AssignUserHabitation}
+						options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}
+					/>
+					<RootStack.Screen
+						name="AssignUserProfileImage"
+						component={AssignUserProfileImage}
+						options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}
+					/>
 
 					<RootStack.Screen name="ShelterCodeCheck" component={ShelterCodeCheck} />
 					<RootStack.Screen name="ShelterAssignEntrance" component={ShelterAssignEntrance} />
