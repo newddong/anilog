@@ -76,7 +76,7 @@ export default PhotoSelect = props => {
 	});
 
 	const takePicture = () => {
-		props.navigation.push('Camera', props.route.name)
+		// props.navigation.push('Camera', props.route.name)
 	}
 
 	//확인

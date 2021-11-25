@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Image} from 'react-native';
-import {Paw48_Mixed, Paw48_YELL20, Paw48_APRI10, Private62, Public62} from '../atom/icon';
-import {styles} from '../atom/image/imageStyle';
+import { View, Image } from 'react-native';
+import { Paw48_Mixed, Paw48_YELL20, Paw48_APRI10, Private62, Public62 } from '../atom/icon';
+import { styles } from '../atom/image/imageStyle';
 
 /**
  *
@@ -39,16 +39,16 @@ export default ProfileImageLarge194 = props => {
 	const userType = () => {
 		switch (props.userType) {
 			case 'pet':
-				return <View style={{position: 'absolute'}}>{petStatus()}</View>;
+				return <View style={{ position: 'absolute' }}>{petStatus()}</View>;
 			case 'shelter':
-				return <View style={{position: 'absolute', right: 0, bottom: 0}}>{shelter_type()}</View>;
+				return <View style={{ position: 'absolute', right: 0, bottom: 0 }}>{shelter_type()}</View>;
 			default:
 				return <></>;
 		}
 	};
 	return (
 		<View style={styles.img_round_194}>
-			<Image source={{uri: props.img_uri}} style={styles.img_round_194} />
+			<Image source={{ uri: props.img_uri }} style={styles.img_round_194} />
 			{userType()}
 		</View>
 	);

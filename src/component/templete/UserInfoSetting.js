@@ -1,85 +1,121 @@
-import { useNavigation } from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
-import { GRAY10 } from 'Root/config/color';
-import { txt } from 'Root/config/textstyle';
-import { btn_w114, btn_w242 } from '../atom/btn/btn_style';
-import { NextMark } from '../atom/icon';
+import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import {GRAY10} from 'Root/config/color';
+import {dummy_CompanionObject, dummy_UserObject_pet} from 'Root/config/dummyDate_json';
+import {txt} from 'Root/config/textstyle';
+import {MODIFY_PROFILE} from 'Root/i18n/msg';
+import {btn_w114, btn_w242} from '../atom/btn/btn_style';
+import {NextMark} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import ProfileImageLarge194 from '../molecules/ProfileImageLarge194';
 import MyPetList from '../organism_ksw/MyPetList';
-import { login_style, btn_style, temp_style, userInfoSetting_style } from './style_templete';
+import {login_style, btn_style, temp_style, userInfoSetting_style} from './style_templete';
 
-// 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
-//ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
-
-export default UserInfoSetting = props => {
+// 필요한 데이터 - 로그인 유저 제반 데이터, 나의 반려동물 관련 데이터(CompanionObject 참조)
+export default UserInfoSetting = ({route}) => {
+	// console.log('route', route.params);
 	const navigation = useNavigation();
+	const [data, setData] = React.useState(route.params);
+	const [companions, setCompanions] = React.useState([]);
+
+	//나의 반려동물 검색 - 로그인 유저의 _id 데이터를 토대로
+	//반려동물 관계
+	React.useEffect(() => {
+		let my_companion_list = []; // CompanionObject에서 나의 반려동물 id List를 가져옴
+		dummy_CompanionObject.map((v, i) => {
+			v.companion_user_id == data._id ? my_companion_list.push(v) : null;
+		});
+		let copy = [];
+		my_companion_list.map((v, i) => {
+			let found = dummy_UserObject_pet.filter(e => e._id == v.companion_pet_id);
+			copy.push(found[0]);
+		});
+		setCompanions(copy);
+	}, [data]);
+
+	//상세 정보 클릭
+	const onPressDetail = () => {
+		navigation.push('UserInfoDetailSetting', data);
+	};
+
+	//프로필 변경 클릭
+	const onPressModofyProfile = () => {
+		navigation.push('ChangeUserProfileImage');
+	};
+
+	// 나의 반려동물 -> 반려동물 등록
+	const onPressAddPet = () => {
+		navigation.push('AssignPetProfileImage');
+	};
+
+	//비밀번호 변경하기 클릭
+	const onPressChangePwd = () => {
+		navigation.push('ChangePassword');
+	};
+
+	const onClickCompanionLabel = myPetData => {
+		navigation.push('PetInfoSetting', myPetData);
+	};
+
 	return (
 		<View style={login_style.wrp_main}>
 			<ScrollView>
 				{/* step1 */}
 				<View style={[temp_style.userInfoSetting_step1]}>
-					{/* (M)ProfileImageLarge */}
 					<View style={[temp_style.profileImageLarge, userInfoSetting_style.profileImageLarge]}>
-						<ProfileImageLarge194 />
+						<ProfileImageLarge194 img_uri={data.user_profile_uri} />
 					</View>
-
-					{/* (A)btn_w242 */}
 					<View style={[btn_style.btn_w242, userInfoSetting_style.btn_w242]}>
-						<AniButton
-							btnTitle={'프로필 변경'}
-							btnStyle={'filled'}
-							titleFontStyle={24}
-							btnLayout={btn_w242}
-							onPress={() => navigation.push('ChangeUserProfileImage')}
-						/>
+						<AniButton btnTitle={MODIFY_PROFILE} btnLayout={btn_w242} onPress={onPressModofyProfile} />
 					</View>
 				</View>
 				{/* step2 - MyInfo */}
 				<View style={[temp_style.userInfoSetting_step2]}>
-					{/* accountInfo - MyInfo에서 첫번째 칸 : 계정정보 */}
+					{/* 계정정보 */}
 					<View style={[temp_style.accountInfo]}>
 						<View style={[temp_style.title, userInfoSetting_style.title]}>
-							<Text style={[txt.noto30b, { color: GRAY10 }]}>계정 정보</Text>
+							<Text style={[txt.noto30b, {color: GRAY10}]}>계정 정보</Text>
 						</View>
-						{/* accountInfo_depth2 - user_email과 비밀번호 변경하기*/}
+						{/* 이메일, 비밀번호 변경하기*/}
 						<View style={[temp_style.accountInfo_depth2]}>
 							<View style={[temp_style.user_email_userInfoSetting, userInfoSetting_style.user_email]}>
-								<Text style={[txt.roboto24]}>SW.kwon@pinePartners.com</Text>
+								<Text style={[txt.roboto24]}>{data ? data.user_email : ''}</Text>
 							</View>
 							<View style={[temp_style.changePassword_userInfoSetting, userInfoSetting_style.changePassword]}>
-								<TouchableOpacity onPress={() => navigation.push('ChangePassword')}>
-									<Text style={[txt.noto24, { color: GRAY10 }]}>비밀번호 변경하기</Text>
+								<TouchableOpacity onPress={onPressChangePwd}>
+									<Text style={[txt.noto24, {color: GRAY10}]}>비밀번호 변경하기</Text>
 								</TouchableOpacity>
 							</View>
 						</View>
 					</View>
 					<View style={[temp_style.vertical_border]}></View>
 
-					{/* detailInfo - MyInfo에서 두번째 칸 : 상세정보 */}
+					{/* 상세정보 */}
 					<View style={[temp_style.detailInfo]}>
 						<View style={[temp_style.title, userInfoSetting_style.title_detail]}>
-							<Text style={[txt.noto30b, { color: GRAY10 }]}>상세 정보</Text>
+							<Text style={[txt.noto30b, {color: GRAY10}]}>상세 정보</Text>
 						</View>
 						<View style={[temp_style.bracket48, userInfoSetting_style.bracket48]}>
-							<NextMark onPress={() => navigation.push('UserInfoDetailSetting')} />
+							<NextMark onPress={onPressDetail} />
 						</View>
 					</View>
 					<View style={[temp_style.vertical_border]}></View>
 
-					{/* introduce - MyInfo에서 세번째 칸 : 소개 */}
+					{/* 소개 */}
 					<View style={[temp_style.introduceInfo]}>
 						<View style={[temp_style.introduceInfo_depth1]}>
 							<View style={[temp_style.title, userInfoSetting_style.title_detail]}>
-								<Text style={[txt.noto30b, { color: GRAY10 }]}>소개</Text>
+								<Text style={[txt.noto30b, {color: GRAY10}]}>소개</Text>
 							</View>
 							<View style={[btn_style.btn_w114, userInfoSetting_style.btn_w114]}>
-								<AniButton btnTitle={'수정'} btnStyle={'border'} titleFontStyle={24} btnLayout={btn_w114} />
+								<AniButton btnTitle={'수정'} btnStyle={'border'} btnLayout={btn_w114} />
 							</View>
 						</View>
 						<View style={[temp_style.userText_userInfoSetting, userInfoSetting_style.userText]}>
-							<Text style={[txt.noto24, { color: GRAY10 }]}>우리 귀요미 쥬쥬랑 죠죠를 소개합니당 애교 덩어리 쥬쥬{'&'}시크 존멋탱 죠죠</Text>
+							<Text style={[txt.noto24, {color: GRAY10}]} numberOfLines={2} ellipsizeMode={'tail'}>
+								{data ? data.user_Introduction : ''}
+							</Text>
 						</View>
 					</View>
 				</View>
@@ -87,14 +123,11 @@ export default UserInfoSetting = props => {
 				<View style={[temp_style.myPetList]}>
 					<View style={[temp_style.myPetList_title]}>
 						<View style={[temp_style.title_userInfoSetting, userInfoSetting_style.title_detail]}>
-							<Text style={[txt.noto30b, { color: GRAY10 }]}>나의 반려동물</Text>
+							<Text style={[txt.noto30b, {color: GRAY10}]}>나의 반려동물</Text>
 						</View>
 					</View>
 					<View style={[temp_style.myPetList_myPetList]}>
-						<MyPetList
-							onLabelClick={myPetData => navigation.push('PetInfoSetting', myPetData)}
-							addPet={() => navigation.push('AssignPetProfileImage')}
-						/>
+						<MyPetList items={companions} onLabelClick={myPetData => onClickCompanionLabel(myPetData)} addPet={onPressAddPet} />
 					</View>
 				</View>
 			</ScrollView>

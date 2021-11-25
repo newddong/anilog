@@ -4,7 +4,6 @@ import { txt } from 'Root/config/textstyle';
 import { socialInfoB } from './style_organism';
 
 export default SocialInfoB = props => {
-	console.log(props.data)
 	const count_to_K = (cnt) => {
 		if (cnt > 1000) {
 			let count = (cnt / 1000).toFixed(1) + "k"

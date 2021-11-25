@@ -6,37 +6,27 @@ import AddPet from '../molecules/AddPet';
 import PetImageLabel from '../molecules/PetImageLabel';
 import {myPetList} from './style_organism';
 
+/**
+ *
+ * @param {{
+ *items: ' List 배열',
+ * }} props
+ */
 export default MyPetList = props => {
 	const renderItem = (item, index) => {
-		//List의 마지막 Pet 출력 시 반려동물 추가 Icon 붙임
-		if (dummy_myPetList.length - 1 == index) {
-			return (
-				<View style={{flexDirection: 'row'}}>
-					<View style={[myPetList.petImageLabel]}>
-						<TouchableOpacity onPress={() => props.onLabelClick(item)}>
-							<PetImageLabel img_uri={item.img_uri} petStatus={item.petStatus} petNickname={item.petNickname} />
-						</TouchableOpacity>
-					</View>
-					{/* 반려동물 추가 */}
-					<View style={[myPetList.addPet]}>
-						<AddPet onAdd={() => props.addPet()} />
-					</View>
-				</View>
-			);
-		} else
-			return (
-				//PetImageLAbel
-				<View style={[myPetList.petImageLabel]}>
-					<TouchableOpacity onPress={() => props.onLabelClick(item)}>
-						<PetImageLabel img_uri={item.img_uri} petStatus={item.petStatus} petNickname={item.petNickname} />
-					</TouchableOpacity>
-				</View>
-			);
+		return (
+			<View style={[myPetList.petImageLabel]}>
+				<TouchableOpacity onPress={() => props.onLabelClick(item)}>
+					<PetImageLabel img_uri={item.user_profile_uri} petStatus={item.pet_status} petNickname={item.user_nickname} />
+				</TouchableOpacity>
+			</View>
+		);
 	};
 
 	return (
 		<View style={[myPetList.container]}>
-			<FlatList data={dummy_myPetList} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
+			<AddPet onAdd={() => props.addPet()} />
+			<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
 		</View>
 	);
 };

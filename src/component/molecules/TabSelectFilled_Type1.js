@@ -1,8 +1,8 @@
 import React from 'react';
-import { txt } from 'Root/config/textstyle';
-import { Text, TouchableOpacity, FlatList } from 'react-native';
+import {txt} from 'Root/config/textstyle';
+import {Text, TouchableOpacity, FlatList} from 'react-native';
 import DP from 'Root/config/dp';
-import { APRI10, GRAY10, GRAY40, WHITE } from 'Root/config/color';
+import {APRI10, GRAY10, GRAY40, WHITE} from 'Root/config/color';
 
 /**
  *
@@ -10,38 +10,26 @@ import { APRI10, GRAY10, GRAY40, WHITE } from 'Root/config/color';
  * items: 'Array / Tab Box에 담길 ItemList',
  * onSelect: void,
  * width: number,
+ * defaultIndex : number,
  * }} props
  */
 export default TabSelectFilled_Type1 = props => {
-	let tabState = [];
-	const tabLength = props.items.length;
-	Array(tabLength)
-		.fill(props.items)
-		.map((v, i) => {
-			tabState[i] = { tabName: v[i], state: false };
-		});
-	tabState[0].state = true;
-	const [selected, setSelected] = React.useState(tabState);
+	const [selected, setSelected] = React.useState(props.defaultIndex ? props.defaultIndex : 0);
 
 	//선택된 Tab의 State를 True로 이외의 Tab은 False로
 	const onSelect = index => {
-		const copyState = [...tabState];
-		for (let i = 0; i < copyState.length; i++) {
-			i == index ? (copyState[i].state = true) : (copyState[i].state = false);
-		}
-		setSelected(copyState);
-		// props.onSelect(copyState[index].tabName);
+		setSelected(index);
 		props.onSelect(index);
 	};
 
-	const renderItem = ({ item, index }) => {
+	const renderItem = ({item, index}) => {
 		return (
 			<TouchableOpacity
 				onPress={() => onSelect(index)}
 				style={{
 					width: (props.width * DP) / props.items.length,
 					height: 82 * DP,
-					backgroundColor: selected[index].state ? APRI10 : GRAY40,
+					backgroundColor: selected == index ? APRI10 : GRAY40,
 					justifyContent: 'center',
 					marginRight: 2 * DP,
 				}}>
@@ -49,7 +37,7 @@ export default TabSelectFilled_Type1 = props => {
 					style={[
 						txt.noto28,
 						{
-							color: selected[index].state ? WHITE : GRAY10,
+							color: selected == index ? WHITE : GRAY10,
 							textAlign: 'center',
 						},
 					]}>
