@@ -15,6 +15,10 @@ import {login_style, btn_style, temp_style, userInfoSetting_style} from './style
 // 필요한 데이터 - 로그인 유저 제반 데이터, 나의 반려동물 관련 데이터(CompanionObject 참조)
 export default UserInfoSetting = ({route}) => {
 	// console.log('route', route.params);
+
+	React.useEffect(() => {
+		console.log('userInfoSetting get para?', route.params);
+	}, [route]);
 	const navigation = useNavigation();
 	const [data, setData] = React.useState(route.params);
 	const [companions, setCompanions] = React.useState([]);
@@ -41,7 +45,7 @@ export default UserInfoSetting = ({route}) => {
 
 	//프로필 변경 클릭
 	const onPressModofyProfile = () => {
-		navigation.push('ChangeUserProfileImage');
+		navigation.push('ChangeUserProfileImage', data);
 	};
 
 	// 나의 반려동물 -> 반려동물 등록
@@ -51,7 +55,7 @@ export default UserInfoSetting = ({route}) => {
 
 	//비밀번호 변경하기 클릭
 	const onPressChangePwd = () => {
-		navigation.push('ChangePassword');
+		navigation.push('ChangePassword', data.user_password);
 	};
 
 	const onClickCompanionLabel = myPetData => {

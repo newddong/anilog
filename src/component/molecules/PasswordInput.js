@@ -31,7 +31,7 @@ export default PasswordInput = props => {
 	const inputRef = React.useRef();
 
 	React.useEffect(() => {
-		console.log('clear' + props.clear);
+		// console.log('clear' + props.clear);
 		inputRef.current.clear();
 		setInput('');
 	}, [props.clear]);
@@ -117,6 +117,7 @@ export default PasswordInput = props => {
 						alignItems: 'center',
 					}}>
 					<TextInput
+						maxLength={30}
 						ref={inputRef}
 						placeholder={props.placeholder}
 						onChangeText={text => onChange(text)}
@@ -133,13 +134,14 @@ export default PasswordInput = props => {
 							},
 						]}
 					/>
-					{/* X버튼은 TextInput과 28px 차이, 최하단 View테두리와는 14px 차이 */}
-					{input.length>0&&<View style={{position: 'absolute', right: 0, paddingBottom: 7 * DP, flexDirection: 'row'}}>
-						<View style={{marginRight: 10 * DP}}>
-							{pwdSecureState ? <Eye52_GRAY20 onPress={onShowPassword} /> : <Eye52_APRI10 onPress={onShowPassword} />}
+					{input.length > 0 && (
+						<View style={{position: 'absolute', right: 0, paddingBottom: 7 * DP, flexDirection: 'row'}}>
+							<View style={{marginRight: 10 * DP}}>
+								{pwdSecureState ? <Eye52_GRAY20 onPress={onShowPassword} /> : <Eye52_APRI10 onPress={onShowPassword} />}
+							</View>
+							<Cross52 onPress={onClear} />
 						</View>
-						<Cross52 onPress={onClear} />
-					</View>}
+					)}
 				</View>
 
 				{getMsg()}

@@ -1,17 +1,23 @@
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import { ScrollView, Text, View } from 'react-native';
-import { btn_w654 } from '../atom/btn/btn_style';
+import {ScrollView, Text, View} from 'react-native';
+import {btn_w654} from '../atom/btn/btn_style';
+import {Modal} from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
 import PasswordChecker from '../organism_ksw/PasswordChecker';
-import { login_style, btn_style, temp_style, changePassword_style } from './style_templete';
+import {login_style, btn_style, temp_style, changePassword_style} from './style_templete';
 
-export default ChangePassword = props => {
-	const [confirmed, setConfirmed] = React.useState(false)
+export default ChangePassword = ({route, navigation}) => {
+	const [confirmed, setConfirmed] = React.useState(false);
 	const [pwd, setPwd] = React.useState(); // 비밀번호
 	const [pwdValid, setPwdValid] = React.useState(false); // 비밀번호 양식 체크 (8자이상~~)
 	const [pwdCheck, setPwdCheck] = React.useState(false); // 비밀번호 더블 체크 통과 여부
 	const [presentPwdValid, setPresentPwdValid] = React.useState(false); // 현재 비밀번호 입력값이 실제 DB와 일치하는지 여부
 
+	//현재 비밀번호, 새로운 비밀번호의 양식, 새로운 비밀번호 확인 모두 통과 시 확인 버튼이 활성화
+	React.useEffect(() => {
+		presentPwdValid && pwdCheck && pwdValid ? setConfirmed(true) : setConfirmed(false);
+	}, [presentPwdValid, pwdCheck, pwdValid]);
 
 	//암호 양식
 	const passwordValidator = pwd => {
@@ -25,7 +31,6 @@ export default ChangePassword = props => {
 			setPwdValid(false);
 		}
 	};
-
 	//비밀번호 더블체크, 비밀번호와 비밀번호 확인이 일치하며, 비밀번호 작성양식에도 통과한 경우에만 pwdCheck값이 True
 	const passwordChecker = pwd_double => {
 		pwd == pwd_double && pwdValid ? setPwdCheck(true) : setPwdCheck(false);
@@ -33,37 +38,53 @@ export default ChangePassword = props => {
 
 	//현재 비밀번호 입력값이 실제 DB와 일치하는지 여부
 	const checkPresentPwd = pwd => {
-		setPresentPwdValid(true)
-	}
+		pwd == route.params ? setPresentPwdValid(true) : setPresentPwdValid(false);
+	};
 
 	//지우기버튼
-	const onPressClear = () => {
-		setPwdCheck('');
+	const onPressClear = kind => {
+		//kind = 패스워드 입력 종류 (현재 암호, 새로운 암호, 암호 체크 등)
+		if (kind == 'cur') {
+			setPresentPwdValid(false);
+		} else if (kind == 'new') {
+			setPwdCheck('');
+			setPwdValid(false);
+		} else if (kind == 'check') {
+			setPwdCheck(false);
+		}
+	};
+
+	//확인 버튼 클릭
+	const onPressConfirm = () => {
+		Modal.popTwoBtn('정말로 새로운 비밀번호로 바꾸시겠습니까?', '아니오', '확인', () => Modal.close(), changeFinalize);
+	};
+
+	//확인 버튼 클릭 => 최종 확인 모달에서 확인버튼 다시 클릭 => DB접근 Update 예정
+	const changeFinalize = () => {
+		Modal.close();
+		navigation.goBack();
 	};
 
 	return (
-		<View style={[login_style.wrp_main,]}>
-			<ScrollView contentContainerStyle={{ flex: 1 }} >
+		<View style={[login_style.wrp_main]}>
+			<ScrollView contentContainerStyle={{flex: 1}}>
 				<View style={[temp_style.passwordChecker_changePassword, changePassword_style.passwordChecker]}>
 					<PasswordChecker
+						currentPwd={route.params}
 						isResetPwdMode={true}
 						passwordValidator={pwd => passwordValidator(pwd)}
 						passwordChecker={pwd => passwordChecker(pwd)}
 						checkPresentPwd={pwd => checkPresentPwd(pwd)}
 						pwdValid={pwdValid}
 						pwdCheck={pwdCheck}
-						onPressClear={onPressClear}
+						onPressClear={kind => onPressClear(kind)}
 						presentPwdValid={presentPwdValid}
 					/>
 				</View>
 				<View style={[btn_style.btn_w654, changePassword_style.btn_w654]}>
-					{confirmed
-						? <AniButton btnTitle={'확인'} btnLayout={btn_w654} titleFontStyle={32} />
-						: <AniButton btnTitle={'확인'} btnLayout={btn_w654} disable={true} titleFontStyle={32} />
-					}
+					<AniButton btnTitle={'확인'} btnLayout={btn_w654} disable={confirmed ? false : true} titleFontStyle={32} onPress={onPressConfirm} />
 				</View>
 			</ScrollView>
-
 		</View>
 	);
 };

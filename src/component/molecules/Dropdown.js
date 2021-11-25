@@ -34,6 +34,7 @@ export default Dropdown = props => {
 		Modal.close();
 		props.buttonComponent.props.onClose();
 	};
+
 	const closeDropdown = () => {
 		console.log('closeDropDown');
 		Modal.close();
@@ -80,9 +81,8 @@ export default Dropdown = props => {
 		onPress: onPressOverride,
 		onClose: onCloseOverride,
 		onOpen: onOpenOverride,
-		ref: buttonref
-		}
-	);
+		ref: buttonref,
+	});
 	return (
 		<View ref={container} onLayout={e => {}}>
 			{button}

@@ -1,8 +1,20 @@
 import React from 'react';
-import { View } from 'react-native';
+import {View} from 'react-native';
+import {
+	CURRENT_PWD_INFO,
+	CURRENT_PWD_TITLE,
+	FORM_MATCHED_DESC,
+	FORM_UNMATCHED_DESC,
+	NEW_PWD_CHECK_TITLE,
+	NEW_PWD_TITLE,
+	PASSWORD_CHECK_MATCHED,
+	PASSWORD_FORM_DESCRIPTION,
+	PASSWORD_TITLE,
+	PASSWORD_UNMATCHED,
+	PWD_CHECK_INFO,
+} from 'Root/i18n/msg';
 import PasswordInput from '../molecules/PasswordInput';
-import { passwordChecker_style } from './style_organism';
-
+import {passwordChecker_style} from './style_organism';
 
 /**
  *
@@ -18,30 +30,29 @@ import { passwordChecker_style } from './style_organism';
  * }} props
  */
 export default PasswordChecker = props => {
-
 	//비밀번호 혹은 새로운 비밀번호에서 지우기를 할 경우 아래의 비밀번호 확인, 새로운비밀번호 확인도 함께 Clear시키기 위한 state
 	const [isClear, setIsClear] = React.useState(false);
 
 	//비밀번호 입력 콜백함수 or 새로운 비밀번호(암호 변경 모드일 경우) 입력 콜백함수
 	const onChangePwd = pwd => {
-		props.passwordValidator(pwd)
+		props.passwordValidator(pwd);
 	};
 
 	// Input 우측 지우기 마크 클릭 콜백함수
-	const onPressClear = () => {
+	const onPressClear = kind => {
 		setIsClear(true);
-		props.onPressClear();
+		props.onPressClear(kind);
 	};
 
-	//비밀번호 입력, 새로운 비밀번호 입력 콜백 
+	//비밀번호 입력, 새로운 비밀번호 입력 콜백
 	const passwordValidator = pwd => {
 		props.passwordValidator(pwd);
 	};
 
-	//비밀번호 확인, 새로운 비밀번호 확인 입력 콜백 
+	//비밀번호 확인, 새로운 비밀번호 확인 입력 콜백
 	const passwordChecker = pwd => {
-		props.passwordChecker(pwd)
-	}
+		props.passwordChecker(pwd);
+	};
 
 	//props.isResetPwdMode가 true일 경우 pwdInput이 3개 출현 (현재암호 / 바꿀 암호 / 바꿀 암호 확인)
 	return !props.isResetPwdMode ? (
@@ -49,27 +60,28 @@ export default PasswordChecker = props => {
 		<View style={[passwordChecker_style.container_initMode]}>
 			<View style={[passwordChecker_style.passwordInput_initMode]}>
 				<PasswordInput
-					title={'비밀번호'}
-					description={'최소 8자 이상, 영문과 숫자만 입력 가능합니다.'}
-					placeholder={'현재 비밀번호'}
-					information={'최소 8자 이상, 영문과 숫자만 입력 가능합니다.'}
-					alert_msg={'비밀번호 작성 양식에 맞지 않습니다.'}
-					confirm_msg={'비밀번호 작성 양식과 일치합니다!'}
+					title={PASSWORD_TITLE}
+					description={PASSWORD_FORM_DESCRIPTION}
+					placeholder={CURRENT_PWD_TITLE}
+					information={PASSWORD_FORM_DESCRIPTION}
+					alert_msg={FORM_UNMATCHED_DESC}
+					confirm_msg={FORM_MATCHED_DESC}
 					onChange={pwd => passwordValidator(pwd)}
 					confirm={props.pwdValid}
-					onClear={onPressClear}
+					onClear={() => onPressClear('new')}
 				/>
 			</View>
 			<View style={[passwordChecker_style.passwordInput_doubleCheck]}>
 				<PasswordInput
-					title={'비밀번호 확인'}
-					placeholder={'비밀번호를 한 번 더 적어주세요.'}
-					alert_msg={'비밀번호가 일치하지 않습니다.'}
-					confirm_msg={'비밀번호가 서로 일치합니다!'}
+					title={PASSWORD_CHECK_TITLE}
+					placeholder={PWD_CHECK_INFO}
+					alert_msg={PASSWORD_UNMATCHED}
+					confirm_msg={PASSWORD_CHECK_MATCHED}
 					information={''}
 					onChange={pwd => passwordChecker(pwd)}
 					confirm={props.pwdCheck}
 					clear={isClear}
+					onClear={() => onPressClear('check')}
 				/>
 			</View>
 		</View>
@@ -78,34 +90,39 @@ export default PasswordChecker = props => {
 		<View style={[passwordChecker_style.container_resetMode]}>
 			<View style={[passwordChecker_style.passwordInput_resetMode]}>
 				<PasswordInput
-					title={'현재 비밀번호'}
-					placeholder={'현재 비밀번호'}
+					title={PASSWORD_TITLE}
+					placeholder={CURRENT_PWD_TITLE}
 					onChange={pwd => props.checkPresentPwd(pwd)}
 					confirm={props.presentPwdValid}
-					information={'현재 비밀번호를 적어주세요'}
-
+					alert_msg={PASSWORD_UNMATCHED}
+					confirm_msg={PASSWORD_CHECK_MATCHED}
+					information={CURRENT_PWD_INFO}
+					onClear={() => onPressClear('cur')}
 				/>
 			</View>
 			<View style={[passwordChecker_style.passwordInput_resetMode]}>
 				<PasswordInput
-					title={'새로운 비밀번호'}
-					description={'최소 8자 이상, 영문과 숫자만 입력 가능합니다.'}
-					placeholder={'새로운 비밀번호'}
-					alert_msg={'비밀번호 작성 양식에 맞지 않습니다.'}
-					confirm_msg={'비밀번호 작성 양식과 일치합니다!'}
+					title={NEW_PWD_TITLE}
+					description={PASSWORD_FORM_DESCRIPTION}
+					placeholder={NEW_PWD_TITLE}
+					alert_msg={FORM_UNMATCHED_DESC}
+					confirm_msg={FORM_MATCHED_DESC}
 					information={''}
 					onChange={pwd => passwordValidator(pwd)}
 					confirm={props.pwdValid}
-					onClear={onPressClear}
+					onClear={() => onPressClear('new')}
 				/>
 			</View>
 			<View style={[passwordChecker_style.passwordInput_resetMode]}>
 				<PasswordInput
-					title={'새로운 비밀번호 확인'}
-					placeholder={'새로운 비밀번호'}
+					title={NEW_PWD_CHECK_TITLE}
+					placeholder={NEW_PWD_CHECK_TITLE}
 					onChange={pwd => passwordChecker(pwd)}
-					confirm={props.pwdValid}
-					information={'비밀번호를 다시 한 번 적어주세요.'}
+					confirm={props.pwdCheck}
+					information={PWD_CHECK_INFO}
+					alert_msg={PASSWORD_UNMATCHED}
+					confirm_msg={PASSWORD_CHECK_MATCHED}
+					onClear={() => onPressClear('check')}
 				/>
 			</View>
 		</View>
