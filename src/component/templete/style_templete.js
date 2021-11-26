@@ -3309,13 +3309,12 @@ export const manageVolunteer = StyleSheet.create({
 	},
 	previous_volunteerList: {
 		width: 654 * DP,
-		height: 500 * DP,
 	},
 	title: {
 		height: 35 * DP,
 		marginTop: 40 * DP,
 		marginBottom: 20 * DP,
-		marginLeft: 48 * DP,
+		// marginLeft: 48 * DP,
 		alignSelf: 'flex-start',
 	},
 	separator: {
@@ -3326,12 +3325,9 @@ export const manageVolunteer = StyleSheet.create({
 	showMoreContainer: {
 		width: 214 * DP,
 		height: 48 * DP,
-		marginVertical: 20 * DP,
 		flexDirection: 'row',
 		alignSelf: 'center',
 		alignItems: 'center',
-		alignContent: 'center',
-		justifyContent: 'center',
 	},
 	showMoreContainer_text: {
 		color: GRAY10,

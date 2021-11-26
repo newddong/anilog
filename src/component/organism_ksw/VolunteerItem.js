@@ -6,6 +6,8 @@ import ShelterLabel from '../molecules/ShelterLabel';
 import {volunteerItem} from './style_organism';
 
 export default VolunteerItem = props => {
+	// console.log('data', data);
+
 	return (
 		<View style={[volunteerItem.container]}>
 			<View style={[volunteerItem.labelContainer]}>
@@ -17,7 +19,7 @@ export default VolunteerItem = props => {
 				)}
 			</View>
 			<View style={[volunteerItem.expected_activityDate]}>
-				<Text style={[txt.roboto24, {color: GRAY20}]}>{props.expected_activityDate}</Text>
+				<Text style={[txt.roboto24, {color: GRAY20}]}>{props.data.expected_date}</Text>
 				<Text style={[txt.roboto24, {color: GRAY20}]}>활동 예정</Text>
 			</View>
 		</View>

@@ -1,4 +1,4 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import React from 'react';
 import FeedContent from 'Root/component/organism/FeedContent';
 import AccountHashList from 'Root/component/organism_ksw/AccountHashList';
@@ -28,7 +28,7 @@ import PetList from 'Root/component/organism_ksw/PetList';
 import PhoneNumVerification from 'Root/component/organism_ksw/PhoneNumVerification';
 import ProfileMenu from 'Root/component/organism_ksw/ProfileMenu_ver_1';
 import ProtectedPetList from 'Root/component/organism_ksw/ProtectedPetList';
-import ShelterLabel from 'Root/component/organism_ksw/ShelterLabel';
+import ShelterLabel from 'Root/component/organism_ksw/ShelterVerticalLabel';
 import ShelterList from 'Root/component/organism_ksw/ShelterList';
 import SocialInfoA from 'Root/component/organism_ksw/SocialInfoA';
 import SocialInfoB from 'Root/component/organism_ksw/SocialInfoB';

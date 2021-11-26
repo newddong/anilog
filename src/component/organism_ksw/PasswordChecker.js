@@ -81,8 +81,10 @@ export default PasswordChecker = props => {
 		return isMatch;
 	};
 
+	// 비밀번호 변경 루트 => 현재 암호 확인
 	const compare_curr_pwd = pwd => {
-		props.checkPresentPwd(pwd);
+		let isMatchedWithCurreunt = props.checkPresentPwd(pwd);
+		return isMatchedWithCurreunt;
 	};
 	console.log('render');
 	//props.isResetPwdMode가 true일 경우 pwdInput이 3개 출현 (현재암호 / 바꿀 암호 / 바꿀 암호 확인)
