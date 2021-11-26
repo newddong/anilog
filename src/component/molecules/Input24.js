@@ -13,7 +13,6 @@ import {Cross46} from '../atom/icon';
  *descriptionType: 'star' | 'info' | 'none',
  *value: string,
  *alert_msg: 'String / 긴급메시지 ',
- *confirm : 'Boolean',
  *confirm_msg: 'String / 확인메시지 ',
  *info: string,
  *width: 'number / Input24의 전체 너비 default = 300',
@@ -25,21 +24,29 @@ import {Cross46} from '../atom/icon';
  *onChange : void,
  *onClear : void,
  *showHttp : boolean,
+ *validator: Input값의 양식 검증,
  * }} props
  */
-export default Input24 = props => {
-	const [input, setInput] = React.useState('');
+export default Input24 = React.forwardRef((props,ref) => {
+	React.useImperativeHandle(ref,()=>({
+		focus:()=>{
+			inputRef.current.focus();
+		},
+		blur:()=>{
+			inputRef.current.blur();
+		},
+		clear:()=>{
+
+		}
+	}));
+	const [input, setInput] = React.useState('http://');
 	const [confirm, setConfirm] = React.useState(false);
 	const inputRef = React.useRef();
-
-	React.useEffect(() => {
-		props.confirm ? setConfirm(true) : setConfirm(false);
-	}, [props.confirm]);
 
 	//Validator 조건확인이 안되었기에 테스트용으로 입력된 텍스트가
 	// 10자 이상일 때 confirmed가 되도록 작성
 	const validator = text => {
-		// text.length > 10 ? setConfirm(true) : setConfirm(false);
+		setConfirm(props.validator(text));
 	};
 
 	const setBorderColor = () => {
@@ -50,24 +57,15 @@ export default Input24 = props => {
 
 	const onChange = text => {
 		setInput(text);
-		props.onChange(text);
-		validator(text);
+		props.validator&&validator(text);
+		props.onChange&&props.onChange(text);
 	};
 
 	const onClear = () => {
-		props.showHttp ? setInput('http://') : null;
-
 		inputRef.current.clear();
+		props.showHttp ? setInput('http://') : setInput('');
+		props.onChange('');
 		props.onClear();
-		setInput('');
-	};
-
-	const blur = () => {
-		inputRef.current.blur();
-	};
-
-	const focus = () => {
-		inputRef.current.focus();
 	};
 
 	const getDescription = () => {
@@ -111,9 +109,9 @@ export default Input24 = props => {
 			<View style={{height: 80 * DP, borderBottomWidth: 2 * DP, borderBottomColor: setBorderColor(), flexDirection: 'row', alignItems: 'center'}}>
 				<TextInput
 					ref={inputRef}
-					onChangeText={text => onChange(text)}
+					onChangeText={onChange}
 					placeholder={props.placeholder}
-					defaultValue={props.defaultValue}
+					value={input}
 					editable={props.editable}
 					style={[
 						txt.noto28,
@@ -124,9 +122,7 @@ export default Input24 = props => {
 							lineHeight: 44 * DP,
 							minWidth: 300 * DP,
 						},
-					]}>
-					{props.showHttp ? <Text>http://</Text> : null}
-				</TextInput>
+					]}/>
 				{input.length > 0 ? (
 					<View style={{position: 'absolute', right: 0}}>
 						<Cross46 onPress={onClear} />
@@ -137,7 +133,7 @@ export default Input24 = props => {
 			{getMsg()}
 		</View>
 	);
-};
+});
 Input24.defaultProps = {
 	title: 'title', // input title
 	placeholder: 'placeholder',
@@ -145,7 +141,6 @@ Input24.defaultProps = {
 	value: 'value',
 	showMsg: false,
 	alert_msg: 'alert_msg',
-	confirm: false,
 	confirm_msg: 'confirm_msg',
 	editable: true,
 	info: null, //

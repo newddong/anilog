@@ -36,7 +36,10 @@ export default AssignUserProfileImage = props => {
 			return true;
 		} else return false;
 	};
-
+	const onNicknameChange = text => {
+		console.log('닉네임',text);
+	}
+	
 	//닉네임 Validation
 	const nickName_validator = text => {
 		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
@@ -44,13 +47,12 @@ export default AssignUserProfileImage = props => {
 		// var regExp = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{1,15}$/;
 		// var regExp = /^[a-z0-9_-]{2,10}$/ ;
 		var regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
-
-		if (regExp.test(text) && checkDuplicateNickname(text)) {
-			setConfirmed(true);
-		} else {
-			setConfirmed(false);
-		}
+		return regExp.test(text)&&checkDuplicateNickname(text);
 	};
+
+	const onNicknameValid = isValid => {
+		setConfirmed(isValid);
+	}
 
 	//반려동물 등록 from 모달창 아직 미구현
 	const goAssignPet = () => {
@@ -79,8 +81,9 @@ export default AssignUserProfileImage = props => {
 					confirm_msg={'사용 가능한 닉네임입니다.'}
 					alert_msg={'사용 불가능한 닉네임입니다.'}
 					placeholder={'닉네임을 입력해주세요.'}
-					onChange={text => nickName_validator(text)}
-					confirm={confirmed}
+					validator={nickName_validator}
+					onChange={onNicknameChange}
+					onValid={onNicknameValid}
 				/>
 			</View>
 
