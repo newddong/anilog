@@ -41,20 +41,10 @@ export default PasswordInput = React.forwardRef((props, ref) => {
 		},
 	}));
 
-	React.useEffect(() => {
-		props.confirm ? setConfirm(true) : setConfirm(false);
-	}, [props.confirm]);
-
 	const [input, setInput] = React.useState(''); // 암호 input text state
 	const [confirm, setConfirm] = React.useState(props.confirm); // 암호 validation state
 	const [pwdSecureState, setPwdSecureState] = React.useState(true); // 암호 별표화 state
 	const inputRef = React.useRef();
-
-	React.useEffect(() => {
-		// console.log('clear' + props.clear);
-		inputRef.current.clear();
-		setInput('');
-	}, [props.clear]);
 
 	//Input 하단 메시지 출력 분기
 	const getMsg = () => {

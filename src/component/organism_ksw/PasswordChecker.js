@@ -10,6 +10,7 @@ import {
 	PASSWORD_CHECK_MATCHED,
 	PASSWORD_FORM_DESCRIPTION,
 	PASSWORD_TITLE,
+	PASSWORD_CHECK_TITLE,
 	PASSWORD_UNMATCHED,
 	PWD_CHECK_INFO,
 } from 'Root/i18n/msg';
@@ -109,11 +110,10 @@ export default PasswordChecker = props => {
 					alert_msg={PASSWORD_UNMATCHED}
 					confirm_msg={PASSWORD_CHECK_MATCHED}
 					information={''}
+					onChange={passwordChecker}
 					validator={passwordMatcher}
-					// confirm={props.pwdCheck}
 					ref={checkerRef}
 					onClear={onPressCheckClear}
-					// clear={isClear} 삭제 onPressClear주석 참조
 				/>
 			</View>
 		</View>
