@@ -144,7 +144,6 @@ export default PasswordInput = React.forwardRef((props, ref) => {
 								minWidth: 190 * DP,
 								width: props.width * DP,
 								//placeholder 상태일때 글꼴의 영향인지 placeholde'r' 마지막글자가 짤리는 현상 발생
-								backgroundColor: 'yellow',
 							},
 						]}
 					/>
