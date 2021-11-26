@@ -73,9 +73,9 @@ export default SaveFavorite = props => {
 	};
 
 	React.useEffect(() => {
-		_dummyData.map((v, i) => {
-			console.log(i + ' : ' + v.checkBoxState);
-		});
+		// _dummyData.map((v, i) => {
+		// 	console.log(i + ' : ' + v.checkBoxState);
+		// });
 	}, [_dummyData]);
 
 	return (

@@ -74,9 +74,9 @@ export default SaveAnimalRequest = props => {
 	};
 
 	React.useEffect(() => {
-		_dummyData.map((v, i) => {
-			// console.log(i + ' : ' + v.checkBoxState);
-		});
+		// _dummyData.map((v, i) => {
+		// 	// console.log(i + ' : ' + v.checkBoxState);
+		// });
 	}, [_dummyData]);
 
 	const navigationGo = (status, user_id) => {

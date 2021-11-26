@@ -12,6 +12,7 @@ import {FloatAddArticle_126x92} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
 import {Setting46, FavoriteTag48_Filled, Heart48_Filled, Paw46} from '../atom/icon';
+import {dummy_userObject} from 'Root/config/dummyDate_json';
 import {
 	MANAGEMENT_OF_PROTECTED_ANIMAL,
 	PROTECTED_ANIMAL,
@@ -35,6 +36,14 @@ import {
 } from 'Root/i18n/msg';
 
 export default ShelterMenu = props => {
+	const [data, setData] = React.useState(dummy_userObject[0]); //우선 userObject 0번 추가
+
+	const [socialInfoData, setSocialInfoData] = React.useState({
+		upload_count: data.user_upload_count,
+		follower_count: data.user_follower_count,
+		follow_count: data.user_follow_count,
+	});
+
 	const navigation = useNavigation();
 
 	//보호소 정보 수정
@@ -155,7 +164,7 @@ export default ShelterMenu = props => {
 					{/* (O)SocialInfoB-4Items */}
 					<View style={[temp_style.socialInfoB, shelterMenu.socialInfoB_4Items]}>
 						{/* <Text>(o)SocialInfoB-4Items</Text> */}
-						<SocialInfoB></SocialInfoB>
+						<SocialInfoB data={socialInfoData} />
 					</View>
 
 					{/* (btn_w280, Float) */}
