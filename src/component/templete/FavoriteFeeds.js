@@ -83,7 +83,6 @@ export default FavoriteFeeds = props => {
 
 			{/* 즐겨찾기한 FeedList출력하는 FeedThumbnailList */}
 			<View style={[temp_style.FeedThumbnailList]}>
-				{console.log('_dummyData====>' + _dummyData)}
 				<FeedThumbnailList
 					data={_dummyData}
 					selectMode={selectMode}
