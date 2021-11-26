@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
@@ -40,6 +41,10 @@ export default UserMenu = props => {
 	const navigation = useNavigation();
 
 	const [data, setData] = React.useState(dummy_userObject[0]); //우선 userObject 0번 추가
+
+	React.useEffect(() => {
+		AsyncStorage.setItem('token', JSON.stringify(data._id));
+	}, [data]);
 
 	const [socialInfoData, setSocialInfoData] = React.useState({
 		upload_count: data.user_upload_count,

@@ -1,5 +1,6 @@
 import React from 'react';
 import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {APRI10, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import {dummy_accountList} from 'Root/config/dummyDate_json';
 import {Cross46} from '../atom/icon';
@@ -16,34 +17,24 @@ import {organism_style} from './style_organism';
  * }} props
  */
 export default AccountList = props => {
-	const accountsLength = dummy_accountList.length;
-	let accountState = [];
-	Array(accountsLength)
-		.fill(dummy_accountList)
-		.map((v, i) => {
-			accountState[i] = {state: false};
-		});
-
-	const [cliked, setClicked] = React.useState(accountState);
+	const [selectedIndex, setSelectedIndex] = React.useState();
 
 	//계정 클릭 시 해당 박스 테두리 생성 함수
-	const makeBorder = index => {
-		const copy = [...cliked];
-		copy[index].state = !copy[index].state;
-		setClicked(copy);
+	const makeBorder = (item, index) => {
+		index == selectedIndex ? setSelectedIndex(99) : setSelectedIndex(index);
+		props.onSelect(item, index);
 	};
 
 	const renderItem = (item, index) => {
 		return (
 			<TouchableOpacity
-				style={[
-					cliked[index].state && props.makeBorderMode ? organism_style.userDescriptionLabel_clicked : organism_style.userDescriptionLabel,
-					{justifyContent: 'center', alignSelf: 'center'},
-				]}
+				style={[organism_style.accountListItem, {borderColor: selectedIndex == index && props.makeBorderMode ? APRI10 : WHITE}]}
 				onPress={() => makeBorder(index)}>
-				<UserDescriptionLabel data={item} width={250} />
+				<View style={[organism_style.userDescriptionLabelContainer]}>
+					<UserDescriptionLabel data={item} width={250} />
+				</View>
 				<View style={{position: 'absolute', right: 15 * DP}}>
-					<Cross46 onPress={() => props.onDelete(index)} />
+					<Cross46 onPress={() => props.onDelete(index, item)} />
 				</View>
 			</TouchableOpacity>
 		);
@@ -55,9 +46,9 @@ export default AccountList = props => {
 	);
 };
 AccountList.defaultProps = {
-	item: null,
 	onAccountClick: e => console.log(e),
 	onDelete: e => console.log(e),
+	onSelect: e => console.log(e),
 	makeBorderMode: true,
 };
 

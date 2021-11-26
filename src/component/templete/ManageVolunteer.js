@@ -24,11 +24,13 @@ export default ManageVolunteer = ({route}) => {
 		volunteerItems.map((v, i) => {
 			if (v.volunteer_status == 'accept') {
 				let found = shelterItems.find(e => e._id == v.volunteer_target_shelter);
-				found.expected_date = v.volunteer_wish_date[0]; //기존 보호소 정보에는 활동 예정일자에 대한 정보가 없으므로, 봉사활동 테이블의 컬럼과 조인하여서 가져옴
+				found.expected_date = v.volunteer_wish_date; //기존 보호소 정보에는 활동 예정일자에 대한 정보가 없으므로, 봉사활동 테이블의 컬럼과 조인하여서 가져옴
+				found.volunteer_id = v._id; // 기존 보호소 정보에는 없는 봉사활동 고유 _id 본래라면 조인을 통해서 얻어옴
 				scheduled_temp.push(found);
 			} else {
 				let found = shelterItems.find(e => e._id == v.volunteer_target_shelter);
-				found.expected_date = v.volunteer_wish_date[0]; //기존 보호소 정보에는 활동 예정일자에 대한 정보가 없으므로, 봉사활동 테이블의 컬럼과 조인하여서 가져옴
+				found.expected_date = v.volunteer_wish_date; //기존 보호소 정보에는 활동 예정일자에 대한 정보가 없으므로, 봉사활동 테이블의 컬럼과 조인하여서 가져옴
+				found.volunteer_id = v._id; // 기존 보호소 정보에는 없는 봉사활동 고유 _id 본래라면 조인을 통해서 얻어옴
 				previous_temp.push(found);
 			}
 		});
@@ -42,9 +44,9 @@ export default ManageVolunteer = ({route}) => {
 		setArrowStatus(!arrowStatus);
 	};
 
-	// 라벨 클릭
+	// 라벨 클릭 => 봉사활동 신청서 필요 데이터 : 보호소 정보 / 해당 봉사활동 데이터
 	const goToAssignVolunteer = shelterData => {
-		// console.log(JSON.stringify(shelterData));
+		// console.log('shelter', shelterData);
 		navigation.push('ShelterVolunteerForm', shelterData);
 	};
 
@@ -65,14 +67,14 @@ export default ManageVolunteer = ({route}) => {
 				<View style={[manageVolunteer.title]}>
 					<Text style={[txt.noto24, {color: GRAY20}]}>지난 신청</Text>
 				</View>
-				<View style={[manageVolunteer.previous_volunteerList]}>
-					<VolunteerItemList items={!showMoreHistory ? done_list.slice(0, 4) : done_list} onClickItem={e => goToAssignVolunteer(e)} />
+				<View style={[showMoreHistory ? manageVolunteer.previous_volunteerList_expanded : manageVolunteer.previous_volunteerList]}>
+					<VolunteerItemList items={done_list} onClickItem={e => goToAssignVolunteer(e)} />
 				</View>
 
 				{/* 지난 내역 더보기 --> [클릭] => 지난 내역 더보기 Container는 사라짐 */}
 				{done_list.length > 4 ? (
 					<TouchableOpacity style={[manageVolunteer.showMoreContainer]} onPress={showMore}>
-						<Text style={[txt.noto22, manageVolunteer.showMoreContainer_text]}>지난 내역 더보기</Text>
+						<Text style={[txt.noto22, manageVolunteer.showMoreContainer_text]}>지난 내역 더보기{showMoreHistory}</Text>
 						{arrowStatus ? <Arrow_Up_GRAY20 /> : <Arrow_Down_GRAY20 />}
 					</TouchableOpacity>
 				) : null}

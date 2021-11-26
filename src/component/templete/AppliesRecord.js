@@ -57,7 +57,7 @@ export default AppliesRecord = ({route}) => {
 	};
 
 	const onClickShelterLabel = shelterInfo => {
-		console.log('shelter', shelterInfo);
+		// console.log('shelter', shelterInfo);
 		navigation.push('UserVolunteerForm', shelterInfo); //봉사 활동 신청 관련
 	};
 
@@ -88,9 +88,9 @@ export default AppliesRecord = ({route}) => {
 					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>봉사활동 신청 </Text>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.moreTxt]}>더보기 </Text>
-						<View style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
-							<NextMark onPress={showMoreVolunteer} />
-						</View>
+						<TouchableOpacity onPress={showMoreVolunteer} style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
+							<NextMark />
+						</TouchableOpacity>
 					</View>
 					<ShelterList items={vol_shelterList} onShelterLabelClick={onClickShelterLabel} />
 				</View>

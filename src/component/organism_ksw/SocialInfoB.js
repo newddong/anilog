@@ -1,22 +1,20 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { txt } from 'Root/config/textstyle';
-import { socialInfoB } from './style_organism';
+import {Text, View} from 'react-native';
+import {txt} from 'Root/config/textstyle';
+import {socialInfoB} from './style_organism';
 
 export default SocialInfoB = props => {
-	const count_to_K = (cnt) => {
+	const count_to_K = cnt => {
 		if (cnt > 1000) {
-			let count = (cnt / 1000).toFixed(1) + "k"
-			console.log(count)
-			return count
+			let count = (cnt / 1000).toFixed(1) + 'k';
+			return count;
 		} else {
-			return cnt
+			return cnt;
 		}
-
-	}
+	};
 	React.useEffect(() => {
-		count_to_K()
-	}, [])
+		count_to_K();
+	}, []);
 
 	return (
 		<View style={[socialInfoB.container]}>
@@ -32,18 +30,16 @@ export default SocialInfoB = props => {
 				<Text style={[txt.roboto36b, socialInfoB.number]}>{count_to_K(props.data.follow_count)}</Text>
 				<Text style={[txt.noto24, socialInfoB.title]}>팔로잉</Text>
 			</View>
-			{props.donationMode
-				? <View style={[socialInfoB.socialInfo]}>
+			{props.donationMode ? (
+				<View style={[socialInfoB.socialInfo]}>
 					<Text style={[txt.roboto36b, socialInfoB.number]}>3</Text>
 					<Text style={[txt.noto24, socialInfoB.title]}>후원</Text>
 				</View>
-				: null
-			}
-
+			) : null}
 		</View>
 	);
 };
 
 SocialInfoB.defaultProps = {
-	donationMode: false
-}
+	donationMode: false,
+};

@@ -1195,7 +1195,7 @@ export const dummy_VolunteerAcitivityApplicantObject = [
 		_id: 2,
 		volunteer_target_shelter: 22, //봉사활동 대상 보호소
 		volunteer_wish_date: ['21.11.22', '21.11.28', '21.12.06'], //봉사활동 희망 날짜
-		volunteer_accompany: [1, 2, 3], //봉사활동 신청자 목록
+		volunteer_accompany: [1, 3], //봉사활동 신청자 목록
 		volunteer_delegate_contact: '010-6694-1921', //봉사활동 신청 대표자 전화번호
 		volunteer_status: 'done',
 	},

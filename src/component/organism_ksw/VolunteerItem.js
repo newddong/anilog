@@ -19,7 +19,7 @@ export default VolunteerItem = props => {
 				)}
 			</View>
 			<View style={[volunteerItem.expected_activityDate]}>
-				<Text style={[txt.roboto24, {color: GRAY20}]}>{props.data.expected_date}</Text>
+				<Text style={[txt.roboto24, {color: GRAY20}]}>{props.data.expected_date[0]}</Text>
 				<Text style={[txt.roboto24, {color: GRAY20}]}>활동 예정</Text>
 			</View>
 		</View>

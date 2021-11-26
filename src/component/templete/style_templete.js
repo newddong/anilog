@@ -2183,11 +2183,20 @@ export const applicationFormVolunteer = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	viewForm_step2: {
-		width: 590 * DP,
-		height: 168 * DP,
+		width: 540 * DP,
 		marginTop: 22 * DP,
 		marginLeft: 64 * DP,
+		paddingLeft: 20 * DP,
+		borderBottomColor: APRI10,
+		borderBottomWidth: 2 * DP,
+		flexDirection: 'row',
 	},
+	volunteer_date_input: {
+		height: 82 * DP,
+		marginRight: 20 * DP,
+		justifyContent: 'center',
+	},
+	volunteer_date: {},
 	participants: {
 		width: 654 * DP,
 		marginTop: 40 * DP,
@@ -2204,6 +2213,7 @@ export const applicationFormVolunteer = StyleSheet.create({
 	},
 	addParticipantBtn: {
 		width: 654 * DP,
+		paddingLeft: 25 * DP,
 		flexDirection: 'row',
 	},
 	addParticipantTxt: {
@@ -2221,6 +2231,7 @@ export const applicationFormVolunteer = StyleSheet.create({
 		width: 590 * DP,
 		height: 42 * DP,
 		marginTop: 10 * DP,
+		paddingLeft: 66 * DP,
 	},
 	btn_w226: {
 		height: 90 * DP,
@@ -2715,9 +2726,12 @@ export const appliesRecord = StyleSheet.create({
 				justifyContent: 'center',
 			},
 			moreBtn: {
-				width: 60 * DP,
-				height: 48 * DP,
-				marginBottom: 10 * DP,
+				width: 100 * DP,
+				height: 70 * DP,
+				position: 'absolute',
+				right: 0,
+				bottom: -5 * DP,
+				// backgroundColor: 'yellow',
 				alignItems: 'center',
 				justifyContent: 'center',
 			},
@@ -3308,6 +3322,10 @@ export const manageVolunteer = StyleSheet.create({
 		width: 654 * DP,
 	},
 	previous_volunteerList: {
+		width: 654 * DP,
+		maxHeight: 522 * DP,
+	},
+	previous_volunteerList_expanded: {
 		width: 654 * DP,
 	},
 	title: {
