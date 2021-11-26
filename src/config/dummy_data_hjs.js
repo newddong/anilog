@@ -410,3 +410,27 @@ export const dummy_AppliesRecord_rescue = [
 		protect_act_request_shelter_id: '8ghsfgf', //동물보호 게시글 작성한 보호소
 	},
 ];
+
+export const dummy_ShelterInfo = {
+	//@UserObject (Shelter info)
+	_id: 'fsdagsdf333',
+	user_type: 'shelter',
+	user_profile_uri: '',
+	user_introduction: '마포구에 있는 작은 유기동물 보호소 입니다. 쾌적한 환경과 동물들이 함께 살아갈 수 있도록 많은 관심 부탁드립니다.', //프로필에 노출될 자기소개
+	user_upload_count: 12, //업로드 게시물 숫자
+	user_follow_count: 131, //팔로우 숫자
+	user_follower_count: 333, //팔로워 숫자
+	user_denied: false, //유저의 차단여부
+	user_register_date: '2021-11-10', //가입일
+	user_email: 'unique@abc.com',
+	shelter_type: 'public', //보호소 유형, 공립(public), 사립(private)로 나뉨
+	shelter_name: '유닉 보호소', //보호소 이름
+	shelter_address: {
+		city: '서울', //시,도
+		district: '마포구', //군,구
+		neighbor: '공덕동', //동,읍,면
+	}, //보호소 주소
+	shelter_homepage: 'http://naver.com', //보호소 홈페이지 uri
+	shelter_delegate_contact_number: '010-1111-22222', //보호소 대표 전화번호, 휴대폰 번호
+	shelter_foundation_date: '2021.11.02', //보호소 설립일
+};
