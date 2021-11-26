@@ -4,8 +4,9 @@ import {txt} from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
 import {Private48, Public48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
-import {APRI10, BLACK} from 'Root/config/color';
+import {APRI10, BLACK, GRAY10} from 'Root/config/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 
 /**
  *
@@ -15,16 +16,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * }} props
  */
 export default ShelterLabel = props => {
+	// console.log('props / shelterLAbel', props.data);
 	const [validation, setValidation] = React.useState(false);
-	const [imgUri, setImgUri] = React.useState(props.data.shelter_image);
-
-	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정
-	React.useEffect(() => {
-		if (imgUri == false) {
-			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
-		}
-	});
-
+	const data = props.data ? props.data : null;
 	//user_nickname Text 색깔 조건부적용을 위한 세션아이디 비교
 	React.useEffect(() => {
 		const getItem = async () => {
@@ -56,7 +50,7 @@ export default ShelterLabel = props => {
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{uri: imgUri}} style={styles.img_round_94} />
+				<Image source={{uri: data ? data.user_profile_uri : DEFAULT_PROFILE}} style={styles.img_round_94} />
 				{/* image_round_76이 없으므로 style 작성 */}
 			</TouchableOpacity>
 			<View style={{position: 'absolute', left: 66 * DP, top: 46 * DP}}>{getStatusMark()}</View>
@@ -66,8 +60,8 @@ export default ShelterLabel = props => {
 				<Text style={[txt.roboto28b, {color: validation ? APRI10 : BLACK}]} numberOfLines={1} ellipsizeMode="tail">
 					{props.data.shelter_name}
 				</Text>
-				<Text style={[txt.noto24, {lineHeight: 44 * DP}]} numberOfLines={1} ellipsizeMode="tail">
-					{props.data.location}
+				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
+					{data ? data.shelter_address.city : ''} {data ? data.shelter_address.district : ''}
 				</Text>
 				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
 			</View>

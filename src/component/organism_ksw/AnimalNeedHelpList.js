@@ -20,7 +20,7 @@ export default AnimalNeedHelpList = props => {
 		return (
 			//marginBottom: 40 * DP,
 			<View style={[animalNeedHelpList.itemContainer]}>
-				{console.log('item:item._id=>' + item._id)}
+				{/* {console.log('item:item._id=>' + item._id)} */}
 				<AnimalNeedHelp
 					data={item}
 					checkBoxMode={props.checkBoxMode}

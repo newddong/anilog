@@ -244,41 +244,6 @@ export const dummy_petList = [
 	},
 ];
 
-export const dummy_ShelterList = [
-	{
-		shelterType: 'private',
-		img_uri: 'https://upload.wikimedia.org/wikipedia/en/4/4b/DWG_KIA_logo.png',
-		name: '아이조아 요양보호소',
-		location: '서울시 마포구',
-		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
-		phone_number: '010-8888-2053',
-	},
-	{
-		shelterType: 'public',
-		img_uri: 'https://abandonedpetrescue.org/wp-content/uploads/2016/10/logo.png',
-		name: 'APR Shelter',
-		location: '상암역 부근',
-		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
-		phone_number: '010-8888-2053',
-	},
-	{
-		shelterType: 'private',
-		img_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
-		name: '천사 보호소',
-		location: '서울시 마포구',
-		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
-		phone_number: '010-8888-2053',
-	},
-	{
-		shelterType: 'private',
-		img_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
-		name: '천사 보호소',
-		location: '서울시 마포구',
-		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
-		phone_number: '010-8888-2053',
-	},
-];
-
 export const dummy_volunteerItemList = [
 	{
 		//shelterLabel 출력을 위한 테스트 데이터
@@ -723,6 +688,36 @@ export const dummy_ProtectRequestList = [
 	},
 ];
 
+export const dummy_AnimalNeedHelpList = [
+	{
+		protect_animal_photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU'], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '자운동', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '러브숏', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'male', //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //중성화 여부
+		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: '1.2', //몸무게
+
+		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_adoption_days_remain: 10,
+		protect_animal_protect_request: true,
+		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
+		//임시보호가 되면 protect로 변경
+		//입양을 가게 되면 상태가 adopt로 변경
+		//임시보호, 입양 협의중이면 discuss로 변경
+		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
+
+		protect_animal_writer_id: null, // Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
+
+		protect_animal_protect_request_id: null, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
+		protect_animal_adoptor_id: null, //Mongodb_ID(ref:UserObject), //입양자
+		protect_animal_protector_id: null, //Mongodb_ID(ref:UserObject), //임시보호자
+		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
+	},
+];
+
 export const dummy_MissingReportList = [
 	{
 		//임시로 지정
@@ -832,7 +827,7 @@ export const dummy_userObject = [
 		user_register_date: '2021-11-24', //가입일
 	},
 	{
-		_id: 3, //temp
+		_id: 2, //temp
 		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
 		user_agreement: {
 			is_over_fourteen: true, //14살 이상
@@ -870,7 +865,7 @@ export const dummy_userObject = [
 		user_register_date: '2021-11-24', //가입일
 	},
 	{
-		_id: 2, //temp
+		_id: 3, //temp
 		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
 		user_agreement: {
 			is_over_fourteen: true, //14살 이상
@@ -976,6 +971,148 @@ export const dummy_UserObject_pet = [
 	},
 ];
 
+export const dummy_ShelterList = [
+	{
+		shelterType: 'private',
+		img_uri: 'https://upload.wikimedia.org/wikipedia/en/4/4b/DWG_KIA_logo.png',
+		name: '아이조아 요양보호소',
+		location: '서울시 마포구',
+		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
+		phone_number: '010-8888-2053',
+	},
+	{
+		shelterType: 'public',
+		img_uri: 'https://abandonedpetrescue.org/wp-content/uploads/2016/10/logo.png',
+		name: 'APR Shelter',
+		location: '상암역 부근',
+		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
+		phone_number: '010-8888-2053',
+	},
+	{
+		shelterType: 'private',
+		img_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
+		name: '천사 보호소',
+		location: '서울시 마포구',
+		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
+		phone_number: '010-8888-2053',
+	},
+	{
+		shelterType: 'private',
+		img_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
+		name: '천사 보호소',
+		location: '서울시 마포구',
+		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
+		phone_number: '010-8888-2053',
+	},
+];
+
+export const dummy_UserObject_shelter = [
+	{
+		_id: 21,
+		user_type: 'shelter',
+		user_profile_uri: 'https://upload.wikimedia.org/wikipedia/en/4/4b/DWG_KIA_logo.png',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '홍단 보호소', //보호소 이름
+		shelter_address: {
+			city: '강원도', //시,도
+			district: '평창군', //군,구
+			neighbor: '용평면', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+	},
+	{
+		_id: 22,
+		user_type: 'shelter',
+		user_profile_uri: 'https://abandonedpetrescue.org/wp-content/uploads/2016/10/logo.png',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: 'APR 보호소', //보호소 이름
+		shelter_address: {
+			city: '서울시', //시,도
+			district: '용산구', //군,구
+			neighbor: '검단동', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2015.12.02', //보호소 설립일
+	},
+	{
+		_id: 23,
+		user_type: 'shelter',
+		user_profile_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
+		shelter_type: 'public', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '천사 보호소', //보호소 이름
+		shelter_address: {
+			city: '경기도', //시,도
+			district: '하남시', //군,구
+			neighbor: '단계동 99-102', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+	},
+	{
+		_id: 24,
+		user_type: 'shelter',
+		user_profile_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '티리엘 보호소', //보호소 이름
+		shelter_address: {
+			city: '전라도', //시,도
+			district: '유현군', //군,구
+			neighbor: '방운면 110-20', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+	},
+	{
+		_id: 25,
+		user_type: 'shelter',
+		user_profile_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '나라 보호소', //보호소 이름
+		shelter_address: {
+			city: '서울시', //시,도
+			district: '송파구', //군,구
+			neighbor: '방운면 110-20', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+	},
+	{
+		_id: 26,
+		user_type: 'shelter',
+		user_profile_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '충주 신천 보호소', //보호소 이름
+		shelter_address: {
+			city: '충주시', //시,도
+			district: '신천군', //군,구
+			neighbor: '방운면 110-20', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+	},
+	{
+		_id: 27,
+		user_type: 'shelter',
+		user_profile_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '홍천 보호소', //보호소 이름
+		shelter_address: {
+			city: '강원도', //시,도
+			district: '홍천군', //군,구
+			neighbor: '방운면 110-20', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+	},
+];
 export const dummy_ProtectAnimalObject = [
 	{
 		_id: 1, // 고유아이디
@@ -1039,32 +1176,67 @@ export const dummy_CompanionObject = [
 	},
 ];
 
-export const dummy_AnimalNeedHelpList = [
+export const dummy_VolunteerAcitivityApplicantObject = [
 	{
-		protect_animal_photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU'], //보호중인 동물 사진
-		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
-		protect_animal_rescue_location: '자운동', //보호중인 동물의 구조장소
-		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
-		protect_animal_species_detail: '러브숏', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
-		protect_animal_sex: 'male', //보호중인 동물의 성별
-		protect_animal_neutralization: 'yes', //중성화 여부
-		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
-		protect_animal_weight: '1.2', //몸무게
-
-		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
-		protect_animal_adoption_days_remain: 10,
-		protect_animal_protect_request: true,
-		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
-		//임시보호가 되면 protect로 변경
-		//입양을 가게 되면 상태가 adopt로 변경
-		//임시보호, 입양 협의중이면 discuss로 변경
-		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
-
-		protect_animal_writer_id: null, // Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
-
-		protect_animal_protect_request_id: null, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
-		protect_animal_adoptor_id: null, //Mongodb_ID(ref:UserObject), //입양자
-		protect_animal_protector_id: null, //Mongodb_ID(ref:UserObject), //임시보호자
-		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
+		_id: 1,
+		volunteer_target_shelter: 21, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.30', '21.11.30', '21.12.06'], //봉사활동 희망 날짜
+		volunteer_accompany: [1, 2], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-6694-1921', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'accept',
+		// Enum('done','notaccept','accept’,’waiting’,’cancel') //봉사활동 신청서 상태
+		//완료(done)
+		//신청승인안됨(notaccept)
+		//신청승인됨(accept)
+		//보호소승인대기(waiting)
+		//신청취소(cancel)
+	},
+	{
+		_id: 2,
+		volunteer_target_shelter: 22, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.22', '21.11.28', '21.12.06'], //봉사활동 희망 날짜
+		volunteer_accompany: [1, 2, 3], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-6694-1921', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'done',
+	},
+	{
+		_id: 3,
+		volunteer_target_shelter: 23, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.23', '21.11.28', '21.12.06'], //봉사활동 희망 날짜
+		volunteer_accompany: [2, 3, 4], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-6694-1921', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'done',
+	},
+	{
+		_id: 4,
+		volunteer_target_shelter: 24, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.24'], //봉사활동 희망 날짜
+		volunteer_accompany: [1, 3], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-1235-2356', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'done',
+	},
+	{
+		_id: 5,
+		volunteer_target_shelter: 25, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.24'], //봉사활동 희망 날짜
+		volunteer_accompany: [1, 3], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-1235-2356', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'done',
+	},
+	{
+		_id: 6,
+		volunteer_target_shelter: 26, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.24'], //봉사활동 희망 날짜
+		volunteer_accompany: [1, 3], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-1235-2356', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'done',
+	},
+	{
+		_id: 7,
+		volunteer_target_shelter: 27, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.24'], //봉사활동 희망 날짜
+		volunteer_accompany: [1, 3], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-1235-2356', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'done',
 	},
 ];

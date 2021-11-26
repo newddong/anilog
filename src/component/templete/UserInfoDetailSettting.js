@@ -30,6 +30,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 		setData({...data, user_mobile_company: v});
 	};
 
+	// 시, 구 단위 주소 값 변경 콜백
 	const onChangeAddress = addr => {
 		let copy = {...data}; //Json 부분 변경 방법
 		copy.user_address.city = addr;
@@ -37,6 +38,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 		setData(copy);
 	};
 
+	// 세부 주소 값 변경 콜백
 	const onChangeDeatilAddress = addr => {
 		let copy = {...data};
 		copy.user_address.neighbor = addr;
