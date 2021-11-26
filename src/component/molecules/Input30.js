@@ -21,35 +21,39 @@ import { TouchableOpacity } from 'react-native';
  *onClear: '지우기(X)버튼 클릭 callback',
  *onChange: 'Input Value Change Callback',
  *width: 'TextInput의 너비',
+ *validator: Input값의 양식 검증,
+ *onValid: validator가 실행될 때마다 발생하는 콜백함수, validator의 결과값을 매개변수로 통보,
  * }} props
  */
-export default Input30 = props => {
+export default Input30 = React.forwardRef((props,ref) => {
+	React.useImperativeHandle(ref,()=>({
+		focus:()=>{
+			inputRef.current.focus();
+		},
+		blur:()=>{
+			inputRef.current.blur();
+		},
+		clear:()=>{
+			onClear();
+		}
+	}));
 	const [input, setInput] = React.useState('');
 	const [confirmed, setConfirmed] = React.useState(false); //Confirm Msg 출력 Boolean
 	const inputRef = React.useRef();
-
-	// Validator는 부모 컴포넌트에서 실시 결과값 props.confirm  => prop.confirm의 변동에 따라 input30의 confirm state 변경 -
-	React.useEffect(() => {
-		props.confirm ? setConfirmed(true) : setConfirmed(false);
-	}, [props.confirm]);
 
 	// Input 값 변동 콜백
 	const onChange = text => {
 		// validator(text);
 		setInput(text);
-		props.onChange(text);
+		props.validator&&validator(text);
+		props.onChange&&props.onChange(text);
 	};
 
-	React.useEffect(()=>{
-
-	},[input])
-
-
-	//Validator 조건확인이 안되었기에 테스트용으로 입력된 텍스트가
-	// 10자 이상일 때 confirmed가 되도록 작성
 	const validator = text => {
-		// text.length < 10 ? setConfirm(false) : setConfirm(true);
-	};
+		let isValid = props.validator(text);
+		props.onValid&&props.onValid(isValid);
+		setConfirmed(isValid);
+	}
 
 	const getMsg = () => {
 		if (props.showmsg) {
@@ -68,17 +72,9 @@ export default Input30 = props => {
 		inputRef.current.clear();
 		//지우기에서도 onChange에 빈 값을 넣어주어야 부모의 Confirmed값이 false로 바뀐다
 		//부모는 onChange로 넘어오는 값을 통해 Validator를 수행하기 때문
-		props.onChange('');
 		setInput('');
+		props.onChange('');
 		props.onClear();
-	};
-
-	const blur = () => {
-		inputRef.current.blur();
-	};
-
-	const focus = () => {
-		inputRef.current.focus();
 	};
 
 	const showTitle = () => {
@@ -107,7 +103,7 @@ export default Input30 = props => {
 					}}>
 					<TextInput
 						ref={inputRef}
-						onChangeText={text => onChange(text)}
+						onChangeText={onChange}
 						placeholder={props.placeholder}
 						value={input}
 						style={[
@@ -132,7 +128,7 @@ export default Input30 = props => {
 			</View>
 		</View>
 	);
-};
+});
 
 Input30.defaultProps = {
 	showTitle: true, // true - title과 description 출력 , false - 미출력
@@ -143,9 +139,10 @@ Input30.defaultProps = {
 	showmsg: true,
 	alert_msg: 'alert_msg',
 	confirm_msg: 'confirm_msg',
-	confirm: false,
 	clearMark: true,
 	onClear: e => console.log(e),
 	onChange: e => console.log(e),
+	validator: e => console.log('Input30 default validator', e),
+	onValid: e => console.log('Input30 default onValid ', e),
 	width: 300, // TextInput 너비
 };
