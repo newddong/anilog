@@ -832,7 +832,7 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	baseFlatList: {
-		width: 654 * DP,
+		// width: 654 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},

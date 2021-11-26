@@ -1014,7 +1014,7 @@ export const selectedMediaList = StyleSheet.create({
 
 export const animalNeedHelp = StyleSheet.create({
 	container: {
-		width: 654 * DP,
+		// width: 654 * DP,
 		// height: 214 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -1129,6 +1129,10 @@ export const animalNeedHelp = StyleSheet.create({
 export const animalNeedHelpList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
+		// marginTop: 20 * DP,
+	},
+	container_bordermode: {
+		// width: 654 * DP,
 		// marginTop: 20 * DP,
 	},
 	itemContainer: {

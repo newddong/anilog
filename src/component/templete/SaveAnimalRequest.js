@@ -6,6 +6,7 @@ import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import SelectStat from '../organism_ksw/SelectStat';
 import {login_style, btn_style, temp_style, selectstat_view_style, saveAnimalRequest_style} from './style_templete';
 import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
+import {dummy_AppliesRecord_protect} from 'Root/config/dummy_data_hjs';
 import {useNavigation} from '@react-navigation/core';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
@@ -15,7 +16,7 @@ export default SaveAnimalRequest = props => {
 	//계정 좌측 CheckBox 디스플레이 여부
 	const [checkBoxMode, setCheckBoxMode] = React.useState(false);
 	//checkBox On
-	const [_dummyData, set_dummyData] = React.useState(dummy_AnimalNeedHelpList);
+	const [_dummyData, set_dummyData] = React.useState(dummy_AppliesRecord_protect);
 	const [selectCNT, setSelectCNT] = React.useState(0);
 	const navigation = useNavigation();
 

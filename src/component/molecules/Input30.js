@@ -107,6 +107,7 @@ export default Input30 = React.forwardRef((props, ref) => {
 						placeholder={props.placeholder}
 						value={input}
 						editable={props.editable}
+						defaultValue={props.defaultValue}
 						style={[
 							txt.roboto28,
 							{
