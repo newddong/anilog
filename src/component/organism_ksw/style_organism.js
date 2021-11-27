@@ -71,18 +71,18 @@ export const organism_style = StyleSheet.create({
 	accountList: {
 		width: 674 * DP,
 	},
-	userDescriptionLabel: {
+	accountListItem: {
 		width: 654 * DP,
-		height: 94 * DP,
+		height: 120 * DP,
 		marginBottom: 20 * DP,
-	},
-	userDescriptionLabel_clicked: {
-		width: 654 * DP,
-		height: 134 * DP,
-		marginBottom: 20 * DP,
-		borderColor: APRI10,
+		justifyContent: 'center',
+		alignSelf: 'center',
+		borderColor: WHITE,
 		borderWidth: 5 * DP,
 		borderRadius: 30 * DP,
+	},
+	userDescriptionLabelContainer: {
+		paddingLeft: 15 * DP,
 	},
 	cross46: {
 		width: 46 * DP,
@@ -1014,7 +1014,7 @@ export const selectedMediaList = StyleSheet.create({
 
 export const animalNeedHelp = StyleSheet.create({
 	container: {
-		width: 654 * DP,
+		// width: 654 * DP,
 		// height: 214 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -1129,6 +1129,10 @@ export const animalNeedHelp = StyleSheet.create({
 export const animalNeedHelpList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
+		// marginTop: 20 * DP,
+	},
+	container_bordermode: {
+		// width: 654 * DP,
 		// marginTop: 20 * DP,
 	},
 	itemContainer: {

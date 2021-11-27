@@ -12,63 +12,30 @@ import {Private48, Public48} from '../atom/icon';
  * }} props
  */
 export default ShelterInfo = props => {
-	const [imgUri, setImgUri] = React.useState(props.data.img_uri);
-
-	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정
-	React.useEffect(() => {
-		if (imgUri == false) {
-			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
-		}
-	});
-
+	const data = props.data;
 	const profileImageSmall_data = {
-		img_uri: imgUri,
+		img_uri: data.user_profile_uri,
 		userType: 'shelter',
-		shelterType: props.data.shelterType,
+		shelterType: data.shelter_type,
 		size: 94,
-	};
-
-	const getStatusMark = () => {
-		switch (props.data.shelter_type) {
-			case 'public':
-				return <Public48 />;
-			case 'private':
-				return <Private48 />;
-			default:
-				return <></>;
-		}
 	};
 
 	return (
 		<View style={{width: 702 * DP, height: 246 * DP, borderRadius: 30 * DP, borderWidth: 2 * DP, borderColor: APRI10}}>
 			<View style={{width: 654 * DP, height: 94 * DP, marginTop: 30 * DP, marginHorizontal: 24 * DP, flexDirection: 'row'}}>
 				<TouchableOpacity>
-					{/*<Image source={{uri: imgUri}} style={styles.img_round_94} />*/}
 					<ProfileImageSmall data={profileImageSmall_data} />
 				</TouchableOpacity>
-				<View style={{position: 'absolute', left: 66 * DP, top: 46 * DP}}>{getStatusMark()}</View>
-				<Text style={[txt.noto28b, {marginLeft: 50 * DP, paddingVertical: 26 * DP, justifyContent: 'center'}]}>{props.data.shelter_name}</Text>
+				<Text style={[txt.noto28b, {marginLeft: 50 * DP, paddingVertical: 26 * DP, justifyContent: 'center'}]}>{data ? data.shelter_name : ''}</Text>
 			</View>
 			<View style={{width: 654 * DP, height: 72 * DP, marginTop: 10 * DP}}>
-				<Text style={[txt.noto24, {alignSelf: 'flex-end', color: GRAY10}]}>{props.data.address}</Text>
-				<Text style={[txt.noto24, {alignSelf: 'flex-end', color: BLUE20, textDecorationLine: 'underline'}]}>{props.data.phone_number}</Text>
+				<Text style={[txt.noto24, {alignSelf: 'flex-end', color: GRAY10}]}>
+					{data ? data.shelter_address.city : ''} {data ? data.shelter_address.district : ''} {data ? data.shelter_address.neighbor : ''}{' '}
+				</Text>
+				<Text style={[txt.noto24, {alignSelf: 'flex-end', color: BLUE20, textDecorationLine: 'underline'}]}>
+					{data ? data.shelter_delegate_contact_number : ''}
+				</Text>
 			</View>
 		</View>
 	);
 };
-
-ShelterInfo.defaultProps = {
-	data: {
-		img_uri:
-			'https://previews.123rf.com/images/zolotinka/zolotinka1501/zolotinka150100003/35361122-%EB%8F%99%EB%AC%BC-%EB%B3%B4%ED%98%B8%EC%86%8C-%EB%B2%A1%ED%84%B0-%EC%95%84%EC%9D%B4%EC%BD%98-%EB%A1%9C%EA%B3%A0-%EA%B0%9C%EC%99%80-%EC%83%81%EC%9E%90%EC%97%90-%EA%B3%A0%EC%96%91%EC%9D%B4.jpg',
-		shelter_name: '아이조아 보호소',
-		phone_number: '010-5533-2910',
-		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
-	},
-};
-
-//img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
-//	userType: 'user', //required - 유저타입 pet user shelter hash
-//	shelterType: 'none', // public private
-//	petStatus: 'none', // normal protected adopted none
-//	size: 94, // icon size

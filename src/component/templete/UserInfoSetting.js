@@ -4,7 +4,7 @@ import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import {dummy_CompanionObject, dummy_UserObject_pet} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
-import {MODIFY_PROFILE} from 'Root/i18n/msg';
+import {DEFAULT_PROFILE, MODIFY_PROFILE} from 'Root/i18n/msg';
 import {btn_w114, btn_w242} from '../atom/btn/btn_style';
 import {NextMark} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
@@ -19,6 +19,7 @@ export default UserInfoSetting = ({route}) => {
 	React.useEffect(() => {
 		console.log('userInfoSetting get para?', route.params);
 	}, [route]);
+
 	const navigation = useNavigation();
 	const [data, setData] = React.useState(route.params);
 	const [companions, setCompanions] = React.useState([]);
@@ -68,7 +69,7 @@ export default UserInfoSetting = ({route}) => {
 				{/* step1 */}
 				<View style={[temp_style.userInfoSetting_step1]}>
 					<View style={[temp_style.profileImageLarge, userInfoSetting_style.profileImageLarge]}>
-						<ProfileImageLarge194 img_uri={data.user_profile_uri} />
+						<ProfileImageLarge194 img_uri={data ? data.user_profile_uri : DEFAULT_PROFILE} />
 					</View>
 					<View style={[btn_style.btn_w242, userInfoSetting_style.btn_w242]}>
 						<AniButton btnTitle={MODIFY_PROFILE} btnLayout={btn_w242} onPress={onPressModofyProfile} />

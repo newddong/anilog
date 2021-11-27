@@ -27,19 +27,17 @@ import {Cross46} from '../atom/icon';
  *validator: Input값의 양식 검증,
  * }} props
  */
-export default Input24 = React.forwardRef((props,ref) => {
-	React.useImperativeHandle(ref,()=>({
-		focus:()=>{
+export default Input24 = React.forwardRef((props, ref) => {
+	React.useImperativeHandle(ref, () => ({
+		focus: () => {
 			inputRef.current.focus();
 		},
-		blur:()=>{
+		blur: () => {
 			inputRef.current.blur();
 		},
-		clear:()=>{
-
-		}
+		clear: () => {},
 	}));
-	const [input, setInput] = React.useState(props.showHttp?'http://':'');
+	const [input, setInput] = React.useState('');
 	const [confirm, setConfirm] = React.useState(false);
 	const inputRef = React.useRef();
 
@@ -57,8 +55,8 @@ export default Input24 = React.forwardRef((props,ref) => {
 
 	const onChange = text => {
 		setInput(text);
-		props.validator&&validator(text);
-		props.onChange&&props.onChange(text);
+		props.validator && validator(text);
+		props.onChange && props.onChange(text);
 	};
 
 	const onClear = () => {
@@ -91,6 +89,8 @@ export default Input24 = React.forwardRef((props,ref) => {
 		}
 	};
 
+	const chagedDefaultValue = () => {};
+
 	return (
 		<View style={[props.width && {width: props.width * DP}, {flexDirection: 'column'}]}>
 			{/* width props를 입력하지 않을 경우 Input컴포넌트의 부모의 width를 따라 넓이가 정해지도록 수정*/}
@@ -111,7 +111,7 @@ export default Input24 = React.forwardRef((props,ref) => {
 					ref={inputRef}
 					onChangeText={onChange}
 					placeholder={props.placeholder}
-					value={input}
+					defaultValue={props.defaultValue}
 					editable={props.editable}
 					style={[
 						txt.noto28,
@@ -122,7 +122,8 @@ export default Input24 = React.forwardRef((props,ref) => {
 							lineHeight: 44 * DP,
 							minWidth: 300 * DP,
 						},
-					]}/>
+					]}
+				/>
 				{input.length > 0 ? (
 					<View style={{position: 'absolute', right: 0}}>
 						<Cross46 onPress={onClear} />

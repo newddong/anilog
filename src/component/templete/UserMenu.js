@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
@@ -41,6 +42,10 @@ export default UserMenu = props => {
 
 	const [data, setData] = React.useState(dummy_userObject[0]); //우선 userObject 0번 추가
 
+	React.useEffect(() => {
+		AsyncStorage.setItem('token', JSON.stringify(data._id));
+	}, [data]);
+
 	const [socialInfoData, setSocialInfoData] = React.useState({
 		upload_count: data.user_upload_count,
 		follower_count: data.user_follower_count,
@@ -65,7 +70,7 @@ export default UserMenu = props => {
 				navigation.push('TagMeFeeds');
 				break;
 			case '신청 내역':
-				navigation.push('AppliesRecord'); // ShelterProtectAnimalObject
+				navigation.push('AppliesRecord', data._id); // ShelterProtectAnimalObject
 				break;
 			case '동물 보호 현황':
 				navigation.push('AnimalProtectList', data._id); //ProtectAnimalObject
@@ -82,7 +87,7 @@ export default UserMenu = props => {
 
 	// 나의 반려동물 버튼 클릭
 	const onPressMyCompanion = () => {
-		navigation.push('UserInfoSetting');
+		navigation.push('PetInfoSetting', data); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
 	};
 
 	// 내 정보 수정 클릭

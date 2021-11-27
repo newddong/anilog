@@ -20,7 +20,7 @@ export default AnimalNeedHelpList = props => {
 		return (
 			//marginBottom: 40 * DP,
 			<View style={[animalNeedHelpList.itemContainer]}>
-				{console.log('item:item._id=>' + item._id)}
+				{/* {console.log('item:item._id=>' + item._id)} */}
 				<AnimalNeedHelp
 					data={item}
 					checkBoxMode={props.checkBoxMode}
@@ -36,7 +36,7 @@ export default AnimalNeedHelpList = props => {
 
 	return (
 		//  width: 702 * DP
-		<View style={[animalNeedHelpList.container]}>
+		<View style={[props.borderMode ? animalNeedHelpList.container_bordermode : animalNeedHelpList.container]}>
 			<ScrollView horizontal={false}>
 				<ScrollView horizontal={true}>
 					<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} />

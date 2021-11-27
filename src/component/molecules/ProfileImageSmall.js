@@ -93,7 +93,7 @@ export default ProfileImageSmall = props => {
 			) : (
 				<Image
 					source={{
-						uri: 'https://previews.123rf.com/images/zolotinka/zolotinka1501/zolotinka150100003/35361122-%EB%8F%99%EB%AC%BC-%EB%B3%B4%ED%98%B8%EC%86%8C-%EB%B2%A1%ED%84%B0-%EC%95%84%EC%9D%B4%EC%BD%98-%EB%A1%9C%EA%B3%A0-%EA%B0%9C%EC%99%80-%EC%83%81%EC%9E%90%EC%97%90-%EA%B3%A0%EC%96%91%EC%9D%B4.jpg',
+						uri: props.data.img_uri,
 					}}
 					style={getSize()}
 				/>
