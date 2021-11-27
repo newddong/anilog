@@ -186,16 +186,16 @@ export default RootStackNavigation = () => {
 				</RootStack.Navigator>
 			</NavigationContainer>
 
-			{isPop && <View style={popup.popupBackground}>{popupComponent}</View>}
+			{isPop&& <View style={popup.popupBackground}>{popupComponent}</View>}
+			{/* <View style={{backgroundColor:'red',width:80,height:80}}></View> */}
 		</SafeAreaView>
 	);
 };
 
 const popup = StyleSheet.create({
 	popupBackground: {
-		// backgroundColor:'red',
-		height: Dimensions.get('screen').height,
-		width: Dimensions.get('screen').width,
+		height: '100%',
+		width: '100%',
 		position: 'absolute',
 	},
 });

@@ -39,7 +39,7 @@ export default Input24 = React.forwardRef((props,ref) => {
 
 		}
 	}));
-	const [input, setInput] = React.useState('http://');
+	const [input, setInput] = React.useState(props.showHttp?'http://':'');
 	const [confirm, setConfirm] = React.useState(false);
 	const inputRef = React.useRef();
 

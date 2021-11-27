@@ -44,7 +44,7 @@ PopupSelect.defaultProps = {
 const style = StyleSheet.create({
     background : {
         backgroundColor:'#0002',
-        height: Dimensions.get('window').height,
+        height: '100%',
         width:'100%',
         justifyContent:'flex-end',
         alignItems:'center'
@@ -55,7 +55,6 @@ const style = StyleSheet.create({
         paddingTop:60*DP,
         paddingBottom:52*DP,
         paddingHorizontal:64*DP,
-        
     },
     msg:{
         marginBottom:30*DP,
