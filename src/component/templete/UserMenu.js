@@ -111,7 +111,7 @@ export default UserMenu = props => {
 							</View>
 							<View style={[userMenu_style.contents]}>
 								<Text ellipsizeMode={'tail'} numberOfLines={3} style={[txt.noto24, {color: GRAY10}]}>
-									{data ? data.user_Introduction : ''}
+									{data ? data.user_introduction : ''}
 								</Text>
 							</View>
 						</View>

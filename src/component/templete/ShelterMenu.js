@@ -13,6 +13,7 @@ import AniButton from '../molecules/AniButton';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
 import {Setting46, FavoriteTag48_Filled, Heart48_Filled, Paw46} from '../atom/icon';
 import {dummy_userObject} from 'Root/config/dummyDate_json';
+import {_dummy_VolunteerActivityApplicant, _dummy_userObject_user} from 'Root/config/dummy_data_hjs';
 import {
 	MANAGEMENT_OF_PROTECTED_ANIMAL,
 	PROTECTED_ANIMAL,
@@ -78,7 +79,11 @@ export default ShelterMenu = props => {
 				break;
 			//봉사활동 신청 관리
 			case MANAGEMENT_OF_VOLUNTEER:
-				navigation.push('ManageShelterVolunteer');
+				navigation.push('ManageShelterVolunteer', {
+					volunteerItems: _dummy_VolunteerActivityApplicant,
+					shelterItems: _dummy_userObject_user,
+					user_type: 'shelter',
+				});
 				break;
 			//친구
 			case FRIENDS:

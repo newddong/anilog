@@ -119,7 +119,7 @@ export default UserInfoSetting = ({route}) => {
 						</View>
 						<View style={[temp_style.userText_userInfoSetting, userInfoSetting_style.userText]}>
 							<Text style={[txt.noto24, {color: GRAY10}]} numberOfLines={2} ellipsizeMode={'tail'}>
-								{data ? data.user_Introduction : ''}
+								{data ? data.user_introduction : ''}
 							</Text>
 						</View>
 					</View>

@@ -30,11 +30,12 @@ export default UserDescriptionLabel = props => {
 	const navigation = useNavigation();
 
 	const onClickLabel = () => {
-		props.onLabelClick(props.data.user_id);
+		props.onClickLabel(props.data);
 	};
 
 	return (
-		<View style={{flexDirection: 'row', alignItems: 'center', width: props.width != null ? props.width : null}}>
+		// <View style={{flexDirection: 'row', alignItems: 'center', width: props.width != null ? props.width : null}}>
+		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
 				<Image source={{uri: data ? data.user_profile_uri : DEFAULT_PROFILE}} style={[styles.img_round_94, {backgroundColor: 'yellow'}]} />
 			</TouchableOpacity>
@@ -46,7 +47,7 @@ export default UserDescriptionLabel = props => {
 					{props.data.showStatus ? <Text style={[txt.noto22, {color: APRI10, alignSelf: 'center', paddingLeft: 10 * DP}]}> STATUS</Text> : null}
 				</View>
 				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
-					{props.data.user_Introduction}
+					{props.data.user_introduction}
 				</Text>
 			</View>
 		</View>
@@ -62,5 +63,4 @@ UserDescriptionLabel.defaultProps = {
 		showStatus: false,
 	},
 	// onLabelClick: e => console.log(e),
-	onLabelClick: e => console.log(e),
 };

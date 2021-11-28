@@ -434,3 +434,281 @@ export const dummy_ShelterInfo = {
 	shelter_delegate_contact_number: '010-1111-22222', //보호소 대표 전화번호, 휴대폰 번호
 	shelter_foundation_date: '2021.11.02', //보호소 설립일
 };
+
+export const _dummy_VolunteerActivityApplicant = [
+	{
+		_id: 'Volunteer1',
+		volunteer_target_shelter: 'shelter1234', //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.07.08', '21.07.09', '21.07.10', '21.07.11', '21.07.12', '21.07.13'],
+		volunteer_accompany: ['user1', 'user2'], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-9999-0000', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'accept', // 'done', 'notaccept', 'accept’,’waiting’,’cancel'), //봉사활동 신청서 상태
+	},
+	{
+		_id: 'Volunteer2',
+		volunteer_target_shelter: 'shelter1234', //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.07.08', '21.07.09', '21.07.10', '21.07.11', '21.07.12', '21.07.13'],
+		volunteer_accompany: ['user3'], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-9999-0000', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'accept', // 'done', 'notaccept', 'accept’,’waiting’,’cancel'), //봉사활동 신청서 상태
+	},
+	{
+		_id: 'Volunteer3',
+		volunteer_target_shelter: 'shelter1234', //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.07.08', '21.07.09', '21.07.10', '21.07.11', '21.07.12', '21.07.13'],
+		volunteer_accompany: ['user4'], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-9999-0000', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'cancel', // 'done', 'notaccept', 'accept’,’waiting’,’cancel'), //봉사활동 신청서 상태
+	},
+	{
+		_id: 'Volunteer4',
+		volunteer_target_shelter: 'shelter1234', //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.07.08', '21.07.09', '21.07.10', '21.07.11', '21.07.12', '21.07.13'],
+		volunteer_accompany: ['user5', 'user4'], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-9999-0000', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'cancel', // 'done', 'notaccept', 'accept’,’waiting’,’cancel'), //봉사활동 신청서 상태
+	},
+	{
+		_id: 'Volunteer5',
+		volunteer_target_shelter: 'shelter1234', //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.07.08', '21.07.09', '21.07.10', '21.07.11', '21.07.12', '21.07.13'],
+		volunteer_accompany: ['user4'], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-9999-0000', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'cancel', // 'done', 'notaccept', 'accept’,’waiting’,’cancel'), //봉사활동 신청서 상태
+	},
+	{
+		_id: 'Volunteer6',
+		volunteer_target_shelter: 'shelter1234', //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.07.08', '21.07.09', '21.07.10', '21.07.11', '21.07.12', '21.07.13'],
+		volunteer_accompany: ['user4'], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-9999-0000', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'cancel', // 'done', 'notaccept', 'accept’,’waiting’,’cancel'), //봉사활동 신청서 상태
+	},
+	{
+		_id: 'Volunteer7',
+		volunteer_target_shelter: 'shelter1234', //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.07.08', '21.07.09', '21.07.10', '21.07.11', '21.07.12', '21.07.13'],
+		volunteer_accompany: ['user4'], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-9999-0000', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'cancel', // 'done', 'notaccept', 'accept’,’waiting’,’cancel'), //봉사활동 신청서 상태
+	},
+	{
+		_id: 'Volunteer8',
+		volunteer_target_shelter: 'shelter1234', //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.07.08', '21.07.09', '21.07.10', '21.07.11', '21.07.12', '21.07.13'],
+		volunteer_accompany: ['user4'], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-9999-0000', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'cancel', // 'done', 'notaccept', 'accept’,’waiting’,’cancel'), //봉사활동 신청서 상태
+	},
+	{
+		_id: 'Volunteer9',
+		volunteer_target_shelter: 'shelter1234', //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.07.08', '21.07.09', '21.07.10', '21.07.11', '21.07.12', '21.07.13'],
+		volunteer_accompany: ['user4'], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-9999-0000', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'cancel', // 'done', 'notaccept', 'accept’,’waiting’,’cancel'), //봉사활동 신청서 상태
+	},
+	{
+		_id: 'Volunteer10',
+		volunteer_target_shelter: 'shelter1234', //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.07.08', '21.07.09', '21.07.10', '21.07.11', '21.07.12', '21.07.13'],
+		volunteer_accompany: ['user4'], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-9999-0000', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'cancel', // 'done', 'notaccept', 'accept’,’waiting’,’cancel'), //봉사활동 신청서 상태
+	},
+];
+
+export const _dummy_userObject_user = [
+	{
+		_id: 'user1', //temp
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_agreement: {
+			is_over_fourteen: true, //14살 이상
+			is_service: true, //서비스 동의
+			is_personal_Info: true, //개인정보 제공 동의
+			is_location_service_info: true, //위치정보 제공 동의
+			is_donation_info: true, //기부정보 제공 동의
+			is_marketting_Info: false, //마케팅정보 제공 동의
+		}, //회원가입 동의항목 동의여부
+		user_name: '로운', //실명
+		user_nickname: '사랑 리더', //닉네임
+		user_gender: 'male',
+		user_phone_number: '010-9645-0422', //휴대폰번호
+		user_mobile_company: 'LG U+', //가입된 통신사
+		user_is_verified_phone_number: true, //폰번호 인증여부
+		user_email: 'lanad01@naver.com', //이메일
+		user_is_verified_email: false, //이메일 인증여부
+		user_password: '121212', //패스워드
+		user_address: {
+			city: '서울시', //시,도
+			district: '마포구', //군,구
+			neighbor: '신수동 89-77', //동,읍,면
+		}, //회원주소
+		user_profile_uri: 'https://cdn.topstarnews.net/news/photo/201911/691304_401189_4155.jpg', //프로필 사진
+		user_introduction: '강아지를 무척 사랑 ~',
+		user_birthday: '1991.12.21', //필요한지 검토 필요
+		user_interests: {
+			location: ['마포', '용산', '남산'],
+			activity: ['산책', '펫카페'],
+		},
+		user_upload_count: 142142, //업로드 게시물 숫자
+		user_follow_count: 12324, //팔로우 숫자
+		user_follower_count: 1245667, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+		user_register_date: '2021-11-24', //가입일
+	},
+	{
+		_id: 'user2', //temp
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_agreement: {
+			is_over_fourteen: true, //14살 이상
+			is_service: true, //서비스 동의
+			is_personal_Info: true, //개인정보 제공 동의
+			is_location_service_info: true, //위치정보 제공 동의
+			is_donation_info: true, //기부정보 제공 동의
+			is_marketting_Info: false, //마케팅정보 제공 동의
+		}, //회원가입 동의항목 동의여부
+		user_name: '박은빈', //실명
+		user_nickname: 'silver', //닉네임
+		user_gender: 'female',
+		user_phone_number: '010-9645-0422', //휴대폰번호
+		user_mobile_company: 'LG U+', //가입된 통신사
+		user_is_verified_phone_number: true, //폰번호 인증여부
+		user_email: 'lanad03@naver.com', //이메일
+		user_is_verified_email: false, //이메일 인증여부
+		user_password: '121212', //패스워드
+		user_address: {
+			city: '서울시', //시,도
+			district: '포천구', //군,구
+			neighbor: '용소 89-77', //동,읍,면
+		}, //회원주소
+		user_profile_uri: 'https://t1.daumcdn.net/cfile/tistory/994CA8375F4C62A42B', //프로필 사진
+		user_introduction: '하루라도 고양이를 못 보면 난 힘들어 ~',
+		user_birthday: '1991-12-21', //필요한지 검토 필요
+		user_interests: {
+			location: ['마포', '용산', '남산'],
+			activity: ['산책', '펫카페'],
+		},
+		user_upload_count: 142142, //업로드 게시물 숫자
+		user_follow_count: 12324, //팔로우 숫자
+		user_follower_count: 1245667, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+		user_register_date: '2021-11-24', //가입일
+	},
+	{
+		_id: 'user3', //temp
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_agreement: {
+			is_over_fourteen: true, //14살 이상
+			is_service: true, //서비스 동의
+			is_personal_Info: true, //개인정보 제공 동의
+			is_location_service_info: true, //위치정보 제공 동의
+			is_donation_info: true, //기부정보 제공 동의
+			is_marketting_Info: false, //마케팅정보 제공 동의
+		}, //회원가입 동의항목 동의여부
+		user_name: '남윤수', //실명
+		user_nickname: '동물 작가', //닉네임
+		user_gender: 'male',
+		user_phone_number: '010-111-1111', //휴대폰번호
+		user_mobile_company: 'LG U+', //가입된 통신사
+		user_is_verified_phone_number: true, //폰번호 인증여부
+		user_email: 'lanad02@naver.com', //이메일
+		user_is_verified_email: false, //이메일 인증여부
+		user_password: '121212', //패스워드
+		user_address: {
+			city: '서울시', //시,도
+			district: '용산구', //군,구
+			neighbor: '구월동 89-77', //동,읍,면
+		}, //회원주소
+		user_profile_uri: 'https://img1.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202011/05/newsen/20201105133517620vgwj.jpg', //프로필 사진
+		user_introduction: '이제 함께하자 !',
+		user_birthday: '1991-12-21', //필요한지 검토 필요
+		user_interests: {
+			location: ['마포', '용산', '남산'],
+			activity: ['산책', '펫카페'],
+		},
+		user_upload_count: 142142, //업로드 게시물 숫자
+		user_follow_count: 12324, //팔로우 숫자
+		user_follower_count: 1245667, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+		user_register_date: '2021-11-24', //가입일
+	},
+	{
+		_id: 'user4', //temp
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_agreement: {
+			is_over_fourteen: true, //14살 이상
+			is_service: true, //서비스 동의
+			is_personal_Info: true, //개인정보 제공 동의
+			is_location_service_info: true, //위치정보 제공 동의
+			is_donation_info: true, //기부정보 제공 동의
+			is_marketting_Info: false, //마케팅정보 제공 동의
+		}, //회원가입 동의항목 동의여부
+		user_name: '최병찬', //실명
+		user_nickname: '고양이 집사', //닉네임
+		user_gender: 'male',
+		user_phone_number: '010-111-1111', //휴대폰번호
+		user_mobile_company: 'LG U+', //가입된 통신사
+		user_is_verified_phone_number: true, //폰번호 인증여부
+		user_email: 'lanad02@naver.com', //이메일
+		user_is_verified_email: false, //이메일 인증여부
+		user_password: '121212', //패스워드
+		user_address: {
+			city: '서울시', //시,도
+			district: '용산구', //군,구
+			neighbor: '구월동 89-77', //동,읍,면
+		}, //회원주소
+		user_profile_uri:
+			'https://w.namu.la/s/b492a9aa90f2b7035596bd2c11700392a9a1ff4a8e17df8eeb0cd8fa740651542552d37c9740098755854325517b91a828df33aab479ab5c8d9911562f5e1cc7a5aeaa063618c5fec7bcc9b95d2c5e5e', //프로필 사진
+		user_introduction: '보호소 전문 집사',
+		user_birthday: '1991-12-21', //필요한지 검토 필요
+		user_interests: {
+			location: ['마포', '용산', '남산'],
+			activity: ['산책', '펫카페'],
+		},
+		user_upload_count: 142142, //업로드 게시물 숫자
+		user_follow_count: 12324, //팔로우 숫자
+		user_follower_count: 1245667, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+		user_register_date: '2021-11-24', //가입일
+	},
+	{
+		_id: 'user5', //temp
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_agreement: {
+			is_over_fourteen: true, //14살 이상
+			is_service: true, //서비스 동의
+			is_personal_Info: true, //개인정보 제공 동의
+			is_location_service_info: true, //위치정보 제공 동의
+			is_donation_info: true, //기부정보 제공 동의
+			is_marketting_Info: false, //마케팅정보 제공 동의
+		}, //회원가입 동의항목 동의여부
+		user_name: '정채연', //실명
+		user_nickname: '강아지 훈련사', //닉네임
+		user_gender: 'male',
+		user_phone_number: '010-111-1111', //휴대폰번호
+		user_mobile_company: 'LG U+', //가입된 통신사
+		user_is_verified_phone_number: true, //폰번호 인증여부
+		user_email: 'lanad02@naver.com', //이메일
+		user_is_verified_email: false, //이메일 인증여부
+		user_password: '121212', //패스워드
+		user_address: {
+			city: '서울시', //시,도
+			district: '용산구', //군,구
+			neighbor: '구월동 89-77', //동,읍,면
+		}, //회원주소
+		user_profile_uri:
+			'https://w.namu.la/s/056d0edf813127f1a3a829106c1bb9ae9b9a470f447bef1c12c26a2c7bb69360e6dc65647317d6179f25593a0f6f7b9826e5100c37f00f00f230a14c215e309d4f3fcca32d91ead0e527fcf0aeba2c5b', //프로필 사진
+		user_introduction: '강아지를 정말 좋아한답니다 ! ㅋㅋ',
+		user_birthday: '1991-12-21', //필요한지 검토 필요
+		user_interests: {
+			location: ['마포', '용산', '남산'],
+			activity: ['산책', '펫카페'],
+		},
+		user_upload_count: 142142, //업로드 게시물 숫자
+		user_follow_count: 12324, //팔로우 숫자
+		user_follower_count: 1245667, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+		user_register_date: '2021-11-24', //가입일
+	},
+];
