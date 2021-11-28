@@ -3,7 +3,7 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import {GRAY10} from 'Root/config/color';
-import {dummy_userObject} from 'Root/config/dummyDate_json';
+import {dummy_userObject, dummy_UserObject_shelter} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
 import {
 	ACCOUNT,
@@ -40,7 +40,7 @@ import {login_style, temp_style, userMenu_style} from './style_templete';
 export default UserMenu = props => {
 	const navigation = useNavigation();
 
-	const [data, setData] = React.useState(dummy_userObject[0]); //우선 userObject 0번 추가
+	const [data, setData] = React.useState(dummy_UserObject_shelter[0]); //우선 userObject 0번 추가
 
 	React.useEffect(() => {
 		AsyncStorage.setItem('token', JSON.stringify(data._id));

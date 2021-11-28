@@ -167,7 +167,7 @@ export const SHELTER = 'shelter';
 export const mobile_carrier = ['SKT 텔레콤', 'LG U+', 'KT', '알뜰'];
 
 //반려동물 종류
-export const PET_KIND = ['개', '고양이', '새', '여우', '거북이', '햄스터'];
+export const PET_KIND = ['동물종류', '개', '고양이', '새', '여우', '거북이', '햄스터'];
 //테스트용 Array
 export const testArray = [
 	'테스트용 Array',
@@ -275,3 +275,8 @@ export const PREVIOUS_NICK_TITLE = '기존 닉네임';
 export const NEW_NICK_TITLE = '새 닉네임';
 export const UNAVAILABLE_NICK = '사용 불가한 닉네임입니다.';
 export const AVAILABLE_NICK = '사용 가능한 닉네임입니다!';
+
+//FilterButton 관련
+
+//Meatball
+export const PROTECT_STATUS = ['입양가능', '협의중', '완료']; //SHELTER PROTECT REQUEST 템플릿

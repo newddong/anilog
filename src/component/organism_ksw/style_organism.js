@@ -100,10 +100,9 @@ export const organism_style = StyleSheet.create({
 export const controllableAccount = StyleSheet.create({
 	container: {
 		width: 654 * DP,
-		height: 94 * DP,
 		flexDirection: 'row',
 		marginBottom: 40 * DP,
-		alignSelf: 'center',
+		alignItems: 'center',
 	},
 	userDescriptionLabel: {
 		width: 460 * DP,
@@ -118,7 +117,7 @@ export const controllableAccount = StyleSheet.create({
 		alignItems: 'flex-start',
 	},
 	rightContainer: {
-		height: 94 * DP,
+		// height: 94 * DP,
 		position: 'absolute',
 		right: 0,
 		flexDirection: 'row',
@@ -139,12 +138,19 @@ export const controllableAccount = StyleSheet.create({
 export const controllableAccountList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
+		marginTop: 30 * DP,
 		alignSelf: 'center',
 	},
 	title: {
 		width: 300 * DP,
 		height: 42 * DP,
 		marginBottom: 16 * DP,
+	},
+	no_selectedItem: {},
+	selectedItem: {
+		// borderColor: APRI10,
+		borderRadius: 40 * DP,
+		// borderWidth: 2 * DP,
 	},
 });
 

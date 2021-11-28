@@ -12,7 +12,7 @@ import {FloatAddArticle_126x92} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
 import {Setting46, FavoriteTag48_Filled, Heart48_Filled, Paw46} from '../atom/icon';
-import {dummy_userObject} from 'Root/config/dummyDate_json';
+import {dummy_userObject, dummy_UserObject_shelter} from 'Root/config/dummyDate_json';
 import {_dummy_VolunteerActivityApplicant, _dummy_userObject_user} from 'Root/config/dummy_data_hjs';
 import {
 	MANAGEMENT_OF_PROTECTED_ANIMAL,
@@ -36,14 +36,15 @@ import {
 	ACCOUNT,
 } from 'Root/i18n/msg';
 import {dummy_AppliesRecord_protect} from 'Root/config/dummy_data_hjs';
+import {GRAY10} from 'Root/config/color';
 
 export default ShelterMenu = props => {
-	const [data, setData] = React.useState(dummy_userObject[0]); //우선 userObject 0번 추가
+	const userData = dummy_UserObject_shelter[0]; //우선 userObject_Shelter 0번 추가
 
 	const [socialInfoData, setSocialInfoData] = React.useState({
-		upload_count: data.user_upload_count,
-		follower_count: data.user_follower_count,
-		follow_count: data.user_follow_count,
+		upload_count: userData.user_upload_count,
+		follower_count: userData.user_follower_count,
+		follow_count: userData.user_follow_count,
 	});
 
 	const navigation = useNavigation();
@@ -52,10 +53,12 @@ export default ShelterMenu = props => {
 	const moveToShelterInfoSetting = () => {
 		navigation.push('ShelterInfoSetting');
 	};
+
 	//동물 추가
 	const moveToAssignProtectAnimalImage = () => {
 		navigation.push('AssignProtectAnimalImage');
 	};
+
 	//게시물 추가
 	const moveToAidRequestAnimalList = () => {
 		navigation.push('AidRequestAnimalList');
@@ -75,7 +78,7 @@ export default ShelterMenu = props => {
 			//나의 보호소 출신 동물
 			case FROM_MY_SHELTER:
 				//listType: 'original'- 클릭시 해당 UserProfile로 go, 'twoBtn' - 클릭시 외곽 선 표출, , 'checkBox' - 해당 페이지에서 바로 체크박스 표출
-				navigation.push('AnimalFromShelter', {borderMode: true, data: dummy_AppliesRecord_protect});
+				navigation.push('AnimalFromShelter', dummy_AppliesRecord_protect);
 				break;
 			//봉사활동 신청 관리
 			case MANAGEMENT_OF_VOLUNTEER:
@@ -116,7 +119,8 @@ export default ShelterMenu = props => {
 				break;
 			// 보호 요청 올린 게시글
 			case UPLOADED_POST_FOR_REQ_PROTECTION:
-				navigation.push('ShelterProtectRequests');
+				//보호요청 게시글 스크린 필요 데이터 : ShelterProtectAnimalObject.protect_animal_writer_id == userData._id가 일치하는 것을 검색해야한다
+				navigation.push('ShelterProtectRequests', {id: userData._id, shelter_name: userData.shelter_name});
 				break;
 			//커뮤니티
 			case COMUNITY:
@@ -145,48 +149,32 @@ export default ShelterMenu = props => {
 					<View style={[shelterMenu.shelterInfo]}>
 						<View style={[shelterMenu.shelterInfo_container]}>
 							<View style={[shelterMenu.shelterInfo_container_left]}>
-								{/* ProfileImageLarge */}
 								<View style={[temp_style.profileImageLarge]}>
-									{/* <Text>(M)ProfileImageLarge</Text> */}
-									<ProfileImageLarge160
-										img_uri="https://img.insight.co.kr/static/2018/08/05/700/45666287b9lm5l1q9948.jpg"
-										shelterType="private"
-										userType="shelter"></ProfileImageLarge160>
+									<ProfileImageLarge160 data={userData} />
 								</View>
 							</View>
 							<View style={[shelterMenu.shelterInfo_container_right]}>
-								{/* userId */}
+								{/* 보호소 이름 */}
 								<View style={[shelterMenu.shelterInfo_user_id]}>
-									<Text style={txt.noto36b}>파인트리 유기동물 보호소</Text>
+									<Text style={txt.noto36b}>{userData.shelter_name}</Text>
 								</View>
-								{/* contents */}
+								{/* user_introduction */}
 								<View style={[shelterMenu.shelterInfo_contents]}>
-									<Text style={txt.noto24}>서울시 마포구에 있는 유기 동물 보호소 입니다. 아이들의 보호를 도와주세요.</Text>
+									<Text style={[txt.noto24, {color: GRAY10}]}>{userData.user_introduction}</Text>
 								</View>
 							</View>
 						</View>
 					</View>
 
-					{/* (O)SocialInfoB-4Items */}
+					{/* SocialInfo */}
 					<View style={[temp_style.socialInfoB, shelterMenu.socialInfoB_4Items]}>
-						{/* <Text>(o)SocialInfoB-4Items</Text> */}
 						<SocialInfoB data={socialInfoData} />
 					</View>
 
-					{/* (btn_w280, Float) */}
 					<View style={[shelterMenu.btnView]}>
-						{/* <TouchableOpacity onPress={moveToShelterInfoSetting}> */}
 						<View style={[btn_style.btn_w280]}>
-							<AniButton
-								btnTitle={'보호소 정보수정'}
-								btnStyle={'border'}
-								titleFontStyle={24}
-								btnLayout={btn_w280}
-								onPress={moveToShelterInfoSetting}
-							/>
+							<AniButton btnTitle={'보호소 정보수정'} btnStyle={'border'} btnLayout={btn_w280} onPress={moveToShelterInfoSetting} />
 						</View>
-
-						{/* </TouchableOpacity> */}
 
 						<View style={[shelterMenu.btnView_floadAddPet_126x92]}>
 							<FloatAddPet_126x92 onPress={moveToAssignProtectAnimalImage}></FloatAddPet_126x92>
@@ -198,7 +186,7 @@ export default ShelterMenu = props => {
 					</View>
 				</View>
 
-				{/* (O)ProfileMenul */}
+				{/* 하단 메뉴 */}
 				<View style={[shelterMenu.profileMenu1]}>
 					<ProfileMenu
 						menuTitle={MANAGEMENT_OF_PROTECTED_ANIMAL}
@@ -206,7 +194,6 @@ export default ShelterMenu = props => {
 							[PROTECTED_ANIMAL, INQUERY_APPLICATION],
 							[FROM_MY_SHELTER, MANAGEMENT_OF_VOLUNTEER],
 						]}
-						// onClick={clikedItem => console.log(clikedItem)}
 						onClick={click_menu}
 						titleIcon={<Heart48_Filled />}
 					/>
@@ -218,7 +205,6 @@ export default ShelterMenu = props => {
 							[FRIENDS, PEED_CONTENTS],
 							[REQ_PROTECTION_SAVE, COMUNITY],
 						]}
-						// onClick={clikedItem => console.log(clikedItem)}
 						onClick={click_menu}
 						titleIcon={<FavoriteTag48_Filled />}
 					/>
@@ -231,19 +217,12 @@ export default ShelterMenu = props => {
 							[APPLICATION_HISTORY, UPLOADED_POST_FOR_REQ_PROTECTION],
 							[COMUNITY, NOTE_LIST],
 						]}
-						// onClick={clikedItem => console.log(clikedItem)}
 						onClick={click_menu}
 						titleIcon={<Paw46 />}
 					/>
 				</View>
 				<View style={[shelterMenu.profileMenu4]}>
-					<ProfileMenu
-						menuTitle={SETTING}
-						menuItems={[[INFO_QUESTION, ACCOUNT]]}
-						// onClick={clikedItem => console.log(clikedItem)}
-						onClick={click_menu}
-						titleIcon={<Setting46 />}
-					/>
+					<ProfileMenu menuTitle={SETTING} menuItems={[[INFO_QUESTION, ACCOUNT]]} onClick={click_menu} titleIcon={<Setting46 />} />
 				</View>
 			</ScrollView>
 		</View>

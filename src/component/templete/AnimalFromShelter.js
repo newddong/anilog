@@ -7,12 +7,10 @@ import {useNavigation} from '@react-navigation/core';
 import {dummy_AnimalNeedHelpList, dummy_ShelterProtectAnimalObject} from 'Root/config/dummyDate_json';
 import {dummy_ProtectRequestList} from 'Root/config/dummyDate_json';
 
-// 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
-//ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
-
-export default AnimalFromShelter = props => {
+export default AnimalFromShelter = ({route}) => {
+	console.log('AnimalFromShelter ', route.params);
 	const navigation = useNavigation();
-	const [_dummyData, set_dummyData] = React.useState(props.route.params.data);
+	const [_dummyData, set_dummyData] = React.useState(route.params.data);
 
 	const navigationGo = (status, user_id) => {
 		console.log('status , id => ' + status + '_' + user_id);
@@ -38,25 +36,33 @@ export default AnimalFromShelter = props => {
 		}
 	};
 
+	const onPressAdoptorInfo = item => {
+		console.log('item', item);
+		navigation.push('AdoptorInformation');
+	};
+
+	const onPressProtectRequest = item => {
+		console.log('item', item);
+		navigation.push('ProtectRequestManage');
+	};
+
 	return (
-		<View style={login_style.wrp_main}>
-			{console.log('props.route.params.listType=>' + props.route.params.listType)}
-			{console.log('AnimalFromShelter:props.route.params.borderMode=>' + props.route.params.borderMode)}
-			{/* <FlatList> */}
+		<View style={[login_style.wrp_main, {flex: 1}]}>
+			{/* {console.log('props.route.params.listType=>' + props.route.params.listType)} */}
+			{/* {console.log('AnimalFromShelter:props.route.params.borderMode=>' + props.route.params.borderMode)} */}
 			<View style={[temp_style.baseFlatList, baseInfo_style.list]}>
-				{/* (O)AnimalNeedHelpList */}
 				<AnimalNeedHelpList
 					data={_dummyData}
-					borderMode={props.route.params.borderMode}
-					listType={props.route.params.listType}
+					borderMode={true}
 					onLabelClick={(status, id) => navigationGo(status, id)}
+					onPressAdoptorInfo={item => onPressAdoptorInfo(item)}
+					onPressProtectRequest={item => onPressProtectRequest(item)}
 				/>
 			</View>
-			{/* </FlatList> */}
 		</View>
 	);
 };
 
 AnimalFromShelter.defaultProps = {
-	data: dummy_ProtectRequestList,
+	data: [],
 };

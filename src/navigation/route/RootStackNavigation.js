@@ -50,8 +50,8 @@ import NoBtnModal from 'Molecules/NoBtnModal';
 import PopupSelect from 'Molecules/PopupSelect';
 
 import {Modal} from 'Component/modal/Modal';
-import DatePicker from 'Root/component/molecules/DatePicker';
 import Calendar from 'Root/test_sangwoo/calendar';
+import InputAndSearchHeader from '../header/InputAndSearchHeader';
 // import Camera from 'Root/component/templete/Camera';
 const RootStack = createStackNavigator();
 
@@ -111,7 +111,7 @@ export default RootStackNavigation = () => {
 				<RootStack.Navigator initialRouteName="MainTab">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} options={{headerShown: false}} />
-					<RootStack.Screen name="Search" component={SearchTabNavigation} />
+					<RootStack.Screen name="Search" component={SearchTabNavigation} options={{header: props => <InputAndSearchHeader {...props} />}} />
 
 					<RootStack.Screen
 						name="AgreementCheck"
@@ -186,7 +186,7 @@ export default RootStackNavigation = () => {
 				</RootStack.Navigator>
 			</NavigationContainer>
 
-			{isPop&& <View style={popup.popupBackground}>{popupComponent}</View>}
+			{isPop && <View style={popup.popupBackground}>{popupComponent}</View>}
 			{/* <View style={{backgroundColor:'red',width:80,height:80}}></View> */}
 		</SafeAreaView>
 	);

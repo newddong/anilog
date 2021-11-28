@@ -12,24 +12,12 @@ import {APRI10, GRAY10, GRAY40, WHITE} from 'Root/config/color';
  * }} props
  */
 export default TabSelectFilled_Type3 = props => {
-	let tabState = [];
-	const tabLength = props.items.length;
-	Array(tabLength)
-		.fill(props.items)
-		.map((v, i) => {
-			tabState[i] = {tabName: v[i], state: false};
-		});
-	tabState[0].state = true;
-	const [selected, setSelected] = React.useState(tabState);
+	const [selected, setSelected] = React.useState(0);
 
 	//선택된 Tab의 State를 True로 이외의 Tab은 False로
 	const onSelect = index => {
-		const copyState = [...selected];
-		for (let i = 0; i < copyState.length; i++) {
-			i == index ? (copyState[i].state = true) : (copyState[i].state = false);
-		}
-		setSelected(copyState);
-		props.onSelect(copyState[index].tabName);
+		setSelected(index);
+		props.onSelect(index);
 	};
 
 	const renderItem = ({item, index}) => {
@@ -41,14 +29,14 @@ export default TabSelectFilled_Type3 = props => {
 					height: 70 * DP,
 					borderTopLeftRadius: 30 * DP,
 					borderTopRightRadius: 30 * DP,
-					backgroundColor: selected[index].state ? APRI10 : GRAY40,
+					backgroundColor: selected == index ? APRI10 : WHITE,
 					justifyContent: 'center',
 				}}>
 				<Text
 					style={[
 						txt.noto30b,
 						{
-							color: selected[index].state ? WHITE : GRAY10,
+							color: selected == index ? WHITE : GRAY10,
 							textAlign: 'center',
 						},
 					]}>

@@ -15,6 +15,7 @@ import {animalProtectDetail} from './style_organism';
 //  2 - 페이지 최상단에 나오는 AnimalNeedHelpList Item과 관련된 임보 및 입양 대상 동물에 대한 Data [ 참조 : ShelterProtectAnimalObject ]
 
 export default AnimalProtectDetail = props => {
+	console.log('props AnimalProtectDetail', props.data);
 	const [data, setData] = React.useState({...props.data});
 
 	React.useEffect(() => {
@@ -59,7 +60,8 @@ export default AnimalProtectDetail = props => {
 						</View>
 						<View style={[animalProtectDetail.detail_content]}>
 							<Text style={[txt.noto24]}>
-								{data.protect_act_address.city} {data.protect_act_address.district} {data.protect_act_address.neighbor}{' '}
+								{data ? data.protect_act_address.city : ''} {data ? data.protect_act_address.district : ''}{' '}
+								{data ? data.protect_act_address.neighbor : ''}
 							</Text>
 						</View>
 					</View>

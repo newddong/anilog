@@ -303,38 +303,6 @@ export const dummy_volunteerItemList = [
 	},
 ];
 
-// Title : ShelterProtectAnimalObject
-
-export const dummy_ShelterProtectAnimalObject = [
-	{
-		protect_animal_photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU'], //보호중인 동물 사진
-		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
-		protect_animal_rescue_location: '자운동', //보호중인 동물의 구조장소
-		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
-		protect_animal_species_detail: '러브숏', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
-		protect_animal_sex: 'male', //보호중인 동물의 성별
-		protect_animal_neutralization: 'yes', //중성화 여부
-		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
-		protect_animal_weight: '1.2', //몸무게
-
-		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
-		protect_animal_adoption_days_remain: 10,
-		protect_animal_protect_request: true,
-		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
-		//임시보호가 되면 protect로 변경
-		//입양을 가게 되면 상태가 adopt로 변경
-		//임시보호, 입양 협의중이면 discuss로 변경
-		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
-
-		protect_animal_writer_id: null, // Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
-
-		protect_animal_protect_request_id: null, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
-		protect_animal_adoptor_id: null, //Mongodb_ID(ref:UserObject), //입양자
-		protect_animal_protector_id: null, //Mongodb_ID(ref:UserObject), //임시보호자
-		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
-	},
-];
-
 export const dummy_user_shelter = {
 	user_type: 'shelter',
 	user_profile_uri:
@@ -799,7 +767,7 @@ export const dummy_userObject = [
 			is_marketting_Info: false, //마케팅정보 제공 동의
 		}, //회원가입 동의항목 동의여부
 		user_name: '권상우', //실명
-		user_nickname: '덴데', //닉네임
+		user_nickname: 'Dende', //닉네임
 		user_gender: 'female',
 		user_phone_number: '010-9645-0422', //휴대폰번호
 		user_mobile_company: 'LG U+', //가입된 통신사
@@ -813,7 +781,7 @@ export const dummy_userObject = [
 			neighbor: '신수동 89-77', //동,읍,면
 		}, //회원주소
 		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
-		user_Introduction:
+		user_introduction:
 			'권상우는 연예계에서 없어선 안 될 배우다. 드라마와 영화, 두 분야를 오가며 시청자와 관객의 부름을 받는 배우는 생각보다 많지 않다. 호감도와 연기력, 두 가지 모두를 갖춰야 전방위 활동이 가능하다.',
 		user_birthday: '1991.12.21', //필요한지 검토 필요
 		user_interests: {
@@ -852,7 +820,7 @@ export const dummy_userObject = [
 			neighbor: '용소 89-77', //동,읍,면
 		}, //회원주소
 		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
-		user_Introduction: 'Telling me about yourself. ',
+		user_introduction: 'Telling me about yourself. ',
 		user_birthday: '1991-12-21', //필요한지 검토 필요
 		user_interests: {
 			location: ['마포', '용산', '남산'],
@@ -890,7 +858,45 @@ export const dummy_userObject = [
 			neighbor: '구월동 89-77', //동,읍,면
 		}, //회원주소
 		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
-		user_Introduction: 'Telling me about yourself. ',
+		user_introduction: 'Telling me about yourself. ',
+		user_birthday: '1991-12-21', //필요한지 검토 필요
+		user_interests: {
+			location: ['마포', '용산', '남산'],
+			activity: ['산책', '펫카페'],
+		},
+		user_upload_count: 142142, //업로드 게시물 숫자
+		user_follow_count: 12324, //팔로우 숫자
+		user_follower_count: 1245667, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+		user_register_date: '2021-11-24', //가입일
+	},
+	{
+		_id: 4, //temp
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_agreement: {
+			is_over_fourteen: true, //14살 이상
+			is_service: true, //서비스 동의
+			is_personal_Info: true, //개인정보 제공 동의
+			is_location_service_info: true, //위치정보 제공 동의
+			is_donation_info: true, //기부정보 제공 동의
+			is_marketting_Info: false, //마케팅정보 제공 동의
+		}, //회원가입 동의항목 동의여부
+		user_name: '김시연', //실명
+		user_nickname: '애교용', //닉네임
+		user_gender: 'female',
+		user_phone_number: '010-9645-0422', //휴대폰번호
+		user_mobile_company: 'LG U+', //가입된 통신사
+		user_is_verified_phone_number: true, //폰번호 인증여부
+		user_email: 'lanad04@naver.com', //이메일
+		user_is_verified_email: false, //이메일 인증여부
+		user_password: '121212', //패스워드
+		user_address: {
+			city: '서울시', //시,도
+			district: '위례구', //군,구
+			neighbor: '조화동 87-90', //동,읍,면
+		}, //회원주소
+		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
+		user_introduction: 'Telling me about yourself. ',
 		user_birthday: '1991-12-21', //필요한지 검토 필요
 		user_interests: {
 			location: ['마포', '용산', '남산'],
@@ -1021,6 +1027,11 @@ export const dummy_UserObject_shelter = [
 		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
 		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
 		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '강원도 평창군 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 123, //업로드 게시물 숫자
+		user_follow_count: 142, //팔로우 숫자
+		user_follower_count: 555, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
 	},
 	{
 		_id: 22,
@@ -1036,6 +1047,11 @@ export const dummy_UserObject_shelter = [
 		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
 		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
 		shelter_foundation_date: '2015.12.02', //보호소 설립일
+		user_introduction: '서울시 용산구 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 123, //업로드 게시물 숫자
+		user_follow_count: 156, //팔로우 숫자
+		user_follower_count: 1055, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
 	},
 	{
 		_id: 23,
@@ -1051,6 +1067,11 @@ export const dummy_UserObject_shelter = [
 		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
 		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
 		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '경기도 하남시 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 15, //업로드 게시물 숫자
+		user_follow_count: 15, //팔로우 숫자
+		user_follower_count: 144, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
 	},
 	{
 		_id: 24,
@@ -1066,6 +1087,11 @@ export const dummy_UserObject_shelter = [
 		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
 		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
 		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '전라도 유현군 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 444, //업로드 게시물 숫자
+		user_follow_count: 223, //팔로우 숫자
+		user_follower_count: 125, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
 	},
 	{
 		_id: 25,
@@ -1081,6 +1107,11 @@ export const dummy_UserObject_shelter = [
 		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
 		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
 		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '서울시 송파구 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 231, //업로드 게시물 숫자
+		user_follow_count: 104, //팔로우 숫자
+		user_follower_count: 122, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
 	},
 	{
 		_id: 26,
@@ -1096,6 +1127,11 @@ export const dummy_UserObject_shelter = [
 		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
 		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
 		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '충주시 신천군 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 231, //업로드 게시물 숫자
+		user_follow_count: 551, //팔로우 숫자
+		user_follower_count: 901, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
 	},
 	{
 		_id: 27,
@@ -1111,6 +1147,11 @@ export const dummy_UserObject_shelter = [
 		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
 		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
 		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '강원도 홍천군 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 123, //업로드 게시물 숫자
+		user_follow_count: 142, //팔로우 숫자
+		user_follower_count: 555, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
 	},
 ];
 export const dummy_ProtectAnimalObject = [
@@ -1238,5 +1279,157 @@ export const dummy_VolunteerAcitivityApplicantObject = [
 		volunteer_accompany: [1, 3], //봉사활동 신청자 목록
 		volunteer_delegate_contact: '010-1235-2356', //봉사활동 신청 대표자 전화번호
 		volunteer_status: 'done',
+	},
+];
+
+// Title : ShelterProtectAnimalObject
+export const dummy_ShelterProtectAnimalObject = [
+	{
+		feed_type: 'feed',
+
+		_id: 2,
+		protect_animal_photos: [
+			'https://contents.creators.mypetlife.co.kr/content/uploads/2020/10/13134542/20201013131307_365d1baf95782ec7b30225d1fe1616a5_j6xk.jpg',
+		], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '자운동', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '러브숏', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'male', //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //중성화 여부
+		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: '1.2', //몸무게
+		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_adoption_days_remain: 10,
+		protect_animal_protect_request: true,
+		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
+		//임시보호가 되면 protect로 변경
+		//입양을 가게 되면 상태가 adopt로 변경
+		//임시보호, 입양 협의중이면 discuss로 변경
+		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
+		protect_animal_writer_id: 21, // Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
+		protect_animal_protect_request_id: 2, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
+		protect_animal_adoptor_id: null, //Mongodb_ID(ref:UserObject), //입양자
+		protect_animal_protector_id: null, //Mongodb_ID(ref:UserObject), //임시보호자
+		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
+	},
+	{
+		feed_type: 'feed',
+
+		_id: 1,
+		protect_animal_photos: ['https://storage.cobak.co/uploads/1588405371328060_143f1eabc3.jpg'], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021.11.23', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '바른치킨 서강대역점 주변', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '러시안블루', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'female', // Enum('male','female','unknown'), //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //Enum('yes','no','unknown'), //중성화 여부
+		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: 1.2, //몸무게
+		protect_animal_status: 'protect', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_protect_request: false,
+		protect_animal_adoption_days_remain: 10,
+		protect_animal_writer_id: 21, //보호요청을 작성한 작성자(보호소)
+		protect_animal_protect_request_id: 1, //보호요청 게시물
+		protect_animal_adoptor_id: null, //입양자
+		protect_animal_protector_id: null, //임시보호자
+		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
+	},
+	{
+		feed_type: 'feed',
+
+		_id: 3,
+		protect_animal_photos: [
+			'https://t3.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/bw39r42kS9dlP_tnNMix6z2iXUM',
+		], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021.11.23', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '굴다리 식당 공덕점', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '키스숏', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'female', // Enum('male','female','unknown'), //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //Enum('yes','no','unknown'), //중성화 여부
+		protect_animal_estimate_age: '1년', //보호중인 동물의 추정 연령
+		protect_animal_weight: 2, //몸무게
+		protect_animal_status: 'adopt', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_protect_request: false,
+		protect_animal_adoption_days_remain: 10,
+		protect_animal_writer_id: 22, //보호요청을 작성한 작성자(보호소)
+		protect_animal_protect_request_id: 3, //보호요청 게시물
+		protect_animal_adoptor_id: 3, //입양자
+		protect_animal_protector_id: 2, //임시보호자
+		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
+	},
+];
+
+export const dummy_ProtectRequestObject = [
+	//보호소의 동물 보호 요청 게시글
+	{
+		_id: 1,
+		protect_request_photos: [
+			'https://mblogthumb-phinf.pstatic.net/20141204_276/firstgjp_14176838057819gNtv_JPEG/___.jpg?type=w2',
+			'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/h_9JUWqGXTUGB9ZLyetUmpLpUhk.jpg',
+		], //보호요청 게시물의 첨부사진 uri
+		protect_request_photo_thumbnail: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202006/06/76723291-7f53-4b1a-b058-766f6215d566.jpg', //보호요청 게시물 썸네일 uri
+		protect_animal_id: 11, //보호요청할 동물 ShelterProtectAnimalObject
+		protect_request_title: '밍키의 새 보금자리를 찾아요', //보호요청 게시물의 제목
+		protect_request_content: '밍키의 새 집사가 되어주실수 있으신 분 무한 찾습니다', //보호요청 게시물 내용
+		protect_request_writer_id: 21, //보호요청 게시물 작성자 UserObject
+		protect_request_hit: 102, //보호요청 게시물 조회수
+		protect_request_favorite_count: 21, //보호요청 게시물을 즐겨찾기 한 숫자
+		protect_request_status: 'rescue', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //항목 추가 필요
+		//입양가능(rescue), 보호소에서 구조가 이루어졌으므로 입양가능한 상태임,
+		//협의중(discuss)
+		//안락사 임박(nearrainbow)
+		//완료(complete), 입양, 임시보호가 되면 보호요청 게시글은 완료 상태로 변경됨, 해당 동물은(adopt,protect)가 됨
+		//사망(rainbowbridge)
+		protect_request_date: '2021.11.21', //보호요청 게시글 작성일시
+		protect_request_update_date: '2021.11.25', //보호요청 게시글 수정일시
+		protect_request_comment_count: null, //보호요청 게시물 댓글의 수
+	},
+	{
+		_id: 2,
+		protect_request_photos: [
+			'https://t2.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/4OR1LFTQ0F0ZB4vCb32Agwk9UMw',
+			'https://creators.mypetlife.co.kr/wp-content/uploads/2020/01/949_1990_2548.jpg',
+		], //보호요청 게시물의 첨부사진 uri
+		protect_request_photo_thumbnail: 'https://t1.daumcdn.net/news/202105/22/petzzi/20210522141352278yebt.jpg', //보호요청 게시물 썸네일 uri
+		protect_animal_id: 12, //보호요청할 동물 ShelterProtectAnimalObject
+		protect_request_title: '둘리의 새 보금자리를 찾아요', //보호요청 게시물의 제목
+		protect_request_content: '둘리의 새 집사가 되어주실수 있으신 분 무한 찾습니다', //보호요청 게시물 내용
+		protect_request_writer_id: 21, //보호요청 게시물 작성자 UserObject
+		protect_request_hit: 124, //보호요청 게시물 조회수
+		protect_request_favorite_count: 55, //보호요청 게시물을 즐겨찾기 한 숫자
+		protect_request_status: 'rescue', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //항목 추가 필요
+		//입양가능(rescue), 보호소에서 구조가 이루어졌으므로 입양가능한 상태임,
+		//협의중(discuss)
+		//안락사 임박(nearrainbow)
+		//완료(complete), 입양, 임시보호가 되면 보호요청 게시글은 완료 상태로 변경됨, 해당 동물은(adopt,protect)가 됨
+		//사망(rainbowbridge)
+		protect_request_date: '2021.11.15', //보호요청 게시글 작성일시
+		protect_request_update_date: '2021.11.25', //보호요청 게시글 수정일시
+		protect_request_comment_count: null, //보호요청 게시물 댓글의 수
+	},
+	{
+		_id: 3,
+		protect_request_photos: [
+			'https://t2.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/4OR1LFTQ0F0ZB4vCb32Agwk9UMw',
+			'https://creators.mypetlife.co.kr/wp-content/uploads/2020/01/949_1990_2548.jpg',
+		], //보호요청 게시물의 첨부사진 uri
+		protect_request_photo_thumbnail: 'https://t1.daumcdn.net/news/202105/22/petzzi/20210522141352278yebt.jpg', //보호요청 게시물 썸네일 uri
+		protect_animal_id: 13, //보호요청할 동물 ShelterProtectAnimalObject
+		protect_request_title: '둘리의 새 보금자리를 찾아요', //보호요청 게시물의 제목
+		protect_request_content: '둘리의 새 집사가 되어주실수 있으신 분 무한 찾습니다', //보호요청 게시물 내용
+		protect_request_writer_id: 21, //보호요청 게시물 작성자 UserObject
+		protect_request_hit: 124, //보호요청 게시물 조회수
+		protect_request_favorite_count: 55, //보호요청 게시물을 즐겨찾기 한 숫자
+		protect_request_status: 'rescue', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //항목 추가 필요
+		//입양가능(rescue), 보호소에서 구조가 이루어졌으므로 입양가능한 상태임,
+		//협의중(discuss)
+		//안락사 임박(nearrainbow)
+		//완료(complete), 입양, 임시보호가 되면 보호요청 게시글은 완료 상태로 변경됨, 해당 동물은(adopt,protect)가 됨
+		//사망(rainbowbridge)
+		protect_request_date: '2021.11.24', //보호요청 게시글 작성일시
+		protect_request_update_date: '2021.11.25', //보호요청 게시글 수정일시
+		protect_request_comment_count: null, //보호요청 게시물 댓글의 수
 	},
 ];

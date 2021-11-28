@@ -11,7 +11,21 @@ import {FavoriteTag48_Border, FavoriteTag48_Filled} from '../atom/icon';
 import {color} from 'react-native-reanimated';
 import {RED10} from 'Root/config/color';
 
+/**
+ *
+ *@param {{
+ *data: 'data object',
+ *onLabelClick: 'void / Label클릭 콜백함수 '
+ *onFavoriteTag : 'void / 즐겨찾기 태그 깃발 클릭 ',
+ *borderMode : 'boolean / 테두리 및 입양처보기, 게시글보기 모드 ',
+ *onCheckBox : 'boolean / CheckBox 보이기',
+ *onPressAdoptorInfo : 'boolean / HashClick Callback',
+ *onPressProtectRequest : 'void / 테두리 모드 게시글보기 클릭'
+ * }} props
+ */
 export default AnimalNeedHelp = props => {
+	// console.log('props / Animal', props.data.protect_request_date);
+
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 	const [thumbnailData, setThumbnailData] = React.useState({
@@ -39,12 +53,20 @@ export default AnimalNeedHelp = props => {
 		props.onFavoriteTag(favorite);
 	};
 
+	const onPressAdoptorInfo = () => {
+		props.onPressAdoptorInfo();
+	};
+
+	const onPressProtectRequest = () => {
+		props.onPressProtectRequest();
+	};
+
 	const contents = () => {
 		return (
 			<View style={[animalNeedHelp.detailContainer]}>
 				<View style={[animalNeedHelp.detail_upperMenu]}>
 					{props.data.feed_type == 'feed' && (
-						// 임보요청 출력 true, false
+						// {/* // 임보요청 출력 true, false */}
 						<View style={[animalNeedHelp.detail_upper_petStateContainer]}>
 							{props.data.protect_animal_protect_request ? (
 								<View style={[animalNeedHelp.detail_upper_petState]}>
@@ -133,18 +155,8 @@ export default AnimalNeedHelp = props => {
 				{props.borderMode == true
 					? selected && (
 							<View style={[animalNeedHelp.sideBtn_view]}>
-								<AniButton
-									btnLayout={[btn_w276]}
-									btnTitle={'게시글 보기'}
-									btnTheme={'shadow'}
-									onPress={() => navigation.push('ProtectRequestManage')}
-								/>
-								<AniButton
-									btnLayout={[btn_w276]}
-									btnTitle={'입양처 보기'}
-									btnTheme={'shadow'}
-									onPress={() => navigation.push('AdoptorInformation')}
-								/>
+								<AniButton btnLayout={[btn_w276]} btnTitle={'게시글 보기'} btnTheme={'shadow'} onPress={onPressProtectRequest} />
+								<AniButton btnLayout={[btn_w276]} btnTitle={'입양처 보기'} btnTheme={'shadow'} onPress={onPressAdoptorInfo} />
 							</View>
 					  )
 					: null}
@@ -153,50 +165,9 @@ export default AnimalNeedHelp = props => {
 	);
 };
 
-const dummy_AnimalNeedHelpList = [
-	{
-		protect_animal_photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU'], //보호중인 동물 사진
-		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
-		protect_animal_rescue_location: '자운동', //보호중인 동물의 구조장소
-		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
-		protect_animal_species_detail: '러브숏', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
-		protect_animal_sex: 'male', //보호중인 동물의 성별
-		protect_animal_neutralization: 'yes', //중성화 여부
-		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
-		protect_animal_weight: '1.2', //몸무게
-		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태,
-		protect_animal_adoption_days_remain: 10,
-		protect_animal_protect_request: true,
-		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
-		//임시보호가 되면 protect로 변경
-		//입양을 가게 되면 상태가 adopt로 변경
-		//임시보호, 입양 협의중이면 discuss로 변경
-		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
-		protect_animal_writer_id: null, // Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
-		protect_animal_protect_request_id: null, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
-		protect_animal_adoptor_id: null, //Mongodb_ID(ref:UserObject), //입양자
-		protect_animal_protector_id: null, //Mongodb_ID(ref:UserObject), //임시보호자
-		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
-	},
-];
-
 AnimalNeedHelp.defaultProps = {
-	data: {
-		kind: '개', // 종류
-		breed: '시고르자브종', //품종
-		temp_protection_request: true, // 임보 요청 Text On/off
-		adoption_days_remain: 10, // Detail 상단메뉴 '10일 후 입양 가능'
-		like: false, // 좋아요 Tag State
-		registered_date: '2021-06-17', //등록일
-		location: '자운', // 보호 장소
-		saved_location: '경기도 강정동', // 구조 장소
-		// ProtectedThumbnail Component 호출용 Data
-		thumbnailData: {
-			img_uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU',
-			gender: 'female',
-			status: 'adoption_available',
-		},
-	},
 	selected: false,
 	onLabelClick: e => console.log(e),
+	onFavoriteTag: e => console.log(e),
+	onPressAdoptorInfo: e => console.log('e'),
 };
