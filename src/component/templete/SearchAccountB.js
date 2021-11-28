@@ -8,12 +8,6 @@ import {login_style, searchAccountB, temp_style} from './style_templete';
 export default SearchAccountB = props => {
 	return (
 		<View contentContainerStyle={[login_style.wrp_main, searchAccountB.container]}>
-			<View style={[temp_style.topTabNavigation_filled]}>
-				<Text>(O)topTabNavigation_filled</Text>
-			</View>
-			<View style={[temp_style.topTabNavigation_border]}>
-				<Text>(O)topTabNavigation_border</Text>
-			</View>
 			<View style={[temp_style.petAccountList, searchAccountB.petAccountList]}>
 				<Text>(O)PetAccountList</Text>
 			</View>

@@ -104,3 +104,5 @@ const style = StyleSheet.create({
 		marginBottom: 18 * DP,
 	},
 });
+
+SaveButtonHeader.defaultProps = {};

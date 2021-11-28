@@ -57,8 +57,8 @@ export default ProtectedThumbnail = props => {
 				return '협의 중';
 			case 'adopted':
 				return '입양완료';
-			case 'adopted':
-				return '입양완료';
+			case 'protect':
+				return '임시보호중';
 		}
 	};
 

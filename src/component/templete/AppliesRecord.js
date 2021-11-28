@@ -56,8 +56,9 @@ export default AppliesRecord = ({route}) => {
 		console.log('즐겨찾기=>' + value + ' ' + index);
 	};
 
+	//봉사활동 신청 하단 라벨 클릭
 	const onClickShelterLabel = shelterInfo => {
-		// console.log('shelter', shelterInfo);
+		console.log('shelter', shelterInfo);
 		navigation.push('UserVolunteerForm', shelterInfo); //봉사 활동 신청 관련
 	};
 

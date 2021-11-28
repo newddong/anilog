@@ -9,6 +9,12 @@ import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
  *@param {{
  *nowRoute: parentName,
  *onLabelClick: 'void / Label클릭 콜백함수 '
+ *onFavoriteTag : 'void / 즐겨찾기 태그 깃발 클릭 ',
+ *borderMode : 'boolean / 테두리 및 입양처보기, 게시글보기 모드 ',
+ *onCheckBox : 'boolean / CheckBox 보이기',
+ *onHashClick : 'boolean / HashClick Callback',
+ *onPressAdoptorInfo : 'void / 테두리 모드 입양처 보기 클릭'
+ *onPressProtectRequest : 'void / 테두리 모드 게시글보기 클릭'
  * }} props
  */
 export default AnimalNeedHelpList = props => {
@@ -18,7 +24,6 @@ export default AnimalNeedHelpList = props => {
 
 	const renderItem = (item, index) => {
 		return (
-			//marginBottom: 40 * DP,
 			<View style={[animalNeedHelpList.itemContainer]}>
 				{/* {console.log('item:item._id=>' + item._id)} */}
 				<AnimalNeedHelp
@@ -29,6 +34,8 @@ export default AnimalNeedHelpList = props => {
 					onHashClick={() => props.onHashClick(item)}
 					onCheckBox={e => props.onCheckBox(e, index)}
 					onFavoriteTag={e => props.onFavoriteTag(e, index)}
+					onPressAdoptorInfo={() => props.onPressAdoptorInfo(item)}
+					onPressProtectRequest={() => props.onPressProtectRequest(item)}
 				/>
 			</View>
 		);

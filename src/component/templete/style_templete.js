@@ -434,8 +434,7 @@ export const temp_style = StyleSheet.create({
 	},
 	controllableAccountList: {
 		width: 654 * DP,
-		height: 414 * DP,
-		backgroundColor: '#DEB5B5',
+		marginTop: 30 * DP,
 		alignItems: 'center',
 	},
 	petAccountList: {
@@ -867,9 +866,6 @@ export const temp_style = StyleSheet.create({
 	},
 	filterbutton: {
 		width: 306 * DP,
-		height: 60 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
 		backgroundColor: '#FFF',
 	},
 	meatball50: {
@@ -1901,7 +1897,7 @@ export const selectstat_view_style = StyleSheet.create({
 
 export const baseInfo_style = StyleSheet.create({
 	list: {
-		marginTop: 15 * DP,
+		marginTop: 35 * DP,
 	},
 	detail: {
 		marginTop: 40 * DP,
@@ -1980,16 +1976,12 @@ export const shelterMenu = StyleSheet.create({
 		// backgroundColor: '#D1E7F1',
 		marginTop: 27 * DP,
 		alignSelf: 'flex-end',
-		justifyContent: 'center',
-		alignItems: 'center',
 	},
 	shelterInfo_contents: {
 		width: 420 * DP,
 		height: 82 * DP,
 		// backgroundColor: '#FBC5C5',
 		alignSelf: 'flex-end',
-		justifyContent: 'center',
-		alignItems: 'center',
 	},
 	socialInfoB_4Items: {
 		// backgroundColor: '#B0C0EC',
@@ -2595,22 +2587,16 @@ export const searchFeed = StyleSheet.create({
 		flex: 1,
 	},
 	stateView: {
-		width: 750 * DP,
+		width: 654 * DP,
 		height: 130 * DP,
-		backgroundColor: GRAY20,
 	},
 	showStateView: {
-		width: 344 * DP,
 		height: 36 * DP,
 		flexDirection: 'row',
-		backgroundColor: 'yellow',
 		alignSelf: 'flex-end',
-		marginRight: 48 * DP,
 		marginTop: 24 * DP,
 		text: {
-			width: 244 * DP,
 			height: 32 * DP,
-			backgroundColor: 'pink',
 			alignSelf: 'center',
 		},
 		onOffSwitch: {
@@ -2618,10 +2604,8 @@ export const searchFeed = StyleSheet.create({
 		},
 	},
 	postState: {
-		width: 116 * DP,
 		height: 38 * DP,
-		backgroundColor: '#B5DED8',
-		marginLeft: 48 * DP,
+		alignSelf: 'flex-start',
 	},
 	feedThumbnailList: {
 		height: 980 * DP,
@@ -2631,7 +2615,8 @@ export const searchFeed = StyleSheet.create({
 export const searchAccountA = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
+		backgroundColor: WHITE,
+		alignItems: 'center',
 	},
 });
 
@@ -2673,12 +2658,15 @@ export const searchProtectRequest = StyleSheet.create({
 			alignSelf: 'flex-end',
 		},
 		onOffBtnMsg: {
-			width: 244 * DP,
+			width: 300 * DP,
 			height: 32 * DP,
 			alignSelf: 'center',
+			position: 'absolute',
+			right: 100 * DP,
 		},
 		onOffSwitch: {
-			marginLeft: 16 * DP,
+			position: 'absolute',
+			right: 0,
 		},
 	},
 	animalNeedHelpList: {

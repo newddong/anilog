@@ -13,9 +13,19 @@ import {styles} from '../atom/image/imageStyle';
  * }} props
  */
 export default ProfileImageLarge160 = props => {
+	// console.log('PrifleImageLabel / Props Data ' + JSON.stringify(props.data));
+
+	const profile_data = props.data
+		? props.data
+		: {
+				userType: 'user',
+				pet_status: 'none',
+				shelter_type: 'private',
+		  };
+
 	// 유저의 프로필 이미지를 표시,  유저의 종류(일반유저, 반려동물, 보호소)와 상태(임시보호중,입양,공립,사립)에 따라 아이콘을 표시
 	const petStatus = () => {
-		switch (props.petStatus) {
+		switch (profile_data.pet_status) {
 			case 'normal':
 				return <Paw48_APRI10 />;
 			case 'protected':
@@ -26,8 +36,9 @@ export default ProfileImageLarge160 = props => {
 				return <></>;
 		}
 	};
+
 	const shelter_type = () => {
-		switch (props.shelterType) {
+		switch (profile_data.shelter_type) {
 			case 'public':
 				return <Public62 />;
 			case 'private':
@@ -36,8 +47,9 @@ export default ProfileImageLarge160 = props => {
 				return <></>;
 		}
 	};
+
 	const userType = () => {
-		switch (props.userType) {
+		switch (profile_data.user_type) {
 			case 'pet':
 				return <View style={{position: 'absolute'}}>{petStatus()}</View>;
 			case 'shelter':
@@ -48,7 +60,7 @@ export default ProfileImageLarge160 = props => {
 	};
 	return (
 		<View style={styles.img_round_160}>
-			<Image source={{uri: props.img_uri}} style={styles.img_round_160} />
+			<Image source={{uri: profile_data.user_profile_uri}} style={styles.img_round_160} />
 			{userType()}
 		</View>
 	);
