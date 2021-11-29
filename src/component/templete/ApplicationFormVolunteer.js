@@ -12,27 +12,32 @@ import Input30 from '../molecules/Input30';
 import ShelterInfo from '../molecules/ShelterInfo';
 import AccountList from '../organism_ksw/AccountList';
 import {login_style, applicationFormVolunteer, btn_style} from './style_templete';
+import {_dummy_ApplicationFormVolunteer_shelter} from 'Root/config/dummy_data_hjs';
 
 export default ApplicationFormVolunteer = ({route, navigation}) => {
+	console.log('shelterData', route.params);
 	// console.log('route / app', route.params);
 	const dummy_volunteer = dummy_VolunteerAcitivityApplicantObject;
 	const [vol_object, setVol_object] = React.useState(); // 봉사활동 오브젝트 담겨져있음 => 결국 이 데이터를 처리하는 장소임 여기는
 	const [shelterData, setShelterData] = React.useState(route.params); //route.params에는 보호소 userObject가 담겨있음
 	const [accompanyItems, setAccompanyItems] = React.useState([]); // 봉사활동자 정보가 담겨져 있음
-	const [isShelterOwner, setIsShelterOwner] = React.useState(false);
+	const [isShelterOwner, setIsShelterOwner] = React.useState(true);
+	const [login_user_type, setLogin_user_type] = React.useState(true);
 
 	React.useEffect(() => {
-		//shelterData에 있는 봉사활동 고유 _id 로 봉사활동 object 검색
-		let found_volunteer_obj = dummy_volunteer.find(e => e._id == shelterData.volunteer_id);
-		setVol_object(found_volunteer_obj);
-		//이제 받아온 volunteer_accompany를 토대로 해당 봉사자들(volunteer_accompany) 정보 검색
-		let copy = [];
-		found_volunteer_obj.volunteer_accompany.map((v, i) => {
-			let found_accompany_object = dummy_userObject.find(e => e._id == v);
-			copy.push(found_accompany_object);
-		});
-		//해당 봉사자들의 _id와 일치하는 userObject를 싹다 긁어옴 => setAccompanyItems
-		setAccompanyItems(copy);
+		if (!login_user_type) {
+			//shelterData에 있는 봉사활동 고유 _id 로 봉사활동 object 검색
+			let found_volunteer_obj = dummy_volunteer.find(e => e._id == shelterData.volunteer_id);
+			setVol_object(found_volunteer_obj);
+			//이제 받아온 volunteer_accompany를 토대로 해당 봉사자들(volunteer_accompany) 정보 검색
+			let copy = [];
+			found_volunteer_obj.volunteer_accompany.map((v, i) => {
+				let found_accompany_object = dummy_userObject.find(e => e._id == v);
+				copy.push(found_accompany_object);
+			});
+			//해당 봉사자들의 _id와 일치하는 userObject를 싹다 긁어옴 => setAccompanyItems
+			setAccompanyItems(copy);
+		}
 	}, [route.params]);
 
 	//로그인 유저 == 해당 봉사활동 신청서를 받는 입장인지 여부 확인
@@ -107,6 +112,10 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 		);
 	};
 
+	const onSelect = (item, index) => {
+		navigation.push('UserProfile', '');
+	};
+
 	return (
 		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
 			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
@@ -128,12 +137,24 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 							</View>
 						</View>
 						<View style={[applicationFormVolunteer.viewForm_step2]}>
-							<FlatList
-								data={vol_object ? vol_object.volunteer_wish_date : []}
-								renderItem={({item, index}) => renderItem(item, index)}
-								numColumns={3}
-								scrollEnabled
-							/>
+							{/* [hjs]API 선작업까지만 유효한 부분 추후에 변경 필요 */}
+							{console.log('_dummy_ApplicationFormVolunteer_shelter=>' + JSON.stringify(_dummy_ApplicationFormVolunteer_shelter[0]))}
+							{login_user_type == false && (
+								<FlatList
+									data={[vol_object ? vol_object.volunteer_wish_date : []]}
+									renderItem={({item, index}) => renderItem(item, index)}
+									numColumns={3}
+									scrollEnabled
+								/>
+							)}
+							{login_user_type == true ? (
+								<FlatList
+									data={[_dummy_ApplicationFormVolunteer_shelter[0].volunteer_wish_date]}
+									renderItem={({item, index}) => renderItem(item, index)}
+									numColumns={3}
+									scrollEnabled
+								/>
+							) : null}
 						</View>
 					</View>
 					{/* 참여인원 */}
@@ -144,12 +165,28 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 							</View>
 							<View style={[applicationFormVolunteer.title]}>
 								<Text style={[txt.noto24b, {color: GRAY10}]}>참여 인원</Text>
-								<Text style={[txt.roboto28, {marginLeft: 5, marginTop: 2}]}>{accompanyItems ? accompanyItems.length : '0'}</Text>
+								{!login_user_type && (
+									<Text style={[txt.roboto28, {marginLeft: 5, marginTop: 2}]}>{accompanyItems ? accompanyItems.length : '0'}</Text>
+								)}
+								{login_user_type && (
+									<Text style={[txt.roboto28, {marginLeft: 5, marginTop: 2}]}>
+										{_dummy_ApplicationFormVolunteer_shelter[0].volunteer_accompany
+											? _dummy_ApplicationFormVolunteer_shelter[0].volunteer_accompany.length
+											: '0'}
+									</Text>
+								)}
 							</View>
 						</View>
 						{/* List는 여기 */}
 						<View style={[applicationFormVolunteer.participants_step2]}>
-							<AccountList items={accompanyItems} onDelete={onDeleteAccompany} />
+							{!login_user_type && <AccountList items={accompanyItems} onDelete={onDeleteAccompany} />}
+							{login_user_type && (
+								<AccountList
+									items={_dummy_ApplicationFormVolunteer_shelter[0].volunteer_accompany}
+									onDelete={onDeleteAccompany}
+									onSelect={(item, index) => onSelect(item, index)}
+								/>
+							)}
 							<View style={[applicationFormVolunteer.addParticipantBtn]}>
 								<Add_Volunteer onPress={addAccompany} />
 								<Text style={[txt.noto28, applicationFormVolunteer.addParticipantTxt]}>계정 추가</Text>
@@ -167,7 +204,8 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 							</View>
 						</View>
 						<View style={[applicationFormVolunteer.participants_contact_text]}>
-							<Text style={[txt.roboto28]}>{vol_object ? vol_object.volunteer_delegate_contact : ''}</Text>
+							{!login_user_type && <Text style={[txt.roboto28]}>{vol_object ? vol_object.volunteer_delegate_contact : ''}</Text>}
+							{login_user_type && <Text style={[txt.roboto28]}>{_dummy_ApplicationFormVolunteer_shelter[0].volunteer_leader_phone_number}</Text>}
 						</View>
 					</View>
 					<View style={[btn_style.btn_w226, applicationFormVolunteer.btn_w226]}>

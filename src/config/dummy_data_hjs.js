@@ -712,3 +712,29 @@ export const _dummy_userObject_user = [
 		user_register_date: '2021-11-24', //가입일
 	},
 ];
+
+export const _dummy_ApplicationFormVolunteer_shelter = [
+	{
+		_id: 'application123', //temp
+		// @VolunteerActivityApplicant
+		volunteer_wish_date: ['21.07.08', '21.07.09', '21.07.10', '21.07.11', '21.07.12', '21.07.13'],
+		//mongodb_id만 원래 db에는 존재하지만 API 선작업 편의상 사용자 정보 임의로 조인
+		volunteer_leader_phone_number: '010-1000-8888', //휴대폰번호
+		volunteer_accompany: [
+			{
+				// @UserObject
+				user_nickname: '로운이', //닉네임
+				user_profile_uri: 'https://newsimg.sedaily.com/2018/11/30/1S7E292GA4_1.jpg', //프로필 사진
+				user_introduction: '푸들은 저의 반려견입니다.', //프로필에 노출될 자기소개
+				user_phone_number: '010-1234-5475', //휴대폰번호
+			},
+			{
+				// @UserObject
+				user_nickname: '캣맘', //닉네임
+				user_profile_uri: 'https://img.tvreportcdn.de/cms-content/uploads/2020/09/15/dc625ba9-def7-4cd2-958b-44f3436a28e9.jpg', //프로필 사진
+				user_introduction: '고양이는 참치 먹이가 중요합니다.', //프로필에 노출될 자기소개
+				user_phone_number: '010-1234-5475', //휴대폰번호
+			},
+		],
+	},
+];

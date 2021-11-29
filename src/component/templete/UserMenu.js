@@ -40,7 +40,7 @@ import {login_style, temp_style, userMenu_style} from './style_templete';
 export default UserMenu = props => {
 	const navigation = useNavigation();
 
-	const [data, setData] = React.useState(dummy_UserObject_shelter[0]); //우선 userObject 0번 추가
+	const [data, setData] = React.useState(dummy_userObject[0]); //우선 userObject 0번 추가
 
 	React.useEffect(() => {
 		AsyncStorage.setItem('token', JSON.stringify(data._id));
