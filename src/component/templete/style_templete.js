@@ -1859,7 +1859,7 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	pic: {
 		flexDirection: 'row',
 		alignSelf: 'flex-start',
-		width: 654 * DP,
+		width: 160 * DP,
 		alignItems: 'center',
 		height: 54 * DP,
 	},

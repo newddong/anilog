@@ -96,7 +96,7 @@ export default AssignProtectAnimalImage = props => {
 							<Text style={[txt.noto24, assignProtectAnimal_style.addpic]}>사진추가</Text>
 						</TouchableOpacity>
 					</View>
-					<View style={[btn_style.btn_w226, assignProtectAnimal_style.btn_w226]}>
+					<View style={[btn_style.btn_w226]}>
 						<AniButton btnTitle={'다음'} btnStyle={'filled'} titleFontStyle={24} btnLayout={btn_w226} onPress={gotoNextStep} />
 					</View>
 				</View>
