@@ -11,7 +11,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {serveruri, cookieReset} from 'Screens/server';
 import axios from 'axios';
 
-//deprecated
 export default AddPhotoHeader = ({navigation, route, options, back}) => {
 	const title = options.headerTitle !== undefined ? options.headerTitle : options.title !== undefined ? options.title : route.name;
 	const label_right_btn = '선택';

@@ -28,7 +28,9 @@ import FeedMediaTagEdit from 'Templete/FeedMediaTagEdit';
 import FeedWrite from 'Templete/FeedWrite';
 import LocationPicker from 'Templete/LocationPicker';
 
-import PhotoSelect from 'Templete/PhotoSelect';
+// import PhotoSelect from 'Templete/PhotoSelect';
+import AddPhoto from 'Templete/AddPhoto';
+import AddPhotoHeader from 'Navigation/header/AddPhotoHeader';
 
 import AssignPetProfileImage from 'Templete/AssignPetProfileImage';
 import AssignPetInfoA from 'Templete/AssignPetInfoA';
@@ -108,7 +110,7 @@ export default RootStackNavigation = () => {
 	return (
 		<SafeAreaView style={{flex: 1}}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="Login">
+				<RootStack.Navigator initialRouteName="AssignUserProfileImage">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} options={{headerShown: false}} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} options={{header: props => <InputAndSearchHeader {...props} />}} />
@@ -175,8 +177,10 @@ export default RootStackNavigation = () => {
 					/>
 					<RootStack.Screen name="LocationPicker" component={LocationPicker} />
 
-					<RootStack.Screen name="SinglePhotoSelect" component={PhotoSelect} />
-					<RootStack.Screen name="MultiPhotoSelect" component={PhotoSelect} />
+					{/* <RootStack.Screen name="SinglePhotoSelect" component={PhotoSelect} /> */}
+					<RootStack.Screen name="SinglePhotoSelect" component={AddPhoto} />
+					{/* <RootStack.Screen name="MultiPhotoSelect" component={PhotoSelect} /> */}
+					<RootStack.Screen name="MultiPhotoSelect" component={AddPhoto} />
 					{/* 카메라 컴포넌트 임시 추가 */}
 					<RootStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
 
