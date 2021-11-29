@@ -21,7 +21,7 @@ export default CommentList = props => {
 	const renderItem = item => {
 		return (
 			<ParentComment
-				data={item}
+				parentComment={item}
 				onPressReplyBtn={() => props.onPressReplyBtn()} // 부모 댓글의 답글쓰기 클릭 이벤트
 				onPress_ChildComment_ReplyBtn={comment => onPress_ChildComment_ReplyBtn(comment)} // 자식 댓글의 답글쓰기 클릭 이벤트
 			/>

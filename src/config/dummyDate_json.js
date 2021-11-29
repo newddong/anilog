@@ -1897,6 +1897,7 @@ export const dummy_AdoptorInformation = [
 
 export const dummy_CommentObject = [
 	{
+		//@CommentObejct
 		_id: 1,
 		comment_photo_uri: null, //댓글 첨부 이미지 uri
 		comment_contents: '아깽이 머리가 두 개인게 너무 신기하고 귀엽네요.', //댓글 내용
@@ -1915,11 +1916,29 @@ export const dummy_CommentObject = [
 		comment_protect_request_writer_id: 1, //Mongodb_ID(ref:UserObject), //댓글이 작성된 동물보호 요청 게시물의 작성자
 		comment_is_secure: false, //true일때는 writer와 댓글이 달린 게시글 작성자만 볼수있음,
 		comment_is_delete: false, //댓글의 삭제여부
+
+		//@UserObject ref(comment_parent_writer_id: 1)
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_name: '권상우', //실명
+		user_nickname: 'Dende', //닉네임
+		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
+		user_denied: false, //유저의 차단여부
+		user_address: {
+			city: '서울시', //시,도
+			district: '마포구', //군,구
+			neighbor: '신수동 89-77', //동,읍,면
+		}, //회원주소
+
+		//@FeedObject ref(comment_feed_id : 1)
+
+		//@LikeCommentObject ref( comment_writer_id )
+		like_comment_id: 1,
+		like_commnet_user_id: 1,
 	},
 	{
 		_id: 2,
 		comment_photo_uri: 'https://t3.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/p0ySdMBfA9uj8_Amo-YKqv6fJFE', //댓글 첨부 이미지 uri
-		comment_contents: '아쉬우니 제 주인 사진 보고 가세요', //댓글 내용
+		comment_contents: ' 제 주인 사진도 보고 가세요', //댓글 내용
 		comment_like_count: 122, //댓글 좋아요 숫자
 		comment_dislike_count: 0, //댓글 싫어요 숫자(현재 기획에는 없음)
 		comment_report_count: 0, //댓글 신고 숫자(신고기능과 연결, 관리자만 열람가능, 일반유저에게 공개할지 결정해야함)
@@ -1935,5 +1954,20 @@ export const dummy_CommentObject = [
 		comment_protect_request_writer_id: 1, //Mongodb_ID(ref:UserObject), //댓글이 작성된 동물보호 요청 게시물의 작성자
 		comment_is_secure: false, //true일때는 writer와 댓글이 달린 게시글 작성자만 볼수있음,
 		comment_is_delete: false, //댓글의 삭제여부
+
+		//@UserObject ref(comment_parent_writer_id: 1)
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_name: '권상우', //실명
+		user_nickname: 'Dende', //닉네임
+		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
+		user_denied: false, //유저의 차단여부
+		user_address: {
+			city: '서울시', //시,도
+			district: '마포구', //군,구
+			neighbor: '신수동 89-77', //동,읍,면
+		}, //회원주소
+		//@LikeCommentObject ref( comment_writer_id )
+		like_comment_id: 1,
+		like_commnet_user_id: 1,
 	},
 ];

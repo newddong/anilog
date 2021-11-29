@@ -2183,7 +2183,6 @@ export const applicationFormVolunteer = StyleSheet.create({
 	volunteer_date_input: {
 		height: 82 * DP,
 		// marginRight: 20 * DP,
-
 		borderBottomColor: APRI10,
 		borderBottomWidth: 2 * DP,
 		justifyContent: 'center',

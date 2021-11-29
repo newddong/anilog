@@ -202,6 +202,8 @@ export default AnimalProtectRequestDetail = ({route}) => {
 						</View>
 
 						<View style={[temp_style.commentList]}>
+							{/* CommentList에 필요한 데이터 - CommentObject, WriterObejct(UserObject), FeedObject(FeedObject), LikeCommentObject */}
+							{/* 위의 모든 데이터가 CommentList items에 담겨져 있어야 함 */}
 							<CommentList items={dummy_CommentObject} onPressReplyBtn={onReplyBtnClick} onPress_ChildComment_ReplyBtn={onChildReplyBtnClick} />
 						</View>
 
