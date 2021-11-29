@@ -610,7 +610,6 @@ export const childComment = StyleSheet.create({
 		width: 442 * DP,
 		height: 46 * DP,
 		marginLeft: 10 * DP,
-		// backgroundColor: 'lightblue',
 	},
 	meatBall50_vertical: {
 		width: 50 * DP,
@@ -623,9 +622,8 @@ export const childComment = StyleSheet.create({
 	},
 	commentContainer: {
 		width: 484 * DP,
-		height: 40 * DP,
 		marginLeft: 90 * DP,
-		// backgroundColor: 'lightblue',
+		marginVertical: 20 * DP,
 	},
 	commentText: {},
 	likeReplyButton: {

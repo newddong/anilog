@@ -1435,6 +1435,8 @@ export const dummy_AnimalFromShelter_adopted = [
 	{
 		//feedObject
 		feed_type: 'feed',
+		feed_id: 1,
+		feed_writer_id: 21,
 
 		//@ShelterPRotectAnimalObject
 		_id: 1,
@@ -1464,6 +1466,7 @@ export const dummy_AnimalFromShelter_adopted = [
 		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
 
 		// @ProtectRequestObject 보호요청 게시글
+		protect_request_id: 1,
 		protect_request_photos: [
 			'https://mblogthumb-phinf.pstatic.net/20141204_276/firstgjp_14176838057819gNtv_JPEG/___.jpg?type=w2',
 			'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/h_9JUWqGXTUGB9ZLyetUmpLpUhk.jpg',
@@ -1505,8 +1508,10 @@ export const dummy_AnimalFromShelter_adopted = [
 		user_denied: false, //유저의 차단여부
 	},
 	{
-		//@feedObject
+		//feedObject
 		feed_type: 'feed',
+		feed_id: 1,
+		feed_writer_id: 21,
 
 		//@ShelterPRotectAnimalObject
 		_id: 2,
@@ -1534,6 +1539,7 @@ export const dummy_AnimalFromShelter_adopted = [
 		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
 
 		// @ProtectRequestObject 보호요청 게시글
+		protect_request_id: 1,
 		protect_request_photos: [
 			'https://mblogthumb-phinf.pstatic.net/20141204_276/firstgjp_14176838057819gNtv_JPEG/___.jpg?type=w2',
 			'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/h_9JUWqGXTUGB9ZLyetUmpLpUhk.jpg',
@@ -1577,6 +1583,8 @@ export const dummy_AnimalFromShelter_adopted = [
 	{
 		//feedObject
 		feed_type: 'feed',
+		feed_id: 1,
+		feed_writer_id: 21,
 
 		//@ShelterPRotectAnimalObject
 		_id: 3,
@@ -1604,6 +1612,7 @@ export const dummy_AnimalFromShelter_adopted = [
 		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
 
 		// @ProtectRequestObject 보호요청 게시글
+		protect_request_id: 1,
 		protect_request_photos: [
 			'https://mblogthumb-phinf.pstatic.net/20141204_276/firstgjp_14176838057819gNtv_JPEG/___.jpg?type=w2',
 			'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/h_9JUWqGXTUGB9ZLyetUmpLpUhk.jpg',
@@ -1899,14 +1908,14 @@ export const dummy_CommentObject = [
 	{
 		//@CommentObejct
 		_id: 1,
-		comment_photo_uri: null, //댓글 첨부 이미지 uri
-		comment_contents: '아깽이 머리가 두 개인게 너무 신기하고 귀엽네요.', //댓글 내용
+		comment_photo_uri: 'https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/MdR4J997-uHmKvzDMVa68hXFt1U', //댓글 첨부 이미지 uri
+		comment_contents: '아깽이 머리가 두 개인게 너무 신기하고 귀엽네요. 저희 고양이 첫 째 사진도 보고 가세요. 슬퍼하는 모습이 참 보기 좋네요.', //댓글 내용
 		comment_like_count: 122, //댓글 좋아요 숫자
 		comment_dislike_count: 0, //댓글 싫어요 숫자(현재 기획에는 없음)
 		comment_report_count: 0, //댓글 신고 숫자(신고기능과 연결, 관리자만 열람가능, 일반유저에게 공개할지 결정해야함)
 		comment_report_block: false, //댓글 신고로 인한 댓글 공개차단여부(true일 경우, ‘신고된 댓글입니다’로 내용 비공개 전환
-		comment_parent: 1, //Mongodb_ID(ref:CommentObject), //대댓글이 달린 댓글의 ID
-		comment_parent_writer_id: 1, //Mongodb_ID(ref:UserObject), //부모 댓글의 작성자 ID
+		comment_parent: null, //Mongodb_ID(ref:CommentObject), //대댓글이 달린 댓글의 ID
+		comment_parent_writer_id: null, //Mongodb_ID(ref:UserObject), //부모 댓글의 작성자 ID
 		comment_date: '2021-11-20', //댓글 작성일시
 		comment_update_date: '2021-11-20', //댓글 최정 수정일시
 		comment_writer_id: 1, //Mongodb_ID(ref:UserObject), //댓글 작성자
@@ -1933,7 +1942,7 @@ export const dummy_CommentObject = [
 
 		//@LikeCommentObject ref( comment_writer_id )
 		like_comment_id: 1,
-		like_commnet_user_id: 1,
+		like_comment_user_id: [2, 3],
 	},
 	{
 		_id: 2,
@@ -1966,8 +1975,84 @@ export const dummy_CommentObject = [
 			district: '마포구', //군,구
 			neighbor: '신수동 89-77', //동,읍,면
 		}, //회원주소
+
 		//@LikeCommentObject ref( comment_writer_id )
 		like_comment_id: 1,
-		like_commnet_user_id: 1,
+		like_comment_user_id: [1, 2, 3],
+	},
+];
+
+export const dummy_ChildComment = [
+	{
+		_id: 3,
+		comment_photo_uri: 'https://image-notepet.akamaized.net/resize/620x-/seimage/20170502%2F1a5031697ab995d95eadb8db6ad53290.jpg', //댓글 첨부 이미지 uri
+		comment_contents: '2개월 반 된 제 아가도 보고 가세요~ 항상 화나 있는 얼굴이지만 이게 기분 좋은 상태인겁니다', //댓글 내용
+		comment_like_count: 122, //댓글 좋아요 숫자
+		comment_dislike_count: 0, //댓글 싫어요 숫자(현재 기획에는 없음)
+		comment_report_count: 0, //댓글 신고 숫자(신고기능과 연결, 관리자만 열람가능, 일반유저에게 공개할지 결정해야함)
+		comment_report_block: false, //댓글 신고로 인한 댓글 공개차단여부(true일 경우, ‘신고된 댓글입니다’로 내용 비공개 전환
+		comment_parent: 1, //Mongodb_ID(ref:CommentObject), //대댓글이 달린 댓글의 ID
+		comment_parent_writer_id: 1, //Mongodb_ID(ref:UserObject), //부모 댓글의 작성자 ID
+		comment_date: '2021-11-23', //댓글 작성일시
+		comment_update_date: '2021-11-30', //댓글 최정 수정일시
+		comment_writer_id: 2, //Mongodb_ID(ref:UserObject), //댓글 작성자
+		comment_feed_id: 1, //Mongodb_ID(ref:FeedObject), //댓글이 작성된 피드 게시물
+		comment_feed_writer_id: 1, //Mongodb_ID(ref:UserObject), //댓글이 작성된 피드 게시물의 작성자
+		comment_protect_request_id: 1, //Mongodb_ID(ref:ProtectRequestObject), //댓글이 작성된 동물보호 요청 게시물
+		comment_protect_request_writer_id: 1, //Mongodb_ID(ref:UserObject), //댓글이 작성된 동물보호 요청 게시물의 작성자
+		comment_is_secure: false, //true일때는 writer와 댓글이 달린 게시글 작성자만 볼수있음,
+		comment_is_delete: false, //댓글의 삭제여부
+
+		//@UserObject ref(comment_parent_writer_id: 1)
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_name: '김시연', //실명
+		user_nickname: '애교용', //닉네임
+		user_address: {
+			city: '서울시', //시,도
+			district: '위례구', //군,구
+			neighbor: '조화동 87-90', //동,읍,면
+		}, //회원주소
+		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
+		user_denied: false, //유저의 차단여부
+
+		//@LikeCommentObject ref( comment_writer_id )
+		like_comment_id: 1,
+		like_comment_user_id: [2, 3, 4],
+	},
+	{
+		_id: 4,
+		comment_photo_uri: null, //댓글 첨부 이미지 uri
+		comment_contents: '너무 웃긴 사진들이네요 ㅎㅎ 저는 항상 이쁘게만 찍혀서 문제에요', //댓글 내용
+		comment_like_count: 122, //댓글 좋아요 숫자
+		comment_dislike_count: 0, //댓글 싫어요 숫자(현재 기획에는 없음)
+		comment_report_count: 0, //댓글 신고 숫자(신고기능과 연결, 관리자만 열람가능, 일반유저에게 공개할지 결정해야함)
+		comment_report_block: false, //댓글 신고로 인한 댓글 공개차단여부(true일 경우, ‘신고된 댓글입니다’로 내용 비공개 전환
+		comment_parent: 1, //Mongodb_ID(ref:CommentObject), //대댓글이 달린 댓글의 ID
+		comment_parent_writer_id: 1, //Mongodb_ID(ref:UserObject), //부모 댓글의 작성자 ID
+		comment_date: '2021-11-23', //댓글 작성일시
+		comment_update_date: '2021-11-30', //댓글 최정 수정일시
+		comment_writer_id: 3, //Mongodb_ID(ref:UserObject), //댓글 작성자
+		comment_feed_id: 1, //Mongodb_ID(ref:FeedObject), //댓글이 작성된 피드 게시물
+		comment_feed_writer_id: 1, //Mongodb_ID(ref:UserObject), //댓글이 작성된 피드 게시물의 작성자
+		comment_protect_request_id: 1, //Mongodb_ID(ref:ProtectRequestObject), //댓글이 작성된 동물보호 요청 게시물
+		comment_protect_request_writer_id: 1, //Mongodb_ID(ref:UserObject), //댓글이 작성된 동물보호 요청 게시물의 작성자
+		comment_is_secure: false, //true일때는 writer와 댓글이 달린 게시글 작성자만 볼수있음,
+		comment_is_delete: false, //댓글의 삭제여부
+
+		//@UserObject ref(comment_parent_writer_id: 1)
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_name: '하알라', //실명
+		user_nickname: 'aldne', //닉네임
+		user_address: {
+			city: '서울시', //시,도
+			district: '포천구', //군,구
+			neighbor: '용소 89-77', //동,읍,면
+		}, //회원주소
+		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
+		user_denied: false, //유저의 차단여부
+
+		//@LikeCommentObject ref( comment_writer_id )
+		like_comment_id: 1,
+		like_comment_user_id: [1, 2, 3, 4],
 	},
 ];

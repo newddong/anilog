@@ -14,20 +14,12 @@ import {styles} from '../atom/image/imageStyle';
  */
 export default UserTimeLabel = props => {
 	const [validation, setValidation] = React.useState(false);
-	const [imgUri, setImgUri] = React.useState(props.data.img_uri);
-
-	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정
-	React.useEffect(() => {
-		if (imgUri == null) {
-			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
-		}
-	});
 
 	//user_nickname Text 색깔 조건부적용을 위한 세션아이디 비교
 	React.useEffect(() => {
 		const getItem = async () => {
 			let token = await AsyncStorage.getItem('token');
-			if (props.data.user_id == token) {
+			if (props.data.comment_writer_id == token) {
 				setValidation(true); //일치한다면 Validation True로 nickname text color를 바꿈
 			}
 			return token;
@@ -36,14 +28,22 @@ export default UserTimeLabel = props => {
 		return () => {};
 	});
 
+	const getCommentedTime = () => {
+		const commented_date = props.data.comment_date;
+		let split = commented_date.split('-');
+		let commented_date_time = new Date(split[0], split[1] - 1, split[2]);
+		let date = new Date().getDate() - commented_date_time.getDate();
+		return date;
+	};
+
 	const onClickLabel = e => {
-		props.onLabelClick(props.data.user_id);
+		props.onLabelClick(props.data.comment_writer_id);
 	};
 
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{uri: imgUri}} style={styles.img_round_46} />
+				<Image source={{uri: props.data.user_profile_uri}} style={styles.img_round_46} />
 				{/* image_round_76이 없으므로 style 작성 */}
 			</TouchableOpacity>
 			<View style={{marginLeft: 20 * DP, flexDirection: 'row', paddingBottom: 10 * DP, height: 36 * DP}}>
@@ -52,18 +52,12 @@ export default UserTimeLabel = props => {
 					{props.data.user_nickname}
 				</Text>
 				<Text style={[txt.noto24, {lineHeight: 30 * DP, color: GRAY20, paddingLeft: 16 * DP}]} numberOfLines={1} ellipsizeMode="tail">
-					· {props.data.time}일 전
+					· {getCommentedTime()}일 전
 				</Text>
 			</View>
 		</View>
 	);
 };
 UserTimeLabel.defaultProps = {
-	data: {
-		user_id: 'user_id',
-		user_nickname: 'user_nickname',
-		img_uri: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-		time: 1,
-	},
 	onClickLabel: e => console.log(e),
 };

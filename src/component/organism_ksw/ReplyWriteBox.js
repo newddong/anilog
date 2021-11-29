@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
-import { Image, Text, TextInput, View } from 'react-native';
-import { Lock60_Border, Lock60_Filled, Photo60, Send60 } from '../atom/icon';
-import { styles } from '../atom/image/imageStyle';
+import React, {useRef} from 'react';
+import {Image, Text, TextInput, View} from 'react-native';
+import {Lock60_Border, Lock60_Filled, Photo60, Send60} from '../atom/icon';
+import {styles} from '../atom/image/imageStyle';
 import SelectedMedia from '../molecules/SelectedMedia';
-import { feedCommentList } from '../templete/style_templete';
+import {feedCommentList} from '../templete/style_templete';
 /**
  * @param {{
  * onLockBtnClick : void ,
@@ -28,7 +28,7 @@ export default ReplyWriteBox = props => {
 	};
 
 	return (
-		<View style={[feedCommentList.editComment, { alignItems: 'flex-end', paddingTop: 20 * DP }]}>
+		<View style={[props.photo.length > 0 ? feedCommentList.editComment : feedCommentList.editComment_photoAdded]}>
 			{/* 사진 추가를 통해서 받아온 사진이 한 개 이상인 경우 */}
 			{props.photo.length > 0 ? (
 				<View style={[styles.img_square_round_606]}>
@@ -36,7 +36,7 @@ export default ReplyWriteBox = props => {
 					<SelectedMedia media_uri={props.photo} layout={styles.img_square_round_606} onDelete={onDeleteImage} />
 				</View>
 			) : null}
-			<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+			<View style={{flexDirection: 'row', alignItems: 'center'}}>
 				{props.privateComment ? <Lock60_Filled onPress={() => props.onLockBtnClick()} /> : <Lock60_Border onPress={() => props.onLockBtnClick()} />}
 				<Photo60 onPress={() => props.onAddPhoto()} />
 				<TextInput style={[feedCommentList.replyTextInput]} onChangeText={text => props.onChangeReplyInput(text)} ref={inputRef} />

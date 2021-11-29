@@ -21,7 +21,7 @@ export default UserLocationTimeLabel = props => {
 	React.useEffect(() => {
 		const getItem = async () => {
 			let token = await AsyncStorage.getItem('token');
-			if (props.data.user_id == token) {
+			if (props.data.comment_writer_id == token) {
 				setValidation(true); //일치한다면 Validation True로 nickname text color를 바꿈
 			}
 			return token;
@@ -31,7 +31,7 @@ export default UserLocationTimeLabel = props => {
 	});
 
 	const onClickLabel = e => {
-		props.onLabelClick(props.data.user_id);
+		props.onLabelClick(props.data.comment_writer_id);
 	};
 
 	const getCommentedTime = () => {
