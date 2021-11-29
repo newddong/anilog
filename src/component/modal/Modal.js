@@ -6,5 +6,5 @@ export const Modal = {
     popOneBtn: () => { },
     popDrop: () => { },
     popCalendar: () => { },
-    popupSelect: () => { }
+    rollingSelect: () => { }
 };
