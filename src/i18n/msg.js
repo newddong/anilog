@@ -294,3 +294,7 @@ export const ADOPT = '입양 완료';
 export const PROTECT = '임시보호중';
 export const RAINBOWBRIDGE = '사망';
 export const NEAR_RAINBOWBRIDGE = '안락사 임박';
+
+//동물 나이
+export const PET_YEAR = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+export const PET_MONTH = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
