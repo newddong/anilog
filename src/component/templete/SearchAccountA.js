@@ -11,7 +11,7 @@ export default SearchAccountA = props => {
 	React.useEffect(() => {
 		if (props.input != null) {
 			const inputData = JSON.stringify(props.input.searchInput);
-			//검색 로직에 대해선 아직 미구현이므로 닉네임과 검색Input이 정확히 일치하는 data의 Array를 userList로 반환
+			//검색 로직에 대해선 아직 미구현이므로 닉네임과 검색Input이 정확히 일치하는 Account Array를 userList로 반환
 			let userList = userObejct.filter(e => (e.user_nickname = inputData));
 			setSearchedList(userList);
 		} else {

@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
-import { organism_style, parentComment } from './style_organism';
-import { styles } from '../atom/image/imageStyle';
+import {View, Image, Text, TouchableOpacity} from 'react-native';
+import {organism_style, parentComment} from './style_organism';
+import {styles} from '../atom/image/imageStyle';
 import ChildCommentList from 'Root/component/organism/ChildCommentList';
 import UserLocationTimeLabel from '../molecules/UserLocationTimeLabel';
-import { Heart30_Border, Heart30_Filled, Meatball50_APRI10_Vertical } from '../atom/icon';
-import { txt } from 'Root/config/textstyle';
-import { dummy_userLocationTimeLabel } from '../../config/dummyDate_json';
+import {Heart30_Border, Heart30_Filled, Meatball50_APRI10_Vertical} from '../atom/icon';
+import {txt} from 'Root/config/textstyle';
+import {dummy_userLocationTimeLabel} from '../../config/dummyDate_json';
+import MeatBallDropdown from '../molecules/MeatBallDropdown';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
  *
@@ -17,10 +19,18 @@ import { dummy_userLocationTimeLabel } from '../../config/dummyDate_json';
  * }} props
  */
 export default ParentComment = props => {
-	const meatballClick = () => {
-		console.log('meatBall click');
-	};
+	console.log('ParentComment', props.parentComment);
+
+	const [data, setData] = React.useState({...props.parentComment});
 	const [likeState, setLikeState] = React.useState(true);
+
+	React.useEffect(() => {
+		AsyncStorage.getItem('token', (err, res) => {
+			res == data.leke_comment_id;
+			setLikeState(true);
+		});
+		// console.log('like?', props.parentComment.like_comment_id);
+	}, [props.parentComment]);
 
 	const onCLickHeart = () => {
 		setLikeState(!likeState);
@@ -31,15 +41,15 @@ export default ParentComment = props => {
 			{/* 유저프로필 라벨 및 Meatball  */}
 			<View style={organism_style.UserLocationTimeLabel_view_parentComment}>
 				<View style={organism_style.userLocationTimeLabel}>
-					<UserLocationTimeLabel data={dummy_userLocationTimeLabel} />
+					<UserLocationTimeLabel data={data} />
 				</View>
 				<View style={[organism_style.meatball_50_vertical, parentComment.meatball_50_vertical]}>
-					<Meatball50_APRI10_Vertical onPress={meatballClick} />
+					<MeatBallDropdown menu={['신고', '삭제']} horizontal={false} />
 				</View>
 			</View>
 			{/* 댓글 Dummy 이미지 및 대댓글 목록 */}
 			<View style={[organism_style.img_square_round_574, parentComment.img_square_round_574]}>
-				{props.parentComment.img_uri != null ? <Image style={[styles.img_square_round_574]} source={{ uri: props.parentComment.img_uri }} /> : null}
+				{props.parentComment.img_uri != null ? <Image style={[styles.img_square_round_574]} source={{uri: props.parentComment.img_uri}} /> : null}
 			</View>
 			<View style={[parentComment.likeReplyButton]}>
 				{/* Data - 좋아요 상태 t/f */}
@@ -48,7 +58,7 @@ export default ParentComment = props => {
 				</View>
 				<View style={[parentComment.likeCount]}>
 					{/* Data - 좋아요 숫자 */}
-					<Text style={(txt.roboto24, parentComment.likeCountText)}>{props.parentComment.likeCount}</Text>
+					<Text style={(txt.roboto24, parentComment.likeCountText)}>{props.parentComment.comment_like_count}</Text>
 				</View>
 				<TouchableOpacity style={[parentComment.writeComment]} onPress={() => props.onPressReplyBtn()}>
 					<Text style={(txt.noto22, parentComment.writeCommentText)}>· 답글 쓰기</Text>
@@ -65,11 +75,6 @@ export default ParentComment = props => {
 ParentComment.defaultProps = {
 	onPressReplyBtn: e => console.log(e), //부모 댓글의 답글 쓰기 클릭 이벤트
 	onPress_ChildComment_ReplyBtn: e => console.log(e), //자식 댓글의 답글 쓰기 클릭 이벤ㅌ
-	parentComment: {
-		likeCount: 110,
-		img_uri: null,
-		likeState: false,
-	},
 };
 
 // UserLocationTimeLabel.defaultProps = {

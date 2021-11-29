@@ -178,7 +178,7 @@ export const dummy_AppliesRecord_protect = [
 
 		//@ProtectRequestObject
 		_id: 123456,
-		protect_animal_photos: ['https://newspenguin.com/news/photo/202006/1837_5156_215.jpg'], //보호중인 동물 사진
+		protect_animal_photos: ['https://creators.mypetlife.co.kr/wp-content/uploads/2020/01/949_1990_2548.jpg'], //보호중인 동물 사진
 		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
 		protect_animal_rescue_location: '자운동', //보호중인 동물의 구조장소
 		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)

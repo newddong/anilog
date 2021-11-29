@@ -12,8 +12,8 @@ import {FloatAddArticle_126x92} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
 import {Setting46, FavoriteTag48_Filled, Heart48_Filled, Paw46} from '../atom/icon';
-import {dummy_userObject, dummy_UserObject_shelter} from 'Root/config/dummyDate_json';
-import {_dummy_VolunteerActivityApplicant, _dummy_userObject_user} from 'Root/config/dummy_data_hjs';
+import {dummy_AnimalFromShelter_adopted, dummy_UserObject_shelter} from 'Root/config/dummyDate_json';
+import {_dummy_VolunteerActivityApplicant, _dummy_userObject_user, dummy_AppliesRecord_rescue} from 'Root/config/dummy_data_hjs';
 import {
 	MANAGEMENT_OF_PROTECTED_ANIMAL,
 	PROTECTED_ANIMAL,
@@ -78,7 +78,7 @@ export default ShelterMenu = props => {
 			//나의 보호소 출신 동물
 			case FROM_MY_SHELTER:
 				//listType: 'original'- 클릭시 해당 UserProfile로 go, 'twoBtn' - 클릭시 외곽 선 표출, , 'checkBox' - 해당 페이지에서 바로 체크박스 표출
-				navigation.push('AnimalFromShelter', dummy_AppliesRecord_protect);
+				navigation.push('AnimalFromShelter', dummy_AnimalFromShelter_adopted);
 				break;
 			//봉사활동 신청 관리
 			case MANAGEMENT_OF_VOLUNTEER:
@@ -165,7 +165,6 @@ export default ShelterMenu = props => {
 							</View>
 						</View>
 					</View>
-
 					{/* SocialInfo */}
 					<View style={[temp_style.socialInfoB, shelterMenu.socialInfoB_4Items]}>
 						<SocialInfoB data={socialInfoData} />

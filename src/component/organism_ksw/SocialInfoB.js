@@ -6,7 +6,7 @@ import {socialInfoB} from './style_organism';
 export default SocialInfoB = props => {
 	const count_to_K = cnt => {
 		if (cnt > 1000) {
-			let count = (cnt / 1000).toFixed(1) + 'k';
+			let count = (cnt / 1000).toFixed(0) + 'k';
 			return count;
 		} else {
 			return cnt;

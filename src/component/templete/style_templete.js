@@ -929,7 +929,6 @@ export const temp_style = StyleSheet.create({
 	rescueText: {
 		width: 654 * DP,
 		height: 160 * DP,
-		alignItems: 'center',
 	},
 	comment_count_view: {
 		width: 654 * DP,
@@ -2176,16 +2175,16 @@ export const applicationFormVolunteer = StyleSheet.create({
 	},
 	viewForm_step2: {
 		width: 540 * DP,
-		marginTop: 22 * DP,
-		marginLeft: 64 * DP,
+		marginTop: 10 * DP,
+		marginLeft: 40 * DP,
 		paddingLeft: 20 * DP,
-		borderBottomColor: APRI10,
-		borderBottomWidth: 2 * DP,
 		flexDirection: 'row',
 	},
 	volunteer_date_input: {
 		height: 82 * DP,
-		marginRight: 20 * DP,
+		// marginRight: 20 * DP,
+		borderBottomColor: APRI10,
+		borderBottomWidth: 2 * DP,
 		justifyContent: 'center',
 	},
 	volunteer_date: {},
@@ -3539,7 +3538,8 @@ export const profile = StyleSheet.create({
 
 export const animalProtectRequestDetail_style = StyleSheet.create({
 	container: {
-		width: 750 * DP,
+		width: 654 * DP,
+		alignItems: 'center',
 	},
 	requestProtect: {
 		marginTop: 30 * DP,
