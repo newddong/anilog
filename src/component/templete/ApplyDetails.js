@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, Image} from 'react-native';
+import {CONFIRM_ADOPT_REQUEST, CONFIRM_FINALIZED, CONFIRM_PROTECT_REQUEST} from 'Root/i18n/msg';
 import {btn_w226} from '../atom/btn/btn_style';
 import {styles} from '../atom/image/imageStyle';
 import {Modal} from '../modal/Modal';
@@ -25,7 +26,7 @@ export default ApplyDetails = props => {
 	//실제 DB에 넣는 작업이 행해질 부분 / Modal 순서까지만 구현
 	const REGISTER = () => {
 		setTimeout(() => {
-			Modal.popNoBtn('신청이 완료 되었습니다. #enter 보호소마다 심사의 기간과 기준이 다르며, 상황에 따라 연락이 가지 않을 수도 있음을 알려드립니다.');
+			Modal.popNoBtn(CONFIRM_FINALIZED);
 		}, 1000);
 		setTimeout(() => {
 			Modal.close();
@@ -42,13 +43,7 @@ export default ApplyDetails = props => {
 	//등록버튼 클릭
 	const onPressRegister = () => {
 		const isProtectRoute = props.route.name == 'ApplyProtectActivityE'; //임시보호 루트로 왔는지 여부 확인 - 아닐 경우 입양 루트
-		Modal.popTwoBtn(
-			isProtectRoute ? '이 내용으로 보호 활동 신청을 하시겠습니까?' : '위 내용으로 입양 신청을 하시겠습니까?',
-			'취소',
-			'확인',
-			() => Modal.close(),
-			onFinalize,
-		);
+		Modal.popTwoBtn(isProtectRoute ? CONFIRM_PROTECT_REQUEST : CONFIRM_ADOPT_REQUEST, '취소', '확인', () => Modal.close(), onFinalize);
 	};
 
 	return (

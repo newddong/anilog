@@ -24,7 +24,7 @@ import {RED10} from 'Root/config/color';
  * }} props
  */
 export default AnimalNeedHelp = props => {
-	// console.log('props / Animal', props.data.protect_request_date);
+	// console.log('AnimalNeedHelp', props.data);
 
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);

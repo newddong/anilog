@@ -13,6 +13,7 @@ import {styles} from '../atom/image/imageStyle';
  * }} props
  */
 export default ProtectedThumbnail = props => {
+	console.log('props thunm', props.data.status);
 	const borderByStatus = () => {
 		if (props.data.status == 'emergency') {
 			return {
@@ -48,7 +49,7 @@ export default ProtectedThumbnail = props => {
 			case 'rescue':
 				return '입양가능';
 			case 'emergency':
-				return '입양가능';
+				return '안락사 임박';
 			case 'missing':
 				return '실종';
 			case 'reported':
@@ -59,6 +60,8 @@ export default ProtectedThumbnail = props => {
 				return '입양완료';
 			case 'protect':
 				return '임시보호중';
+			case 'rainbowbridge':
+				return '무지개다리';
 		}
 	};
 
@@ -96,7 +99,7 @@ export default ProtectedThumbnail = props => {
 
 ProtectedThumbnail.defaultProps = {
 	data: {
-		img_uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJnMtf3hxsk1F_4zdgzjjlP-wnyiXLcdbR7w&usqp=CAU',
+		img_uri: '',
 		gender: 'female',
 		status: 'adoption_available', // protected, missing, reported, onNegotiation, adoption_available, adopted
 	},

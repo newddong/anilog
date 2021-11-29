@@ -102,7 +102,7 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 	const renderItem = (item, index) => {
 		return (
 			<View style={[applicationFormVolunteer.volunteer_date_input]}>
-				<TextInput value={item + '  /'} editable={false} style={[applicationFormVolunteer.volunteer_date]} />
+				<TextInput value={item + '  /  '} editable={false} style={[txt.roboto28, applicationFormVolunteer.volunteer_date]} />
 			</View>
 		);
 	};

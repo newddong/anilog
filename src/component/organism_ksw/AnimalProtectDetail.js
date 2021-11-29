@@ -13,14 +13,27 @@ import {animalProtectDetail} from './style_organism';
 //AnimalProtectDetail에서 처리해야할 데이터는 크게 두가지 -
 //  1 - ApplyCompanion ABCDE 과정을 걸쳐 작성한 임보, 입양 신청 관련 Data
 //  2 - 페이지 최상단에 나오는 AnimalNeedHelpList Item과 관련된 임보 및 입양 대상 동물에 대한 Data [ 참조 : ShelterProtectAnimalObject ]
+// AnimalProtectDetail 호출하는 템플릿 - AdoptorInformation(data), ApplyDetails(data)
 
 export default AnimalProtectDetail = props => {
-	console.log('props AnimalProtectDetail', props.data);
-	const [data, setData] = React.useState({...props.data});
+	console.log(' AnimalProtectDetail', props.data);
+
+	const [data, setData] = React.useState(props.data);
 
 	React.useEffect(() => {
-		// console.log('data', data);
-	}, [data]);
+		setData(props.data);
+	}, [props.data]);
+
+	const getStatusText = arg => {
+		switch (arg) {
+			case 'living':
+				return '함께 살고 있어요.';
+			case 'died':
+				return '무지개 다리를 건넜어요';
+			case 'adopt':
+				return '다른 친구에게 입양되었어요.';
+		}
+	};
 
 	return (
 		<ScrollView>
@@ -91,11 +104,11 @@ export default AnimalProtectDetail = props => {
 						</View>
 						{data.protect_act_companion_history.map((v, i) => {
 							return (
-								<View style={[animalProtectDetail.detail_content]}>
+								<View style={[animalProtectDetail.detail_content]} key={i}>
 									<Text style={[txt.noto24]}>
 										{i + 1}. {v.companion_pet_species} / 나이 : {v.companion_pet_age} / 반려생활 : {v.companion_pet_period}
 									</Text>
-									<Text style={[txt.noto24, {color: APRI10}]}> {v.companion_pet_current_status}</Text>
+									<Text style={[txt.noto24, {color: APRI10, paddingLeft: 10}]}>{getStatusText(v.companion_pet_current_status)}</Text>
 								</View>
 							);
 						})}

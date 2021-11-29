@@ -33,14 +33,10 @@ import ProfileMenu from '../organism_ksw/ProfileMenu';
 import SocialInfoB from '../organism_ksw/SocialInfoB';
 import {login_style, temp_style, userMenu_style} from './style_templete';
 
-// 상우 필요 작업
-// (T)ChangeUserProfileImage - UI작업, API적용
-// (T)ChangePassword - UI작업, API적용
-// (T)UserInfoDetailSettting - 프로필 상세 정보 UI작업,API적용
 export default UserMenu = props => {
 	const navigation = useNavigation();
 
-	const [data, setData] = React.useState(dummy_UserObject_shelter[0]); //우선 userObject 0번 추가
+	const [data, setData] = React.useState(dummy_userObject[0]); //우선 userObject 0번 추가
 
 	React.useEffect(() => {
 		AsyncStorage.setItem('token', JSON.stringify(data._id));
@@ -75,12 +71,12 @@ export default UserMenu = props => {
 			case '동물 보호 현황':
 				navigation.push('AnimalProtectList', data._id); //ProtectAnimalObject
 				break;
-			// case '쪽지함':
-			// 	return navigation.push('AnimalProtectList')
-			// case '정보/문의':
-			// 	return navigation.push('AnimalProtectList')
-			// case '커뮤니티':
-			// 	return navigation.push('SaveAnimalRequest')
+			case '쪽지함':
+				alert('업데이트 예정입니다');
+			case '정보/문의':
+				alert('업데이트 예정입니다');
+			case '커뮤니티':
+				alert('업데이트 예정입니다');
 		}
 		// navigation.push('me')
 	};

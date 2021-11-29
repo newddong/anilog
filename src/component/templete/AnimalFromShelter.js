@@ -1,16 +1,13 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
-import {login_style, btn_style, temp_style, baseInfo_style} from './style_templete';
+import {View} from 'react-native';
+import {login_style, temp_style, baseInfo_style} from './style_templete';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import {useNavigation} from '@react-navigation/core';
-import {dummy_AnimalNeedHelpList, dummy_ShelterProtectAnimalObject} from 'Root/config/dummyDate_json';
-import {dummy_ProtectRequestList} from 'Root/config/dummyDate_json';
+import {dummy_AdoptorInformation} from 'Root/config/dummyDate_json';
 
 export default AnimalFromShelter = ({route}) => {
-	console.log('AnimalFromShelter ', route.params);
 	const navigation = useNavigation();
-	const [_dummyData, set_dummyData] = React.useState(route.params.data);
+	const animalFromMyShelterList = route.params; //AnimalNeedHelpList에 보낼 리스트정보
 
 	const navigationGo = (status, user_id) => {
 		console.log('status , id => ' + status + '_' + user_id);
@@ -35,15 +32,16 @@ export default AnimalFromShelter = ({route}) => {
 				break;
 		}
 	};
-
+	//테두리 모드 On 상태에서 입양처 보기 클릭
 	const onPressAdoptorInfo = item => {
-		console.log('item', item);
-		navigation.push('AdoptorInformation');
+		// console.log('item', item);
+		navigation.push('AdoptorInformation', {...dummy_AdoptorInformation[0], ...item});
 	};
 
+	// 테두리 모드 On 상태에서 게시글보기 클릭 => AnimapProtectRequestDetail == ProtectRequestManage
 	const onPressProtectRequest = item => {
 		console.log('item', item);
-		navigation.push('ProtectRequestManage');
+		navigation.push('ProtectRequestManage', item);
 	};
 
 	return (
@@ -52,7 +50,7 @@ export default AnimalFromShelter = ({route}) => {
 			{/* {console.log('AnimalFromShelter:props.route.params.borderMode=>' + props.route.params.borderMode)} */}
 			<View style={[temp_style.baseFlatList, baseInfo_style.list]}>
 				<AnimalNeedHelpList
-					data={_dummyData}
+					data={animalFromMyShelterList}
 					borderMode={true}
 					onLabelClick={(status, id) => navigationGo(status, id)}
 					onPressAdoptorInfo={item => onPressAdoptorInfo(item)}

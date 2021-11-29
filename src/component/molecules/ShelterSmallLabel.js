@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
-import { txt } from 'Root/config/textstyle';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
+import {txt} from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
-import { Private30, Public30 } from '../atom/icon';
-import { styles } from '../atom/image/imageStyle';
-import { APRI10, BLACK, GRAY10, GRAY20 } from 'Root/config/color';
+import {Private30, Public30} from '../atom/icon';
+import {styles} from '../atom/image/imageStyle';
+import {APRI10, BLACK, GRAY10, GRAY20} from 'Root/config/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 /**
  *
@@ -21,18 +21,18 @@ export default ShelterSmallLabel = props => {
 		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
 		shelter_name: '아름보호소', //보호소 이름
 		shelter_address: {
-			city: '서울시', //시,도 
+			city: '서울시', //시,도
 			district: '마포구', //군,구
-			neighbor: '용강동 89-77' //동,읍,면
+			neighbor: '용강동 89-77', //동,읍,면
 		}, //보호소 주소
 		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
 		shelter_delegate_contact_number: '010-9645-0422', //보호소 대표 전화번호, 휴대폰 번호
 		shelter_foundation_date: '2021-11-07', //보호소 설립일
-	})
+	});
 
 	React.useEffect(() => {
-		setData(props.data)
-	}, [props.data])
+		setData(props.data);
+	}, [props.data]);
 
 	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정
 	React.useEffect(() => {
@@ -51,7 +51,7 @@ export default ShelterSmallLabel = props => {
 			return token;
 		};
 		getItem();
-		return () => { };
+		return () => {};
 	});
 
 	const getStatusMark = () => {
@@ -69,37 +69,20 @@ export default ShelterSmallLabel = props => {
 		props.onLabelClick(props.data.user_id);
 	};
 
-
-	const dummy_user_shelter = {
-
-		user_type: 'shelter',
-		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
-		shelter_name: '아름보호소', //보호소 이름
-		shelter_address: {
-			city: '서울시', //시,도 
-			district: '마포구', //군,구
-			neighbor: '용강동 89-77' //동,읍,면
-		}, //보호소 주소
-		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
-		shelter_delegate_contact_number: '010-9645-0422', //보호소 대표 전화번호, 휴대폰 번호
-		shelter_foundation_date: '2021-11-07', //보호소 설립일
-
-	}
 	return (
-		<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{ uri: imgUri }} style={styles.img_round_72} />
+				<Image source={{uri: imgUri}} style={styles.img_round_72} />
 				{/* image_round_76이 없으므로 style 작성 */}
-				<View style={{ position: 'absolute', right: 0, bottom: 0 }}>{getStatusMark()}</View>
+				<View style={{position: 'absolute', right: 0, bottom: 0}}>{getStatusMark()}</View>
 			</TouchableOpacity>
-			<View style={{ marginLeft: 10 * DP }}>
+			<View style={{marginLeft: 10 * DP}}>
 				{/* Text Box 2 Height 86 - profileImage height 94 = -8  ==> PaddingVertical 4씩 textBox View에 준다 */}
 				{/* Text부분과 프로필이미지 사이의 거리 50 */}
-				<Text style={[txt.noto24b, { color: validation ? APRI10 : GRAY10 }]} numberOfLines={1} ellipsizeMode="tail">
-					{props.data.shelter_name} /
-					{props.data.shelter_address.city} {props.data.shelter_address.district}
+				<Text style={[txt.noto24b, {color: validation ? APRI10 : GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
+					{props.data.shelter_name} /{props.data.shelter_address.city} {props.data.shelter_address.district}
 				</Text>
-				<Text style={[txt.noto24, { color: GRAY20 }]} numberOfLines={1} ellipsizeMode="tail">
+				<Text style={[txt.noto24, {color: GRAY20}]} numberOfLines={1} ellipsizeMode="tail">
 					{props.data.shelter_foundation_date}
 				</Text>
 				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
@@ -109,14 +92,13 @@ export default ShelterSmallLabel = props => {
 };
 ShelterSmallLabel.defaultProps = {
 	data: {
-
 		user_type: 'shelter',
 		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
 		shelter_name: '아름보호소', //보호소 이름
 		shelter_address: {
-			city: '서울시', //시,도 
+			city: '서울시', //시,도
 			district: '마포구', //군,구
-			neighbor: '용강동 89-77' //동,읍,면
+			neighbor: '용강동 89-77', //동,읍,면
 		}, //보호소 주소
 		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
 		shelter_delegate_contact_number: '010-9645-0422', //보호소 대표 전화번호, 휴대폰 번호

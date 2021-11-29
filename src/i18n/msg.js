@@ -280,3 +280,17 @@ export const AVAILABLE_NICK = '사용 가능한 닉네임입니다!';
 
 //Meatball
 export const PROTECT_STATUS = ['입양가능', '협의중', '완료']; //SHELTER PROTECT REQUEST 템플릿
+
+//Modal Message
+export const CONFIRM_PROTECT_REQUEST = '이 내용으로 보호 활동 신청을 하시겠습니까?';
+export const CONFIRM_ADOPT_REQUEST = '위 내용으로 입양 신청을 하시겠습니까?';
+export const CONFIRM_FINALIZED =
+	'신청이 완료 되었습니다. #enter 보호소마다 심사의 기간과 기준이 다르며, 상황에 따라 연락이 가지 않을 수도 있음을 알려드립니다.';
+
+//보호동물 및 보호 요청게시글 상태에 대한 텍스트
+export const RESCUE = '입양가능';
+export const DISCUSS = '협의 중';
+export const ADOPT = '입양 완료';
+export const PROTECT = '임시보호중';
+export const RAINBOWBRIDGE = '사망';
+export const NEAR_RAINBOWBRIDGE = '안락사 임박';

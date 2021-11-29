@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
-import { organism_style, parentComment } from './style_organism';
-import { styles } from '../atom/image/imageStyle';
+import {View, Image, Text, TouchableOpacity} from 'react-native';
+import {organism_style, parentComment} from './style_organism';
+import {styles} from '../atom/image/imageStyle';
 import ChildCommentList from 'Root/component/organism/ChildCommentList';
 import UserLocationTimeLabel from '../molecules/UserLocationTimeLabel';
-import { Heart30_Border, Heart30_Filled, Meatball50_APRI10_Vertical } from '../atom/icon';
-import { txt } from 'Root/config/textstyle';
-import { dummy_userLocationTimeLabel } from '../../config/dummyDate_json';
+import {Heart30_Border, Heart30_Filled, Meatball50_APRI10_Vertical} from '../atom/icon';
+import {txt} from 'Root/config/textstyle';
+import {dummy_userLocationTimeLabel} from '../../config/dummyDate_json';
 
 /**
  *
@@ -17,9 +17,11 @@ import { dummy_userLocationTimeLabel } from '../../config/dummyDate_json';
  * }} props
  */
 export default ParentComment = props => {
+	console.log('ParentComment', props.data);
 	const meatballClick = () => {
 		console.log('meatBall click');
 	};
+
 	const [likeState, setLikeState] = React.useState(true);
 
 	const onCLickHeart = () => {
@@ -39,7 +41,7 @@ export default ParentComment = props => {
 			</View>
 			{/* 댓글 Dummy 이미지 및 대댓글 목록 */}
 			<View style={[organism_style.img_square_round_574, parentComment.img_square_round_574]}>
-				{props.parentComment.img_uri != null ? <Image style={[styles.img_square_round_574]} source={{ uri: props.parentComment.img_uri }} /> : null}
+				{props.parentComment.img_uri != null ? <Image style={[styles.img_square_round_574]} source={{uri: props.parentComment.img_uri}} /> : null}
 			</View>
 			<View style={[parentComment.likeReplyButton]}>
 				{/* Data - 좋아요 상태 t/f */}
