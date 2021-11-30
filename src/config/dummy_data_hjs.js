@@ -23,6 +23,7 @@ export const dummy_ProtectRequestList = [
 		protect_request_photo_thumbnail: 'http://t1.daumcdn.net/liveboard/petnu/ae1fd342257d41768b4733d674f5d93c.JPG', //보호요청 게시물 썸네일 uri
 		protect_request_status: 'rescue', //항목 추가 필요
 		protect_request_date: '2021-12-01', //보호요청 게시글 작성일시
+		protect_act_request_article_id_cnt: '3',
 	},
 	{
 		//@FeedObject
@@ -48,6 +49,7 @@ export const dummy_ProtectRequestList = [
 		protect_request_photo_thumbnail: 'http://webimage.10x10.co.kr/image/basic600/296/B002963730.jpg', //보호요청 게시물 썸네일 uri
 		protect_request_status: 'rescue', //항목 추가 필요
 		protect_request_date: '2021-12-03', //보호요청 게시글 작성일시
+		protect_act_request_article_id_cnt: '3',
 	},
 	{
 		//@FeedObject
@@ -73,6 +75,7 @@ export const dummy_ProtectRequestList = [
 		protect_request_photo_thumbnail: 'https://t1.daumcdn.net/cfile/tistory/213E434754D3A06406', //보호요청 게시물 썸네일 uri
 		protect_request_status: 'rescue', //항목 추가 필요
 		protect_request_date: '2021-12-03', //보호요청 게시글 작성일시
+		protect_act_request_article_id_cnt: '1',
 	},
 	{
 		//@FeedObject
@@ -100,6 +103,122 @@ export const dummy_ProtectRequestList = [
 		protect_request_photo_thumbnail: 'https://t1.daumcdn.net/cfile/tistory/99C9B5435CD8E4B81F', //보호요청 게시물 썸네일 uri
 		protect_request_status: 'rescue', //항목 추가 필요
 		protect_request_date: '2021-12-03', //보호요청 게시글 작성일시
+		protect_act_request_article_id_cnt: '0',
+	},
+	{
+		//@FeedObject
+		feed_type: 'feed',
+
+		// @UserObject
+		shelter_name: '익산보호소',
+
+		// @ShelterProtectAnimalObject
+		protect_animal_photos: ['https://file.mk.co.kr/meet/neds/2021/06/image_readtop_2021_535745_16226846584668330.jpg'],
+		protect_animal_rescue_location: '강남역 1번 출구', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '샤르몬', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'male', //보호중인 동물의 성별
+		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_neutralization: 'yes', //중성화 여부
+		protect_animal_estimate_age: '14', //보호중인 동물의 추정 연령
+		protect_animal_weight: '8.2', //몸무게
+
+		protect_animal_adoption_days_remain: 3,
+		protect_animal_protect_request: true,
+		protect_animal_writer_id: '서울보호소',
+
+		// @ProtectRequestObject
+		protect_request_photo_thumbnail: 'https://file.mk.co.kr/meet/neds/2021/06/image_readtop_2021_535745_16226846584668330.jpg', //보호요청 게시물 썸네일 uri
+		protect_request_status: 'rescue', //항목 추가 필요
+		protect_request_date: '2021-12-03', //보호요청 게시글 작성일시
+		protect_act_request_article_id_cnt: '0',
+	},
+	{
+		//@FeedObject
+		feed_type: 'feed',
+
+		// @UserObject
+		shelter_name: '익산보호소',
+
+		// @ShelterProtectAnimalObject
+		protect_animal_photos: ['https://cdn.ccdailynews.com/news/photo/202104/2047160_528296_3416.png'],
+		protect_animal_rescue_location: '강남역 1번 출구', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '아르케', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'male', //보호중인 동물의 성별
+		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_neutralization: 'no', //중성화 여부
+		protect_animal_estimate_age: '5', //보호중인 동물의 추정 연령
+		protect_animal_weight: '2.2', //몸무게
+
+		protect_animal_adoption_days_remain: 3,
+		protect_animal_protect_request: true,
+		protect_animal_writer_id: '용인보호소',
+
+		// @ProtectRequestObject
+		protect_request_photo_thumbnail: 'https://cdn.ccdailynews.com/news/photo/202104/2047160_528296_3416.png', //보호요청 게시물 썸네일 uri
+		protect_request_status: 'rescue', //항목 추가 필요
+		protect_request_date: '2021-12-03', //보호요청 게시글 작성일시
+		protect_act_request_article_id_cnt: '2',
+	},
+	{
+		//@FeedObject
+		feed_type: 'feed',
+
+		// @UserObject
+		shelter_name: '익산보호소',
+
+		// @ShelterProtectAnimalObject
+		protect_animal_photos: ['http://kormedi.com/wp-content/uploads/2021/01/eab3a0ec9691ec9db4-580x387.jpg'],
+		protect_animal_rescue_location: '의정부 초암 초등학교 정문', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '요기암', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'female', //보호중인 동물의 성별
+		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_neutralization: 'no', //중성화 여부
+		protect_animal_estimate_age: '7', //보호중인 동물의 추정 연령
+		protect_animal_weight: '6.2', //몸무게
+
+		protect_animal_adoption_days_remain: 3,
+		protect_animal_protect_request: true,
+		protect_animal_writer_id: '상암보호소',
+
+		// @ProtectRequestObject
+		protect_request_photo_thumbnail: 'http://kormedi.com/wp-content/uploads/2021/01/eab3a0ec9691ec9db4-580x387.jpg', //보호요청 게시물 썸네일 uri
+		protect_request_status: 'rescue', //항목 추가 필요
+		protect_request_date: '2021-12-03', //보호요청 게시글 작성일시
+		protect_act_request_article_id_cnt: '5',
+	},
+	{
+		//@FeedObject
+		feed_type: 'feed',
+
+		// @UserObject
+		shelter_name: '익산보호소',
+
+		// @ShelterProtectAnimalObject
+		protect_animal_photos: [
+			'https://post-phinf.pstatic.net/MjAyMDA5MDFfMTg3/MDAxNTk4OTU0Mjg3ODY1.ScDj1g1gboyqfcQbp6NuBuT0iDBu2Pg_XnMz2UhFAcwg.jOo08-HSOT_iyTw7JE04-qao1J6MNEQbW9f6IQK7emgg.JPEG/1.JPG?type=w1200',
+		],
+		protect_animal_rescue_location: '의정부 초암 초등학교 정문', //보호중인 동물의 구조장소
+		protect_animal_species: '개', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '리트리버', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'female', //보호중인 동물의 성별
+		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_neutralization: 'yes', //중성화 여부
+		protect_animal_estimate_age: '17', //보호중인 동물의 추정 연령
+		protect_animal_weight: '4.7', //몸무게
+
+		protect_animal_adoption_days_remain: 3,
+		protect_animal_protect_request: true,
+		protect_animal_writer_id: '제주보호소',
+
+		// @ProtectRequestObject
+		protect_request_photo_thumbnail:
+			'https://post-phinf.pstatic.net/MjAyMDA5MDFfMTg3/MDAxNTk4OTU0Mjg3ODY1.ScDj1g1gboyqfcQbp6NuBuT0iDBu2Pg_XnMz2UhFAcwg.jOo08-HSOT_iyTw7JE04-qao1J6MNEQbW9f6IQK7emgg.JPEG/1.JPG?type=w1200', //보호요청 게시물 썸네일 uri
+		protect_request_status: 'rescue', //항목 추가 필요
+		protect_request_date: '2021-12-03', //보호요청 게시글 작성일시
+		protect_act_request_article_id_cnt: '7',
 	},
 ];
 

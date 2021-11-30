@@ -41,7 +41,7 @@ export default AidRequest = props => {
 						<View style={[aidRequest.right_insideContainer]}>
 							<View style={[aidRequest.right_upperMenu]}>
 								<Text style={txt.noto28b}>
-									{props.data.protect_animal_species}/{props.data.breed}
+									{props.data.protect_animal_species}/{props.data.protect_animal_species_detail}
 								</Text>
 							</View>
 							<View style={[aidRequest.right_middleMenu]}>
@@ -83,7 +83,7 @@ export default AidRequest = props => {
 			{/* {console.log('props.nvName=>' + props.nvName)} */}
 			{props.nvName == 'ProtectApplyList' && (
 				<View style={[aidRequest.numberContainer]}>
-					<Text style={{color: 'white'}}>2</Text>
+					<Text style={[txt.noto24, {color: 'white'}]}>{props.data.protect_act_request_article_id_cnt}</Text>
 				</View>
 			)}
 		</View>
