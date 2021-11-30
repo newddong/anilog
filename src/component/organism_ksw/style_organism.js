@@ -846,7 +846,7 @@ export const aidRequest = StyleSheet.create({
 	},
 	insideContainer: {
 		width: 654 * DP,
-		height: 174 * DP,
+		// height: 174 * DP,
 		marginTop: 18 * DP,
 		borderRadius: 30 * DP,
 		// borderColor: APRI10,
@@ -916,7 +916,7 @@ export const aidRequest = StyleSheet.create({
 export const aidRequestList = StyleSheet.create({
 	container: {
 		width: 672 * DP,
-		height: 816 * DP,
+		// height: 816 * DP,
 		// backgroundColor: 'lightcyan',
 	},
 	itemContainer: {
