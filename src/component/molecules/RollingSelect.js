@@ -20,12 +20,12 @@ export default RollingSelect = props => {
 
 	const [scrollList, setScrollList] = React.useState([]);
 
-	const scrollHandler = useAnimatedScrollHandler({
-		onScroll:event => {
+	const scrollHandler = useAnimatedScrollHandler(
+		event => {
 		console.log('scrollhandler ',event)
 		scrollOffsetY.value = event.contentOffset.y;
 		}
-	});
+	);
 	// const scrollHandler = event => {
 	// 	console.log('scrollhandler', event);
 
@@ -106,7 +106,7 @@ export default RollingSelect = props => {
 						showsVerticalScrollIndicator={false}
 						ref={scrollRef}
 						contentOffset={scrollOffset}
-						scrollEventThrottle={99}
+						scrollEventThrottle={20}
 						onMomentumScrollEnd={onScrollEnd}
 						onScroll={scrollHandler}
 						style={{height: layoutHeight,width:'100%'}}
