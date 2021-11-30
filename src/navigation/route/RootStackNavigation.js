@@ -66,9 +66,6 @@ export default RootStackNavigation = () => {
 		setPopupComponent([component, ...popupComponent]);
 	};
 
-	 /**
-	 * 모달창 관련 함수들 명세는 component/modal/modal.js 참조
-	 */
 	Modal.close = () => {
 		popupComponent.shift();
 		setPopupComponent([...popupComponent]);
@@ -99,8 +96,8 @@ export default RootStackNavigation = () => {
 		!isPop && setPop(true);
 	};
 
-	Modal.rollingSelect = (title,items=[''],onSelect,onCancel=Modal.close) => {
-		popIn(<RollingSelect title={title} items={items} onSelect={onSelect} onCancel={onCancel}/>);
+	Modal.rollingSelect = (title, items = [''], onSelect, onCancel = Modal.close) => {
+		popIn(<RollingSelect title={title} items={items} onSelect={onSelect} onCancel={onCancel} />);
 		!isPop && setPop(true);
 	};
 
@@ -113,7 +110,7 @@ export default RootStackNavigation = () => {
 	return (
 		<SafeAreaView style={{flex: 1}}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="AssignUserProfileImage">
+				<RootStack.Navigator initialRouteName="MainTab">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} options={{headerShown: false}} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} options={{header: props => <InputAndSearchHeader {...props} />}} />
@@ -180,10 +177,10 @@ export default RootStackNavigation = () => {
 					/>
 					<RootStack.Screen name="LocationPicker" component={LocationPicker} />
 
-					<RootStack.Screen name="SinglePhotoSelect" component={PhotoSelect} />
-					{/* <RootStack.Screen name="SinglePhotoSelect" component={AddPhoto} /> */}
-					<RootStack.Screen name="MultiPhotoSelect" component={PhotoSelect} />
-					{/* <RootStack.Screen name="MultiPhotoSelect" component={AddPhoto} /> */}
+					{/* <RootStack.Screen name="SinglePhotoSelect" component={PhotoSelect} /> */}
+					<RootStack.Screen name="SinglePhotoSelect" component={AddPhoto} />
+					{/* <RootStack.Screen name="MultiPhotoSelect" component={PhotoSelect} /> */}
+					<RootStack.Screen name="MultiPhotoSelect" component={AddPhoto} />
 					{/* 카메라 컴포넌트 임시 추가 */}
 					<RootStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
 
