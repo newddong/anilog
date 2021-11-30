@@ -25,6 +25,7 @@ export default AidRequest = props => {
 	const onSelect = () => {
 		// 이벤트 정의가 되어 있지 않아 주석처리
 		// setSelected(!selected);
+		moveToProtectApplicant();
 	};
 
 	return (

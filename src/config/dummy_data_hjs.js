@@ -61,8 +61,8 @@ export const dummy_ProtectRequestList = [
 		// @ShelterProtectAnimalObject
 		protect_animal_photos: ['https://t1.daumcdn.net/cfile/tistory/213E434754D3A06406'],
 		protect_animal_rescue_location: '서울역 5번 출구', //보호중인 동물의 구조장소
-		protect_animal_species: '개', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
-		protect_animal_species_detail: '퍼그', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '몬노', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
 		protect_animal_sex: 'female', //보호중인 동물의 성별
 		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
 		protect_animal_adoption_days_remain: 3,
@@ -88,7 +88,7 @@ export const dummy_ProtectRequestList = [
 		protect_animal_photos: ['https://t1.daumcdn.net/cfile/tistory/99C9B5435CD8E4B81F'],
 		protect_animal_rescue_location: '영등포구 2기 횡단보도', //보호중인 동물의 구조장소
 		protect_animal_species: '토끼', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
-		protect_animal_species_detail: '집토끼', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_species_detail: '자이르만야', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
 		protect_animal_sex: 'female', //보호중인 동물의 성별
 		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
 		protect_animal_neutralization: 'no', //중성화 여부

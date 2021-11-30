@@ -4,6 +4,7 @@ import {GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import ShelterLabel from '../molecules/ShelterLabel';
 import {volunteerItem} from './style_organism';
+import {Star50_Filled, Star50_Border} from '../atom/icon';
 
 export default VolunteerItem = props => {
 	// console.log('data', data);
@@ -18,9 +19,16 @@ export default VolunteerItem = props => {
 					<UserDescriptionLabel data={props.data} onClickLabel={e => props.onClickLabel(e)} />
 				)}
 			</View>
+			{props.nvName != 'ProtectApplicant' && (
+				<View style={[volunteerItem.expected_activityDate]}>
+					<Text style={[txt.roboto24, {color: GRAY20}]}>{props.data.expected_date[0]}</Text>
+					<Text style={[txt.roboto24, {color: GRAY20}]}>활동 예정</Text>
+				</View>
+			)}
+
 			<View style={[volunteerItem.expected_activityDate]}>
-				<Text style={[txt.roboto24, {color: GRAY20}]}>{props.data.expected_date[0]}</Text>
-				<Text style={[txt.roboto24, {color: GRAY20}]}>활동 예정</Text>
+				{/* <Star50_Filled></Star50_Filled> */}
+				<Text style={[txt.roboto24, {color: GRAY20}]}>활동 예정11</Text>
 			</View>
 		</View>
 	);
