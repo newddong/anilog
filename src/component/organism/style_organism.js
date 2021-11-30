@@ -277,6 +277,7 @@ export const organism_style = StyleSheet.create({
 	parentComment: {
 		flexDirection: 'column',
 		width: 654 * DP,
+		marginBottom: 20 * DP,
 		alignItems: 'flex-end',
 		// backgroundColor: '#ECFCDD',
 	},
@@ -399,12 +400,24 @@ export const parentComment = StyleSheet.create({
 		marginTop: 20 * DP,
 	},
 	likeReplyButton: {
-		width: 222 * DP,
+		width: 574 * DP,
 		height: 34 * DP,
 		marginTop: 20 * DP,
 		flexDirection: 'row',
 		alignItems: 'center',
 		alignSelf: 'flex-end',
+		justifyContent: 'flex-end',
+	},
+	comment_contents: {
+		width: 574 * DP,
+		marginLeft: 80 * DP,
+		marginTop: 15 * DP,
+		alignSelf: 'flex-start',
+	},
+	showChildComment: {
+		position: 'absolute',
+		left: 0,
+		paddingBottom: 5 * DP,
 	},
 	heart30: {
 		width: 30 * DP,

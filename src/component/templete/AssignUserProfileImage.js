@@ -26,8 +26,8 @@ export default AssignUserProfileImage = props => {
 	};
 
 	const selectPhoto = () => {
-		Modal.popupSelect();
-		// props.navigation.push('SinglePhotoSelect', props.route.name);
+		
+		props.navigation.push('SinglePhotoSelect');
 	};
 
 	//중복 처리

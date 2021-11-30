@@ -280,6 +280,8 @@ export const AVAILABLE_NICK = '사용 가능한 닉네임입니다!';
 
 //Meatball
 export const PROTECT_STATUS = ['입양가능', '협의중', '완료']; //SHELTER PROTECT REQUEST 템플릿
+export const SETTING_OWN_COMMENT = ['수정', '삭제'];
+export const SETTING_COMMENT = ['신고'];
 
 //Modal Message
 export const CONFIRM_PROTECT_REQUEST = '이 내용으로 보호 활동 신청을 하시겠습니까?';

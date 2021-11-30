@@ -6,6 +6,8 @@ import LocalMedia from '../molecules/LocalMedia';
 import {login_style, temp_style, photoSelect} from './style_templete';
 import CameraRoll from '@react-native-community/cameraroll';
 import {item} from 'Root/screens/common/style_address';
+
+
 export default PhotoSelect = props => {
 	const isSingle = props.route.name === 'SinglePhotoSelect';
 

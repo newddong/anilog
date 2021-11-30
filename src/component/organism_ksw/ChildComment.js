@@ -1,9 +1,12 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {Image, Text, View, TouchableOpacity} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
+import {SETTING_COMMENT, SETTING_OWN_COMMENT} from 'Root/i18n/msg';
 import {Heart30_Border, Heart30_Filled, Meatball50_GRAY20_Vertical} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
+import MeatBallDropdown from '../molecules/MeatBallDropdown';
 import UserTimeLabel from '../molecules/UserTimeLabel';
 import {childComment} from './style_organism';
 
@@ -15,9 +18,20 @@ import {childComment} from './style_organism';
  * }} props
  */
 export default ChildComment = props => {
-	const userTimeLabel_data = props.data.profile_data;
+	// console.log('ChildComment', props.data);
+	const [data, setData] = React.useState(props.data);
+	const [isMyComment, setIsMyComment] = React.useState(false);
+	const [likeState, setLikeState] = React.useState(false);
 
-	const [likeState, setLikeState] = React.useState(true);
+	React.useEffect(() => {
+		setData(props.data);
+	}, [props.data]);
+
+	React.useEffect(() => {
+		AsyncStorage.getItem('token', (err, res) => {
+			res == data.like_comment_id ? setIsMyComment(true) : setIsMyComment(false);
+		});
+	}, []);
 
 	const onCLickHeart = () => {
 		setLikeState(!likeState);
@@ -25,33 +39,30 @@ export default ChildComment = props => {
 
 	//대댓글 클릭
 	const onPressReplyBtn = () => {
-		props.onPressReplyBtn(props.data.comment);
+		props.onPressReplyBtn(props.data.comment_parent);
 	};
 
-	//미트볼 클릭
-	const onClickMeatBall = () => {};
 	return (
 		<View style={[childComment.container]}>
 			<View style={[childComment.profileContainer]}>
-				<View style={[childComment.commentMark]} />
 				<View style={[childComment.userTimeLabel]}>
-					<UserTimeLabel data={userTimeLabel_data} />
+					<UserTimeLabel data={data ? data : null} />
 				</View>
 				<View style={[childComment.meatBall50_vertical]}>
-					<Meatball50_GRAY20_Vertical onPress={onClickMeatBall} />
+					<MeatBallDropdown menu={isMyComment ? SETTING_OWN_COMMENT : SETTING_COMMENT} horizontal={false} />
 				</View>
 			</View>
-			{/* 댓글의 이미지를 보이게하는 경우 */}
-
-			<View style={[childComment.img_square_round_484]}>
-				{/* data.img_uri가 null일 경우 이미지 컴포넌트는 null */}
-				{props.data.img_uri != null ? <Image style={[styles.img_square_round_484]} source={{uri: props.data.img_uri}} /> : null}
-			</View>
+			{/* 해당 대댓글이 photo_uri를 가지고 있는 경우만 IMage 출력 */}
+			{data.comment_photo_uri != null ? (
+				<View style={[childComment.img_square_round_484]}>
+					<Image style={[styles.img_square_round_484]} source={{uri: data ? data.comment_photo_uri : DEFAULT_PROFILE}} />
+				</View>
+			) : (
+				<></>
+			)}
 			{/* 댓글 텍스트 */}
 			<View style={[childComment.commentContainer]}>
-				<View style={[childComment.commentText]}>
-					<Text style={[txt.noto24, {color: GRAY10}]}>{props.data.comment}</Text>
-				</View>
+				<Text style={[txt.noto24, {color: GRAY10}]}>{data ? data.comment_contents : ''}</Text>
 			</View>
 			{/* 좋아요 버튼, 좋아요 숫자 , 답글쓰기 컨테이너 */}
 			<View style={[childComment.likeReplyButton]}>
@@ -59,7 +70,7 @@ export default ChildComment = props => {
 					{likeState ? <Heart30_Filled onPress={onCLickHeart} /> : <Heart30_Border onPress={onCLickHeart} />}
 				</View>
 				<View style={[childComment.likeCount]}>
-					<Text style={(txt.roboto24, childComment.likeCountText)}>{props.data.likecount}</Text>
+					<Text style={(txt.roboto24, childComment.likeCountText)}>{data ? data.comment_like_count : ''}</Text>
 				</View>
 				<TouchableOpacity style={[childComment.writeComment]} onPress={onPressReplyBtn}>
 					<Text style={(txt.noto22, childComment.writeCommentText)} numberOfLines={1}>
@@ -79,11 +90,3 @@ ChildComment.defaultProps = {
 	},
 	onPressReplyBtn: e => console.log(e),
 };
-
-// UserTimeLabel.default
-// data: {
-// 	user_id: 'user_id',
-// 	user_nickname: 'user_nickname',
-// 	user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-// 	time: '1일',
-// },

@@ -7,7 +7,7 @@ import AniButton from '../molecules/AniButton';
 import DropdownSelect from '../molecules/DropdownSelect';
 import Stagebar from '../molecules/Stagebar';
 import {login_style, btn_style, temp_style, progressbar_style, assignUserHabitation_style} from './style_templete';
-import { Modal } from 'Component/modal/Modal';
+import {Modal} from 'Component/modal/Modal';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
@@ -15,33 +15,66 @@ import { Modal } from 'Component/modal/Modal';
 export default AssignUserHabitation = props => {
 	const [data, setData] = React.useState({
 		...props.route.params,
-		city: '원주시', //시,도
-		district: '단구', //군,구
-		neighbor: '백옥포리', //동,읍,면
+		city: '시를 선택해 주세요', //시,도
+		district: '구를 선택해 주세요', //군,구
+		neighbor: '동을 선택해 주세요', //동,읍,면
 	});
 
 	const goToNextStep = () => {
 		props.navigation.push('AssignUserProfileImage');
 	};
 
-	const onSelectCity = selectedItem => {
-		console.log(selectedItem);
-		setData({...data, city: selectedItem});
+	const onSelectCity = () => {
+		
+		Modal.rollingSelect(
+			'시를 선택해 주세요',
+			['서울시', '부산시', '광주광역시'],
+			e => {
+				setData({...data, city: e});
+				cityDrop.current.press();
+			},
+			() => {
+				cityDrop.current.press();
+			},
+		);
+		// setData({...data, city: selectedItem});
 	};
 	const onSelectDistrict = selectedItem => {
-		console.log(selectedItem);
-		setData({...data, district: selectedItem});
+		Modal.rollingSelect(
+			'구를 선택해 주세요',
+			['북구', '서구', '중구'],
+			e => {
+				setData({...data, district: e});
+				districDrop.current.press();
+			},
+			() => {
+				districDrop.current.press();
+			},
+		);
 	};
 	const onSelectNeighbor = selectedItem => {
-		console.log(selectedItem);
-		setData({...data, neighbor: selectedItem});
+		Modal.rollingSelect(
+			'동을 선택해 주세요',
+			['신당동', '사당동', '신림동','행신동'],
+			e => {
+				setData({...data, neighbor: e});
+				neighborDrop.current.press();
+			},
+			() => {
+				neighborDrop.current.press();
+			},
+		);
 	};
+
+	const cityDrop = React.useRef();
+	const districDrop = React.useRef();
+	const neighborDrop = React.useRef();
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* (M)StageBar	 */}
 			<TouchableWithoutFeedback onPress={() => console.log(data)}>
-				<View style={{ backgroundColor: 'red', height: 30, width: 30, position: 'absolute', top: 0, left: 0 }}></View>
+				<View style={{backgroundColor: 'red', height: 30, width: 30, position: 'absolute', top: 0, left: 0}}></View>
 			</TouchableWithoutFeedback>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
@@ -68,7 +101,10 @@ export default AssignUserHabitation = props => {
 			</View>
 			{/* HabitationForm */}
 			<View style={[assignUserHabitation_style.habitationForm]}>
-				<NormalDropDown
+				<DropdownSelect width={522} value={data.city} onOpen={onSelectCity} ref={cityDrop} />
+				<DropdownSelect width={522} value={data.district} onOpen={onSelectDistrict} ref={districDrop}/>
+				<DropdownSelect width={522} value={data.neighbor} onOpen={onSelectNeighbor} ref={neighborDrop} />
+				{/* <NormalDropDown
 						menu={['시를 선택해 주세요', '서울시']}
 						width={522}
 						defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
@@ -85,7 +121,7 @@ export default AssignUserHabitation = props => {
 						width={522}
 						defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
 						onSelect={onSelectNeighbor}
-					/>
+					/> */}
 			</View>
 
 			{/* (A)Btn_w654 */}
