@@ -4,6 +4,7 @@ import {txt} from 'Root/config/textstyle';
 import Animated, {useSharedValue, useAnimatedStyle, useAnimatedScrollHandler, runOnJS, ceil} from 'react-native-reanimated';
 import DP from 'Root/config/dp';
 import {Modal} from 'Component/modal/Modal';
+import { APRI10 } from 'Root/config/color';
 
 export default RollingSelect = props => {
 	
@@ -22,7 +23,7 @@ export default RollingSelect = props => {
 
 	const scrollHandler = useAnimatedScrollHandler(
 		event => {
-		console.log('scrollhandler ',event)
+		// console.log('scrollhandler ',event);
 		scrollOffsetY.value = event.contentOffset.y;
 		}
 	);
@@ -67,19 +68,19 @@ export default RollingSelect = props => {
 	}
 
 	const onLayout = e => {
-		console.log('Parent onLayout',Platform.OS,e.nativeEvent);
+		// console.log('Parent onLayout',Platform.OS,e.nativeEvent);
 		const showItemNumber = Math.floor(e.nativeEvent.layout.height/itemheight);
 		
 		let list = items;
 		if(showItemNumber > items.length){
 			let length = 0;
 			let count = Math.floor(1+showItemNumber/items.length)
-			console.log('count',count);
+			// console.log('count',count);
 			for(let i=0;i<Math.floor(1+showItemNumber/items.length)*3;i++){
-				console.log('d',i);
+				// console.log('d',i);
 				list=list.concat(items);
 			}
-			console.log(list.length);
+			// console.log(list.length);
 			// setItemCountInWindow(length);
 			setScrollList(list);
 		}else{
@@ -94,11 +95,11 @@ export default RollingSelect = props => {
 			<View style={{height: 470*DP, backgroundColor: '#fff', justifyContent: 'flex-end'}}>
 				<View style={{width:'100%',flex:1,justifyContent:'space-around',flexDirection:'row',alignItems:'center'}}>
 					<TouchableWithoutFeedback onPress={onCancel}>
-					<Text style={txt.noto26b}>취소</Text>
+					<Text style={[txt.noto26b,{color:APRI10}]}>취소</Text>
 					</TouchableWithoutFeedback>
 					<Text style={txt.noto32b}>{props.title}</Text>
 					<TouchableWithoutFeedback onPress={onSelect}>
-					<Text style={txt.noto26b}>선택</Text>
+					<Text style={[txt.noto26b,{color:APRI10}]}>선택</Text>
 					</TouchableWithoutFeedback>
 				</View>
 				<View style={{height: layoutHeight, backgroundColor: '#fff', alignItems: 'center'}} onLayout={onLayout}>
@@ -106,7 +107,7 @@ export default RollingSelect = props => {
 						showsVerticalScrollIndicator={false}
 						ref={scrollRef}
 						contentOffset={scrollOffset}
-						scrollEventThrottle={20}
+						scrollEventThrottle={90}
 						onMomentumScrollEnd={onScrollEnd}
 						onScroll={scrollHandler}
 						style={{height: layoutHeight,width:'100%'}}
@@ -137,7 +138,7 @@ RollingSelect.defaultProps = {
 const ScrollItem = props => {
 	
 	const [isSelect, setSelect] = React.useState(false);
-	
+	const selectItem = React.useRef('기본값');
 	const [itemOffset, setItemOffset] = React.useState(0);
 	
 	const onLayout = e => {
@@ -146,23 +147,25 @@ const ScrollItem = props => {
 	};
 
 	const itemSelection = value => {
-
-		(value < 15 && value > -15 && (setSelect(true) || true)) ||setSelect(false);
-		
+		if(value<15&&value>-15){
+			setSelect(true);
+			props.onItemSelection&&props.onItemSelection(props.item);
+		}else{
+			setSelect(false);
+		}
 	};
-
-	React.useEffect(() => {
-		props.onItemSelection&&props.onItemSelection(props.item);
-	}, [isSelect]);
 	
 	const itemStyle = useAnimatedStyle(() => {
 		let offsetInLayout = itemOffset - props.scrolloffset.value;
-		let result = 80 - (180 / props.layoutheight) * offsetInLayout;
-		runOnJS(itemSelection)(result);
+		let degCalc = 80 - (180 / props.layoutheight) * offsetInLayout;
+		if(degCalc<15&&degCalc>-15){
+			selectItem.current = props.item;
+		}
+		runOnJS(itemSelection)(degCalc);
 		return {
 			transform: [
-				{rotateX: `${(result > 90 ? 90 : result < -90 ? -90 : result)*1}deg`},
-				{translateY: -result/4*1},
+				{rotateX: `${(degCalc >= 90 ? 89.9 : degCalc <= -90 ? -89.9 : degCalc)*1}deg`},
+				{translateY: -degCalc/4*1},
 			],
 		};
 	});
