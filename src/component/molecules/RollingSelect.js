@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList, TouchableWithoutFeedback, ScrollView} from 'react-native';
+import {View, Text, FlatList, TouchableWithoutFeedback, ScrollView,Platform} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import Animated, {useSharedValue, useAnimatedStyle, useAnimatedScrollHandler, runOnJS, ceil} from 'react-native-reanimated';
 import DP from 'Root/config/dp';
@@ -20,11 +20,19 @@ export default RollingSelect = props => {
 
 	const [scrollList, setScrollList] = React.useState([]);
 
-	const scrollHandler = useAnimatedScrollHandler(event => {
+	const scrollHandler = useAnimatedScrollHandler({
+		onScroll:event => {
+		console.log('scrollhandler ',event)
 		scrollOffsetY.value = event.contentOffset.y;
+		}
 	});
+	// const scrollHandler = event => {
+	// 	console.log('scrollhandler', event);
+
+	// }
 	
 	const onScrollEnd = e => {
+		console.log('onscrollend  ', e.nativeEvent);
 		let index = Math.round(e.nativeEvent.contentOffset.y / itemheight);
 		
 		
@@ -41,6 +49,7 @@ export default RollingSelect = props => {
 			// setScrollOffset({x:0,y:itemheight*index});
 		}
 
+		// setScrollOffset({x:0,y:itemheight*index});
 		scrollRef.current.scrollTo({x:0,y:itemheight*index,animated:true});
 
 	};
@@ -58,6 +67,7 @@ export default RollingSelect = props => {
 	}
 
 	const onLayout = e => {
+		console.log('Parent onLayout',Platform.OS,e.nativeEvent);
 		const showItemNumber = Math.floor(e.nativeEvent.layout.height/itemheight);
 		
 		let list = items;
@@ -96,10 +106,11 @@ export default RollingSelect = props => {
 						showsVerticalScrollIndicator={false}
 						ref={scrollRef}
 						contentOffset={scrollOffset}
+						scrollEventThrottle={99}
 						onMomentumScrollEnd={onScrollEnd}
 						onScroll={scrollHandler}
 						style={{height: layoutHeight,width:'100%'}}
-						contentContainerStyle={{}}>
+						>
 						{scrollList.map((item, index) => (
 							<ScrollItem index={index} key={index} scrolloffset={scrollOffsetY} layoutheight={layoutHeight} itemheight={itemheight} item={item} onItemSelection={onItemSelection}/>
 						))}
@@ -130,6 +141,7 @@ const ScrollItem = props => {
 	const [itemOffset, setItemOffset] = React.useState(0);
 	
 	const onLayout = e => {
+		console.log('Child onLayout',Platform.OS,e.nativeEvent);
 		setItemOffset(e.nativeEvent.layout.y);
 	};
 

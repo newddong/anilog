@@ -31,10 +31,10 @@ export default AssignUserHabitation = props => {
 			['서울시', '부산시', '광주광역시'],
 			e => {
 				setData({...data, city: e});
-				districDrop.current.press();
+				cityDrop.current.press();
 			},
 			() => {
-				districDrop.current.press();
+				cityDrop.current.press();
 			},
 		);
 		// setData({...data, city: selectedItem});
