@@ -5,7 +5,6 @@ import { btn_w226 } from 'Atom/btn/btn_style';
 import {WHITE,GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
-import {ModalModule} from 'Component/modal/Modal';
 
 /**
  * 두 버튼을 띄우는 모달 컴포넌트

@@ -50,17 +50,18 @@ import TwoBtnModal from 'Molecules/TwoBtnModal';
 import OneBtnModal from 'Molecules/OneBtnModal';
 import NoBtnModal from 'Molecules/NoBtnModal';
 import RollingSelect from 'Molecules/RollingSelect';
+import SelectModal from 'Molecules/SelectModal';
 
-import {Modal} from 'Component/modal/Modal';
+import Modal from 'Component/modal/Modal';
 import Calendar from 'Root/test_sangwoo/calendar';
 import InputAndSearchHeader from '../header/InputAndSearchHeader';
 // import Camera from 'Root/component/templete/Camera';
 const RootStack = createStackNavigator();
 
+
 export default RootStackNavigation = () => {
 	const [isPop, setPop] = React.useState(false);
 	const [popupComponent, setPopupComponent] = React.useState([]);
-
 
 	/**
 	 * 컴포넌트를 모달 스택에 넣음
@@ -108,6 +109,11 @@ export default RootStackNavigation = () => {
 		!isPop && setPop(true);
 	};
 
+	Modal.popSelect = () => {
+		popIn(<SelectModal popUpMsg={'선택 모달'} />);
+		!isPop && setPop(true);
+	}
+
 	// const openCalendar = () => {
 	// 	console.log('openCale')
 	// 	Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date))
@@ -117,7 +123,7 @@ export default RootStackNavigation = () => {
 	return (
 		<SafeAreaView style={{flex: 1}}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="AssignUserProfileImage">
+				<RootStack.Navigator initialRouteName="AssignUserHabitation">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} options={{headerShown: false}} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} options={{header: props => <InputAndSearchHeader {...props} />}} />

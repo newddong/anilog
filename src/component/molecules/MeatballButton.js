@@ -2,7 +2,7 @@ import React from 'react';
 import {View, TouchableOpacity, TouchableWithoutFeedback, Text} from 'react-native';
 import {APRI10, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
-import {Modal} from 'Component/modal/Modal';
+import Modal from 'Component/modal/Modal';
 import {txt} from 'Root/config/textstyle';
 import {Meatball50_APRI10_Horizontal, Meatball50_GRAY20_Horizontal, Meatball50_GRAY20_Vertical, Meatball50_APRI10_Vertical} from 'Atom/icon';
 

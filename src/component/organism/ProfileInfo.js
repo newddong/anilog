@@ -12,7 +12,7 @@ import {NORMAL, PET, SHELTER} from 'Root/i18n/msg';
 import Dropdown from '../molecules/Dropdown';
 import ProfileDropdown from 'Molecules/ProfileDropdown';
 import {organism_style, profileInfo_style} from './style_organism';
-import {Modal} from 'Root/component/modal/Modal';
+import Modal from 'Root/component/modal/Modal';
 
 /**
  *

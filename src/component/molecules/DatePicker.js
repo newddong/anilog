@@ -5,7 +5,7 @@ import DP from 'Root/config/dp';
 import {Calendar48_Border} from '../atom/icon';
 import {APRI10} from 'Root/config/color';
 import Calendar from 'Root/test_sangwoo/calendar';
-import {Modal} from '../modal/Modal';
+import Modal from '../modal/Modal';
 /**
  *
  * @param {{
