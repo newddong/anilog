@@ -184,10 +184,10 @@ export default RootStackNavigation = () => {
 					/>
 					<RootStack.Screen name="LocationPicker" component={LocationPicker} />
 
-					{/* <RootStack.Screen name="SinglePhotoSelect" component={PhotoSelect} /> */}
-					<RootStack.Screen name="SinglePhotoSelect" component={AddPhoto} />
-					{/* <RootStack.Screen name="MultiPhotoSelect" component={PhotoSelect} /> */}
-					<RootStack.Screen name="MultiPhotoSelect" component={AddPhoto} />
+					<RootStack.Screen name="SinglePhotoSelect" component={PhotoSelect} />
+					{/* <RootStack.Screen name="SinglePhotoSelect" component={AddPhoto} /> */}
+					<RootStack.Screen name="MultiPhotoSelect" component={PhotoSelect} />
+					{/* <RootStack.Screen name="MultiPhotoSelect" component={AddPhoto} /> */}
 					{/* 카메라 컴포넌트 임시 추가 */}
 					<RootStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
 

@@ -1,6 +1,8 @@
 import React from 'react';
 
 import {View, Image, Text} from 'react-native';
+import {DEFAULT_PROFILE} from 'Root/i18n/msg';
+import profile from 'Root/screens/feed/profile/profile';
 import {Paw48_Mixed, Paw48_YELL20, Paw48_APRI10, Private62, Public62} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 /**
@@ -13,7 +15,7 @@ import {styles} from '../atom/image/imageStyle';
  * }} props
  */
 export default ProfileImageLarge160 = props => {
-	// console.log('PrifleImageLabel / Props Data ' + JSON.stringify(props.data));
+	console.log('PrifleImageLabel / Props Data ' + JSON.stringify(props.data));
 
 	const profile_data = props.data
 		? props.data
@@ -60,7 +62,7 @@ export default ProfileImageLarge160 = props => {
 	};
 	return (
 		<View style={styles.img_round_160}>
-			<Image source={{uri: profile_data.user_profile_uri}} style={styles.img_round_160} />
+			<Image source={{uri: profile_data.user_profile_uri ? profile_data.user_profile_uri : DEFAULT_PROFILE}} style={styles.img_round_160} />
 			{userType()}
 		</View>
 	);

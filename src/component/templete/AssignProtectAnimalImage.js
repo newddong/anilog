@@ -8,15 +8,16 @@ import {APRI10, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {PLEASE_UPLOAD_PIC} from 'Root/i18n/msg';
 import SelectedMediaList from '../organism_ksw/SelectedMediaList';
-import {AddItem64, AddItem92, Arrow_Down_GRAY20, Camera54} from '../atom/icon';
+import {AddItem64, Camera54} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import {styles} from '../atom/image/imageStyle';
-import {dummy_selectedMediaList} from 'Root/config/dummyDate_json';
+import {stagebar_style} from '../organism_ksw/style_organism';
 
 export default AssignProtectAnimalImage = props => {
 	const navigation = useNavigation();
 
-	const [imageList, setImageList] = React.useState([...dummy_selectedMediaList]); //PhotoSelect에서 선택된 사진List
+	const [imageList, setImageList] = React.useState([]); //PhotoSelect에서 선택된 사진List
+
 	const [data, setData] = React.useState({
 		protect_animal_photos: null,
 	});
@@ -26,11 +27,21 @@ export default AssignProtectAnimalImage = props => {
 	}, [data]);
 
 	React.useEffect(() => {
+		console.log('imageList', imageList);
+		console.log('imageList / length', imageList.length);
+	}, [imageList]);
+
+	React.useEffect(() => {
 		if (props.route.params == null) {
 			// setImgSelected('https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg')
-		} else if (props.route.params.length > 0) {
-			setImageList(props.route.params);
-			setData({...data, protect_animal_photos: props.route.params});
+		} else if (props.route.params.photo) {
+			const photos = props.route.params.photo;
+			let copy = [...imageList];
+			photos.map((v, i) => {
+				copy.push(v);
+			});
+			setImageList(copy);
+			setData({...data, protect_animal_photos: props.route.params.photo});
 		}
 	}, [props.route.params]);
 
@@ -53,29 +64,21 @@ export default AssignProtectAnimalImage = props => {
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
-			<ScrollView contentContainerStyle={{alignItems: 'center'}}>
+			<ScrollView contentContainerStyle={[assignProtectAnimal_style.container]}>
 				{/* (M)StageBar	 */}
 				<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 					<Stagebar
-						style={{}} //전체 container style, text와 bar를 감싸는 view의 style
-						backgroundBarStyle={{
-							width: 400 * DP,
-							height: 20 * DP,
-							backgroundColor: 'white',
-							borderRadius: 20 * DP,
-							borderWidth: 4 * DP,
-							borderColor: APRI10,
-						}} //배경이 되는 bar의 style, width props으로 너비결정됨
-						insideBarStyle={{width: 80 * DP, height: 20 * DP, backgroundColor: APRI10, borderRadius: 18 * DP}} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+						backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨
+						insideBarStyle={stagebar_style.insideBar} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
 						current={1} //현재 단계를 정의
 						maxstage={4} //전체 단계를 정의
 						width={600 * DP} //bar의 너비
-						textStyle={[txt.roboto24, {marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10}]} //text의 스타일
+						textStyle={[txt.roboto24, stagebar_style.text]} //text의 스타일
 					/>
 				</View>
 
 				<View style={[assignProtectAnimal_style.textMsg]}>
-					<Text style={txt.noto24}>{PLEASE_UPLOAD_PIC}</Text>
+					<Text style={[txt.noto24, {color: GRAY10}]}>{PLEASE_UPLOAD_PIC}</Text>
 				</View>
 
 				<View style={[assignProtectAnimal_style.selectedMediaList]}>
@@ -85,7 +88,7 @@ export default AssignProtectAnimalImage = props => {
 							<AddItem64 />
 						</TouchableOpacity>
 					) : (
-						<SelectedMediaList layout={styles.img_square_round_410} items={imageList} onDelete={index => onDelete(index)} />
+						<SelectedMediaList items={imageList} layout={styles.img_square_round_410} onDelete={index => onDelete(index)} />
 					)}
 				</View>
 
@@ -97,7 +100,7 @@ export default AssignProtectAnimalImage = props => {
 						</TouchableOpacity>
 					</View>
 					<View style={[btn_style.btn_w226]}>
-						<AniButton btnTitle={'다음'} btnStyle={'filled'} titleFontStyle={24} btnLayout={btn_w226} onPress={gotoNextStep} />
+						<AniButton btnTitle={'다음'} btnLayout={btn_w226} onPress={gotoNextStep} />
 					</View>
 				</View>
 			</ScrollView>

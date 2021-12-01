@@ -5,7 +5,12 @@ import {login_style, btn_style, temp_style, protectRequestList_style, baseInfo_s
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import {btn_w306} from '../atom/btn/btn_style';
 import {Meatball50_APRI10_Horizontal} from '../atom/icon';
-import {dummy_AnimalNeedHelpList, dummy_ProtectRequestObject, dummy_ShelterProtectAnimalObject} from 'Root/config/dummyDate_json';
+import {
+	dummy_AnimalNeedHelpList,
+	dummy_AnimalNeedHelpList_various_status,
+	dummy_ProtectRequestObject,
+	dummy_ShelterProtectAnimalObject,
+} from 'Root/config/dummyDate_json';
 import {PET_KIND, PROTECT_STATUS} from 'Root/i18n/msg';
 import FilterButton from '../molecules/FilterButton';
 import MeatBallDropdown from '../molecules/MeatBallDropdown';
@@ -33,8 +38,10 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 		setProtectAnimalList(list);
 	}, [route.params]);
 
-	const onLabelClick = (status, user_id) => {
-		console.log('status , id => ' + status + '_' + user_id);
+	const onLabelClick = (status, user_id, item) => {
+		// console.log('status , id => ' + status + '_' + user_id);
+		console.log('item / ShelterProtectRequestList', item);
+		navigation.push('AnimalProtectRequestDetail', dummy_AnimalNeedHelpList_various_status[0]);
 	};
 
 	const onFavoriteTag = (e, index) => {

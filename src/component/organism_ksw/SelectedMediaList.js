@@ -1,10 +1,9 @@
 import React from 'react';
-import { FlatList, Text, View } from 'react-native';
-import { dummy_selectedMediaList } from 'Root/config/dummyDate_json';
-import { styles } from '../atom/image/imageStyle';
+import {FlatList, Text, View} from 'react-native';
+import {dummy_selectedMediaList} from 'Root/config/dummyDate_json';
+import {styles} from '../atom/image/imageStyle';
 import SelectedMedia from '../molecules/SelectedMedia';
-import { selectedMediaList } from './style_organism';
-
+import {selectedMediaList} from './style_organism';
 
 /**
  * @param {{
@@ -15,8 +14,8 @@ import { selectedMediaList } from './style_organism';
  */
 export default SelectedMediaList = props => {
 	const onDelete = index => {
-		props.onDelete(index)
-	}
+		props.onDelete(index);
+	};
 
 	const renderItem = (item, index) => {
 		return (
@@ -27,8 +26,8 @@ export default SelectedMediaList = props => {
 	};
 
 	return (
-		<View style={[selectedMediaList.container, {}]}>
-			<FlatList data={props.items} renderItem={({ item, index }) => renderItem(item, index)} horizontal={true} />
+		<View style={[props.layout == styles.img_square_round_190 ? selectedMediaList.container_190 : selectedMediaList.container_410]}>
+			<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
 		</View>
 	);
 };
@@ -36,7 +35,7 @@ export default SelectedMediaList = props => {
 SelectedMediaList.defaultProps = {
 	items: dummy_selectedMediaList,
 	layout: styles.img_square_round_190,
-	onDelete: e => console.log(e)
-}
+	onDelete: e => console.log(e),
+};
 
 // media_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',

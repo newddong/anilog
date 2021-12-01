@@ -33,11 +33,11 @@ export default ShelterInfoSetting = props => {
 			<ScrollView contentContainerStyle={[shelterInfoSetting.container]}>
 				<View style={[shelterInfoSetting.shelterInfoSetting_step1]}>
 					<View style={[temp_style.profileImageLarge]}>
-						<ProfileImageLarge160 userType="shelter" shelterType="private"></ProfileImageLarge160>
+						<ProfileImageLarge160 data={_dummyData} />
 					</View>
 
 					<View style={[shelterInfoSetting.btn_w242]}>
-						<AniButton btnTitle={'프로필 변경'} titleFontStyle={24} btnLayout={btn_w242} onPress={moveToChangeUserProfileImage} />
+						<AniButton btnTitle={'프로필 변경'} btnLayout={btn_w242} onPress={moveToChangeUserProfileImage} />
 					</View>
 				</View>
 
@@ -61,14 +61,7 @@ export default ShelterInfoSetting = props => {
 								<Text style={txt.noto30b}>보호소 소개</Text>
 							</View>
 							<View style={shelterInfoSetting.btn_w114}>
-								<AniButton
-									btnLayout={btn_w114}
-									btnStyle={'border'}
-									btnTheme={'shadow'}
-									btnTitle={'수정'}
-									titleFontStyle={24}
-									onPress={() => alert('준비중입니다.')}
-								/>
+								<AniButton btnLayout={btn_w114} btnStyle={'border'} btnTheme={'shadow'} btnTitle={'수정'} onPress={() => alert('준비중입니다.')} />
 							</View>
 						</View>
 						<View style={temp_style.introduceMent_shelterInfoSetting}>
@@ -87,7 +80,6 @@ export default ShelterInfoSetting = props => {
 									btnStyle={'border'}
 									btnTheme={'shadow'}
 									btnTitle={'수정'}
-									titleFontStyle={24}
 									onPress={() => navigation.push('EditShelterInfo')}
 								/>
 							</View>

@@ -837,9 +837,10 @@ export const aidRequest = StyleSheet.create({
 		position: 'absolute',
 		right: 0,
 		top: 0,
+		paddingLeft: 10 * DP,
+		borderRadius: 50 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderRadius: 20,
 		backgroundColor: 'red',
 	},
 	insideContainer: {
@@ -907,7 +908,13 @@ export const aidRequest = StyleSheet.create({
 	},
 	borderColor_GRAY10: {
 		borderWidth: 1 * DP,
-		borderColor: GRAY10,
+		borderColor: GRAY30,
+	},
+	img_irregular_174_border: {
+		width: 174 * DP,
+		height: 162 * DP,
+		borderTopLeftRadius: 25 * DP,
+		borderBottomLeftRadius: 25 * DP,
 	},
 });
 
@@ -919,6 +926,7 @@ export const aidRequestList = StyleSheet.create({
 	},
 	itemContainer: {
 		flexDirection: 'row',
+		marginBottom: 10 * DP,
 	},
 	addProtectedPetContainer: {
 		width: 654 * DP,
@@ -939,6 +947,9 @@ export const aidRequestList = StyleSheet.create({
 		textAlign: 'center',
 		textAlignVertical: 'center',
 		color: APRI10,
+	},
+	aidRequestListCont: {
+		marginTop: 20 * DP,
 	},
 });
 
@@ -1004,9 +1015,11 @@ export const animalInfoList = StyleSheet.create({
 });
 
 export const selectedMediaList = StyleSheet.create({
-	container: {
-		width: 750 * DP,
-		// height: 190 * DP,
+	container_410: {
+		height: 410 * DP,
+	},
+	container_190: {
+		height: 190 * DP,
 	},
 	itemContainer: {
 		// width: 190 * DP,

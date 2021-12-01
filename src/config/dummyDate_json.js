@@ -70,30 +70,6 @@ export const dummy_userTimeLabel = {
 	time: 1,
 };
 
-export const dummy_AidRequestList = [
-	{
-		kind: '개',
-		breed: '시고르자브종',
-		expected_age: 3,
-		weight: 1.4,
-		neutralization: true,
-		saved_point: '마포구 신수동',
-		male: true,
-		img_uri: 'https://t1.daumcdn.net/liveboard/lifeanddogue/238e8725f1204586832ccdad42a0fa84.png',
-	},
-	{
-		kind: '고양이',
-		breed: '멘탈브레이커',
-		expected_age: 5,
-		weight: 2.4,
-		neutralization: true,
-		saved_point: '마포구 협곡동',
-		male: false,
-		img_uri:
-			'https://media-exp1.licdn.com/dms/image/C4E1BAQGMzwHQmC5FgA/company-background_10000/0/1556838783242?e=2159024400&v=beta&t=T6AMul5yOkLHk3XUUlYiVesQFOtRRNGCF993hJQfVwE',
-	},
-];
-
 export const dummy_accountList = [
 	{
 		user_id: '하양이',
@@ -1285,9 +1261,7 @@ export const dummy_ShelterProtectAnimalObject = [
 		feed_type: 'feed',
 
 		_id: 2,
-		protect_animal_photos: [
-			'https://contents.creators.mypetlife.co.kr/content/uploads/2020/10/13134542/20201013131307_365d1baf95782ec7b30225d1fe1616a5_j6xk.jpg',
-		], //보호중인 동물 사진
+		protect_animal_photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBPMjNlensOfXbaEJkMyyzjNnidrSWRvzXMA&usqp=CAU'], //보호중인 동물 사진
 		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
 		protect_animal_rescue_location: '자운동', //보호중인 동물의 구조장소
 		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
@@ -2054,5 +2028,92 @@ export const dummy_ChildComment = [
 		//@LikeCommentObject ref( comment_writer_id )
 		like_comment_id: 1,
 		like_comment_user_id: [1, 2, 3, 4],
+	},
+];
+
+export const dummy_AidRequestAnimalList = [
+	{
+		//@FeedObeject
+		feed_type: 'feed',
+
+		//@ShelterProtectAnimalObject
+		_id: 1,
+		protect_animal_photos: ['https://storage.cobak.co/uploads/1588405371328060_143f1eabc3.jpg'], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021.11.23', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '바른치킨 서강대역점 주변', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '러시안블루', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'female', // Enum('male','female','unknown'), //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //Enum('yes','no','unknown'), //중성화 여부
+		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: 1.2, //몸무게
+		protect_animal_status: 'protect', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_protect_request: false,
+		protect_animal_adoption_days_remain: 10,
+		protect_animal_writer_id: 21, //보호요청을 작성한 작성자(보호소)
+		protect_animal_protect_request_id: 1, //보호요청 게시물
+		protect_animal_adoptor_id: null, //입양자
+		protect_animal_protector_id: null, //임시보호자
+		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
+
+		//@ProtectionActivityApllicantObject -
+		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+	},
+	{
+		feed_type: 'feed',
+
+		_id: 2,
+		protect_animal_photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBPMjNlensOfXbaEJkMyyzjNnidrSWRvzXMA&usqp=CAU'], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '자운동', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '러브숏', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'male', //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //중성화 여부
+		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: '1.2', //몸무게
+		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_adoption_days_remain: 10,
+		protect_animal_protect_request: true,
+		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
+		//임시보호가 되면 protect로 변경
+		//입양을 가게 되면 상태가 adopt로 변경
+		//임시보호, 입양 협의중이면 discuss로 변경
+		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
+		protect_animal_writer_id: 21, // Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
+		protect_animal_protect_request_id: 2, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
+		protect_animal_adoptor_id: null, //Mongodb_ID(ref:UserObject), //입양자
+		protect_animal_protector_id: null, //Mongodb_ID(ref:UserObject), //임시보호자
+		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
+
+		//@ProtectionActivityApllicantObject -
+		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+	},
+	{
+		feed_type: 'feed',
+
+		_id: 3,
+		protect_animal_photos: [
+			'https://t3.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/bw39r42kS9dlP_tnNMix6z2iXUM',
+		], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021.11.23', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '굴다리 식당 공덕점', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '키스숏', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'female', // Enum('male','female','unknown'), //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //Enum('yes','no','unknown'), //중성화 여부
+		protect_animal_estimate_age: '1년', //보호중인 동물의 추정 연령
+		protect_animal_weight: 2, //몸무게
+		protect_animal_status: 'adopt', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_protect_request: false,
+		protect_animal_adoption_days_remain: 10,
+		protect_animal_writer_id: 22, //보호요청을 작성한 작성자(보호소)
+		protect_animal_protect_request_id: 3, //보호요청 게시물
+		protect_animal_adoptor_id: 3, //입양자
+		protect_animal_protector_id: 2, //임시보호자
+		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
+
+		//@ProtectionActivityApllicantObject -
+		protect_act_applicant_id: [1, 2, 3, 4, 5], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
 	},
 ];

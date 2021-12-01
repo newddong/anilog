@@ -526,7 +526,6 @@ export const temp_style = StyleSheet.create({
 	editComment: {},
 	aidRequest: {
 		width: 654 * DP,
-		height: 174 * DP,
 		accountInfo_depth2: {
 			flexDirection: 'row',
 		},
@@ -850,7 +849,7 @@ export const temp_style = StyleSheet.create({
 		backgroundColor: '#FFF',
 	},
 	aidRequestList_aidRequestManage: {
-		width: 654 * DP,
+		width: 750 * DP,
 		// height: 1384 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -1820,8 +1819,15 @@ export const assignPetInfo_style = StyleSheet.create({
 });
 
 export const assignProtectAnimal_style = StyleSheet.create({
+	container: {
+		alignItems: 'center',
+		width: 654 * DP,
+	},
 	textMsg: {
+		width: 654 * DP,
 		marginTop: 12 * DP,
+		alignSelf: 'flex-start',
+		marginLeft: 50 * DP,
 	},
 	selectedMediaList: {
 		marginTop: 70 * DP,
@@ -1841,14 +1847,14 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	},
 	addPhoto: {
 		// backgroundColor: 'yellow',
-		width: 600 * DP,
-		height: 150 * DP,
+		width: 644 * DP,
+		height: 410 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 		flexDirection: 'row',
 		borderRadius: 40 * DP,
-		borderWidth: 2 * DP,
-		borderColor: GRAY10,
+		borderWidth: 7 * DP,
+		borderColor: APRI10,
 	},
 	addPhotoText: {
 		textAlignVertical: 'center',
@@ -1875,6 +1881,13 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	},
 });
 
+export const assignProtectAnimalDate = StyleSheet.create({
+	container: {
+		flex: 1,
+		alignSelf: 'center',
+	},
+});
+
 export const selectstat_view_style = StyleSheet.create({
 	select_all: {
 		marginLeft: 268 * DP,
@@ -1897,6 +1910,7 @@ export const selectstat_view_style = StyleSheet.create({
 export const baseInfo_style = StyleSheet.create({
 	list: {
 		marginTop: 35 * DP,
+		paddingLeft: 20 * DP,
 	},
 	detail: {
 		marginTop: 40 * DP,
@@ -3372,8 +3386,23 @@ export const writeAidRequest = StyleSheet.create({
 	aidRequest: {
 		marginTop: 40 * DP,
 	},
+	titleContainer: {
+		marginBottom: 20 * DP,
+		height: 70 * DP,
+		borderBottomColor: APRI10,
+		borderBottomWidth: 4 * DP,
+	},
+	titleInput: {
+		paddingLeft: 15 * DP,
+	},
 	feedTextEdit: {
 		marginTop: 80 * DP,
+	},
+	requestContent_underline: {
+		width: 654 * DP,
+		height: 2 * DP,
+		marginVertical: 40 * DP,
+		backgroundColor: APRI10,
 	},
 	addPhotoContainer: {
 		width: 160 * DP,
@@ -3389,6 +3418,20 @@ export const writeAidRequest = StyleSheet.create({
 		height: 38 * DP,
 		backgroundColor: 'pink',
 		alignSelf: 'center',
+	},
+	addPhoto: {
+		// backgroundColor: 'yellow',
+		height: 190 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexDirection: 'row',
+		borderRadius: 40 * DP,
+		borderWidth: 7 * DP,
+		borderColor: APRI10,
+	},
+	selectedMediaList: {
+		marginTop: 30 * DP,
+		marginLeft: 10 * DP,
 	},
 });
 

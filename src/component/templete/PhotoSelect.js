@@ -8,7 +8,6 @@ import CameraRoll from '@react-native-community/cameraroll';
 import {item} from 'Root/screens/common/style_address';
 import dp from 'Root/screens/dp';
 
-
 export default PhotoSelect = props => {
 	const isSingle = props.route.name === 'SinglePhotoSelect';
 
@@ -18,6 +17,10 @@ export default PhotoSelect = props => {
 	const [selectedIndex, setSelectedIndex] = React.useState([1, 2, 3, 4, 5]); // 선택된 사진의 index (다중선택모드)
 	const [number, setNumber] = React.useState(1);
 	const [selectDisable, setSelectDisable] = React.useState(false);
+
+	React.useEffect(() => {
+		console.log('photo', photo);
+	}, [photo]);
 
 	const loadPhotosMilsec = () => {
 		CameraRoll.getPhotos({
@@ -33,7 +36,7 @@ export default PhotoSelect = props => {
 					};
 				});
 				copy.splice(0, 0, true); //목록 첫 인덱스는 Default Camera Icon (사진직접찍기 기능)
-				console.log(copy);
+				// console.log(copy);
 				setPhotos(copy);
 			})
 			.catch(err => {
@@ -152,31 +155,6 @@ export default PhotoSelect = props => {
 				});
 				setSelectedIndex(copy);
 			}
-
-			// if (number < 6) {
-			// 	// console.log("State" + state)
-			// 	if (state) {
-			// 		copy[index] = number;
-			// 		number == 5 ? setSelectDisable(true) : setNumber(number + 1);
-			// 		setSelectedIndex(copy);
-
-			// 	} else if (!state) {
-			// 		let copy = [...selectedIndex];
-
-			// 		console.log('index', index);
-			// 		console.log('selected[index]', selectedIndex[index]);
-			// 		console.log('copy', copy);
-			// 		console.log(copy.length);
-			// 		selectDisable ? null : setNumber(number - 1);
-			// 		setSelectDisable(false);
-			// 	}
-			// 	photoArray_dummy.push(img);
-			// 	setPhotoArray(photoArray_dummy);
-			// 	//사진 누른 순서 관련 배열
-			// 	setselectedPhotos(img);
-			// } else if (number == 6) {
-			// 	console.log('5초과');
-			// }
 		}
 	};
 
@@ -239,38 +217,3 @@ export default PhotoSelect = props => {
 PhotoSelect.defaultProps = {
 	onCheckOut: e => console.log(e),
 };
-
-// LocalMedia.defaultProps = {
-// 	data: {
-// 		img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
-// 		isVideo: false,
-// 		duration: null,
-// 	},
-// 	index: 1,
-// 	isSingleSelection: true,
-// 	onSelect: e => console.log(e),
-// };
-
-// const renderItem = React.useCallback(
-// 	(item, index) => {
-// 		console.log('item', item)
-// 		//Single로 PhotoSelect가 호출된 경우 LocalMedia는 단일 선택모드로 실행되며, Multiple로 호출된 경우 사진 다중 선택모드로 실행
-// 		return props.route.name == 'SinglePhotoSelect' ? (
-// 			<LocalMedia
-// 				isSingleSelection={true}
-// 				onSelect={(img_uri, state) => onSelect(img_uri, state, index)}
-// 				data={item}
-// 			/>
-// 		) : (
-// 			<LocalMedia
-// 				isSingleSelection={false}
-// 				disable={selectDisable}
-// 				number={number}
-// 				onSelect={e => onSelect(e, index)}
-// 				data={{ img_uri: item.node.image.uri }}
-// 				index={selectedIndex[index]}
-// 			/>
-// 		);
-// 	},
-// 	[selectedIndex],
-// );
