@@ -15,6 +15,13 @@ import {Modal} from 'Component/modal/Modal';
  * onNo : Function,
  * onYes : Function
  * }} props
+ * 
+ * @param {object} ls
+ */
+
+
+/**
+ * @param {object} props
  */
 export default TwoBtnModal = props => {
     const pressYes = () => {

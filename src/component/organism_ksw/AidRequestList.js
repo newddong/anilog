@@ -5,6 +5,9 @@ import {AddItem64} from '../atom/icon';
 import AidRequest from './AidRequest';
 import {aidRequestList} from './style_organism';
 import {useNavigation} from '@react-navigation/core';
+import {dummy_AidRequestList} from 'Root/config/dummyDate_json';
+import {ScrollView} from 'react-native-gesture-handler';
+import {dummy_ProtectRequestList} from 'Root/config/dummy_data_hjs';
 
 /**
  *
@@ -34,9 +37,25 @@ export default AidRequestList = props => {
 			</View>
 		);
 	};
+	{
+		/* return (
+			<View style={[aidRequestList.itemContainer]}>
+				{/* {index == 0 ? <AidRequest initList={true} nvName={props.nvName} /> : <AidRequest data={item} nvName={props.nvName} />} */
+	}
+	{
+		/* <AidRequest data={item} nvName={props.nvName} /> */
+	}
+	{
+		/* </View> */
+	}
+	{
+		/* // ); */
+	}
 
 	return (
 		<View style={[aidRequestList.container]}>
+			{console.log('ProtectRequestList=>' + JSON.stringify(dummy_ProtectRequestList))}
+			{/* '보호중인 동물' 메뉴에 들어갔을때만 '보호중인 동물 추가하기 기능 보임' */}
 			{props.nvName != 'ProtectApplyList' ? (
 				<TouchableOpacity onPress={onPressAddProtectAnimal}>
 					<View style={[aidRequestList.addProtectedPetContainer]}>
@@ -50,6 +69,7 @@ export default AidRequestList = props => {
 			<View style={aidRequestList.aidRequestListCont}>
 				<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} />
 			</View>
+			{/* <FlatList data={dummy_ProtectRequestList} renderItem={({item, index}) => renderItem(item, index)} /> */}
 		</View>
 	);
 };

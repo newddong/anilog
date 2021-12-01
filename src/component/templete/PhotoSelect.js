@@ -6,6 +6,7 @@ import LocalMedia from '../molecules/LocalMedia';
 import {login_style, temp_style, photoSelect} from './style_templete';
 import CameraRoll from '@react-native-community/cameraroll';
 import {item} from 'Root/screens/common/style_address';
+import dp from 'Root/screens/dp';
 
 export default PhotoSelect = props => {
 	const isSingle = props.route.name === 'SinglePhotoSelect';
@@ -165,7 +166,7 @@ export default PhotoSelect = props => {
 						source={{
 							uri: 'https://us.123rf.com/450wm/azvector/azvector1803/azvector180300135/96983949-카메라-아이콘-플랫-카메라-기호-격리-아이콘-기호-벡터.jpg?ver=6',
 						}}
-						style={{flex: 1}}
+						style={{flex: 1,width:186*DP,height:186*DP}}
 					/>
 				</TouchableOpacity>
 			);
@@ -203,7 +204,11 @@ export default PhotoSelect = props => {
 				</TouchableOpacity>
 			</View>
 			<View style={[temp_style.mediaSelect]}>
-				<FlatList data={photo} numColumns={4} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled keyExtractor={item.key} />
+				<FlatList data={photo} numColumns={4} 
+				renderItem={({item, index}) => renderItem(item, index)} 
+				// scrollEnabled
+				keyExtractor={item.key} 
+				/>
 			</View>
 		</View>
 	);

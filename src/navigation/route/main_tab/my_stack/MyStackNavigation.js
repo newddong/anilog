@@ -35,7 +35,7 @@ import EditShelterInfo from 'Templete/EditShelterInfo';
 import AidRequestAnimalList from 'Templete/AidRequestAnimalList';
 import WriteAidRequest from 'Templete/WriteAidRequest';
 import AidRequestManage from 'Templete/AidRequestManage';
-// import ProtectApplicant from "Templete/ProtectApplicant";
+import ProtectApplicant from 'Templete/ProtectApplicant';
 import ProtectApplyForm from 'Templete/ProtectApplyForm';
 import ShelterProtectRequests from 'Templete/ShelterProtectRequests';
 import AnimalFromShelter from 'Templete/AnimalFromShelter';
@@ -123,7 +123,7 @@ export default MyStackNavigation = () => {
 			<MyStack.Screen name="ShelterProtectAnimalList" component={AidRequestManage} />
 
 			<MyStack.Screen name="ProtectApplyList" component={AidRequestManage} />
-			{/* <MyStack.Screen name="ProtectApplicant" component={ProtectApplicant} /> */}
+			<MyStack.Screen name="ProtectApplicant" component={ProtectApplicant} />
 			<MyStack.Screen name="ProtectApplyForm" component={ProtectApplyForm} />
 
 			<MyStack.Screen name="AnimalFromShelter" component={AnimalFromShelter} />
