@@ -1,33 +1,17 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
+import PropsTypes, {any, func, oneOf, oneOfType} from 'prop-types';
 import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
 import {Cross46} from '../atom/icon';
 
 /**
- *
- * @param {{
- *title: string,
- *placeholder: string,
- *descriptionType: 'star' | 'info' | 'none',
- *value: string,
- *alert_msg: 'String / 긴급메시지 ',
- *confirm_msg: 'String / 확인메시지 ',
- *info: string,
- *width: 'number / Input24의 전체 너비 default = 300',
- *showmsg : 'boolean / input 하단 alert_msg',
- *style:'StyleSheet',
- *defaultValue : string,
- *editable : 'Boolean',
- *showCrossMark : 'boolean / INPUT 오른쪽 지우기 마크(Cross) 출력여부, default = true',
- *onChange : void,
- *onClear : void,
- *showHttp : boolean,
- *validator: Input값의 양식 검증,
- * }} props
+ * 드롭다운 선택 버튼
+ * @type {React.ForwardRefRenderFunction<?,Input24Props>}
+ * 
  */
-export default Input24 = React.forwardRef((props, ref) => {
+const Input24 = React.forwardRef((props, ref) => {
 	React.useImperativeHandle(ref, () => ({
 		focus: () => {
 			inputRef.current.focus();
@@ -77,7 +61,7 @@ export default Input24 = React.forwardRef((props, ref) => {
 	};
 
 	const getMsg = () => {
-		if (props.showmsg) {
+		if (props.showMsg) {
 			if (input.length == 0) {
 				return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}></Text>;
 			} else
@@ -135,6 +119,46 @@ export default Input24 = React.forwardRef((props, ref) => {
 		</View>
 	);
 });
+
+const Input24Props = {
+	/** @type {string} 입력창 제목(상단) */
+	title: string,
+	/** @type {string} 플레이스홀더 */
+	placeholder: string,
+	/** @type {string} 표시 설정 ('star'|'info'|'none') */
+	descriptionType: string,
+	/** @type {string} 입력창에 입력된 값 */
+	value: string,
+	/** @type {string} 경고 메세지(입력창 하단에 붉게 표시, valdator가 false를 반환했을 때) */
+	alert_msg: string,
+	/** @type {string} 확인 메세지(입력창 하단에 녹색 표시, validator가 true를 반환했을 때) */
+	confirm_msg: string,
+	/** @type {string} 인포 메세지 */
+	info: string,
+	/** @type {number} 입력창 너비 */
+	width: number,
+	/** @type {boolean} 하단의 경고/확인 메세지를 표시할지 여부를 결정 */
+	showMsg: bool,
+	/** @type {object}  입력창의 스타일 */
+	style: object,
+	/** @type {string} 입력창의 기본값, 기본값을 사용하기보다는 제어 컴포넌트를 사용하는것을 권장 */
+	defaultValue: string,
+	/** @type {boolean} Text Input의 Editable */
+	editable: bool,
+	/** @type {boolean} 입력창 초기화 아이콘 표시여부(글자수가 1개 이상일때 자동으로 표시) */
+	showCrossMark: bool,
+	/** @type {()=>void} 입력값이 바뀔때 발생하는 콜백 */
+	onChange: string,
+	/** @type {()=>void} 초기화 버튼 클릭시 발생하는 콜백 */
+	onClear: string,
+	/** @type {boolean} 인터넷 주소를 입력할때 http표시 */
+	showHttp: boolean,
+	/** @type {()=>boolean} true/false를 반환하는 입력 양식 검증함수 */
+	validator: func,
+};
+
+Input24.propTypes = Input24Props;
+
 Input24.defaultProps = {
 	title: 'title', // input title
 	placeholder: 'placeholder',
@@ -150,4 +174,7 @@ Input24.defaultProps = {
 	showHttp: false, //AssignShelterInformation에서 http:// 인풋 좌측에 놓기 위한 props
 	onClear: e => console.log('Input24 지우기 시도'),
 	onChange: e => console.log(e),
+	validator: () => true,
 };
+
+export default Input24;

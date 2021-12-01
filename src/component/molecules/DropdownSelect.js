@@ -1,31 +1,19 @@
 import React from 'react';
-import { txt } from 'Root/config/textstyle';
-import { Text, View, TouchableOpacity } from 'react-native';
+import {txt} from 'Root/config/textstyle';
+import PropsTypes, {any, func, oneOf, oneOfType} from 'prop-types';
+import {Text, View, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
-import { Arrow_Down_GRAY20, Arrow_Up_GRAY20 } from '../atom/icon';
-import { APRI10, BLACK, GRAY40 } from 'Root/config/color';
+import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
+import {APRI10, BLACK, GRAY40} from 'Root/config/color';
 import Dropdown from './Dropdown';
 import Modal from 'Component/modal/Modal';
+import {string} from 'prop-types';
 
 /**
  * 드롭다운 선택 버튼
- * 
- * 
- * 
+ * @type {React.ForwardRefRenderFunction<React.FunctionComponent,DropdownSelectProps>}
  */
-const DropdownSelect = React.forwardRef((
-	/** 
-     * @type {{
-	 * value: string,
-	 * width: number,
-	 * onClose: () => void,,
-	 * onOpen: () => void,,
-	 * textStyle: object,
-	 * }}
-	 * 
-	*/
-	props,
-	ref) => {
+const DropdownSelect = React.forwardRef((props, ref) => {
 	React.useImperativeHandle(ref, () => ({
 		press: () => {
 			onPress();
@@ -57,8 +45,8 @@ const DropdownSelect = React.forwardRef((
 		<TouchableOpacity onPress={onPress}>
 			<View
 				style={{
-					height:82*DP,
-					width: props.width*DP,
+					height: 80 * DP, //border가 있으므로 80DP로 수정
+					width: props.width * DP,
 					borderBottomColor: APRI10,
 					borderBottomWidth: 2 * DP,
 					flexDirection: 'row',
@@ -93,6 +81,24 @@ const DropdownSelect = React.forwardRef((
 		</TouchableOpacity>
 	);
 });
+
+const DropdownSelectProps = {
+	/** @type {string} 버튼에 표시되는 값 */
+	value: string,
+	/** @type {()=>void} 닫힐때의 콜백 */
+	onClose: func,
+	/** @type {()=>void} 열릴 때 콜백 */
+	onOpen: func,
+	/** @type {object} 표시되는 글의 글꼴 */
+	textStyle: object,
+	/** @type {number} 버튼의 너비 숫자만 입력, DP는 컴포넌트 내부에서 자동으로 계산됨 */
+	width: number,
+	// ref : oneOf(shape({current:any}),func),
+	
+};
+
+DropdownSelect.propTypes = DropdownSelectProps;
+
 DropdownSelect.defaultProps = {
 	value: '',
 	// width: 0, //Select+Text 부분의 width Default=180(5글자)
@@ -102,6 +108,5 @@ DropdownSelect.defaultProps = {
 	onOpen: e => console.log('DropdownSelect Default onOpen', e),
 	textStyle: null,
 };
-
 
 export default DropdownSelect;

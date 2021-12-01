@@ -24,10 +24,11 @@ import Input24 from './Input24';
  * 
  */
 const SelectModal = props => {
-    const initValue = props.selectItems?props.selectItems:'멍멍이';
+    const initValue = props.primaryItems?props.primaryItems:'멍멍이';
+    const initSecondaryValue = props.secondaryItems?props.secondaryItems:'직접입력';
 
-    const [value, setValue] = React.useState(initValue);
-
+    const [primaryValue, setPrimary] = React.useState(initValue);
+    const [secondaryValue, setSecondaryValue] = React.useState(initSecondaryValue)
 
     const pressYes = () => {
         props.onYes();
@@ -43,8 +44,8 @@ const SelectModal = props => {
         <View style={style.background}>
             <View style={[style.popUpWindow,style.shadow]}>
                 <View style ={{flexDirection:'row',justifyContent:'space-between',marginBottom:40*DP}}>
-                <DropdownSelect width={204} value={value} />
-                {false?<DropdownSelect width={262} value={value} />:<Input24></Input24>}
+                <DropdownSelect width={204} value={primaryValue} onClose/>
+                {false?<DropdownSelect width={262} value={secondaryValue} />:<Input24></Input24>}
                 </View>
                 <View style={style.buttonContainer}>
                     <AniButton btnLayout={btn_w226} btnStyle={'filled'} btnTitle={props.yesMsg} onPress={pressYes} />
@@ -59,8 +60,8 @@ SelectModal.defaultProps = {
     popUpMsg: 'popUp',
     noMsg: 'cancel',
     yesMsg: 'ok',
-    onNo: () => { alert('NO') },
-    onYes: () => { alert('YES') },
+    onNo: () => { console.log('NO') },
+    onYes: () => { console.log('YES') },
 }
 
 const style = StyleSheet.create({
