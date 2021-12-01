@@ -3,7 +3,7 @@ import {View, Text, FlatList, TouchableWithoutFeedback, ScrollView,Platform} fro
 import {txt} from 'Root/config/textstyle';
 import Animated, {useSharedValue, useAnimatedStyle, useAnimatedScrollHandler, runOnJS, ceil} from 'react-native-reanimated';
 import DP from 'Root/config/dp';
-import {Modal} from 'Component/modal/Modal';
+import Modal from 'Component/modal/Modal';
 import { APRI10 } from 'Root/config/color';
 
 

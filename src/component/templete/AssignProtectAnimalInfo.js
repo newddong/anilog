@@ -10,7 +10,7 @@ import Input24 from '../molecules/Input30';
 import AniButton from '../molecules/AniButton';
 import {useNavigation} from '@react-navigation/core';
 import Dropdown from '../molecules/Dropdown';
-import {Modal} from '../modal/Modal';
+import Modal from '../modal/Modal';
 import {PET_YEAR, PET_MONTH} from 'Root/i18n/msg';
 import {stagebar_style} from '../organism_ksw/style_organism';
 import {CommonActions} from '@react-navigation/native';

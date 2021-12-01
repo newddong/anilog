@@ -6,7 +6,7 @@ import {dummy_userObject, dummy_VolunteerAcitivityApplicantObject} from 'Root/co
 import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
 import {Add_Volunteer, Calendar48_Filled, Person48, Phone48} from '../atom/icon';
-import {Modal} from '../modal/Modal';
+import Modal from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
 import Input30 from '../molecules/Input30';
 import ShelterInfo from '../molecules/ShelterInfo';

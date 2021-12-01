@@ -13,7 +13,7 @@ import ShelterInfo from '../molecules/ShelterInfo';
 import {applyVolunteer, btn_style, login_style} from './style_templete';
 import DatePicker from '../molecules/DatePicker';
 import Input24 from '../molecules/Input24';
-import {Modal} from '../modal/Modal';
+import Modal from '../modal/Modal';
 
 export default ApplyVolunteer = ({route, navigation}) => {
 	// console.log('route/params at ApplyVolunteer', route.params);

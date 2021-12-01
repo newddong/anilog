@@ -6,7 +6,7 @@ import Dropdown from 'Molecules/Dropdown';
 import {btn_w280, btn_w226} from 'Atom/btn/btn_style';
 import {APRI10, BLACK, BLUE10, GRAY10, GRAY40, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
-import {Modal} from 'Component/modal/Modal';
+import Modal from 'Component/modal/Modal';
 import {txt} from 'Root/config/textstyle';
 import DropdownSelect from './DropdownSelect';
 
@@ -26,7 +26,7 @@ import DropdownSelect from './DropdownSelect';
  * onSelect : Function,
  * }} props
  */
-export default NormalDropDown = props => {
+const NormalDropDown = props => {
 	//Default로 선택되어 있어야 하는 경우 ex)프로필 수정 혹은 임시저장된 데이터 호출 시에는 기존 데이터와 일치하는 Default값을 보여주어야 함
 	const [value, setValue] = React.useState(props.menu[props.defaultIndex ? props.defaultIndex : 0]);
 	const onSelect = (v, i) => {
@@ -96,3 +96,5 @@ NormalDropDown.defaultProps = {
 	onSelect: (v, i) => console.log('NormalDropDown Default onSelect  ', i + ':' + v),
 	menu: [],
 };
+
+export default NormalDropDown;

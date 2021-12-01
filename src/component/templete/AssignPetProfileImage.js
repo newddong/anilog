@@ -7,7 +7,7 @@ import {txt} from 'Root/config/textstyle';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import {btn_w654} from '../atom/btn/btn_style';
 import {Check50, Rect50_Border} from '../atom/icon';
-import {Modal} from '../modal/Modal';
+import Modal from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
 import Input30 from '../molecules/Input30';
 import ProfileImageSelect from '../molecules/ProfileImageSelect';

@@ -4,7 +4,7 @@ import {Text, View, ScrollView, Image} from 'react-native';
 import {CONFIRM_ADOPT_REQUEST, CONFIRM_FINALIZED, CONFIRM_PROTECT_REQUEST} from 'Root/i18n/msg';
 import {btn_w226} from '../atom/btn/btn_style';
 import {styles} from '../atom/image/imageStyle';
-import {Modal} from '../modal/Modal';
+import Modal from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
 import AnimalProtectDetail from '../organism_ksw/AnimalProtectDetail';
 import {applyDetails, btn_style, login_style, temp_style} from './style_templete';

@@ -2,7 +2,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {btn_w654} from '../atom/btn/btn_style';
-import {Modal} from '../modal/Modal';
+import Modal from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
 import PasswordChecker from '../organism_ksw/PasswordChecker';
 import {login_style, btn_style, temp_style, changePassword_style} from './style_templete';

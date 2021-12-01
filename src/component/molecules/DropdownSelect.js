@@ -1,25 +1,31 @@
 import React from 'react';
-import {txt} from 'Root/config/textstyle';
-import {Text, View, TouchableOpacity} from 'react-native';
+import { txt } from 'Root/config/textstyle';
+import { Text, View, TouchableOpacity } from 'react-native';
 import DP from 'Root/config/dp';
-import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
-import {APRI10, BLACK, GRAY40} from 'Root/config/color';
+import { Arrow_Down_GRAY20, Arrow_Up_GRAY20 } from '../atom/icon';
+import { APRI10, BLACK, GRAY40 } from 'Root/config/color';
 import Dropdown from './Dropdown';
-import {Modal} from 'Component/modal/Modal';
+import Modal from 'Component/modal/Modal';
+
 /**
- *
- * @param {{
- *	value: object,
- *	items: object,
- *	defaultIndex: number,
- *  selectedIndex : number,
- *	width: number,
- * 	onPress : 'void',
- *	onChange: 'Callback',
- *	textStyle: 'Text Style',
- * }} props
+ * 드롭다운 선택 버튼
+ * 
+ * 
+ * 
  */
-export default DropdownSelect = React.forwardRef((props, ref) => {
+const DropdownSelect = React.forwardRef((
+	/** 
+     * @type {{
+	 * value: string,
+	 * width: number,
+	 * onClose: () => void,,
+	 * onOpen: () => void,,
+	 * textStyle: object,
+	 * }}
+	 * 
+	*/
+	props,
+	ref) => {
 	React.useImperativeHandle(ref, () => ({
 		press: () => {
 			onPress();
@@ -48,10 +54,11 @@ export default DropdownSelect = React.forwardRef((props, ref) => {
 	};
 
 	return (
-		<TouchableOpacity onPress={onPress} style={{height: 82 * DP, flexDirection: 'row'}}>
+		<TouchableOpacity onPress={onPress}>
 			<View
 				style={{
-					width: props.width * DP,
+					height:82*DP,
+					width: props.width*DP,
 					borderBottomColor: APRI10,
 					borderBottomWidth: 2 * DP,
 					flexDirection: 'row',
@@ -88,10 +95,13 @@ export default DropdownSelect = React.forwardRef((props, ref) => {
 });
 DropdownSelect.defaultProps = {
 	value: '',
-	width: 180, //Select+Text 부분의 width Default=180(5글자)
-	onChange: e => console.log('DropdownSelect Default onChange', e),
-	onPress: e => console.log('DropdownSelect Default onPress', e),
+	// width: 0, //Select+Text 부분의 width Default=180(5글자)
+	// onChange: e => console.log('DropdownSelect Default onChange', e),
+	// onPress: e => console.log('DropdownSelect Default onPress', e),
 	onClose: e => console.log('DropdownSelect Default onClose  ', e),
 	onOpen: e => console.log('DropdownSelect Default onOpen', e),
 	textStyle: null,
 };
+
+
+export default DropdownSelect;

@@ -9,7 +9,7 @@ import {btn_w226} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import {login_style, btn_style, temp_style, progressbar_style, assignPetInfo_style} from './style_templete';
 import DatePicker from '../molecules/DatePicker';
-import {Modal} from '../modal/Modal';
+import Modal from '../modal/Modal';
 
 export default AssignPetInfoB = props => {
 	console.log(props.route.params);

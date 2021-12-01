@@ -1,5 +1,8 @@
-export const Modal = {
-	
+/**
+ * 모달 모듈
+ */
+export default Modal = {
+
 	/**
 	 * 모달창 종료 함수
 	 * 
@@ -7,57 +10,47 @@ export const Modal = {
 	 * ```js
 	 * Modal.close()
 	 * ```
-	 *
-	 *
 	 */
 	close: () => {},
+
 	/**
 	 * 두버튼 모달창을 띄우는 함수
-	 * 
 	 * @param {string} msg - 팝업창 메세지
 	 * @param {string} noMsg - 취소 버튼 메시지
 	 * @param {string} yesMsg - 확인 버튼 메시지
 	 * @param {()=>void} onNo - 취소 버튼의 콜백함수
 	 * @param {()=>void} onYes - 확인 버튼의 콜백함수
-	 * @return void
 	 */
 	popTwoBtn: (msg, noMsg, yesMsg, onNo, onYes) => {},
 
 	/**
 	 * 버튼없는 모달창을 띄우는 함수
-	 *
 	 * @param {string} msg - 팝업창 메세지
-	 * @return void
 	 */
 	popNoBtn: msg => {},
 
 	/**
 	 * 버튼이 한개인 모달창을 띄우는 함수
-	 *
 	 * @param {string} msg - 팝업창 메세지
 	 * @param {string} okMsg - 확인 버튼 메시지
 	 * @param {()=>void} onOk - 확인 버튼의 콜백함수
-	 * @return void
 	 */
 	popOneBtn: (msg, okMsg, onOk) => {},
 
 	/**
 	 * 컴포넌트를 모달로 띄우는 함수
-	 *
 	 * @param {React.FC} component - 팝업할 컴포넌트
-	 * @return void
 	 */
 	popDrop: component => {},
 
 	/**
 	 * 달력 선택창을 모달로 띄우는 함수
-	 *
 	 * @param {boolean} visible - 설명추가 바람
 	 * @param {()=>void} onOff - 설명추가 바람
 	 * @param {(moment.Moment)=>void} date -설명
-	 * @return void
 	 */
 	popCalendar: (visible, onOff, date) => {},
+
 	/**
 	 * 회전 선택창을 모달로 띄우는 함수
 	 * ```js
@@ -67,8 +60,11 @@ export const Modal = {
 	 * @param {Array.<string>} items - 선택항목 목록
 	 * @param {(event:string)=>void} onSelect - 선택항목을 반환하는 콜백
 	 * @param {()=>void} onCance - 취소 버튼의 콜백함수
-	 * @return void
 	 */
-	rollingSelect: (title, items = [''], onSelect, onCancel = ModalModule.close) => {},
-};
+	rollingSelect: (title, items = [''], onSelect, onCancel = Modal.close) => {},
 
+	/**
+	 * 선택 모달창을 띄우는 함수
+	 */
+	popSelect: (msg, noMsg, yesMsg, onNo, onYes) => {},
+};

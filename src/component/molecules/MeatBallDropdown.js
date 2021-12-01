@@ -4,7 +4,7 @@ import Dropdown from 'Molecules/Dropdown';
 import {btn_w280, btn_w226} from 'Atom/btn/btn_style';
 import {APRI10, APRI20, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
-import {Modal} from 'Component/modal/Modal';
+import Modal from 'Component/modal/Modal';
 import {txt} from 'Root/config/textstyle';
 import MeatballButton from 'Molecules/MeatballButton';
 
