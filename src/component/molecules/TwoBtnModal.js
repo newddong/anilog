@@ -5,25 +5,20 @@ import { btn_w226 } from 'Atom/btn/btn_style';
 import {WHITE,GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
-import {Modal} from 'Component/modal/Modal';
+import {ModalModule} from 'Component/modal/Modal';
 
 /**
- *
- * @param {{popUpMsg : string,
- * noMsg : string,
- * yesMsg : string,
- * onNo : Function,
- * onYes : Function
- * }} props
+ * 두 버튼을 띄우는 모달 컴포넌트
  * 
- * @param {object} ls
+ * @param {Object} props - props object 
+ * @param {string} props.popUpMsg - 팝업 메시지
+ * @param {string} props.noMsg - 취소 버튼 메시지
+ * @param {string} props.yesMsg - 확인 버튼 메시지
+ * @param {()=>void} props.onNo - 취소 버튼 콜백
+ * @param {()=>void} props.onYes - 확인 버튼 콜백
+ * 
  */
-
-
-/**
- * @param {object} props
- */
-export default TwoBtnModal = props => {
+const TwoBtnModal = props => {
     const pressYes = () => {
         props.onYes();
     }
@@ -88,3 +83,5 @@ const style = StyleSheet.create({
         elevation: 2,
     }
 })
+
+export default TwoBtnModal;

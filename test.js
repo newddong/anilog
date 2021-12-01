@@ -1,107 +1,161 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableWithoutFeedback, ScrollView} from 'react-native';
 import {txt} from 'Root/config/textstyle';
-import Animated, {useSharedValue, useAnimatedStyle, useAnimatedScrollHandler, runOnJS} from 'react-native-reanimated';
-import test from 'experiment/test';
+import Animated, {useSharedValue, useAnimatedStyle, useAnimatedScrollHandler, runOnJS, ceil} from 'react-native-reanimated';
+import DP from 'Root/config/dp';
 
-export default Test = () => {
-	// useEffect(() => {
-	// 	try {
-	// 	  setTimeout(() => {
-	// 			SplashScreen.hide();
-	// 	  }, 1000); /** 스플래시 시간 조절 (1초) **/
-	// 	} catch(e) {
-	// 	  console.warn('Error');
-	// 	  console.warn(e);
-	// 	}
-	//  });
-	const scroll = React.useRef();
-	const translationY = useSharedValue(0);
+export default RollingSelect = props => {
+	
+	
+	const scrollRef = React.useRef();
+	const scrollOffsetY = useSharedValue(0);
+	// const [itemCountInWindow, setItemCountInWindow] = React.useState(0); 
+	const selectedItem = React.useRef();
+	const [scrollOffset, setScrollOffset] = React.useState({x:0,y:0});
+	
+	const items = props.items;
+	const itemheight = Math.ceil(50*DP);
+	const layoutHeight = Math.ceil(370*DP);
+
+	const [scrollList, setScrollList] = React.useState([]);
 
 	const scrollHandler = useAnimatedScrollHandler(event => {
-		console.log(event);
-		translationY.value = event.contentOffset.y;
+		scrollOffsetY.value = event.contentOffset.y;
 	});
-	const tt = () => {
-		scroll.current.scrollTo({y: 0, animated: false});
+	
+	const onScrollEnd = e => {
+		let index = Math.round(e.nativeEvent.contentOffset.y / itemheight);
+		
+		
+		if(index<items.length-1){
+			index = index + items.length;
+			scrollRef.current.scrollTo({x:0,y:itemheight*index,animated:false});
+			// setScrollOffset({x:0,y:itemheight*index});
+		}
+		
+
+		if(index>items.length*2-1){
+			index = index - items.length;
+			scrollRef.current.scrollTo({x:0,y:itemheight*index,animated:false});
+			// setScrollOffset({x:0,y:itemheight*index});
+		}
+
+		scrollRef.current.scrollTo({x:0,y:itemheight*index,animated:true});
+
 	};
+	const onItemSelection = e => {
+		console.log('선택',e);
+		selectedItem.current = e;
+	}
+	const onSelect = () => {
+		props.onSelect(selectedItem.current);
+	}
 
-	const testArray = Array.from({length: 30}, (v, i) => i);
+	const onCancel = () => {
+		props.onCancel();
+	}
 
+	const onLayout = e => {
+		const showItemNumber = Math.floor(e.nativeEvent.layout.height/itemheight);
+		
+		let list = items;
+		if(showItemNumber > items.length){
+			let length = 0;
+			let count = Math.floor(1+showItemNumber/items.length)
+			console.log('count',count);
+			for(let i=0;i<Math.floor(1+showItemNumber/items.length)*3;i++){
+				console.log('d',i);
+				list=list.concat(items);
+			}
+			console.log(list.length);
+			// setItemCountInWindow(length);
+			setScrollList(list);
+		}else{
+			// setItemCountInWindow(items.length);
+			setScrollList(items.concat(items).concat(items));
+		}
+		setScrollOffset({x:0,y:itemheight*Math.floor(items.length+showItemNumber/2)});
+	}
+	console.log('reder')
 	return (
 		<View style={{flex: 1, backgroundColor: '#0009', justifyContent: 'flex-end'}}>
-			<View style={{height: 400, backgroundColor: '#fff', justifyContent: 'flex-end'}}>
-				<View style={{height: 300, backgroundColor: '#fff', alignItems: 'center'}}>
-					
-					{/* <Animated.FlatList data={Array.from({length: 150}, (v, i) => i)} renderItem={render} /> */}
+			<View style={{height: 470*DP, backgroundColor: '#fff', justifyContent: 'flex-end'}}>
+				<View style={{width:'100%',flex:1,justifyContent:'space-around',flexDirection:'row',alignItems:'center'}}>
+					<TouchableWithoutFeedback onPress={onCancel}>
+					<Text style={txt.noto26b}>취소</Text>
+					</TouchableWithoutFeedback>
+					<Text style={txt.noto32b}>{props.title}</Text>
+					<TouchableWithoutFeedback onPress={onSelect}>
+					<Text style={txt.noto26b}>선택</Text>
+					</TouchableWithoutFeedback>
+				</View>
+				<View style={{height: layoutHeight, backgroundColor: '#fff', alignItems: 'center'}} onLayout={onLayout}>
 					<Animated.ScrollView
-						ref={scroll}
+						showsVerticalScrollIndicator={false}
+						ref={scrollRef}
+						contentOffset={scrollOffset}
+						onMomentumScrollEnd={onScrollEnd}
 						onScroll={scrollHandler}
-						style={{height: 300, backgroundColor: 'green'}}
-						contentContainerStyle={{backgroundColor: 'blue'}}>
-						{/* {Array.from({length: 10}, (v, i) => i).map((v, i) => (
-						<Testcomp index={v} key={i} t trans={translationY} layout={300}/>
-					))}
-					{Array.from({length: 10}, (v, i) => i).map((v, i) => (
-						<Testcomp index={v} key={i} t trans={translationY} layout={300}/>
-					))}
-					{Array.from({length: 10}, (v, i) => i).map((v, i) => (
-						<Testcomp index={v} key={i} t trans={translationY} layout={300}/>
-					))} */}
-						{testArray.map((v, i) => (
-							<Testcomp index={v} key={i} t trans={translationY} layout={300} />
+						style={{height: layoutHeight,width:'100%'}}
+						contentContainerStyle={{}}>
+						{scrollList.map((item, index) => (
+							<ScrollItem index={index} key={index} scrolloffset={scrollOffsetY} layoutheight={layoutHeight} itemheight={itemheight} item={item} onItemSelection={onItemSelection}/>
 						))}
 					</Animated.ScrollView>
-					<View style={{height: 20, width: 20, backgroundColor: 'purple', position: 'absolute', top: 150,left:135}} />
+
+					{/* <View style={{height: 60*DP, width: '100%', borderColor:'black',borderTopWidth:2*DP,borderBottomWidth:2*DP, position: 'absolute', top: 143*DP,left:0}} /> */}
+					<View style={{height: 2*DP, width: '100%',backgroundColor:'#999999',position: 'absolute', top: 143*DP,left:0}} />
+					<View style={{height: 2*DP, width: '100%',backgroundColor:'#999999',position: 'absolute', top: 203*DP,left:0}} />
 				</View>
-				<TouchableWithoutFeedback onPress={tt}>
-					<View style={{height: 80, width: 80, backgroundColor: 'red', position: 'absolute'}}></View>
-				</TouchableWithoutFeedback>
 			</View>
 		</View>
 	);
 };
 
-const Testcomp = props => {
-	const [mark, setMark] = React.useState(false);
-	const y = React.useRef(0);
-	const [sy, setY] = React.useState(0);
-	const [h, setH] = React.useState(0);
+RollingSelect.defaultProps = {
+	title:'제목',
+	items:['항목1','항목2','항목3','항목4','항목5'],
+	onSelect:e=>{console.log('onSelect',e)},
+	onCancel:e=>{console.log('onCancel',e)}
+
+}
+
+
+const ScrollItem = props => {
+	
+	const [isSelect, setSelect] = React.useState(false);
+	
+	const [itemOffset, setItemOffset] = React.useState(0);
+	
 	const onLayout = e => {
-		// console.log('test', e.nativeEvent);
-		// y.current = e.nativeEvent.layout.y;
-		setY(e.nativeEvent.layout.y);
-		setH(e.nativeEvent.layout.height);
+		setItemOffset(e.nativeEvent.layout.y);
 	};
 
-	const selection = value => {
-		// props.index===0&&console.log(props.t,props.index,'JS',value);
+	const itemSelection = value => {
 
-		(value < 6 && value > -6 && (setMark(true) || true)) || setMark(false);
+		(value < 15 && value > -15 && (setSelect(true) || true)) ||setSelect(false);
+		
 	};
+
 	React.useEffect(() => {
-		// console.log('mark!','아이템',props.index)
-	}, [mark]);
-	const stylez = useAnimatedStyle(() => {
-		let offset = sy - props.trans.value;
-		let result = 90 - (180 / props.layout) * offset;
-		// offset<400&&offset>200&&setMark(true);
-		runOnJS(selection)(result);
+		props.onItemSelection&&props.onItemSelection(props.item);
+	}, [isSelect]);
+	
+	const itemStyle = useAnimatedStyle(() => {
+		let offsetInLayout = itemOffset - props.scrolloffset.value;
+		let result = 80 - (180 / props.layoutheight) * offsetInLayout;
+		runOnJS(itemSelection)(result);
 		return {
 			transform: [
-				// {rotateX:`${props.trans.value - sy}deg`}
-				{rotateX: `${result > 90 ? 90 : result < -90 ? -90 : result}deg`},
-				{translateY: -result},
+				{rotateX: `${(result > 90 ? 90 : result < -90 ? -90 : result)*1}deg`},
+				{translateY: -result/4*1},
 			],
 		};
 	});
-
-	// console.log('render'+sy);
 	return (
-		<Animated.View style={[stylez, {backgroundColor: 'yellow', height: 20}]} onLayout={onLayout}>
-			<Animated.Text style={[txt.noto30b, , {color: mark ? 'red' : 'black'}]}>
-				{props.t && '아이템'}
-				{props.index}
+		<Animated.View style={[itemStyle,{justifyContent:'center', height: props.itemheight,width:'100%',alignItems:'center'}]} onLayout={onLayout}>
+			<Animated.Text style={[txt.noto28b,{color: isSelect ? 'red' : 'black', includeFontPadding:false}]}>
+				{props.item}
 			</Animated.Text>
 		</Animated.View>
 	);

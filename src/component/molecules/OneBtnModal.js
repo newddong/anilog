@@ -7,14 +7,19 @@ import {txt} from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
 import {Modal} from 'Component/modal/Modal';
 
+export default OneBtnModal;
+
+
 /**
- *
- * @param {{popUpMsg : string,
- * okMsg : string,
- * onOk : Function,
- * }} props
+ * 한개 버튼을 띄우는 모달
+ * 
+ * @param {Object} props - props object 
+ * @param {string} props.popUpMsg - 팝업 메시지
+ * @param {string} props.okMsg - 확인 버튼 메시지
+ * @param {()=>void} props.onOk - 확인 버튼 콜백
+ * 
  */
-export default OneBtnModal = props => {
+const OneBtnModal = props => {
     const pressOk = () => {
         props.onOk();
         // Modal.close();
@@ -35,10 +40,8 @@ export default OneBtnModal = props => {
 
 OneBtnModal.defaultProps = {
     popUpMsg: 'popUp',
-    noMsg: 'cancel',
-    yesMsg: 'ok',
-    onNo: () => { alert('NO') },
-    onYes: () => { alert('YES') },
+    okMsg: 'ok',
+    onOk: () => { alert('OK') },
 }
 
 const style = StyleSheet.create({

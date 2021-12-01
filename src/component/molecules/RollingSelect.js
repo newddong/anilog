@@ -6,7 +6,19 @@ import DP from 'Root/config/dp';
 import {Modal} from 'Component/modal/Modal';
 import { APRI10 } from 'Root/config/color';
 
-export default RollingSelect = props => {
+export default RollingSelect;
+
+/**
+ * 회전 선택창 모달 컴포넌트
+ * 
+ * @param {Object} props - props object 
+ * @param {Array.<string>} props.items - 선택 항목의 배열
+ * @param {string} props.title - 선택창 제목
+ * @param {(item:string)=>void} props.onSelect - 선택 버튼 콜백
+ * @param {()=>void} props.onCancel - 취소 버튼 콜백
+ * 
+ */
+const RollingSelect = props => {
 	
 	
 	const scrollRef = React.useRef();
@@ -33,7 +45,7 @@ export default RollingSelect = props => {
 	// }
 	
 	const onScrollEnd = e => {
-		console.log('onscrollend  ', e.nativeEvent);
+		// console.log('onscrollend  ', e.nativeEvent);
 		let index = Math.round(e.nativeEvent.contentOffset.y / itemheight);
 		
 		
@@ -89,7 +101,7 @@ export default RollingSelect = props => {
 		}
 		setScrollOffset({x:0,y:itemheight*Math.floor(items.length+showItemNumber/2)});
 	}
-	console.log('reder')
+
 	return (
 		<View style={{flex: 1, backgroundColor: '#0009', justifyContent: 'flex-end'}}>
 			<View style={{height: 470*DP, backgroundColor: '#fff', justifyContent: 'flex-end'}}>
@@ -131,10 +143,25 @@ RollingSelect.defaultProps = {
 	items:['항목1','항목2','항목3','항목4','항목5'],
 	onSelect:e=>{console.log('onSelect',e)},
 	onCancel:e=>{console.log('onCancel',e)}
-
 }
 
 
+/**
+ * @typedef {import('react-native-reanimated').useSharedValue} SharedValue
+ * 
+ */
+
+
+/**
+ * 회전 선택창 항목 컴포넌트
+ * 
+ * @param {Object} props - props object 
+ * @param {string} props.item - 항목 내용
+ * @param {number} props.layoutheight - 레이아웃(스크롤 전체)의 높이
+ * @param {SharedValue} props.scrolloffset - 스크롤이 움직인 오프셋 값(스크롤 핸들러에서 받아온 값)
+ * @param {(item:string)=>void} props.onItemSelection - 항목이 하이라이트(선택) 됐을때 콜백
+ * 
+ */
 const ScrollItem = props => {
 	
 	const [isSelect, setSelect] = React.useState(false);
@@ -156,7 +183,9 @@ const ScrollItem = props => {
 	};
 	
 	const itemStyle = useAnimatedStyle(() => {
+		/** 스크롤 창(보여지는부분) 맨 위에서부터 항목까지의 거리 */
 		let offsetInLayout = itemOffset - props.scrolloffset.value;
+		/** 항목이 회전할 정도 */
 		let degCalc = 80 - (180 / props.layoutheight) * offsetInLayout;
 		if(degCalc<15&&degCalc>-15){
 			selectItem.current = props.item;

@@ -7,14 +7,19 @@ import { txt } from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
 import { Modal } from 'Component/modal/Modal';
 
+
+export default NoBtnModal;
+
 /**
- *
- * @param {{popUpMsg : string,
- * okMsg : string,
- * onOk : Function,
- * }} props
+ * 버튼이 없는 모달
+ * 
+ * @todo 모달창이 없어지기 위한 조건을 넣어야함.
+ * 
+ * @param {Object} props - props object 
+ * @param {string} props.popUpMsg - 팝업 메시지
+ * 
  */
-export default NoBtnModal = props => {
+const NoBtnModal = props => {
 
 
     return (
@@ -28,10 +33,6 @@ export default NoBtnModal = props => {
 
 NoBtnModal.defaultProps = {
     popUpMsg: 'popUp',
-    noMsg: 'cancel',
-    yesMsg: 'ok',
-    onNo: () => { alert('NO') },
-    onYes: () => { alert('YES') },
 }
 
 const style = StyleSheet.create({

@@ -61,6 +61,13 @@ export default RootStackNavigation = () => {
 	const [isPop, setPop] = React.useState(false);
 	const [popupComponent, setPopupComponent] = React.useState([]);
 
+
+	/**
+	 * 컴포넌트를 모달 스택에 넣음
+	 *
+	 * @param {React.FC} Component - 팝업할 컴포넌트
+	 * @return void
+	 */
 	const popIn = Component => {
 		const component = React.cloneElement(Component, {key: popupComponent.length});
 		setPopupComponent([component, ...popupComponent]);
