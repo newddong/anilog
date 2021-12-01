@@ -7,9 +7,17 @@ import DatePicker from '../molecules/DatePicker';
 import Input30 from '../molecules/Input30';
 import RadioBox from '../molecules/RadioBox';
 
-export default SetPetInformation = props => {
+export default SetPetInformation = ({route, navigation}) => {
 	//생녈월일 계산 함수
 	const [selectedBirthDate, setSelectedBirthDate] = React.useState('2021.11.01');
+
+	const [data, setData] = React.useState(route.params);
+
+	React.useEffect(() => {
+		console.log('SetPetInformation_data: ', data);
+		navigation.setParams(data);
+	}, [data]);
+
 	const getBirthDate = () => {
 		const today = new Date().getTime();
 		let split = selectedBirthDate.split('.');
@@ -27,6 +35,11 @@ export default SetPetInformation = props => {
 		return <Text style={[txt.noto22]}>{birthDate()}</Text>;
 	};
 
+	const onSexChange = e => {
+		e => console.log('성별선택=>' + e);
+		setData({...data, user_mobile_company: v});
+	};
+
 	return (
 		<View style={[login_style.wrp_main, setPetInformation.container]}>
 			<View style={[setPetInformation.inputForm]}>
@@ -39,7 +52,7 @@ export default SetPetInformation = props => {
 					</View>
 					<View style={[temp_style.tabSelectFilled_Type1]}>
 						{/* <Text>tabSelectFilled_Type1</Text> */}
-						<TabSelectFilled_Type1 items={['남아', '여아']} onSelect={e => alert(e)} width={520} />
+						<TabSelectFilled_Type1 items={['남아', '여아']} onSelect={e => onSexChange(e)} width={520} />
 					</View>
 				</View>
 				{/* DatePicker And Birth Time */}
@@ -74,7 +87,7 @@ export default SetPetInformation = props => {
 						<Text style={[txt.noto28]}>중성화</Text>
 					</View>
 					<View style={[setPetInformation.radioBox_right]}>
-						<RadioBox items={['예', '아니오', '모름']} onSelect={e => alert(e)} />
+						<RadioBox items={['예', '아니오', '모름']} onSelect={e => console.log('중성화선택=>' + e)} />
 					</View>
 				</View>
 			</View>

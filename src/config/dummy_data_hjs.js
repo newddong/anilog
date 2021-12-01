@@ -867,3 +867,105 @@ export const _dummy_ApplicationFormVolunteer_shelter = [
 		],
 	},
 ];
+
+export const _dummy_petInfo_from_user = [
+	{
+		//@UserObject
+		_id: 'pet1',
+		user_type: 'pet',
+		pet_is_temp_protection: false, //반려동물이 임시보호 중인지 여부
+		pet_species: '개', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+		pet_species_detail: '리트리버', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+		pet_sex: 'male', //반려동물의 성별
+		pet_neutralization: 'no', //반려동물 중성화 여부
+		pet_birthday: '2021-11-08', //반려동물 생일
+		pet_weight: '6', //반려동물 몸무게
+		pet_status: 'companion', //반려동물의 상태, 임시보호중(protect), 입양됨(adopt), 반려동물(companion)
+		pet_adopter: 'user1', //반려동물 입양자
+		pet_protector: null, //반려동물 임시보호자
+		user_profile_uri: 'https://gfp-2a3tnpzj.stackpathdns.com/wp-content/uploads/2020/10/Amber-1200x1600.jpg',
+		//infoOnOffSwitch
+		info_on_off: 0,
+	},
+];
+
+export const _dummy_familyAccountList = [
+	{
+		//@UserObject  (가족계정)
+		_id: 'user27',
+		user_profile_uri: 'https://cocotimes.kr/wp-content/uploads/2019/12/tica114d18020146_l.jpg',
+		user_nickname: '호연', //닉네임
+		userType: 'user', //required - 유저타입 pet user shelter hash
+		size: 94, // icon size
+	},
+	{
+		_id: 'user28',
+		user_profile_uri: 'http://cdn.slist.kr/news/photo/201809/44963_111712_3649.png',
+		user_nickname: '요들이', //닉네임
+		userType: 'user', //required - 유저타입 pet user shelter hash
+		size: 94, // icon size
+	},
+];
+
+export const _dummy_PetVaccinationObject = [
+	{
+		_id: 'petVaccina1',
+		vaccination_pet_id: 'pet1', //접종 대상 반려동물
+
+		vaccination_heartworm: {
+			last_vaccination_date: '2021.01.12', //최종 접종일
+			nearest_vaccination_date: '2021.03.06', //가장빠른 접종 예정일
+			next_vaccination_date: '2022.01.11', //다음 접종 예정일
+			is_vaccinated: true, //접종여부
+		}, //심장사상충
+
+		vaccination_ectozoon: {
+			last_vaccination_date: '2019.07.07',
+			nearest_vaccination_date: '2020.08.23',
+			next_vaccination_date: '2018.02.11',
+			is_vaccinated: true,
+		}, //외부 기생충
+
+		vaccination_anthelmintic: {
+			last_vaccination_date: '2013.09.18',
+			nearest_vaccination_date: '2017.12.11',
+			next_vaccination_date: '2022.09.30',
+			is_vaccinated: true,
+		}, //구충제
+
+		vaccination_comprehensive: {
+			last_vaccination_date: '2019.02.15',
+			nearest_vaccination_date: '2022.10.09',
+			next_vaccination_date: '2023.04.12',
+			is_vaccinated: true,
+		}, //종합접종
+
+		vaccination_coronaviral_enteritis: {
+			last_vaccination_date: '2020.03.21',
+			nearest_vaccination_date: '2022.09.16',
+			next_vaccination_date: '2022.04.17',
+			is_vaccinated: true,
+		}, //코로나 장염
+
+		vaccination_bronchitis: {
+			last_vaccination_date: '2016.04.18',
+			nearest_vaccination_date: '2024.06.25',
+			next_vaccination_date: '2022.03.02',
+			is_vaccinated: true,
+		}, //기관지염
+
+		vaccination_hydrophobia: {
+			last_vaccination_date: '2020.02.17',
+			nearest_vaccination_date: '2021.06.22',
+			next_vaccination_date: '2023.07.23',
+			is_vaccinated: true,
+		}, //광견병
+
+		vaccination_influenza: {
+			last_vaccination_date: '2020.03.27',
+			nearest_vaccination_date: '2022.03.01',
+			next_vaccination_date: '2023.12.21',
+			is_vaccinated: true,
+		}, //인플루엔자
+	},
+];

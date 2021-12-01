@@ -10,6 +10,11 @@ import OnOffSwitch from '../molecules/OnOffSwitch';
 import PetImageLabel from '../molecules/PetImageLabel';
 import FamilyAccountList from '../organism_ksw/FamilyAccountList';
 import {btn_style, login_style, petInfoSetting, temp_style} from './style_templete';
+import {_dummy_petInfo_from_user} from 'Root/config/dummy_data_hjs';
+
+//이 화면에 들어오면서 특정 _id를 API 연동으로 데이터를 가져 옴.
+//이전 화면에서 모든 데이터를 가진 상태에서 들어오는 것이 아님.
+//변수들은 모두 db 변수로 스네이크 형식으로 추후에 변경 필요.
 
 export default PetInfoSetting = props => {
 	const navigation = useNavigation();
@@ -24,7 +29,7 @@ export default PetInfoSetting = props => {
 				<View style={[petInfoSetting.profileContainer]}>
 					<View style={[temp_style.petImageLabel, petInfoSetting.petImageLabel]}>
 						{/* <Text style={[temp_txt.small]}>(M)PetImageLabel(dia190)</Text> */}
-						<PetImageLabel img_uri={petData.img_uri} petStatus={petData.petStatus} />
+						<PetImageLabel img_uri={_dummy_petInfo_from_user[0].user_profile_uri} petStatus={petData.petStatus} />
 					</View>
 					<View style={[btn_style.btn_w242, petInfoSetting.btn_w242]}>
 						<AniButton
@@ -45,14 +50,20 @@ export default PetInfoSetting = props => {
 						</View>
 						<View style={[petInfoSetting.petAccountInfo.information]}>
 							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoTitle]}>종</Text>
-							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoContent]}>{props.species}</Text>
+							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoContent]}>
+								{/* {props.species} */}
+								{_dummy_petInfo_from_user[0].pet_species}
+							</Text>
 							<TouchableOpacity onPress={changePetInfo} style={{position: 'absolute', right: 0}}>
 								<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoContent]}>변경하기</Text>
 							</TouchableOpacity>
 						</View>
 						<View style={[petInfoSetting.petAccountInfo.information]}>
 							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoTitle]}>품종</Text>
-							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoContent]}>{props.breed}</Text>
+							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoContent]}>
+								{/* {props.breed} */}
+								{_dummy_petInfo_from_user[0].pet_species_detail}
+							</Text>
 						</View>
 					</View>
 				</View>

@@ -11,12 +11,18 @@ import {login_style, btn_style, temp_style, changePetProfileImage_style} from '.
 
 export default ChangePetProfileImage = props => {
 	const petData = props.route.params;
+
+	const selectPhoto = () => {
+		props.navigation.push('SinglePhotoSelect');
+	};
+
 	return (
 		<View style={login_style.wrp_main}>
 			{/* (M)ProfileImageSelect */}
 			<View style={[temp_style.profileImageSelect, changePetProfileImage_style.ProfileImageSelect]}>
 				{/* <Text>(M)ProfileImageSelect</Text> */}
-				<ProfileImageSelect img_uri={petData.img_uri} />
+				{/* <ProfileImageSelect img_uri={petData.img_uri} /> */}
+				<ProfileImageSelect onClick={selectPhoto} selectedImageUri={imgSelected} />
 			</View>
 
 			{/* (M)Input30(notitle) */}

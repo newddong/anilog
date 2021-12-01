@@ -53,7 +53,7 @@ const MyStack = createStackNavigator();
 
 export default MyStackNavigation = () => {
 	return (
-		<MyStack.Navigator initialRouteName="ShelterMenu">
+		<MyStack.Navigator initialRouteName="UserMenu">
 			<MyStack.Screen name="UserFeedList" component={FeedList} />
 			<MyStack.Screen name="UserFeeds" component={FavoriteFeeds} />
 			<MyStack.Screen name="HashFeedList" component={FeedList} />
@@ -81,7 +81,11 @@ export default MyStackNavigation = () => {
 			<MyStack.Screen name="PetInfoSetting" component={PetInfoSetting} />
 
 			<MyStack.Screen name="ChangePetProfileImage" component={ChangePetProfileImage} />
-			<MyStack.Screen name="SetPetInformation" component={SetPetInformation} />
+			<MyStack.Screen
+				name="SetPetInformation"
+				component={SetPetInformation}
+				options={{header: props => <SaveButtonHeader {...props} />, title: '반려동물 상세 정보(SetPetInformation)'}}
+			/>
 			<MyStack.Screen name="VaccinationRecord" component={VaccinationRecord} />
 			<MyStack.Screen name="AddFamilyAccount" component={AddFamilyAccount} />
 			<MyStack.Screen name="AnimalAdoption" component={AnimalAdoption} />
