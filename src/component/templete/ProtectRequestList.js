@@ -29,15 +29,6 @@ export default ProtectRequestList = ({navigation, route}) => {
 	const onOff_protectAreaFilter = () => {
 		alert('보호지역 필터 버튼 오프');
 	};
-	const onOff_kindFilter = () => {
-		alert('동물 종류 필터 버튼 오프');
-	};
-	const onOn_protectAreaFilter = () => {
-		alert('보호지역 필터 버튼 온');
-	};
-	const onOn_kindFilter = () => {
-		alert('동물 종류 필터 버튼 온');
-	};
 	const onOff_FavoriteTag = (value, index) => {
 		console.log('즐겨찾기=>' + value + ' ' + index);
 	};
@@ -49,7 +40,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 					<View style={[searchProtectRequest.filterView.inside]}>
 						<View style={{flexDirection: 'row'}}>
 							<View style={[temp_style.filterBtn]}>
-								<FilterButton btnTitle={'보호 지역'} btnLayout={btn_w306} onOff={onOff_protectAreaFilter} onOn={onOn_protectAreaFilter} />
+								<FilterButton btnTitle={'보호 지역'} btnLayout={btn_w306} />
 							</View>
 							<View style={[temp_style.filterBtn]}>
 								<FilterButton menu={PET_KIND} />
@@ -72,3 +63,5 @@ export default ProtectRequestList = ({navigation, route}) => {
 		</ScrollView>
 	);
 };
+
+ProtectRequestList.defaultProps = {};

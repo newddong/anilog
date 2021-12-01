@@ -61,7 +61,7 @@ export default ShelterMenu = props => {
 
 	//게시물 추가
 	const moveToAidRequestAnimalList = () => {
-		navigation.push('AidRequestAnimalList');
+		navigation.push('AidRequestAnimalList', userData);
 	};
 
 	//메뉴에 해당되는 네이게이션 이동

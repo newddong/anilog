@@ -36,7 +36,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // - AnimalNeedHelp Item의 BorderMode=true 에서 게시글보기를 클릭하였을 경우 호출
 
 export default AnimalProtectRequestDetail = ({route}) => {
-	// console.log('AnimalProtectRequestDetail', route.params.protect_request_id);
+	console.log('AnimalProtectRequestDetail', route.params);
 	const navigation = useNavigation();
 	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
 
@@ -153,14 +153,17 @@ export default AnimalProtectRequestDetail = ({route}) => {
 					<View>
 						{/* 임시보호 후보자 협의 중 사진 */}
 						<View style={[temp_style.rescueImage]}>
-							<RescueImage status={data ? data.protect_request_status : 'adopt'} img_uri={data ? data.protect_animal_photos[0] : DEFAULT_PROFILE} />
+							<RescueImage
+								status={data.protect_request_status ? data.protect_request_status : 'adopt'}
+								img_uri={data.protect_animal_photos[0] ? data.protect_animal_photos[0] : DEFAULT_PROFILE}
+							/>
 						</View>
 						<View style={[temp_style.requestProtect_view]}>
 							<Text style={[txt.noto24, temp_style.requestProtect, {color: GRAY10}]}>보호요청</Text>
 						</View>
 						{/* RescueContentTitle */}
 						<View style={[temp_style.rescueContentTitle]}>
-							<Text style={[txt.noto28b]}>{data ? data.protect_request_content : ''}</Text>
+							<Text style={[txt.noto28b]}>{data.protect_request_content ? data.protect_request_content : ''}</Text>
 						</View>
 						{/* ShelterSmallLabel */}
 						<View style={[temp_style.shelterSmallLabel_view_animalProtectRequestDetail]}>
@@ -186,35 +189,35 @@ export default AnimalProtectRequestDetail = ({route}) => {
 								<View style={[animalProtectRequestDetail_style.rescueSummary_insideItem]}>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>분류</Text>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-										{data ? data.protect_animal_species : ''}
+										{data.protect_animal_species ? data.protect_animal_species : ''}
 									</Text>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>품종</Text>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-										{data ? data.protect_animal_species_detail : ''}
+										{data.protect_animal_species_detail ? data.protect_animal_species_detail : ''}
 									</Text>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>성별</Text>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-										{data && data.protect_animal_sex == 'male' ? '수컷' : '암컷'}
+										{data.protect_animal_sex && data.protect_animal_sex == 'male' ? '수컷' : '암컷'}
 									</Text>
 								</View>
 								<View style={[animalProtectRequestDetail_style.rescueSummary_insideItem]}>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>예상연령</Text>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-										{data ? data.protect_animal_estimate_age : ''}
+										{data.protect_animal_estimate_age ? data.protect_animal_estimate_age : ''}
 									</Text>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>체중</Text>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-										{data ? data.protect_animal_weight : ''}
+										{data.protect_animal_weight ? data.protect_animal_weight : ''}
 									</Text>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>중성화</Text>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-										{data && data.protect_animal_neutralization == 'yes' ? 'O' : 'X'}
+										{data.protect_animal_neutralization && data.protect_animal_neutralization == 'yes' ? 'O' : 'X'}
 									</Text>
 								</View>
 								<View style={[animalProtectRequestDetail_style.rescueSummary_insideItem]}>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>발견장소</Text>
 									<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-										{data ? data.protect_animal_rescue_location : ''}
+										{data.protect_animal_rescue_location ? data.protect_animal_rescue_location : ''}
 									</Text>
 								</View>
 							</View>
@@ -222,7 +225,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 
 						{/* RescueText */}
 						<View style={[temp_style.rescueText, animalProtectRequestDetail_style.rescueText]}>
-							<Text style={[txt.noto24]}>{data ? data.protect_request_content : ''}</Text>
+							<Text style={[txt.noto24]}>{data.protect_request_content ? data.protect_request_content : ''}</Text>
 						</View>
 
 						<View style={[temp_style.commentList]}>
@@ -274,6 +277,29 @@ export default AnimalProtectRequestDetail = ({route}) => {
 };
 
 AnimalProtectRequestDetail.defaultProps = {};
+const d = {
+	_id: 2,
+	feed_type: 'feed',
+	protect_animal_adoption_days_remain: 10,
+	protect_animal_adoptor_id: null,
+	protect_animal_estimate_age: '6개월',
+	protect_animal_neutralization: 'yes',
+	protect_animal_photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBPMjNlensOfXbaEJkMyyzjNnidrSWRvzXMA&usqp=CAU'],
+	protect_animal_protect_request: true,
+	protect_animal_protect_request_id: 2,
+	protect_animal_protector_discussion_id: null,
+	protect_animal_protector_id: null,
+	protect_animal_rescue_date: '2021-11-24',
+	protect_animal_rescue_location: '자운동',
+	protect_animal_sex: 'male',
+	protect_animal_species: '고양이',
+	protect_animal_species_detail: '러브숏',
+	protect_animal_status: 'rescue',
+	protect_animal_weight: '1.2',
+	protect_animal_writer_id: 21,
+	protect_request_date: '2021.11.15',
+	shelter_name: '홍단 보호소',
+};
 
 const e = {
 	_id: 1,

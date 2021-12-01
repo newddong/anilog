@@ -415,7 +415,7 @@ export const dummy_ShelterInfo = {
 	//@UserObject (Shelter info)
 	_id: 'fsdagsdf333',
 	user_type: 'shelter',
-	user_profile_uri: '',
+	user_profile_uri: 'https://t1.daumcdn.net/cfile/tistory/994CA8375F4C62A42B',
 	user_introduction: '마포구에 있는 작은 유기동물 보호소 입니다. 쾌적한 환경과 동물들이 함께 살아갈 수 있도록 많은 관심 부탁드립니다.', //프로필에 노출될 자기소개
 	user_upload_count: 12, //업로드 게시물 숫자
 	user_follow_count: 131, //팔로우 숫자
