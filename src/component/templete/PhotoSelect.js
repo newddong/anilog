@@ -8,7 +8,12 @@ import CameraRoll from '@react-native-community/cameraroll';
 import {item} from 'Root/screens/common/style_address';
 import dp from 'Root/screens/dp';
 
-export default PhotoSelect = props => {
+/**
+ * 사진선택 템플릿
+ * @component
+ *
+ */
+const PhotoSelect = props => {
 	const isSingle = props.route.name === 'SinglePhotoSelect';
 
 	const [photo, setPhotos] = React.useState([]); // 페이지 하단에 출력되는 사진목록들
@@ -22,10 +27,19 @@ export default PhotoSelect = props => {
 		console.log('photo', photo);
 	}, [photo]);
 
-	const loadPhotosMilsec = () => {
+	/**
+	 * timeStamp를 이용하여 디바이스의 갤러리에 있는 미디어를 불러옴
+	 *
+	 *@param {number} timeStamp - 갤러리의 미디어를 불러올 기준 timeStamp (기본값 0)
+	 *@param {number} request - 불러올 미디어의 숫자 (기본값 20)
+	 *@param {string} type - 불러올 미디어의 타잎('Photos'|'All'|'Videos')
+	 */
+	const loadPhotosMilsec = (request = 20, timeStamp = 0, type = 'Photos') => {
 		CameraRoll.getPhotos({
-			first: 20,
+			first: request,
+			toTime: timeStamp ? (timeStamp - 1) * 1000 : 0,
 			assetType: 'Photos',
+			include: ['playableDuration'],
 		})
 			.then(r => {
 				let copy = [...r.edges];
@@ -47,20 +61,19 @@ export default PhotoSelect = props => {
 
 	React.useEffect(() => {
 		if (Platform.OS === 'ios') {
-			// loadPhotos();
 			loadPhotosMilsec();
 		} else {
 			try {
-				const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
-				PermissionsAndroid.check(permission).then(isPermit => {
+				/** 외부 저장소 접근권한 */
+				const isAllowExternalStorage = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+				
+				PermissionsAndroid.check(isAllowExternalStorage).then(isPermit => {
 					if (isPermit) {
-						// loadPhotos();
 						loadPhotosMilsec();
 					} else {
-						PermissionsAndroid.request(permission).then(result => {
-							console.log(result);
-							if (result === 'granted') {
-								// loadPhotos();
+						PermissionsAndroid.request(isAllowExternalStorage).then(permission => {
+							console.log(permission);
+							if (permission === 'granted') {
 								loadPhotosMilsec();
 							} else {
 								alert('기기의 사진 접근권한을 허용해 주세요');
@@ -166,7 +179,7 @@ export default PhotoSelect = props => {
 						source={{
 							uri: 'https://us.123rf.com/450wm/azvector/azvector1803/azvector180300135/96983949-카메라-아이콘-플랫-카메라-기호-격리-아이콘-기호-벡터.jpg?ver=6',
 						}}
-						style={{flex: 1,width:186*DP,height:186*DP}}
+						style={{flex: 1, width: 186 * DP, height: 186 * DP}}
 					/>
 				</TouchableOpacity>
 			);
@@ -204,10 +217,12 @@ export default PhotoSelect = props => {
 				</TouchableOpacity>
 			</View>
 			<View style={[temp_style.mediaSelect]}>
-				<FlatList data={photo} numColumns={4} 
-				renderItem={({item, index}) => renderItem(item, index)} 
-				// scrollEnabled
-				keyExtractor={item.key} 
+				<FlatList
+					data={photo}
+					numColumns={4}
+					renderItem={({item, index}) => renderItem(item, index)}
+					scrollEnabled
+					keyExtractor={item.key}
 				/>
 			</View>
 		</View>
@@ -217,3 +232,5 @@ export default PhotoSelect = props => {
 PhotoSelect.defaultProps = {
 	onCheckOut: e => console.log(e),
 };
+
+export default PhotoSelect;

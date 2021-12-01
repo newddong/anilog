@@ -6,7 +6,7 @@ import DP from 'Root/config/dp';
 import {Modal} from 'Component/modal/Modal';
 import { APRI10 } from 'Root/config/color';
 
-export default RollingSelect;
+
 
 /**
  * 회전 선택창 모달 컴포넌트
@@ -206,3 +206,5 @@ const ScrollItem = props => {
 		</Animated.View>
 	);
 };
+
+export default RollingSelect;
