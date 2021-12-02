@@ -12,7 +12,7 @@ import {
 	Image,
 	Alert,
 } from 'react-native';
-import PropsTypes from 'prop-types';
+import PropsTypes, { arrayOf, bool, func, string } from 'prop-types';
 import {CameraIconWhite} from 'Asset/image';
 import DP from 'Screens/dp';
 import SvgWrapper from 'Screens/svgwrapper';
@@ -111,13 +111,13 @@ const duration = v => {
 
 const PhotosProps = {
 	/** @type {boolean} 카메라 여부 */
-	isCamera: false,
-	onPress: () => {},
-	onSelect: () => {},
-	onCancel: () => {},
-	data: {},
-	isSingle: false,
-	selectedList:[]
+	isCamera: bool,
+	onPress: func,
+	onSelect: func,
+	onCancel: func,
+	data: {img_uri:string},
+	isSingle: bool,
+	selectedList:arrayOf(string)
 }
 
 Photos.propTypes = PhotosProps;

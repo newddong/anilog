@@ -7,8 +7,10 @@ import CameraRoll from '@react-native-community/cameraroll';
 // import { hasAndroidPermission } from './camerapermission';
 // import { requestPermission, reqeustCameraPermission } from 'permission';
 import Photos from 'Molecules/Photos';
+import LocalMedia from 'Molecules/LocalMedia';
 import {DownBracketBlack} from 'Asset/image';
 import SvgWrapper from 'Screens/svgwrapper';
+import {Bracket48} from '../atom/icon';
 // import FastImage from 'react-native-fast-image';
 // import Video from 'react-native-video';
 
@@ -16,90 +18,71 @@ export var exportUriList = []; //겔러리 속 사진들 로컬 주소
 export var exportUri = {}; //겔러리 속 사진 로컬 주소
 
 export default AddPhoto = props => {
-	const count = React.useRef({count: 0, cursor: 0, subscriber: []}).current;
-	const uriList = React.useRef([]).current; //겔러리 속 사진들 로컬 주소
-	const page = React.useRef(0);
-	const selectedUri = React.useRef(); //겔러리 속 사진들 로컬 주소
-
 	const [isVideo, setVideo] = React.useState(false);
 	const [photolist, setPhotoList] = React.useState([
 		{
-			"node": {
-				"location": null,
-				"modified": 123456789.066,
-				"group_name": "Pictures",
-				"timestamp": 123456789.067,
-				"type": "image/jpeg",
-				"image": {
-					"fileSize": null,
-					"filename": null,
-					"playableDuration": null,
-					"height": null,
-					"width": null,
-					"uri": "http://src.hidoc.co.kr/image/lib/2016/7/21/20160721160807763_0.jpg"
-				}
-			}
-		}
-		// {
-		// 	node: {
-		// 		modified: 9,
-		// 		group_name: 'Pictures',
-		// 		timestamp: 9,
-		// 		type: 'image/jpeg',
-		// 		image: {
-		// 			uri: 'http://src.hidoc.co.kr/image/lib/2016/7/21/20160721160807763_0.jpg',
-		// 		},
-		// 	},
-		// },
+			node: {
+				location: null,
+				modified: 123456789.066,
+				group_name: 'Pictures',
+				timestamp: 123456789.067,
+				type: 'image/jpeg',
+				image: {
+					fileSize: null,
+					filename: null,
+					playableDuration: null,
+					height: null,
+					width: null,
+					uri: 'http://src.hidoc.co.kr/image/lib/2016/7/21/20160721160807763_0.jpg',
+				},
+			},
+		},
 	]);
-	//{ node: { image:{uri: 'http://src.hidoc.co.kr/image/lib/2016/7/21/20160721160807763_0.jpg' }} }
 	const [selectedPhoto, setSelectedPhoto] = React.useState([]);
 	const isSingle = props.route.name === 'SinglePhotoSelect';
 
-	// const loadPhotos = page_info => {
-	// 	const RequestNum = 200;
-	// 	CameraRoll.getPhotos({
-	// 		first: RequestNum,
-	// 		after: page_info ? page_info.end_cursor : '0',
-	// 		assetType: 'All',
-	// 		include: ['playableDuration'],
-	// 	})
-	// 		.then(r => {
-	// 			page.current = r.page_info;
-	// 			console.log('photolist  ' + JSON.stringify(r));
-	// 			// setPhotoList(photolist.concat(r.edges));
-	// 			setPhotoList([...photolist,...r.edges]);
-	// 		})
-	// 		.catch(err => {
-	// 			console.log('cameraroll error===>' + err);
-	// 		});
-	// };
-
-	const loadPhotosMilsec = (lastTimeStamp = 0) => {
-		const RequestNum = 100;
-		console.log('lasttimestamp       ' + lastTimeStamp);
+	/**
+	 * timeStamp를 이용하여 디바이스의 갤러리에 있는 미디어를 불러옴
+	 *
+	 *@param {number} timeStamp - 갤러리의 미디어를 불러올 기준 timeStamp (기본값 0)
+	 *@param {number} request - 불러올 미디어의 숫자 (기본값 20)
+	 *@param {string} type - 불러올 미디어의 타잎('Photos'|'All'|'Videos')
+	 */
+	const loadPhotosMilsec = (request = 99, timeStamp = 0, type = 'All') => {
 		CameraRoll.getPhotos({
-			first: RequestNum,
-			toTime: lastTimeStamp ? (lastTimeStamp - 1) * 1000 : 0,
-			assetType: 'All',
+			first: request,
+			toTime: timeStamp ? timeStamp * 1000 - 1 : 0,
+			assetType: type,
 			include: ['playableDuration'],
 		})
 			.then(r => {
-				page.current = r.page_info;
+				console.log('디바이스 사진 리스트', JSON.stringify(r));
 				// console.log('photolist  '+ JSON.stringify(r));
 				// setPhotoList(photolist.concat(r.edges));
 				setPhotoList(photolist.concat(r.edges));
 				setSelectedPhoto(selectedPhoto);
+
+				let photoList = [...r.edges];
+				photoList.map((v, i) => {
+					photoList[i] = {
+						img_uri: v.node.image.uri,
+						state: false,
+					};
+				});
+				photoList.splice(0, 0, true); //목록 첫 인덱스는 Default Camera Icon (사진직접찍기 기능)
+				console.log('포토리스트', JSON.stringify(photoList));
+				setPhotos(photoList);
 			})
 			.catch(err => {
 				console.log('cameraroll error===>' + err);
 			});
 	};
 
+	/** 스크롤이 바닥에 닿을때 페이징 처리를 위한 함수 */
 	const scrollReachBottom = () => {
 		// loadPhotos(page.current);
 		console.log('scrolllist bottom   ' + JSON.stringify(photolist));
-		let timeStamp = photolist.length>0?photolist[photolist.length -1].node.timestamp:0;
+		let timeStamp = photolist.length > 0 ? photolist[photolist.length - 1].node.timestamp : 0;
 		loadPhotosMilsec(timeStamp);
 	};
 
@@ -108,6 +91,7 @@ export default AddPhoto = props => {
 		console.log(selectedPhoto);
 	};
 
+	/** 이전 페이지에서 이미 선택한 사진이 있을 경우 선택한 것으로 표시 */
 	// React.useEffect(() => {
 	// 	exportUriList.splice(0);
 	// 	if (props.route.params?.selectedImages?.length > 0) {
@@ -120,22 +104,22 @@ export default AddPhoto = props => {
 	// 	}
 	// }, []);
 
+	/** 퍼미션 처리, 사진을 불러오기 전 갤러리 접근 권한을 유저에게 요청 */
 	React.useEffect(() => {
 		if (Platform.OS === 'ios') {
-			// loadPhotos();
 			loadPhotosMilsec();
 		} else {
 			try {
-				const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
-				PermissionsAndroid.check(permission).then(isPermit => {
+				/** 외부 저장소 접근권한 */
+				const isAllowExternalStorage = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+
+				PermissionsAndroid.check(isAllowExternalStorage).then(isPermit => {
 					if (isPermit) {
-						// loadPhotos();
 						loadPhotosMilsec();
 					} else {
-						PermissionsAndroid.request(permission).then(result => {
-							console.log(result);
-							if (result === 'granted') {
-								// loadPhotos();
+						PermissionsAndroid.request(isAllowExternalStorage).then(permission => {
+							console.log(permission);
+							if (permission === 'granted') {
 								loadPhotosMilsec();
 							} else {
 								alert('기기의 사진 접근권한을 허용해 주세요');
@@ -186,7 +170,8 @@ export default AddPhoto = props => {
 		// 	return <Photos isSingle={isSingle} data={item.node} onSelect={selectPhoto} onCancel={cancelPhoto} selectedList={selectedPhoto} />
 		// }
 		return (
-			<Photos isCamera={false} isSingle={isSingle} data={item.node} onSelect={selectPhoto} onCancel={cancelPhoto} selectedList={selectedPhoto} />
+			// <Photos isCamera={false} isSingle={isSingle} data={item.node} onSelect={selectPhoto} onCancel={cancelPhoto} selectedList={selectedPhoto} />
+			<LocalMedia data={item.node} isSingleSelection={isSingle} onSelect={selectPhoto} onCancel={cancelPhoto} index={0} />
 		);
 		return (
 			<View>
@@ -216,34 +201,32 @@ export default AddPhoto = props => {
 				<TouchableWithoutFeedback onPress={test}>
 					<View style={{flexDirection: 'row', alignItems: 'center'}}>
 						<Text style={txt.noto36}>최근 항목</Text>
-						<SvgWrapper style={{height: 12 * DP, width: 20 * DP, marginLeft: 14 * DP}} svg={<DownBracketBlack />} />
+						<Bracket48 />
 					</View>
 				</TouchableWithoutFeedback>
 				{isSingle && (
 					<TouchableWithoutFeedback onPress={clickcheck}>
 						<View style={[btn.confirm_button, btn.shadow]}>
-							<Text style={[txt.noto32b, txt.white]}>사진등록</Text>
+							<Text style={[txt.noto28b, txt.white]}>사진등록</Text>
 						</View>
 					</TouchableWithoutFeedback>
 				)}
 			</View>
-			<View style={{flex: 1}}>
-				<FlatList
-					contentContainerStyle={lo.box_photolist}
-					data={photolist}
-					renderItem={renderList}
-					extraData={selectedPhoto}
-					// columnWrapperStyle={{backgroundColor:'green',borderColor:'red',borderWidth:3*DP}}
-					// keyExtractor={item => item.node?.image.uri}
-					keyExtractor={item => item.node.timestamp}
-					horizontal={false}
-					numColumns={4}
-					onEndReachedThreshold={0.1}
-					onEndReached={scrollReachBottom}
-					initialNumToRender={20}
-					windowSize={6}
-				/>
-			</View>
+			<FlatList
+				contentContainerStyle={lo.box_photolist}
+				data={photolist}
+				renderItem={renderList}
+				extraData={selectedPhoto}
+				// columnWrapperStyle={{backgroundColor:'green',borderColor:'red',borderWidth:3*DP}}
+				// keyExtractor={item => item.node?.image.uri}
+				keyExtractor={item => item.node.timestamp}
+				horizontal={false}
+				numColumns={4}
+				onEndReachedThreshold={0.1}
+				onEndReached={scrollReachBottom}
+				// initialNumToRender={20}
+				windowSize={6}
+			/>
 		</View>
 	);
 };
