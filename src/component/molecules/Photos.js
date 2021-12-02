@@ -12,7 +12,7 @@ import {
 	Image,
 	Alert,
 } from 'react-native';
-
+import PropsTypes from 'prop-types';
 import {CameraIconWhite} from 'Asset/image';
 import DP from 'Screens/dp';
 import SvgWrapper from 'Screens/svgwrapper';
@@ -21,8 +21,13 @@ import CameraRoll from '@react-native-community/cameraroll';
 // import {requestPermission, reqeustCameraPermission} from 'permission';
 import FastImage from 'react-native-fast-image';
 
-export default React.memo(
-	(Photos = props => {
+
+/**
+ * @type {React.FunctionComponent<PhotosProps>}
+ */
+
+const Photos = React.memo(
+	(props => {
 		const [isSelect, select] = React.useState(false);
 		const [itemNum, setItemNum] = React.useState(0);
 		const isVideo = props.data?.image?.playableDuration !== null;
@@ -103,6 +108,19 @@ const duration = v => {
 
 	return (min === 0 ? '00' : min) + ':' + (sec < 10 ? '0' + sec : sec);
 };
+
+const PhotosProps = {
+	/** @type {boolean} 카메라 여부 */
+	isCamera: false,
+	onPress: () => {},
+	onSelect: () => {},
+	onCancel: () => {},
+	data: {},
+	isSingle: false,
+	selectedList:[]
+}
+
+Photos.propTypes = PhotosProps;
 
 Photos.defaultProps = {
 	isCamera: false,
@@ -193,3 +211,5 @@ const txt = StyleSheet.create({
 		color: '#FFFFFF',
 	},
 });
+
+export default Photos;

@@ -64,7 +64,7 @@ export default Modal = {
 	rollingSelect: (title, items = [''], onSelect, onCancel = Modal.close) => {},
 
 	/**
-	 * 선택 모달창을 띄우는 함수
+	 * 선택 모달창을 띄우는 함수(첫번째 선택에 따라 두번째 선택의 항목이 변하는 부분은 구현되지 않음)
 	 * @param {Array.<string>} primaryItems - 첫번째 항목 배열
 	 * @param {Array.<string>} secondaryItems - 두번째 항목 배열
 	 * @param {(primaryItem:string,secondaryItem:string)=>void} onOk - 선택항목들을 반환하는 매개변수가 2개인 콜백

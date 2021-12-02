@@ -7,16 +7,21 @@ import { APRI10, WHITE } from 'Root/config/color';
 import { Paw94x90 } from '../atom/icon';
 
 /**
- *
- *@param {{
- *data: Object,
- *index: 'number / 선택되는 순서 번호',
- *isSingleSelection: boolean,
- *onSelect: '선택 Callback',
- *disable : '선택 불가 모드',
- * }} props
+ * 디바이스의 미디어 썸네일을 표시, 선택할때 사용하는 최소단위 컴포넌트
+ * 
+ * @param {object} props
+ * @param {object} props.data - LocalMedia의 데이터 state(), img_uri(), isVideo, duration
+ * @param {boolean} props.data.state - 미디어의 상태(선택 여부)
+ * @param {string} props.data.img_uri - 미디어의 uri
+ * @param {boolean} props.data.isVideo - 미디어가 동영상인지 여부
+ * @param {number} props.data.duration - 미디어가 동영상일 때 재생시간을 표시
+ * @param {number} props.index - 선택 순서를 표시(다중 선택, isSingleSelection이 false일 때)
+ * @param {boolean} props.isSingleSelection - 단일 선택일때(발자국 표시) true, 다중 선택일때(번호 표시) false
+ * @param {(img_uri:string,selected:boolean)=>void} props.onSelect - LocalMedia를 선택(클릭) 했을때 콜백
+ * @param {boolean} props.disable - true일때 선택 불가능
+ * 
  */
-export default LocalMedia = props => {
+const LocalMedia = props => {
 	// console.log(props.index)
 	const [selected, setSelected] = React.useState(false);
 
@@ -109,3 +114,5 @@ LocalMedia.defaultProps = {
 	number: 1,
 	onSelect: e => console.log(e),
 };
+
+export default LocalMedia;

@@ -8,8 +8,6 @@ import DP from 'Root/config/dp';
 import Modal from 'Component/modal/Modal';
 
 
-export default NoBtnModal;
-
 /**
  * 버튼이 없는 모달
  * 
@@ -73,4 +71,6 @@ const style = StyleSheet.create({
         },
         elevation: 2,
     }
-})
+});
+
+export default NoBtnModal;
