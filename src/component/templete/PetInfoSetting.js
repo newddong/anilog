@@ -21,6 +21,7 @@ export default PetInfoSetting = props => {
 	const petData = props.route.params;
 	const changePetInfo = () => {
 		console.log('변경하기 클릭');
+		Modal.popSelect(['개', '고양이', '기타'], ['리트리버', '말티즈', '푸들', '치와와'], (val1, val2) => alert(val1 + ':' + val2), '동물선택');
 	};
 	return (
 		<ScrollView>
