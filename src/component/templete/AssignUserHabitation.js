@@ -30,9 +30,6 @@ const AssignUserHabitation = props => {
 	};
 
 	const onSelectCity = () => {
-		
-		Modal.popSelect(['개','고양이','기타'],['리트리버','말티즈','푸들','치와와'],(val1,val2)=>alert(val1+':'+val2),'동물선택');
-		/*
 		Modal.rollingSelect(
 			'시를 선택해 주세요',
 			['서울시', '부산시', '광주광역시'],
@@ -43,8 +40,7 @@ const AssignUserHabitation = props => {
 			() => {
 				cityDrop.current.press();
 			},
-		);*/
-		// setData({...data, city: selectedItem});
+		);
 	};
 	const onSelectDistrict = selectedItem => {
 		Modal.rollingSelect(
