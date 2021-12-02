@@ -65,6 +65,13 @@ export default Modal = {
 
 	/**
 	 * 선택 모달창을 띄우는 함수
+	 * @param {Array.<string>} primaryItems - 첫번째 항목 배열
+	 * @param {Array.<string>} secondaryItems - 두번째 항목 배열
+	 * @param {(primaryItem:string,secondaryItem:string)=>void} onOk - 선택항목들을 반환하는 매개변수가 2개인 콜백
+	 * @param {string} okButtonnMsg - 확인버튼에 표시할 텍스트
+	 * 
+	 * @example
+	 * Modal.popSelect(['개','고양이','기타'],['리트리버','말티즈','푸들','치와와'],(val1,val2)=>alert(val1+':'+val2),'동물선택');
 	 */
-	popSelect: (msg, noMsg, yesMsg, onNo, onYes) => {},
+	popSelect: (primaryItems,secondaryItems,onOk,okButtonnMsg) => {},
 };

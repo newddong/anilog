@@ -1,13 +1,13 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import PropsTypes, {any, func, oneOf, oneOfType} from 'prop-types';
+import PropsTypes, {any, bool, func, number, object, oneOf, oneOfType, string} from 'prop-types';
 import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
 import {Cross46} from '../atom/icon';
 
 /**
- * 드롭다운 선택 버튼
+ * 인풋 크기 24
  * @type {React.ForwardRefRenderFunction<?,Input24Props>}
  * 
  */
@@ -148,11 +148,11 @@ const Input24Props = {
 	/** @type {boolean} 입력창 초기화 아이콘 표시여부(글자수가 1개 이상일때 자동으로 표시) */
 	showCrossMark: bool,
 	/** @type {()=>void} 입력값이 바뀔때 발생하는 콜백 */
-	onChange: string,
+	onChange: func,
 	/** @type {()=>void} 초기화 버튼 클릭시 발생하는 콜백 */
-	onClear: string,
+	onClear: func,
 	/** @type {boolean} 인터넷 주소를 입력할때 http표시 */
-	showHttp: boolean,
+	showHttp: bool,
 	/** @type {()=>boolean} true/false를 반환하는 입력 양식 검증함수 */
 	validator: func,
 };

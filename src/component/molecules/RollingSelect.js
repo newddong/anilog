@@ -119,7 +119,7 @@ const RollingSelect = props => {
 						showsVerticalScrollIndicator={false}
 						ref={scrollRef}
 						contentOffset={scrollOffset}
-						scrollEventThrottle={90}
+						scrollEventThrottle={5}
 						onMomentumScrollEnd={onScrollEnd}
 						onScroll={scrollHandler}
 						style={{height: layoutHeight,width:'100%'}}

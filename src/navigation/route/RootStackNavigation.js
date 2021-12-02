@@ -71,11 +71,11 @@ export default RootStackNavigation = () => {
 	 */
 	const popIn = Component => {
 		const component = React.cloneElement(Component, {key: popupComponent.length});
-		setPopupComponent([component, ...popupComponent]);
+		setPopupComponent([...popupComponent,component]);
 	};
 
 	Modal.close = () => {
-		popupComponent.shift();
+		popupComponent.pop();
 		setPopupComponent([...popupComponent]);
 		popupComponent.length === 0 && setPop(false);
 	};
@@ -109,8 +109,8 @@ export default RootStackNavigation = () => {
 		!isPop && setPop(true);
 	};
 
-	Modal.popSelect = () => {
-		popIn(<SelectModal popUpMsg={'선택 모달'} />);
+	Modal.popSelect = (primaryItems,secondaryItems,onOk,okButtonnMsg) => {
+		popIn(<SelectModal primaryItems={primaryItems} secondaryItems={secondaryItems} onOk={onOk} okButtonnMsg={okButtonnMsg} popUpMsg={'선택 모달'} />);
 		!isPop && setPop(true);
 	}
 

@@ -19,7 +19,7 @@ import DropdownSelect from './DropdownSelect';
  * disable : boolean,
  * titleFontStyle : number,
  * defaultIndex : '미선택 상태에서 보여지는 item의 index',
- * width :'number / DropDown 길이'
+ * width :'number / DropDown 길이',
  * onOpen : Function,
  * menu : 'items',
  * onClose : Function,

@@ -1,6 +1,6 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import PropsTypes, {any, func, oneOf, oneOfType} from 'prop-types';
+import PropsTypes, {any, func, number, object, oneOf, oneOfType,shape} from 'prop-types';
 import {Text, View, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
@@ -12,8 +12,35 @@ import {string} from 'prop-types';
 /**
  * 드롭다운 선택 버튼
  * @type {React.ForwardRefRenderFunction<React.FunctionComponent,DropdownSelectProps>}
+ * 
+ * 레퍼런스를 가짐
+ * ```js
+ * //셀렉트 버튼으로 모달을 띄웠을 경우 Close콜백에서 레퍼런스를 이용 press를 명령형으로
+ * //실행해야 버튼이 close상태로 변경됨, 해당 조치를 하지않을 경우
+ * //모달이 닫히더라도 버튼은 오픈된 상태로 사용자가 두번 눌러야 닫혀진 상태로 변함(개선필요)
+ * const openFn = () => {
+ *		Modal.rollingSelect(
+ *			'구를 선택해 주세요',
+ * 			['북구', '서구', '중구'],
+ *			e => {
+ *					setData({...data, district: e});
+ *					DropdownRef.current.press(); //press처리
+ *			},
+ *			() => {
+ *					DropdownRef.current.press(); //press처리
+ *			},
+ *			);
+ * 	}
+ * <DropdownSelect onOpen={openFn} ref={DropdownRef} />
+ * ```
+ * @example
+ * dropdownSelectRef.current.press() //버튼 탭을 명령형으로 작동 가능
+ * 
+ * 
  */
-const DropdownSelect = React.forwardRef((props, ref) => {
+const DropdownSelect = React.forwardRef((props, 
+	/** @type {object} 레퍼런스 오브젝트, press 메소드를 가짐 */
+	ref) => {
 	React.useImperativeHandle(ref, () => ({
 		press: () => {
 			onPress();
@@ -93,8 +120,6 @@ const DropdownSelectProps = {
 	textStyle: object,
 	/** @type {number} 버튼의 너비 숫자만 입력, DP는 컴포넌트 내부에서 자동으로 계산됨 */
 	width: number,
-	// ref : oneOf(shape({current:any}),func),
-	
 };
 
 DropdownSelect.propTypes = DropdownSelectProps;
