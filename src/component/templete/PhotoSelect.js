@@ -1,34 +1,33 @@
 import React from 'react';
 import {Text, View, Image, ScrollView, FlatList, TouchableOpacity, PermissionsAndroid} from 'react-native';
 import {txt} from 'Root/config/textstyle';
-import {Bracket48} from '../atom/icon';
-import LocalMedia from '../molecules/LocalMedia';
-import {login_style, temp_style, photoSelect} from './style_templete';
+import {Bracket48} from 'Atom/icon';
+import LocalMedia from 'Molecules/LocalMedia';
+import {login_style, temp_style, photoSelect} from 'Templete/style_templete';
 import CameraRoll from '@react-native-community/cameraroll';
 import {item} from 'Root/screens/common/style_address';
-import dp from 'Root/screens/dp';
 
 /**
  * 사진선택 템플릿
- * @component
+ * 
  *
  */
 const PhotoSelect = props => {
 	const isSingle = props.route.name === 'SinglePhotoSelect';
 
-	const [photo, setPhotos] = React.useState([]); // 페이지 하단에 출력되는 사진목록들
-	const [photoArray, setPhotoArray] = React.useState([]); // 선택된 사진목록들 (다중선택 모드)
+	const [photoList, setPhotosList] = React.useState([]); // 페이지 하단에 출력되는 사진목록들
+	const [selectedList, setSelectedList] = React.useState([]); // 선택된 사진목록들 (다중선택 모드)
 	const [selectedPhoto, setSelectedPhoto] = React.useState();
 	const [selectedIndex, setSelectedIndex] = React.useState([1, 2, 3, 4, 5]); // 선택된 사진의 index (다중선택모드)
 	const [number, setNumber] = React.useState(1);
 	const [selectDisable, setSelectDisable] = React.useState(false);
 
 	React.useEffect(() => {
-		console.log('photo', photo);
-	}, [photo]);
+		console.log('photo', photoList);
+	}, [photoList]);
 
 	/**
-	 * timeStamp를 이용하여 디바이스의 갤러리에 있는 미디어를 불러옴
+	 * timeStamp를 이용하여 디바이스의 갤러리에 있는 미디어를 불러옴(custom hook을 사용해서 외부 모듈화 필요함)
 	 *
 	 *@param {number} timeStamp - 갤러리의 미디어를 불러올 기준 timeStamp (기본값 0)
 	 *@param {number} request - 불러올 미디어의 숫자 (기본값 20)
@@ -51,7 +50,7 @@ const PhotoSelect = props => {
 				});
 				copy.splice(0, 0, true); //목록 첫 인덱스는 Default Camera Icon (사진직접찍기 기능)
 				// console.log(copy);
-				setPhotos(copy);
+				setPhotosList(copy);
 			})
 			.catch(err => {
 				console.log(err);
@@ -99,34 +98,40 @@ const PhotoSelect = props => {
 
 	//확인
 	const checkOut = () => {
-		props.onCheckOut(photoArray);
-		console.log('체크아웃 - 보낼 Photo의 img_uri', photoArray);
+		props.onCheckOut(selectedList);
+		console.log('체크아웃 - 보낼 Photo의 img_uri', selectedList);
 		console.log('Photoselect에서 체크아웃 - 돌아갈 navigation 네임 ', props.route.params);
-		props.navigation.navigate(props.route.params, {photo: photoArray});
+		props.navigation.navigate(props.route.params, {photo: selectedList});
 	};
 
+	/**
+	 * 
+	 * @param {string} img - 이미지의 uri
+	 * @param {boolean} state - 선택된 미디어인지를 표시
+	 * @param {number} index - 선택한 사진의 인덱스
+	 */
 	const onSelect = (img, state, index) => {
 		//img - img_uri, state - 선택인지, 선택해제인지 여부 , index - 전체 사진 목록 중 선택한 사진의 index
 		//단일선택모드
 		if (isSingle) {
 			//선택
 			if (state) {
-				let copy = [...photo];
+				let copy = [...photoList];
 				copy.map((v, i) => {
 					i == index ? (copy[i].state = true) : (copy[i].state = false);
 				});
 				setSelectedPhoto(img);
-				setPhotos(copy);
-				setPhotoArray(img);
+				setPhotosList(copy);
+				setSelectedList(img);
 			}
 			//선택취소
 			else if (!state) {
-				let copy = [...photo];
+				let copy = [...photoList];
 				copy[index].state = false;
 				setSelectedPhoto(
 					'https://us.123rf.com/450wm/azvector/azvector1803/azvector180300135/96983949-카메라-아이콘-플랫-카메라-기호-격리-아이콘-기호-벡터.jpg?ver=6',
 				);
-				setPhotos(copy);
+				setPhotosList(copy);
 			}
 		}
 		//다중선택모드
@@ -142,11 +147,11 @@ const PhotoSelect = props => {
 				setSelectedPhoto(img);
 				copy = [...selectedIndex];
 				copy[index] = number; //선택한 사진의 selectIndex에는 number(1~5까지 진행된다) 부여
-				if (photoArray.length < 5) {
+				if (selectedList.length < 5) {
 					//photo uri리스트가 5개 이상일 경우 더이상 담지않는다
-					photo_container = [...photoArray];
+					photo_container = [...selectedList];
 					photo_container.push(img);
-					setPhotoArray(photo_container);
+					setSelectedList(photo_container);
 				}
 				selectDisable ? null : setNumber(number + 1); // 선택불가 상황이 아닐 경우 number+1
 				setSelectedIndex(copy); //최종적으로 인덱스 반영
@@ -155,10 +160,10 @@ const PhotoSelect = props => {
 				setNumber(number - 1); //우선 number -1
 				setSelectDisable(false); //우선 선택불가 상황도 해제
 				const getIndex = element => element == img; // 선택한 사진의 uri와 같은 uri를 가진 index를 photoArray에서 가져옴
-				photo_container = [...photoArray];
+				photo_container = [...selectedList];
 				const findIndex = photo_container.findIndex(getIndex);
 				photo_container.splice(findIndex, 1); // 그 사진은 선택해제하면서 photoList에서도 항목해제시킴
-				setPhotoArray(photo_container); // 반영
+				setSelectedList(photo_container); // 반영
 				copy = [...selectedIndex]; // 선택된 사진들의 index(1,2,3,4,5) 정보가 담긴 selectedIndex
 				copy.map((v, i) => {
 					// 현재 선택해제한 사진의 nummber 보다 클 경우 -1 그렇지않을 경우는 현상유지
@@ -218,7 +223,7 @@ const PhotoSelect = props => {
 			</View>
 			<View style={[temp_style.mediaSelect]}>
 				<FlatList
-					data={photo}
+					data={photoList}
 					numColumns={4}
 					renderItem={({item, index}) => renderItem(item, index)}
 					scrollEnabled

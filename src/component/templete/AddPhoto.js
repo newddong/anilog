@@ -6,38 +6,17 @@ import {txt} from 'Root/config/textstyle';
 import CameraRoll from '@react-native-community/cameraroll';
 // import { hasAndroidPermission } from './camerapermission';
 // import { requestPermission, reqeustCameraPermission } from 'permission';
-import Photos from 'Molecules/Photos';
 import LocalMedia from 'Molecules/LocalMedia';
-import {DownBracketBlack} from 'Asset/image';
-import SvgWrapper from 'Screens/svgwrapper';
 import {Bracket48} from '../atom/icon';
 // import FastImage from 'react-native-fast-image';
-// import Video from 'react-native-video';
+import Video from 'react-native-video';
 
 export var exportUriList = []; //겔러리 속 사진들 로컬 주소
 export var exportUri = {}; //겔러리 속 사진 로컬 주소
 
 export default AddPhoto = props => {
-	const [isVideo, setVideo] = React.useState(false);
-	const [photolist, setPhotoList] = React.useState([
-		{
-			node: {
-				location: null,
-				modified: 123456789.066,
-				group_name: 'Pictures',
-				timestamp: 123456789.067,
-				type: 'image/jpeg',
-				image: {
-					fileSize: null,
-					filename: null,
-					playableDuration: null,
-					height: null,
-					width: null,
-					uri: 'http://src.hidoc.co.kr/image/lib/2016/7/21/20160721160807763_0.jpg',
-				},
-			},
-		},
-	]);
+	const [isVideo, setVideo] = React.useState(true);
+	const [photolist, setPhotoList] = React.useState([{node:{timestamp:9999999999,image:{uri:'https://us.123rf.com/450wm/azvector/azvector1803/azvector180300135/96983949-카메라-아이콘-플랫-카메라-기호-격리-아이콘-기호-벡터.jpg?ver=6'}}}]);
 	const [selectedPhoto, setSelectedPhoto] = React.useState([]);
 	const isSingle = props.route.name === 'SinglePhotoSelect';
 
@@ -48,7 +27,7 @@ export default AddPhoto = props => {
 	 *@param {number} request - 불러올 미디어의 숫자 (기본값 20)
 	 *@param {string} type - 불러올 미디어의 타잎('Photos'|'All'|'Videos')
 	 */
-	const loadPhotosMilsec = (request = 99, timeStamp = 0, type = 'All') => {
+	const loadPhotosMilsec = (request = 20, timeStamp = 0, type = 'All') => {
 		CameraRoll.getPhotos({
 			first: request,
 			toTime: timeStamp ? timeStamp * 1000 - 1 : 0,
@@ -57,21 +36,8 @@ export default AddPhoto = props => {
 		})
 			.then(r => {
 				console.log('디바이스 사진 리스트', JSON.stringify(r));
-				// console.log('photolist  '+ JSON.stringify(r));
-				// setPhotoList(photolist.concat(r.edges));
 				setPhotoList(photolist.concat(r.edges));
-				setSelectedPhoto(selectedPhoto);
-
-				let photoList = [...r.edges];
-				photoList.map((v, i) => {
-					photoList[i] = {
-						img_uri: v.node.image.uri,
-						state: false,
-					};
-				});
-				photoList.splice(0, 0, true); //목록 첫 인덱스는 Default Camera Icon (사진직접찍기 기능)
 				console.log('포토리스트', JSON.stringify(photoList));
-				setPhotos(photoList);
 			})
 			.catch(err => {
 				console.log('cameraroll error===>' + err);
@@ -80,10 +46,9 @@ export default AddPhoto = props => {
 
 	/** 스크롤이 바닥에 닿을때 페이징 처리를 위한 함수 */
 	const scrollReachBottom = () => {
-		// loadPhotos(page.current);
 		console.log('scrolllist bottom   ' + JSON.stringify(photolist));
 		let timeStamp = photolist.length > 0 ? photolist[photolist.length - 1].node.timestamp : 0;
-		loadPhotosMilsec(timeStamp);
+		loadPhotosMilsec(20,timeStamp);
 	};
 
 	const test = () => {
@@ -170,13 +135,7 @@ export default AddPhoto = props => {
 		// 	return <Photos isSingle={isSingle} data={item.node} onSelect={selectPhoto} onCancel={cancelPhoto} selectedList={selectedPhoto} />
 		// }
 		return (
-			// <Photos isCamera={false} isSingle={isSingle} data={item.node} onSelect={selectPhoto} onCancel={cancelPhoto} selectedList={selectedPhoto} />
-			<LocalMedia data={item.node} isSingleSelection={isSingle} onSelect={selectPhoto} onCancel={cancelPhoto} index={0} />
-		);
-		return (
-			<View>
-				<Text>{index}</Text>
-			</View>
+			<LocalMedia data={item.node} isSingleSelection={false}  onSelect={selectPhoto} onCancel={cancelPhoto} index={index} />
 		);
 	};
 
@@ -186,17 +145,22 @@ export default AddPhoto = props => {
 		// props.navigation.navigate(props.route.params?.navfrom,{})
 		// props.navigation.navigate({ name: props.route.params.navfrom, params: { localSelectedImages: exportUriList[0] }, merge: true });
 		// props.navigation.navigate({name: props.route.params?.navfrom, params: {image: exportUriList[0]}, merge: true});
+		// setPhotoList([]);
+		setVideo(false);
 		console.log(JSON.stringify(photolist));
 	};
 
 	return (
 		<View style={lo.wrp_main}>
-			{selectedPhoto[selectedPhoto.length - 1]?.isVideo ? (
+			{/* {selectedPhoto[selectedPhoto.length - 1]?.isVideo ? (
 				<View />
 			) : (
+				<Video style={lo.box_img} source={{uri: ''}}/>
 				// <Video style={lo.box_img} source={{uri: selectedPhoto[selectedPhoto.length-1]?.uri}} muted />
-				<Image style={lo.box_img} source={{uri: selectedPhoto[selectedPhoto.length - 1]?.uri}} />
-			)}
+				// <Image style={lo.box_img} source={{uri: selectedPhoto[selectedPhoto.length - 1]?.uri}} />
+			)} */}
+			{/* <Video style={lo.box_img} source={{uri:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}} paused muted/> */}
+
 			<View style={lo.box_title}>
 				<TouchableWithoutFeedback onPress={test}>
 					<View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -212,21 +176,22 @@ export default AddPhoto = props => {
 					</TouchableWithoutFeedback>
 				)}
 			</View>
-			<FlatList
+			<View>
+			{isVideo&&<FlatList
 				contentContainerStyle={lo.box_photolist}
 				data={photolist}
 				renderItem={renderList}
 				extraData={selectedPhoto}
 				// columnWrapperStyle={{backgroundColor:'green',borderColor:'red',borderWidth:3*DP}}
 				// keyExtractor={item => item.node?.image.uri}
-				keyExtractor={item => item.node.timestamp}
-				horizontal={false}
+				// keyExtractor={item => item.node.image.uri}
 				numColumns={4}
 				onEndReachedThreshold={0.1}
 				onEndReached={scrollReachBottom}
 				// initialNumToRender={20}
-				windowSize={6}
-			/>
+				windowSize={3}
+			/>}
+			</View>
 		</View>
 	);
 };
@@ -249,7 +214,6 @@ const lo = StyleSheet.create({
 	},
 	box_photolist: {
 		// flexDirection: 'row',
-
 		justifyContent: 'space-between',
 	},
 	shadow: {
