@@ -36,8 +36,11 @@ export default AddPhoto = props => {
 		})
 			.then(r => {
 				console.log('디바이스 사진 리스트', JSON.stringify(r));
-				r.page_info.has_next_page&&setPhotoList(photolist.concat(r.edges));
-				return
+				// if(Platform.OS=='ios'){
+				// 	r.page_info.has_next_page&&setPhotoList(photolist.concat(r.edges));
+				// }else{
+					setPhotoList(photolist.concat(r.edges));
+				// }
 			})
 			.catch(err => {
 				console.log('cameraroll error===>' + err);
@@ -108,26 +111,26 @@ export default AddPhoto = props => {
 	// });
 
 	const selectPhoto = photo => {
-		if (isSingle) {
-			exportUriList.splice(0);
-			exportUriList.push(photo);
-			setSelectedPhoto(exportUriList.map(v => v));
-			return;
-		}
-		exportUriList.push(photo);
-		setSelectedPhoto(exportUriList.map(v => v));
+		// if (isSingle) {
+		// 	exportUriList.splice(0);
+		// 	exportUriList.push(photo);
+		// 	setSelectedPhoto(exportUriList.map(v => v));
+		// 	return;
+		// }
+		// exportUriList.push(photo);
+		// setSelectedPhoto(exportUriList.map(v => v));
 	};
 
 	const cancelPhoto = photo => {
-		if (isSingle) {
-			exportUriList.splice(0);
-			setSelectedPhoto(exportUriList.map(v => v));
-			return;
-		}
-		exportUriList.forEach((v, i, a) => {
-			if (v.uri === photo.uri) a.splice(i, 1);
-		});
-		setSelectedPhoto(exportUriList.map(v => v));
+		// if (isSingle) {
+		// 	exportUriList.splice(0);
+		// 	setSelectedPhoto(exportUriList.map(v => v));
+		// 	return;
+		// }
+		// exportUriList.forEach((v, i, a) => {
+		// 	if (v.uri === photo.uri) a.splice(i, 1);
+		// });
+		// setSelectedPhoto(exportUriList.map(v => v));
 	};
 
 	const renderList = ({item, index}) => {
@@ -183,7 +186,7 @@ export default AddPhoto = props => {
 				contentContainerStyle={lo.box_photolist}
 				data={photolist}
 				renderItem={renderList}
-				extraData={selectedPhoto}
+				// extraData={selectedPhoto}
 				// columnWrapperStyle={{backgroundColor:'green',borderColor:'red',borderWidth:3*DP}}
 				// keyExtractor={item => item.node?.image.uri}
 				keyExtractor={item => item.node?.image.uri}
