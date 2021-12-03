@@ -10,6 +10,16 @@ import {login_style, btn_style, animalAdoption} from './style_templete';
 
 export default AnimalAdoption = props => {
 	const navigation = useNavigation();
+
+	//임시보호에서 반려 동물 변경 응원 팝업창 !
+	const onCheerUp = () => {
+		Modal.popNoBtn('임시보호가 아닌 반려동물로서의 새로운 삶을 살게 된 구름이를 응원합니다!');
+		setTimeout(() => {
+			Modal.close();
+			navigation.navigate('SelectAccount');
+		}, 3000);
+	};
+
 	return (
 		<ScrollView>
 			<View style={[login_style.wrp_main, animalAdoption.container]}>
@@ -67,7 +77,17 @@ export default AnimalAdoption = props => {
 						btnTheme={'shadow'}
 						btnLayout={btn_w522}
 						titleFontStyle={32}
-						onPress={() => navigation.push('SelectAccount')}
+						// onPress={() => navigation.push('SelectAccount')}
+						onPress={() => {
+							Modal.popTwoBtn(
+								'입양 예정자가 애니로그 계정이 있나요?',
+								'없음',
+								'계정 찾기',
+								() => Modal.close(),
+								() => navigation.push('SelectAccount'),
+								() => Modal.close(),
+							);
+						}}
 					/>
 				</View>
 				{/* 임시보호자 입양*/}
@@ -78,7 +98,15 @@ export default AnimalAdoption = props => {
 						btnTheme={'shadow'}
 						btnLayout={btn_w522}
 						titleFontStyle={32}
-						onPress={() => alert('임보자가 입양')}
+						onPress={() => {
+							Modal.popTwoBtn(
+								'이 동물을 가족으로 맞이하시겠어요?',
+								'취소',
+								'예',
+								() => Modal.close(),
+								() => onCheerUp,
+							);
+						}}
 					/>
 				</View>
 			</View>
