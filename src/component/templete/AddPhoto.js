@@ -16,7 +16,7 @@ export var exportUri = {}; //겔러리 속 사진 로컬 주소
 
 export default AddPhoto = props => {
 	const [isVideo, setVideo] = React.useState(true);
-	const [photolist, setPhotoList] = React.useState([{node:{timestamp:9999999999,image:{uri:'https://us.123rf.com/450wm/azvector/azvector1803/azvector180300135/96983949-카메라-아이콘-플랫-카메라-기호-격리-아이콘-기호-벡터.jpg?ver=6'}}}]);
+	const [photolist, setPhotoList] = React.useState([{node:{timestamp:0,image:{uri:'https://us.123rf.com/450wm/azvector/azvector1803/azvector180300135/96983949-카메라-아이콘-플랫-카메라-기호-격리-아이콘-기호-벡터.jpg?ver=6'}}}]);
 	const [selectedPhoto, setSelectedPhoto] = React.useState([]);
 	const isSingle = props.route.name === 'SinglePhotoSelect';
 
@@ -27,20 +27,21 @@ export default AddPhoto = props => {
 	 *@param {number} request - 불러올 미디어의 숫자 (기본값 20)
 	 *@param {string} type - 불러올 미디어의 타잎('Photos'|'All'|'Videos')
 	 */
-	const loadPhotosMilsec = (request = 500, timeStamp = 0, type = 'All') => {
+	const loadPhotosMilsec = (request = 20, timeStamp = 1, type = 'All') => {
 		CameraRoll.getPhotos({
 			first: request,
-			toTime: timeStamp ? timeStamp * 1000 - 1 : 0,
+			fromTime: timeStamp ? timeStamp * 1000 - 1 : 0,
 			assetType: type,
 			include: ['playableDuration'],
 		})
 			.then(r => {
 				console.log('디바이스 사진 리스트', JSON.stringify(r));
-				// if(Platform.OS=='ios'){
-				// 	r.page_info.has_next_page&&setPhotoList(photolist.concat(r.edges));
-				// }else{
+				if(Platform.OS=='ios'){
+					console.log('pageinfo',r.page_info.has_next_page);
+					r.page_info.has_next_page&&setPhotoList(photolist.concat(r.edges));
+				}else{
 					setPhotoList(photolist.concat(r.edges));
-				// }
+				}
 			})
 			.catch(err => {
 				console.log('cameraroll error===>' + err);
@@ -53,7 +54,7 @@ export default AddPhoto = props => {
 		let timeStamp = photolist.length > 0 ? photolist[photolist.length - 1].node.timestamp : 0;
 		// let timeStamp = photolist.length > 0 ? photolist[1].node.timestamp : 0;
 		console.log(timeStamp);
-		loadPhotosMilsec(20,timeStamp);
+		// loadPhotosMilsec(20,timeStamp);
 	};
 
 	const test = () => {
@@ -189,7 +190,7 @@ export default AddPhoto = props => {
 				// extraData={selectedPhoto}
 				// columnWrapperStyle={{backgroundColor:'green',borderColor:'red',borderWidth:3*DP}}
 				// keyExtractor={item => item.node?.image.uri}
-				keyExtractor={item => item.node?.image.uri}
+				keyExtractor={item => item.node.image.uri}
 				numColumns={4}
 				// onEndReachedThreshold={0.1}
 				// onEndReached={()=>console.log('d')}
