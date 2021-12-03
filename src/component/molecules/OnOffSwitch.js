@@ -23,7 +23,7 @@ export default OnOffSwitch = props => {
 						setBtnStatus(!btnStatus);
 						props.onSwtichOn();
 					}}>
-					{console.log('btnStatus=>' + btnStatus)}
+					{/* {console.log('btnStatus=>' + btnStatus)} */}
 					<View
 						style={{
 							width: 84 * DP,
@@ -44,7 +44,7 @@ export default OnOffSwitch = props => {
 						setBtnStatus(!btnStatus);
 						props.onSwtichOff();
 					}}>
-					{console.log('btnStatus=>' + btnStatus)}
+					{/* {console.log('btnStatus=>' + btnStatus)} */}
 					<View
 						style={{
 							width: 84 * DP,

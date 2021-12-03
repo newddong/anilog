@@ -2538,7 +2538,7 @@ export const vaccinationRecord = StyleSheet.create({
 	},
 	vaccination_category: {
 		width: 654 * DP,
-		height: 268 * DP,
+		// height: 268 * DP,
 		marginBottom: 2 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -2561,6 +2561,24 @@ export const vaccinationRecord = StyleSheet.create({
 		width: 654 * DP,
 		height: 76 * DP,
 		marginVertical: 50 * DP,
+	},
+	titleView: {
+		width: 654 * DP,
+		height: 46 * DP,
+		alignSelf: 'center',
+		flexDirection: 'row',
+	},
+	title: {
+		width: 216 * DP,
+		height: 46 * DP,
+		marginRight: 14 * DP,
+	},
+	titleMenu: {
+		width: 186 * DP,
+		height: 38 * DP,
+		marginLeft: 26 * DP,
+		alignSelf: 'center',
+		alignItems: 'center',
 	},
 });
 

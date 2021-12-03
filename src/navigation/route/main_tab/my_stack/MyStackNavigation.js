@@ -86,7 +86,11 @@ export default MyStackNavigation = () => {
 				component={SetPetInformation}
 				options={{header: props => <SaveButtonHeader {...props} />, title: '반려동물 상세 정보(SetPetInformation)'}}
 			/>
-			<MyStack.Screen name="VaccinationRecord" component={VaccinationRecord} />
+			<MyStack.Screen
+				name="VaccinationRecord"
+				component={VaccinationRecord}
+				options={{header: props => <SaveButtonHeader {...props} />, title: '접종 내역(VaccinationRecord)'}}
+			/>
 			<MyStack.Screen name="AddFamilyAccount" component={AddFamilyAccount} />
 			<MyStack.Screen name="AnimalAdoption" component={AnimalAdoption} />
 			<MyStack.Screen name="SelectAccount" component={SelectAccount} />

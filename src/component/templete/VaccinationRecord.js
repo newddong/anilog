@@ -5,23 +5,112 @@ import {txt} from 'Root/config/textstyle';
 import OnOffSwitch from '../molecules/OnOffSwitch';
 import Vaccination from '../organism_ksw/Vaccination';
 import {login_style, temp_txt, vaccinationRecord} from './style_templete';
+import {_dummy_PetVaccinationObject} from 'Root/config/dummy_data_hjs';
+import DatePicker from '../molecules/DatePicker';
 
 export default VaccinationRecord = props => {
+	const [vaccinOnceAmonthList, setVaccinOnceAmonthList] = React.useState([]);
+	const [vaccinOnceEvery3monthsList, setVaccinOnceEvery3monthsList] = React.useState([]);
+	const [vaccinOnceAyearList, setVaccinOnceAyearList] = React.useState([]);
+
+	// [hjs] API 작업시 하단의 케이스문 리펙토링 필요
+	//API로부터 가져온 쿼리 내용을 백신별로 그룹핑 진행.
+	React.useEffect(() => {
+		let temp_vaccinOnceAmonthList = [];
+		let temp_vaccinOnceEvery3monthsList = [];
+		let temp_vaccinOnceAyearList = [];
+
+		//데이터에서 key를 추출해서 임시 json에 넣는다.
+		for (var key in _dummy_PetVaccinationObject) {
+			let jsonTemp = {};
+			switch (key) {
+				case 'vaccination_heartworm':
+					jsonTemp.vacc_name = '심장 사상충';
+					jsonTemp.current_dueDate = _dummy_PetVaccinationObject[key].last_vaccination_date;
+					jsonTemp.next_dueDate = _dummy_PetVaccinationObject[key].next_vaccination_date;
+					temp_vaccinOnceAmonthList.push(jsonTemp);
+					break;
+				case 'vaccination_ectozoon':
+					jsonTemp.vacc_name = '외부 기생충';
+					jsonTemp.current_dueDate = _dummy_PetVaccinationObject[key].last_vaccination_date;
+					jsonTemp.next_dueDate = _dummy_PetVaccinationObject[key].next_vaccination_date;
+					temp_vaccinOnceAmonthList.push(jsonTemp);
+					break;
+				case 'vaccination_anthelmintic':
+					jsonTemp.vacc_name = '구충제';
+					jsonTemp.current_dueDate = _dummy_PetVaccinationObject[key].last_vaccination_date;
+					jsonTemp.next_dueDate = _dummy_PetVaccinationObject[key].next_vaccination_date;
+					temp_vaccinOnceEvery3monthsList.push(jsonTemp);
+					break;
+				case 'vaccination_comprehensive':
+					jsonTemp.vacc_name = '종합접종';
+					jsonTemp.current_dueDate = _dummy_PetVaccinationObject[key].last_vaccination_date;
+					jsonTemp.next_dueDate = _dummy_PetVaccinationObject[key].next_vaccination_date;
+					temp_vaccinOnceAyearList.push(jsonTemp);
+					break;
+				case 'vaccination_coronaviral_enteritis':
+					jsonTemp.vacc_name = '코로나 장염';
+					jsonTemp.current_dueDate = _dummy_PetVaccinationObject[key].last_vaccination_date;
+					jsonTemp.next_dueDate = _dummy_PetVaccinationObject[key].next_vaccination_date;
+					temp_vaccinOnceAyearList.push(jsonTemp);
+					break;
+				case 'vaccination_bronchitis':
+					jsonTemp.vacc_name = '기관지염';
+					jsonTemp.current_dueDate = _dummy_PetVaccinationObject[key].last_vaccination_date;
+					jsonTemp.next_dueDate = _dummy_PetVaccinationObject[key].next_vaccination_date;
+					temp_vaccinOnceAyearList.push(jsonTemp);
+					break;
+				case 'vaccination_hydrophobia':
+					jsonTemp.vacc_name = '광견병';
+					jsonTemp.current_dueDate = _dummy_PetVaccinationObject[key].last_vaccination_date;
+					jsonTemp.next_dueDate = _dummy_PetVaccinationObject[key].next_vaccination_date;
+					temp_vaccinOnceAyearList.push(jsonTemp);
+					break;
+				case 'vaccination_influenza':
+					jsonTemp.vacc_name = '인플루엔자';
+					jsonTemp.current_dueDate = _dummy_PetVaccinationObject[key].last_vaccination_date;
+					jsonTemp.next_dueDate = _dummy_PetVaccinationObject[key].next_vaccination_date;
+					temp_vaccinOnceAyearList.push(jsonTemp);
+					break;
+			}
+		}
+
+		// //<Vaccination>의 data에 넣기 위해 useState한 작업
+		setVaccinOnceAmonthList(temp_vaccinOnceAmonthList);
+		setVaccinOnceEvery3monthsList(temp_vaccinOnceEvery3monthsList);
+		setVaccinOnceAyearList(temp_vaccinOnceAyearList);
+	}, []);
+
+	//예정일 값 변경 콜백
+	const onDateChange_OnceAmonthList = e => {
+		setVaccinOnceEvery3monthsList(e);
+	};
+
+	//예정일 값 변경 콜백
+	const onDateChange_OnceEvery3monthsList = e => {
+		setVaccinOnceAmonthList(e);
+	};
+
+	//예정일 값 변경 콜백
+	const onDateChange_OnceAyearList = e => {
+		setVaccinOnceAyearList(e);
+	};
+
 	return (
-		<ScrollView>
+		<ScrollView style={{flex: 1}}>
 			<View style={[login_style.wrp_main, vaccinationRecord.container]}>
 				<View style={[vaccinationRecord.vaccinationForm_container]}>
 					{/* (O)Vaccination */}
 					<View style={[vaccinationRecord.vaccination_category]}>
-						<Vaccination />
+						<Vaccination data={vaccinOnceAmonthList} title="매월 1회 접종" onDateChange={e => onDateChange_OnceAmonthList(e)} />
 					</View>
 					{/* (O)Vaccination */}
 					<View style={[vaccinationRecord.vaccination_category]}>
-						<Vaccination />
+						<Vaccination data={vaccinOnceEvery3monthsList} title="3개월에 1회 접종" onDateChange={e => onDateChange_OnceEvery3monthsList(e)} />
 					</View>
 					{/* (O)Vaccination */}
 					<View style={[vaccinationRecord.vaccination_category]}>
-						<Vaccination />
+						<Vaccination data={vaccinOnceAyearList} title="매년 1회 접종" onDateChange={e => onDateChange_OnceAyearList(e)} />
 					</View>
 				</View>
 				{/* 다음 예정일 알림 */}

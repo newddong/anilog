@@ -58,7 +58,6 @@ import InputAndSearchHeader from '../header/InputAndSearchHeader';
 // import Camera from 'Root/component/templete/Camera';
 const RootStack = createStackNavigator();
 
-
 export default RootStackNavigation = () => {
 	const [isPop, setPop] = React.useState(false);
 	const [popupComponent, setPopupComponent] = React.useState([]);
@@ -71,7 +70,7 @@ export default RootStackNavigation = () => {
 	 */
 	const popIn = Component => {
 		const component = React.cloneElement(Component, {key: popupComponent.length});
-		setPopupComponent([...popupComponent,component]);
+		setPopupComponent([...popupComponent, component]);
 	};
 
 	Modal.close = () => {
@@ -109,10 +108,10 @@ export default RootStackNavigation = () => {
 		!isPop && setPop(true);
 	};
 
-	Modal.popSelect = (primaryItems,secondaryItems,onOk,okButtonnMsg) => {
+	Modal.popSelect = (primaryItems, secondaryItems, onOk, okButtonnMsg) => {
 		popIn(<SelectModal primaryItems={primaryItems} secondaryItems={secondaryItems} onOk={onOk} okButtonnMsg={okButtonnMsg} popUpMsg={'선택 모달'} />);
 		!isPop && setPop(true);
-	}
+	};
 
 	// const openCalendar = () => {
 	// 	console.log('openCale')
@@ -123,7 +122,7 @@ export default RootStackNavigation = () => {
 	return (
 		<SafeAreaView style={{flex: 1}}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="AssignUserProfileImage">
+				<RootStack.Navigator initialRouteName="MainTab">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} options={{headerShown: false}} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} options={{header: props => <InputAndSearchHeader {...props} />}} />

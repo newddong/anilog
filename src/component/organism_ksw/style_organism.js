@@ -508,24 +508,27 @@ export const addressInput = StyleSheet.create({
 export const vaccination = StyleSheet.create({
 	container: {
 		width: 654 * DP,
+		// backgroundColor: '#0000FF',
 	},
 	insideContainer: {
 		marginVertical: 40 * DP,
+		// backgroundColor: '#FFFF00',
 	},
 	titleContainer: {
 		width: 654 * DP,
 		height: 46 * DP,
 		alignSelf: 'center',
 		flexDirection: 'row',
+		// backgroundColor: '#FFFF00',
 	},
 	title: {
 		width: 216 * DP,
-		height: 46 * DP,
+		// height: 46 * DP,
 		marginRight: 14 * DP,
 	},
 	titleMenu: {
 		width: 186 * DP,
-		height: 38 * DP,
+		// height: 38 * DP,
 		marginLeft: 26 * DP,
 		alignSelf: 'center',
 		alignItems: 'center',
@@ -536,6 +539,7 @@ export const vaccination = StyleSheet.create({
 		marginTop: 20 * DP,
 		alignSelf: 'center',
 		flexDirection: 'row',
+		// backgroundColor: '#00FF00',
 	},
 	item_name: {
 		width: 216 * DP,
@@ -559,6 +563,11 @@ export const vaccination = StyleSheet.create({
 		backgroundColor: GRAY40,
 		alignSelf: 'center',
 		alignItems: 'center',
+	},
+	separator: {
+		width: 654 * DP,
+		height: 3 * DP,
+		backgroundColor: APRI10,
 	},
 });
 
