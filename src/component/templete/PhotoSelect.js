@@ -43,9 +43,9 @@ const PhotoSelect = props => {
 			.then(r => {
 				let copy = [...r.edges];
 				copy.map((v, i) => {
-					copy[i] = {
-						img_uri: v.node.image.uri,
-						state: false,
+					copy[i] = {image:{
+						uri: v.node.image.uri,
+						state: false,}
 					};
 				});
 				copy.splice(0, 0, true); //목록 첫 인덱스는 Default Camera Icon (사진직접찍기 기능)

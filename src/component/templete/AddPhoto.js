@@ -27,7 +27,7 @@ export default AddPhoto = props => {
 	 *@param {number} request - 불러올 미디어의 숫자 (기본값 20)
 	 *@param {string} type - 불러올 미디어의 타잎('Photos'|'All'|'Videos')
 	 */
-	const loadPhotosMilsec = (request = 20, timeStamp = 0, type = 'All') => {
+	const loadPhotosMilsec = (request = 500, timeStamp = 0, type = 'All') => {
 		CameraRoll.getPhotos({
 			first: request,
 			toTime: timeStamp ? timeStamp * 1000 - 1 : 0,
@@ -36,8 +36,8 @@ export default AddPhoto = props => {
 		})
 			.then(r => {
 				console.log('디바이스 사진 리스트', JSON.stringify(r));
-				setPhotoList(photolist.concat(r.edges));
-				console.log('포토리스트', JSON.stringify(photoList));
+				r.page_info.has_next_page&&setPhotoList(photolist.concat(r.edges));
+				return
 			})
 			.catch(err => {
 				console.log('cameraroll error===>' + err);
@@ -46,8 +46,10 @@ export default AddPhoto = props => {
 
 	/** 스크롤이 바닥에 닿을때 페이징 처리를 위한 함수 */
 	const scrollReachBottom = () => {
-		console.log('scrolllist bottom   ' + JSON.stringify(photolist));
+		// console.log('scrolllist bottom   ' + JSON.stringify(photolist));
 		let timeStamp = photolist.length > 0 ? photolist[photolist.length - 1].node.timestamp : 0;
+		// let timeStamp = photolist.length > 0 ? photolist[1].node.timestamp : 0;
+		console.log(timeStamp);
 		loadPhotosMilsec(20,timeStamp);
 	};
 
@@ -159,7 +161,7 @@ export default AddPhoto = props => {
 				// <Video style={lo.box_img} source={{uri: selectedPhoto[selectedPhoto.length-1]?.uri}} muted />
 				// <Image style={lo.box_img} source={{uri: selectedPhoto[selectedPhoto.length - 1]?.uri}} />
 			)} */}
-			{/* <Video style={lo.box_img} source={{uri:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}} paused muted/> */}
+			<Video style={lo.box_img} source={{uri:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}} muted/>
 
 			<View style={lo.box_title}>
 				<TouchableWithoutFeedback onPress={test}>
@@ -176,21 +178,22 @@ export default AddPhoto = props => {
 					</TouchableWithoutFeedback>
 				)}
 			</View>
-			<View>
-			{isVideo&&<FlatList
+			<View style={{flex:1}}>
+			<FlatList
 				contentContainerStyle={lo.box_photolist}
 				data={photolist}
 				renderItem={renderList}
 				extraData={selectedPhoto}
 				// columnWrapperStyle={{backgroundColor:'green',borderColor:'red',borderWidth:3*DP}}
 				// keyExtractor={item => item.node?.image.uri}
-				// keyExtractor={item => item.node.image.uri}
+				keyExtractor={item => item.node?.image.uri}
 				numColumns={4}
-				onEndReachedThreshold={0.1}
+				// onEndReachedThreshold={0.1}
+				// onEndReached={()=>console.log('d')}
 				onEndReached={scrollReachBottom}
 				// initialNumToRender={20}
 				windowSize={3}
-			/>}
+			/>
 			</View>
 		</View>
 	);
