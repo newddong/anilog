@@ -12,21 +12,23 @@ import Modal from 'Component/modal/Modal';
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
-/** 
+/**
  * 유저의 지역정보를 등록하는 템플릿
- * 
+ *
  * @param {navigation} navigation - 네비게이션을 이용하기 위한 객체
-*/
+ */
 const AssignUserHabitation = props => {
 	const [data, setData] = React.useState({
 		...props.route.params,
-		city: '시를 선택해 주세요', //시,도
-		district: '구를 선택해 주세요', //군,구
-		neighbor: '동을 선택해 주세요', //동,읍,면
+		user_address: {
+			city: '시를 선택해 주세요', //시,도
+			district: '구를 선택해 주세요', //군,구
+			neighbor: '동을 선택해 주세요', //동,읍,면
+		},
 	});
 
 	const goToNextStep = () => {
-		props.navigation.push('AssignUserProfileImage');
+		props.navigation.push('AssignUserProfileImage', data);
 	};
 
 	const onSelectCity = () => {
@@ -34,7 +36,7 @@ const AssignUserHabitation = props => {
 			'시를 선택해 주세요',
 			['서울시', '부산시', '광주광역시'],
 			e => {
-				setData({...data, city: e});
+				setData({...data, user_address:{...data.user_address,city:e}});
 				cityDrop.current.press();
 			},
 			() => {
@@ -47,7 +49,7 @@ const AssignUserHabitation = props => {
 			'구를 선택해 주세요',
 			['북구', '서구', '중구'],
 			e => {
-				setData({...data, district: e});
+				setData({...data, user_address:{...data.user_address,district:e}});
 				districDrop.current.press();
 			},
 			() => {
@@ -58,9 +60,9 @@ const AssignUserHabitation = props => {
 	const onSelectNeighbor = selectedItem => {
 		Modal.rollingSelect(
 			'동을 선택해 주세요',
-			['신당동', '사당동', '신림동','행신동'],
+			['신당동', '사당동', '신림동', '행신동'],
 			e => {
-				setData({...data, neighbor: e});
+				setData({...data, user_address:{...data.user_address,neighbor:e}});
 				neighborDrop.current.press();
 			},
 			() => {
@@ -77,7 +79,8 @@ const AssignUserHabitation = props => {
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* (M)StageBar	 */}
 			<TouchableWithoutFeedback onPress={() => console.log(data)}>
-				<View style={{backgroundColor: 'red', height: 30, width: 30, position: 'absolute',borderWidth:1,borderColor:'blue', top: 0, left: 0}}></View>
+				<View
+					style={{backgroundColor: 'red', height: 30, width: 30, position: 'absolute', borderWidth: 1, borderColor: 'blue', top: 0, left: 0}}></View>
 			</TouchableWithoutFeedback>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
@@ -104,27 +107,9 @@ const AssignUserHabitation = props => {
 			</View>
 			{/* HabitationForm */}
 			<View style={[assignUserHabitation_style.habitationForm]}>
-				<DropdownSelect width={522} value={data.city} onOpen={onSelectCity} ref={cityDrop} />
-				<DropdownSelect width={522} value={data.district} onOpen={onSelectDistrict} ref={districDrop}/>
-				<DropdownSelect width={522} value={data.neighbor} onOpen={onSelectNeighbor} ref={neighborDrop} />
-				{/* <NormalDropDown
-						menu={['시를 선택해 주세요', '서울시']}
-						width={522}
-						defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
-						onSelect={onSelectCity}
-					/>
-					<NormalDropDown
-						menu={['구를 선택해 주세요', '동작구']}
-						width={522}
-						defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
-						onSelect={onSelectDistrict}
-					/>
-					<NormalDropDown
-						menu={['동을 선택해 주세요', '가운동']}
-						width={522}
-						defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
-						onSelect={onSelectNeighbor}
-					/> */}
+				<DropdownSelect width={522} value={data.user_address.city} onOpen={onSelectCity} ref={cityDrop} />
+				<DropdownSelect width={522} value={data.user_address.district} onOpen={onSelectDistrict} ref={districDrop} />
+				<DropdownSelect width={522} value={data.user_address.neighbor} onOpen={onSelectNeighbor} ref={neighborDrop} />
 			</View>
 
 			{/* (A)Btn_w654 */}

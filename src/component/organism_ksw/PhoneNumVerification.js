@@ -21,6 +21,7 @@ import {phoneNumVerification} from './style_organism';
  */
 export default PhoneNumVerification = props => {
 	const [timeOut, setTimeOut] = React.useState(false);
+	const [userName, setUserName] = React.useState('');
 	const onEndTimer = () => {
 		setTimeOut(true);
 	};
@@ -31,6 +32,7 @@ export default PhoneNumVerification = props => {
 		props.requestVerification();
 	};
 	const onNameInputChange = text => {
+		setUserName(text);
 		props.onNameInputChange(text);
 	};
 	const onPhoneNumberInputChange = number => {
@@ -45,7 +47,7 @@ export default PhoneNumVerification = props => {
 	return (
 		<View style={[phoneNumVerification.container]}>
 			<View style={[temp_style.input30, phoneNumVerification.input30]}>
-				<Input30 showTitle={false} width={654} placeholder={'이름 입력'} onChange={onNameInputChange} />
+				<Input30 showTitle={false} width={654} placeholder={'이름 입력'} onChange={onNameInputChange} value={userName}/>
 			</View>
 			<View style={[temp_style.inputWithSelect, phoneNumVerification.inputWithSelect]}>
 				<InputWithSelect

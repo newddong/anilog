@@ -95,6 +95,7 @@ NormalDropDown.defaultProps = {
 	onClose: e => console.log('NormalDropDown Default onClose  ', e),
 	onSelect: (v, i) => console.log('NormalDropDown Default onSelect  ', i + ':' + v),
 	menu: [],
+	width: 200, //없으면 오류남
 };
 
 export default NormalDropDown;

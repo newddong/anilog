@@ -9,7 +9,7 @@ import {Cross46} from '../atom/icon';
 /**
  * 인풋 크기 24
  * @type {React.ForwardRefRenderFunction<?,Input24Props>}
- * 
+ *
  */
 const Input24 = React.forwardRef((props, ref) => {
 	React.useImperativeHandle(ref, () => ({
@@ -97,6 +97,7 @@ const Input24 = React.forwardRef((props, ref) => {
 					placeholder={props.placeholder}
 					defaultValue={props.defaultValue}
 					editable={props.editable}
+					keyboardType={props.keyboardType}
 					style={[
 						txt.noto28,
 						props.style,
@@ -155,6 +156,10 @@ const Input24Props = {
 	showHttp: bool,
 	/** @type {()=>boolean} true/false를 반환하는 입력 양식 검증함수 */
 	validator: func,
+	/** @type {(result:boolean)=>void} validator가 실행될 때마다 발생하는 콜백함수, validator의 결과값을 매개변수로 통보*/
+	onValid: func,
+	/** @type {string} 인풋 키보드 타잎 default|number-pad|decimal-pad|numeric|email-address|phone-pad 다른 속성은 RN공식문서 참조 */
+	keyboardType:string
 };
 
 Input24.propTypes = Input24Props;
@@ -175,6 +180,8 @@ Input24.defaultProps = {
 	onClear: e => console.log('Input24 지우기 시도'),
 	onChange: e => console.log(e),
 	validator: () => true,
+	onValid:(e)=>{},
+	keyboardType:'default'
 };
 
 export default Input24;

@@ -3,7 +3,7 @@ import React from 'react';
 import {APRI10, GRAY10, GRAY30} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
-import {Text, View} from 'react-native';
+import {Text, TouchableWithoutFeedback,View} from 'react-native';
 import Stagebar from '../molecules/Stagebar';
 import {btn_w226} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
@@ -12,10 +12,11 @@ import RadioBox from '../molecules/RadioBox';
 import TabSelectFilled_Type1 from '../molecules/TabSelectFilled_Type1';
 import {FEMALE, MALE, NO, UNAWARENESS, YES} from 'Root/i18n/msg';
 import {stagebar_style} from '../organism_ksw/style_organism';
+import NormalDropDown from 'Molecules/NormalDropDown';
 
 export default AssignPetInfoA = props => {
 	const navigation = useNavigation();
-	const isProtectAnimalRoute = props.route.params.route == 'AssignProtectAnimalType';
+	const isProtectAnimalRoute = props.route.name == 'AssignProtectAnimalType';
 	// console.log(isProtectAnimalRoute)
 
 	const pet_speciesArray = ['개', '고양이', '기타'];
@@ -88,6 +89,19 @@ export default AssignPetInfoA = props => {
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
+			<TouchableWithoutFeedback onPress={() => console.log(data)}>
+				<View
+					style={{
+						backgroundColor: 'red',
+						height: 30,
+						width: 30,
+						position: 'absolute',
+						borderWidth: 1,
+						borderColor: 'blue',
+						top: 0,
+						left: 0,
+					}}></View>
+			</TouchableWithoutFeedback>
 			{/* (M)StageBar	 */}
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
@@ -112,12 +126,12 @@ export default AssignPetInfoA = props => {
 					<Text style={[temp_style.text_assignPetInfo, txt.noto28, {color: GRAY10}]}>분류</Text>
 					<View style={[temp_style.dropdownSelect_assignPetInfo_depth1, assignPetInfo_style.dropdownSelect_depth1]}>
 						{/* <DropdownSelect items={['개', '고양이', '두더지']} width={200} /> */}
-						<NormalDropDown menu={pet_speciesArray} onSelect={(v, i) => onSelectSpecies(v, i)} defaultIndex={0} />
+						<NormalDropDown menu={pet_speciesArray} width={204} onSelect={(v, i) => onSelectSpecies(v, i)} defaultIndex={0} />
 					</View>
 					<View style={[temp_style.dropdownSelect_assignPetInfo_depth2, assignPetInfo_style.dropdownSelect_depth2]}>
 						{/* 직접입력으로 적혀있음 */}
 						{/* <DropdownSelect items={['직접 입력']} width={250} textStyle={{paddingRight: 30 * DP, color: GRAY30}} /> */}
-						<NormalDropDown menu={speciesDetail} onSelect={(v, i) => onSelectSpeciesDetail(v, i)} />
+						<NormalDropDown menu={speciesDetail} width={292} onSelect={(v, i) => onSelectSpeciesDetail(v, i)} />
 					</View>
 				</View>
 

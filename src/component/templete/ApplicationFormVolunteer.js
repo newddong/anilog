@@ -8,7 +8,6 @@ import {btn_w226} from '../atom/btn/btn_style';
 import {Add_Volunteer, Calendar48_Filled, Person48, Phone48} from '../atom/icon';
 import Modal from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
-import Input30 from '../molecules/Input30';
 import ShelterInfo from '../molecules/ShelterInfo';
 import AccountList from '../organism_ksw/AccountList';
 import {login_style, applicationFormVolunteer, btn_style} from './style_templete';

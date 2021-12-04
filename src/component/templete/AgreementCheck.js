@@ -17,10 +17,10 @@ export default AgreementCheck = props => {
 	const user_agreement = React.useRef({
 		is_over_fourteen: false, //14살 이상
 		is_service: false, //서비스 동의
-		is_personal_Info: false, //개인정보 제공 동의
+		is_personal_info: false, //개인정보 제공 동의
 		is_location_service_info: false, //위치정보 제공 동의
 		is_donation_info: false, //기부정보 제공 동의
-		is_marketting_Info: false, //마케팅정보 제공 동의
+		is_marketting_info: false, //마케팅정보 제공 동의
 	}).current;
 
 	const [permissionToNext, setPermissionToNext] = React.useState(false);
@@ -42,7 +42,7 @@ export default AgreementCheck = props => {
 			user_agreement.is_donation_info &&
 			user_agreement.is_location_service_info &&
 			user_agreement.is_over_fourteen &&
-			user_agreement.is_personal_Info &&
+			user_agreement.is_personal_info &&
 			user_agreement.is_service
 		) {
 			setPermissionToNext(true);
@@ -61,7 +61,7 @@ export default AgreementCheck = props => {
 				user_agreement.is_service = isCheck;
 				break;
 			case 2:
-				user_agreement.is_personal_Info = isCheck;
+				user_agreement.is_personal_info = isCheck;
 				break;
 			case 3:
 				user_agreement.is_location_service_info = isCheck;
@@ -70,7 +70,7 @@ export default AgreementCheck = props => {
 				user_agreement.is_donation_info = isCheck;
 				break;
 			case 5:
-				user_agreement.is_marketting_Info = isCheck;
+				user_agreement.is_marketting_info = isCheck;
 				break;
 		}
 		permissionCheck();

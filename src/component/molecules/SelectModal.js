@@ -8,7 +8,6 @@ import {WHITE, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
 import Modal from 'Component/modal/Modal';
-import Input30 from './Input30';
 import Input24 from './Input24';
 
 /**

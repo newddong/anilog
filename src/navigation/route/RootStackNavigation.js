@@ -122,7 +122,7 @@ export default RootStackNavigation = () => {
 	return (
 		<SafeAreaView style={{flex: 1}}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="AssignUserProfileImage">
+				<RootStack.Navigator initialRouteName="AssignPetProfileImage">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} options={{headerShown: false}} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} options={{header: props => <InputAndSearchHeader {...props} />}} />
@@ -189,16 +189,29 @@ export default RootStackNavigation = () => {
 					/>
 					<RootStack.Screen name="LocationPicker" component={LocationPicker} />
 
+					{/* 카메라 관련 기능은 네이티브 모듈이 안정화 혹은 자체 개발이 될때까지 추가 보류 */}
 					{/* <RootStack.Screen name="SinglePhotoSelect" component={PhotoSelect} /> */}
-					<RootStack.Screen name="SinglePhotoSelect" component={AddPhoto} />
+					{/* <RootStack.Screen name="SinglePhotoSelect" component={AddPhoto} /> */}
 					{/* <RootStack.Screen name="MultiPhotoSelect" component={PhotoSelect} /> */}
-					<RootStack.Screen name="MultiPhotoSelect" component={AddPhoto} />
+					{/* <RootStack.Screen name="MultiPhotoSelect" component={AddPhoto} /> */}
 					{/* 카메라 컴포넌트 임시 추가 */}
 					<RootStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
 
-					<RootStack.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
-					<RootStack.Screen name="AssignPetInfoA" component={AssignPetInfoA} />
-					<RootStack.Screen name="AssignPetInfoB" component={AssignPetInfoB} />
+					<RootStack.Screen
+						name="AssignPetProfileImage"
+						component={AssignPetProfileImage}
+						options={{header: props => <SimpleHeader {...props} />, title: '반려동물 등록'}}
+					/>
+					<RootStack.Screen
+						name="AssignPetInfoA"
+						component={AssignPetInfoA}
+						options={{header: props => <SimpleHeader {...props} />, title: '반려동물 등록'}}
+					/>
+					<RootStack.Screen
+						name="AssignPetInfoB"
+						component={AssignPetInfoB}
+						options={{header: props => <SimpleHeader {...props} />, title: '반려동물 등록'}}
+					/>
 				</RootStack.Navigator>
 			</NavigationContainer>
 

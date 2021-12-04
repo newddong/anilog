@@ -10,6 +10,7 @@ import AniButton from '../molecules/AniButton';
 import {login_style, btn_style, temp_style, progressbar_style, assignPetInfo_style} from './style_templete';
 import DatePicker from '../molecules/DatePicker';
 import Modal from '../modal/Modal';
+import Input30 from '../molecules/Input30';
 
 export default AssignPetInfoB = props => {
 	console.log(props.route.params);
@@ -17,8 +18,8 @@ export default AssignPetInfoB = props => {
 
 	const [data, setData] = React.useState({
 		...props.route.params,
-		pet_birthday: null,
-		pet_weight: null,
+		pet_birthday: '2021.01.01',
+		pet_weight: '0',
 	});
 	const [selectedBirthDate, setSelectedBirthDate] = React.useState('2021.03.01');
 
@@ -61,9 +62,27 @@ export default AssignPetInfoB = props => {
 		}, 1000);
 	};
 
+	const weigthValid=(e)=>{
+		var regExp = /^[\D]{1,20}$/;
+		return regExp.test(e);
+	}
+
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* (M)StageBar	 */}
+			<TouchableWithoutFeedback onPress={() => console.log(data)}>
+				<View
+					style={{
+						backgroundColor: 'red',
+						height: 30,
+						width: 30,
+						position: 'absolute',
+						borderWidth: 1,
+						borderColor: 'blue',
+						top: 0,
+						left: 0,
+					}}></View>
+			</TouchableWithoutFeedback>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
 					style={{}} //전체 container style, text와 bar를 감싸는 view의 style
@@ -104,13 +123,17 @@ export default AssignPetInfoB = props => {
 					<Text style={[txt.noto28, temp_style.text_assignPetInfo, {color: GRAY10}]}>체중</Text>
 					<View style={[temp_style.inputNoTitle_assignPetInfo, assignPetInfo_style.inputNoTitle]}>
 						<Input30
+							alert_msg={'숫자 0 이상의 값을 입력하세요'}
 							showmsg={false}
 							confirm={true}
 							showTitle={false}
 							width={200}
 							placeholder={'몸무게 입력'}
 							clearMark={false}
-							onChange={kg => onChangeKg(kg)}
+							onChange={onChangeKg}
+							value={data.pet_weight}
+							validator={weigthValid}
+							keyboardType={'number-pad'}
 						/>
 					</View>
 					<Text style={[temp_style.text68_assignPetInfo, assignPetInfo_style.text68, txt.noto28]}>kg</Text>
