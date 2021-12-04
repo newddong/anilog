@@ -16,7 +16,16 @@ export var exportUri = {}; //겔러리 속 사진 로컬 주소
 
 export default AddPhoto = props => {
 	const [isVideo, setVideo] = React.useState(true);
-	const [photolist, setPhotoList] = React.useState([{node:{timestamp:0,image:{uri:'https://us.123rf.com/450wm/azvector/azvector1803/azvector180300135/96983949-카메라-아이콘-플랫-카메라-기호-격리-아이콘-기호-벡터.jpg?ver=6'}}}]);
+	const [photolist, setPhotoList] = React.useState([
+		// {
+		// 	node: {
+		// 		timestamp: 0,
+		// 		image: {
+		// 			uri: 'https://us.123rf.com/450wm/azvector/azvector1803/azvector180300135/96983949-카메라-아이콘-플랫-카메라-기호-격리-아이콘-기호-벡터.jpg?ver=6',
+		// 		},
+		// 	},
+		// },
+	]);
 	const [selectedPhoto, setSelectedPhoto] = React.useState([]);
 	const isSingle = props.route.name === 'SinglePhotoSelect';
 
@@ -27,19 +36,23 @@ export default AddPhoto = props => {
 	 *@param {number} request - 불러올 미디어의 숫자 (기본값 20)
 	 *@param {string} type - 불러올 미디어의 타잎('Photos'|'All'|'Videos')
 	 */
-	const loadPhotosMilsec = (request = 20, timeStamp = 1, type = 'All') => {
+	const loadPhotos = (request = 8, timeStamp = 0, type = 'All') => {
+		// CameraRoll.getPhotos({ first: 10, assetType: 'Photos', groupTypes: 'All', fromTime: 1584356434595, //5 hours back toTime: moment().valueOf(), })
 		CameraRoll.getPhotos({
 			first: request,
-			fromTime: timeStamp ? timeStamp * 1000 - 1 : 0,
+			after: '20',
+			// fromTime: timeStamp,
 			assetType: type,
 			include: ['playableDuration'],
 		})
 			.then(r => {
-				console.log('디바이스 사진 리스트', JSON.stringify(r));
-				if(Platform.OS=='ios'){
-					console.log('pageinfo',r.page_info.has_next_page);
-					r.page_info.has_next_page&&setPhotoList(photolist.concat(r.edges));
-				}else{
+				console.log('디바이스 사진 리스트', timeStamp, JSON.stringify(r));
+
+				if (Platform.OS === 'ios') {
+					console.log('mac_pageinfo', r.edges.length, r.page_info);
+					setPhotoList(photolist.concat(r.edges));
+				} else {
+					console.log('android_pageinfo', r.edges.length, r.page_info);
 					setPhotoList(photolist.concat(r.edges));
 				}
 			})
@@ -53,13 +66,49 @@ export default AddPhoto = props => {
 		// console.log('scrolllist bottom   ' + JSON.stringify(photolist));
 		let timeStamp = photolist.length > 0 ? photolist[photolist.length - 1].node.timestamp : 0;
 		// let timeStamp = photolist.length > 0 ? photolist[1].node.timestamp : 0;
-		console.log(timeStamp);
+		// console.log(timeStamp);
 		// loadPhotosMilsec(20,timeStamp);
 	};
-
+	const Te = React.useRef();
+	const a = React.useRef(1);
 	const test = () => {
 		// console.log(props.route.params);
-		console.log(selectedPhoto);
+		let dummy = {
+			node: {
+				timestamp: 0,
+				image: {
+					uri: 'https://us.123rf.com/450wm/azvector/azvector1803/azvector180300135/96983949-카메라-아이콘-플랫-카메라-기호-격리-아이콘-기호-벡터.jpg?ver=6',
+				},
+			},
+		};
+		console.log('커서', Te.current);
+		let params = Te.current
+			? {
+					first: a.current++,
+					after: Te.current,
+					assetType: 'Videos',
+					include: ['playableDuration'],
+			  }
+			: {
+					first: a.current++,
+					assetType: 'Videos',
+					include: ['playableDuration'],
+			  };
+		console.log('파라메터',params);
+		CameraRoll.getPhotos(params)
+			.then(r => {
+				console.log('디바이스 사진 리스트', JSON.stringify(r));
+				Te.current = r.page_info.end_cursor;
+
+				console.log('android_pageinfo', r.edges.length, r.page_info);
+				let push = [...r.edges, ...Array.from({length: 4 - (r.edges.length % 4)}, (v, i) => dummy)];
+
+				// setPhotoList(photolist.concat(push));
+				setPhotoList(photolist.concat(r.edges));
+			})
+			.catch(err => {
+				console.log('cameraroll error===>' + err);
+			});
 	};
 
 	/** 이전 페이지에서 이미 선택한 사진이 있을 경우 선택한 것으로 표시 */
@@ -78,7 +127,7 @@ export default AddPhoto = props => {
 	/** 퍼미션 처리, 사진을 불러오기 전 갤러리 접근 권한을 유저에게 요청 */
 	React.useEffect(() => {
 		if (Platform.OS === 'ios') {
-			loadPhotosMilsec();
+			loadPhotos();
 		} else {
 			try {
 				/** 외부 저장소 접근권한 */
@@ -86,12 +135,12 @@ export default AddPhoto = props => {
 
 				PermissionsAndroid.check(isAllowExternalStorage).then(isPermit => {
 					if (isPermit) {
-						loadPhotosMilsec();
+						// loadPhotos();
 					} else {
 						PermissionsAndroid.request(isAllowExternalStorage).then(permission => {
 							console.log(permission);
 							if (permission === 'granted') {
-								loadPhotosMilsec();
+								// loadPhotos();
 							} else {
 								alert('기기의 사진 접근권한을 허용해 주세요');
 							}
@@ -141,7 +190,9 @@ export default AddPhoto = props => {
 		// 	return <Photos isSingle={isSingle} data={item.node} onSelect={selectPhoto} onCancel={cancelPhoto} selectedList={selectedPhoto} />
 		// }
 		return (
-			<LocalMedia data={item.node} isSingleSelection={false}  onSelect={selectPhoto} onCancel={cancelPhoto} index={index} />
+			
+				<LocalMedia data={item.node} isSingleSelection={false} onSelect={selectPhoto} onCancel={cancelPhoto} index={index} />
+			
 		);
 	};
 
@@ -165,7 +216,7 @@ export default AddPhoto = props => {
 				// <Video style={lo.box_img} source={{uri: selectedPhoto[selectedPhoto.length-1]?.uri}} muted />
 				// <Image style={lo.box_img} source={{uri: selectedPhoto[selectedPhoto.length - 1]?.uri}} />
 			)} */}
-			<Video style={lo.box_img} source={{uri:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}} muted/>
+			<Video style={lo.box_img} source={{uri: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}} muted />
 
 			<View style={lo.box_title}>
 				<TouchableWithoutFeedback onPress={test}>
@@ -182,22 +233,22 @@ export default AddPhoto = props => {
 					</TouchableWithoutFeedback>
 				)}
 			</View>
-			<View style={{flex:1}}>
-			<FlatList
-				contentContainerStyle={lo.box_photolist}
-				data={photolist}
-				renderItem={renderList}
-				// extraData={selectedPhoto}
-				// columnWrapperStyle={{backgroundColor:'green',borderColor:'red',borderWidth:3*DP}}
-				// keyExtractor={item => item.node?.image.uri}
-				keyExtractor={item => item.node.image.uri}
-				numColumns={4}
-				// onEndReachedThreshold={0.1}
-				// onEndReached={()=>console.log('d')}
-				onEndReached={scrollReachBottom}
-				// initialNumToRender={20}
-				windowSize={3}
-			/>
+			<View style={{flex: 1}}>
+				<FlatList
+					contentContainerStyle={lo.box_photolist}
+					data={photolist}
+					renderItem={renderList}
+					// extraData={selectedPhoto}
+					// columnWrapperStyle={{backgroundColor:'green',borderColor:'red',borderWidth:3*DP}}
+					// keyExtractor={item => item.node?.image.uri}
+					keyExtractor={(item, index) => item.node.image.uri + index}
+					// onEndReachedThreshold={0.1}
+					// onEndReached={()=>console.log('d')}
+					numColumns={4}
+					onEndReached={scrollReachBottom}
+					// initialNumToRender={20}
+					windowSize={3}
+				/>
 			</View>
 		</View>
 	);

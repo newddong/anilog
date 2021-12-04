@@ -29,15 +29,15 @@ import {Paw94x90} from '../atom/icon';
  * @type {React.FunctionComponent<LocalMediaProps>}
  *
  */
-const LocalMedia = React.memo(props => {
+const LocalMedia = React.memo(function(props){
 	// console.log(props.index)
 	const [isSelect, setSelected] = React.useState(false);
 
-	React.useEffect(() => {
-		props.data.state ? setSelected(true) : setSelected(false);
-	}, [props.data.state]);
+	// React.useEffect(() => {
+	// 	props.data.state ? setSelected(true) : setSelected(false);
+	// }, [props.data.state]);
 
-	const onPressMedia = e => {
+	const onPressMedia = React.useCallback(e => {
 		if (isSelect) {
 			setSelected(false);
 			props.onCancel(props.data);
@@ -45,7 +45,9 @@ const LocalMedia = React.memo(props => {
 			setSelected(true);
 			props.onSelect(props.data);
 		}
-	};
+	},[props.data]);
+
+	// const onPressMedia = React.useCallback(() => {alert('click')},[]);
 
 	const onSelect = e => {
 		// console.log("PropsDisable", props.disable)
