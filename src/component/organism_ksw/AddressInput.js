@@ -10,30 +10,41 @@ import {btn_style, temp_style} from '../templete/style_templete';
 import {addressInput} from './style_organism';
 
 /**
- *
- * 
  * 
  * @param {object} props
  * @param {string} props.title - 제목
  * @param {string} props.titleColor - 제목 색상
  * @param {string} props.addressDefault - 기존에 작성된 주소 정보
  * @param {string} props.detailAddressDefault - 기존에 작성된 세부 주소 정보
+ * @param {string} props.address - 주소값
+ * @param {string} props.detailAddress - 세부 주소값
  * @param {(address:string)=>void} props.onChangeAddress - 주소 정보가 변동될때 콜백(주소를 파라메터로 넘김)
  * @param {(detailAddress:string)=>void} props.onChangeDeatilAddress - 세부 주소가 변동될때 콜백(세부 주소를 파라메터로 넘김)
  * @param {()=>void} props.onPressSearchAddr - 주소찾기를 눌렸을때 발생생
+ * @param {(address:string,detailaddress:string)=>boolean} props.validator - 주소찾기 검증
+ * @param {(isValid:boolean)=>void} props.onValid - 주소찾기 검증 변경에 따른 콜백
  */
 
 
 const AddressInput = props => {
+	
+	
+	const validator = (addr,detailAddr) => {
+		let isValid = props.validator(addr,detailAddr);
+		props.onValid && props.onValid(isValid);
+	};
+	
 	//주소 값 변경 콜백
 	const onChangeAddress = addr => {
 		// console.log(addr);
+		props.validator&& validator(addr,props.detailAddress);
 		props.onChangeAddress(addr);
 	};
 
 	//세부 주소 값 변경 콜백
 	const onChangeDetailAddress = addr => {
 		// console.log(addr);
+		props.validator&& validator(props.address,addr);
 		props.onChangeDeatilAddress(addr);
 	};
 
@@ -48,6 +59,7 @@ const AddressInput = props => {
 			<View style={[addressInput.upperContainer]}>
 				<View style={[addressInput.input24A]}>
 					<Input24
+						value={props.address}
 						width={388}
 						placeholder={'주소 찾기를 눌러주세요'}
 						onChange={onChangeAddress}
@@ -64,6 +76,7 @@ const AddressInput = props => {
 			<View style={[temp_style.inputNoTitle, addressInput.inputNoTitle]}>
 				<Input24
 					width={654}
+					value={props.detailAddress}
 					defaultValue={props.detailAddressDefault}
 					placeholder={'세부 주소를 입력해 주세요.'}
 					onChange={onChangeDetailAddress}
@@ -78,9 +91,9 @@ AddressInput.defaultProps = {
 	titleColor: GRAY10,
 	addressDefault: null,
 	detailAddressDefault: null,
-	onChangeDeatilAddress: e => console.log(e),
-	onChangeAddress: e => console.log(e),
-	onPressSearchAddr: e => console.log(e),
+	onChangeDeatilAddress: e => {},
+	onChangeAddress: e => {},
+	onPressSearchAddr: e => {},
 };
 
 

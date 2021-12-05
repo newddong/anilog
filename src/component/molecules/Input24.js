@@ -67,7 +67,7 @@ const Input24 = React.forwardRef((props, ref) => {
 	const getMsg = () => {
 		if (props.showMsg) {
 			// if (input.length == 0) {
-			if (props.value===undefined||props.value.length == 0) {
+			if (props.value==undefined||props.value.length == 0) {
 				// return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}></Text>;
 				return false;
 			} else
@@ -120,7 +120,6 @@ const Input24 = React.forwardRef((props, ref) => {
 					</View>
 				) : false}
 			</View>
-
 			{getMsg()}
 		</View>
 	);
@@ -182,8 +181,8 @@ Input24.defaultProps = {
 	defaultValue: null, // 기존 아이디 등 DefaultValue가 필요한 경우에 대한 처리
 	showCrossMark: true, //Input 최우측 X마크(지우기마크) 출력 여부
 	showHttp: false, //AssignShelterInformation에서 http:// 인풋 좌측에 놓기 위한 props
-	onClear: e => console.log('Input24 지우기 시도'),
-	onChange: e => console.log(e),
+	onClear: e => {},
+	onChange: e => {},
 	validator: () => true,
 	onValid:(e)=>{},
 	keyboardType:'default'

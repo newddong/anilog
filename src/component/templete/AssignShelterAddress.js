@@ -10,10 +10,9 @@ import Input24 from '../molecules/Input24';
 import AddressInput from '../organism_ksw/AddressInput';
 
 export default AssignShelterAddress = props => {
-	console.log(props.route.params);
 
 	const [confirmed, setConfirmed] = React.useState(false); //주소란이 모두 작성되었다며 통과가능
-
+	const [confirmName, setConfirmName] = React.useState(false);//이름 입력되었다면 통과가능
 	const [data, setData] = React.useState({
 		...props.route.params.data,
 		shelter_name: '',
@@ -26,31 +25,19 @@ export default AssignShelterAddress = props => {
 		},
 	});
 
-	React.useEffect(() => {
-		data.shelter_address.city != null && data.shelter_address.district != null && data.shelter_name != null
-			? setConfirmed(true)
-			: setConfirmed(false);
-	}, [data]);
-
 	//다음
 	const goToNextStep = () => {
-		props.navigation.push('AssignShelterInformation', data);
+		props.navigation.push('AssignShelterInformation', {data:data});
 	};
 
 	//주소
 	const onChangeAddress = addr => {
-		console.log(addr);
-		const dummy_addr = {
-			city: '서울시',
-			district: '마포구',
-		};
-		setData({...data, shelter_address: {city: dummy_addr.city, district: dummy_addr.district}});
+		setData({...data, shelter_address: {...data.shelter_address,brief: addr}});
 	};
 
 	//세부주소
 	const onChangeDeatilAddress = addr => {
-		console.log(addr);
-		setData({...data, shelter_address: {neighbor: addr}});
+		setData({...data, shelter_address: {...data.shelter_address,detail: addr}});
 	};
 
 	//주소찾기 클릭
@@ -61,15 +48,25 @@ export default AssignShelterAddress = props => {
 
 	//보호소 이름
 	const onChaneName = name => {
-		console.log(name);
 		setData({...data, shelter_name: name});
 	};
 
 	const nameValidator = name => {
 		console.log('이름 유효성 검사',name.length>0)
-		return name.length > 0;
+		return name.length>0;
 	};
-	const onValidName = isValid => {};
+	const onValidName = isValid => {
+		setConfirmName(isValid);
+	};
+
+	const addressValidator = (addr,detailAddr) => {
+		return addr.length>0 && detailAddr.length>0;
+	}
+
+	const onValidAddress = isValid => {
+		console.log('onvalid',isValid);
+		setConfirmed(isValid);
+	}
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
@@ -129,7 +126,11 @@ export default AssignShelterAddress = props => {
 					titleColor={APRI10}
 					onChangeAddress={onChangeAddress}
 					onChangeDeatilAddress={onChangeDeatilAddress}
+					address={data.shelter_address.brief}
+					detailAddress={data.shelter_address.detail}
 					onPressSearchAddr={goToAddressSearch}
+					validator={addressValidator}
+					onValid={onValidAddress}
 				/>
 			</View>
 
@@ -138,7 +139,7 @@ export default AssignShelterAddress = props => {
 				<AniButton
 					btnTitle={'다음'}
 					btnTheme={'shadow'}
-					disable={!confirmed && true}
+					disable={!confirmName||!confirmed}
 					btnLayout={btn_w654}
 					titleFontStyle={32}
 					onPress={goToNextStep}

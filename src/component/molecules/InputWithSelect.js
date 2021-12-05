@@ -5,6 +5,7 @@ import DP from 'Root/config/dp';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52} from '../atom/icon';
 import {APRI10, GRAY30, RED10} from 'Root/config/color';
 import NormalDropDown from './NormalDropDown';
+import Input24 from 'Molecules/Input24';
 
 /**
  *
@@ -25,11 +26,14 @@ import NormalDropDown from './NormalDropDown';
  * }} props
  */
 export default InputWithSelect = props => {
+	const [dropdownVal,setDropdownVal] = React.useState(props.items?props.items[props.defaultIndex]:'');
 	const [input, setInput] = React.useState('');
 	const inputRef = React.useRef();
 
+	
+
 	const onChange = text => {
-		props.onChange(text);
+		props.onChange(dropdownVal+text);
 		setInput(text);
 	};
 
@@ -39,17 +43,11 @@ export default InputWithSelect = props => {
 		setInput('');
 	};
 
-	const blur = () => {
-		inputRef.current.blur();
-	};
-
-	const focus = () => {
-		inputRef.current.focus();
-	};
-
 	const onSelectDropDown = (v, i) => {
 		console.log('드롭다운 선택확인 ', v, i);
-		props.onSelectDropDown(v, i);
+		props.onChange(v+input);
+		setDropdownVal(v);
+
 	};
 
 	return (
@@ -72,25 +70,16 @@ export default InputWithSelect = props => {
 					defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
 					onSelect={onSelectDropDown}
 				/>
-				<TextInput
+
+				
+				<Input24
 					placeholder={props.placeholder}
-					value={props.value}
+					value={input}
 					ref={inputRef}
 					defaultValue={props.defaultInput}
 					keyboardType={props.keyboardType}
-					onChangeText={onChange}
-					style={[
-						txt.roboto28,
-						{
-							width: props.width * DP,
-							paddingVertical: 16 * DP, // Value와 최상위 View와의 paddingVertical 16px
-							paddingLeft: 15 * DP, // Arrow버튼과 Value란 12px 차이
-							marginLeft: 20 * DP,
-							marginTop: 15 * DP,
-							borderBottomWidth: 2 * DP,
-							borderColor: input.length == 0 ? GRAY30 : APRI10,
-						},
-					]}
+					onChange={onChange}
+					width={450}
 				/>
 				{input.length > 0 ? (
 					<View style={{position: 'absolute', right: 0}}>
@@ -107,14 +96,14 @@ InputWithSelect.defaultProps = {
 	placeholder: 'placeholder',
 	items: ['default1', 'default2', 'default3', 'test3', 'test5'],
 	defaultIndex: 0, // props로 받은 itemList의 디폴트 인덱스
-	value: null,
-	title: null,
+	value: '',
+	title: '',
 	title_star: false,
-	alert_msg: null,
-	defaultInput: null,
+	alert_msg: '',
+	defaultInput: '',
 	onChange: e => console.log('InputWithSelect Default onChange   ',e),
 	onClear: e => console.log('InputWithSelect Default onClear   ',e),
 	onSelectDropDown: e => console.log('InputWithSelect Default onSelectDropDown   ',e),
-	width: 480,
+	width: 454,
 	keyboardType: 'default',
 };

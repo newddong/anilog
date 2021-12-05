@@ -16,14 +16,12 @@ import DatePicker from '../molecules/DatePicker';
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default AssignShelterInformation = props => {
-	console.log(props.route.params);
-
 	const [data, setData] = React.useState({
-		...props.route.params,
-		shelter_delegate_contact_number: null,
-		user_email: null,
-		shelter_homepage: null,
-		shelter_foundation_date: null,
+		...props.route.params.data,
+		shelter_delegate_contact_number: '',
+		user_email: '',
+		shelter_homepage: '',
+		shelter_foundation_date: '',
 	});
 
 	const [confirmed, setConfirmed] = React.useState(false);
@@ -108,6 +106,7 @@ export default AssignShelterInformation = props => {
 						items={initial_number}
 						keyboardType={'number-pad'}
 						onChange={phone_num => onChangePhoneNumber(phone_num)}
+
 					/>
 				</View>
 
@@ -146,7 +145,7 @@ export default AssignShelterInformation = props => {
 				<AniButton
 					btnTitle={'확인'}
 					btnTheme={'shadow'}
-					disable={!confirmed && true}
+					disable={!confirmed}
 					btnLayout={btn_w654}
 					titleFontStyle={32}
 					onPress={goToNextStep}
