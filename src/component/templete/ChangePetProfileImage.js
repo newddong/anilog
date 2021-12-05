@@ -13,7 +13,8 @@ export default ChangePetProfileImage = props => {
 	const petData = props.route.params;
 
 	const selectPhoto = () => {
-		props.navigation.push('SinglePhotoSelect');
+		// props.navigation.push('SinglePhotoSelect');
+		// 이미지 선택은 당분간 보류
 	};
 
 	return (
@@ -21,8 +22,8 @@ export default ChangePetProfileImage = props => {
 			{/* (M)ProfileImageSelect */}
 			<View style={[temp_style.profileImageSelect, changePetProfileImage_style.ProfileImageSelect]}>
 				{/* <Text>(M)ProfileImageSelect</Text> */}
-				{/* <ProfileImageSelect img_uri={petData.img_uri} /> */}
-				<ProfileImageSelect onClick={selectPhoto} selectedImageUri={imgSelected} />
+				<ProfileImageSelect onClick={selectPhoto} img_uri={petData.img_uri} />
+				{/* <ProfileImageSelect onClick={selectPhoto} selectedImageUri={imgSelected} /> */}
 			</View>
 
 			{/* (M)Input30(notitle) */}
