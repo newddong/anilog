@@ -11,6 +11,7 @@ import {login_style, btn_style, temp_style, progressbar_style, assignPetInfo_sty
 import DatePicker from '../molecules/DatePicker';
 import Modal from '../modal/Modal';
 import Input30 from '../molecules/Input30';
+import { assignPet } from 'Root/api/userapi';
 
 export default AssignPetInfoB = props => {
 	console.log(props.route.params);
@@ -54,12 +55,12 @@ export default AssignPetInfoB = props => {
 	//등록 완료
 	const onRegister = () => {
 		Modal.popNoBtn('반려동물 등록 중입니다.');
-		setTimeout(() => {
+		assignPet({},()=>{
 			Modal.close();
-			Modal.popNoBtn('반려동물 등록이 완료되었습니다.');
-			Modal.close();
-			navigation.navigate('MainTab');
-		}, 1000);
+			Modal.popOneBtn('반려동물 등록이 완료되었습니다.','확인',()=>Modal.close());
+		},(error)=>{
+			(error)=>Modal.popOneBtn(error,'확인',()=>Modal.close());
+		})
 	};
 
 	const weigthValid=(e)=>{

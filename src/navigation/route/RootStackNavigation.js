@@ -32,6 +32,8 @@ import PhotoSelect from 'Templete/PhotoSelect';
 import AddPhoto from 'Templete/AddPhoto';
 import AddPhotoHeader from 'Navigation/header/AddPhotoHeader';
 
+import AddressSearch from 'Templete/AddressSearch';
+
 import AssignPetProfileImage from 'Templete/AssignPetProfileImage';
 import AssignPetInfoA from 'Templete/AssignPetInfoA';
 import AssignPetInfoB from 'Templete/AssignPetInfoB';
@@ -122,7 +124,7 @@ export default RootStackNavigation = () => {
 	return (
 		<SafeAreaView style={{flex: 1}}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="AssignPetProfileImage">
+				<RootStack.Navigator initialRouteName="Login">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
 					<RootStack.Screen name="Login" component={LoginTemplete} options={{headerShown: false}} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} options={{header: props => <InputAndSearchHeader {...props} />}} />
@@ -154,12 +156,36 @@ export default RootStackNavigation = () => {
 						options={{header: props => <SimpleHeader {...props} />, title: '회원가입'}}
 					/>
 
-					<RootStack.Screen name="ShelterCodeCheck" component={ShelterCodeCheck} />
-					<RootStack.Screen name="ShelterAssignEntrance" component={ShelterAssignEntrance} />
-					<RootStack.Screen name="AssignShelterAddress" component={AssignShelterAddress} />
-					<RootStack.Screen name="AssignShelterInformation" component={AssignShelterInformation} />
-					<RootStack.Screen name="CheckShelterPassword" component={CheckShelterPassword} />
-					<RootStack.Screen name="AssignShelterProfileImage" component={AssignShelterProfileImage} />
+					<RootStack.Screen
+						name="ShelterCodeCheck"
+						component={ShelterCodeCheck}
+						options={{header: props => <SimpleHeader {...props} />, title: '보호소 등록'}}
+					/>
+					<RootStack.Screen
+						name="ShelterAssignEntrance"
+						component={ShelterAssignEntrance}
+						options={{header: props => <SimpleHeader {...props} />, title: '보호소 등록'}}
+					/>
+					<RootStack.Screen
+						name="AssignShelterAddress"
+						component={AssignShelterAddress}
+						options={{header: props => <SimpleHeader {...props} />, title: '보호소 등록'}}
+					/>
+					<RootStack.Screen
+						name="AssignShelterInformation"
+						component={AssignShelterInformation}
+						options={{header: props => <SimpleHeader {...props} />, title: '보호소 등록'}}
+					/>
+					<RootStack.Screen
+						name="CheckShelterPassword"
+						component={CheckShelterPassword}
+						options={{header: props => <SimpleHeader {...props} />, title: '보호소 등록'}}
+					/>
+					<RootStack.Screen
+						name="AssignShelterProfileImage"
+						component={AssignShelterProfileImage}
+						options={{header: props => <SimpleHeader {...props} />, title: '보호소 등록'}}
+					/>
 
 					<RootStack.Screen name="ApplyProtectActivityA" component={ApplyCompanionA} />
 					<RootStack.Screen name="ApplyProtectActivityB" component={ApplyCompanionB} />
@@ -211,6 +237,12 @@ export default RootStackNavigation = () => {
 						name="AssignPetInfoB"
 						component={AssignPetInfoB}
 						options={{header: props => <SimpleHeader {...props} />, title: '반려동물 등록'}}
+					/>
+
+					<RootStack.Screen
+						name="AddressSearch"
+						component={AddressSearch}
+						options={{header: props => <SimpleHeader {...props} />, title: '주소 검색'}}
 					/>
 				</RootStack.Navigator>
 			</NavigationContainer>

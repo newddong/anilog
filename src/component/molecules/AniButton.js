@@ -5,16 +5,17 @@ import DP from 'Root/config/dp';
 import { txt } from 'Root/config/textstyle';
 import { btn_w226 } from '../atom/btn/btn_style';
 /**
- *
- * @param {{btnTitle : string,
- * btnTheme: 'shadow' | 'noShadow' | 'gray' | undefined,
- * btnStyle : 'filled' | 'border' | 'noborder' | undefined,
- * btnLayout : Component ,
- * disable : boolean,
- * titleFontStyle : 'Title 글꼴크기 , default = 24',
- * onPress : Function   }} props
+ * 버튼 컴포넌트트
+ * @param {object} props - Props Object
+ * @param {string} props.btnTitle - 버튼 제목목
+ * @param {'shawdow'|'noShadow'|'gray'|undefined} props.btnTheme - 버튼 테마 'shawdow'|'noShadow'|'gray'|undefined
+ * @param {'filled'|'border'|'noborder'|undefined} props.btnStyle - 버튼 스타일 'filled'|'border'|'noborder'|undefined
+ * @param {object} props.btnLayout - 버튼의 레이아웃 스타일(Atoms의 btn_wXXX)
+ * @param {boolean} props.disable - 버튼 활성화 여부
+ * @param {number} props.titleFontStyle - 제목 글꼴 크기, 기본값 24
+ * @param {(title:string)=>void} props.onPress - 버튼을 눌렸을때 동작하는 콜백, 제목 반환환
  */
-export default AniButton = props => {
+const AniButton = props => {
 	const btnTheme = () => {
 		//btnTheme이 shadow일 경우 Button의 View에 아래의 style을 추가한다
 		if (props.btnTheme == 'shadow') {
@@ -98,3 +99,5 @@ AniButton.defaultProps = {
 	btnLayout: btn_w226, // btnLayout - 버튼의 레이아웃(width, height, borderRadius를 결정)
 	onPress: e => console.log(e), // 버튼을 탭했을때 발생하는 콜백
 };
+
+export default AniButton;

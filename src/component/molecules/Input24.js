@@ -21,31 +21,35 @@ const Input24 = React.forwardRef((props, ref) => {
 		},
 		clear: () => {},
 	}));
-	const [input, setInput] = React.useState('');
+	// const [input, setInput] = React.useState('');
 	const [confirm, setConfirm] = React.useState(false);
 	const inputRef = React.useRef();
 
 	//Validator 조건확인이 안되었기에 테스트용으로 입력된 텍스트가
 	// 10자 이상일 때 confirmed가 되도록 작성
 	const validator = text => {
-		setConfirm(props.validator(text));
+		let isValid = props.validator(text);
+		props.onValid && props.onValid(isValid);
+		setConfirm(isValid);
 	};
 
 	const setBorderColor = () => {
-		if (input.length == 0) {
+		// if (input.length == 0) {
+		if (props.value.length == 0) {
 			return GRAY30;
 		} else return confirm ? GRAY30 : APRI10;
 	};
 
 	const onChange = text => {
-		setInput(text);
+		// setInput(text);
 		props.validator && validator(text);
 		props.onChange && props.onChange(text);
 	};
 
 	const onClear = () => {
 		inputRef.current.clear();
-		props.showHttp ? setInput('http://') : setInput('');
+		// props.showHttp ? setInput('http://') : setInput(''); Input24보다 더 상위 레벨에서 사용용
+		props.onValid && props.onValid(false);
 		props.onChange('');
 		props.onClear();
 	};
@@ -62,8 +66,10 @@ const Input24 = React.forwardRef((props, ref) => {
 
 	const getMsg = () => {
 		if (props.showMsg) {
-			if (input.length == 0) {
-				return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}></Text>;
+			// if (input.length == 0) {
+			if (props.value===undefined||props.value.length == 0) {
+				// return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}></Text>;
+				return false;
 			} else
 				return confirm ? (
 					<Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>
@@ -72,8 +78,6 @@ const Input24 = React.forwardRef((props, ref) => {
 				);
 		}
 	};
-
-	const chagedDefaultValue = () => {};
 
 	return (
 		<View style={[props.width && {width: props.width * DP}, {flexDirection: 'column'}]}>
@@ -94,6 +98,7 @@ const Input24 = React.forwardRef((props, ref) => {
 				<TextInput
 					ref={inputRef}
 					onChangeText={onChange}
+					value={props.value}
 					placeholder={props.placeholder}
 					defaultValue={props.defaultValue}
 					editable={props.editable}
@@ -109,11 +114,11 @@ const Input24 = React.forwardRef((props, ref) => {
 						},
 					]}
 				/>
-				{input.length > 0 ? (
+				{props.value.length > 0 ? (
 					<View style={{position: 'absolute', right: 0}}>
 						<Cross46 onPress={onClear} />
 					</View>
-				) : null}
+				) : false}
 			</View>
 
 			{getMsg()}
@@ -168,7 +173,7 @@ Input24.defaultProps = {
 	title: 'title', // input title
 	placeholder: 'placeholder',
 	descriptionType: 'star', // star , info , none - title 오른쪽 description을 별표형식 / Info형식 구분
-	value: 'value',
+	value: '',
 	showMsg: false,
 	alert_msg: 'alert_msg',
 	confirm_msg: 'confirm_msg',

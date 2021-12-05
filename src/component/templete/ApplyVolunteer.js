@@ -148,7 +148,7 @@ export default ApplyVolunteer = ({route, navigation}) => {
 							</View>
 						</View>
 						<View style={[applyVolunteer.participants_contact_text]}>
-							<Input24 width={654} placeholder={'연락처를 적어주세요.'} onChange={onChangePhoneNumber} />
+							<Input24 width={654} placeholder={'연락처를 적어주세요.'} onChange={onChangePhoneNumber} value={data.volunteer_delegate_contact} />
 						</View>
 					</View>
 					{/* 신청 버튼 */}

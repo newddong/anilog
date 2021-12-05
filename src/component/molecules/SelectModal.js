@@ -80,7 +80,7 @@ const SelectModal = props => {
 				<View style={{flexDirection: 'row', justifyContent: 'space-between', marginBottom: 40 * DP}}>
 					<DropdownSelect width={204} value={primaryValue} onOpen={selectPrimary} ref={Primary} />
 					{isDirectInput ? (
-						<Input24 width={250} placeholder={'직접입력'} onChange={onDirectInput}></Input24>
+						<Input24 width={250} placeholder={'직접입력'} onChange={onDirectInput} value={secondaryValue}></Input24>
 					) : (
 						<DropdownSelect width={262} value={secondaryValue} onOpen={selectSecondary} ref={Secondary} />
 					)}

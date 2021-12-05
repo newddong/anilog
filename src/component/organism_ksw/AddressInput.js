@@ -11,32 +11,35 @@ import {addressInput} from './style_organism';
 
 /**
  *
- *@param {{
- * title: string,
- * titleColor : 'Title 텍스트 칼라',
- * addressDefault : 'String / 기존에 작성된 주소 정보',
- * detailAddressDefault : 'String / 기존 작성된 세부주소 정보',
- * onChangeAddress : void,
- * onChangeDeatilAddress : void,
- * onPressSearchAddr : void,
- * }} props
+ * 
+ * 
+ * @param {object} props
+ * @param {string} props.title - 제목
+ * @param {string} props.titleColor - 제목 색상
+ * @param {string} props.addressDefault - 기존에 작성된 주소 정보
+ * @param {string} props.detailAddressDefault - 기존에 작성된 세부 주소 정보
+ * @param {(address:string)=>void} props.onChangeAddress - 주소 정보가 변동될때 콜백(주소를 파라메터로 넘김)
+ * @param {(detailAddress:string)=>void} props.onChangeDeatilAddress - 세부 주소가 변동될때 콜백(세부 주소를 파라메터로 넘김)
+ * @param {()=>void} props.onPressSearchAddr - 주소찾기를 눌렸을때 발생생
  */
-export default AddressInput = props => {
+
+
+const AddressInput = props => {
 	//주소 값 변경 콜백
 	const onChangeAddress = addr => {
-		console.log(addr);
+		// console.log(addr);
 		props.onChangeAddress(addr);
 	};
 
 	//세부 주소 값 변경 콜백
 	const onChangeDetailAddress = addr => {
-		console.log(addr);
+		// console.log(addr);
 		props.onChangeDeatilAddress(addr);
 	};
 
 	//주소 찾기 클릭
 	const onPressSearchAddr = () => {
-		console.log('onPressSearchAddr');
+		// console.log('onPressSearchAddr');
 		props.onPressSearchAddr();
 	};
 
@@ -47,7 +50,7 @@ export default AddressInput = props => {
 					<Input24
 						width={388}
 						placeholder={'주소 찾기를 눌러주세요'}
-						onChange={addr => onChangeAddress(addr)}
+						onChange={onChangeAddress}
 						title={props.title}
 						descriptionType={'star'}
 						showCrossMark={false}
@@ -63,7 +66,7 @@ export default AddressInput = props => {
 					width={654}
 					defaultValue={props.detailAddressDefault}
 					placeholder={'세부 주소를 입력해 주세요.'}
-					onChange={addr => onChangeDetailAddress(addr)}
+					onChange={onChangeDetailAddress}
 				/>
 			</View>
 		</View>
@@ -79,3 +82,6 @@ AddressInput.defaultProps = {
 	onChangeAddress: e => console.log(e),
 	onPressSearchAddr: e => console.log(e),
 };
+
+
+export default AddressInput;

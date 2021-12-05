@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View,TouchableWithoutFeedback} from 'react-native';
 import {APRI10, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w654} from '../atom/btn/btn_style';
@@ -83,7 +83,19 @@ export default AssignShelterInformation = props => {
 					textStyle={[txt.roboto24, {marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10}]} //text의 스타일
 				/>
 			</View>
-
+			<TouchableWithoutFeedback onPress={() => console.log(data)}>
+					<View
+						style={{
+							backgroundColor: 'red',
+							height: 30,
+							width: 30,
+							position: 'absolute',
+							borderWidth: 1,
+							borderColor: 'blue',
+							top: 0,
+							left: 0,
+						}}></View>
+				</TouchableWithoutFeedback>
 			{/* InputForm */}
 			<View>
 				{/* (M)InputWithSelect */}
@@ -118,7 +130,8 @@ export default AssignShelterInformation = props => {
 						descriptionType={'none'}
 						showHttp={true}
 						showCrossMark={false}
-						onChange={hp => onChangeHp(hp)}
+						onChange={onChangeHp}
+						value={data.shelter_homepage}
 					/>
 				</View>
 

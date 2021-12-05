@@ -72,9 +72,10 @@ export default AssignProtectAnimalDate = props => {
 						<Input24
 							width={520}
 							showmsg={false}
-							onChange={location => onChangeLocation(location)}
+							onChange={onChangeLocation}
 							descriptionType={'none'}
 							placeholder={'구조장소를 적어주세요.'}
+							value={data.protect_animal_rescue_location}
 						/>
 					</View>
 				</View>

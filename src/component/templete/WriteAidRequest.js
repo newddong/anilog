@@ -6,7 +6,6 @@ import {txt} from 'Root/config/textstyle';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import {AddItem64, Camera54} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
-import Input24 from '../molecules/Input24';
 import AidRequest from '../organism_ksw/AidRequest';
 import {assignProtectAnimal_style, feedWrite, login_style, temp_style, writeAidRequest} from './style_templete';
 

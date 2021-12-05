@@ -54,18 +54,18 @@ export default LoginTemplete = props => {
 			{/* LoginForm */}
 			<View style={[loginTemplete_style.loginForm]}>
 				<View style={[loginTemplete_style.idInput]}>
-					<Input24 placeholder={'아이디를 작성해주세요'} width={520} onChange={text => idValidator(text)} />
+					<Input24 placeholder={'아이디를 작성해주세요'} width={520} onChange={idValidator} />
 				</View>
 				<View style={[loginTemplete_style.pwdInput]}>
-					<PasswordInput placeholder={'비밀번호를 작성해주세요'} width={520} validator={text => passwordValidator(text)} information={''} />
+					<PasswordInput placeholder={'비밀번호를 작성해주세요'} width={520} validator={passwordValidator} information={''} />
 				</View>
 				<View style={[loginTemplete_style.checkBox_loginFormContainer]}>
 					<View style={[loginTemplete_style.checkBox_loginForm]}>
 						<View style={[loginTemplete_style.checkBoxContainer]}>
-							<CheckBox value={'자동 로그인'} onCheck={state => onCheckAutoLogin(state)} />
+							<CheckBox value={'자동 로그인'} onCheck={onCheckAutoLogin} />
 						</View>
 						<View style={[loginTemplete_style.checkBoxContainer]}>
-							<CheckBox value={'아이디저장'} onCheck={state => onCheckSaveId(state)} />
+							<CheckBox value={'아이디저장'} onCheck={onCheckSaveId} />
 						</View>
 					</View>
 				</View>

@@ -26,7 +26,8 @@ export const assignUser = async (params, callback, errcallback) => {
 		setTimeout(callback,1000,params);
 	}
 	catch(err){
-		errcallback(err+''); //에러 처리 콜백
+		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
+		
 	}
 }
 
@@ -45,7 +46,7 @@ export const checkProtectPet = async (params, callback, errcallback) => {
 		setTimeout(callback,1000,params);
 	}
 	catch(err){
-		errcallback(err+''); //에러 처리 콜백
+		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
 	}
 
 }
@@ -60,13 +61,6 @@ export const checkProtectPet = async (params, callback, errcallback) => {
  * @param {boolean} params.pet_is_temp_protection - 임시보호 여부
  * @param {string} params.pet_neutralization - 중성화 여부
  * @param {string} params.pet_sex - 성별
- * @param {string} params.
- * @param {string} params.
- * @param {string} params.
- * @param {string} params.
- * 
- * 
- * 
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
@@ -76,11 +70,31 @@ export const assignPet = async (params, callback, errcallback) => {
 		setTimeout(callback,1000,params);
 	}
 	catch(err){
-		errcallback(err+''); //에러 처리 콜백
+		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
 	}
 
 }
 
+
+/**
+ * 보호소의 발급 코드 체크
+ * 
+ * @param {object} params
+ * @param {string} params.shelter_code - 보호소 확인코드
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export const checkShelterCode = async (params, callback, errcallback) => {
+	try{
+		//서버와 통신
+		// throw new Error('확인되지 않은 코드');
+		setTimeout(callback,1000,params);
+	}
+	catch(err){
+		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
+	}
+
+}
 
 
 
