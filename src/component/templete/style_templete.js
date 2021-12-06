@@ -825,9 +825,8 @@ export const temp_style = StyleSheet.create({
 	},
 	FeedThumbnailList: {
 		width: 750 * DP,
+		marginTop: 10 * DP,
 		// height: 1324 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
 	},
 	baseFlatList: {
 		// width: 654 * DP,

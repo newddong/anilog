@@ -67,7 +67,7 @@ export default ShelterMenu = props => {
 	//메뉴에 해당되는 네이게이션 이동
 	const click_menu = item_menu => {
 		switch (item_menu) {
-			// 보호 동물 관리
+			//--------------- 보호 동물 관리
 			// 보호중인 동물
 			case PROTECTED_ANIMAL:
 				navigation.navigate('ShelterProtectAnimalList', {name: 'ShelterProtectAnimalList'});
@@ -89,7 +89,7 @@ export default ShelterMenu = props => {
 					user_type: 'shelter',
 				});
 				break;
-			//즐겨찾기
+			//---------------즐겨찾기
 			//친구
 			case FRIENDS:
 				navigation.push('SaveFavorite');
@@ -107,7 +107,7 @@ export default ShelterMenu = props => {
 			case COMUNITY:
 				alert('준비중입니다.');
 				break;
-			//나의 활동
+			//-------------나의 활동
 			//내 게시물
 			case MY_CONTENTS:
 				navigation.push('UserFeeds');
@@ -133,7 +133,7 @@ export default ShelterMenu = props => {
 			case NOTE_LIST:
 				alert('준비중입니다.');
 				break;
-			//설정
+			//-------------- 설정
 			//정보/문의
 			case INFO_QUESTION:
 				alert('준비중입니다.');

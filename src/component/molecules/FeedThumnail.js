@@ -7,21 +7,23 @@ import {styles} from '../atom/image/imageStyle';
 import {BLACK, RED10, WHITE} from 'Root/config/color';
 
 export default FeedThumbnail = props => {
+	// console.log('FeedThumbnail', props.data.feed_medias);
 	const [selected, setSelected] = React.useState(false);
 
 	const onSelect = () => {
-		props.onSelect(props.data.feed_id);
+		props.onSelect(props.data._id);
 		setSelected(!selected);
 	};
 
 	const getFeedIcon = () => {
+		const find = props.data.feed_medias.findIndex(e => e.is_video == true); //feed_media의 값 중 is_video값이 true인 경우가 있다면 1 없다면 -1
 		//data.medias의 값들 중 video형식의 media가 하나 이상 존재하는 경우
-		if (props.data.medias.includes('Video')) {
+		if (find != -1) {
 			return <VideoPlay48 />;
 			//data.medias 배열의 길이가 1개 이상인 경우
-		} else if (props.data.medias.length > 1) {
+		} else if (props.data.feed_medias.length > 1) {
 			return <ImageList48 />;
-		} else return false;
+		} else return;
 	};
 
 	const checkDisplay = () => {
@@ -34,26 +36,25 @@ export default FeedThumbnail = props => {
 		}
 	};
 
-	const checkSelecte = () => {
+	const checkSelect = () => {
 		if ((props.selectMode && selected) || (props.selectMode && props.data.checkBoxState)) {
 			return (
 				<View style={[{opacity: 0.4, backgroundColor: BLACK}]}>
-					<Image source={{uri: props.data.img_uri}} style={styles.img_square_246} />
+					<Image source={{uri: props.data.feed_thumbnail}} style={styles.img_square_246} />
 				</View>
 			);
 		} else if (!props.data.checkBoxState || !selected) {
-			return <Image source={{uri: props.data.img_uri}} style={styles.img_square_246} />;
+			return <Image source={{uri: props.data.feed_thumbnail}} style={styles.img_square_246} />;
 		}
 	};
 
 	return (
 		<TouchableOpacity onPress={onSelect}>
 			{/* Select된 상태일 때 불투명도 40% 적용 및 배경색  Black */}
-
 			{/* 그림인지 영상인지 표기(무조건 표기) */}
-			<View style={{position: 'absolute', top: 20 * DP, left: 20 * DP}}>{getFeedIcon()}</View>
-			{checkSelecte()}
-			{props.data.alert_title != '' && props.data.alert_title != undefined ? (
+			<View style={{position: 'absolute', top: 20 * DP, left: 20 * DP, zIndex: 1}}>{getFeedIcon()}</View>
+			{checkSelect()}
+			{props.data.feed_type == 'missing' || props.data.feed_type == 'report' ? (
 				<View
 					style={{
 						width: 124 * DP,
@@ -66,26 +67,17 @@ export default FeedThumbnail = props => {
 						right: 0,
 						bottom: 0,
 					}}>
-					<Text style={[txt.noto24b, {width: 124 * DP, lineHeight: 36 * DP, color: WHITE, textAlign: 'center'}]}>{props.data.alert_title}</Text>
+					<Text style={[txt.noto24b, {width: 124 * DP, lineHeight: 36 * DP, color: WHITE, textAlign: 'center'}]}>
+						{props.data.feed_type == 'missing' ? '실 종' : '제 보'}
+					</Text>
 				</View>
 			) : (
-				false
+				<></>
 			)}
+
 			{/* 클릭하거나 전체 선택시 체크 표기 - 모드는 선택하기 모드여야 함. */}
 			{checkDisplay()}
 		</TouchableOpacity>
 	);
 };
-FeedThumbnail.defaultProps = {
-	data: {
-		feed_id: 'dog',
-		isVideo: false,
-		medias: [1, 2, 3, 4],
-		alert_title: '실종',
-		img_uri: 'http://storage.enuri.info/pic_upload/knowbox2/202105/09151281620210518c342be40-3a75-40df-b7eb-6dd511de41a8.jpg',
-	},
-
-	// onSelect: e => console.log(e),
-	// img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
-	// img_uri: 'http://storage.enuri.info/pic_upload/knowbox2/202105/09151281620210518c342be40-3a75-40df-b7eb-6dd511de41a8.jpg',
-};
+FeedThumbnail.defaultProps = {};

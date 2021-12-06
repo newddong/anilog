@@ -23,16 +23,19 @@ export default SelectStat = props => {
 		//useState의 비동기 실행으로 상위로 값을 넘길떄 selectMode 값이 아닌 임의값으로 지정해서 전송
 		props.onSelectMode(true);
 	};
+
 	//취소 버튼 클릭
 	const selectCancel = () => {
 		setSelectMode(false);
 		//useState의 비동기 실행으로 상위로 값을 넘길떄 selectMode 값이 아닌 임의값으로 지정해서 전송
 		props.onSelectMode(false);
 	};
+
 	//전체 선택
 	const selectAll = () => {
 		props.onSelectAllClick();
 	};
+
 	//선택 삭제
 	const deleteSelectedItem = () => {
 		props.onDeleteSelectedItem();
