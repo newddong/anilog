@@ -15,20 +15,21 @@ import AniButton from './AniButton';
  * }} props
  */
 export default CheckBox = props => {
-	// console.log('props.state ', props.state);
-	const [checked, setChecked] = React.useState(true); //체크상태 여부 boolean isCheck값에 따라 초기상태 결정됨
+	// console.log('props.isCheck ', props.state);
+	const [checked, setChecked] = React.useState(false); //체크상태 여부 boolean isCheck값에 따라 초기상태 결정됨
 	const onCheck = () => {
 		setChecked(!checked);
-		props.onCheck(!checked);
 	};
 
 	React.useEffect(() => {
+		// console.log('props.state', props.state);
 		setChecked(props.state);
+		props.onCheck(props.state);
 	}, [props.state]);
 
-	// React.useEffect(() => {
-	// 	props.onCheck(checked); //onCheck에 변화된 checked 값을 매개변수로 보냄
-	// }, [checked]);
+	React.useEffect(() => {
+		props.onCheck(checked); //onCheck에 변화된 checked 값을 매개변수로 보냄
+	}, [checked]);
 
 	return (
 		<View style={{flexDirection: 'row'}}>
@@ -49,7 +50,7 @@ export default CheckBox = props => {
 };
 
 CheckBox.defaultProps = {
-	isCheck: false,
+	// isCheck: false,
 	value: '',
 	disable: false,
 	onCheck: e => console.log(e),

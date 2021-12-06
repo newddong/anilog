@@ -127,7 +127,7 @@ export default AnimalNeedHelp = props => {
 					{props.checkBoxMode ? (
 						<View style={[animalNeedHelp.checkBoxContainer]}>
 							<CheckBox
-								state={props.isChecked}
+								state={props.isCheckAll}
 								onCheck={() => props.onCheckBox(props.data.type == 'hash' ? props.data.keyword : props.data.user_nickname)}
 							/>
 						</View>

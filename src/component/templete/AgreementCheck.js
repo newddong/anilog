@@ -23,11 +23,15 @@ export default AgreementCheck = props => {
 		is_marketting_info: false, //마케팅정보 제공 동의
 	}).current;
 
+	React.useEffect(() => {
+		console.log('userAgreement', user_agreement);
+	}, [user_agreement]);
+
 	const [permissionToNext, setPermissionToNext] = React.useState(false);
 	const [acceptAllState, setAcceptAllState] = React.useState(false);
 
 	const goToNextStep = () => {
-		props.navigation.push('UserVerification',{user_agreement:user_agreement});
+		props.navigation.push('UserVerification', {user_agreement: user_agreement});
 	};
 
 	const onPressAceeptAllBtn = state => {
@@ -36,6 +40,10 @@ export default AgreementCheck = props => {
 		});
 		setAcceptAllState(state);
 	};
+
+	React.useEffect(() => {
+		console.log('userAgreement', user_agreement);
+	}, [user_agreement]);
 
 	const permissionCheck = () => {
 		if (

@@ -13,12 +13,11 @@ import {assignCheckList} from './style_organism';
  * }} props
  */
 export default AssignCheckList = props => {
-	const [isCheckAll,setCheckAll] = React.useState(false);
-	React.useEffect(()=>{
-		
-		setCheckAll(props.isCheckAll);
-	},[props.isCheckAll])
+	// const [isCheckAll,setCheckAll] = React.useState(false);
+	// React.useEffect(()=>{
 
+	// 	setCheckAll(props.isCheckAll);
+	// },[props.isCheckAll])
 
 	const renderItem = (item, index) => {
 		return (
@@ -26,13 +25,13 @@ export default AssignCheckList = props => {
 				<AssignCheckListItem
 					data={item}
 					onCheck={isCheck => props.onCheck(item, index, isCheck)}
-					isCheck={isCheckAll}
+					isCheck={props.isCheckAll}
 					onPressDetail={() => props.onPressDetail(index)}
 				/>
 			</View>
 		);
 	};
-	return (props.items.map((item,index)=>renderItem(item,index)));
+	return props.items.map((item, index) => renderItem(item, index));
 	// return <FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)}></FlatList>;
 };
 

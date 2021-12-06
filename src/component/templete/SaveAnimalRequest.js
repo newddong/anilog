@@ -12,8 +12,17 @@ export default SaveAnimalRequest = props => {
 	//checkBox On
 	const [_dummyData, set_dummyData] = React.useState(dummy_AppliesRecord_protect);
 	const [selectCNT, setSelectCNT] = React.useState(0);
+	const [acceptAllState, setAcceptAllState] = React.useState(false);
+
 	const navigation = useNavigation();
 
+	React.useEffect(() => {
+		_dummyData.map((v, i) => {
+			console.log('v,', i, v.checkBoxState);
+		});
+
+		// console.log('dummy 2', _dummyData[1].checkBoxState);
+	}, [_dummyData]);
 	//Check Box On
 	const showCheckBox = e => {
 		setCheckBoxMode(e);
@@ -41,8 +50,10 @@ export default SaveAnimalRequest = props => {
 		let copy = [..._dummyData];
 		copy.map((v, i) => {
 			//카운트의 2로 나눈 나머지값을 이용해서 전체 선택 혹은 전체 취소가 되도록 함.
-			selectCNT % 2 == 0 ? (v.checkBoxState = true) : (v.checkBoxState = false);
+			// selectCNT % 2 == 0 ? (v.checkBoxState = true) : (v.checkBoxState = false);
+			v.checkBoxState = !v.checkBoxState;
 		});
+		setAcceptAllState(!acceptAllState);
 		set_dummyData(copy);
 	};
 
@@ -50,9 +61,8 @@ export default SaveAnimalRequest = props => {
 	const deleteSelectedItem = () => {
 		console.log('삭제시작');
 		let copy = [..._dummyData];
-		copy.map((v, i) => {
-			v.checkBoxState == true ? copy.splice(i, 1) : null;
-		});
+		copy = copy.filter(element => element.checkBoxState != true); //CheckBoxState가 true인 경우엔 걸러진다
+		// console.log('copy', copy);
 		set_dummyData(copy);
 	};
 
@@ -108,6 +118,7 @@ export default SaveAnimalRequest = props => {
 					onLabelClick={(status, id) => navigationGo(status, id)}
 					onHashClick={item => navigation.push('FeedListForHashTag', item)}
 					onCheckBox={(item, index) => onCheckBox(item, index)}
+					isCheckAll={acceptAllState}
 				/>
 			</View>
 			{/* </FlatList> */}
