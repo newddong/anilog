@@ -15,7 +15,7 @@ import {styles} from '../atom/image/imageStyle';
  * }} props
  */
 export default ProfileImageLarge160 = props => {
-	console.log('PrifleImageLabel / Props Data ' + JSON.stringify(props.data));
+	// console.log('PrifleImageLabel / Props Data ' + JSON.stringify(props.data));
 
 	const profile_data = props.data
 		? props.data

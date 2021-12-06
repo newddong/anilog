@@ -16,18 +16,16 @@ import ProtectedPetList from '../organism_ksw/ProtectedPetList';
 import {login_style, profile, temp_style} from './style_templete';
 
 export default Profile = props => {
+	console.log('profile props');
+
 	const navigation = useNavigation();
 
 	const userData = dummy_userObject[0]; //로그인 유저의 userObject data
-	const profile_data = dummy_UserObject_shelter[0]; //선택한 유저의 userObject data
+	const profile_data = props.route.params || dummy_UserObject_shelter[0]; //라벨을 클릭한 유저의 userObject data
 	const [userType, setUserType] = React.useState(SHELTER); //NORMAL, PET, SHELTER
 	const [petStatus, setPetStatus] = React.useState('adopted'); // 현재 로드되어 있는 profile의 userType이 PET인 경우 그 펫의 상태 state
 	const [tabMenuSelected, setTabMenuSelected] = React.useState(0); //프로필 Tab의 선택상태
 	const [showOwnerState, setShowOwnerState] = React.useState(true); // 현재 로드되어 있는 profile의 userType이 Pet인 경우 반려인 계정 Tab의 Open 여부
-	const dummyData = {
-		userType: userType,
-		petStatus: petStatus,
-	};
 
 	React.useEffect(() => {
 		AsyncStorage.setItem('token', JSON.stringify(userData._id));

@@ -96,14 +96,14 @@ export default ProfileInfo = props => {
 				</View>
 				<View style={[organism_style.socialInfo_profileInfo, profileInfo_style.socialInfo]}>
 					<SocialInfoA
-						uploadCount={profile_data.user_upload_count}
-						followingCount={profile_data.user_follow_count}
-						followerCount={profile_data.user_follower_count}
+						upload_count={profile_data.user_upload_count}
+						follow_count={profile_data.user_follow_count}
+						follower_count={profile_data.user_follower_count}
 					/>
 				</View>
 			</View>
 
-			{/* Content */}
+			{/* Profile Introduction */}
 			<View style={[organism_style.content_view_profileInfo, profileInfo_style.content_view]}>
 				<Text
 					ellipsizeMode={'tail'}
@@ -111,21 +111,20 @@ export default ProfileInfo = props => {
 					style={[txt.noto24, showMore ? profileInfo_style.content_expanded : profileInfo_style.content]}>
 					{profile_data.user_introduction}
 				</Text>
-				<View style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
+				<TouchableOpacity onPress={onPressShowMore} style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
 					<Text style={[txt.noto24, {color: GRAY10}]}>더보기 </Text>
 					<View style={showMore ? {transform: [{rotate: '180deg'}]} : null}>
-						<Bracket48 onPress={onPressShowMore} />
+						<Bracket48 />
 					</View>
-				</View>
+				</TouchableOpacity>
 			</View>
 
-			{/* btn_w280 */}
+			{/* 프로필 관련 버튼 */}
 			<View style={[organism_style.btn_w280_view_profileInfo, profileInfo_style.btn_w280_view]}>
 				<View style={[organism_style.btn_w280_profileInfo, profileInfo_style.btn_w280]}>
 					{followState || true ? (
 						<ProfileDropdown
 							btnTitle={'팔로우 중'}
-							btnStyle={'filled'}
 							titleFontStyle={30}
 							btnLayout={btn_w280}
 							menu={['메뉴1', '메뉴2', '메뉴3', '메뉴4']}
@@ -154,24 +153,8 @@ export default ProfileInfo = props => {
 	);
 };
 ProfileInfo.defaultProps = {
-	data: {
-		img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
-	},
-	dummyData: {
-		userType: 'user',
-		petStatus: 'protected',
-	},
 	volunteerBtnClick: e => console.log(e),
 	adoptionBtnClick: e => console.log(e),
 	onShowOwnerBtnClick: e => console.log(e),
 	onHideOwnerBtnClick: e => console.log(e),
 };
-// ActionButton.defaultProps = {
-// 	btnTitle: 'BTN_W654', //버튼의 제목
-// 	disable: false, // 버튼탭 사용불가 상태 boolean
-// 	btnLayout: btn_w226, // 버튼의 레이아웃(width, height, radius 등의 수치 결정)
-// 	titleFontStyle: 24, // 버튼 title의 폰트 크기
-// 	btnStyle: 'border', // 버튼스타일 filled border noBorder
-// 	onOpen: e => console.log(e),
-// 	onClose: e => console.log(e),
-// };

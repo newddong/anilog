@@ -921,9 +921,12 @@ export const aidRequest = StyleSheet.create({
 	},
 	img_irregular_174_border: {
 		width: 174 * DP,
-		height: 162 * DP,
+		height: 174 * DP,
 		borderTopLeftRadius: 25 * DP,
 		borderBottomLeftRadius: 25 * DP,
+	},
+	saved_location_text: {
+		maxWidth: 200 * DP,
 	},
 });
 
@@ -943,6 +946,7 @@ export const aidRequestList = StyleSheet.create({
 		borderRadius: 30 * DP,
 		borderColor: APRI10,
 		borderWidth: 2 * DP,
+		marginTop: 30 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 		flexDirection: 'row',

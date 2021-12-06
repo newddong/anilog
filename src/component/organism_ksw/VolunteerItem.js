@@ -4,10 +4,10 @@ import {GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import ShelterLabel from '../molecules/ShelterLabel';
 import {volunteerItem} from './style_organism';
-import {Star50_Filled, Star50_Border} from '../atom/icon';
 
 export default VolunteerItem = props => {
-	// console.log('data', data);
+	console.log('VolunteerItem', props.data);
+	const data = props.data;
 
 	return (
 		<View style={[volunteerItem.container]}>
