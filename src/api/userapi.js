@@ -77,7 +77,7 @@ export const assignPet = async (params, callback, errcallback) => {
 
 
 /**
- * 보호소의 발급 코드 체크
+ * 보호소 등록
  * 
  * @param {object} params
  * @param {object} params.shelter_address
@@ -91,6 +91,27 @@ export const assignPet = async (params, callback, errcallback) => {
  * @param {string} params.user_email - 보호소 이메일
  * @param {string} params.user_password - 보호소 접속 패스워드
  * @param {string} params.user_profile_uri - 보호소 프로필 사진 uri
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export const assignShelter = async (params, callback, errcallback) => {
+	try{
+		//서버와 통신
+		// throw new Error('확인되지 않은 코드');
+		setTimeout(callback,1000,params);
+	}
+	catch(err){
+		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
+	}
+
+}
+
+
+/**
+ * 보호소 코드 체크
+ * 
+ * @param {object} params
+ * @param {string} params.shelter_code - 보호소 확인코드
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
@@ -108,14 +129,15 @@ export const assignPet = async (params, callback, errcallback) => {
 
 
 /**
- * 보호소등록
+ * 로그인
  * 
  * @param {object} params
- * @param {string} params.shelter_code - 보호소 확인코드
+ * @param {string} params.login_id - 보호소 확인코드
+ * @param {string} params.login_password - 보호소 확인코드
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const assignShelter = async (params, callback, errcallback) => {
+ export const useLogin = async (params, callback, errcallback) => {
 	try{
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
@@ -126,7 +148,6 @@ export const assignPet = async (params, callback, errcallback) => {
 	}
 
 }
-
 
 
 

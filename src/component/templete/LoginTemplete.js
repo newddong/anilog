@@ -9,8 +9,37 @@ import CheckBox from '../molecules/CheckBox';
 import Input24 from '../molecules/Input24';
 import PasswordInput from '../molecules/PasswordInput';
 import {login_style, btn_style, loginTemplete_style} from './style_templete';
+import Modal from 'Component/modal/Modal';
+import {useLogin} from 'Root/api/userapi';
 
 export default LoginTemplete = props => {
+	const [id, setId] = React.useState('');
+	const [password, setPassword] = React.useState('');
+
+	const tryToLogin = () => {
+		Modal.popNoBtn('로그인을 요청합니다.');
+		useLogin(
+			{
+				login_id: id,
+				login_password: password,
+			},
+			e => {
+				Modal.close();
+				Modal.popNoBtn(e.login_id + '님 로그인이 성공하였습니다.');
+				setTimeout(() => {
+					Modal.close();
+					alert('홈으로 이동');
+				}, 1000);
+			},
+			error => {
+				Modal.close();
+				Modal.popOneBtn(error, '확인', () => {
+					Modal.close();
+				});
+			},
+		);
+	};
+
 	const moveToMainTab = () => {
 		props.navigation.push('MainTab');
 	};
@@ -28,9 +57,23 @@ export default LoginTemplete = props => {
 	const onCheckSaveId = state => {
 		console.log('아이디저장', state);
 	};
+
+	//아이디 입력
+	const onChangeId = id => {
+		console.log('유저 아이디 입력', id);
+		setId(id);
+	};
+
+	//암호입력
+	const onChangePassword = pwd => {
+		console.log('암호입력', pwd);
+		setPassword(pwd);
+	};
+
 	//Password Text Input Validator
 	const passwordValidator = text => {
 		console.log('Validator' + text);
+		return true;
 	};
 	//Id Text Input Validator
 	const idValidator = text => {
@@ -45,7 +88,7 @@ export default LoginTemplete = props => {
 					<View style={[loginTemplete_style.without_login_text]}>
 						<Text style={[txt.noto24, {color: GRAY10}]}>로그인 없이 둘러보기</Text>
 						<View style={[loginTemplete_style.nextBtnView]}>
-							<NextMark/>
+							<NextMark />
 						</View>
 					</View>
 				</TouchableOpacity>
@@ -54,10 +97,18 @@ export default LoginTemplete = props => {
 			{/* LoginForm */}
 			<View style={[loginTemplete_style.loginForm]}>
 				<View style={[loginTemplete_style.idInput]}>
-					<Input24 placeholder={'아이디를 작성해주세요'} width={520} onChange={idValidator} />
+					<Input24 placeholder={'아이디를 작성해주세요'} width={520} onChange={onChangeId} value={id} />
 				</View>
 				<View style={[loginTemplete_style.pwdInput]}>
-					<PasswordInput placeholder={'비밀번호를 작성해주세요'} width={520} validator={passwordValidator} information={''} />
+					<PasswordInput
+						placeholder={'비밀번호를 작성해주세요'}
+						width={520}
+						validator={passwordValidator}
+						onChange={onChangePassword}
+						information={''}
+						alert_msg={''}
+						confirm_msg={''}
+					/>
 				</View>
 				<View style={[loginTemplete_style.checkBox_loginFormContainer]}>
 					<View style={[loginTemplete_style.checkBox_loginForm]}>
@@ -73,7 +124,7 @@ export default LoginTemplete = props => {
 
 			{/* Btn_w522 */}
 			<View style={[btn_style.btn_w522, loginTemplete_style.btn_w522_login]}>
-				<AniButton btnLayout={btn_w522} btnTitle={'로그인'} btnTheme={'shadow'} titleFontStyle={32} onPress={moveToMainTab} />
+				<AniButton btnLayout={btn_w522} btnTitle={'로그인'} btnTheme={'shadow'} titleFontStyle={32} onPress={tryToLogin} />
 			</View>
 
 			{/* Btn_w522 */}
