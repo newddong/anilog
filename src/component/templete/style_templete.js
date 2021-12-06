@@ -20,7 +20,7 @@ import DP from 'Root/config/dp';
 
 export const login_style = StyleSheet.create({
 	wrp_main: {
-		// flex: 1,
+		flex: 1,
 		alignItems: 'center',
 		// justifyContent: 'center',
 		backgroundColor: '#FFF',

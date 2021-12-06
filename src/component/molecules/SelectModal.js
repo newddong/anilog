@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, SafeAreaView, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, SafeAreaView, StyleSheet,Dimensions,Platform} from 'react-native';
 import DropdownSelect from 'Molecules/DropdownSelect';
 
 import AniButton from 'Molecules/AniButton';
@@ -105,8 +105,8 @@ SelectModal.defaultProps = {
 const style = StyleSheet.create({
 	background: {
 		backgroundColor: '#0009',
-		width:'100%',
-        height:'100%',
+		height:Platform.OS=='ios'?Dimensions.get('window').height:'100%',
+        width:Platform.OS=='ios'?Dimensions.get('window').width:'100%',
 		justifyContent: 'center',
 		alignItems: 'center',
         position:'absolute',

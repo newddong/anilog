@@ -12,22 +12,19 @@ import PasswordChecker from '../organism_ksw/PasswordChecker';
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default CheckShelterPassword = props => {
-	console.log(props.route.params);
 
 	const [data, setData] = React.useState({
 		...props.route.params,
-		user_password: null,
+		user_password: '',
 	});
 
-	const [pwd, setPwd] = React.useState(); // 비밀번호
 	const [pwdValid, setPwdValid] = React.useState(false); // 비밀번호 양식 체크 (8자이상~~)
-	const [pwdCheck, setPwdCheck] = React.useState(false); // 비밀번호 더블 체크 통과 여부
 
 	//확인클릭
 	const goToNextStep = () => {
 		//비밀번호 양식 체크 , 더블 체크 통과를 해야 goToNextStep 함수를 실행시킬 수 있음
-		setData({...data, user_password: pwd});
-		props.navigation.push('AssignShelterProfileImage');
+		// setData({...data, user_password: pwd});
+		props.navigation.push('AssignShelterProfileImage',data);
 	};
 
 	//암호 양식
@@ -35,27 +32,23 @@ export default CheckShelterPassword = props => {
 		console.log(pwd);
 		// '최소 8자 이상(~30자 이하), 영문과 숫자만 입력 가능합니다.'
 		var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,30}$/;
-		if (regExp.test(pwd)) {
-			setPwd(pwd);
-			setPwdValid(true);
-		} else {
-			setPwdValid(false);
-		}
+		return regExp.test(pwd);
 	};
 
-	//비밀번호 더블체크, 비밀번호와 비밀번호 확인이 일치하며, 비밀번호 작성양식에도 통과한 경우에만 pwdCheck값이 True
-	const passwordChecker = pwd_double => {
-		pwd == pwd_double && pwdValid ? setPwdCheck(true) : setPwdCheck(false);
-	};
+	const onChangePwd = pwd => {
+		setData({...data, user_password:pwd});
+	}
 
-	//지우기버튼
-	const onPressClear = () => {
-		setPwdCheck('');
-	};
+	const onConfirmAndChecked = (isConfirm)=>{
+		setPwdValid(isConfirm);
+	}
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* (M)StageBar	 */}
+			<TouchableWithoutFeedback onPress={() => console.log(data)}>
+				<View style={{ backgroundColor: 'red', height: 30, width: 30, position: 'absolute', top: 0, left: 0 }}></View>
+			</TouchableWithoutFeedback>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
 					style={{}} //전체 container style, text와 bar를 감싸는 view의 style
@@ -78,11 +71,9 @@ export default CheckShelterPassword = props => {
 			{/* (O)PasswordChecker */}
 			<View style={[temp_style.passwordChecker, checkShelterPassword_style.passwordChecker]}>
 				<PasswordChecker
-					passwordValidator={pwd => passwordValidator(pwd)}
-					passwordChecker={pwd => passwordChecker(pwd)}
-					pwdValid={pwdValid}
-					pwdCheck={pwdCheck}
-					onPressClear={onPressClear}
+					onChangePwd={onChangePwd}
+					passwordValidator={passwordValidator}
+					onConfirmAndChecked={onConfirmAndChecked}
 				/>
 			</View>
 
@@ -90,7 +81,7 @@ export default CheckShelterPassword = props => {
 				<AniButton
 					btnTitle={'확인'}
 					btnTheme={'shadow'}
-					disable={pwdValid && pwdCheck ? false : true}
+					disable={!pwdValid}
 					btnLayout={btn_w654}
 					titleFontStyle={32}
 					onPress={goToNextStep}

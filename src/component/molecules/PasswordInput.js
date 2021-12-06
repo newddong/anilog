@@ -1,31 +1,19 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
 import {Text, View, TouchableOpacity, TextInput} from 'react-native';
+import PropsTypes, {any, bool, func, number, object, oneOf, oneOfType, string} from 'prop-types';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
 import {Cross52, Eye52_APRI10, Eye52_GRAY20} from '../atom/icon';
 import {BackgroundColor} from 'chalk';
+import Input24 from 'Molecules/Input24';
 
-/**
+ /**
+ * 비밀번호 입력
+ * @type {React.ForwardRefRenderFunction<?,PasswordInputProps>}
  *
- *@param {{
- *title: 'string / 비밀번호 상단 타이틀',
- *placeholder: string,
- *information: 'confirm state가 normal일 경우 출력될 하단 메시지',
- *value: string,
- *alert_msg: 'string / confrim state가 false일 경우 출력될 하단 메시지',
- *confirm_msg: 'string / confirm state가 true일 경우 출력될 하단 메시지',
- *confirm : boolean,
- *onChange: 'Inut Value Change Callback',
- *onClear: '지우기 버튼(X) 클릭 Callback',
- *onShowPassword: 'Password 보이기 설정 Callback',
- *description : 'String / title 우측 비밀번호 설정 포맷에 대한 설명'
- *width : 'number / input의 크기 default = 654'
- *validator : return 값이 boolean인 함수, T/F상태에 따라 confirm이 바뀜,
- *clear : 'boolean / 상단 비밀번호 Input에서 x마크 클릭 시 하단 비밀번화 확인란도 Clear시키는 조건 T/F',
- * }} props
  */
-export default PasswordInput = React.forwardRef((props, ref) => {
+const PasswordInput = React.forwardRef((props, ref) => {
 	React.useImperativeHandle(ref, () => ({
 		blur: () => {
 			inputRef.current.blur();
@@ -34,7 +22,7 @@ export default PasswordInput = React.forwardRef((props, ref) => {
 			inputRef.current.focus();
 		},
 		clear: () => {
-			onClear();
+			inputRef.current.clear();
 		},
 		valid: text => {
 			validator(text);
@@ -42,7 +30,7 @@ export default PasswordInput = React.forwardRef((props, ref) => {
 	}));
 
 	const [input, setInput] = React.useState(''); // 암호 input text state
-	const [confirm, setConfirm] = React.useState(props.confirm); // 암호 validation state
+	const [confirm, setConfirm] = React.useState(false); // 암호 validation state
 	const [pwdSecureState, setPwdSecureState] = React.useState(true); // 암호 별표화 state
 	const inputRef = React.useRef();
 
@@ -54,18 +42,7 @@ export default PasswordInput = React.forwardRef((props, ref) => {
 			return <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>;
 		} else if (confirm == false) {
 			return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>;
-		} else return null;
-	};
-
-	//Input 언더라인 색깔 분기
-	const getBorderColor = () => {
-		if (input.length == 0) {
-			return GRAY30;
-		} else if (confirm == false) {
-			return APRI10;
-		} else if (confirm == true) {
-			return GREEN;
-		} else return null;
+		} else return false;
 	};
 
 	//Input Value Change Callback
@@ -79,16 +56,9 @@ export default PasswordInput = React.forwardRef((props, ref) => {
 	//검증 로직을 외부(부모)에서 넣을수 있도록 함
 	const validator = text => {
 		console.log('props.validator text', props.validator(text));
-		setConfirm(props.validator(text));
-	};
-
-	//지우기
-	//forwardRef를 통해 PasswordInput컴포넌트의 레퍼런스를 부모 영역에서 참조 ref.current.clear() 같은 명령형으로 사용 가능
-	//onClear의 경우 x버튼을 눌렸을 경우 부모 컴포넌트에게 내용을 삭제했다는 알림을 보내기 위한 용도임
-	const onClear = () => {
-		inputRef.current.clear();
-		setInput('');
-		props.onClear('');
+		let isValid = props.validator(text);
+		props.onValid(isValid);
+		setConfirm(isValid);
 	};
 
 	//비밀번호 보이기 설정
@@ -115,36 +85,21 @@ export default PasswordInput = React.forwardRef((props, ref) => {
 					style={{
 						height: 82 * DP,
 						flexDirection: 'row',
-						borderBottomWidth: 2 * DP,
-						borderBottomColor: getBorderColor(),
 						alignItems: 'center',
 					}}>
-					<TextInput
-						maxLength={30}
-						ref={inputRef}
-						placeholder={props.placeholder}
-						onChangeText={onChange}
-						secureTextEntry={pwdSecureState} //암호 별모양 표시 boolean
-						style={[
-							txt.noto28,
-							{
-								//TextInput과 바깥 View와의 거리 24px, lineHeight는 글꼴크기와 일치
-								paddingLeft: 24 * DP,
-								lineHeight: 44 * DP,
-								minWidth: 190 * DP,
-								width: props.width * DP,
-								//placeholder 상태일때 글꼴의 영향인지 placeholde'r' 마지막글자가 짤리는 현상 발생
-								// backgroundColor: 'yellow',
-							},
-						]}
+					<Input24 ref={inputRef} 
+					placeholder={props.placeholder}
+					onChange={onChange}
+					width={props.width}
+					value={input}
+					secureTextEntry={pwdSecureState} //암호 별모양 표시 boolean
 					/>
 					{/* /* X버튼은 TextInput과 28px 차이, 최하단 View테두리와는 14px 차이, 텍스트 길이가 1 이상일 경우에만 보여짐(입력값이 없을때 보여질 필요 없음) */}
 					{input.length > 0 && (
-						<View style={{position: 'absolute', right: 0, paddingBottom: 7 * DP, flexDirection: 'row'}}>
+						<View style={{position: 'absolute', right: 50*DP, flexDirection: 'row'}}>
 							<View style={{marginRight: 10 * DP}}>
 								{pwdSecureState ? <Eye52_GRAY20 onPress={onShowPassword} /> : <Eye52_APRI10 onPress={onShowPassword} />}
 							</View>
-							<Cross52 onPress={onClear} />
 						</View>
 					)}
 				</View>
@@ -153,6 +108,40 @@ export default PasswordInput = React.forwardRef((props, ref) => {
 		</View>
 	);
 });
+
+const PasswordInputProps = {
+	/** @type {string} 비밀번호란 상단 타이틀 */
+	title: string,
+	/** @type {string} placeholder  */
+	placeholder: string, 
+	/** @type {string} confirm state가 'normal'일 경우 출력될 하단 메시지  */
+	information: string, 
+	/** @type {string} pwd input 값   */
+	value: string,
+	/** @type {string}  confrim state가 false일 경우 출력될 하단 메시지 */
+	alert_msg: string,
+	/** @type {boolean} confirm의 T/F  */
+	confirm: bool,
+	/** @type {string}  confirm state가 true일 경우 출력될 하단 메시지 */
+	confirm_msg: string,
+	/** @type {(value:string)=>void} pwd input 값이 변할 때마다 수행되는 함수 */
+	onChange: func,
+	/** @type {()=>void} X마크로 input값을 clear할 때마다 수행되는 함수, 지우기 버튼(X) 클릭 Callback */
+	onClear: func,
+	/** @type {(pwd:string)=>void} 눈마크를 Press하여 별표(*)화된 pwd값을 보이게 할 경우 수행되는 함수,Password 보이기 설정 Callback */
+	onShowPassword: func,
+	/** @type {string} 암호 포맷에 관한 설명, title 우측에 붙는다 */
+	description: string,
+	/** @type {number} 패스워드 입력폼 너비 */
+	width: number,
+	/** @type {(pwd:string)=>boolean} return 값이 boolean인 함수, T/F상태에 따라 confirm이 바뀜*/
+	validator: func,
+	/** @type {(result:boolean)=>void} validator가 실행될 때마다 발생하는 콜백함수, validator의 결과값을 매개변수로 통보*/
+	onValid: func,
+}
+
+PasswordInput.propTypes = PasswordInputProps;
+
 
 PasswordInput.defaultProps = {
 	title: 'title', //비밀번호란 상단 타이틀
@@ -167,6 +156,8 @@ PasswordInput.defaultProps = {
 	onShowPassword: e => console.log('PasswordInput onShowPassword' + e), // 눈마크를 Press하여 별표(*)화된 pwd값을 보이게 할 경우 수행되는 함수
 	description: null, // 암호 포맷에 관한 설명, title 우측에 붙는다
 	width: 654,
-	clear: false,
-	validator: e => console.log('PasswordInput validator' + e),
+	validator: e => false,
+	onValid: isValid => {},
 };
+
+export default PasswordInput;

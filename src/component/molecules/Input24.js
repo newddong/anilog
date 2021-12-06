@@ -19,7 +19,9 @@ const Input24 = React.forwardRef((props, ref) => {
 		blur: () => {
 			inputRef.current.blur();
 		},
-		clear: () => {},
+		clear: () => {
+			inputRef.current.clear();
+		},
 	}));
 	// const [input, setInput] = React.useState('');
 	const [confirm, setConfirm] = React.useState(false);
@@ -37,7 +39,7 @@ const Input24 = React.forwardRef((props, ref) => {
 		// if (input.length == 0) {
 		if (props.value.length == 0) {
 			return GRAY30;
-		} else return confirm ? GRAY30 : APRI10;
+		} else return confirm ? APRI10 : GRAY30;
 	};
 
 	const onChange = text => {
@@ -103,6 +105,7 @@ const Input24 = React.forwardRef((props, ref) => {
 					defaultValue={props.defaultValue}
 					editable={props.editable}
 					keyboardType={props.keyboardType}
+					secureTextEntry={props.secureTextEntry}
 					style={[
 						txt.noto28,
 						props.style,
@@ -163,7 +166,9 @@ const Input24Props = {
 	/** @type {(result:boolean)=>void} validator가 실행될 때마다 발생하는 콜백함수, validator의 결과값을 매개변수로 통보*/
 	onValid: func,
 	/** @type {string} 인풋 키보드 타잎 default|number-pad|decimal-pad|numeric|email-address|phone-pad 다른 속성은 RN공식문서 참조 */
-	keyboardType:string
+	keyboardType:string,
+	/** @type {boolean} 암호 문자열의 경우 *로 가림*/
+	secureTextEntry:bool,
 };
 
 Input24.propTypes = Input24Props;
@@ -185,7 +190,8 @@ Input24.defaultProps = {
 	onChange: e => {},
 	validator: () => true,
 	onValid:(e)=>{},
-	keyboardType:'default'
+	keyboardType:'default',
+	secureTextEntry:false
 };
 
 export default Input24;

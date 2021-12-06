@@ -4,106 +4,101 @@ import {Text, View, TouchableOpacity, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52} from '../atom/icon';
 import {APRI10, GRAY30, RED10} from 'Root/config/color';
+import NormalDropDown from './NormalDropDown';
+import Input24 from './Input24';
 
 /**
  *
- *@param {{
- *itemList: 'Array 도메인 사이트 리스트',
- *placeholder: string,
- *defaultIndex: number,
- *value: string,
- *width : number,
- *title : string,
- *title_star: boolean,
- *onClear: '지우기 버튼(x) 클릭 Callback',
- *onChange: 'Input Value Change Callback',
- * }} props
+ * @param {object} props
+ * @param {Array.<string>} props.dropdownItems - 메일주소 업체들
+ * @param {number} props.defaultIndex - 드롭다운의 기본 인덱스(기본값:0)
+ * @param {string} props.value - 값
+ * @param {number} props.width - 텍스트입력의 너비
+ * @param {string} props.title - InputWithEmail의 제목
+ * @param {boolean} props.title_star - 제목에 *표시 여부
+ * @param {()=>void} props.onClear - 지우기 버튼 클릭시 콜백
+ * @param {(isValid:boolean)=>void} props.onValid - 택스트 입력이 유효할 경우 반환(현재는 입력길이가 1이상일 경우 유효함)
+ * @param {(value:string)=>void} props.onChange - InputWithEmail값의 변동에 따른 콜백
+ * 
  */
-export default InputWithEmail = props => {
+const InputWithEmail = props => {
 	const [btnStatus, setBtnStatus] = React.useState(false);
 	// Dropdown에서 현재 선택된 항목 State, 처음 Mount시 itemList[defaultIndex]를 반환
 	const [selectedItem, setSelectedItem] = React.useState(props.itemList[props.defaultIndex]);
+	const [index, setIndex] = React.useState(props.defaultIndex);
 	const [input, setInput] = React.useState('');
 	const inputRef = React.useRef();
 
 	const onChange = txt => {
 		setInput(txt);
-		props.onChange(txt);
+		props.onChange(txt+'@'+selectedItem);
 	};
 
 	const onClear = () => {
-		inputRef.current.clear();
 		setInput(''); //email state를 null로 해주어야 borderColor가 GRAY30으로 반응한다
-		props.onClear();
+		props.onChange('');
 	};
 
-	const blur = () => {
-		inputRef.current.blur();
-	};
+	const onSelectDropDown = (e,i )=> {
+		console.log('onselectDropdown',e,i);
+		setSelectedItem(e);
+		setIndex(i);
+		props.onChange(input+'@'+e);
+	}
 
-	const focus = () => {
-		inputRef.current.focus();
-	};
+	const validator = (text) => {
+		return text.length > 0;
+	}
+
+	const onValid = (isValid) => {
+		props.onValid(isValid);
+	}
 
 	return (
 		<View style={{}}>
 			{props.title != null ? (
 				<View style={{flexDirection: 'row'}}>
 					<Text style={[txt.noto24, {color: APRI10}]}>{props.title}</Text>
-					<Text style={[txt.noto24, {color: RED10, marginLeft: 30 * DP}]}>{props.title_star ? '*' : null}</Text>
+					<Text style={[txt.noto24, {color: RED10, marginLeft: 30 * DP}]}>{props.title_star ? '*' : ''}</Text>
 				</View>
-			) : null}
-			<View style={{flexDirection: 'row', alignItems: 'center', borderBottomWidth: 2 * DP, borderColor: input.length == 0 ? GRAY30 : APRI10}}>
-				<TextInput
+			) : false}
+			{/* <View style={{flexDirection: 'row', alignItems: 'center', borderBottomWidth: 2 * DP, borderColor: input.length == 0 ? GRAY30 : APRI10}}> */}
+			<View style={{flexDirection: 'row', alignItems: 'center'}}>
+				<Input24
 					placeholder={props.placeholder}
-					value={props.value}
+					value={input}
 					ref={inputRef}
-					onChangeText={text => onChange(text)}
-					style={[
-						txt.noto28,
-						{
-							height: 82 * DP,
-
-							paddingLeft: 24 * DP,
-							// lineHeight: 44 * DP,
-							width: props.width * DP,
-
-							// width: input.length == 0 ? 190 * DP : null,
-							//X버튼을 누를 때마다 placeholder의 fontPadding이 적용되는 현상이 간헐적으로 발생
-							// 우선 X버튼 클릭이벤트 발생 시에도 강제적으로 width를 적용하여 해결
-						},
-					]}
+					onChange={onChange}
+					onClear={onClear}
+					width={400}
+					validator={validator}
+					onValid={onValid}
 				/>
-				{input.length > 0 ? (
-					<View style={{marginLeft: 40 * DP}}>
-						<Cross52 onPress={onClear} />
-					</View>
-				) : (
-					false
-				)}
-				<View style={{position: 'absolute', right: 10 * DP, flexDirection: 'row'}}>
-					<Text style={[txt.roboto24b, {marginHorizontal: 24 * DP, lineHeight: 36 * DP}]}>@</Text>
-					<Text style={[txt.roboto28, {marginHorizontal: 24 * DP, lineHeight: 36 * DP}]}> {selectedItem} </Text>
-					<View style={{marginLeft: 12 * DP}}>
-						{btnStatus ? (
-							<Arrow_Up_GRAY20 onPress={() => setBtnStatus(!btnStatus)} />
-						) : (
-							<Arrow_Down_GRAY20 onPress={() => setBtnStatus(!btnStatus)} />
-						)}
-					</View>
+				<View style={{position: 'absolute', right: 230 * DP, flexDirection: 'row'}}>
+					<Text style={[txt.roboto24b, { lineHeight: 36 * DP}]}>@</Text>
 				</View>
+				<NormalDropDown
+					menu={props.dropdownItems}
+					width={254}
+					defaultIndex={index}
+					onSelect={onSelectDropDown}
+					/>
 			</View>
 		</View>
 	);
 };
 InputWithEmail.defaultProps = {
+	dropdownItems:['naver.com', 'daum.net', 'nate.com'],
 	itemList: ['naver.com', 'daum.net', 'nate.com'],
 	placeholder: 'placeholder',
 	defaultIndex: 0,
 	width: 250,
-	value: null,
-	title: null,
+	value: '',
+	title: '',
 	title_star: false,
-	onClear: e => console.log(e),
-	onChange: e => console.log(e),
+	onClear: e => {},
+	onChange: e => {},
+	onValid: e => {},
 };
+
+export default InputWithEmail;
