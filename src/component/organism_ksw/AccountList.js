@@ -11,7 +11,7 @@ import {organism_style} from './style_organism';
  *
  *@param {{
  * item : 'Array / 계정 목록',
- * onAccountClick : 'void / 계정 클릭  Callback'
+ * onSelect : 'void / 계정 클릭  Callback'
  * makeBorderMode: 'boolean / 클릭 시 테두리 생기는 모드 on/off , default = true',
  * onDelete: '계정 지우기 마크 클릭 Callback',
  * onClickLabel : void,
@@ -21,7 +21,16 @@ import {organism_style} from './style_organism';
  */
 export default AccountList = props => {
 	const [selectedIndex, setSelectedIndex] = React.useState();
-	const [isFollowing, setIsFollowing] = React.useState(false);
+	const [isFollowing, setIsFollowing] = React.useState([]);
+
+	//스크린 첫 마운트 시 팔로우 상태 목록 배열 생성
+	React.useEffect(() => {
+		let copy = [];
+		props.items.map((v, i) => {
+			copy[i] = false;
+		});
+		setIsFollowing(copy);
+	}, []);
 
 	//계정 클릭 시 해당 박스 테두리 생성 함수
 	const makeBorder = (item, index) => {
@@ -29,8 +38,11 @@ export default AccountList = props => {
 		props.onSelect(item, index);
 	};
 
+	//즐겨찾기 (별모양) 클릭 콜백 함수
 	const onPressFavorite = index => {
-		setIsFollowing(!isFollowing);
+		let copy = [...isFollowing];
+		copy[index] = !copy[index];
+		setIsFollowing(copy);
 		props.onPressFavorite(index);
 	};
 
@@ -44,7 +56,7 @@ export default AccountList = props => {
 		return (
 			<TouchableOpacity
 				style={[organism_style.accountListItem, {borderColor: selectedIndex == index && props.makeBorderMode ? APRI10 : WHITE}]}
-				onPress={() => makeBorder(index)}>
+				onPress={() => makeBorder(item, index)}>
 				<View style={[organism_style.userDescriptionLabelContainer]}>
 					<UserDescriptionLabel data={item} width={250} onClickLabel={onclickLabel} />
 				</View>
@@ -57,7 +69,7 @@ export default AccountList = props => {
 				)}
 				{props.showStarMark ? (
 					<View style={{position: 'absolute', right: 15 * DP}}>
-						{isFollowing ? <Star50_Filled onPress={() => onPressFavorite(index)} /> : <Star50_Border onPress={() => onPressFavorite(index)} />}
+						{isFollowing[index] ? <Star50_Filled onPress={() => onPressFavorite(index)} /> : <Star50_Border onPress={() => onPressFavorite(index)} />}
 					</View>
 				) : (
 					<></>
@@ -72,7 +84,6 @@ export default AccountList = props => {
 	);
 };
 AccountList.defaultProps = {
-	onAccountClick: e => console.log(e),
 	onPressFavorite: e => console.log('onPressFavorite', e),
 	onDelete: e => console.log(e),
 	onSelect: e => console.log(e),

@@ -2050,6 +2050,12 @@ export const dummy_AidRequestAnimalList = [
 		//@FeedObeject
 		feed_type: 'feed',
 
+		//@UserObject
+		shelter_name: '홍단 보호소',
+
+		//@ProtectRequestObject
+		protect_request_date: '2021.11.30',
+
 		//@ShelterProtectAnimalObject
 		_id: 1,
 		protect_animal_photos: ['https://storage.cobak.co/uploads/1588405371328060_143f1eabc3.jpg'], //보호중인 동물 사진
@@ -2072,10 +2078,39 @@ export const dummy_AidRequestAnimalList = [
 
 		//@ProtectionActivityApllicantObject -
 		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_address: {
+			city: '서울시',
+			district: '마포구',
+			neighbor: '신수동',
+		},
+		protect_act_companion_history: [
+			{
+				companion_pet_species: '개',
+				companion_pet_age: '3년 이상',
+				companion_pet_period: '6개월',
+				companion_pet_current_status: 'living', //Enum('living', 'died', 'adopted'), //상태정보 카테고리 정해야함
+			},
+		], //보호 신청자의 반려생활 이력
+		protect_act_checklist: {
+			is_adult: true, //성인여부
+			is_near_veterinary: true, //보호지 근처의 동물병원 여부
+			is_agreed_housemate: true, //가족, 동거인의 동의 여부
+			is_experience_defecate: true, //배변훈련 지식여부
+			is_knowledge_sanitation: true, //반려동물 미용,위생 지식여부
+		}, //보호신청 체크리스트
+		protect_act_phone_number: '010-7780-6690',
+		protect_act_motivation: '키우던 개의 가족을 만들어주고 싶습니다.', //보호활동 신청동기
 	},
 	{
 		feed_type: 'feed',
 
+		//@UserObject
+		shelter_name: '홍단 보호소',
+
+		//@ProtectRequestObject
+		protect_request_date: '2021.11.30',
+
+		//@ShelterProtectAnimalObject
 		_id: 2,
 		protect_animal_photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBPMjNlensOfXbaEJkMyyzjNnidrSWRvzXMA&usqp=CAU'], //보호중인 동물 사진
 		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
@@ -2102,10 +2137,39 @@ export const dummy_AidRequestAnimalList = [
 
 		//@ProtectionActivityApllicantObject -
 		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_address: {
+			city: '서울시',
+			district: '송파구',
+			neighbor: '송정동',
+		},
+		protect_act_companion_history: [
+			{
+				companion_pet_species: '개',
+				companion_pet_age: '3년 이상',
+				companion_pet_period: '6개월',
+				companion_pet_current_status: 'living', //Enum('living', 'died', 'adopted'), //상태정보 카테고리 정해야함
+			},
+		], //보호 신청자의 반려생활 이력
+		protect_act_checklist: {
+			is_adult: true, //성인여부
+			is_near_veterinary: true, //보호지 근처의 동물병원 여부
+			is_agreed_housemate: true, //가족, 동거인의 동의 여부
+			is_experience_defecate: true, //배변훈련 지식여부
+			is_knowledge_sanitation: true, //반려동물 미용,위생 지식여부
+		}, //보호신청 체크리스트
+		protect_act_phone_number: '010-4742-6690',
+		protect_act_motivation: '키우던 개의 가족을 만들어주고 싶습니다.', //보호활동 신청동기
 	},
 	{
 		feed_type: 'feed',
 
+		//@UserObject
+		shelter_name: '홍단 보호소',
+
+		//@ProtectRequestObject
+		protect_request_date: '2021.11.30',
+
+		//@ShelterProtectAnimalObject
 		_id: 3,
 		protect_animal_photos: [
 			'https://t3.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/bw39r42kS9dlP_tnNMix6z2iXUM',
@@ -2128,6 +2192,28 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
-		protect_act_applicant_id: [1, 2, 3, 4, 5], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_address: {
+			city: '서울시',
+			district: '송파구',
+			neighbor: '송정동',
+		},
+		protect_act_companion_history: [
+			{
+				companion_pet_species: '개',
+				companion_pet_age: '3년 이상',
+				companion_pet_period: '6개월',
+				companion_pet_current_status: 'living', //Enum('living', 'died', 'adopted'), //상태정보 카테고리 정해야함
+			},
+		], //보호 신청자의 반려생활 이력
+		protect_act_checklist: {
+			is_adult: true, //성인여부
+			is_near_veterinary: true, //보호지 근처의 동물병원 여부
+			is_agreed_housemate: true, //가족, 동거인의 동의 여부
+			is_experience_defecate: true, //배변훈련 지식여부
+			is_knowledge_sanitation: true, //반려동물 미용,위생 지식여부
+		}, //보호신청 체크리스트
+		protect_act_phone_number: '010-4742-6690',
+		protect_act_motivation: '아이를 키워보고 싶습니다.', //보호활동 신청동기
 	},
 ];

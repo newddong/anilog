@@ -16,7 +16,7 @@ import ProtectedPetList from '../organism_ksw/ProtectedPetList';
 import {login_style, profile, temp_style} from './style_templete';
 
 export default Profile = props => {
-	console.log('profile props');
+	// console.log('profile props', props.route.params);
 
 	const navigation = useNavigation();
 
@@ -27,9 +27,14 @@ export default Profile = props => {
 	const [tabMenuSelected, setTabMenuSelected] = React.useState(0); //프로필 Tab의 선택상태
 	const [showOwnerState, setShowOwnerState] = React.useState(true); // 현재 로드되어 있는 profile의 userType이 Pet인 경우 반려인 계정 Tab의 Open 여부
 
+	//현재 접속 중인 계정의 _id를 토큰에 저장
 	React.useEffect(() => {
 		AsyncStorage.setItem('token', JSON.stringify(userData._id));
 	}, []);
+
+	React.useEffect(() => {
+		// console.log('profileData userTYpe', profile_data.user_type);
+	}, [profile_data]);
 
 	//보호소프로필의 보호활동 탭의 피드 썸네일 클릭
 	const onClick_ProtectedThumbLabel = (status, user_id, item) => {
@@ -56,10 +61,12 @@ export default Profile = props => {
 		console.log('보호소프로필의 피드 및 태그 탭 => Thumbnail 클릭');
 	};
 
+	//보호소프로필의 봉사활동 클릭
 	const onClick_Volunteer_ShelterProfile = () => {
 		navigation.push('ApplyVolunteer', profile_data);
 	};
 
+	//피드글작성 버튼 클릭(액션버튼)
 	const moveToFeedWrite = () => {
 		props.navigation.push('FeedWrite');
 	};
@@ -120,10 +127,12 @@ export default Profile = props => {
 			//보호소프로필 상태에서 보호활동 Tab을 눌렀을 경우에는 요보호동물 리스트를 출력
 			return tabMenuSelected == 2 ? (
 				//보호활동탭의 동물 List 썸네일 클릭할 경우 해당 동물의 상태 Detail Screen으로 이동
-				<AnimalNeedHelpList
-					data={dummy_ShelterProtectAnimalObject}
-					onLabelClick={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)}
-				/>
+				<View style={{marginTop: 20}}>
+					<AnimalNeedHelpList
+						data={dummy_ShelterProtectAnimalObject}
+						onLabelClick={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)}
+					/>
+				</View>
 			) : (
 				// 그 이외의 피드, 태그 탭 상태에서는 Feed리스트를 출력
 				<FeedThumbnailList onClickThumnail={onClick_FeedThumbnail_ShelterProfile} />

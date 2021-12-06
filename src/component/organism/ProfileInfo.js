@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w280} from '../atom/btn/btn_style';
@@ -13,6 +13,7 @@ import Dropdown from '../molecules/Dropdown';
 import ProfileDropdown from 'Molecules/ProfileDropdown';
 import {organism_style, profileInfo_style} from './style_organism';
 import Modal from 'Root/component/modal/Modal';
+import dp from 'Root/screens/dp';
 
 /**
  *

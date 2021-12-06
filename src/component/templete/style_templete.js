@@ -3759,3 +3759,9 @@ export const followerList = StyleSheet.create({
 		bottom: 40 * DP,
 	},
 });
+
+export const protectApplyForm = StyleSheet.create({
+	detailContainer: {
+		marginVertical: 40 * DP,
+	},
+});

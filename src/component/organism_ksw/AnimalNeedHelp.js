@@ -24,28 +24,23 @@ import {RED10} from 'Root/config/color';
  * }} props
  */
 export default AnimalNeedHelp = props => {
-	// console.log('AnimalNeedHelp', props.data);
-
+	const navigation = useNavigation();
+	const data = props.data;
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 	const [thumbnailData, setThumbnailData] = React.useState({
-		img_uri: props.data.protect_animal_photos[0],
-		gender: props.data.protect_animal_sex,
-		status: props.data.protect_animal_status,
+		img_uri: data.protect_animal_photos[0],
+		gender: data.protect_animal_sex,
+		status: data.protect_animal_status,
 	});
-	const navigation = useNavigation();
+
+	React.useEffect(() => {
+		setThumbnailData({...thumbnailData, img_uri: data.protect_animal_photos[0]}); //이 부분이 있어야 사진 받아오는 곳에서 비동기처리가 가능해짐.
+	}, [props.data]);
 
 	const checkSelected = () => {
 		setSelected(!selected);
 	};
-
-	React.useEffect(() => {
-		setThumbnailData({
-			img_uri: props.data.protect_animal_photos[0],
-			gender: props.data.protect_animal_sex,
-			status: props.data.protect_animal_status,
-		});
-	}, [props.data]);
 
 	//우상단 즐겨찾기 깃발 아이콘 클릭 콜백
 	const onPressFavoriteTag = () => {
@@ -53,6 +48,7 @@ export default AnimalNeedHelp = props => {
 		props.onFavoriteTag(favorite);
 	};
 
+	//입양자 정보 클릭
 	const onPressAdoptorInfo = () => {
 		props.onPressAdoptorInfo();
 	};
@@ -65,20 +61,18 @@ export default AnimalNeedHelp = props => {
 		return (
 			<View style={[animalNeedHelp.detailContainer]}>
 				<View style={[animalNeedHelp.detail_upperMenu]}>
-					{props.data.feed_type == 'feed' && (
+					{data.feed_type == 'feed' && (
 						// {/* // 임보요청 출력 true, false */}
 						<View style={[animalNeedHelp.detail_upper_petStateContainer]}>
-							{props.data.protect_animal_protect_request ? (
+							{data.protect_animal_protect_request ? (
 								<View style={[animalNeedHelp.detail_upper_petState]}>
 									<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>임보요청</Text>
 								</View>
 							) : null}
 							{/* 입양가능날짜 출력 T/F */}
-							{props.data.protect_animal_adoption_days_remain != null ? (
+							{data.protect_animal_adoption_days_remain != null ? (
 								<View style={[animalNeedHelp.detail_upper_petState]}>
-									<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>
-										{props.data.protect_animal_adoption_days_remain}일 후 입양가능
-									</Text>
+									<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>{data.protect_animal_adoption_days_remain}일 후 입양가능</Text>
 								</View>
 							) : null}
 						</View>
@@ -89,34 +83,34 @@ export default AnimalNeedHelp = props => {
 					</View>
 				</View>
 				<View style={[animalNeedHelp.detail_lowerMenu]}>
-					{props.data.feed_type == 'feed' && (
+					{data.feed_type == 'feed' && (
 						<>
 							{/* 동물 종류 및 품종 */}
 							<View style={[animalNeedHelp.lowerMenu_kindAndBreed, animalNeedHelp.lowerMenu_kindAndBreed_marginTop]}>
-								<Text style={[txt.noto30b]}>{props.data.protect_animal_species}</Text>
-								<Text style={[txt.noto28, animalNeedHelp.breedText]}>{props.data.protect_animal_species_detail}</Text>
+								<Text style={[txt.noto30b]}>{data.protect_animal_species}</Text>
+								<Text style={[txt.noto28, animalNeedHelp.breedText]}>{data.protect_animal_species_detail}</Text>
 							</View>
 							{/* 보호요청 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
-								<Text style={[txt.noto24]}>등록일 : {props.data.protect_request_date}</Text>
-								<Text style={[txt.noto24]}>보호장소 : {props.data.shelter_name}</Text>
-								<Text style={[txt.noto24]}>구조지역 : {props.data.protect_animal_rescue_location}</Text>
+								<Text style={[txt.noto24]}>등록일 : {data.protect_request_date}</Text>
+								<Text style={[txt.noto24]}>보호장소 : {data.shelter_name}</Text>
+								<Text style={[txt.noto24]}>구조지역 : {data.protect_animal_rescue_location}</Text>
 							</View>
 						</>
 					)}
-					{(props.data.feed_type == 'missing' || props.data.feed_type == 'report') && (
+					{(data.feed_type == 'missing' || data.feed_type == 'report') && (
 						<>
 							{/* 동물 종류 및 품종 */}
 							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
-								<Text style={[txt.noto30b, {color: RED10}]}>{props.data.missing_animal_species}</Text>
-								<Text style={[txt.noto28, {color: RED10}, animalNeedHelp.breedText]}>{props.data.missing_animal_species_detail}</Text>
+								<Text style={[txt.noto30b, {color: RED10}]}>{data.missing_animal_species}</Text>
+								<Text style={[txt.noto28, {color: RED10}, animalNeedHelp.breedText]}>{data.missing_animal_species_detail}</Text>
 							</View>
 							{/* 실종/제보 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
-								<Text style={[txt.noto24, {color: RED10}]}>실종일: {props.data.missing_animal_date}</Text>
-								<Text style={[txt.noto24, {color: RED10}]}>나이:{props.data.missing_animal_age} / 성별:</Text>
-								<Text style={[txt.noto24]}>실종위치: {props.data.missing_animal_lost_location}</Text>
-								<Text style={[txt.noto24]}>특징: {props.data.missing_animal_features}</Text>
+								<Text style={[txt.noto24, {color: RED10}]}>실종일: {data.missing_animal_date}</Text>
+								<Text style={[txt.noto24, {color: RED10}]}>나이:{data.missing_animal_age} / 성별:</Text>
+								<Text style={[txt.noto24]}>실종위치: {data.missing_animal_lost_location}</Text>
+								<Text style={[txt.noto24]}>특징: {data.missing_animal_features}</Text>
 							</View>
 						</>
 					)}
@@ -133,7 +127,7 @@ export default AnimalNeedHelp = props => {
 					{props.checkBoxMode ? (
 						<View style={[animalNeedHelp.checkBoxContainer]}>
 							<CheckBox
-								state={props.data.checkBoxState}
+								state={props.isChecked}
 								onCheck={() => props.onCheckBox(props.data.type == 'hash' ? props.data.keyword : props.data.user_nickname)}
 							/>
 						</View>
@@ -170,4 +164,5 @@ AnimalNeedHelp.defaultProps = {
 	onLabelClick: e => console.log(e),
 	onFavoriteTag: e => console.log(e),
 	onPressAdoptorInfo: e => console.log('e'),
+	isChecked: false,
 };

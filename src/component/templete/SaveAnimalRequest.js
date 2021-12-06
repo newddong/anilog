@@ -28,6 +28,7 @@ export default SaveAnimalRequest = props => {
 		});
 		set_dummyData(copy);
 	};
+
 	//CheckBox Off
 	const hideCheckBox = e => {
 		setCheckBoxMode(e);
@@ -49,30 +50,18 @@ export default SaveAnimalRequest = props => {
 	const deleteSelectedItem = () => {
 		console.log('삭제시작');
 		let copy = [..._dummyData];
-		let deleteList = [];
-		for (let i = 0; i < copy.length; i++) {
-			if (copy[i].checkBoxState == true) {
-				console.log('삭제목록임' + i);
-				copy = copy.filter(item => item.checkBoxState != true);
-				// deleteList.push(copy[i].user_nickname == null ? copy[i].keyword : copy[i].user_nickname);
-			}
-		}
+		copy.map((v, i) => {
+			v.checkBoxState == true ? copy.splice(i, 1) : null;
+		});
 		set_dummyData(copy);
 	};
 
 	//CheckBox 클릭 시
 	const onCheckBox = (item, index) => {
-		console.log(index);
 		let copy = [..._dummyData];
 		copy[index].checkBoxState = !copy[index].checkBoxState;
 		set_dummyData(copy);
 	};
-
-	React.useEffect(() => {
-		// _dummyData.map((v, i) => {
-		// 	// console.log(i + ' : ' + v.checkBoxState);
-		// });
-	}, [_dummyData]);
 
 	const navigationGo = (status, user_id) => {
 		console.log('status , id => ' + status + '_' + user_id);

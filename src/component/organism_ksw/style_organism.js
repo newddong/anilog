@@ -1063,7 +1063,7 @@ export const animalNeedHelp = StyleSheet.create({
 	},
 	checkBoxContainer: {
 		width: 80 * DP,
-		marginLeft: 48 * DP,
+		// marginLeft: 48 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',
 		// backgroundColor: '#00FF00',

@@ -234,7 +234,8 @@ export const organism_style = StyleSheet.create({
 		// backgroundColor: '#F8DDDD',
 	},
 	profileInfo_main: {
-		width: 750 * DP,
+		width: 654 * DP,
+		alignSelf: 'center',
 		// height: 416 * DP,
 	},
 	profileImageLarge_view_profileInfo: {
@@ -365,7 +366,6 @@ export const feed_style = StyleSheet.create({
 export const profileInfo_style = StyleSheet.create({
 	profileImageLarge: {
 		marginTop: 9 * DP,
-		marginLeft: 48 * DP,
 	},
 	socialInfo: {
 		marginTop: 64 * DP,
@@ -377,15 +377,13 @@ export const profileInfo_style = StyleSheet.create({
 	content: {
 		width: 492 * DP,
 		height: 80 * DP,
-		marginLeft: 40 * DP,
 	},
 	content_expanded: {
 		width: 492 * DP,
-		marginLeft: 40 * DP,
 	},
 	addMore: {
-		marginLeft: 46 * DP,
 		marginTop: 32 * DP,
+		marginLeft: 20 * DP,
 	},
 	btn_w280_view: {
 		marginTop: 40 * DP,

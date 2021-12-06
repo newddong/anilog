@@ -1,9 +1,9 @@
 import React from 'react';
-import { txt } from 'Root/config/textstyle';
-import { Text, View, TouchableWithoutFeedback } from 'react-native';
+import {txt} from 'Root/config/textstyle';
+import {Text, View, TouchableWithoutFeedback} from 'react-native';
 import DP from 'Root/config/dp';
-import { Check50, Rect48_GRAY30, Rect50_Border } from '../atom/icon';
-import { GRAY10, GRAY20 } from 'Root/config/color';
+import {Check50, Rect48_GRAY30, Rect50_Border} from '../atom/icon';
+import {GRAY10, GRAY20} from 'Root/config/color';
 import AniButton from './AniButton';
 /**
  *
@@ -15,25 +15,23 @@ import AniButton from './AniButton';
  * }} props
  */
 export default CheckBox = props => {
-	const [checked, setChecked] = React.useState(props.isCheck); //체크상태 여부 boolean isCheck값에 따라 초기상태 결정됨
+	// console.log('props.state ', props.state);
+	const [checked, setChecked] = React.useState(true); //체크상태 여부 boolean isCheck값에 따라 초기상태 결정됨
 	const onCheck = () => {
 		setChecked(!checked);
+		props.onCheck(!checked);
 	};
 
-	React.useEffect(()=>{
-		props.onCheck(checked); //onCheck에 변화된 checked 값을 매개변수로 보냄
-	},[checked]);
-
-	React.useEffect(()=>{
-		setChecked(props.isCheck);
-	},[props.isCheck])
+	React.useEffect(() => {
+		setChecked(props.state);
+	}, [props.state]);
 
 	// React.useEffect(() => {
-		// setChecked(props.state); //useEffect의 dependency에 포함되는 state값을 useEffect내부에서 다시 set하는 경우 무한루프에 빠질 수 있음
-	// }, [props.state]);
+	// 	props.onCheck(checked); //onCheck에 변화된 checked 값을 매개변수로 보냄
+	// }, [checked]);
 
 	return (
-		<View style={{ flexDirection: 'row' }}>
+		<View style={{flexDirection: 'row'}}>
 			{props.disable ? <Rect48_GRAY30 /> : checked ? <Check50 onPress={onCheck} /> : <Rect50_Border onPress={onCheck} />}
 			<Text
 				style={[
