@@ -8,7 +8,7 @@ import Stagebar from '../molecules/Stagebar';
 import Input24 from '../molecules/Input24';
 import {login_style, btn_style, temp_style, progressbar_style, assignShelterInformation_style} from './style_templete';
 import InputWithSelect from '../molecules/InputWithSelect';
-import {initial_number} from 'Root/config/dummyDate_json';
+import {initial_number, email_supplier} from 'Root/config/dummyDate_json';
 import InputWithEmail from '../molecules/InputWithEmail';
 import DatePicker from '../molecules/DatePicker';
 
@@ -24,41 +24,47 @@ export default AssignShelterInformation = props => {
 		shelter_foundation_date: '',
 	});
 
-	const [confirmed, setConfirmed] = React.useState(false);
-
-	//다음단계 가기 위한 Confirm조건
-	React.useEffect(() => {
-		data.shelter_delegate_contact_number != null && data.user_email != null ? setConfirmed(true) : setConfirmed(false);
-	}, [data]);
+	const [phoneConfirmed, setPhoneConfirmed] = React.useState(false);
+	const [emailConfirmed, setEmailConfirmed] = React.useState(false);
+	
 
 	//확인버튼 클릭
 	const goToNextStep = () => {
-		console.log(data);
+		// console.log(data);
 		props.navigation.push('CheckShelterPassword', data);
 	};
 
 	//홈페이지
 	const onChangeHp = hp => {
-		console.log(hp);
+		// console.log(hp);
 		setData({...data, shelter_homepage: hp});
 	};
 
 	//전화번호
 	const onChangePhoneNumber = num => {
-		console.log(num);
+		// console.log(num);
 		setData({...data, shelter_delegate_contact_number: num});
 	};
 
 	//이메일
 	const onChangeEmail = email => {
-		console.log(email);
+		// console.log(email);
 		setData({...data, user_email: email});
 	};
 
 	//설립일
 	const onChangeDate = date => {
-		console.log(date);
+		// console.log(date);
 		setData({...data, shelter_foundation_date: date});
+	};
+
+	const onValidEmail = isValid => {
+		setEmailConfirmed(isValid);
+	
+	};
+
+	const onValidPhoneNumber = isValid => {
+		setPhoneConfirmed(isValid);
 	};
 
 	return (
@@ -105,7 +111,8 @@ export default AssignShelterInformation = props => {
 						alert_msg={'등록한 전화번호로 로그인이 가능합니다.'}
 						items={initial_number}
 						keyboardType={'number-pad'}
-						onChange={phone_num => onChangePhoneNumber(phone_num)}
+						onChange={onChangePhoneNumber}
+						onValid={onValidPhoneNumber}
 
 					/>
 				</View>
@@ -116,8 +123,9 @@ export default AssignShelterInformation = props => {
 						placeholder={'이메일 입력란'}
 						title={'E-mail'}
 						title_star={true}
-						items={initial_number}
-						onChange={email => onChangeEmail(email)}
+						dropdownItems={email_supplier}
+						onChange={onChangeEmail}
+						onValid={onValidEmail}
 					/>
 				</View>
 
@@ -136,7 +144,7 @@ export default AssignShelterInformation = props => {
 
 				{/* (M)DatePicker */}
 				<View style={[temp_style.datePicker_assignShelterInformation, assignShelterInformation_style.datePicker]}>
-					<DatePicker width={654} title={'설립일'} onDateChange={date => onChangeDate(date)} />
+					<DatePicker width={654} title={'설립일'} onDateChange={onChangeDate} />
 				</View>
 			</View>
 
@@ -145,7 +153,7 @@ export default AssignShelterInformation = props => {
 				<AniButton
 					btnTitle={'확인'}
 					btnTheme={'shadow'}
-					disable={!confirmed}
+					disable={!phoneConfirmed||!emailConfirmed}
 					btnLayout={btn_w654}
 					titleFontStyle={32}
 					onPress={goToNextStep}

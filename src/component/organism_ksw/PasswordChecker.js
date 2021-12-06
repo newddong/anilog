@@ -28,6 +28,7 @@ import {passwordChecker_style} from './style_organism';
  *presentPwdValid: 'boolean / 현재 비밀번호 값과 DB값의 일치 상태'
  *pwdCheck: 'boolean / 비밀번호 확인 통과 상태',
  *onPressClear: 'void 지우기 마크 클릭 콜백함수',
+ *onChangePwd:'패스워드 입력이 바뀔때의 콜백'
  * }} props
  */
 export default PasswordChecker = props => {
@@ -176,4 +177,5 @@ PasswordChecker.defaultProps = {
 	pwdCheck: false, // 부모 컴포넌트에서 보내는 비밀번호 확인, 새로운 비밀번호 확인란의 입력값이 위의 비밀번호 값과 정확히 일치하는지 T/F
 	onPressClear: e => console.log('passwordchecker Default onPressClear : ' + e), //  지우기가 클릭되었을 경우
 	onConfirmAndChecked: e => console.log('passwordchecker Default onConfirmAndChecked : ' + e), //validation 검사, 입력값 체크가 완료되었는지 부모 컴포넌트에 전달.
+	onChangePwd: e => {},
 };

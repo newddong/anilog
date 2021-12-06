@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity,SafeAreaView,StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity,SafeAreaView,StyleSheet,Platform,Dimensions } from 'react-native';
 import AniButton from 'Molecules/AniButton';
 import { btn_w226 } from 'Atom/btn/btn_style';
 import {WHITE,GRAY10} from 'Root/config/color';
@@ -50,7 +50,8 @@ TwoBtnModal.defaultProps = {
 const style = StyleSheet.create({
     background : {
         backgroundColor:'#0009',
-        flex: 1,
+        height:Platform.OS=='ios'?Dimensions.get('window').height:'100%',
+        width:Platform.OS=='ios'?Dimensions.get('window').width:'100%',
         justifyContent:'center',
         alignItems:'center'
     },

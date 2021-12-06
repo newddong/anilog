@@ -37,7 +37,7 @@ const Input24 = React.forwardRef((props, ref) => {
 		// if (input.length == 0) {
 		if (props.value.length == 0) {
 			return GRAY30;
-		} else return confirm ? GRAY30 : APRI10;
+		} else return confirm ? APRI10 : GRAY30;
 	};
 
 	const onChange = text => {

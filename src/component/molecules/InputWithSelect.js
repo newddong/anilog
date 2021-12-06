@@ -23,6 +23,7 @@ import Input24 from 'Molecules/Input24';
  *onSelectDropDown : '드롭다운 선택 콜백',
  *width: 'number / TextInput 너비 , default=200',
  *keyboardType : 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'number-pad' | 'decimal-pad',
+ *onValid : (boolean)=>void
  * }} props
  */
 export default InputWithSelect = props => {
@@ -37,11 +38,6 @@ export default InputWithSelect = props => {
 		setInput(text);
 	};
 
-	const onClear = () => {
-		inputRef.current.clear();
-		props.onClear();
-		setInput('');
-	};
 
 	const onSelectDropDown = (v, i) => {
 		console.log('드롭다운 선택확인 ', v, i);
@@ -49,6 +45,14 @@ export default InputWithSelect = props => {
 		setDropdownVal(v);
 
 	};
+
+	const validator = (text) => {
+		return text.length > 0;
+	};
+
+	const onValid = isValid => {
+		props.onValid(isValid);
+	}
 
 	return (
 		<View style={{height: 82 * DP}}>
@@ -76,18 +80,12 @@ export default InputWithSelect = props => {
 					placeholder={props.placeholder}
 					value={input}
 					ref={inputRef}
-					defaultValue={props.defaultInput}
 					keyboardType={props.keyboardType}
 					onChange={onChange}
+					validator={validator}
+					onValid={onValid}
 					width={450}
 				/>
-				{input.length > 0 ? (
-					<View style={{position: 'absolute', right: 0}}>
-						<Cross52 onPress={onClear} />
-					</View>
-				) : (
-					false
-				)}
 			</View>
 		</View>
 	);
@@ -104,6 +102,7 @@ InputWithSelect.defaultProps = {
 	onChange: e => console.log('InputWithSelect Default onChange   ',e),
 	onClear: e => console.log('InputWithSelect Default onClear   ',e),
 	onSelectDropDown: e => console.log('InputWithSelect Default onSelectDropDown   ',e),
+	onValid: e=> {},
 	width: 454,
 	keyboardType: 'default',
 };
