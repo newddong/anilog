@@ -12,7 +12,7 @@ import {DEFAULT_PROFILE} from 'Root/i18n/msg';
  *
  *@param {{
  * data: 'user_id, user_nickname(string), img_uri(string), text_intro(string)',
- * onLabelClick: void,
+ * onClickLabel: void,
  * }} props
  */
 export default UserDescriptionLabel = props => {
@@ -46,7 +46,7 @@ export default UserDescriptionLabel = props => {
 					</Text>
 					{props.data.showStatus ? <Text style={[txt.noto22, {color: APRI10, alignSelf: 'center', paddingLeft: 10 * DP}]}> STATUS</Text> : null}
 				</View>
-				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
+				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10, maxWidth: 400 * DP}]} numberOfLines={1} ellipsizeMode="tail">
 					{props.data.user_introduction}
 				</Text>
 			</View>
@@ -62,5 +62,5 @@ UserDescriptionLabel.defaultProps = {
 		text_intro: 'Description',
 		showStatus: false,
 	},
-	// onLabelClick: e => console.log(e),
+	onClickLabel: e => console.log(e),
 };

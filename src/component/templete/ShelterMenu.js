@@ -13,7 +13,7 @@ import AniButton from '../molecules/AniButton';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
 import {Setting46, FavoriteTag48_Filled, Heart48_Filled, Paw46} from '../atom/icon';
 import {dummy_AnimalFromShelter_adopted, dummy_UserObject_shelter} from 'Root/config/dummyDate_json';
-import {_dummy_VolunteerActivityApplicant, _dummy_userObject_user, dummy_AppliesRecord_rescue} from 'Root/config/dummy_data_hjs';
+import {_dummy_VolunteerActivityApplicant, _dummy_userObject_user} from 'Root/config/dummy_data_hjs';
 import {
 	MANAGEMENT_OF_PROTECTED_ANIMAL,
 	PROTECTED_ANIMAL,
@@ -67,6 +67,7 @@ export default ShelterMenu = props => {
 	//메뉴에 해당되는 네이게이션 이동
 	const click_menu = item_menu => {
 		switch (item_menu) {
+			// 보호 동물 관리
 			// 보호중인 동물
 			case PROTECTED_ANIMAL:
 				navigation.navigate('ShelterProtectAnimalList', {name: 'ShelterProtectAnimalList'});
@@ -88,6 +89,7 @@ export default ShelterMenu = props => {
 					user_type: 'shelter',
 				});
 				break;
+			//즐겨찾기
 			//친구
 			case FRIENDS:
 				navigation.push('SaveFavorite');
@@ -105,6 +107,7 @@ export default ShelterMenu = props => {
 			case COMUNITY:
 				alert('준비중입니다.');
 				break;
+			//나의 활동
 			//내 게시물
 			case MY_CONTENTS:
 				navigation.push('UserFeeds');
@@ -130,6 +133,7 @@ export default ShelterMenu = props => {
 			case NOTE_LIST:
 				alert('준비중입니다.');
 				break;
+			//설정
 			//정보/문의
 			case INFO_QUESTION:
 				alert('준비중입니다.');

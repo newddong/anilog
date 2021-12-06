@@ -7,7 +7,6 @@ export default AccountHashList = props => {
 	const renderItem = (item, index) => {
 		return (
 			<View style={[accountHashList.userAccount]}>
-				{/* <Text>UserAccount</Text> */}
 				<UserAccount
 					data={item}
 					checkBoxMode={props.checkBoxMode}
@@ -31,19 +30,3 @@ AccountHashList.defaultProps = {
 	onCheckBox: e => console.log(e),
 	checkBoxMode: false, // CheckBox 콘테이너 Show T/F
 };
-
-// UserDescriptionLabel.defaultProps = {
-// 	data: {
-// 		user_id: 'Default id',
-// 		user_nickname: 'user_nickname',
-// 		user_image: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-// 		text_intro: 'Description',
-// 	},
-// 	onLabelClick: e => console.log(e),
-// };
-
-// HashLabel.defaultProps = {
-// 	keyword: '#KEYWORD',
-// 	keywordBold: true,
-// 	count: 'Count한 게시물',
-// };

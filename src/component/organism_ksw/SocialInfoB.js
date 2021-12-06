@@ -12,9 +12,6 @@ export default SocialInfoB = props => {
 			return cnt;
 		}
 	};
-	React.useEffect(() => {
-		count_to_K();
-	}, []);
 
 	return (
 		<View style={[socialInfoB.container]}>

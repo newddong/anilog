@@ -7,7 +7,7 @@ import VolunteerItem from './VolunteerItem';
 
 export default VolunteerItemList = props => {
 	const renderItem = (item, index) => {
-		console.log('item', index, item);
+		// console.log('item', index, item);
 		return (
 			<View style={[volunteerItemList.itemContainer]}>
 				<VolunteerItem data={item} onClickLabel={e => props.onClickItem(e)} />

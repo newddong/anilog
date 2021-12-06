@@ -3359,13 +3359,11 @@ export const aidRequestList = StyleSheet.create({
 
 export const manageVolunteer = StyleSheet.create({
 	container: {
-		flex: 1,
-	},
-	volunteerList: {
 		width: 654 * DP,
+		alignItems: 'center',
 	},
+	volunteerList: {},
 	previous_volunteerList: {
-		width: 654 * DP,
 		maxHeight: 522 * DP,
 	},
 	previous_volunteerList_expanded: {
@@ -3375,7 +3373,7 @@ export const manageVolunteer = StyleSheet.create({
 		height: 35 * DP,
 		marginTop: 40 * DP,
 		marginBottom: 20 * DP,
-		// marginLeft: 48 * DP,
+		flexDirection: 'row',
 		alignSelf: 'flex-start',
 	},
 	separator: {
@@ -3393,6 +3391,13 @@ export const manageVolunteer = StyleSheet.create({
 	showMoreContainer_text: {
 		color: GRAY10,
 		marginLeft: 17 * DP,
+	},
+	none_adoptor_text: {
+		color: GRAY20,
+		width: 654 * DP,
+		height: 130 * DP,
+		paddingTop: 50 * DP,
+		textAlign: 'center',
 	},
 });
 

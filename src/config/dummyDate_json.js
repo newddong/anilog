@@ -766,6 +766,9 @@ export const dummy_userObject = [
 		user_follower_count: 1245667, //팔로워 숫자
 		user_denied: false, //유저의 차단여부
 		user_register_date: '2021-11-24', //가입일
+
+		//@FollowObject
+		follow_id: [2, 3],
 	},
 	{
 		_id: 2, //temp
@@ -792,7 +795,8 @@ export const dummy_userObject = [
 			district: '포천구', //군,구
 			neighbor: '용소 89-77', //동,읍,면
 		}, //회원주소
-		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
+		user_profile_uri:
+			'https://post-phinf.pstatic.net/MjAxODAzMzBfMjg3/MDAxNTIyNDAwMjIyNzUy.9XqjidN7_Z07X0FVGPGEcF_TS2NV4P82iF7UQeLaY8gg.zPkhckokUdTkpNIqKptrmgPhTb4uOPXZ3t23cp2sRc4g.JPEG/2018-03-28_16.08.33.jpg?type=w1200', //프로필 사진
 		user_introduction: 'Telling me about yourself. ',
 		user_birthday: '1991-12-21', //필요한지 검토 필요
 		user_interests: {
@@ -804,6 +808,9 @@ export const dummy_userObject = [
 		user_follower_count: 1245667, //팔로워 숫자
 		user_denied: false, //유저의 차단여부
 		user_register_date: '2021-11-24', //가입일
+
+		//@FollowObject
+		follow_id: [1, 3],
 	},
 	{
 		_id: 3, //temp
@@ -830,8 +837,8 @@ export const dummy_userObject = [
 			district: '용산구', //군,구
 			neighbor: '구월동 89-77', //동,읍,면
 		}, //회원주소
-		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
-		user_introduction: 'Telling me about yourself. ',
+		user_profile_uri: 'https://i.pinimg.com/736x/16/ca/de/16cade45fafd9d4299b1c36e5e1a5c64.jpg', //프로필 사진
+		user_introduction: '솜사탕 같은 하양이 엄마 노릇 중',
 		user_birthday: '1991-12-21', //필요한지 검토 필요
 		user_interests: {
 			location: ['마포', '용산', '남산'],
@@ -842,6 +849,9 @@ export const dummy_userObject = [
 		user_follower_count: 1245667, //팔로워 숫자
 		user_denied: false, //유저의 차단여부
 		user_register_date: '2021-11-24', //가입일
+
+		//@FollowObject
+		follow_id: [2, 4],
 	},
 	{
 		_id: 4, //temp
@@ -868,8 +878,9 @@ export const dummy_userObject = [
 			district: '위례구', //군,구
 			neighbor: '조화동 87-90', //동,읍,면
 		}, //회원주소
-		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
-		user_introduction: 'Telling me about yourself. ',
+		user_profile_uri:
+			'https://lh3.googleusercontent.com/proxy/kzhitmLPdrs2kKdF5IVq18_bvkbLj38WIBXkaNJ66KuWReSP_-GEQzSgsghhh0d3CF6hy2HbL-6iiIFo_dIncW1DClj3PyIPb5XSV3Zw2Zv5MDBLbZNz46WUNhTfSoikEgkcAhsk0cAlQUnw5A6r0-SFMKI', //프로필 사진
+		user_introduction: '우리 애교 넘치는 교용이. ',
 		user_birthday: '1991-12-21', //필요한지 검토 필요
 		user_interests: {
 			location: ['마포', '용산', '남산'],
@@ -880,6 +891,9 @@ export const dummy_userObject = [
 		user_follower_count: 1245667, //팔로워 숫자
 		user_denied: false, //유저의 차단여부
 		user_register_date: '2021-11-24', //가입일
+
+		//@FollowObject
+		follow_id: [1, 2],
 	},
 ];
 
