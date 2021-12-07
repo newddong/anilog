@@ -360,7 +360,6 @@ export const dummy_AppliesRecord_protect = [
 		protect_act_request_article_id: 'g24ghfd', //동물보호 게시글
 		protect_act_request_shelter_id: 'jhth4dd', //동물보호 게시글 작성한 보호소
 	},
-
 	{
 		//@FeedObject
 		feed_type: 'feed',
@@ -388,6 +387,66 @@ export const dummy_AppliesRecord_protect = [
 		protect_request_date: '2021-08-22', //등록일
 		shelter_name: '익산보호소', //보호소 이름 (보호장소)
 		protect_animal_rescue_location: '김포공원', //구조지역
+
+		//@ProtectionActivityApplicantObject
+		protect_act_type: 'protect', //신청한 보호 활동의 종류, 임시보호(protect), 입양(adopt)
+		protect_act_address: {
+			city: '울릉도', //시,도,군
+			district: '울릉구', //구
+			neighbor: '나인읍', //읍,면,동
+		}, //보호 신청자의 주소
+		protect_act_phone_number: '010-7777-0111', //보호 신청자의 전화번호
+		protect_act_companion_history: [
+			{
+				companion_pet_species: '개',
+				companion_pet_age: '7살',
+				companion_pet_period: '2년이상',
+				companion_pet_current_status: 'adopted', //상태정보 카테고리 정해야함
+			},
+		], //보호 신청자의 반려생활 이력
+		protect_act_checklist: {
+			is_adult: false, //성인여부
+			is_near_veterinary: true, //보호지 근처의 동물병원 여부
+			is_agreed_housemate: true, //가족, 동거인의 동의 여부
+			is_experience_defecate: true, //배변훈련 지식여부
+			is_knowledge_sanitation: true, //반려동물 미용,위생 지식여부
+		}, //보호신청 체크리스트
+		protect_act_motivation:
+			'33안녕하세요! 저는 중학생때 부터 키웠던 댕댕이 한 마리를 떠나보내고, 지금은 고양이 한 마리를 모시고 있는 집사입니다.' +
+			'한 달 뒤에 조금 더 큰 집으로 이사 할 계획이라 우리 레미 동생 만들어 주고 싶어서 신청하게 되었습니다.', //보호활동 신청동기
+
+		protect_act_request_article_id: '7654fdd', //동물보호 게시글
+		protect_act_request_shelter_id: '8ghsfgf', //동물보호 게시글 작성한 보호소
+	},
+	{
+		//@FeedObject
+		feed_type: 'feed',
+
+		//@ProtectRequestObject
+		_id: 23667,
+		protect_animal_photos: [
+			'https://post-phinf.pstatic.net/MjAxNzA2MzBfMTIy/MDAxNDk4NzgyMDkyMTUx.ukh7-et-tZsr2LPbPe3ccs0XLwB7V_EVRrepf9b0jwYg.j3iBalwSrvtzxJ0BvuYm2zMSQe2gJ6Cd9erBK-QaMIAg.PNG/20170630_092030.png?type=w1200',
+		], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '러시안블루', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'male', //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //중성화 여부
+		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: '1.2', //몸무게
+
+		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_adoption_days_remain: 5,
+		protect_animal_protect_request: true,
+		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
+		//임시보호가 되면 protect로 변경
+		//입양을 가게 되면 상태가 adopt로 변경
+		//임시보호, 입양 협의중이면 discuss로 변경
+		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
+
+		protect_request_date: '2021-11-18', //등록일
+		shelter_name: '홍단보호소', //보호소 이름 (보호장소)
+		protect_animal_rescue_location: '강원도 평창군 장평리', //구조지역
 
 		//@ProtectionActivityApplicantObject
 		protect_act_type: 'protect', //신청한 보호 활동의 종류, 임시보호(protect), 입양(adopt)

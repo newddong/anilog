@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, ScrollView, Text, View} from 'react-native';
 import ParentComment from '../organism/ParentComment';
 import {dummy_ParentComment} from '../../config/dummyDate_json';
 import DP from 'Root/config/dp';
@@ -30,7 +30,11 @@ export default CommentList = props => {
 	return (
 		<View>
 			<Text style={{marginBottom: 10 * DP}}>댓글 {dummy_ParentComment.length}개 </Text>
-			<FlatList data={props.items} renderItem={({item}) => renderItem(item)} />
+			<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+				<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+					<FlatList data={props.items} renderItem={({item}) => renderItem(item)} />
+				</ScrollView>
+			</ScrollView>
 		</View>
 	);
 };

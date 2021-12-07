@@ -24,7 +24,6 @@ import {RED10} from 'Root/config/color';
  * }} props
  */
 export default AnimalNeedHelp = props => {
-	const navigation = useNavigation();
 	const data = props.data;
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
@@ -128,6 +127,7 @@ export default AnimalNeedHelp = props => {
 						<View style={[animalNeedHelp.checkBoxContainer]}>
 							<CheckBox
 								state={props.isCheckAll}
+								checkBoxState={data.checkBoxState}
 								onCheck={() => props.onCheckBox(props.data.type == 'hash' ? props.data.keyword : props.data.user_nickname)}
 							/>
 						</View>

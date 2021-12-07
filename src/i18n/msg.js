@@ -288,6 +288,9 @@ export const CONFIRM_PROTECT_REQUEST = '이 내용으로 보호 활동 신청을
 export const CONFIRM_ADOPT_REQUEST = '위 내용으로 입양 신청을 하시겠습니까?';
 export const CONFIRM_FINALIZED =
 	'신청이 완료 되었습니다. #enter 보호소마다 심사의 기간과 기준이 다르며, 상황에 따라 연락이 가지 않을 수도 있음을 알려드립니다.';
+export const CONFIRM_DELETE_TAG_ME_FEED = '해당 게시글을 나의 "태그된 피드"에서 삭제하시겠습니까? 게시물을 올린 계정에서는 삭제되지 않습니다.';
+export const CONFIRM_DELETE_FAVORITE_FEED = '선택한 피드를 즐겨찾기에서 해제하시겠습니까?';
+export const CONFIRM_DELETE_MY_FEED = '선택한 목록을 내 피드글에서 해제하시겠습니까?';
 
 //보호동물 및 보호 요청게시글 상태에 대한 텍스트
 export const RESCUE = '입양가능';

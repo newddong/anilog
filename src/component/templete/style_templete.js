@@ -392,7 +392,7 @@ export const temp_style = StyleSheet.create({
 	},
 	userInfoSetting_step2: {
 		width: 750 * DP,
-		height: 522 * DP,
+		// height: 522 * DP,
 		alignItems: 'center',
 		// backgroundColor: '#B3EBB5',
 	},
@@ -516,6 +516,7 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	commentList: {
+		width: 654 * DP,
 		marginTop: 12 * DP,
 	},
 	floatingBtn: {
@@ -562,7 +563,6 @@ export const temp_style = StyleSheet.create({
 	introduceInfo: {
 		flexDirection: 'column',
 		width: 750 * DP,
-		height: 126 * DP,
 		// backgroundColor: '#B3EBB5',
 	},
 	introduceInfo_depth1: {
@@ -572,10 +572,8 @@ export const temp_style = StyleSheet.create({
 		// backgroundColor: '#B3EBB5',
 	},
 	userText_userInfoSetting: {
-		width: 600 * DP,
-		height: 82 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
+		width: 650 * DP,
+		// height: 82 * DP,
 		// backgroundColor: '#AFD5FB',
 	},
 	myPetList: {
@@ -961,19 +959,16 @@ export const temp_style = StyleSheet.create({
 		backgroundColor: '#E1BDE2',
 	},
 	accountInfo_shelterInfoSetting_view: {
-		width: 750 * DP,
 		height: 192 * DP,
 		// backgroundColor: '#FF00FF',
 	},
 	introduce_shelterInfoSetting_view: {
-		width: 750 * DP,
 		height: 238 * DP,
 		alignItems: 'center',
 		backgroundColor: '#FFF',
 	},
 	introduce_infoSetting_view: {
 		flexDirection: 'column',
-		width: 750 * DP,
 		height: 558 * DP,
 		alignItems: 'center',
 		// justifyContent: 'center',
@@ -985,7 +980,6 @@ export const temp_style = StyleSheet.create({
 		height: 100 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#FFF',
 	},
 	title_shelterInfoSetting: {
 		width: 200 * DP,
@@ -1000,8 +994,10 @@ export const temp_style = StyleSheet.create({
 		// backgroundColor: '#F6F6E4',
 	},
 	introduceMent_shelterInfoSetting: {
-		width: 654 * DP,
-		height: 82 * DP,
+		alignSelf: 'flex-start',
+		width: 630 * DP,
+		maxHeight: 180 * DP,
+		// height: 82 * DP,
 	},
 	shlterInfo__shelterInfoSetting_view: {
 		flexDirection: 'row',
@@ -1632,7 +1628,8 @@ export const userInfoDetailSettting_style = StyleSheet.create({
 	},
 	phone_num_input: {
 		width: 520 * DP,
-		height: 82 * DP,
+		bottom: 20 * DP,
+		// height: 82 * DP,
 		// backgroundColor: '#EDEDED',
 	},
 	tagListContainer: {
@@ -1744,6 +1741,20 @@ export const userInfoSetting_style = StyleSheet.create({
 	btn_w114: {
 		marginTop: 40 * DP,
 		marginLeft: 340 * DP,
+	},
+	user_intro_modifyMode: {
+		maxHeight: 200 * DP,
+		paddingVertical: 10 * DP,
+		color: GRAY10,
+		backgroundColor: WHITE,
+		shadowColor: '#000000',
+		shadowOpacity: 0.27,
+		shadowRadius: 4.65,
+		shadowOffset: {
+			width: 1 * DP,
+			height: 2 * DP,
+		},
+		elevation: 2,
 	},
 });
 
@@ -2065,11 +2076,11 @@ export const shelterMenu = StyleSheet.create({
 
 export const shelterInfoSetting = StyleSheet.create({
 	container: {
-		flex: 1,
-		alignItems: 'center',
+		width: 750 * DP,
+		marginBottom: 50 * DP,
 	},
 	shelterInfoSetting_step1: {
-		width: 750 * DP,
+		width: 654 * DP,
 		height: 364 * DP,
 		backgroundColor: '#FFF',
 		justifyContent: 'center',
@@ -2082,7 +2093,7 @@ export const shelterInfoSetting = StyleSheet.create({
 		marginTop: 30 * DP,
 	},
 	shelterInfoSetting_step2: {
-		width: 750 * DP,
+		width: 654 * DP,
 		height: 1060 * DP,
 		backgroundColor: '#FFF',
 	},
@@ -2091,14 +2102,9 @@ export const shelterInfoSetting = StyleSheet.create({
 	},
 	email_view: {
 		marginTop: 30 * DP,
-		marginLeft: 48 * DP,
 	},
-	accountInfo: {
-		marginLeft: 48 * DP,
-	},
-	introduceMent: {
-		marginLeft: 48 * DP,
-	},
+	accountInfo: {},
+	introduceMent: {},
 	grayLine: {
 		width: 750 * DP,
 		borderRightColor: '#EDEDED',
@@ -3602,7 +3608,7 @@ export const profile = StyleSheet.create({
 	container: {flex: 1},
 	profileInfo: {
 		width: 750 * DP,
-		marginBottom: 30 * DP,
+		marginVertical: 30 * DP,
 		// height: 416 * DP,
 	},
 	feedListContainer: {},
@@ -3627,7 +3633,7 @@ export const profile = StyleSheet.create({
 
 export const animalProtectRequestDetail_style = StyleSheet.create({
 	container: {
-		width: 654 * DP,
+		width: 750 * DP,
 		alignItems: 'center',
 	},
 	requestProtect: {

@@ -16,16 +16,19 @@ export default MyPetList = props => {
 	const renderItem = (item, index) => {
 		return (
 			<View style={[myPetList.petImageLabel]}>
-				<TouchableOpacity onPress={() => props.onLabelClick(item)}>
-					<PetImageLabel img_uri={item.user_profile_uri} petStatus={item.pet_status} petNickname={item.user_nickname} />
-				</TouchableOpacity>
+				{index == 0 ? (
+					<AddPet onAdd={() => props.addPet()} />
+				) : (
+					<TouchableOpacity onPress={() => props.onLabelClick(item)}>
+						<PetImageLabel img_uri={item.user_profile_uri} petStatus={item.pet_status} petNickname={item.user_nickname} />
+					</TouchableOpacity>
+				)}
 			</View>
 		);
 	};
 
 	return (
 		<View style={[myPetList.container]}>
-			<AddPet onAdd={() => props.addPet()} />
 			<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
 		</View>
 	);

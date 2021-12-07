@@ -10,7 +10,7 @@ import ProfileImageSelect from '../molecules/ProfileImageSelect';
 import {login_style, btn_style, temp_style, changeUserProfileImage_style} from './style_templete';
 
 export default ChangeUserProfileImage = ({route}) => {
-	// console.log('route / Profile', route.params);
+	// console.log('route / Profile', route.params);1
 
 	const [data, setData] = React.useState(route.params);
 	const [newNick, setNewNick] = React.useState('');
@@ -27,24 +27,29 @@ export default ChangeUserProfileImage = ({route}) => {
 
 	//중복 처리
 	const checkDuplicateNickname = nick => {
-		const result = false;
-		const exist_dup = dummy_userObject.filter(e => e.user_nickname == nick);
-		console.log('exist dup', exist_dup[0].user_nickname);
+		const result = true;
 		return result;
 	};
 
 	//닉네임 Validation
 	const nickName_validator = text => {
 		setNewNick(text);
-		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
-		// 영문자, 소문자, 숫자, "-","_" 로만 구성된 길이 2~10자리 사이의 문자열
-		var regExp = /^[a-zA-Z0-9_-]{2,15}$/;
-		regExp.test(text) && checkDuplicateNickname(text) ? setConfirmed(true) : setConfirmed(false);
 	};
 
 	//새 닉네임 지우기 마크 클릭
 	const onClearNickname = () => {
 		setConfirmed(false);
+	};
+
+	const onValidName = isValid => {
+		setConfirmed(isValid);
+	};
+
+	const validateNewNick = nick => {
+		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
+		// 영문자, 소문자, 숫자, "-","_" 로만 구성된 길이 2~10자리 사이의 문자열
+		let regExp = /^[a-zA-Z0-9_-]{2,15}$/;
+		return regExp.test(nick) && checkDuplicateNickname(nick);
 	};
 	return (
 		<ScrollView>
@@ -57,23 +62,25 @@ export default ChangeUserProfileImage = ({route}) => {
 					<View style={[temp_style.input24_changeUserProfileImage, changeUserProfileImage_style.input24]}>
 						<Input24
 							title={PREVIOUS_NICK_TITLE}
-							defaultValue={data ? data.user_nickname : ''}
+							value={data.user_nickname || ''}
 							width={654}
 							descriptionType={'none'}
 							editable={false}
 							showCrossMark={false}
 						/>
 					</View>
-
+					{/* 새닉네임 */}
 					<View style={[temp_style.input24_changeUserProfileImage]}>
 						<Input24
 							onChange={text => nickName_validator(text)}
+							validator={validateNewNick}
+							onValid={onValidName}
+							value={newNick}
 							title={NEW_NICK_TITLE}
 							descriptionType={'info'}
 							info={NICKNAME_FORM}
 							placeholder={NEW_NICK_REQUEST}
-							showmsg={true}
-							confirm={confirmed}
+							showMsg={true}
 							alert_msg={UNAVAILABLE_NICK}
 							confirm_msg={AVAILABLE_NICK}
 							width={654}
@@ -81,8 +88,7 @@ export default ChangeUserProfileImage = ({route}) => {
 						/>
 					</View>
 				</View>
-
-				{/* (A)Btn_w654 */}
+				{/* 확인버튼 */}
 				<View style={[btn_style.btn_w654, changeUserProfileImage_style.btn_w654]}>
 					<AniButton
 						btnTitle={'확인'}

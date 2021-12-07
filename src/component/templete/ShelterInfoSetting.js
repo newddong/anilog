@@ -8,6 +8,7 @@ import ProfileImageLarge160 from '../molecules/ProfileImageLarge160';
 import {txt} from 'Root/screens/assign/style_assign';
 import AniButton from '../molecules/AniButton';
 import {dummy_ShelterInfo} from 'Root/config/dummy_data_hjs';
+import {GRAY10} from 'Root/config/color';
 
 export default ShelterInfoSetting = props => {
 	const [_dummyData, set_dummyData] = React.useState(dummy_ShelterInfo);
@@ -28,9 +29,9 @@ export default ShelterInfoSetting = props => {
 	};
 
 	return (
-		<View style={login_style.wrp_main}>
-			{/* ProfileImage & btn_w242*/}
-			<ScrollView contentContainerStyle={[shelterInfoSetting.container]}>
+		<ScrollView contentContainerStyle={[shelterInfoSetting.container]}>
+			<View style={[login_style.wrp_main]}>
+				{/* 프로필 이미지 및 프로필 변경 */}
 				<View style={[shelterInfoSetting.shelterInfoSetting_step1]}>
 					<View style={[temp_style.profileImageLarge]}>
 						<ProfileImageLarge160 data={_dummyData} />
@@ -64,8 +65,10 @@ export default ShelterInfoSetting = props => {
 								<AniButton btnLayout={btn_w114} btnStyle={'border'} btnTheme={'shadow'} btnTitle={'수정'} onPress={() => alert('준비중입니다.')} />
 							</View>
 						</View>
-						<View style={temp_style.introduceMent_shelterInfoSetting}>
-							<Text style={txt.noto24}>{_dummyData.user_introduction}</Text>
+						<View style={[temp_style.introduceMent_shelterInfoSetting]}>
+							<Text style={txt.noto24} ellipsizeMode={'tail'} numberOfLines={3}>
+								{_dummyData.user_introduction}
+							</Text>
 						</View>
 					</View>
 					<View style={[temp_style.vertical_border]}></View>
@@ -86,55 +89,57 @@ export default ShelterInfoSetting = props => {
 						</View>
 						<View style={temp_style.title_type_shelterInfoSetting_view}>
 							<View style={temp_style.littleTitle}>
-								<Text>보호소</Text>
+								<Text style={[txt.noto30, {color: GRAY10}]}>보호소</Text>
 							</View>
 							<View style={temp_style.littleContents}>
-								<Text>{_dummyData.shelter_name}</Text>
+								<Text style={[txt.noto28]}>{_dummyData.shelter_name}</Text>
 							</View>
 						</View>
 						<View style={temp_style.address_type_shelterInfoSetting_view}>
 							<View style={temp_style.littleTitle}>
-								<Text>주소</Text>
+								<Text style={[txt.noto30, {color: GRAY10}]}>주소</Text>
 							</View>
 							<View style={temp_style.addressContents}>
-								<Text>{_dummyData.shelter_address.city + ' ' + _dummyData.shelter_address.district + ' ' + _dummyData.shelter_address.neighbor}</Text>
+								<Text style={[txt.noto28]}>
+									{_dummyData.shelter_address.city + ' ' + _dummyData.shelter_address.district + ' ' + _dummyData.shelter_address.neighbor}
+								</Text>
 							</View>
 						</View>
 						<View style={temp_style.title_type_shelterInfoSetting_view}>
 							<View style={temp_style.littleTitle}>
-								<Text>전화번호</Text>
+								<Text style={[txt.noto30, {color: GRAY10}]}>전화번호</Text>
 							</View>
 							<View style={temp_style.littleContents}>
-								<Text>{_dummyData.shelter_delegate_contact_number}</Text>
+								<Text style={[txt.noto28]}>{_dummyData.shelter_delegate_contact_number}</Text>
 							</View>
 						</View>
 						<View style={temp_style.title_type_shelterInfoSetting_view}>
 							<View style={temp_style.littleTitle}>
-								<Text>E-mail</Text>
+								<Text style={[txt.noto30, {color: GRAY10}]}>E-mail</Text>
 							</View>
 							<View style={temp_style.littleContents}>
-								<Text>{_dummyData.user_email}</Text>
+								<Text style={[txt.noto28]}>{_dummyData.user_email}</Text>
 							</View>
 						</View>
 						<View style={temp_style.title_type_shelterInfoSetting_view}>
 							<View style={temp_style.littleTitle}>
-								<Text>홈페이지</Text>
+								<Text style={[txt.noto30, {color: GRAY10}]}>홈페이지</Text>
 							</View>
 							<View style={temp_style.littleContents}>
-								<Text>{_dummyData.shelter_homepage}</Text>
+								<Text style={[txt.noto28]}>{_dummyData.shelter_homepage}</Text>
 							</View>
 						</View>
 						<View style={temp_style.title_type_shelterInfoSetting_view}>
 							<View style={temp_style.littleTitle}>
-								<Text>설립일</Text>
+								<Text style={[txt.noto30, {color: GRAY10}]}>설립일</Text>
 							</View>
 							<View style={temp_style.littleContents}>
-								<Text>{_dummyData.shelter_foundation_date}</Text>
+								<Text style={[txt.noto28]}>{_dummyData.shelter_foundation_date}</Text>
 							</View>
 						</View>
 					</View>
 				</View>
-			</ScrollView>
-		</View>
+			</View>
+		</ScrollView>
 	);
 };

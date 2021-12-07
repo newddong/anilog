@@ -14,7 +14,7 @@ import {login_style, applicationFormVolunteer, btn_style} from './style_templete
 import {_dummy_ApplicationFormVolunteer_shelter} from 'Root/config/dummy_data_hjs';
 
 export default ApplicationFormVolunteer = ({route, navigation}) => {
-	console.log('shelterData', route.params);
+	// console.log('shelterData', route.params);
 	// console.log('route / app', route.params);
 	const dummy_volunteer = dummy_VolunteerAcitivityApplicantObject;
 	const [vol_object, setVol_object] = React.useState(); // 봉사활동 오브젝트 담겨져있음 => 결국 이 데이터를 처리하는 장소임 여기는
@@ -106,7 +106,7 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 	const renderItem = (item, index) => {
 		return (
 			<View style={[applicationFormVolunteer.volunteer_date_input]}>
-				<TextInput value={item + '  /  '} editable={false} style={[txt.roboto28, applicationFormVolunteer.volunteer_date]} />
+				<TextInput value={item + '  //  '} editable={false} style={[txt.roboto28, applicationFormVolunteer.volunteer_date]} />
 			</View>
 		);
 	};
@@ -137,18 +137,19 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 						</View>
 						<View style={[applicationFormVolunteer.viewForm_step2]}>
 							{/* [hjs]API 선작업까지만 유효한 부분 추후에 변경 필요 */}
-							{console.log('_dummy_ApplicationFormVolunteer_shelter=>' + JSON.stringify(_dummy_ApplicationFormVolunteer_shelter[0]))}
+							{/* {console.log('_dummy_ApplicationFormVolunteer_shelter=>' + JSON.stringify(_dummy_ApplicationFormVolunteer_shelter[0]))} */}
 							{login_user_type == false && (
 								<FlatList
-									data={[vol_object ? vol_object.volunteer_wish_date : []]}
+									data={vol_object.volunteer_wish_date || []}
 									renderItem={({item, index}) => renderItem(item, index)}
 									numColumns={3}
+									ItemSeparatorComponent={separator}
 									scrollEnabled
 								/>
 							)}
 							{login_user_type == true ? (
 								<FlatList
-									data={[_dummy_ApplicationFormVolunteer_shelter[0].volunteer_wish_date]}
+									data={_dummy_ApplicationFormVolunteer_shelter[0].volunteer_wish_date || []}
 									renderItem={({item, index}) => renderItem(item, index)}
 									numColumns={3}
 									scrollEnabled

@@ -20,10 +20,10 @@ export default SaveAnimalRequest = props => {
 		_dummyData.map((v, i) => {
 			console.log('v,', i, v.checkBoxState);
 		});
-
 		// console.log('dummy 2', _dummyData[1].checkBoxState);
 	}, [_dummyData]);
-	//Check Box On
+
+	//선택하기 클릭
 	const showCheckBox = e => {
 		setCheckBoxMode(e);
 
@@ -38,12 +38,12 @@ export default SaveAnimalRequest = props => {
 		set_dummyData(copy);
 	};
 
-	//CheckBox Off
+	// 취소 클릭
 	const hideCheckBox = e => {
 		setCheckBoxMode(e);
 	};
 
-	// 선택하기 => 전체 선택 클릭
+	//전체 선택 클릭
 	const selectAll = () => {
 		//v.checkBoxState = !v.checkBoxState와 같이 할 경우 체크 박스 값들이 각각 다를 경우 그것의 반대로만 변경 될 뿐 모두 선택되거나 모두 취소 되지 않음.
 		setSelectCNT(selectCNT + 1);
@@ -57,12 +57,11 @@ export default SaveAnimalRequest = props => {
 		set_dummyData(copy);
 	};
 
-	// 선택하기 => 선택 삭제 클릭
+	// 삭제 클릭
 	const deleteSelectedItem = () => {
 		console.log('삭제시작');
 		let copy = [..._dummyData];
-		copy = copy.filter(element => element.checkBoxState != true); //CheckBoxState가 true인 경우엔 걸러진다
-		// console.log('copy', copy);
+		copy = copy.filter(e => e.checkBoxState != true); //CheckBoxState가 true인 경우엔 걸러진다
 		set_dummyData(copy);
 	};
 
@@ -73,6 +72,7 @@ export default SaveAnimalRequest = props => {
 		set_dummyData(copy);
 	};
 
+	//썸네일 클릭
 	const navigationGo = (status, user_id) => {
 		console.log('status , id => ' + status + '_' + user_id);
 		switch (status) {
@@ -102,6 +102,7 @@ export default SaveAnimalRequest = props => {
 			{/* SelectStat	 */}
 			<View style={[temp_style.selectstat_view]}>
 				<SelectStat
+					acceptAllState={acceptAllState}
 					onSelectMode={e => showCheckBox(e)}
 					onCancelSelectMode={e => hideCheckBox(e)}
 					onSelectAllClick={selectAll}

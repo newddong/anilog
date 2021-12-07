@@ -1,13 +1,13 @@
 import React from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { organism_style, feed_style } from './style_organism';
+import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {organism_style, feed_style} from './style_organism';
 import FeedContent from './FeedContent';
-import { Comment48_Border, Like48_Border } from '../atom/icon';
+import {Comment48_Border, Like48_Border} from '../atom/icon';
 import FeedMedia_temp from '../molecules/FeedMedia_temp';
-import { useNavigation } from '@react-navigation/core';
-import { txt } from 'Root/config/textstyle';
-import { GRAY10 } from 'Root/config/color';
-import { missingAnimalDetail, temp_style } from '../templete/style_templete';
+import {useNavigation} from '@react-navigation/core';
+import {txt} from 'Root/config/textstyle';
+import {GRAY10} from 'Root/config/color';
+import {missingAnimalDetail, temp_style} from '../templete/style_templete';
 
 export default Feed = props => {
 	const navigation = useNavigation();
@@ -21,30 +21,23 @@ export default Feed = props => {
 	};
 
 	const onSelectFeedMedia = () => {
-		console.log('onSelectFeedMedia')
-	}
+		console.log('onSelectFeedMedia');
+	};
 
 	return (
-		<View style={[organism_style.feed,]}>
-			{/* (O)FeedContent */}
-			{/* FlatList안에 ScrollView는 작동하지않는걸까 */}
+		<View style={[organism_style.feed]}>
 			<FeedContent />
-			{/* FeedMedia */}
-			<View style={[organism_style.feedMedia_feed,]}>
+			<View style={[organism_style.feedMedia_feed]}>
 				<FeedMedia_temp
 					data={_dummyData}
 					img_uri={'https://static-cdn.jtvnw.net/jtv_user_pictures/586d3387-d926-4f20-b207-12a4a600d237-profile_image-300x300.jpg'}
 					onSelect={onSelectFeedMedia}
 				/>
 			</View>
-			{/* comment*/}
 			<View style={organism_style.comment_feed_view}>
-				{/* LikeCommentButtons */}
 				<View style={[organism_style.likeCommentButtons_view, feed_style.likeCommentButtons_view]}>
-					{/* LikeCommentInfo */}
 					<View style={[organism_style.likeCommentInfo_view_feed]}>
 						<View style={organism_style.like48}>
-							{/* <Text>LIKE 48</Text> */}
 							<Like48_Border />
 						</View>
 						<View style={organism_style.like_count_view_feed}>
@@ -53,7 +46,6 @@ export default Feed = props => {
 							</View>
 						</View>
 						<View style={organism_style.like48}>
-							{/* <Text>COMMENT 48</Text> */}
 							<Comment48_Border />
 						</View>
 						<View style={organism_style.comment_count_view_feed}>
@@ -75,7 +67,7 @@ export default Feed = props => {
 				<View style={[organism_style.recentComment_view, feed_style.recentComment_view]}>
 					<View style={organism_style.writerID_feed_view}>
 						<View style={organism_style.writerID_feed}>
-							<Text style={[txt.roboto24, { color: GRAY10 }]}>태리우스</Text>
+							<Text style={[txt.roboto24, {color: GRAY10}]}>태리우스</Text>
 						</View>
 					</View>
 					<View style={organism_style.commentText_view}>
@@ -86,15 +78,3 @@ export default Feed = props => {
 		</View>
 	);
 };
-
-// FeedMedia_temp.defaultProps = {
-// 	//
-// 	data: {
-// 		feed_id: null,
-// 		isVideo: false,
-// 		medias: [1, 2, 3, 4],
-// 		alert_title: 'alert_msg',
-// 	},
-// 	onSelect: e => console.log(e),
-// 	img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
-// };

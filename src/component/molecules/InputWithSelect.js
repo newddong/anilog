@@ -24,35 +24,32 @@ import Input24 from 'Molecules/Input24';
  *width: 'number / TextInput 너비 , default=200',
  *keyboardType : 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'number-pad' | 'decimal-pad',
  *onValid : (boolean)=>void
+ *defaultValue: string
  * }} props
  */
 export default InputWithSelect = props => {
-	const [dropdownVal,setDropdownVal] = React.useState(props.items?props.items[props.defaultIndex]:'');
-	const [input, setInput] = React.useState('');
+	const [dropdownVal, setDropdownVal] = React.useState(props.items ? props.items[props.defaultIndex] : '');
+	const [input, setInput] = React.useState(props.defaultValue || '');
 	const inputRef = React.useRef();
 
-	
-
 	const onChange = text => {
-		props.onChange(dropdownVal+text);
+		props.onChange(dropdownVal + text);
 		setInput(text);
 	};
 
-
 	const onSelectDropDown = (v, i) => {
 		console.log('드롭다운 선택확인 ', v, i);
-		props.onChange(v+input);
+		props.onChange(v + input);
 		setDropdownVal(v);
-
 	};
 
-	const validator = (text) => {
+	const validator = text => {
 		return text.length > 0;
 	};
 
 	const onValid = isValid => {
 		props.onValid(isValid);
-	}
+	};
 
 	return (
 		<View style={{height: 82 * DP}}>
@@ -68,23 +65,18 @@ export default InputWithSelect = props => {
 					flexDirection: 'row',
 					alignItems: 'center',
 				}}>
-				<NormalDropDown
-					menu={props.items}
-					width={200}
-					defaultIndex={props.defaultIndex ? props.defaultIndex : 0}
-					onSelect={onSelectDropDown}
-				/>
+				<NormalDropDown menu={props.items} width={200} defaultIndex={props.defaultIndex ? props.defaultIndex : 0} onSelect={onSelectDropDown} />
 
-				
 				<Input24
 					placeholder={props.placeholder}
 					value={input}
 					ref={inputRef}
 					keyboardType={props.keyboardType}
+					// defaultValue={props.defaultValue}
 					onChange={onChange}
 					validator={validator}
 					onValid={onValid}
-					width={450}
+					width={props.width || 450}
 				/>
 			</View>
 		</View>
@@ -99,10 +91,10 @@ InputWithSelect.defaultProps = {
 	title_star: false,
 	alert_msg: '',
 	defaultInput: '',
-	onChange: e => console.log('InputWithSelect Default onChange   ',e),
-	onClear: e => console.log('InputWithSelect Default onClear   ',e),
-	onSelectDropDown: e => console.log('InputWithSelect Default onSelectDropDown   ',e),
-	onValid: e=> {},
+	onChange: e => console.log('InputWithSelect Default onChange   ', e),
+	onClear: e => console.log('InputWithSelect Default onClear   ', e),
+	onSelectDropDown: e => console.log('InputWithSelect Default onSelectDropDown   ', e),
+	onValid: e => {},
 	width: 454,
 	keyboardType: 'default',
 };

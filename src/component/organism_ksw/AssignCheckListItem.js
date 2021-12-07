@@ -15,6 +15,8 @@ import {assignCheckListItem} from './style_organism';
  * }} props
  */
 export default AssignCheckListItem = props => {
+	// console.log('Assign Item', props.state);
+
 	const [chekced, setChecked] = React.useState(props.isCheck);
 	const onCheck = isCheck => {
 		setChecked(isCheck);
@@ -25,6 +27,10 @@ export default AssignCheckListItem = props => {
 		props.onPressDetail();
 	};
 
+	// React.useEffect(() => {
+	// 	setChecked(props.state);
+	// }, [props.state]);
+
 	React.useEffect(() => {
 		setChecked(props.isCheck);
 	}, [props.isCheck]);
@@ -32,7 +38,7 @@ export default AssignCheckListItem = props => {
 	return (
 		<View style={[assignCheckListItem.container]}>
 			<View style={[assignCheckListItem.check50]}>
-				<CheckBox onCheck={onCheck} state={props.isCheck} />
+				<CheckBox onCheck={onCheck} state={props.state} />
 			</View>
 			<View style={[assignCheckListItem.textContainer]}>
 				<Text style={[txt.noto24, {color: chekced ? APRI10 : BLACK}]}>{props.data.text}</Text>

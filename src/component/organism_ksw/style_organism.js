@@ -713,6 +713,7 @@ export const companionFormList = StyleSheet.create({
 	},
 	companionFormContainer: {
 		marginBottom: 26 * DP,
+		marginTop: 10 * DP,
 	},
 });
 
@@ -746,7 +747,7 @@ export const assignCheckList = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	assignCheckListItem: {
-		marginBottom: 30 * DP,
+		marginBottom: 50 * DP,
 	},
 });
 

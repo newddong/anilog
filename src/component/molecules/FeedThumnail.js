@@ -10,9 +10,14 @@ export default FeedThumbnail = props => {
 	// console.log('FeedThumbnail', props.data.feed_medias);
 	const [selected, setSelected] = React.useState(false);
 
+	React.useEffect(() => {
+		setSelected(props.data.checkBoxState);
+	}, [props.data.checkBoxState]);
+
 	const onSelect = () => {
 		props.onSelect(props.data._id);
-		setSelected(!selected);
+		// console.log('FeedThumbnail OnSelect', props.data._id);
+		props.selectMode ? setSelected(!selected) : false; //SelectMode가 true일 경우에 한해서만 setSelected로 스타일을 바꿈
 	};
 
 	const getFeedIcon = () => {

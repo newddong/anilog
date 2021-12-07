@@ -1,17 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import { Text, View } from 'react-native';
-import { APRI10, GRAY10 } from 'Root/config/color';
-import { applyComanionCheckList } from 'Root/config/dummyDate_json';
-import { txt } from 'Root/config/textstyle';
-import { btn_w176 } from '../atom/btn/btn_style';
+import {Text, View} from 'react-native';
+import {APRI10, GRAY10} from 'Root/config/color';
+import {applyComanionCheckList} from 'Root/config/dummyDate_json';
+import {txt} from 'Root/config/textstyle';
+import {btn_w176} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import Stagebar from '../molecules/Stagebar';
 import AssignCheckList from '../organism_ksw/AssignCheckList';
-import { stagebar_style } from '../organism_ksw/style_organism';
-import { applyCompanionC, btn_style, login_style, temp_style } from './style_templete';
-
+import {stagebar_style} from '../organism_ksw/style_organism';
+import {applyCompanionC, btn_style, login_style, temp_style} from './style_templete';
 
 // protect_act_checklist : {
 // 	is_adult : Boolean, //성인여부
@@ -31,42 +30,44 @@ export default ApplyCompanionD = props => {
 			is_near_veterinary: false,
 			is_agreed_housemate: false,
 			is_experience_defecate: false,
-			is_knowledge_sanitation: false
-		}
-	})
+			is_knowledge_sanitation: false,
+		},
+	});
 
 	const [temp, setTemp] = React.useState(undefined);
-	const [checkList, setCheckList] = React.useState(applyComanionCheckList)
+	const [checkList, setCheckList] = React.useState(applyComanionCheckList);
 
 	//임시저장된 자료에 맞춰 각 CheckListItem에 대한 체크 상태 여부를 결정
 	React.useEffect(() => {
 		if (temp != undefined) {
-			let copy = [...checkList]
-			const jsonTemp = JSON.parse(temp)
-			copy[0].state = jsonTemp.is_adult
-			copy[1].state = jsonTemp.is_near_veterinary
-			copy[2].state = jsonTemp.is_agreed_housemate
-			copy[3].state = jsonTemp.is_experience_defecate
-			copy[4].state = jsonTemp.is_knowledge_sanitation
-			setCheckList(copy)
+			let copy = [...checkList];
+			const jsonTemp = JSON.parse(temp);
+			console.log('jsonTemp', jsonTemp);
+			copy[0].state = jsonTemp.is_adult;
+			copy[1].state = jsonTemp.is_near_veterinary;
+			copy[2].state = jsonTemp.is_agreed_housemate;
+			copy[3].state = jsonTemp.is_experience_defecate;
+			copy[4].state = jsonTemp.is_knowledge_sanitation;
+			setCheckList(copy);
 			setData({
-				...data, protect_act_checklist: {
+				...data,
+				protect_act_checklist: {
 					is_adult: jsonTemp.is_adult,
 					is_near_veterinary: jsonTemp.is_near_veterinary,
 					is_agreed_housemate: jsonTemp.is_agreed_housemate,
 					is_experience_defecate: jsonTemp.is_experience_defecate,
-					is_knowledge_sanitation: jsonTemp.is_knowledge_sanitation
-				}
-			})
+					is_knowledge_sanitation: jsonTemp.is_knowledge_sanitation,
+				},
+			});
 		}
-	}, [temp])
+	}, [temp]);
 
 	//임시저장된 자료가 로컬에 존재한다면 Temp에 할당
 	React.useEffect(() => {
 		_loadData = async () => {
 			try {
 				await AsyncStorage.getItem('tempData_applyCompanionC', (err, res) => {
-					res != null ? setTemp(res) : null
+					res != null ? setTemp(res) : null;
 				});
 			} catch (error) {
 				alert(error);
@@ -77,47 +78,46 @@ export default ApplyCompanionD = props => {
 
 	//임시저장 버튼 클릭
 	const tempSave = () => {
-		AsyncStorage.setItem('tempData_applyCompanionC', JSON.stringify(data.protect_act_checklist))
-	}
+		AsyncStorage.setItem('tempData_applyCompanionC', JSON.stringify(data.protect_act_checklist));
+	};
 
 	//각 항목에 대한 체크함수
 	const getCheckList = (item, index, state) => {
-		console.log(index + '번 째 항목  : ' + item.text + '의 state : ' + state);
-		let copy = data.protect_act_checklist
+		let copy = data.protect_act_checklist;
 		switch (index) {
 			case 0: {
-				copy.is_adult = state
-				break
-			} case 1: {
-				copy.is_near_veterinary = state
-				break
+				copy.is_adult = state;
+				break;
+			}
+			case 1: {
+				copy.is_near_veterinary = state;
+				break;
 			}
 			case 2: {
-				copy.is_agreed_housemate = state
-				break
+				copy.is_agreed_housemate = state;
+				break;
 			}
 			case 3: {
-				copy.is_experience_defecate = state
-				break
+				copy.is_experience_defecate = state;
+				break;
 			}
 			case 4: {
-				copy.is_knowledge_sanitation = state
-				break
+				copy.is_knowledge_sanitation = state;
+				break;
 			}
 		}
-		setData({ ...data, protect_act_checklist: copy })
+		setData({...data, protect_act_checklist: copy});
 	};
 
 	//다음버튼클릭
 	const goToNextStep = () => {
-		props.route.name == 'ApplyProtectActivityC' ? navigation.push('ApplyProtectActivityD', data) : navigation.push('ApplyAnimalAdoptionD', data)
-
-	}
+		props.route.name == 'ApplyProtectActivityC' ? navigation.push('ApplyProtectActivityD', data) : navigation.push('ApplyAnimalAdoptionD', data);
+	};
 
 	// [임시] - Async자료 삭제
 	const aa = () => {
-		AsyncStorage.removeItem('tempData_applyCompanionC')
-	}
+		AsyncStorage.removeItem('tempData_applyCompanionC');
+	};
 
 	return (
 		<View style={[login_style.wrp_main, applyCompanionC.container]}>
@@ -133,7 +133,7 @@ export default ApplyCompanionD = props => {
 				/>
 			</View>
 			<View style={[temp_style.stageBar, applyCompanionC.textMsg]}>
-				<Text style={[txt.noto24, { color: GRAY10 }]}>현재의 생활에 대해 체크해주세요.</Text>
+				<Text style={[txt.noto24, {color: GRAY10}]}>현재의 생활에 대해 체크해주세요.</Text>
 			</View>
 			<View style={[temp_style.assignCheckList, applyCompanionC.assignCheckList]}>
 				<AssignCheckList onCheck={(item, index, state) => getCheckList(item, index, state)} items={checkList} />
@@ -146,11 +146,7 @@ export default ApplyCompanionD = props => {
 					<AniButton btnStyle={'border'} btnLayout={btn_w176} btnTitle={'임시저장'} onPress={tempSave} />
 				</View>
 				<View style={[btn_style.btn_w176, applyCompanionC.btn_w176]}>
-					<AniButton
-						btnLayout={btn_w176}
-						btnTitle={'다음'}
-						onPress={goToNextStep}
-					/>
+					<AniButton btnLayout={btn_w176} btnTitle={'다음'} onPress={goToNextStep} />
 				</View>
 			</View>
 		</View>

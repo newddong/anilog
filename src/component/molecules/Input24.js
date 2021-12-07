@@ -69,15 +69,16 @@ const Input24 = React.forwardRef((props, ref) => {
 	const getMsg = () => {
 		if (props.showMsg) {
 			// if (input.length == 0) {
-			if (props.value==undefined||props.value.length == 0) {
+			if (props.value == undefined || props.value.length == 0) {
 				// return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}></Text>;
 				return false;
-			} else
+			} else {
 				return confirm ? (
 					<Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>
 				) : (
 					<Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>
 				);
+			}
 		}
 	};
 
@@ -117,11 +118,13 @@ const Input24 = React.forwardRef((props, ref) => {
 						},
 					]}
 				/>
-				{props.value.length > 0 ? (
+				{props.value.length > 0 && props.showCrossMark ? (
 					<View style={{position: 'absolute', right: 0}}>
 						<Cross46 onPress={onClear} />
 					</View>
-				) : false}
+				) : (
+					false
+				)}
 			</View>
 			{getMsg()}
 		</View>
@@ -166,9 +169,9 @@ const Input24Props = {
 	/** @type {(result:boolean)=>void} validator가 실행될 때마다 발생하는 콜백함수, validator의 결과값을 매개변수로 통보*/
 	onValid: func,
 	/** @type {string} 인풋 키보드 타잎 default|number-pad|decimal-pad|numeric|email-address|phone-pad 다른 속성은 RN공식문서 참조 */
-	keyboardType:string,
+	keyboardType: string,
 	/** @type {boolean} 암호 문자열의 경우 *로 가림*/
-	secureTextEntry:bool,
+	secureTextEntry: bool,
 };
 
 Input24.propTypes = Input24Props;
@@ -189,9 +192,9 @@ Input24.defaultProps = {
 	onClear: e => {},
 	onChange: e => {},
 	validator: () => true,
-	onValid:(e)=>{},
-	keyboardType:'default',
-	secureTextEntry:false
+	onValid: e => {},
+	keyboardType: 'default',
+	secureTextEntry: false,
 };
 
 export default Input24;

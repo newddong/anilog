@@ -16,7 +16,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params);
 
 	React.useEffect(() => {
-		// console.log('data', data);
+		console.log('phone num', data.user_phone_number);
 		navigation.setParams(data);
 	}, [data]);
 
@@ -115,8 +115,9 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 								items={mobile_carrier}
 								placeholder={INPUT_PHONE_NUM}
 								width={300}
+								defaultValue={data.user_phone_number || ''}
 								defaultIndex={getDefault()}
-								defaultInput={data ? data.user_phone_number : ''}
+								defaultInput={data.user_phone_number || ''}
 							/>
 						</View>
 					</View>

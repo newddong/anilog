@@ -2,11 +2,10 @@ import React from 'react';
 import {ScrollView, Text, View, TouchableOpacity} from 'react-native';
 import {GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
-import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Bracket48} from '../atom/icon';
+import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
 import VolunteerItemList from '../organism_ksw/VolunteerItemList';
 import {login_style, manageVolunteer} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
-import {dummy_UserObject_shelter, dummy_VolunteerAcitivityApplicantObject, dummy_volunteerItemList} from 'Root/config/dummyDate_json';
 import {_dummy_userObject_user, _dummy_VolunteerActivityApplicant} from 'Root/config/dummy_data_hjs';
 
 export default ManageVolunteer = ({route}) => {
@@ -19,6 +18,7 @@ export default ManageVolunteer = ({route}) => {
 	const [done_list, setDone_list] = React.useState([]);
 	const [showMoreHistory, setShowMoreHistory] = React.useState(false); //지난 내역 더보기
 	const [arrowStatus, setArrowStatus] = React.useState(false); // 화살표
+
 	React.useEffect(() => {
 		let scheduled_temp = [];
 		let previous_temp = [];
@@ -106,8 +106,8 @@ export default ManageVolunteer = ({route}) => {
 	// };
 
 	return (
-		<View style={[login_style.wrp_main, manageVolunteer.container]}>
-			<ScrollView style={{flex: 1}}>
+		<View style={[login_style.wrp_main]}>
+			<ScrollView contentContainerStyle={manageVolunteer.container}>
 				{/* 활동 예정 중인 신청 */}
 				<View style={[manageVolunteer.title]}>
 					<Text style={[txt.noto24, {color: GRAY20}]}>활동 예정중인 신청</Text>
