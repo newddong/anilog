@@ -39,10 +39,10 @@ export default SearchFeedTabNavigation = props => {
 					/>
 				);
 			}}>
-			<SearchFeedTabNav.Screen name="SearchFeed" component={SearchFeed} />
+			<SearchFeedTabNav.Screen name="SearchFeed">{props => <SearchFeed {...props} input={searchInput} />}</SearchFeedTabNav.Screen>
 			<SearchFeedTabNav.Screen name="SearchAccountA">{props => <SearchAccountA {...props} input={searchInput} />}</SearchFeedTabNav.Screen>
-			<SearchFeedTabNav.Screen name="SearchAccountB" component={SearchAccountB} />
-			<SearchFeedTabNav.Screen name="SearchHashTag" component={SearchHashTag} />
+			{/* <SearchFeedTabNav.Screen name="SearchAccountB" component={SearchAccountB} /> */}
+			<SearchFeedTabNav.Screen name="SearchHashTag">{props => <SearchHashTag {...props} input={searchInput} />}</SearchFeedTabNav.Screen>
 		</SearchFeedTabNav.Navigator>
 	);
 };

@@ -410,46 +410,6 @@ export const dummy_ActivationList = [
 	},
 ];
 
-export const dummy_feedThumbnailList = [
-	{
-		feed_id: 'dog7',
-		isVideo: true,
-		//Video가 포함되어 있는 dummyData의 경우 FeedThumbnail에서 재생표시( '▶')가 나타난다
-		medias: [1, 2, 3, 'Video'],
-		alert_title: '실종',
-		img_uri:
-			'https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fhappypet%2F9075e36d837244bd84cc370a63444825.jpg',
-	},
-	{
-		feed_id: 'dog2',
-		isVideo: true,
-		medias: [1, 2, 3, 4],
-		alert_title: '',
-		img_uri: 'https://t1.daumcdn.net/cfile/tistory/9925F03C5AD486B033',
-	},
-	{
-		feed_id: 'dog3',
-		isVideo: false,
-		medias: [1, 2, 3, 'Video'],
-		alert_title: '',
-		img_uri: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201901/20/28017477-0365-4a43-b546-008b603da621.jpg',
-	},
-	{
-		feed_id: 'dog4',
-		isVideo: true,
-		medias: [1, 2, 3, 'Video'],
-		alert_title: '실종',
-		img_uri: 'https://t1.daumcdn.net/cfile/blog/2547A74C52B3D5D40B',
-	},
-	{
-		feed_id: 'dog6',
-		isVideo: true,
-		medias: [1, 2, 3, 4],
-		alert_title: '구조',
-		img_uri: 'https://i.pinimg.com/originals/96/02/ee/9602ee8abb93b9100335c49c147e4098.jpg',
-	},
-];
-
 export const dummy_ownerList = [
 	{
 		img_uri: 'https://pbs.twimg.com/profile_images/719984599456043009/whcMczoB_400x400.jpg',
@@ -841,7 +801,7 @@ export const dummy_userObject = [
 			neighbor: '조화동 87-90', //동,읍,면
 		}, //회원주소
 		user_profile_uri:
-			'https://lh3.googleusercontent.com/proxy/kzhitmLPdrs2kKdF5IVq18_bvkbLj38WIBXkaNJ66KuWReSP_-GEQzSgsghhh0d3CF6hy2HbL-6iiIFo_dIncW1DClj3PyIPb5XSV3Zw2Zv5MDBLbZNz46WUNhTfSoikEgkcAhsk0cAlQUnw5A6r0-SFMKI', //프로필 사진
+			'https://w.namu.la/s/a9177f36792f5ea4406c0182f5a4131eabf4ae90d4828cab3ea4bf3ebccb5f19c2eaa73e753385c7c602673dab83e8d81c44f33f1bd3311ab02724a9432c0f7c77f9c00ccdc25ce6c4bc282517fe5988',
 		user_introduction: '우리 애교 넘치는 교용이. ',
 		user_birthday: '1991-12-21', //필요한지 검토 필요
 		user_interests: {
@@ -1763,7 +1723,7 @@ export const dummy_AnimalNeedHelpList_various_status = [
 		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
 		protect_animal_weight: '1.2', //몸무게
 		protect_animal_status: 'protect', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
-		protect_animal_adoption_days_remain: null,
+		protect_animal_adoption_days_remain: 10,
 		protect_animal_protect_request: false,
 		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
 		//임시보호가 되면 protect로 변경
@@ -2509,5 +2469,231 @@ export const dummy_FeedObject = [
 		missing_animal_features: null, //LongText, //실종 동물의 특징
 		report_witness_date: null, //제보일자(해당 동물의 목격일)
 		report_witness_location: null, //제보장소(목격장소)
+	},
+];
+
+export const dummy_manageUserVolunteer = [
+	{
+		_id: 1,
+		volunteer_target_shelter: 21, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.30', '21.11.30', '21.12.06', '21.11.30', '21.11.30', '21.12.06'], //봉사활동 희망 날짜
+		volunteer_accompany: [dummy_userObject[0], dummy_userObject[1]], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-6694-1921', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'accept',
+		// Enum('done','notaccept','accept’,’waiting’,’cancel') //봉사활동 신청서 상태
+		//완료(done)
+		//신청승인안됨(notaccept)
+		//신청승인됨(accept)
+		//보호소승인대기(waiting)
+		//신청취소(cancel)
+		user_type: 'shelter',
+		user_profile_uri: 'https://upload.wikimedia.org/wikipedia/en/4/4b/DWG_KIA_logo.png',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '홍단 보호소', //보호소 이름
+		shelter_address: {
+			city: '강원도', //시,도
+			district: '평창군', //군,구
+			neighbor: '용평면', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '강원도 평창군 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 123, //업로드 게시물 숫자
+		user_follow_count: 142, //팔로우 숫자
+		user_follower_count: 555, //팔로워 숫자
+	},
+	{
+		_id: 2,
+		volunteer_target_shelter: 22, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.22', '21.11.28', '21.12.06'], //봉사활동 희망 날짜
+		volunteer_accompany: [dummy_userObject[0], dummy_userObject[2]], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-6694-1921', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'done',
+		user_type: 'shelter',
+		user_profile_uri: 'https://abandonedpetrescue.org/wp-content/uploads/2016/10/logo.png',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: 'APR 보호소', //보호소 이름
+		shelter_address: {
+			city: '서울시', //시,도
+			district: '용산구', //군,구
+			neighbor: '검단동', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2015.12.02', //보호소 설립일
+		user_introduction: '서울시 용산구 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 123, //업로드 게시물 숫자
+		user_follow_count: 156, //팔로우 숫자
+		user_follower_count: 1055, //팔로워 숫자
+	},
+	{
+		_id: 3,
+		volunteer_target_shelter: 23, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.23', '21.11.28', '21.12.06'], //봉사활동 희망 날짜
+		volunteer_accompany: [dummy_userObject[0], dummy_userObject[1], dummy_userObject[3]], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-6694-1921', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'done',
+		user_type: 'shelter',
+		user_profile_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
+		shelter_type: 'public', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '천사 보호소', //보호소 이름
+		shelter_address: {
+			city: '경기도', //시,도
+			district: '하남시', //군,구
+			neighbor: '단계동 99-102', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '경기도 하남시 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 15, //업로드 게시물 숫자
+		user_follow_count: 15, //팔로우 숫자
+		user_follower_count: 144, //팔로워 숫자
+	},
+	{
+		_id: 4,
+		volunteer_target_shelter: 24, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.24'], //봉사활동 희망 날짜
+		volunteer_accompany: [dummy_userObject[0], dummy_userObject[1]], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-1235-2356', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'done',
+		user_type: 'shelter',
+		user_profile_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '티리엘 보호소', //보호소 이름
+		shelter_address: {
+			city: '전라도', //시,도
+			district: '유현군', //군,구
+			neighbor: '방운면 110-20', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '전라도 유현군 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 444, //업로드 게시물 숫자
+		user_follow_count: 223, //팔로우 숫자
+		user_follower_count: 125, //팔로워 숫자
+	},
+	{
+		_id: 5,
+		volunteer_target_shelter: 25, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.24'], //봉사활동 희망 날짜
+		volunteer_accompany: [dummy_userObject[2], dummy_userObject[3]], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-1235-2356', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'done',
+		user_type: 'shelter',
+		user_profile_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '나라 보호소', //보호소 이름
+		shelter_address: {
+			city: '서울시', //시,도
+			district: '송파구', //군,구
+			neighbor: '방운면 110-20', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '서울시 송파구 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 231, //업로드 게시물 숫자
+		user_follow_count: 104, //팔로우 숫자
+		user_follower_count: 122, //팔로워 숫자
+	},
+	{
+		_id: 6,
+		volunteer_target_shelter: 26, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.24'], //봉사활동 희망 날짜
+		volunteer_accompany: [dummy_userObject[2], dummy_userObject[3]], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-1235-2356', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'done',
+		user_type: 'shelter',
+		user_profile_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '충주 신천 보호소', //보호소 이름
+		shelter_address: {
+			city: '충주시', //시,도
+			district: '신천군', //군,구
+			neighbor: '방운면 110-20', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '충주시 신천군 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 231, //업로드 게시물 숫자
+		user_follow_count: 551, //팔로우 숫자
+		user_follower_count: 901, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+	},
+	{
+		_id: 7,
+		volunteer_target_shelter: 27, //봉사활동 대상 보호소
+		volunteer_wish_date: ['21.11.24'], //봉사활동 희망 날짜
+		volunteer_accompany: [dummy_userObject[2], dummy_userObject[1]], //봉사활동 신청자 목록
+		volunteer_delegate_contact: '010-1235-2356', //봉사활동 신청 대표자 전화번호
+		volunteer_status: 'done',
+
+		_id: 27,
+		user_type: 'shelter',
+		user_profile_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '홍천 보호소', //보호소 이름
+		shelter_address: {
+			city: '강원도', //시,도
+			district: '홍천군', //군,구
+			neighbor: '방운면 110-20', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '강원도 홍천군 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 123, //업로드 게시물 숫자
+		user_follow_count: 142, //팔로우 숫자
+		user_follower_count: 555, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+	},
+];
+
+export const dummy_hashTagListObject = [
+	{
+		_id: 1, //해시태그의 고유 아이디
+		hashtag_keyword: '반려동물',
+		hashtag_date: '2021-11-30',
+		hashtag_update_date: '2021-12-01',
+		hashtag_feed_id: [1, 2, 3, 4, 5],
+	},
+	{
+		_id: 2, //해시태그의 고유 아이디
+		hashtag_keyword: '임시보호',
+		hashtag_date: '2021-11-30',
+		hashtag_update_date: '2021-12-01',
+		hashtag_feed_id: [1, 2, 3, 4, 5],
+	},
+	{
+		_id: 3, //해시태그의 고유 아이디
+		hashtag_keyword: '고양이',
+		hashtag_date: '2021-11-30',
+		hashtag_update_date: '2021-12-01',
+		hashtag_feed_id: [1, 2, 3, 4, 5],
+	},
+	{
+		_id: 4, //해시태그의 고유 아이디
+		hashtag_keyword: '개',
+		hashtag_date: '2021-11-30',
+		hashtag_update_date: '2021-12-01',
+		hashtag_feed_id: [1, 2, 3, 4, 5],
+	},
+	{
+		_id: 5, //해시태그의 고유 아이디
+		hashtag_keyword: '말라뮤트',
+		hashtag_date: '2021-11-30',
+		hashtag_update_date: '2021-12-01',
+		hashtag_feed_id: [1, 2, 3, 4, 5],
+	},
+	{
+		_id: 6, //해시태그의 고유 아이디
+		hashtag_keyword: '입양',
+		hashtag_date: '2021-11-30',
+		hashtag_update_date: '2021-12-01',
+		hashtag_feed_id: [1, 2, 3, 4, 5],
 	},
 ];

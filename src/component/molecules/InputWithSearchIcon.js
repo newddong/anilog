@@ -65,14 +65,12 @@ export default InputWithSearchIcon = props => {
 						{
 							//TextInput과 바깥 View와의 거리 24px, lineHeight는 글꼴크기와 일치
 							paddingLeft: 24 * DP,
-							lineHeight: 48 * DP,
+							// lineHeight: 48 * DP,
 						},
 					]}
 				/>
 				<View style={{flexDirection: 'row', position: 'absolute', right: 0}}>
-					<TouchableOpacity onPress={onClear}>
-						<Cross48 />
-					</TouchableOpacity>
+					<Cross48 onPress={onClear} />
 					{/* SearchIcon은 X 마크와 14px 차이 */}
 					<TouchableOpacity onPress={onSearch} style={{marginHorizontal: 20 * DP}}>
 						<Search48 />

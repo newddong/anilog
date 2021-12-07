@@ -10,7 +10,7 @@ export default VolunteerItemList = props => {
 		// console.log('item', index, item);
 		return (
 			<View style={[volunteerItemList.itemContainer]}>
-				<VolunteerItem data={item} onClickLabel={e => props.onClickItem(e)} />
+				<VolunteerItem data={item} onClickLabel={e => props.onClickItem(e)} type={props.type} />
 			</View>
 		);
 	};

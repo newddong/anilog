@@ -1,8 +1,15 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
-import {dummy_feedThumbnailList} from 'Root/config/dummyDate_json';
 import FeedThumnail from '../molecules/FeedThumnail';
 
+/**
+ *
+ *@param {{
+ * items: 'Array / 피드 목록',
+ * onClickThumnail: void,
+ * selectMode : boolean
+ * }} props
+ */
 export default FeedThumbnailList = props => {
 	const NUMCOLUMNS = 3;
 	const renderItem = (item, index) => {

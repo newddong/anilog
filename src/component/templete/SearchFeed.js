@@ -5,27 +5,36 @@ import FeedThumbnailList from '../organism_ksw/FeedThumbnailList';
 import OnOffSwitch from '../molecules/OnOffSwitch';
 import {txt} from 'Root/config/textstyle';
 import {GRAY10} from 'Root/config/color';
+import {dummy_FeedObject} from 'Root/config/dummyDate_json';
 
 export default SearchFeed = props => {
+	const recommended_feedList = dummy_FeedObject;
+
+	const onClickThumnail = (index, feed_id) => {
+		console.log('index', index);
+		console.log('feed_id', feed_id);
+	};
+
+	const onSwtichOff = () => {};
+	const onSwtichOn = () => {};
 	return (
 		<View style={[login_style.wrp_main, searchFeed.container]}>
-			{/* 게시글 showState  */}
 			<View style={[searchFeed.stateView]}>
 				<View style={[searchFeed.showStateView]}>
 					<View style={[searchFeed.showStateView.text]}>
 						<Text style={[txt.noto20, {color: GRAY10}]}>임시보호 게시글만 보기</Text>
 					</View>
 					<View style={[temp_style.onOffSwitch, searchFeed.showStateView.onOffSwitch]}>
-						<OnOffSwitch />
+						<OnOffSwitch onSwtichOff={onSwtichOff} onSwtichOn={onSwtichOn} />
 					</View>
 				</View>
 				<View style={[searchFeed.postState]}>
 					<Text style={[temp_txt.small]}>추천 게시글</Text>
 				</View>
 			</View>
-			{/* FeedThumbnailList */}
-			<View style={[temp_style.feedThumbnailList, searchFeed.feedThumbnailList]}>
-				<FeedThumbnailList></FeedThumbnailList>
+			{/* 썸네일 리스트 */}
+			<View style={[temp_style.feedThumbnailList]}>
+				<FeedThumbnailList items={recommended_feedList} onClickThumnail={onClickThumnail} />
 			</View>
 		</View>
 	);

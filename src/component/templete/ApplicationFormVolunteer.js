@@ -13,61 +13,41 @@ import AccountList from '../organism_ksw/AccountList';
 import {login_style, applicationFormVolunteer, btn_style} from './style_templete';
 import {_dummy_ApplicationFormVolunteer_shelter} from 'Root/config/dummy_data_hjs';
 
+//ApplicationFormVolunteer (봉사활동 신청서 폼) 호출 네비게이트
+// ==> ManageVolunteer에서 더보기 클릭, 혹은 AppliesRecord(신청내역)에서 보호소 라벨 클릭 <==
 export default ApplicationFormVolunteer = ({route, navigation}) => {
 	// console.log('shelterData', route.params);
-	// console.log('route / app', route.params);
-	const dummy_volunteer = dummy_VolunteerAcitivityApplicantObject;
-	const [vol_object, setVol_object] = React.useState(); // 봉사활동 오브젝트 담겨져있음 => 결국 이 데이터를 처리하는 장소임 여기는
-	const [shelterData, setShelterData] = React.useState(route.params); //route.params에는 보호소 userObject가 담겨있음
-	const [accompanyItems, setAccompanyItems] = React.useState([]); // 봉사활동자 정보가 담겨져 있음
-	const [isShelterOwner, setIsShelterOwner] = React.useState(true);
+	console.log('route / app', route.params);
+	const [data, setData] = React.useState(route.params);
+	const [isShelterOwner, setIsShelterOwner] = React.useState(false); // 해당 보호소 계정 == 로그인 유저일 경우 최하단 버튼을 활동승인으로 출력
 	const [login_user_type, setLogin_user_type] = React.useState(true);
-
-	React.useEffect(() => {
-		if (!login_user_type) {
-			//shelterData에 있는 봉사활동 고유 _id 로 봉사활동 object 검색
-			let found_volunteer_obj = dummy_volunteer.find(e => e._id == shelterData.volunteer_id);
-			setVol_object(found_volunteer_obj);
-			//이제 받아온 volunteer_accompany를 토대로 해당 봉사자들(volunteer_accompany) 정보 검색
-			let copy = [];
-			found_volunteer_obj.volunteer_accompany.map((v, i) => {
-				let found_accompany_object = dummy_userObject.find(e => e._id == v);
-				copy.push(found_accompany_object);
-			});
-			//해당 봉사자들의 _id와 일치하는 userObject를 싹다 긁어옴 => setAccompanyItems
-			setAccompanyItems(copy);
-		}
-	}, [route.params]);
 
 	//로그인 유저 == 해당 봉사활동 신청서를 받는 입장인지 여부 확인
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
 			try {
-				res == shelterData._id ? setIsShelterOwner(true) : null;
+				//토큰에 저장된 _id와 봉사활동 신청 대상 보호소의 _id가 일치하는지 여부 확인
+				res == data.volunteer_target_shelter ? setIsShelterOwner(true) : null;
 			} catch (err) {
 				console.log(err);
 			}
 		});
-	}, [shelterData]);
+	}, [data]);
 
 	//계정 추가 - 미구현 상태
 	const addAccompany = () => {
-		console.log('d');
+		console.log('Search');
+		navigation.push('Search');
 	};
 
 	// 참여인원 삭제작업 , API 연결 작업 필요
 	const onDeleteAccompany = (index, item) => {
-		let copy = [...accompanyItems];
+		let copy = [...data.volunteer_accompany];
+		console.log('copy', copy);
 		copy.splice(index, 1);
-		setAccompanyItems(copy);
-		let copy_volunteer_accompany = [...vol_object.volunteer_accompany];
 		//삭제를 클릭한 AccountItem의 userObject 고유 _id를 얻어옴
 		// 이후 해당 봉사활동 Object의 봉활자 Array [유저,유저,유저] 와 비교 후 _id 일치하는 data는 삭제
-		copy_volunteer_accompany.splice(
-			copy_volunteer_accompany.findIndex(e => e == item._id),
-			1,
-		);
-		setVol_object({...vol_object, volunteer_accompany: copy_volunteer_accompany});
+		setData({...data, volunteer_accompany: copy});
 	};
 
 	//일반 봉사활동 신청자 계정이 신청 취소 버튼을 눌렀을 때
@@ -105,24 +85,25 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 	//봉사활동 희망 날짜 3개의 컬럼을 한 줄에 출력
 	const renderItem = (item, index) => {
 		return (
-			<View style={[applicationFormVolunteer.volunteer_date_input]}>
-				<TextInput value={item + '  //  '} editable={false} style={[txt.roboto28, applicationFormVolunteer.volunteer_date]} />
+			<View style={[applicationFormVolunteer.volunteer_date_input, {}]}>
+				<TextInput value={item + '  /  '} editable={false} style={[txt.roboto28, applicationFormVolunteer.volunteer_date]} />
 			</View>
 		);
 	};
 
 	const onSelect = (item, index) => {
-		navigation.push('UserProfile', '');
+		console.log('item', item);
+		navigation.push('UserProfile', item);
 	};
 
 	return (
-		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+		<ScrollView horizontal={false} contentContainerStyle={{flex: 1}}>
 			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
 				<View style={[login_style.wrp_main, applicationFormVolunteer.container]}>
 					{/* 보호소 정보 박스 (보호소 계정 본인이면 안보여야한다) */}
 					{isShelterOwner ? null : (
 						<View style={[applicationFormVolunteer.shelterInfo]}>
-							<ShelterInfo data={route.params} />
+							<ShelterInfo data={data} />
 						</View>
 					)}
 					{/* 봉사활동 희망날짜 */}
@@ -140,7 +121,7 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 							{/* {console.log('_dummy_ApplicationFormVolunteer_shelter=>' + JSON.stringify(_dummy_ApplicationFormVolunteer_shelter[0]))} */}
 							{login_user_type == false && (
 								<FlatList
-									data={vol_object.volunteer_wish_date || []}
+									data={data.volunteer_wish_date || []}
 									renderItem={({item, index}) => renderItem(item, index)}
 									numColumns={3}
 									ItemSeparatorComponent={separator}
@@ -149,7 +130,7 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 							)}
 							{login_user_type == true ? (
 								<FlatList
-									data={_dummy_ApplicationFormVolunteer_shelter[0].volunteer_wish_date || []}
+									data={data.volunteer_wish_date || []}
 									renderItem={({item, index}) => renderItem(item, index)}
 									numColumns={3}
 									scrollEnabled
@@ -166,24 +147,25 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 							<View style={[applicationFormVolunteer.title]}>
 								<Text style={[txt.noto24b, {color: GRAY10}]}>참여 인원</Text>
 								{!login_user_type && (
-									<Text style={[txt.roboto28, {marginLeft: 5, marginTop: 2}]}>{accompanyItems ? accompanyItems.length : '0'}</Text>
+									<Text style={[txt.roboto28, {marginLeft: 5, marginTop: 2}]}>
+										{data.volunteer_accompany ? data.volunteer_accompany.length : '0'}
+									</Text>
 								)}
 								{login_user_type && (
 									<Text style={[txt.roboto28, {marginLeft: 5, marginTop: 2}]}>
-										{_dummy_ApplicationFormVolunteer_shelter[0].volunteer_accompany
-											? _dummy_ApplicationFormVolunteer_shelter[0].volunteer_accompany.length
-											: '0'}
+										{data.volunteer_accompany ? data.volunteer_accompany.length : '0'}
 									</Text>
 								)}
 							</View>
 						</View>
-						{/* List는 여기 */}
+						{/* 참여 리스트 */}
 						<View style={[applicationFormVolunteer.participants_step2]}>
-							{!login_user_type && <AccountList items={accompanyItems} onDelete={onDeleteAccompany} />}
+							{!login_user_type && <AccountList items={data.volunteer_accompany || []} onDelete={onDeleteAccompany} />}
 							{login_user_type && (
 								<AccountList
-									items={_dummy_ApplicationFormVolunteer_shelter[0].volunteer_accompany}
+									items={data.volunteer_accompany || []}
 									onDelete={onDeleteAccompany}
+									makeBorderMode={false}
 									onSelect={(item, index) => onSelect(item, index)}
 								/>
 							)}
@@ -204,8 +186,8 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 							</View>
 						</View>
 						<View style={[applicationFormVolunteer.participants_contact_text]}>
-							{!login_user_type && <Text style={[txt.roboto28]}>{vol_object ? vol_object.volunteer_delegate_contact : ''}</Text>}
-							{login_user_type && <Text style={[txt.roboto28]}>{_dummy_ApplicationFormVolunteer_shelter[0].volunteer_leader_phone_number}</Text>}
+							{!login_user_type && <Text style={[txt.roboto28]}>{data.volunteer_delegate_contact || ''}</Text>}
+							{login_user_type && <Text style={[txt.roboto28]}>{data.volunteer_delegate_contact}</Text>}
 						</View>
 					</View>
 					<View style={[btn_style.btn_w226, applicationFormVolunteer.btn_w226]}>

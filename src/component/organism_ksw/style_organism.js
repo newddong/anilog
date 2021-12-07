@@ -93,7 +93,6 @@ export const organism_style = StyleSheet.create({
 	hashLabel: {
 		width: 654 * DP,
 		height: 94 * DP,
-		backgroundColor: 'pink',
 	},
 });
 
@@ -210,14 +209,13 @@ export const accountHashList = StyleSheet.create({
 export const hashTagList = StyleSheet.create({
 	container: {
 		width: 654 * DP,
+		marginBottom: 40 * DP,
 		alignSelf: 'center',
-		backgroundColor: BGCOLOR,
 	},
 	hashLabel: {
 		width: 654 * DP,
 		height: 94 * DP,
 		marginBottom: 40 * DP,
-		backgroundColor: 'yellow',
 	},
 });
 
@@ -1096,7 +1094,7 @@ export const animalNeedHelp = StyleSheet.create({
 	},
 	detail_upper_petState: {
 		height: 38 * DP,
-		borderRadius: 15 * DP,
+		borderRadius: 12 * DP,
 		borderWidth: 2 * DP,
 		borderColor: GRAY10,
 		paddingHorizontal: 10 * DP,

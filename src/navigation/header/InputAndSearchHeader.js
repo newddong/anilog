@@ -27,7 +27,7 @@ export default ConfirmInputHeader = ({navigation, route, options, back}) => {
 				</View>
 			</TouchableOpacity>
 			<View style={{marginBottom: 20 * DP, flex: 1}}>
-				<InputWithSearchIcon width={590} onChange={onChangeSearchText} onSearch={confirm} />
+				<InputWithSearchIcon placeholder={'검색어를 입력하세요.'} width={590} onChange={onChangeSearchText} onSearch={confirm} />
 			</View>
 		</View>
 	);

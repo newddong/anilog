@@ -443,17 +443,12 @@ export const temp_style = StyleSheet.create({
 	},
 	controllableHashTagList: {
 		width: 654 * DP,
-		height: 414 * DP,
-		backgroundColor: '#DEB5B5',
-		alignSelf: 'center',
-		alignItems: 'center',
+		marginTop: 40 * DP,
+		marginBottom: 20 * DP,
 	},
 	hashTagList: {
 		width: 654 * DP,
-		height: 696 * DP,
-		alignItems: 'center',
-		alignSelf: 'center',
-		backgroundColor: '#B5DED8',
+		marginTop: 20 * DP,
 	},
 	filterBtn: {
 		width: 306 * DP,
@@ -2624,7 +2619,7 @@ export const searchFeed = StyleSheet.create({
 	},
 	stateView: {
 		width: 654 * DP,
-		height: 130 * DP,
+		// height: 130 * DP,
 	},
 	showStateView: {
 		height: 36 * DP,
@@ -2642,9 +2637,6 @@ export const searchFeed = StyleSheet.create({
 	postState: {
 		height: 38 * DP,
 		alignSelf: 'flex-start',
-	},
-	feedThumbnailList: {
-		height: 980 * DP,
 	},
 });
 
@@ -2669,7 +2661,6 @@ export const searchAccountB = StyleSheet.create({
 export const searchHashTag = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ACC4D6',
 	},
 });
 
@@ -2698,7 +2689,6 @@ export const searchProtectRequest = StyleSheet.create({
 			height: 32 * DP,
 			alignSelf: 'center',
 			position: 'absolute',
-			right: 100 * DP,
 		},
 		onOffSwitch: {
 			position: 'absolute',
