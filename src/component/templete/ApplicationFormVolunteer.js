@@ -97,108 +97,110 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 	};
 
 	return (
-		<ScrollView horizontal={false} contentContainerStyle={{flex: 1}}>
-			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
-				<View style={[login_style.wrp_main, applicationFormVolunteer.container]}>
-					{/* 보호소 정보 박스 (보호소 계정 본인이면 안보여야한다) */}
-					{isShelterOwner ? null : (
-						<View style={[applicationFormVolunteer.shelterInfo]}>
-							<ShelterInfo data={data} />
+		<View style={[login_style.wrp_main]}>
+			<ScrollView contentContainerStyle={[applicationFormVolunteer.container]}>
+				{/* 보호소 정보 박스 (보호소 계정 본인이면 안보여야한다) */}
+				{isShelterOwner ? null : (
+					<View style={[applicationFormVolunteer.shelterInfo]}>
+						<ShelterInfo data={data} />
+					</View>
+				)}
+				{/* 봉사활동 희망날짜 */}
+				<View style={[applicationFormVolunteer.viewForm]}>
+					<View style={[applicationFormVolunteer.viewForm_step1]}>
+						<View style={[applicationFormVolunteer.icon48]}>
+							<Calendar48_Filled />
 						</View>
-					)}
-					{/* 봉사활동 희망날짜 */}
-					<View style={[applicationFormVolunteer.viewForm]}>
-						<View style={[applicationFormVolunteer.viewForm_step1]}>
-							<View style={[applicationFormVolunteer.icon48]}>
-								<Calendar48_Filled />
-							</View>
-							<View style={[applicationFormVolunteer.title]}>
-								<Text style={[txt.noto24b, {color: GRAY10}]}>봉사활동 희망 날짜</Text>
-							</View>
-						</View>
-						<View style={[applicationFormVolunteer.viewForm_step2]}>
-							{/* [hjs]API 선작업까지만 유효한 부분 추후에 변경 필요 */}
-							{/* {console.log('_dummy_ApplicationFormVolunteer_shelter=>' + JSON.stringify(_dummy_ApplicationFormVolunteer_shelter[0]))} */}
-							{login_user_type == false && (
-								<FlatList
-									data={data.volunteer_wish_date || []}
-									renderItem={({item, index}) => renderItem(item, index)}
-									numColumns={3}
-									ItemSeparatorComponent={separator}
-									scrollEnabled
-								/>
-							)}
-							{login_user_type == true ? (
-								<FlatList
-									data={data.volunteer_wish_date || []}
-									renderItem={({item, index}) => renderItem(item, index)}
-									numColumns={3}
-									scrollEnabled
-								/>
-							) : null}
+						<View style={[applicationFormVolunteer.title]}>
+							<Text style={[txt.noto24b, {color: GRAY10}]}>봉사활동 희망 날짜</Text>
 						</View>
 					</View>
-					{/* 참여인원 */}
-					<View style={[applicationFormVolunteer.participants]}>
-						<View style={[applicationFormVolunteer.participants_step1]}>
-							<View style={[applicationFormVolunteer.icon48]}>
-								<Person48 />
-							</View>
-							<View style={[applicationFormVolunteer.title]}>
-								<Text style={[txt.noto24b, {color: GRAY10}]}>참여 인원</Text>
-								{!login_user_type && (
-									<Text style={[txt.roboto28, {marginLeft: 5, marginTop: 2}]}>
-										{data.volunteer_accompany ? data.volunteer_accompany.length : '0'}
-									</Text>
+					<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+						<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+							<View style={[applicationFormVolunteer.viewForm_step2]}>
+								{/* [hjs]API 선작업까지만 유효한 부분 추후에 변경 필요 */}
+								{/* {console.log('_dummy_ApplicationFormVolunteer_shelter=>' + JSON.stringify(_dummy_ApplicationFormVolunteer_shelter[0]))} */}
+								{login_user_type == false && (
+									<FlatList
+										data={data.volunteer_wish_date || []}
+										renderItem={({item, index}) => renderItem(item, index)}
+										numColumns={3}
+										ItemSeparatorComponent={separator}
+										scrollEnabled
+									/>
 								)}
-								{login_user_type && (
-									<Text style={[txt.roboto28, {marginLeft: 5, marginTop: 2}]}>
-										{data.volunteer_accompany ? data.volunteer_accompany.length : '0'}
-									</Text>
-								)}
+								{login_user_type == true ? (
+									<FlatList
+										data={data.volunteer_wish_date || []}
+										renderItem={({item, index}) => renderItem(item, index)}
+										numColumns={3}
+										scrollEnabled
+									/>
+								) : null}
 							</View>
+						</ScrollView>
+					</ScrollView>
+				</View>
+				{/* 참여인원 */}
+				<View style={[applicationFormVolunteer.participants]}>
+					<View style={[applicationFormVolunteer.participants_step1]}>
+						<View style={[applicationFormVolunteer.icon48]}>
+							<Person48 />
 						</View>
-						{/* 참여 리스트 */}
-						<View style={[applicationFormVolunteer.participants_step2]}>
-							{!login_user_type && <AccountList items={data.volunteer_accompany || []} onDelete={onDeleteAccompany} />}
+						<View style={[applicationFormVolunteer.title]}>
+							<Text style={[txt.noto24b, {color: GRAY10}]}>참여 인원</Text>
+							{!login_user_type && (
+								<Text style={[txt.roboto28, {marginLeft: 5, marginTop: 2}]}>{data.volunteer_accompany ? data.volunteer_accompany.length : '0'}</Text>
+							)}
 							{login_user_type && (
-								<AccountList
-									items={data.volunteer_accompany || []}
-									onDelete={onDeleteAccompany}
-									makeBorderMode={false}
-									onSelect={(item, index) => onSelect(item, index)}
-								/>
+								<Text style={[txt.roboto28, {marginLeft: 5, marginTop: 2}]}>{data.volunteer_accompany ? data.volunteer_accompany.length : '0'}</Text>
 							)}
-							<View style={[applicationFormVolunteer.addParticipantBtn]}>
-								<Add_Volunteer onPress={addAccompany} />
-								<Text style={[txt.noto28, applicationFormVolunteer.addParticipantTxt]}>계정 추가</Text>
-							</View>
 						</View>
 					</View>
-					{/* 봉사활동자 연락처 */}
-					<View style={[applicationFormVolunteer.participants_contact]}>
-						<View style={[applicationFormVolunteer.viewForm_step1]}>
-							<View style={[applicationFormVolunteer.icon48]}>
-								<Phone48 />
+					{/* 참여 리스트 */}
+					<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+						<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+							<View style={[applicationFormVolunteer.participants_step2]}>
+								{!login_user_type && <AccountList items={data.volunteer_accompany || []} onDelete={onDeleteAccompany} />}
+								{login_user_type && (
+									<AccountList
+										items={data.volunteer_accompany || []}
+										onDelete={onDeleteAccompany}
+										makeBorderMode={false}
+										onSelect={(item, index) => onSelect(item, index)}
+									/>
+								)}
+								<View style={[applicationFormVolunteer.addParticipantBtn]}>
+									<Add_Volunteer onPress={addAccompany} />
+									<Text style={[txt.noto28, applicationFormVolunteer.addParticipantTxt]}>계정 추가</Text>
+								</View>
 							</View>
-							<View style={[applicationFormVolunteer.title]}>
-								<Text style={[txt.noto24b, {color: GRAY10}]}>봉사 활동자 연락처</Text>
-							</View>
+						</ScrollView>
+					</ScrollView>
+				</View>
+				{/* 봉사활동자 연락처 */}
+				<View style={[applicationFormVolunteer.participants_contact]}>
+					<View style={[applicationFormVolunteer.viewForm_step1]}>
+						<View style={[applicationFormVolunteer.icon48]}>
+							<Phone48 />
 						</View>
-						<View style={[applicationFormVolunteer.participants_contact_text]}>
-							{!login_user_type && <Text style={[txt.roboto28]}>{data.volunteer_delegate_contact || ''}</Text>}
-							{login_user_type && <Text style={[txt.roboto28]}>{data.volunteer_delegate_contact}</Text>}
+						<View style={[applicationFormVolunteer.title]}>
+							<Text style={[txt.noto24b, {color: GRAY10}]}>봉사 활동자 연락처</Text>
 						</View>
 					</View>
-					<View style={[btn_style.btn_w226, applicationFormVolunteer.btn_w226]}>
-						{isShelterOwner ? (
-							<AniButton onPress={onPressConfirm} btnLayout={btn_w226} btnTitle={'활동 승인'} />
-						) : (
-							<AniButton onPress={onPressCancel} btnLayout={btn_w226} btnTitle={'신청 취소'} btnStyle={'border'} />
-						)}
+					<View style={[applicationFormVolunteer.participants_contact_text]}>
+						{!login_user_type && <Text style={[txt.roboto28]}>{data.volunteer_delegate_contact || ''}</Text>}
+						{login_user_type && <Text style={[txt.roboto28]}>{data.volunteer_delegate_contact}</Text>}
 					</View>
 				</View>
+				<View style={[btn_style.btn_w226, applicationFormVolunteer.btn_w226]}>
+					{isShelterOwner ? (
+						<AniButton onPress={onPressConfirm} btnLayout={btn_w226} btnTitle={'활동 승인'} />
+					) : (
+						<AniButton onPress={onPressCancel} btnLayout={btn_w226} btnTitle={'신청 취소'} btnStyle={'border'} />
+					)}
+				</View>
 			</ScrollView>
-		</ScrollView>
+		</View>
 	);
 };

@@ -2156,7 +2156,9 @@ export const editShelterInfo = StyleSheet.create({
 
 export const applicationFormVolunteer = StyleSheet.create({
 	container: {
-		flex: 1,
+		// flex: 1,
+		width: 750 * DP,
+		alignItems: 'center',
 	},
 	shelterInfo: {
 		width: 702 * DP,
