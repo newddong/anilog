@@ -1,25 +1,33 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import {GRAY20} from 'Root/config/color';
+import {dummy_hashTagListObject} from 'Root/config/dummyDate_json';
+import {txt} from 'Root/config/textstyle';
+import HashTagList from '../organism_ksw/HashTagList';
 import {login_style, searchHashTag, temp_style} from './style_templete';
 
-// 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
-//ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
-
 export default SearchHashTag = props => {
+	console.log('props.Search', props.input);
+	const recent_search_tagList = dummy_hashTagListObject;
+	const searched_tagList = dummy_hashTagListObject.slice(0, 3); //검색 후 받아올 데이터 더미
 	return (
 		<View style={[login_style.wrp_main, searchHashTag.container]}>
-			<View style={[temp_style.topTabNavigation_filled]}>
-				<Text>(O)topTabNavigation_filled</Text>
-			</View>
-			<View style={[temp_style.topTabNavigation_border]}>
-				<Text>(O)topTabNavigation_border</Text>
-			</View>
-			<View style={[temp_style.controllableHashTagList]}>
-				<Text>(O)controllableHashTagList</Text>
-			</View>
-			<View style={[temp_style.hashTagList]}>
-				<Text>(O)hashTagList</Text>
-			</View>
+			{/* 검색내역이 없을 경우 최근 검색한 태그를 출력 */}
+			{props.input == null || props.input == undefined ? (
+				<View>
+					<View style={[temp_style.controllableHashTagList]}>
+						<Text style={[txt.noto24, {color: GRAY20}]}>최근 검색한 태그</Text>
+					</View>
+					<View style={[temp_style.hashTagList]}>
+						<HashTagList items={recent_search_tagList} />
+					</View>
+				</View>
+			) : (
+				// 검색 내역이 존재할 경우 API를 통해 받아온 내역 출력
+				<View style={[temp_style.hashTagList]}>
+					<HashTagList items={searched_tagList} />
+				</View>
+			)}
 		</View>
 	);
 };

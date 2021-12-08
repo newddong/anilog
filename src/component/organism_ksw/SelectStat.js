@@ -56,9 +56,15 @@ export default SelectStat = props => {
 				) : null}
 				{selectMode ? (
 					<View style={[selectStat.rightContainer]}>
-						<TouchableOpacity onPress={selectAll} style={[temp_style.textBtn]}>
-							<Text style={[txt.noto24]}>{selectCNT.current % 2 == 1 ? '전체 취소' : '전체 선택'} </Text>
-						</TouchableOpacity>
+						{props.acceptAllState ? (
+							<TouchableOpacity onPress={selectAll} style={[temp_style.textBtn]}>
+								<Text style={[txt.noto24]}>전체 취소</Text>
+							</TouchableOpacity>
+						) : (
+							<TouchableOpacity onPress={selectAll} style={[temp_style.textBtn]}>
+								<Text style={[txt.noto24]}>전체 선택</Text>
+							</TouchableOpacity>
+						)}
 						<View style={[selectStat.vertical_stick]} />
 						<TouchableOpacity onPress={deleteSelectedItem} style={[temp_style.textBtn]}>
 							<Text style={[txt.noto24]}>선택 삭제</Text>

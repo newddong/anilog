@@ -69,12 +69,5 @@ export default ShelterLabel = props => {
 	);
 };
 ShelterLabel.defaultProps = {
-	data: {
-		user_id: 'user_id1',
-		shelter_name: 'shelter_name',
-		shelter_image: 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-		location: 'location',
-		shelter_type: 'public',
-	},
 	onClickLabel: e => console.log(e),
 };

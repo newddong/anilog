@@ -9,14 +9,14 @@ import AniButton from '../molecules/AniButton';
 import AnimalProtectDetail from '../organism_ksw/AnimalProtectDetail';
 import {applyDetails, btn_style, login_style, temp_style} from './style_templete';
 
-export default ApplyDetails = props => {
+export default ApplyDetails = ({route}) => {
 	const navigation = useNavigation();
-	const [data, setData] = React.useState({...props.route.params});
+	const [data, setData] = React.useState({...route.params});
 
-	//임보 및 입양 신청 관련 Data, 대상 동물 Data(protect_request_pet_data),
-	// React.useEffect(() => {
-	// 	props.route.params != null ? setData(props.route.params) : null
-	// }, [props.route.params])
+	// 임보 및 입양 신청 관련 Data, 대상 동물 Data(protect_request_pet_data),
+	React.useEffect(() => {
+		route.params != null ? setData(route.params) : null;
+	}, [route.params]);
 
 	React.useEffect(() => {
 		// console.log('data details', data);
@@ -42,7 +42,7 @@ export default ApplyDetails = props => {
 
 	//등록버튼 클릭
 	const onPressRegister = () => {
-		const isProtectRoute = props.route.name == 'ApplyProtectActivityE'; //임시보호 루트로 왔는지 여부 확인 - 아닐 경우 입양 루트
+		const isProtectRoute = route.name == 'ApplyProtectActivityE'; //임시보호 루트로 왔는지 여부 확인 - 아닐 경우 입양 루트
 		Modal.popTwoBtn(isProtectRoute ? CONFIRM_PROTECT_REQUEST : CONFIRM_ADOPT_REQUEST, '취소', '확인', () => Modal.close(), onFinalize);
 	};
 
@@ -59,7 +59,7 @@ export default ApplyDetails = props => {
 					<View style={[btn_style.btn_w226, applyDetails.btn_w226]}>
 						{/* ApplyProtectActivityE 혹은 ApplyAnimalAdoptionE ==> 입양이나 임시보호 신청의 마지막 단계이므로 '신청'버튼이 필요 */}
 						{/* ApplyAdoptionDetails 혹은 ApplyTempProtectDetails ==> 유저가 신청한 입양이나 임시보호의 Detail을 보기만하는 것이므로 '신청'버튼 불필요 */}
-						{props.route.name == 'ApplyAdoptionDetails' || props.route.name == 'ApplyTempProtectDetails' ? null : (
+						{route.name == 'ApplyAdoptionDetails' || route.name == 'ApplyTempProtectDetails' ? null : (
 							<AniButton btnLayout={btn_w226} btnTitle={'신청'} onPress={onPressRegister} />
 						)}
 					</View>

@@ -13,15 +13,15 @@ import {APRI10, GRAY40, WHITE} from 'Root/config/color';
  * }} props
  */
 export default OnOffSwitch = props => {
-	const [btnStatus, setBtnStatus] = React.useState(props.default);
+	const [btnStatus, setBtnStatus] = React.useState(props.default || false);
 
 	return (
 		<View>
 			{btnStatus ? (
 				<TouchableOpacity
 					onPress={() => {
-						setBtnStatus(!btnStatus);
-						props.onSwtichOn();
+						setBtnStatus(false);
+						props.onSwtichOff();
 					}}>
 					{/* {console.log('btnStatus=>' + btnStatus)} */}
 					<View
@@ -41,8 +41,8 @@ export default OnOffSwitch = props => {
 			) : (
 				<TouchableOpacity
 					onPress={() => {
-						setBtnStatus(!btnStatus);
-						props.onSwtichOff();
+						setBtnStatus(true);
+						props.onSwtichOn();
 					}}>
 					{/* {console.log('btnStatus=>' + btnStatus)} */}
 					<View
@@ -64,7 +64,6 @@ export default OnOffSwitch = props => {
 	);
 };
 OnOffSwitch.defaultProps = {
-	default: 0, //0일 경우 Off상태, 1일 경우 On상태
 	onSwtichOn: e => console.log(e),
 	onSwtichOff: e => console.log(e),
 };

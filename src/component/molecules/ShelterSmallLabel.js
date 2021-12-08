@@ -90,6 +90,7 @@ export default ShelterSmallLabel = props => {
 		</View>
 	);
 };
+
 ShelterSmallLabel.defaultProps = {
 	data: {
 		user_type: 'shelter',

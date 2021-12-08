@@ -13,6 +13,7 @@ import {assignCheckList} from './style_organism';
  * }} props
  */
 export default AssignCheckList = props => {
+	// console.log('AssignCheckLis', props.items);
 	// const [isCheckAll,setCheckAll] = React.useState(false);
 	// React.useEffect(()=>{
 
@@ -20,12 +21,14 @@ export default AssignCheckList = props => {
 	// },[props.isCheckAll])
 
 	const renderItem = (item, index) => {
+		// console.log('item', item);
 		return (
 			<View style={[assignCheckList.assignCheckListItem]} key={index}>
 				<AssignCheckListItem
 					data={item}
 					onCheck={isCheck => props.onCheck(item, index, isCheck)}
 					isCheck={props.isCheckAll}
+					state={item.state}
 					onPressDetail={() => props.onPressDetail(index)}
 				/>
 			</View>

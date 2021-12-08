@@ -1,17 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import { Text, View } from 'react-native';
-import { APRI10, GRAY10 } from 'Root/config/color';
-import { txt } from 'Root/config/textstyle';
-import { btn_w176 } from '../atom/btn/btn_style';
+import {Text, View} from 'react-native';
+import {APRI10, GRAY10} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
+import {btn_w176} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import InputLongText from '../molecules/InputLongText';
 import Stagebar from '../molecules/Stagebar';
 import SelectStat from '../organism_ksw/SelectStat';
-import { stagebar_style } from '../organism_ksw/style_organism';
-import { applyCompanionD, btn_style, login_style, temp_style } from './style_templete';
-
+import {stagebar_style} from '../organism_ksw/style_organism';
+import {applyCompanionD, btn_style, login_style, temp_style} from './style_templete';
 
 // protect_act_applicant_id : Mongodb_ID(ref:UserObject), //보호활동 신청자
 
@@ -24,11 +23,11 @@ export default ApplyCompanionD = props => {
 	const [data, setData] = React.useState({
 		...props.route.params,
 		protect_act_motivation: null, //보호활동 신청동기
-	})
+	});
 
 	React.useEffect(() => {
-		setData({ ...data, protect_act_motivation: temp })
-	}, [temp])
+		setData({...data, protect_act_motivation: temp});
+	}, [temp]);
 
 	//임시저장된 자료가 있다면 호출
 	React.useEffect(() => {
@@ -44,10 +43,10 @@ export default ApplyCompanionD = props => {
 		_loadData();
 	});
 
-	//임시보호 동기 
-	const onChangeText = (text) => {
-		setData({ ...data, protect_act_motivation: text })
-	}
+	//임시보호 동기
+	const onChangeText = text => {
+		setData({...data, protect_act_motivation: text});
+	};
 
 	//임시저장
 	const temp_save = () => {
@@ -56,9 +55,9 @@ export default ApplyCompanionD = props => {
 
 	//다음버튼
 	const goToNextStep = () => {
-		props.route.name == 'ApplyProtectActivityD' ? navigation.push('ApplyProtectActivityE', data) : navigation.push('ApplyAnimalAdoptionE', data)
-
-	}
+		console.log('data Before Next', data);
+		props.route.name == 'ApplyProtectActivityD' ? navigation.push('ApplyProtectActivityE', data) : navigation.push('ApplyAnimalAdoptionE', data);
+	};
 
 	return (
 		<View style={[login_style.wrp_main, applyCompanionD.container]}>
@@ -74,7 +73,7 @@ export default ApplyCompanionD = props => {
 				/>
 			</View>
 			<View style={[temp_style.stageBar, applyCompanionD.textMsg]}>
-				<Text style={[txt.noto24, { color: GRAY10 }]}>임시보호의 이유나 동기를 500자 이내로 작성해주세요.</Text>
+				<Text style={[txt.noto24, {color: GRAY10}]}>임시보호의 이유나 동기를 500자 이내로 작성해주세요.</Text>
 			</View>
 			<View style={[temp_style.inputLongText, applyCompanionD.InputLongText]}>
 				<InputLongText placeholder={'내용 입력...'} onChange={text => onChangeText(text)} value={temp == '' ? null : temp} />
@@ -87,11 +86,7 @@ export default ApplyCompanionD = props => {
 					<AniButton btnStyle={'border'} btnLayout={btn_w176} btnTitle={'임시저장'} onPress={temp_save} />
 				</View>
 				<View style={[btn_style.btn_w176, applyCompanionD.btn_w176]}>
-					<AniButton
-						btnLayout={btn_w176}
-						btnTitle={'다음'}
-						onPress={goToNextStep}
-					/>
+					<AniButton btnLayout={btn_w176} btnTitle={'다음'} onPress={goToNextStep} />
 				</View>
 			</View>
 		</View>

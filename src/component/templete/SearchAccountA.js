@@ -10,9 +10,12 @@ export default SearchAccountA = props => {
 	const [searchedList, setSearchedList] = React.useState([]);
 	React.useEffect(() => {
 		if (props.input != null) {
-			const inputData = JSON.stringify(props.input.searchInput);
+			const inputData = props.input.searchInput;
 			//검색 로직에 대해선 아직 미구현이므로 닉네임과 검색Input이 정확히 일치하는 Account Array를 userList로 반환
-			let userList = userObejct.filter(e => (e.user_nickname = inputData));
+			userObejct.map((v, i) => {
+				console.log(i, v.user_nickname);
+			});
+			let userList = userObejct.filter(e => e.user_nickname == inputData);
 			setSearchedList(userList);
 		} else {
 			null;

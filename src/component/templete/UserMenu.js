@@ -38,6 +38,7 @@ export default UserMenu = props => {
 
 	const [data, setData] = React.useState(dummy_userObject[0]); //우선 userObject 0번 추가
 
+	//토큰에 로그인한 유저의 _id를 저장
 	React.useEffect(() => {
 		AsyncStorage.setItem('token', JSON.stringify(data._id));
 	}, [data]);
@@ -48,6 +49,17 @@ export default UserMenu = props => {
 		follow_count: data.user_follow_count,
 	});
 
+	// 나의 반려동물 버튼 클릭
+	const onPressMyCompanion = () => {
+		navigation.push('PetInfoSetting', data); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
+	};
+
+	// 내 정보 수정 클릭
+	const onPressModifyMyInfo = () => {
+		navigation.push('UserInfoSetting', data); //userObject
+	};
+
+	//하단 메뉴 클릭
 	const menuClick = menuItem => {
 		switch (menuItem) {
 			case '친구':
@@ -81,16 +93,6 @@ export default UserMenu = props => {
 		// navigation.push('me')
 	};
 
-	// 나의 반려동물 버튼 클릭
-	const onPressMyCompanion = () => {
-		navigation.push('PetInfoSetting', data); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
-	};
-
-	// 내 정보 수정 클릭
-	const onPressModifyMyInfo = () => {
-		navigation.push('UserInfoSetting', data);
-	};
-
 	return (
 		<ScrollView>
 			<View style={[login_style.wrp_main, userMenu_style.container]}>
@@ -98,16 +100,16 @@ export default UserMenu = props => {
 				<View style={[userMenu_style.userMenu_step1]}>
 					<View style={[temp_style.userInfo, userMenu_style.userInfo]}>
 						<View style={[temp_style.profileImageLarge, userMenu_style.profileImageLarge]}>
-							<ProfileImageLarge194 img_uri={data ? data.user_profile_uri : DEFAULT_PROFILE} />
+							<ProfileImageLarge194 img_uri={data.user_profile_uri || DEFAULT_PROFILE} />
 						</View>
 
 						<View>
 							<View style={[userMenu_style.user_id]}>
-								<Text style={[txt.roboto36b]}>{data ? data.user_nickname : ''}</Text>
+								<Text style={[txt.roboto36b]}>{data.user_nickname || ''}</Text>
 							</View>
 							<View style={[userMenu_style.contents]}>
 								<Text ellipsizeMode={'tail'} numberOfLines={3} style={[txt.noto24, {color: GRAY10}]}>
-									{data ? data.user_introduction : ''}
+									{data.user_introduction || ''}
 								</Text>
 							</View>
 						</View>

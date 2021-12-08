@@ -36,11 +36,6 @@ export default Profile = props => {
 		// console.log('profileData userTYpe', profile_data.user_type);
 	}, [profile_data]);
 
-	//보호소프로필의 보호활동 탭의 피드 썸네일 클릭
-	const onClick_ProtectedThumbLabel = (status, user_id, item) => {
-		navigation.push('AnimalProtectRequestDetail', item);
-	};
-
 	//프로필의 피드탭의 피드 썸네일 클릭
 	const onClick_Thumbnail_FeedTab = () => {
 		navigation.push('UserFeedList');
@@ -64,6 +59,12 @@ export default Profile = props => {
 	//보호소프로필의 봉사활동 클릭
 	const onClick_Volunteer_ShelterProfile = () => {
 		navigation.push('ApplyVolunteer', profile_data);
+	};
+
+	//보호소프로필의 보호활동 탭의 피드 썸네일 클릭
+	const onClick_ProtectedThumbLabel = (status, user_id, item) => {
+		// console.log('item', item);
+		navigation.push('AnimalProtectRequestDetail', item);
 	};
 
 	//피드글작성 버튼 클릭(액션버튼)

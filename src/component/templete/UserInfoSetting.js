@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
-import {GRAY10} from 'Root/config/color';
+import {Text, View, ScrollView, TouchableOpacity, TextInput} from 'react-native';
+import {GRAY10, GRAY40} from 'Root/config/color';
 import {dummy_CompanionObject, dummy_UserObject_pet} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
 import {DEFAULT_PROFILE, MODIFY_PROFILE} from 'Root/i18n/msg';
@@ -14,35 +14,20 @@ import {login_style, btn_style, temp_style, userInfoSetting_style} from './style
 
 // 필요한 데이터 - 로그인 유저 제반 데이터, 나의 반려동물 관련 데이터(CompanionObject 참조)
 export default UserInfoSetting = ({route}) => {
-	// console.log('route', route.params);
-
-	React.useEffect(() => {
-		console.log('userInfoSetting get para?', route.params);
-	}, [route]);
-
 	const navigation = useNavigation();
-	const [data, setData] = React.useState(route.params);
-	const [companions, setCompanions] = React.useState([]);
-
-	//나의 반려동물 검색 - 로그인 유저의 _id 데이터를 토대로
-	//반려동물 관계
-	React.useEffect(() => {
-		let my_companion_list = []; // CompanionObject에서 나의 반려동물 id List를 가져옴
-		dummy_CompanionObject.map((v, i) => {
-			v.companion_user_id == data._id ? my_companion_list.push(v) : null;
-		});
-		let copy = [];
-		my_companion_list.map((v, i) => {
-			let found = dummy_UserObject_pet.filter(e => e._id == v.companion_pet_id);
-			copy.push(found[0]);
-		});
-		setCompanions(copy);
-	}, [data]);
-
+	const [data, setData] = React.useState(route.params); // 로그인 유저의 UserObject
+	const [companions, setCompanions] = React.useState(dummy_UserObject_pet); //반려동물 userObject
+	const [modifyMode, setModifyMode] = React.useState(false);
+	const [intro_modified, setIntro_modified] = React.useState('');
+	const modifyRef = React.useRef();
 	//상세 정보 클릭
 	const onPressDetail = () => {
 		navigation.push('UserInfoDetailSetting', data);
 	};
+
+	React.useEffect(() => {
+		modifyMode ? modifyRef.current.focus() : null;
+	}, [modifyMode]);
 
 	//프로필 변경 클릭
 	const onPressModofyProfile = () => {
@@ -63,13 +48,29 @@ export default UserInfoSetting = ({route}) => {
 		navigation.push('PetInfoSetting', myPetData);
 	};
 
+	//User_intro 수정 버튼 클릭
+	const modify_userIntro = () => {
+		setModifyMode(!modifyMode);
+	};
+
+	//수정 후 적용 버튼 클릭
+	const modify_finalize = () => {
+		setModifyMode(!modifyMode);
+		setData({...data, user_introduction: intro_modified});
+	};
+
+	//수정 TextInput 콜백 함수
+	const modifyIntroText = text => {
+		setIntro_modified(text);
+	};
+
 	return (
 		<View style={login_style.wrp_main}>
 			<ScrollView>
 				{/* step1 */}
 				<View style={[temp_style.userInfoSetting_step1]}>
 					<View style={[temp_style.profileImageLarge, userInfoSetting_style.profileImageLarge]}>
-						<ProfileImageLarge194 img_uri={data ? data.user_profile_uri : DEFAULT_PROFILE} />
+						<ProfileImageLarge194 img_uri={data.user_profile_uri || DEFAULT_PROFILE} />
 					</View>
 					<View style={[btn_style.btn_w242, userInfoSetting_style.btn_w242]}>
 						<AniButton btnTitle={MODIFY_PROFILE} btnLayout={btn_w242} onPress={onPressModofyProfile} />
@@ -85,7 +86,7 @@ export default UserInfoSetting = ({route}) => {
 						{/* 이메일, 비밀번호 변경하기*/}
 						<View style={[temp_style.accountInfo_depth2]}>
 							<View style={[temp_style.user_email_userInfoSetting, userInfoSetting_style.user_email]}>
-								<Text style={[txt.roboto24]}>{data ? data.user_email : ''}</Text>
+								<Text style={[txt.roboto24]}>{data.user_email || ''}</Text>
 							</View>
 							<View style={[temp_style.changePassword_userInfoSetting, userInfoSetting_style.changePassword]}>
 								<TouchableOpacity onPress={onPressChangePwd}>
@@ -114,13 +115,30 @@ export default UserInfoSetting = ({route}) => {
 								<Text style={[txt.noto30b, {color: GRAY10}]}>소개</Text>
 							</View>
 							<View style={[btn_style.btn_w114, userInfoSetting_style.btn_w114]}>
-								<AniButton btnTitle={'수정'} btnStyle={'border'} btnLayout={btn_w114} />
+								{modifyMode ? (
+									<AniButton onPress={modify_finalize} btnTitle={'적용'} btnLayout={btn_w114} />
+								) : (
+									<AniButton onPress={modify_userIntro} btnTitle={'수정'} btnStyle={'border'} btnLayout={btn_w114} />
+								)}
 							</View>
 						</View>
 						<View style={[temp_style.userText_userInfoSetting, userInfoSetting_style.userText]}>
-							<Text style={[txt.noto24, {color: GRAY10}]} numberOfLines={2} ellipsizeMode={'tail'}>
-								{data ? data.user_introduction : ''}
-							</Text>
+							{/* 소개란의 수정버튼을 누를 시 TextInput으로 변경 */}
+							{modifyMode ? (
+								<TextInput
+									onChangeText={modifyIntroText}
+									style={[txt.noto24, userInfoSetting_style.user_intro_modifyMode]}
+									defaultValue={data.user_introduction || ''}
+									multiline={true}
+									maxLength={500}
+									ref={modifyRef}
+									selectTextOnFocus
+								/>
+							) : (
+								<Text style={[txt.noto24, {color: GRAY10}]} numberOfLines={2} ellipsizeMode={'tail'}>
+									{data.user_introduction || ''}
+								</Text>
+							)}
 						</View>
 					</View>
 				</View>

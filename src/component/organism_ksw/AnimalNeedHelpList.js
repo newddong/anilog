@@ -18,7 +18,6 @@ import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
  * }} props
  */
 export default AnimalNeedHelpList = props => {
-	// console.log('AnimalNeedHelpList', props.isCheckAll);
 	const onLabelClick = (status, id, item) => {
 		props.onLabelClick(status, id, item);
 	};
@@ -26,7 +25,7 @@ export default AnimalNeedHelpList = props => {
 	const renderItem = (item, index) => {
 		return (
 			<View style={[animalNeedHelpList.itemContainer]}>
-				{console.log('item:item.checkBoxState=>' + item.checkBoxState)}
+				{/* {console.log('item:item.checkBoxState=>' + item.checkBoxState)} */}
 				<AnimalNeedHelp
 					data={item}
 					checkBoxMode={props.checkBoxMode}

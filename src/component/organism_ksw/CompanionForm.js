@@ -1,12 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { GRAY10, GRAY40 } from 'Root/config/color';
-import { txt } from 'Root/config/textstyle';
-import { COMPANION_DURATION, COMPANION_STATUS, PET_AGE, PET_KIND } from 'Root/i18n/msg';
-import { Cross52 } from '../atom/icon';
+import {Text, View} from 'react-native';
+import {GRAY10, GRAY40} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
+import {COMPANION_DURATION, COMPANION_STATUS, PET_AGE, PET_KIND} from 'Root/i18n/msg';
+import {Cross52, CrossMark_Filled} from '../atom/icon';
 import NormalDropDown from '../molecules/NormalDropDown';
-import { companionForm } from './style_organism';
-
+import {companionForm} from './style_organism';
 
 /**
  *
@@ -19,7 +18,6 @@ import { companionForm } from './style_organism';
  * }} props
  */
 export default CompanionForm = props => {
-
 	// console.log('props.item최종', props.data)
 	// const getIndex_species = element => element == props.data.companion_pet_species
 	// const getIndex_age = element => element == props.data.companion_pet_age
@@ -43,26 +41,23 @@ export default CompanionForm = props => {
 
 	//종 선택 콜백
 	const onSelectSpecies = (v, i) => {
-		props.onSelectSpecies(v, i)
-	}
+		props.onSelectSpecies(v, i);
+	};
 
 	//나이 선택 콜백
 	const onSelectAge = (v, i) => {
-		props.onSelectAge(v, i)
-
-	}
+		props.onSelectAge(v, i);
+	};
 
 	//반려생활 기간 콜백
 	const onSelectDuration = (v, i) => {
-		props.onSelectDuration(v, i)
-
-	}
+		props.onSelectDuration(v, i);
+	};
 
 	//반려생활 상태 콜백
 	const onSelectStatus = (v, i) => {
-		props.onSelectStatus(v, i)
-
-	}
+		props.onSelectStatus(v, i);
+	};
 
 	return (
 		<View style={[companionForm.container]}>
@@ -70,38 +65,37 @@ export default CompanionForm = props => {
 				<View style={[companionForm.upperMenu]}>
 					<View style={[companionForm.inputItem]}>
 						<View style={[companionForm.fieldName]}>
-							<Text style={[txt.noto24, { color: GRAY10 }]}>종</Text>
+							<Text style={[txt.noto24, {color: GRAY10}]}>종</Text>
 						</View>
 						<View style={[companionForm.dropDownSelect]}>
 							<NormalDropDown
 								menu={PET_KIND}
 								onSelect={(v, i) => onSelectSpecies(v, i)}
-							// defaultIndex={isTempData ? species_index : 0}
+								// defaultIndex={isTempData ? species_index : 0}
 							/>
 						</View>
 					</View>
 					<View style={[companionForm.inputItem]}>
 						<View style={[companionForm.fieldName]}>
-							<Text style={[txt.noto24, { color: GRAY10 }]}>나이</Text>
+							<Text style={[txt.noto24, {color: GRAY10}]}>나이</Text>
 						</View>
 						<View style={[companionForm.dropDownSelect]}>
 							<NormalDropDown
 								menu={PET_AGE}
 								onSelect={(v, i) => onSelectAge(v, i)}
-							// defaultIndex={isTempData ? age_index : 0}
-
+								// defaultIndex={isTempData ? age_index : 0}
 							/>
 						</View>
 					</View>
 					<View style={[companionForm.inputItem]}>
 						<View style={[companionForm.fieldName]}>
-							<Text style={[txt.noto24, { color: GRAY10 }]}>반려생활 기간</Text>
+							<Text style={[txt.noto24, {color: GRAY10}]}>반려생활 기간</Text>
 						</View>
 						<View style={[companionForm.dropDownSelect]}>
 							<NormalDropDown
 								menu={COMPANION_DURATION}
 								onSelect={(v, i) => onSelectDuration(v, i)}
-							// defaultIndex={isTempData ? period_index : 0}
+								// defaultIndex={isTempData ? period_index : 0}
 							/>
 						</View>
 					</View>
@@ -111,12 +105,12 @@ export default CompanionForm = props => {
 						menu={COMPANION_STATUS}
 						onSelect={(v, i) => onSelectStatus(v, i)}
 						width={654}
-					// defaultIndex={isTempData ? status_index : 0}
+						// defaultIndex={isTempData ? status_index : 0}
 					/>
 				</View>
 			</View>
-			<View style={{ position: 'absolute', right: -5, top: -5, borderRadius: 50, backgroundColor: GRAY40 }}>
-				<Cross52 onPress={() => props.onDelete()} />
+			<View style={{position: 'absolute', right: 0, top: -5, borderRadius: 50, backgroundColor: GRAY40, zIndex: 1}}>
+				<CrossMark_Filled onPress={() => props.onDelete()} />
 			</View>
 		</View>
 	);
@@ -128,10 +122,10 @@ CompanionForm.defaultProps = {
 		companion_pet_age: PET_AGE[0],
 		companion_pet_period: COMPANION_DURATION[0],
 		companion_pet_current_status: COMPANION_STATUS[0],
-		temp: false
+		temp: false,
 	},
-	onDelete: e => console.log(e)
-}
+	onDelete: e => console.log(e),
+};
 
 // value: null,
 // itemList: [1, 2, 3, 4], //DropDown될 리스트 목록

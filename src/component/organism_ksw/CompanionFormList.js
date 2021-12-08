@@ -1,8 +1,7 @@
 import React from 'react';
-import { FlatList, Text, View } from 'react-native';
+import {FlatList, Text, View, ScrollView} from 'react-native';
 import CompanionForm from './CompanionForm';
-import { companionFormList } from './style_organism';
-
+import {companionFormList} from './style_organism';
 
 /**
  *
@@ -15,10 +14,8 @@ import { companionFormList } from './style_organism';
  * }} props
  */
 export default CompanionFormList = props => {
-
-	const [companionList, setCompanionList] = React.useState([])
+	const [companionList, setCompanionList] = React.useState([]);
 	// console.log('temp in FormList', props.tempData)
-
 
 	// React.useEffect(() => {
 	// 	console.log('props.tempdata.length', props.tempData.length)
@@ -26,8 +23,8 @@ export default CompanionFormList = props => {
 	// }, [props.tempData])
 
 	React.useEffect(() => {
-		setCompanionList(props.items)
-	}, [props.items])
+		setCompanionList(props.items);
+	}, [props.items]);
 
 	const renderItem = (item, index) => {
 		// console.log('item in renderite', item)
@@ -48,7 +45,11 @@ export default CompanionFormList = props => {
 
 	return (
 		<View style={[companionFormList.container]}>
-			<FlatList data={companionList} renderItem={({ item, index }) => renderItem(item, index)} />
+			<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+				<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+					<FlatList data={companionList} renderItem={({item, index}) => renderItem(item, index)} />
+				</ScrollView>
+			</ScrollView>
 		</View>
 	);
 };
@@ -60,4 +61,4 @@ CompanionFormList.defaultProps = {
 	onSelectDuration: e => console.log(e),
 	onSelectStatus: e => console.log(e),
 	onDelete: e => console.log(e),
-}
+};

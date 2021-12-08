@@ -10,7 +10,7 @@ import {btn_style, temp_style} from '../templete/style_templete';
 import {addressInput} from './style_organism';
 
 /**
- * 
+ *
  * @param {object} props
  * @param {string} props.title - 제목
  * @param {string} props.titleColor - 제목 색상
@@ -25,26 +25,23 @@ import {addressInput} from './style_organism';
  * @param {(isValid:boolean)=>void} props.onValid - 주소찾기 검증 변경에 따른 콜백
  */
 
-
 const AddressInput = props => {
-	
-	
-	const validator = (addr,detailAddr) => {
-		let isValid = props.validator(addr,detailAddr);
+	const validator = (addr, detailAddr) => {
+		let isValid = props.validator(addr, detailAddr);
 		props.onValid && props.onValid(isValid);
 	};
-	
+
 	//주소 값 변경 콜백
 	const onChangeAddress = addr => {
 		// console.log(addr);
-		props.validator&& validator(addr,props.detailAddress);
+		props.validator && validator(addr, props.detailAddress);
 		props.onChangeAddress(addr);
 	};
 
 	//세부 주소 값 변경 콜백
 	const onChangeDetailAddress = addr => {
 		// console.log(addr);
-		props.validator&& validator(props.address,addr);
+		props.validator && validator(props.address, addr);
 		props.onChangeDeatilAddress(addr);
 	};
 
@@ -95,6 +92,5 @@ AddressInput.defaultProps = {
 	onChangeAddress: e => {},
 	onPressSearchAddr: e => {},
 };
-
 
 export default AddressInput;

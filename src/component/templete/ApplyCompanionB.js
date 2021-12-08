@@ -11,14 +11,7 @@ import AniButton from '../molecules/AniButton';
 import Stagebar from '../molecules/Stagebar';
 import CompanionFormList from '../organism_ksw/CompanionFormList';
 import {stagebar_style} from '../organism_ksw/style_organism';
-
 import {applyCompanionB, login_style, temp_style, applyCompanionC, btn_style} from './style_templete';
-
-// protect_act_companion_history : Array<{
-// 	companion_pet_species : String,
-// 	companion_pet_age : String,
-// 	companion_pet_period : String,
-// 	companion_pet_current_status : Enum('living','died','adopted') //상태정보 카테고리 정해야함
 
 export default ApplyCompanionC = props => {
 	const navigation = useNavigation();
@@ -27,14 +20,9 @@ export default ApplyCompanionC = props => {
 		...props.route.params,
 		protect_act_companion_history: [],
 	});
-
+	const [isTempDataAdded, setIsTempDataAdded] = React.useState(false);
 	const [companionList, setCompanionList] = React.useState([]);
 	const [tempData, setTempData] = React.useState([]); //임시저장 정보가 들어갈 컨테이너
-
-	// //임시저장값 호출
-	// React.useEffect(() => {
-	// 	// _retrieveData()
-	// }, [])
 
 	React.useEffect(() => {
 		setData({...data, protect_act_companion_history: companionList});
@@ -55,11 +43,6 @@ export default ApplyCompanionC = props => {
 	// 		console.log('error', JSON.stringify(error))
 	// 	}
 	// };
-
-	React.useEffect(() => {
-		console.log('comp', companionList);
-	}, [companionList]);
-	const [isTempDataAdded, setIsTempDataAdded] = React.useState(false);
 
 	//반려 생활 추가
 	const onPressAddCompanion = () => {
