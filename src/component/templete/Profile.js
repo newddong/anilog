@@ -21,7 +21,8 @@ export default Profile = props => {
 	const navigation = useNavigation();
 
 	const userData = dummy_userObject[0]; //로그인 유저의 userObject data
-	const profile_data = props.route.params || dummy_UserObject_shelter[0]; //라벨을 클릭한 유저의 userObject data
+	// const profile_data = props.route.params || dummy_UserObject_shelter[0]; //라벨을 클릭한 유저의 userObject data
+	const profile_data = dummy_UserObject_shelter[0]; //라벨을 클릭한 유저의 userObject data
 	const [userType, setUserType] = React.useState(SHELTER); //NORMAL, PET, SHELTER
 	const [petStatus, setPetStatus] = React.useState('adopted'); // 현재 로드되어 있는 profile의 userType이 PET인 경우 그 펫의 상태 state
 	const [tabMenuSelected, setTabMenuSelected] = React.useState(0); //프로필 Tab의 선택상태

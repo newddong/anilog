@@ -39,7 +39,7 @@ export default ControllableAccountList = props => {
 					<Text style={[txt.noto24, {color: GRAY10}]}>{props.title}</Text>
 				</View>
 			)}
-			<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} />
+			<FlatList data={dummy_UserDescriptionLabel} renderItem={({item, index}) => renderItem(item, index)} />
 		</View>
 	);
 };

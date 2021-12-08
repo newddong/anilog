@@ -3273,7 +3273,7 @@ export const feedCommentList = StyleSheet.create({
 
 export const socialRelation = StyleSheet.create({
 	container: {
-		backgroundColor: '#ACC4D6',
+		// backgroundColor: '#ACC4D6',
 		alignItems: 'center',
 		flex: 1,
 	},
