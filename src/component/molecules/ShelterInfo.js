@@ -13,27 +13,21 @@ import {Private48, Public48} from '../atom/icon';
  */
 export default ShelterInfo = props => {
 	const data = props.data;
-	const profileImageSmall_data = {
-		img_uri: data.user_profile_uri,
-		userType: 'shelter',
-		shelterType: data.shelter_type,
-		size: 94,
-	};
 
 	return (
 		<View style={{width: 702 * DP, height: 246 * DP, borderRadius: 30 * DP, borderWidth: 2 * DP, borderColor: APRI10}}>
 			<View style={{width: 654 * DP, height: 94 * DP, marginTop: 30 * DP, marginHorizontal: 24 * DP, flexDirection: 'row'}}>
 				<TouchableOpacity>
-					<ProfileImageSmall data={profileImageSmall_data} />
+					<ProfileImageSmall data={data} />
 				</TouchableOpacity>
-				<Text style={[txt.noto28b, {marginLeft: 50 * DP, paddingVertical: 26 * DP, justifyContent: 'center'}]}>{data ? data.shelter_name : ''}</Text>
+				<Text style={[txt.noto28b, {marginLeft: 50 * DP, paddingVertical: 26 * DP, justifyContent: 'center'}]}>{data.shelter_name || ''}</Text>
 			</View>
 			<View style={{width: 654 * DP, height: 72 * DP, marginTop: 10 * DP}}>
 				<Text style={[txt.noto24, {alignSelf: 'flex-end', color: GRAY10}]}>
-					{data ? data.shelter_address.city : ''} {data ? data.shelter_address.district : ''} {data ? data.shelter_address.neighbor : ''}{' '}
+					{data ? data.shelter_address.city : ''} {data.shelter_address.district || ''} {data.shelter_address.neighbor || ''}
 				</Text>
 				<Text style={[txt.noto24, {alignSelf: 'flex-end', color: BLUE20, textDecorationLine: 'underline'}]}>
-					{data ? data.shelter_delegate_contact_number : ''}
+					{data.shelter_delegate_contact_number || ''}
 				</Text>
 			</View>
 		</View>

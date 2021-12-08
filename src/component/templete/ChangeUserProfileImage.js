@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {dummy_userObject} from 'Root/config/dummyDate_json';
 import {AVAILABLE_NICK, DEFAULT_PROFILE, NEW_NICK_REQUEST, NEW_NICK_TITLE, NICKNAME_FORM, PREVIOUS_NICK_TITLE, UNAVAILABLE_NICK} from 'Root/i18n/msg';
 import {btn_w654} from '../atom/btn/btn_style';
@@ -8,6 +9,7 @@ import AniButton from '../molecules/AniButton';
 import Input24 from '../molecules/Input24';
 import ProfileImageSelect from '../molecules/ProfileImageSelect';
 import {login_style, btn_style, temp_style, changeUserProfileImage_style} from './style_templete';
+import {CommonActions} from '@react-navigation/routers';
 
 export default ChangeUserProfileImage = ({route}) => {
 	// console.log('route / Profile', route.params);1
@@ -18,11 +20,32 @@ export default ChangeUserProfileImage = ({route}) => {
 	const [confirmed, setConfirmed] = React.useState(false);
 
 	const onConfirmed = () => {
-		navigation.goBack();
+		navigation.dispatch(
+			CommonActions.reset({
+				index: 1,
+				routes: [
+					{name: 'UserMenu'},
+					{
+						name: 'UserInfoSetting',
+						params: {changedPhoto: data.user_profile_uri},
+					},
+				],
+			}),
+		);
 	};
 
 	const selectPhoto = () => {
-		navigation.push('SinglePhotoSelect', route.name);
+		// navigation.push('SinglePhotoSelect', route.name);
+		launchImageLibrary(
+			{
+				mediaType: 'photo',
+				selectionLimit: 1,
+			},
+			responseObject => {
+				console.log('선택됨', responseObject);
+				setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || data.user_profile_uri});
+			},
+		);
 	};
 
 	//중복 처리
@@ -41,6 +64,7 @@ export default ChangeUserProfileImage = ({route}) => {
 		setConfirmed(false);
 	};
 
+	//닉네임 Validation 결과 == isValid에 따른 확인버튼 활성화 여부 결정
 	const onValidName = isValid => {
 		setConfirmed(isValid);
 	};
@@ -55,7 +79,7 @@ export default ChangeUserProfileImage = ({route}) => {
 		<ScrollView>
 			<View style={[login_style.wrp_main, {flex: 1}]}>
 				<View style={[temp_style.profileImageSelect, changeUserProfileImage_style.profileImageSelect]}>
-					<ProfileImageSelect selectedImageUri={data ? data.user_profile_uri : DEFAULT_PROFILE} onClick={selectPhoto} />
+					<ProfileImageSelect selectedImageUri={data.user_profile_uri || DEFAULT_PROFILE} onClick={selectPhoto} />
 				</View>
 				<View style={[temp_style.profileNicknameChange, changeUserProfileImage_style.profileNicknameChange]}>
 					{/* 기존 닉네임 */}

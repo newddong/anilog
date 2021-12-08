@@ -13,12 +13,12 @@ import AniButton from '../molecules/AniButton';
 import {stagebar_style} from '../organism_ksw/style_organism';
 
 export default AssignProtectAnimalDate = props => {
-	console.log(props.route.params);
+	// console.log(props.route.params);
 	const navigation = useNavigation();
 	const [data, setData] = React.useState({
 		...props.route.params,
 		protect_animal_rescue_date: '',
-		protect_animal_rescue_location: null,
+		protect_animal_rescue_location: '',
 	});
 
 	React.useEffect(() => {
@@ -71,6 +71,7 @@ export default AssignProtectAnimalDate = props => {
 					<View style={assignProtectAnimal_style.marginLeft16}>
 						<Input24
 							width={520}
+							value={data.protect_animal_rescue_location}
 							showmsg={false}
 							onChange={onChangeLocation}
 							descriptionType={'none'}
@@ -81,17 +82,9 @@ export default AssignProtectAnimalDate = props => {
 				</View>
 			</View>
 
-			{/* (A)Btn_w654 */}
 			<View style={[temp_style.btn_w226_assignProtectAnimal, assignProtectAnimal_style.btn_w226_view_image]}>
-				<AniButton
-					btnLayout={btn_w226}
-					btnTitle={BTN_BACK}
-					btnTheme={'shadow'}
-					btnStyle={'border'}
-					titleFontStyle={24}
-					onPress={() => navigation.goBack()}
-				/>
-				<AniButton btnLayout={btn_w226} btnTitle={BTN_NEXT} btnTheme={'shadow'} btnStyle={'filled'} titleFontStyle={24} onPress={gotoNextStep} />
+				<AniButton btnLayout={btn_w226} btnTitle={BTN_BACK} btnTheme={'shadow'} btnStyle={'border'} onPress={() => navigation.goBack()} />
+				<AniButton btnLayout={btn_w226} btnTitle={BTN_NEXT} btnTheme={'shadow'} titleFontStyle={24} onPress={gotoNextStep} />
 			</View>
 		</View>
 	);

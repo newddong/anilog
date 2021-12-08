@@ -1015,11 +1015,11 @@ export const animalInfo = StyleSheet.create({
 
 export const animalInfoList = StyleSheet.create({
 	container: {
-		width: 654 * DP,
+		width: 750 * DP,
 		// height: 723 * DP,
 	},
 	itemContainer: {
-		width: 654 * DP,
+		width: 750 * DP,
 		height: 180 * DP,
 		marginBottom: 30 * DP,
 		backgroundColor: 'white',

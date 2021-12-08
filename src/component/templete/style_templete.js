@@ -815,14 +815,12 @@ export const temp_style = StyleSheet.create({
 		// backgroundColor: '#F2C2C2',
 	},
 	FeedThumbnailList: {
-		width: 750 * DP,
+		width: 654 * DP,
 		marginTop: 10 * DP,
 		// height: 1324 * DP,
 	},
 	baseFlatList: {
-		// width: 654 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
+		width: 654 * DP,
 	},
 	animalProtectDetails_protectApplyForm: {
 		width: 654 * DP,
@@ -1917,7 +1915,6 @@ export const selectstat_view_style = StyleSheet.create({
 export const baseInfo_style = StyleSheet.create({
 	list: {
 		marginTop: 35 * DP,
-		paddingLeft: 20 * DP,
 	},
 	detail: {
 		marginTop: 40 * DP,
@@ -3336,7 +3333,7 @@ export const selectAccount = StyleSheet.create({
 	},
 	accountList: {
 		marginTop: 32 * DP,
-		width: 654 * DP,
+		width: 670 * DP,
 	},
 });
 
@@ -3359,7 +3356,9 @@ export const manageVolunteer = StyleSheet.create({
 		width: 654 * DP,
 		alignItems: 'center',
 	},
-	volunteerList: {},
+	volunteerList: {
+		width: 654 * DP,
+	},
 	previous_volunteerList: {
 		maxHeight: 522 * DP,
 	},
@@ -3688,10 +3687,14 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 });
 
 export const animalProtectList = StyleSheet.create({
+	container: {
+		// flex: 1,
+		width: 750 * DP,
+		alignItems: 'center',
+	},
 	title: {
-		width: 654 * DP,
+		// width: 654 * DP,
 		height: 35 * DP,
-		marginTop: 30 * DP,
 		alignSelf: 'flex-start',
 		marginBottom: 21 * DP,
 	},
