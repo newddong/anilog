@@ -70,34 +70,6 @@ export const dummy_userTimeLabel = {
 	time: 1,
 };
 
-export const dummy_accountList = [
-	{
-		user_id: '하양이',
-		user_nickname: '하양이',
-		img_uri: 'https://file.mk.co.kr/meet/neds/2021/06/image_readtop_2021_535745_16226846584668330.jpg',
-		text_intro: '안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있...',
-	},
-	{
-		user_id: '구름이',
-		user_nickname: '구름이',
-		img_uri: 'https://static01.nyt.com/images/2016/03/30/universal/ko/well_cat-korean/well_cat-superJumbo-v2.jpg',
-		text_intro: 'Description',
-	},
-	{
-		user_id: '달리',
-		user_nickname: '달리',
-		img_uri:
-			'https://post-phinf.pstatic.net/MjAxNzA2MzBfMTIy/MDAxNDk4NzgyMDkyMTUx.ukh7-et-tZsr2LPbPe3ccs0XLwB7V_EVRrepf9b0jwYg.j3iBalwSrvtzxJ0BvuYm2zMSQe2gJ6Cd9erBK-QaMIAg.PNG/20170630_092030.png?type=w1200',
-		text_intro: '안녕하세요',
-	},
-	{
-		user_id: '하양이',
-		user_nickname: '하양이',
-		img_uri: 'https://file.mk.co.kr/meet/neds/2021/06/image_readtop_2021_535745_16226846584668330.jpg',
-		text_intro: '안녕하세요 5살 구름이와 3살 하늘이랑 함께 살고 있...',
-	},
-];
-
 export const dummy_AccountHashList = [
 	{
 		type: 'user',
@@ -886,41 +858,6 @@ export const dummy_UserObject_pet = [
 	},
 ];
 
-export const dummy_ShelterList = [
-	{
-		shelterType: 'private',
-		img_uri: 'https://upload.wikimedia.org/wikipedia/en/4/4b/DWG_KIA_logo.png',
-		name: '아이조아 요양보호소',
-		location: '서울시 마포구',
-		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
-		phone_number: '010-8888-2053',
-	},
-	{
-		shelterType: 'public',
-		img_uri: 'https://abandonedpetrescue.org/wp-content/uploads/2016/10/logo.png',
-		name: 'APR Shelter',
-		location: '상암역 부근',
-		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
-		phone_number: '010-8888-2053',
-	},
-	{
-		shelterType: 'private',
-		img_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
-		name: '천사 보호소',
-		location: '서울시 마포구',
-		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
-		phone_number: '010-8888-2053',
-	},
-	{
-		shelterType: 'private',
-		img_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
-		name: '천사 보호소',
-		location: '서울시 마포구',
-		address: '서울시 마포구 마포대로 25 창강빌딩 1106호',
-		phone_number: '010-8888-2053',
-	},
-];
-
 export const dummy_UserObject_shelter = [
 	{
 		_id: 21,
@@ -1557,6 +1494,7 @@ export const dummy_ProtectRequestObject = [
 	//보호소의 동물 보호 요청 게시글
 	{
 		_id: 1,
+		shelter_name: '홍단 보호소',
 		protect_request_photos: [
 			'https://mblogthumb-phinf.pstatic.net/20141204_276/firstgjp_14176838057819gNtv_JPEG/___.jpg?type=w2',
 			'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/h_9JUWqGXTUGB9ZLyetUmpLpUhk.jpg',
@@ -1580,6 +1518,8 @@ export const dummy_ProtectRequestObject = [
 	},
 	{
 		_id: 2,
+		shelter_name: '홍단 보호소',
+
 		protect_request_photos: [
 			'https://t2.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/4OR1LFTQ0F0ZB4vCb32Agwk9UMw',
 			'https://creators.mypetlife.co.kr/wp-content/uploads/2020/01/949_1990_2548.jpg',
@@ -1603,6 +1543,8 @@ export const dummy_ProtectRequestObject = [
 	},
 	{
 		_id: 3,
+		shelter_name: '홍단 보호소',
+
 		protect_request_photos: [
 			'https://t2.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/4OR1LFTQ0F0ZB4vCb32Agwk9UMw',
 			'https://creators.mypetlife.co.kr/wp-content/uploads/2020/01/949_1990_2548.jpg',

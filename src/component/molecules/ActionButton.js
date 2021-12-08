@@ -1,24 +1,18 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import { APRI10, GRAY30 } from 'Root/config/color';
+import {Text, View, TouchableOpacity} from 'react-native';
+import PropsTypes, {any, bool, func, number, object, oneOf, oneOfType, string} from 'prop-types';
+import {APRI10, GRAY30} from 'Root/config/color';
 import DP from 'Root/config/dp';
-import { txt } from 'Root/config/textstyle';
-import { btn_w226 } from '../atom/btn/btn_style';
-import { Arrow_Down_APRI10, Arrow_Down_GRAY30, Arrow_Down_White, Arrow_Up_APRI10, Arrow_Up_GRAY30, Arrow_Up_White } from '../atom/icon';
+import {txt} from 'Root/config/textstyle';
+import {btn_w226} from '../atom/btn/btn_style';
+import {Arrow_Down_APRI10, Arrow_Down_GRAY30, Arrow_Down_White, Arrow_Up_APRI10, Arrow_Up_GRAY30, Arrow_Up_White} from '../atom/icon';
+
 /**
+ * 인풋 크기 24
+ * @type {React.ForwardRefRenderFunction<?,ActionButtonProps>}
  *
- * @param {{btnTitle : string,
- * btnStyle : 'filled' | 'border' | 'noborder' | undefined,
- * btnLayout : '버튼의 레이아웃 ex)btn_w226' ,
- * disable : boolean,
- * titleFontStyle : number,
- * onOpen : Function,
- * onClose : Function,
- * initState : '버튼의 초기상태 false이면 close, true이면 open',
- * noStateChange : '버튼의 on, off를 변경하지 않음, initState가 false이면 onOpen, true이면 onClose만 실행'
- * }} props
  */
-export default ActionButton = React.forwardRef((props,ref) => {
+const ActionButton = React.forwardRef((props, ref) => {
 	//btn의 초기상태 - false는 아직 버튼이 오픈되지 않은 상태
 	const [btnStatus, setBtnStatus] = React.useState(props.initState);
 
@@ -36,9 +30,9 @@ export default ActionButton = React.forwardRef((props,ref) => {
 	const border = () => {
 		//border는 btnStyle='border' or disable=true 인 경우 발생
 		if (props.disable) {
-			return { borderColor: GRAY30, borderWidth: 4 * DP };
+			return {borderColor: GRAY30, borderWidth: 4 * DP};
 		} else if (props.btnStyle == 'border') {
-			return { borderColor: APRI10, borderWidth: 4 * DP };
+			return {borderColor: APRI10, borderWidth: 4 * DP};
 		}
 	};
 
@@ -57,7 +51,7 @@ export default ActionButton = React.forwardRef((props,ref) => {
 	const onPress = e => {
 		!props.noStateChange && setBtnStatus(!btnStatus);
 		// btnStatus ? props.onOpen() : props.onClose();
-		btnStatus && (props.onClose() || true) || props.onOpen();
+		(btnStatus && (props.onClose() || true)) || props.onOpen();
 	};
 
 	//액션버튼 본체
@@ -92,6 +86,30 @@ export default ActionButton = React.forwardRef((props,ref) => {
 	);
 });
 
+const ActionButtonProps = {
+	/** @type {string} 입력창 제목(상단) */
+	btnTitle: string,
+	/** @type {string} 버튼 스타일 'filled'|'border'|'noborder'|undefined */
+	btnTheme: string,
+	/** @type {string} 버튼 스타일 'filled'|'border'|'noborder'|undefined */
+	btnStyle: string,
+	/** @type {object} 버튼의 레이아웃 스타일(Atoms의 btn_wXXX) */
+	btnLayout: string,
+	/** @type {boolean} 버튼 활성화 여부 */
+	disable: bool,
+	/** @type {boolean} 버튼의 초기상태 false이면 close, true이면 open */
+	initState: bool,
+	/** @type {boolean} 버튼의 on, off를 변경하지 않음, initState가 false이면 onOpen, true이면 onClose만 실행 */
+	noStateChange: bool,
+	/** @type {number} 타이틀 폰트 크기 */
+	titleFontStyle: number,
+	/** @type {()=>void} 버튼이 열렸을 때 동작하는 콜백, 제목 반환홤 */
+	onOpen: func,
+	/** @type {()=>void} 버튼이 닫혔을 때 동작하는 콜백, 제목 반환환 */
+	onClose: func,
+};
+
+ActionButton.propTypes = ActionButtonProps;
 ActionButton.defaultProps = {
 	noStateChange: false,
 	initState: false,
@@ -103,3 +121,4 @@ ActionButton.defaultProps = {
 	onOpen: e => console.log('actionButton Open', e),
 	onClose: e => console.log('actionButton close', e),
 };
+export default ActionButton;

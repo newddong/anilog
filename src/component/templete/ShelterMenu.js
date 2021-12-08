@@ -42,15 +42,9 @@ export default ShelterMenu = ({route}) => {
 	const navigation = useNavigation();
 	const userData = dummy_UserObject_shelter[0]; //우선 userObject_Shelter 0번 추가
 
-	const [socialInfoData, setSocialInfoData] = React.useState({
-		upload_count: userData.user_upload_count,
-		follower_count: userData.user_follower_count,
-		follow_count: userData.user_follow_count,
-	});
-
 	//보호소 정보 수정
 	const moveToShelterInfoSetting = () => {
-		navigation.push('ShelterInfoSetting');
+		navigation.push('ShelterInfoSetting', userData);
 	};
 
 	//동물 추가
@@ -118,7 +112,7 @@ export default ShelterMenu = ({route}) => {
 			// 보호 요청 올린 게시글
 			case UPLOADED_POST_FOR_REQ_PROTECTION:
 				//보호요청 게시글 스크린 필요 데이터 : ShelterProtectAnimalObject.protect_animal_writer_id == userData._id가 일치하는 것을 검색해야한다
-				navigation.push('ShelterProtectRequests', {id: userData._id, shelter_name: userData.shelter_name});
+				navigation.push('ShelterProtectRequests');
 				break;
 			//커뮤니티
 			case COMUNITY:
@@ -166,7 +160,7 @@ export default ShelterMenu = ({route}) => {
 					</View>
 					{/* SocialInfo */}
 					<View style={[temp_style.socialInfoB, shelterMenu.socialInfoB_4Items]}>
-						<SocialInfoB data={socialInfoData} />
+						<SocialInfoB data={userData} />
 					</View>
 
 					<View style={[shelterMenu.btnView]}>

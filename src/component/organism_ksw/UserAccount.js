@@ -46,9 +46,9 @@ export default UserAccount = props => {
 			<View style={[userAccount.userProfileContainer]}>{getLabel()}</View>
 			<View onPress={onClickFollow} style={[props.checkBoxMode ? userAccount.followingBtnContainer : userAccount.followingBtnContainer_noneCheckBox]}>
 				{followState ? (
-					<AniButton btnTitle={'팔로잉'} btnTheme={'shadow'} btnStyle={'border'} btnLayout={btn_w108} titleFontStyle={24} onPress={onClickFollow} />
+					<AniButton onPress={onClickFollow} btnTitle={'팔로잉'} btnTheme={'shadow'} btnStyle={'border'} btnLayout={btn_w108} />
 				) : (
-					<AniButton btnTitle={'팔로우'} btnTheme={'shadow'} btnStyle={'filled'} btnLayout={btn_w108} titleFontStyle={24} onPress={onClickFollow} />
+					<AniButton onPress={onClickFollow} btnTitle={'팔로우'} btnTheme={'shadow'} btnLayout={btn_w108} />
 				)}
 			</View>
 		</View>

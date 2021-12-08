@@ -7,12 +7,10 @@ import {ASSIGN_PET} from 'Root/i18n/msg';
 import {Add_Pet} from '../atom/icon';
 
 /**
- *
- * @param {{
- * onAdd : 'Add Btn Pressed CallBack'
- * }} props
+ * 버튼 컴포넌트트
+ * @param {void} props.onAdd - 버튼을 눌렸을때 동작하는 콜백,
  */
-export default AddPet = props => {
+const AddPet = props => {
 	const onAdd = e => {
 		props.onAdd();
 	};
@@ -30,3 +28,5 @@ export default AddPet = props => {
 AddPet.defaultProps = {
 	onAdd: e => console.log(e),
 };
+
+export default AddPet;

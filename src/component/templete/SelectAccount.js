@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {dummy_accountList, dummy_userObject} from 'Root/config/dummyDate_json';
+import {dummy_userObject} from 'Root/config/dummyDate_json';
 import AccountList from '../organism_ksw/AccountList';
 import {login_style, selectAccount} from './style_templete';
 

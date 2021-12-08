@@ -18,6 +18,7 @@ import ReplyWriteBox from '../organism_ksw/ReplyWriteBox';
 import {dummy_AnimalNeedHelpList_various_status, dummy_CommentObject} from 'Root/config/dummyDate_json';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 //AnimalProtectRequestDetail에서 접근해야하는 데이터 테이블
 //  ProtectRequestObject(보호요청 게시글에 대한 데이터)
@@ -30,7 +31,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // - AnimalNeedHelp Item의 BorderMode=true 에서 게시글보기를 클릭하였을 경우 호출
 
 export default AnimalProtectRequestDetail = ({route}) => {
-	console.log('AnimalProtectRequestDetail', route.params);
+	// console.log('AnimalProtectRequestDetail', route.params);d
 	const navigation = useNavigation();
 	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
 
@@ -46,15 +47,6 @@ export default AnimalProtectRequestDetail = ({route}) => {
 			res ? setToken(res) : setToken(null);
 		});
 	}, []);
-
-	React.useEffect(() => {
-		// console.log('routeparams', route.params);
-		route.params.photo ? setPhoto(route.params.photo) : setData(route.params);
-	}, [route.params]);
-
-	React.useEffect(() => {
-		console.log('reply', replyData);
-	}, [replyData]);
 
 	//답글 최종 확인(SendIcon 클릭)
 	const onWrite = () => {
@@ -108,7 +100,18 @@ export default AnimalProtectRequestDetail = ({route}) => {
 
 	// 답글 쓰기 -> 이미지버튼 클릭 콜백함수
 	const onAddPhoto = () => {
-		navigation.push('SinglePhotoSelect', route.name);
+		// navigation.push('SinglePhotoSelect', route.name);
+		launchImageLibrary(
+			{
+				mediaType: 'photo',
+				selectionLimit: 1,
+			},
+			responseObject => {
+				console.log('선택됨', responseObject);
+				setPhoto(responseObject.assets[responseObject.assets.length - 1].uri);
+				setReplyData({...replyData, comment_photo_uri: responseObject.assets[responseObject.assets.length - 1].uri});
+			},
+		);
 	};
 
 	// 답글 쓰기 -> 이미지버튼 클릭 -> 이미지 가져오기 -> X마크 클릭
@@ -118,7 +121,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 
 	// 답글 쓰기 -> Input value 변경 콜백함수
 	const onChangeReplyInput = text => {
-		console.log(text);
+		console.log('답글쓰기 ', text);
 		setReplyData({...replyData, comment_contents: text});
 	};
 

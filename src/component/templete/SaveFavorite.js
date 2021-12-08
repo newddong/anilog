@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/core';
 import {duration} from 'moment';
 import React from 'react';
 import {Text, View} from 'react-native';
-import {dummy_AccountHashList} from 'Root/config/dummyDate_json';
+import {dummy_AccountHashList, dummy_accountList, dummy_userObject} from 'Root/config/dummyDate_json';
 import AccountHashList from '../organism_ksw/AccountHashList';
 import SelectStat from '../organism_ksw/SelectStat';
 import {login_style, temp_style, selectstat_view_style, saveFavorite} from './style_templete';
@@ -112,7 +112,6 @@ export default SaveFavorite = props => {
 
 			{/* <FlatList> */}
 			<View style={[saveFavorite.accountHashList]}>
-				{/* <Text>(O)AccountHashList</Text> */}
 				<AccountHashList
 					data={_dummyData}
 					checkBoxMode={checkBoxMode}

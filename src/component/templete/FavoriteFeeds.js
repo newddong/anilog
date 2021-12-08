@@ -106,7 +106,7 @@ export default FavoriteFeeds = props => {
 	};
 
 	return (
-		<View style={[login_style.wrp_main, {flex: 1}]}>
+		<View style={[login_style.wrp_main, {flex: 1, alignItems: 'center'}]}>
 			<View style={[temp_style.selectstat_view]}>
 				<View style={[temp_style.selectstat, selectstat_view_style.selectstat]}>
 					<SelectStat

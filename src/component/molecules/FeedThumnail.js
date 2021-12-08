@@ -6,7 +6,13 @@ import {Check50, ImageList48, VideoPlay48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 import {BLACK, RED10, WHITE} from 'Root/config/color';
 
-export default FeedThumbnail = props => {
+/**
+ * 피드썸네일
+ * @param {object} props - Props Object
+ * @param {boolean} props.selectMode - Feed 클릭시 테두리 혹은 투명도 스타일 적용 여부
+ * @param {object} props.data - 피드 썸네일 데이터( @FeedObject)
+ */
+const FeedThumbnail = props => {
 	// console.log('FeedThumbnail', props.data.feed_medias);
 	const [selected, setSelected] = React.useState(false);
 
@@ -86,3 +92,4 @@ export default FeedThumbnail = props => {
 	);
 };
 FeedThumbnail.defaultProps = {};
+export default FeedThumbnail;

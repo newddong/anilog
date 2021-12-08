@@ -815,8 +815,8 @@ export const temp_style = StyleSheet.create({
 		// backgroundColor: '#F2C2C2',
 	},
 	FeedThumbnailList: {
-		width: 654 * DP,
-		marginTop: 10 * DP,
+		width: 750 * DP,
+		marginLeft: 12 * DP,
 		// height: 1324 * DP,
 	},
 	baseFlatList: {
@@ -1920,7 +1920,13 @@ export const baseInfo_style = StyleSheet.create({
 		marginTop: 40 * DP,
 	},
 });
-
+export const animalFromShelter_style = StyleSheet.create({
+	container: {
+		width: 750 * DP,
+		marginTop: 30 * DP,
+		alignItems: 'center',
+	},
+});
 export const protectRequestList_style = StyleSheet.create({
 	filterbutton_view: {
 		marginTop: 40 * DP,

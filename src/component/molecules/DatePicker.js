@@ -1,23 +1,23 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View} from 'react-native';
 import DP from 'Root/config/dp';
 import {Calendar48_Border} from '../atom/icon';
 import {APRI10} from 'Root/config/color';
-import Calendar from 'Root/test_sangwoo/calendar';
 import Modal from '../modal/Modal';
+
 /**
- *
- * @param {{
- * width : 'number / 전체 DatePicker의 너비',
- * onDateChange : '달력에서 날짜가 선택되었을 때 실행되는 CallBack',
- * defaultDate : 'ex) 2021.05.01  처음 설정되어 있는 날짜',
- * title : string,
- * }} props
+ * 날짜 선택 인풋
+ * @param {object} props - Props Object
+ * @param {string} props.defaultDate - ex) 2021.05.01  처음 설정되어 있는 날짜
+ * @param {string} props.title - 제목
+ * @param {boolean} props.disable - 버튼 활성화 여부
+ * @param {number} props.width - 전체 DatePicker의 너비
+ * @param {(title:string)=>void} props.onDateChange - 달력에서 날짜가 선택되었을 때 실행되는 콜백. 날짜정보를 반환함
  */
-export default DatePicker = props => {
+const DatePicker = props => {
 	const [showCalendar, setShowCalendar] = React.useState(false);
-	const [selectedDate, setSelectedDate] = React.useState(props.defaultDate ? props.defaultDate : '2021-11-06');
+	const [selectedDate, setSelectedDate] = React.useState(props.defaultDate ? props.defaultDate : '2021-01-01');
 
 	const onDateChange = date => {
 		setSelectedDate(date);
@@ -69,13 +69,13 @@ export default DatePicker = props => {
 					<Calendar48_Border onPress={openCalendar} />
 				</View>
 			</View>
-			{/* <Calendar modalOn={showCalendar} modalOff={() => setShowCalendar(false)} selectDate={date => onDateChange(date)} /> */}
 		</View>
 	);
 };
 DatePicker.defaultProps = {
-	value: null,
 	width: 520, //전체 DatePicker의 너비
 	title: 'title',
 	onDateChange: e => console.log(e),
 };
+
+export default DatePicker;

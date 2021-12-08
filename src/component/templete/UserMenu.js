@@ -27,7 +27,10 @@ import {
 } from 'Root/i18n/msg';
 import {btn_w280} from '../atom/btn/btn_style';
 import {FavoriteTag48_Filled, Paw48_APRI10, Setting46} from '../atom/icon';
+import ActionButton from '../molecules/ActionButton';
+import AddPet from '../molecules/AddPet';
 import AniButton from '../molecules/AniButton';
+import DatePicker from '../molecules/DatePicker';
 import ProfileImageLarge194 from '../molecules/ProfileImageLarge194';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
 import SocialInfoB from '../organism_ksw/SocialInfoB';
@@ -43,12 +46,6 @@ export default UserMenu = props => {
 	React.useEffect(() => {
 		AsyncStorage.setItem('token', JSON.stringify(data._id));
 	}, [data]);
-
-	const [socialInfoData, setSocialInfoData] = React.useState({
-		upload_count: data.user_upload_count,
-		follower_count: data.user_follower_count,
-		follow_count: data.user_follow_count,
-	});
 
 	// 나의 반려동물 버튼 클릭
 	const onPressMyCompanion = () => {
@@ -118,7 +115,7 @@ export default UserMenu = props => {
 
 					{/* 업로드 팔로워 팔로잉 */}
 					<View style={[userMenu_style.socialInfoB]}>
-						<SocialInfoB data={socialInfoData} />
+						<SocialInfoB data={data} />
 					</View>
 
 					{/* 내 정보 수정 버튼*/}

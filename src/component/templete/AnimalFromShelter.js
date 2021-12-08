@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import {login_style, temp_style, baseInfo_style} from './style_templete';
+import {login_style, temp_style, baseInfo_style, animalFromShelter_style} from './style_templete';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import {useNavigation} from '@react-navigation/core';
 import {dummy_AdoptorInformation} from 'Root/config/dummyDate_json';
@@ -40,7 +40,6 @@ export default AnimalFromShelter = ({route}) => {
 
 	// 테두리 모드 On 상태에서 게시글보기 클릭 => AnimapProtectRequestDetail == ProtectRequestManage
 	const onPressProtectRequest = item => {
-		console.log('item', item);
 		navigation.push('ProtectRequestManage', item);
 	};
 
@@ -48,7 +47,7 @@ export default AnimalFromShelter = ({route}) => {
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* {console.log('props.route.params.listType=>' + props.route.params.listType)} */}
 			{/* {console.log('AnimalFromShelter:props.route.params.borderMode=>' + props.route.params.borderMode)} */}
-			<View style={[temp_style.baseFlatList, baseInfo_style.list]}>
+			<View style={[animalFromShelter_style.container]}>
 				<AnimalNeedHelpList
 					data={animalFromMyShelterList}
 					borderMode={true}

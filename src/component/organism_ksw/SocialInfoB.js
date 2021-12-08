@@ -19,15 +19,15 @@ export default SocialInfoB = props => {
 	return (
 		<View style={[socialInfoB.container]}>
 			<View style={[socialInfoB.socialInfo]}>
-				<Text style={[txt.roboto36b, socialInfoB.number]}>{count_to_K(props.data.upload_count)}</Text>
+				<Text style={[txt.roboto36b, socialInfoB.number]}>{count_to_K(props.data.user_upload_count)}</Text>
 				<Text style={[txt.noto24, socialInfoB.title]}>업로드</Text>
 			</View>
 			<View style={[socialInfoB.socialInfo]}>
-				<Text style={[txt.roboto36b, socialInfoB.number]}>{count_to_K(props.data.follower_count)}</Text>
+				<Text style={[txt.roboto36b, socialInfoB.number]}>{count_to_K(props.data.user_follower_count)}</Text>
 				<Text style={[txt.noto24, socialInfoB.title]}>팔로워</Text>
 			</View>
 			<View style={[socialInfoB.socialInfo]}>
-				<Text style={[txt.roboto36b, socialInfoB.number]}>{count_to_K(props.data.follow_count)}</Text>
+				<Text style={[txt.roboto36b, socialInfoB.number]}>{count_to_K(props.data.user_follow_count)}</Text>
 				<Text style={[txt.noto24, socialInfoB.title]}>팔로잉</Text>
 			</View>
 			{props.donationMode ? (

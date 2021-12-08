@@ -1,6 +1,5 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
-import {dummy_ShelterList} from 'Root/config/dummyDate_json';
 import ShelterVerticalLabel from './ShelterVerticalLabel';
 import {shelterList} from './style_organism';
 
@@ -22,7 +21,7 @@ export default ShelterList = props => {
 	);
 };
 ShelterList.defaultProps = {
-	items: dummy_ShelterList,
+	items: [],
 	onShelterLabelClick: e => console.log(e),
 };
 // img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri

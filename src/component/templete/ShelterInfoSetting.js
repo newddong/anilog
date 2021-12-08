@@ -10,10 +10,10 @@ import AniButton from '../molecules/AniButton';
 import {dummy_ShelterInfo} from 'Root/config/dummy_data_hjs';
 import {GRAY10} from 'Root/config/color';
 
-export default ShelterInfoSetting = props => {
-	const [_dummyData, set_dummyData] = React.useState(dummy_ShelterInfo);
-
+export default ShelterInfoSetting = ({route}) => {
 	const navigation = useNavigation();
+
+	const [_dummyData, set_dummyData] = React.useState(dummy_ShelterInfo);
 
 	const moveToChangeUserProfileImage = () => {
 		navigation.push('ChangeUserProfileImage');
