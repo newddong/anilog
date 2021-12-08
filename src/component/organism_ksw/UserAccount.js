@@ -13,7 +13,7 @@ export default UserAccount = props => {
 	const getLabel = () => {
 		// console.log('props.data.type=>' + props.data.type);
 		if (props.data.type == 'user') {
-			return <UserDescriptionLabel data={props.data} onLabelClick={() => props.onLabelClick()} />;
+			return <UserDescriptionLabel data={props.data} onClickLabel={e => props.onLabelClick(e)} />;
 		} else if (props.data.type == 'hash') {
 			return (
 				<TouchableOpacity onPress={() => props.onHashClick()}>
