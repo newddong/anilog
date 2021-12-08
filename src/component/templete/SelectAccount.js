@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import {dummy_accountList, dummy_userObject} from 'Root/config/dummyDate_json';
 import AccountList from '../organism_ksw/AccountList';
 import {login_style, selectAccount} from './style_templete';
 
@@ -16,9 +17,8 @@ export default SelectAccount = props => {
 
 	return (
 		<View style={[login_style.wrp_main, selectAccount.container]}>
-			{/* AccountList */}
 			<View style={[selectAccount.accountList]}>
-				<AccountList onSelect={(item, index) => onSelect(item, index)} />
+				<AccountList items={dummy_userObject} onSelect={onSelect} />
 			</View>
 		</View>
 	);

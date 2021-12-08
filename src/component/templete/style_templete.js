@@ -344,10 +344,8 @@ export const temp_style = StyleSheet.create({
 		height: 82 * DP,
 	},
 	accountList: {
-		width: 654 * DP,
-		height: 496 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
+		width: 674 * DP,
+		// height: 496 * DP,
 	},
 	userInfo: {
 		width: 654 * DP,
@@ -817,14 +815,12 @@ export const temp_style = StyleSheet.create({
 		// backgroundColor: '#F2C2C2',
 	},
 	FeedThumbnailList: {
-		width: 750 * DP,
+		width: 654 * DP,
 		marginTop: 10 * DP,
 		// height: 1324 * DP,
 	},
 	baseFlatList: {
-		// width: 654 * DP,
-		alignItems: 'center',
-		justifyContent: 'center',
+		width: 654 * DP,
 	},
 	animalProtectDetails_protectApplyForm: {
 		width: 654 * DP,
@@ -1637,21 +1633,25 @@ export const userInfoDetailSettting_style = StyleSheet.create({
 });
 
 export const addFamilyAccount_style = StyleSheet.create({
+	container: {
+		alignItems: 'center',
+		flex: 1,
+	},
 	inputWithSearchIcon: {
 		marginTop: 20 * DP,
 	},
 	accountList: {
-		marginTop: 60 * DP,
+		marginTop: 30 * DP,
 	},
 	btn_w654: {
 		marginTop: 110 * DP,
-		marginBottom: 60 * DP,
+		marginBottom: 30 * DP,
 	},
 });
 
 export const userMenu_style = StyleSheet.create({
 	container: {
-		height: 1478 * DP,
+		// height: 1478 * DP,
 	},
 
 	userMenu_step1: {
@@ -1915,7 +1915,6 @@ export const selectstat_view_style = StyleSheet.create({
 export const baseInfo_style = StyleSheet.create({
 	list: {
 		marginTop: 35 * DP,
-		paddingLeft: 20 * DP,
 	},
 	detail: {
 		marginTop: 40 * DP,
@@ -2461,14 +2460,12 @@ export const petInfoSetting = StyleSheet.create({
 		menuView: {
 			flexDirection: 'row',
 		},
-		title: {}, //재활용 petProfileMenu.menuTitle
-		bracket50: {}, //재활용 petProfileMenu.bracket50
 		infoMessage: {
 			width: 604 * DP,
 			height: 68 * DP,
 		},
 		familyAccounts: {
-			width: 654 * DP,
+			// width: 654 * DP,
 			marginTop: 16 * DP,
 			flexDirection: 'row',
 		},
@@ -3336,7 +3333,7 @@ export const selectAccount = StyleSheet.create({
 	},
 	accountList: {
 		marginTop: 32 * DP,
-		width: 654 * DP,
+		width: 670 * DP,
 	},
 });
 
@@ -3359,7 +3356,9 @@ export const manageVolunteer = StyleSheet.create({
 		width: 654 * DP,
 		alignItems: 'center',
 	},
-	volunteerList: {},
+	volunteerList: {
+		width: 654 * DP,
+	},
 	previous_volunteerList: {
 		maxHeight: 522 * DP,
 	},
@@ -3688,10 +3687,14 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 });
 
 export const animalProtectList = StyleSheet.create({
+	container: {
+		// flex: 1,
+		width: 750 * DP,
+		alignItems: 'center',
+	},
 	title: {
-		width: 654 * DP,
+		// width: 654 * DP,
 		height: 35 * DP,
-		marginTop: 30 * DP,
 		alignSelf: 'flex-start',
 		marginBottom: 21 * DP,
 	},

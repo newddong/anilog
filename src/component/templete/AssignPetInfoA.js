@@ -3,7 +3,7 @@ import React from 'react';
 import {APRI10, GRAY10, GRAY30} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
-import {Text, TouchableWithoutFeedback,View} from 'react-native';
+import {Text, TouchableWithoutFeedback, View} from 'react-native';
 import Stagebar from '../molecules/Stagebar';
 import {btn_w226} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
@@ -125,13 +125,10 @@ export default AssignPetInfoA = props => {
 				<View style={[temp_style.inputForm_assignPetInfo_line1]}>
 					<Text style={[temp_style.text_assignPetInfo, txt.noto28, {color: GRAY10}]}>분류</Text>
 					<View style={[temp_style.dropdownSelect_assignPetInfo_depth1, assignPetInfo_style.dropdownSelect_depth1]}>
-						{/* <DropdownSelect items={['개', '고양이', '두더지']} width={200} /> */}
-						<NormalDropDown menu={pet_speciesArray} width={204} onSelect={(v, i) => onSelectSpecies(v, i)} defaultIndex={0} />
+						<NormalDropDown menu={pet_speciesArray} width={204} onSelect={onSelectSpecies} defaultIndex={0} />
 					</View>
 					<View style={[temp_style.dropdownSelect_assignPetInfo_depth2, assignPetInfo_style.dropdownSelect_depth2]}>
-						{/* 직접입력으로 적혀있음 */}
-						{/* <DropdownSelect items={['직접 입력']} width={250} textStyle={{paddingRight: 30 * DP, color: GRAY30}} /> */}
-						<NormalDropDown menu={speciesDetail} width={292} onSelect={(v, i) => onSelectSpeciesDetail(v, i)} />
+						<NormalDropDown menu={speciesDetail} width={292} onSelect={onSelectSpeciesDetail} />
 					</View>
 				</View>
 
@@ -139,7 +136,7 @@ export default AssignPetInfoA = props => {
 				<View style={[temp_style.inputForm_assignPetInfo_line2, assignPetInfo_style.line2]}>
 					<Text style={[temp_style.text_assignPetInfo, txt.noto28, {color: GRAY10}]}>성별</Text>
 					<View style={[temp_style.tabSelectFilled_Type1, assignPetInfo_style.tabSelectFilled_Type1]}>
-						<TabSelectFilled_Type1 items={[MALE, FEMALE]} width={450} onSelect={item => onSelectGender(item)} />
+						<TabSelectFilled_Type1 items={[MALE, FEMALE]} width={450} onSelect={onSelectGender} />
 					</View>
 				</View>
 
@@ -147,19 +144,17 @@ export default AssignPetInfoA = props => {
 				<View style={[temp_style.inputForm_assignPetInfo_line3, assignPetInfo_style.line3]}>
 					<Text style={[temp_style.text_assignPetInfo, txt.noto28, {color: GRAY10}]}>중성화</Text>
 					<View style={[temp_style.radioBox_assignPetInfo, assignPetInfo_style.tabSelectFilled_Type1]}>
-						<RadioBox items={[YES, NO, UNAWARENESS]} onSelect={item => onSelectNeutralization(item)} />
+						<RadioBox items={[YES, NO, UNAWARENESS]} onSelect={onSelectNeutralization} />
 					</View>
 				</View>
 			</View>
-
-			{/* (A)Btn_w654 */}
+			{/* 버튼 */}
 			<View style={[temp_style.btn_w226_assignPetInfo, assignPetInfo_style.btn_w226_viewA]}>
 				<View style={[btn_style.btn_w226]}>
-					{/* <Text>(A)Btn_w226(뒤로)</Text> */}
-					<AniButton btnTitle={'뒤로'} btnTheme={'shadow'} btnStyle={'border'} btnLayout={btn_w226} onPress={() => navigation.goBack()} />
+					<AniButton btnTitle={'뒤로'} btnTheme={'shadow'} btnStyle={'border'} onPress={() => navigation.goBack()} />
 				</View>
 				<View style={[btn_style.btn_w226, assignPetInfo_style.btn_w226]}>
-					<AniButton btnTitle={'다음'} btnTheme={'shadow'} btnLayout={btn_w226} onPress={gotoNextStep} />
+					<AniButton btnTitle={'다음'} btnTheme={'shadow'} onPress={gotoNextStep} />
 				</View>
 			</View>
 		</View>

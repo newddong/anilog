@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {Text, View, TextInput, TouchableOpacity, ScrollView} from 'react-native';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {APRI10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
@@ -33,7 +34,7 @@ export default WriteAidRequest = ({route, navigation}) => {
 	const [imageList, setImageList] = React.useState([]); //PhotoSelect에서 선택된 사진List
 
 	React.useEffect(() => {
-		console.log('ProtectRequestData at WriteAid', ProtectRequestData.protect_request_content);
+		// console.log('ProtectRequestData at WriteAid', ProtectRequestData.protect_request_content);d1
 	}, [ProtectRequestData]);
 
 	React.useEffect(() => {
@@ -42,27 +43,41 @@ export default WriteAidRequest = ({route, navigation}) => {
 		});
 	}, []);
 
-	React.useEffect(() => {
-		console.log('imageList', imageList);
-		console.log('imageList / length', imageList.length);
-	}, [imageList]);
-
-	React.useEffect(() => {
-		if (route.params == null) {
-			// setImgSelected('https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg')
-		} else if (route.params.photo) {
-			const photos = route.params.photo;
-			let copy = [...imageList];
-			photos.map((v, i) => {
-				copy.push(v);
-			});
-			setImageList(copy);
-		}
-	}, [route.params]);
+	// React.useEffect(() => {
+	// 	if (route.params == null) {
+	// 		// setImgSelected('https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg')
+	// 	} else if (route.params.photo) {
+	// 		const photos = route.params.photo;
+	// 		let copy = [...imageList];
+	// 		photos.map((v, i) => {
+	// 			copy.push(v);
+	// 		});
+	// 		setImageList(copy);
+	// 	}
+	// }, [route.params]);
 
 	//사진 추가 클릭
+	// const gotoSelectPicture = () => {
+	// 	navigation.push('MultiPhotoSelect', route.name);
+	// };
+
 	const gotoSelectPicture = () => {
-		navigation.push('MultiPhotoSelect', route.name);
+		// navigation.push('SinglePhotoSelect', route.name);
+		launchImageLibrary(
+			{
+				mediaType: 'photo',
+				selectionLimit: 5,
+			},
+			responseObject => {
+				console.log('선택됨', responseObject);
+				let photoList = [];
+				responseObject.assets.map((v, i) => {
+					photoList.push(v.uri);
+				});
+				setImageList(photoList);
+				setData({...data, protect_request_photos: photoList || data.protect_request_photos});
+			},
+		);
 	};
 
 	//SelectedMedia 아이템의 X마크를 클릭
@@ -93,13 +108,7 @@ export default WriteAidRequest = ({route, navigation}) => {
 						</View>
 						<View style={[temp_style.feedTextEdit]}>
 							{/* 피드 글 작성 */}
-							<TextInput
-								onChangeText={txt => onChangeContent(txt)}
-								textAlignVertical={'top'}
-								multiline={true}
-								style={{flex: 1}}
-								placeholder="내용 입력"
-							/>
+							<TextInput onChangeText={onChangeContent} textAlignVertical={'top'} multiline={true} style={{flex: 1}} placeholder="내용 입력" />
 						</View>
 					</View>
 					<View style={writeAidRequest.requestContent_underline} />

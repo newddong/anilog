@@ -1,59 +1,112 @@
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View} from 'react-native';
+import {launchImageLibrary} from 'react-native-image-picker';
+import {AVAILABLE_NICK, NEW_NICK_REQUEST, UNAVAILABLE_NICK} from 'Root/i18n/msg';
 import {btn_w654} from '../atom/btn/btn_style';
+import Modal from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
+import Input24 from '../molecules/Input24';
 import Input30 from '../molecules/Input30';
 import ProfileImageSelect from '../molecules/ProfileImageSelect';
 import {login_style, btn_style, temp_style, changePetProfileImage_style} from './style_templete';
 
-// 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
-//ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
-
 export default ChangePetProfileImage = props => {
-	const petData = props.route.params;
+	const navigation = useNavigation();
+	const [petData, setPetData] = React.useState(props.route.params);
+
+	const [newNick, setNewNick] = React.useState('');
+	const [confirmed, setConfirmed] = React.useState(false);
+
+	const onConfirmed = () => {
+		navigation.goBack();
+	};
 
 	const selectPhoto = () => {
-		// props.navigation.push('SinglePhotoSelect');
-		// 이미지 선택은 당분간 보류
+		// navigation.push('SinglePhotoSelect', props.route.name);
+		launchImageLibrary(
+			{
+				mediaType: 'photo',
+				selectionLimit: 1,
+			},
+			responseObject => {
+				console.log('선택됨', responseObject);
+				setPetData({...petData, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || petData.user_profile_uri});
+			},
+		);
+	};
+
+	//중복 처리
+	const checkDuplicateNickname = nick => {
+		const result = true;
+		return result;
+	};
+
+	//닉네임 Validation
+	const nickName_validator = text => {
+		setNewNick(text);
+	};
+
+	//새 닉네임 지우기 마크 클릭
+	const onClearNickname = () => {
+		setConfirmed(false);
+	};
+
+	const onValidName = isValid => {
+		setConfirmed(isValid);
+	};
+
+	const validateNewNick = nick => {
+		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
+		// 영문자, 소문자, 숫자, "-","_" 로만 구성된 길이 2~10자리 사이의 문자열
+		let regExp = /^[a-zA-Z0-9_-]{2,15}$/;
+		return regExp.test(nick) && checkDuplicateNickname(nick);
+	};
+
+	const onPressConfirm = () => {
+		console.log('props.nv', props.navigation);
+		Modal.popNoBtn('잠시만 기다려주세요.');
+		setTimeout(() => {
+			Modal.close();
+			Modal.popNoBtn('프로필 변경이 완료되었습니다!');
+		}, 1000);
+		setTimeout(() => {
+			Modal.close();
+			navigation.goBack();
+		}, 3000);
 	};
 
 	return (
 		<View style={login_style.wrp_main}>
-			{/* (M)ProfileImageSelect */}
 			<View style={[temp_style.profileImageSelect, changePetProfileImage_style.ProfileImageSelect]}>
-				{/* <Text>(M)ProfileImageSelect</Text> */}
-				<ProfileImageSelect onClick={selectPhoto} img_uri={petData.img_uri} />
-				{/* <ProfileImageSelect onClick={selectPhoto} selectedImageUri={imgSelected} /> */}
+				<ProfileImageSelect onClick={selectPhoto} selectedImageUri={petData.user_profile_uri} />
 			</View>
 
-			{/* (M)Input30(notitle) */}
 			<View style={[temp_style.input30_changePetProfileImage, changePetProfileImage_style.input30]}>
-				{/* <Text>(M)Input30(notitle)</Text> */}
-				<Input30 showTitle={false} placeholder={petData.petNickname} />
+				<Input24
+					onChange={text => nickName_validator(text)}
+					validator={validateNewNick}
+					onValid={onValidName}
+					value={newNick}
+					placeholder={NEW_NICK_REQUEST}
+					showMsg={true}
+					alert_msg={UNAVAILABLE_NICK}
+					confirm_msg={AVAILABLE_NICK}
+					width={654}
+					onClear={onClearNickname}
+				/>
 			</View>
 
-			{/* (A)Btn_w654 */}
 			<View style={[btn_style.btn_w654, changePetProfileImage_style.btn_w654]}>
-				<AniButton btnTitle={'확인'} btnStyle={'filled'} btnTheme={'shadow'} titleFontStyle={32} btnLayout={btn_w654} />
+				<AniButton
+					onPress={onPressConfirm}
+					disable={confirmed ? false : true}
+					btnTitle={'확인'}
+					btnTheme={'shadow'}
+					titleFontStyle={32}
+					btnLayout={btn_w654}
+				/>
 			</View>
 		</View>
 	);
 };
-
-// ProfileImageSelect.defaultProps = {
-// 	selectedImageUri: null,
-// 	defaultImageUri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
-// 	onClick: e => console.log(e),
-// };
-
-// Input30.defaultProps = {
-// 	showTitle: true, // true - title과 description 출력 , false - 미출력
-// 	title: 'title',
-// 	description: 'description',
-// 	placeholder: 'placeholder',
-// 	value: 'value',
-// 	alert_msg: 'alert_msg',
-// 	confirm_msg: 'confirm_msg',
-// 	onClear: e => console.log(e),
-// 	onChange: e => console.log(e),
-// };

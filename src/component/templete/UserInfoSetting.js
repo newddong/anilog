@@ -25,6 +25,12 @@ export default UserInfoSetting = ({route}) => {
 		navigation.push('UserInfoDetailSetting', data);
 	};
 
+	//프로필 변경을 통한 사진변경이 발생했을 경우 params로 해당 포토 uri를 받아오고 data에 적용
+	React.useEffect(() => {
+		route.params.changedPhoto ? setData({...data, user_profile_uri: route.params.changedPhoto}) : null;
+	}, [route.params]);
+
+	//소개란 수정모드
 	React.useEffect(() => {
 		modifyMode ? modifyRef.current.focus() : null;
 	}, [modifyMode]);

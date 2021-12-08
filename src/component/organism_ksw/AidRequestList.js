@@ -10,7 +10,8 @@ import {aidRequestList} from './style_organism';
  * @param {{
  * items : 'ArrayList',
  * onSelect : void,
- * onPressAddProtectAnimal : void
+ * onPressAddProtectAnimal : void,
+ * selectBorderMode : 'Boolean / 선택시 테두리 및 투명도 적용 모드 default true'
  * }} props
  */
 export default AidRequestList = props => {
@@ -30,8 +31,9 @@ export default AidRequestList = props => {
 		const isSelected = index == selectedIndex; //현재 선택된 indexd와 해당 item의 index가 같은 경우에서만 불투명으로 처리되며 나머지는 투명해짐
 
 		return (
-			<View style={[aidRequestList.itemContainer, index != selectedIndex && isSelectedOnce ? {opacity: 0.5} : {opacity: 1}]}>
-				<AidRequest data={item} selected={isSelected} onSelect={() => onSelect(index)} />
+			<View
+				style={[aidRequestList.itemContainer, index != selectedIndex && isSelectedOnce && props.selectBorderMode ? {opacity: 0.5} : {opacity: 1}]}>
+				<AidRequest data={item} selected={isSelected} onSelect={() => onSelect(index)} selectBorderMode={props.selectBorderMode} />
 			</View>
 		);
 	};
@@ -57,6 +59,7 @@ export default AidRequestList = props => {
 
 AidRequestList.defaultProps = {
 	items: [],
+	selectBorderMode: true,
 	onSelect: e => console.log('AidRequestList / Onselect', e),
 	onPressAddProtectAnimal: e => console.log('AidRequestList, OnPressAddProtectAnimal', e),
 };

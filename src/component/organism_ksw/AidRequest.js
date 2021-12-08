@@ -13,10 +13,12 @@ import {useNavigation} from '@react-navigation/core';
  *@param {{
  * onSelect : void,
  * selected : 'Boolean / true일 경우 메인색의 테두리 형성 or 회색의 얇은 테두리 형성',
+ * selectBorderMode : 'Boolean / 테두리 형성 모드 적용 여부 default true'
  * }} props
  */
 export default AidRequest = props => {
 	const [data, setData] = React.useState(props.data);
+	// console.log('data', data.protect_act_applicant_id);
 
 	//해당 AidRequest박스 선택 시 부모컴포넌트 OnSelect 실행
 	const onSelect = () => {
@@ -28,9 +30,12 @@ export default AidRequest = props => {
 
 	return (
 		<View style={[aidRequest.container]}>
-			{/* {console.log('props.data=>' + JSON.stringify(props.data))} */}
 			{/* 선택되면 APRI10로 외곽선 변경, 미세 조정 필요 */}
-			<View style={[aidRequest.insideContainer, props.selected ? aidRequest.borderColor_APRI10 : aidRequest.borderColor_GRAY10]}>
+			<View
+				style={[
+					aidRequest.insideContainer,
+					props.selected && props.selectBorderMode ? aidRequest.borderColor_APRI10 : aidRequest.borderColor_GRAY10,
+				]}>
 				<View style={[aidRequest.img_irregular_174]}>
 					<View style={[aidRequest.gender]}>{data.protect_animal_sex == 'male' ? <Male48 /> : <Female48 />}</View>
 					<Image
@@ -83,6 +88,7 @@ export default AidRequest = props => {
 					</TouchableOpacity>
 				</View>
 			</View>
+			{/* 해당 동물의 보호요청 및 입양 신청한 유저의 숫자, 현재는 억지로 배열형태로 더미데이터로 만들어서 하는 중  */}
 			{data.protect_act_applicant_id ? (
 				<View style={[aidRequest.numberContainer]}>
 					<Text style={{color: WHITE}}>{data.protect_act_applicant_id.length} </Text>
@@ -103,4 +109,5 @@ export default AidRequest = props => {
 
 AidRequest.defaultProps = {
 	onSelect: e => console.log('AidRequest', e),
+	selectBorderMode: true,
 };

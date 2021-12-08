@@ -1090,6 +1090,151 @@ export const dummy_ProtectAnimalObject = [
 	},
 ];
 
+export const dummy_AnimalProtectList = [
+	{
+		//@ProtectAnimalObject
+		_id: 1, // 고유아이디
+		protect_animal_id: 11, //임시보호중인 동물
+		protect_protector_id: 1, //임시보호자 계정 id
+		protect_animal_date: '2021-10-23', //생성일시
+		protect_animal_update_date: '2021-10-25', //수정일시
+		protect_animal_is_delete: false, //삭제여부
+		//@UserObject - pet
+		user_type: 'pet', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_profile_uri: 'https://t1.daumcdn.net/liveboard/holapet/0e5f90af436e4c218343073164a5f657.JPG',
+		user_nickname: '하양이',
+		pet_is_temp_protection: true, //반려동물이 임시보호 중인지 여부
+		pet_species: '개', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+		pet_species_detail: '리트리버', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+		pet_sex: 'female', //반려동물의 성별
+		pet_neutralization: 'unknown', //반려동물 중성화 여부
+		pet_birthday: '2020-12-03', //반려동물 생일
+		pet_weight: '1.5', //반려동물 몸무게
+		pet_status: 'protect',
+		pet_adopter: null, //반려동물 입양자
+		pet_protector: 1, //반려동물 임시보호자
+	},
+	{
+		//@ProtectAnimalObject
+		_id: 2, // 고유아이디
+		protect_animal_id: 12, //임시보호중인 동물
+		protect_protector_id: 1, //임시보호자 계정 id
+		protect_animal_date: '2021-10-23', //생성일시
+		protect_animal_update_date: '2021-10-25', //수정일시
+		protect_animal_is_delete: false, //삭제여부
+
+		//@UserObject - pet
+		user_type: 'pet', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_profile_uri: 'https://i.pinimg.com/236x/d7/3d/30/d73d30cb3d816a517a11025dc6851c4f--the-ojays.jpg',
+		user_nickname: '구룸이',
+		pet_is_temp_protection: true, //반려동물이 임시보호 중인지 여부
+		pet_species: '고양이', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+		pet_species_detail: '도사견', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+		pet_sex: 'female', //반려동물의 성별
+		pet_neutralization: 'yes', //반려동물 중성화 여부
+		pet_birthday: '2020-12-21', //반려동물 생일
+		pet_weight: '1.5', //반려동물 몸무게
+		pet_status: 'normal',
+		pet_adopter: null, //반려동물 입양자
+		pet_protector: 1, //반려동물 임시보호자
+	},
+	{
+		//@ProtectAnimalObject
+		_id: 3, // 고유아이디
+		protect_animal_id: 13, //임시보호중인 동물
+		protect_protector_id: 2, //임시보호자 계정 id
+		protect_animal_date: '2021-10-23', //생성일시
+		protect_animal_update_date: '2021-10-25', //수정일시
+		protect_animal_is_delete: false, //삭제여부
+
+		//@UserObject - pet
+		user_type: 'pet', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_profile_uri: 'https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG',
+		user_nickname: '앵지',
+		pet_is_temp_protection: true, //반려동물이 임시보호 중인지 여부
+		pet_species: '악어', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+		pet_species_detail: '스크류 엘리게이터', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+		pet_sex: 'female', //반려동물의 성별
+		pet_neutralization: 'unknown', //반려동물 중성화 여부
+		pet_birthday: '2020-12-03', //반려동물 생일
+		pet_weight: '350', //반려동물 몸무게
+		pet_status: 'adopt',
+		pet_adopter: null, //반려동물 입양자
+		pet_protector: 1, //반려동물 임시보호자
+	},
+	{
+		//@ProtectAnimalObject
+		_id: 1, // 고유아이디
+		protect_animal_id: 11, //임시보호중인 동물
+		protect_protector_id: 1, //임시보호자 계정 id
+		protect_animal_date: '2021-10-23', //생성일시
+		protect_animal_update_date: '2021-10-25', //수정일시
+		protect_animal_is_delete: false, //삭제여부
+		//@UserObject - pet
+		user_type: 'pet', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_profile_uri: 'https://t1.daumcdn.net/liveboard/holapet/0e5f90af436e4c218343073164a5f657.JPG',
+		user_nickname: '하양이',
+		pet_is_temp_protection: true, //반려동물이 임시보호 중인지 여부
+		pet_species: '개', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+		pet_species_detail: '리트리버', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+		pet_sex: 'female', //반려동물의 성별
+		pet_neutralization: 'unknown', //반려동물 중성화 여부
+		pet_birthday: '2020-12-03', //반려동물 생일
+		pet_weight: '1.5', //반려동물 몸무게
+		pet_status: 'protect',
+		pet_adopter: null, //반려동물 입양자
+		pet_protector: 1, //반려동물 임시보호자
+	},
+	{
+		//@ProtectAnimalObject
+		_id: 2, // 고유아이디
+		protect_animal_id: 12, //임시보호중인 동물
+		protect_protector_id: 1, //임시보호자 계정 id
+		protect_animal_date: '2021-10-23', //생성일시
+		protect_animal_update_date: '2021-10-25', //수정일시
+		protect_animal_is_delete: false, //삭제여부
+
+		//@UserObject - pet
+		user_type: 'pet', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_profile_uri: 'https://i.pinimg.com/236x/d7/3d/30/d73d30cb3d816a517a11025dc6851c4f--the-ojays.jpg',
+		user_nickname: '구룸이',
+		pet_is_temp_protection: true, //반려동물이 임시보호 중인지 여부
+		pet_species: '고양이', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+		pet_species_detail: '도사견', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+		pet_sex: 'female', //반려동물의 성별
+		pet_neutralization: 'yes', //반려동물 중성화 여부
+		pet_birthday: '2020-12-21', //반려동물 생일
+		pet_weight: '1.5', //반려동물 몸무게
+		pet_status: 'normal',
+		pet_adopter: null, //반려동물 입양자
+		pet_protector: 1, //반려동물 임시보호자
+	},
+	{
+		//@ProtectAnimalObject
+		_id: 3, // 고유아이디
+		protect_animal_id: 13, //임시보호중인 동물
+		protect_protector_id: 2, //임시보호자 계정 id
+		protect_animal_date: '2021-10-23', //생성일시
+		protect_animal_update_date: '2021-10-25', //수정일시
+		protect_animal_is_delete: false, //삭제여부
+
+		//@UserObject - pet
+		user_type: 'pet', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_profile_uri: 'https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG',
+		user_nickname: '앵지',
+		pet_is_temp_protection: true, //반려동물이 임시보호 중인지 여부
+		pet_species: '악어', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+		pet_species_detail: '스크류 엘리게이터', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+		pet_sex: 'female', //반려동물의 성별
+		pet_neutralization: 'unknown', //반려동물 중성화 여부
+		pet_birthday: '2020-12-03', //반려동물 생일
+		pet_weight: '350', //반려동물 몸무게
+		pet_status: 'adopt',
+		pet_adopter: null, //반려동물 입양자
+		pet_protector: 1, //반려동물 임시보호자
+	},
+];
+
 export const dummy_CompanionObject = [
 	//반려동물 관계 - 주인이 2개 이상, 펫이 2개이상은 상식적이다
 	{

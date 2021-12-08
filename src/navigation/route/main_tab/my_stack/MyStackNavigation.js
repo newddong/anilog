@@ -45,15 +45,17 @@ import ApplicationFormVolunteer from 'Templete/ApplicationFormVolunteer';
 import PhotoSelect from 'Templete/PhotoSelect';
 import AnimalProtectRequestDetail from 'Templete/AnimalProtectRequestDetail';
 import SelectAccount from 'Templete/SelectAccount';
+import ConfirmInputHeader from 'Navigation/header/ConfirmInputHeader';
 
 import ConfirmHeader from 'Navigation/header/ConfirmHeader';
 import SaveButtonHeader from 'Navigation/header/SaveButtonHeader';
+import InputAndSearchHeader from 'Root/navigation/header/InputAndSearchHeader';
 
 const MyStack = createStackNavigator();
 
 export default MyStackNavigation = () => {
 	return (
-		<MyStack.Navigator initialRouteName="UserMenu">
+		<MyStack.Navigator initialRouteName="ShelterMenu">
 			<MyStack.Screen name="UserFeedList" component={FeedList} />
 			<MyStack.Screen name="UserFeeds" component={FavoriteFeeds} />
 			<MyStack.Screen name="HashFeedList" component={FeedList} />
@@ -84,16 +86,16 @@ export default MyStackNavigation = () => {
 			<MyStack.Screen
 				name="SetPetInformation"
 				component={SetPetInformation}
-				options={{header: props => <SaveButtonHeader {...props} />, title: '반려동물 상세 정보(SetPetInformation)'}}
+				options={{header: props => <SaveButtonHeader {...props} />, title: '반려동물 상세 정보'}}
 			/>
 			<MyStack.Screen
 				name="VaccinationRecord"
 				component={VaccinationRecord}
-				options={{header: props => <SaveButtonHeader {...props} />, title: '접종 내역(VaccinationRecord)'}}
+				options={{header: props => <SaveButtonHeader {...props} />, title: '접종 내역'}}
 			/>
 			<MyStack.Screen name="AddFamilyAccount" component={AddFamilyAccount} />
 			<MyStack.Screen name="AnimalAdoption" component={AnimalAdoption} />
-			<MyStack.Screen name="SelectAccount" component={SelectAccount} />
+			<MyStack.Screen name="SelectAccount" component={SelectAccount} options={{header: props => <ConfirmInputHeader {...props} />}} />
 
 			<MyStack.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
 			<MyStack.Screen name="AssignPetInfoA" component={AssignPetInfoA} />

@@ -38,7 +38,8 @@ import {
 import {dummy_AppliesRecord_protect} from 'Root/config/dummy_data_hjs';
 import {GRAY10} from 'Root/config/color';
 
-export default ShelterMenu = props => {
+export default ShelterMenu = ({route}) => {
+	const navigation = useNavigation();
 	const userData = dummy_UserObject_shelter[0]; //우선 userObject_Shelter 0번 추가
 
 	const [socialInfoData, setSocialInfoData] = React.useState({
@@ -46,8 +47,6 @@ export default ShelterMenu = props => {
 		follower_count: userData.user_follower_count,
 		follow_count: userData.user_follow_count,
 	});
-
-	const navigation = useNavigation();
 
 	//보호소 정보 수정
 	const moveToShelterInfoSetting = () => {
@@ -83,11 +82,7 @@ export default ShelterMenu = props => {
 				break;
 			//봉사활동 신청 관리
 			case MANAGEMENT_OF_VOLUNTEER:
-				navigation.push('ManageShelterVolunteer', {
-					volunteerItems: _dummy_VolunteerActivityApplicant,
-					shelterItems: _dummy_userObject_user,
-					user_type: 'shelter',
-				});
+				navigation.push('ManageShelterVolunteer', route.name);
 				break;
 			//---------------즐겨찾기
 			//친구

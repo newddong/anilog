@@ -1,12 +1,10 @@
 import React from 'react';
-import {Text, TextInput, View, Image, ScrollView, Dimensions, SafeAreaView, StyleSheet, TouchableOpacity, BackHandler} from 'react-native';
-
-import {AlarmBadger48, Search48, BackArrow32} from 'Atom/icon';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {BackArrow32} from 'Atom/icon';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
 import {WHITE, APRI10} from 'Root/config/color';
 import Modal from 'Root/component/modal/Modal';
-import {useNavigation} from '@react-navigation/core';
 
 export default SaveButtonHeader = ({navigation, route, options, back}) => {
 	React.useEffect(() => {

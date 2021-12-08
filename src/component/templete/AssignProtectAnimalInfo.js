@@ -14,6 +14,8 @@ import Modal from '../modal/Modal';
 import {PET_YEAR, PET_MONTH} from 'Root/i18n/msg';
 import {stagebar_style} from '../organism_ksw/style_organism';
 import {CommonActions} from '@react-navigation/native';
+import NormalDropDown from '../molecules/NormalDropDown';
+import Input30 from '../molecules/Input30';
 
 export default AssignProtectAnimalInfo = ({route}) => {
 	// console.log('Assing', route.params);
@@ -23,7 +25,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 		...route.params,
 		protect_animal_estimate_age: year + '년 ' + month + '개월',
 		// protect_animal_estimate_month: PET_MONTH[0],
-		protect_animal_weight: '모름',
+		protect_animal_weight: '0',
 		//AssignPetInfoA 에서는 UserObject 반려동물 등록에 맞춘 컬럼명으로 지정되어 있으므로 이를 Protect_animal로 처리
 		protect_animal_sex: route.params.pet_sex,
 		protect_animal_species: route.params.pet_species,
@@ -94,6 +96,11 @@ export default AssignProtectAnimalInfo = ({route}) => {
 		// setData({...data, protect_animal_estimate_month: v});
 	};
 
+	const weigthValid = e => {
+		var regExp = /^[\D]{1,20}$/;
+		return regExp.test(e);
+	};
+
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
@@ -118,14 +125,11 @@ export default AssignProtectAnimalInfo = ({route}) => {
 						<Text style={[txt.noto28]}>예상 연령</Text>
 					</View>
 					<View style={[assignProtectAnimal_style.dropdownSelect_year]}>
-						{/* <DropdownSelect items={[1, 2, 3, 4, 5, 6, 7]} width={160} /> */}
-						{/* <Dropdown dropdownList={<View style={{ position: 'absolute', width: 100, height: 100, backgroundColor: 'blue' }} />} /> */}
-						<NormalDropDown menu={PET_YEAR} onSelect={(v, i) => onSelectYear(v, i)} defaultIndex={0} />
+						<NormalDropDown menu={PET_YEAR} onSelect={onSelectYear} defaultIndex={0} />
 					</View>
 					<Text style={[txt.noto24, assignProtectAnimal_style.text118]}>년</Text>
 					<View style={[assignProtectAnimal_style.dropdownSelect_year]}>
-						{/* <DropdownSelect items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} width={160} /> */}
-						<NormalDropDown menu={PET_MONTH} onSelect={(v, i) => onSelectMonth(v, i)} defaultIndex={0} />
+						<NormalDropDown menu={PET_MONTH} onSelect={onSelectMonth} defaultIndex={0} />
 					</View>
 					<Text style={[txt.noto24, assignProtectAnimal_style.text118]}>개월</Text>
 				</View>
@@ -136,7 +140,19 @@ export default AssignProtectAnimalInfo = ({route}) => {
 						<Text style={[txt.noto28]}>체중</Text>
 					</View>
 					<View style={[assignProtectAnimal_style.dropdownSelect_year]}>
-						<Input24 showTitle={false} onChange={kg => onChangeKg(kg)} width={160} placeholder={'몸무게 입력'} clearMark={false} />
+						<Input30
+							alert_msg={'숫자 0 이상의 값을 입력하세요'}
+							showmsg={false}
+							confirm={true}
+							showTitle={false}
+							width={164}
+							placeholder={'몸무게 입력'}
+							clearMark={false}
+							onChange={onChangeKg}
+							value={data.protect_animal_weight}
+							validator={weigthValid}
+							keyboardType={'number-pad'}
+						/>
 					</View>
 					<Text style={[assignProtectAnimal_style.text118]}>kg</Text>
 				</View>

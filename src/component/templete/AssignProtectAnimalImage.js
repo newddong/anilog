@@ -12,6 +12,7 @@ import {AddItem64, Camera54} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import {styles} from '../atom/image/imageStyle';
 import {stagebar_style} from '../organism_ksw/style_organism';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 export default AssignProtectAnimalImage = props => {
 	const navigation = useNavigation();
@@ -22,28 +23,24 @@ export default AssignProtectAnimalImage = props => {
 		protect_animal_photos: null,
 	});
 
-	React.useEffect(() => {
-		console.log('data', data);
-	}, [data]);
+	// React.useEffect(() => {
+	// 	if (props.route.params == null) {
+	// 		// setImgSelected('https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg')
+	// 	} else if (props.route.params.photo) {
+	// 		const photos = props.route.params.photo;
+	// 		let copy = [...imageList];
+	// 		photos.map((v, i) => {
+	// 			copy.push(v);
+	// 		});
+	// 		setImageList(copy);
+	// 		setData({...data, protect_animal_photos: props.route.params.photo});
+	// 	}
+	// }, [props.route.params]);
 
-	React.useEffect(() => {
-		console.log('imageList', imageList);
-		console.log('imageList / length', imageList.length);
-	}, [imageList]);
-
-	React.useEffect(() => {
-		if (props.route.params == null) {
-			// setImgSelected('https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg')
-		} else if (props.route.params.photo) {
-			const photos = props.route.params.photo;
-			let copy = [...imageList];
-			photos.map((v, i) => {
-				copy.push(v);
-			});
-			setImageList(copy);
-			setData({...data, protect_animal_photos: props.route.params.photo});
-		}
-	}, [props.route.params]);
+	//사진 추가 클릭
+	// const gotoSelectPicture = () => {
+	// 	navigation.push('MultiPhotoSelect', props.route.name);
+	// };
 
 	//SelectedMedia 아이템의 X마크를 클릭
 	const onDelete = index => {
@@ -57,9 +54,24 @@ export default AssignProtectAnimalImage = props => {
 		navigation.push('AssignProtectAnimalDate', data);
 	};
 
-	//사진 추가 클릭
 	const gotoSelectPicture = () => {
-		navigation.push('MultiPhotoSelect', props.route.name);
+		// navigation.push('SinglePhotoSelect', route.name);
+		launchImageLibrary(
+			{
+				mediaType: 'photo',
+				selectionLimit: 5,
+			},
+			responseObject => {
+				console.log('선택됨', responseObject);
+				let photoList = [];
+				responseObject.assets.map((v, i) => {
+					console.log('v', i, v.uri);
+					photoList.push(v.uri);
+				});
+				setImageList(photoList);
+				setData({...data, protect_animal_photos: photoList || data.protect_animal_photos});
+			},
+		);
 	};
 
 	return (

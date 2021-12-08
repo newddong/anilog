@@ -73,11 +73,9 @@ export default AnimalAdoption = props => {
 				<View style={[btn_style.btn_w522, animalAdoption.btn_w522]}>
 					<AniButton
 						btnTitle={'입양'}
-						btnStyle={'filled'}
 						btnTheme={'shadow'}
 						btnLayout={btn_w522}
 						titleFontStyle={32}
-						// onPress={() => navigation.push('SelectAccount')}
 						onPress={() => {
 							Modal.popTwoBtn(
 								'입양 예정자가 애니로그 계정이 있나요?',

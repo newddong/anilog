@@ -8,22 +8,22 @@ import Input30 from '../molecules/Input30';
 import RadioBox from '../molecules/RadioBox';
 
 export default SetPetInformation = ({route, navigation}) => {
-	//생녈월일 계산 함수
 	const [selectedBirthDate, setSelectedBirthDate] = React.useState('2021.11.01');
 
 	const [data, setData] = React.useState(route.params);
 
 	React.useEffect(() => {
-		console.log('SetPetInformation_data: ', data);
+		// console.log('SetPetInformation_data: ', data);
 		navigation.setParams(data);
 	}, [data]);
 
+	//생녈월일 계산 함수
 	const getBirthDate = () => {
 		const today = new Date().getTime();
 		let split = selectedBirthDate.split('.');
 		const selectDate = new Date(split[0], split[1] - 1, split[2]);
 		const duration = (today - selectDate.getTime()) / 1000;
-		console.log(duration / 86400); //하루단위
+		// console.log(duration / 86400); //하루단위
 		const birthDate = () => {
 			let year = parseInt(duration / 86400 / 365) + '년 ';
 			let month = parseInt(((duration / 86400) % 365) / 30) + '개월';
@@ -35,15 +35,47 @@ export default SetPetInformation = ({route, navigation}) => {
 		return <Text style={[txt.noto22]}>{birthDate()}</Text>;
 	};
 
+	//생일이 지정되었을 때
+	const onSelectBirthDate = date => {
+		setSelectedBirthDate(date);
+		setData({...data, pet_birthday: date});
+	};
+
+	//체중 Input Value 바뀌었을 때
+	const onChangeKg = kg => {
+		setData({...data, pet_weight: kg});
+	};
+
+	//체중
+	const weigthValid = e => {
+		var regExp = /^[\D]{1,20}$/;
+		return regExp.test(e);
+	};
+
+	//성별 변경 발생
 	const onSexChange = e => {
 		e => console.log('성별선택=>' + e);
 		setData({...data, user_mobile_company: v});
 	};
 
+	//중성화 선택
+	const onSelectNeutralization = index => {
+		console.log('중성화 ', index);
+		let neutralization = '';
+		if (index == 0) {
+			neutralization = 'yes';
+		} else if (index == 1) {
+			neutralization = 'no';
+		} else if (index == 2) {
+			neutralization = 'unknown';
+		}
+		setData({...data, pet_neutralization: neutralization});
+	};
+
 	return (
 		<View style={[login_style.wrp_main, setPetInformation.container]}>
 			<View style={[setPetInformation.inputForm]}>
-				{/* tabSelectFilled_Type1 */}
+				{/* 성별 */}
 				<View style={[setPetInformation.inputForm_line_layout]}>
 					<View style={[setPetInformation.inputForm_line_left]}>
 						<View style={[setPetInformation.inputForm_line_left_text]}>
@@ -51,11 +83,10 @@ export default SetPetInformation = ({route, navigation}) => {
 						</View>
 					</View>
 					<View style={[temp_style.tabSelectFilled_Type1]}>
-						{/* <Text>tabSelectFilled_Type1</Text> */}
-						<TabSelectFilled_Type1 items={['남아', '여아']} onSelect={e => onSexChange(e)} width={520} />
+						<TabSelectFilled_Type1 items={['남아', '여아']} defaultIndex={data.pet_sex == 'male' ? 0 : 1} onSelect={onSexChange} width={520} />
 					</View>
 				</View>
-				{/* DatePicker And Birth Time */}
+				{/* 생일 */}
 				<View style={[setPetInformation.inputForm_line_layout]}>
 					<View style={[setPetInformation.inputForm_line_left]}>
 						<View style={[setPetInformation.inputForm_line_left_text]}>
@@ -63,11 +94,11 @@ export default SetPetInformation = ({route, navigation}) => {
 						</View>
 					</View>
 					<View style={[setPetInformation.datePicker]}>
-						<DatePicker width={290} onDateChange={e => setSelectedBirthDate(e)} />
+						<DatePicker onDateChange={onSelectBirthDate} defaultDate={data.pet_birthday} width={290} />
 					</View>
 					<View style={[setPetInformation.birthTime]}>{getBirthDate()}</View>
 				</View>
-				{/* weight Input Form */}
+				{/* 체중 */}
 				<View style={[setPetInformation.inputForm_line_layout]}>
 					<View style={[setPetInformation.inputForm_line_left]}>
 						<View style={[setPetInformation.inputForm_line_left_text]}>
@@ -75,30 +106,34 @@ export default SetPetInformation = ({route, navigation}) => {
 						</View>
 					</View>
 					<View style={[setPetInformation.inputNoTitle]}>
-						<Input30 width={156} showTitle={false} placeholder={'체중'} />
+						<Input30
+							alert_msg={'숫자 0 이상의 값을 입력하세요'}
+							showmsg={false}
+							confirm={true}
+							showTitle={false}
+							width={154}
+							placeholder={'몸무게 입력'}
+							clearMark={false}
+							onChange={onChangeKg}
+							value={data.pet_weight}
+							validator={weigthValid}
+							keyboardType={'number-pad'}
+						/>
 					</View>
 					<View style={[setPetInformation.kg]}>
 						<Text style={[txt.noto28]}> kg </Text>
 					</View>
 				</View>
-				{/* RadioBox */}
+				{/* 중성화 */}
 				<View style={[setPetInformation.radioBoxForm]}>
 					<View style={[setPetInformation.radioBox_left]}>
 						<Text style={[txt.noto28]}>중성화</Text>
 					</View>
 					<View style={[setPetInformation.radioBox_right]}>
-						<RadioBox items={['예', '아니오', '모름']} onSelect={e => console.log('중성화선택=>' + e)} />
+						<RadioBox items={['예', '아니오', '모름']} onSelect={onSelectNeutralization} defaultSelect={1} />
 					</View>
 				</View>
 			</View>
 		</View>
 	);
 };
-
-// RadioBox.defaultProps = {
-// 	items: [1, 2, 3],
-// 	values: null,
-// 	selectableNumber: 1,
-// 	horizontal: true,
-// 	onSelect: e => console.log(e),
-// };

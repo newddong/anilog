@@ -11,7 +11,8 @@ import {login_style, btn_style, temp_style, progressbar_style, assignPetInfo_sty
 import DatePicker from '../molecules/DatePicker';
 import Modal from '../modal/Modal';
 import Input30 from '../molecules/Input30';
-import { assignPet } from 'Root/api/userapi';
+import {assignPet} from 'Root/api/userapi';
+import {stagebar_style} from '../organism_ksw/style_organism';
 
 export default AssignPetInfoB = props => {
 	console.log(props.route.params);
@@ -30,7 +31,7 @@ export default AssignPetInfoB = props => {
 		let split = selectedBirthDate.split('.');
 		const selectDate = new Date(split[0], split[1] - 1, split[2]);
 		const duration = (today - selectDate.getTime()) / 1000;
-		console.log(duration / 86400); //하루단위
+		// console.log(duration / 86400); //하루단위
 		const birthDate = () => {
 			let year = parseInt(duration / 86400 / 365) + '년 ';
 			let month = parseInt(((duration / 86400) % 365) / 30) + '개월';
@@ -44,6 +45,7 @@ export default AssignPetInfoB = props => {
 
 	//생일이 지정되었을 때
 	const onSelectBirthDate = date => {
+		setSelectedBirthDate(date);
 		setData({...data, pet_birthday: date});
 	};
 
@@ -55,18 +57,22 @@ export default AssignPetInfoB = props => {
 	//등록 완료
 	const onRegister = () => {
 		Modal.popNoBtn('반려동물 등록 중입니다.');
-		assignPet({},()=>{
-			Modal.close();
-			Modal.popOneBtn('반려동물 등록이 완료되었습니다.','확인',()=>Modal.close());
-		},(error)=>{
-			(error)=>Modal.popOneBtn(error,'확인',()=>Modal.close());
-		})
+		assignPet(
+			{},
+			() => {
+				Modal.close();
+				Modal.popOneBtn('반려동물 등록이 완료되었습니다.', '확인', () => Modal.close());
+			},
+			error => {
+				error => Modal.popOneBtn(error, '확인', () => Modal.close());
+			},
+		);
 	};
 
-	const weigthValid=(e)=>{
+	const weigthValid = e => {
 		var regExp = /^[\D]{1,20}$/;
 		return regExp.test(e);
-	}
+	};
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
@@ -86,20 +92,12 @@ export default AssignPetInfoB = props => {
 			</TouchableWithoutFeedback>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
-					style={{}} //전체 container style, text와 bar를 감싸는 view의 style
-					backgroundBarStyle={{
-						width: 400 * DP,
-						height: 20 * DP,
-						backgroundColor: 'white',
-						borderRadius: 20 * DP,
-						borderWidth: 4 * DP,
-						borderColor: APRI10,
-					}} //배경이 되는 bar의 style, width props으로 너비결정됨
-					insideBarStyle={{width: 80 * DP, height: 20 * DP, backgroundColor: APRI10, borderRadius: 18 * DP}} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+					backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨
+					insideBarStyle={stagebar_style.insideBar} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
 					current={3} //현재 단계를 정의
 					maxstage={3} //전체 단계를 정의
 					width={600 * DP} //bar의 너비
-					textStyle={[txt.roboto24, {marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10}]} //text의 스타일
+					textStyle={[txt.roboto24, stagebar_style.text]} //text의 스타일
 				/>
 			</View>
 
@@ -114,7 +112,7 @@ export default AssignPetInfoB = props => {
 				<View style={[temp_style.inputForm_assignPetInfo_line1]}>
 					<Text style={[txt.noto28, temp_style.text_assignPetInfo, {color: GRAY10}]}>생일</Text>
 					<View style={[temp_style.datePicker_assignPetInfo_depth1, assignPetInfo_style.datePicker_depth1]}>
-						<DatePicker width={290} onDateChange={date => onSelectBirthDate(date)} defaultDate={selectedBirthDate} />
+						<DatePicker width={290} onDateChange={onSelectBirthDate} defaultDate={selectedBirthDate} />
 					</View>
 					<Text style={[temp_style.text218_assignPetInfo, assignPetInfo_style.text218]}>{getBirthDate()}</Text>
 				</View>
@@ -144,17 +142,10 @@ export default AssignPetInfoB = props => {
 			{/* (A)Btn_w654 */}
 			<View style={[temp_style.btn_w226_assignPetInfo, assignPetInfo_style.btn_w226_viewB]}>
 				<View style={[btn_style.btn_w226]}>
-					<AniButton
-						btnTitle={'뒤로'}
-						btnTheme={'shadow'}
-						btnStyle={'border'}
-						btnLayout={btn_w226}
-						titleFontStyle={24}
-						onPress={() => navigation.goBack()}
-					/>
+					<AniButton btnTitle={'뒤로'} btnTheme={'shadow'} btnStyle={'border'} onPress={() => navigation.goBack()} />
 				</View>
 				<View style={[btn_style.btn_w226, assignPetInfo_style.btn_w226]}>
-					<AniButton btnTitle={'등록'} btnTheme={'shadow'} btnLayout={btn_w226} onPress={onRegister} />
+					<AniButton btnTitle={'등록'} btnTheme={'shadow'} onPress={onRegister} />
 				</View>
 			</View>
 		</View>

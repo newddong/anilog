@@ -7,14 +7,15 @@ import VolunteerItemList from '../organism_ksw/VolunteerItemList';
 import {login_style, manageVolunteer} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
 import {_dummy_userObject_user, _dummy_VolunteerActivityApplicant} from 'Root/config/dummy_data_hjs';
+import {dummy_manageUserVolunteer} from 'Root/config/dummyDate_json';
 
 export default ManageVolunteer = ({route}) => {
 	// console.log(route.params);
 	const navigation = useNavigation();
-	const volunteerItems = route.params;
+	const [data, setData] = React.useState(dummy_manageUserVolunteer);
 
-	const scheduled_list = volunteerItems.slice(0, 3); //활동 예정중인 신청
-	const done_list = volunteerItems.slice(4, 7); // 지난 신청
+	const [scheduled_list, setScheduled_list] = React.useState(data.slice(0, 3)); //활동 예정중인 신청
+	const [done_list, setDone_list] = React.useState(data.slice(4, 7)); // 지난 신청
 	const [showMoreHistory, setShowMoreHistory] = React.useState(false); //지난 내역 더보기
 	const [arrowStatus, setArrowStatus] = React.useState(false); // 화살표
 
@@ -27,13 +28,8 @@ export default ManageVolunteer = ({route}) => {
 	// 라벨 클릭 => 봉사활동 신청서 필요 데이터 : 보호소 정보 / 해당 봉사활동 데이터
 	const goToAssignVolunteer = shelterData => {
 		// console.log('shelter', shelterData);
-		if (route.params.user_type == 'shelter') {
-			console.log('ShelterVolunteerForm-----------------------');
-			navigation.push('ShelterVolunteerForm', shelterData);
-		} else {
-			console.log('goToAssignVolunteer-----------------------');
-			navigation.push('UserVolunteerForm', shelterData);
-		}
+		console.log('route');
+		route.params == 'ShelterMenu' ? navigation.push('ShelterVolunteerForm', shelterData) : navigation.push('UserVolunteerForm', shelterData);
 	};
 
 	return (

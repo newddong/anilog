@@ -7,6 +7,7 @@ import {volunteerItem} from './style_organism';
 
 export default VolunteerItem = props => {
 	const data = props.data;
+	// console.log('props.data', data);
 
 	return (
 		<View style={[volunteerItem.container]}>
@@ -20,7 +21,7 @@ export default VolunteerItem = props => {
 			</View>
 			{props.nvName != 'ProtectApplicant' && (
 				<View style={[volunteerItem.expected_activityDate]}>
-					<Text style={[txt.roboto24, {color: GRAY20}]}>{data.volunteer_wish_date[0]}</Text>
+					<Text style={[txt.roboto24, {color: GRAY20}]}>{data.volunteer_wish_date[0] || ''}</Text>
 
 					<Text style={[txt.roboto24, {color: GRAY20}]}>{props.type != 'done' ? '활동 예정' : '활동 완료'}</Text>
 				</View>
@@ -31,5 +32,4 @@ export default VolunteerItem = props => {
 
 VolunteerItem.defaultProps = {
 	onClickLabel: e => console.log(e),
-	expected_activityDate: '21.12.21',
 };

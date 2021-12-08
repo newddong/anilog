@@ -2,7 +2,6 @@ import React from 'react';
 import {FlatList, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {APRI10, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
-import {dummy_accountList} from 'Root/config/dummyDate_json';
 import {Cross46, Star50_Border, Star50_Filled} from '../atom/icon';
 import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
 import {organism_style} from './style_organism';
@@ -10,7 +9,7 @@ import {organism_style} from './style_organism';
 /**
  *
  *@param {{
- * item : 'Array / 계정 목록',
+ * items : 'Array / 계정 목록',
  * onSelect : 'void / 계정 클릭  Callback'
  * makeBorderMode: 'boolean / 클릭 시 테두리 생기는 모드 on/off , default = true',
  * onDelete: '계정 지우기 마크 클릭 Callback',
@@ -20,6 +19,7 @@ import {organism_style} from './style_organism';
  * }} props
  */
 export default AccountList = props => {
+	// console.log('AccountList', props.items.length);
 	const [selectedIndex, setSelectedIndex] = React.useState();
 	const [isFollowing, setIsFollowing] = React.useState([]);
 
@@ -30,7 +30,7 @@ export default AccountList = props => {
 			copy[i] = false;
 		});
 		setIsFollowing(copy);
-	}, []);
+	}, [props.items]);
 
 	//계정 클릭 시 해당 박스 테두리 생성 함수
 	const makeBorder = (item, index) => {
@@ -78,15 +78,20 @@ export default AccountList = props => {
 		);
 	};
 	return (
-		<View style={organism_style.accountList}>
-			<FlatList data={props.items == null ? dummy_accountList : props.items} renderItem={({item, index}) => renderItem(item, index)} />
-		</View>
+		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+				<View style={organism_style.accountList}>
+					<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} />
+				</View>
+			</ScrollView>
+		</ScrollView>
 	);
 };
 AccountList.defaultProps = {
+	items: [],
 	onPressFavorite: e => console.log('onPressFavorite', e),
 	onDelete: e => console.log(e),
-	onSelect: e => console.log(e),
+	onSelect: e => console.log('onSelect', e),
 	onClickLabel: e => console.log('OnCLickLabel / AccountList', e),
 	makeBorderMode: true,
 	showCrossMark: true,
