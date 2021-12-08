@@ -22,7 +22,7 @@ export default CheckBox = props => {
 	};
 
 	React.useEffect(() => {
-		console.log('props.state===>', props.state);
+		// console.log('props.state===>', props.state);
 		setChecked(props.state);
 		props.onCheck(props.state);
 	}, [props.state]);
@@ -38,7 +38,7 @@ export default CheckBox = props => {
 
 	return (
 		<View style={{flexDirection: 'row'}}>
-			{console.log('checked=>' + checked)}
+			{/* {console.log('checked=>' + checked)} */}
 			{props.disable ? <Rect48_GRAY30 /> : checked ? <Check50 onPress={onCheck} /> : <Rect50_Border onPress={onCheck} />}
 			<Text
 				style={[

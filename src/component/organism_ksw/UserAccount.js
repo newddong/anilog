@@ -11,7 +11,7 @@ export default UserAccount = props => {
 	const [followState, setFollowState] = React.useState(true);
 
 	const getLabel = () => {
-		console.log('props.data.type=>' + props.data.type);
+		// console.log('props.data.type=>' + props.data.type);
 		if (props.data.type == 'user') {
 			return <UserDescriptionLabel data={props.data} onLabelClick={() => props.onLabelClick()} />;
 		} else if (props.data.type == 'hash') {
@@ -31,8 +31,8 @@ export default UserAccount = props => {
 
 	return (
 		<View style={[userAccount.container]}>
-			{console.log(`props.checkBoxMode=>${props.checkBoxMode}`)}
-			{console.log(`props.data.checkBoxState=>${props.data.checkBoxState}`)}
+			{/* {console.log(`props.checkBoxMode=>${props.checkBoxMode}`)}
+			{console.log(`props.data.checkBoxState=>${props.data.checkBoxState}`)} */}
 			{/* CheckBox */}
 			{props.checkBoxMode ? (
 				<View style={[userAccount.checkBox]}>

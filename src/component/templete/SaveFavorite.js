@@ -19,12 +19,12 @@ export default SaveFavorite = props => {
 	let selectCNT = React.useRef(0);
 
 	React.useEffect(() => {
-		console.log('SaveFavorite:_dummyData=>' + JSON.stringify(_dummyData));
+		// console.log('SaveFavorite:_dummyData=>' + JSON.stringify(_dummyData));
 	}, [_dummyData]);
 
 	//Check Box On
 	const showCheckBox = e => {
-		console.log(`showCheckBox=>${showCheckBox}`);
+		// console.log(`showCheckBox=>${showCheckBox}`);
 		setCheckBoxMode(e);
 
 		//전체 선택을 처음 누를 경우 무조건 체크 박스가 모두 선택되도록 하기 위해 setSelectCNT값을 0으로 초기화.
@@ -53,7 +53,7 @@ export default SaveFavorite = props => {
 		selectCNT.current += 1;
 
 		let copy = [..._dummyData];
-		console.log('selectCNT.current =====>' + selectCNT.current);
+		// console.log('selectCNT.current =====>' + selectCNT.current);
 		copy.map((v, i) => {
 			//카운트의 2로 나눈 나머지값을 이용해서 전체 선택 혹은 전체 취소가 되도록 함.
 			selectCNT.current % 2 == 1 ? (v.checkBoxState = true) : (v.checkBoxState = false);
@@ -68,7 +68,7 @@ export default SaveFavorite = props => {
 
 		let copy = [..._dummyData];
 		copy = copy.filter(e => e.checkBoxState != true);
-		console.log('deleteSelectedItem:_dummyData=>' + JSON.stringify(copy));
+		// console.log('deleteSelectedItem:_dummyData=>' + JSON.stringify(copy));
 		// let deleteList = [];
 		// for (let i = 0; i < copy.length; i++) {
 		// 	if (copy[i].checkBoxState == true) {
@@ -78,7 +78,7 @@ export default SaveFavorite = props => {
 		// 	}
 		// }
 		copy.map((v, i) => {
-			console.log('index=>' + i);
+			// console.log('index=>' + i);
 			v._index = i;
 			v.checkBoxState = false;
 		});
@@ -88,7 +88,7 @@ export default SaveFavorite = props => {
 
 	//CheckBox 클릭 시
 	const onCheckBox = (item, index) => {
-		console.log(index);
+		// console.log(index);
 		let copy = [..._dummyData];
 		copy[index].checkBoxState = !copy[index].checkBoxState;
 		// set_dummyData(copy);
