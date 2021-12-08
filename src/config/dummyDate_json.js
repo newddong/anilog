@@ -2117,6 +2117,42 @@ export const dummy_CommentObject = [
 		like_comment_id: 1,
 		like_comment_user_id: [1, 2, 3],
 	},
+	{
+		_id: 3,
+		comment_photo_uri: 'https://d1bg8rd1h4dvdb.cloudfront.net/upload/imgServer/storypick/editor/2020062615503065168.jpg', //댓글 첨부 이미지 uri
+		comment_contents: ' 강아지는 역시 리트리버죠 ~ ', //댓글 내용
+		comment_like_count: 122, //댓글 좋아요 숫자
+		comment_dislike_count: 0, //댓글 싫어요 숫자(현재 기획에는 없음)
+		comment_report_count: 0, //댓글 신고 숫자(신고기능과 연결, 관리자만 열람가능, 일반유저에게 공개할지 결정해야함)
+		comment_report_block: false, //댓글 신고로 인한 댓글 공개차단여부(true일 경우, ‘신고된 댓글입니다’로 내용 비공개 전환
+		comment_parent: 1, //Mongodb_ID(ref:CommentObject), //대댓글이 달린 댓글의 ID
+		comment_parent_writer_id: 1, //Mongodb_ID(ref:UserObject), //부모 댓글의 작성자 ID
+		comment_date: '2021-11-23', //댓글 작성일시
+		comment_update_date: '2021-11-30', //댓글 최정 수정일시
+		comment_writer_id: 1, //Mongodb_ID(ref:UserObject), //댓글 작성자
+		comment_feed_id: 1, //Mongodb_ID(ref:FeedObject), //댓글이 작성된 피드 게시물
+		comment_feed_writer_id: 1, //Mongodb_ID(ref:UserObject), //댓글이 작성된 피드 게시물의 작성자
+		comment_protect_request_id: 1, //Mongodb_ID(ref:ProtectRequestObject), //댓글이 작성된 동물보호 요청 게시물
+		comment_protect_request_writer_id: 1, //Mongodb_ID(ref:UserObject), //댓글이 작성된 동물보호 요청 게시물의 작성자
+		comment_is_secure: false, //true일때는 writer와 댓글이 달린 게시글 작성자만 볼수있음,
+		comment_is_delete: false, //댓글의 삭제여부
+
+		//@UserObject ref(comment_parent_writer_id: 1)
+		user_type: 'user', //유저의 유형, 일반유저(user),보호소(shelter),반려동물(pet)으로 나뉨
+		user_name: '권상우', //실명
+		user_nickname: 'Dende', //닉네임
+		user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg', //프로필 사진
+		user_denied: false, //유저의 차단여부
+		user_address: {
+			city: '서울시', //시,도
+			district: '마포구', //군,구
+			neighbor: '신수동 89-77', //동,읍,면
+		}, //회원주소
+
+		//@LikeCommentObject ref( comment_writer_id )
+		like_comment_id: 1,
+		like_comment_user_id: [1, 2, 3],
+	},
 ];
 
 export const dummy_ChildComment = [

@@ -19,6 +19,8 @@ import {dummy_AnimalNeedHelpList_various_status, dummy_CommentObject} from 'Root
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {launchImageLibrary} from 'react-native-image-picker';
+import {organism_style, profileInfo_style} from '../organism/style_organism';
+import {Bracket48} from '../atom/icon';
 
 //AnimalProtectRequestDetail에서 접근해야하는 데이터 테이블
 //  ProtectRequestObject(보호요청 게시글에 대한 데이터)
@@ -41,6 +43,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const [photo, setPhoto] = React.useState(); // PhotoSelect에서 가져온 Photo uri
 	const [replyData, setReplyData] = React.useState();
 	const [token, setToken] = React.useState();
+	const [showMore, setShowMore] = React.useState(false); //더보기 클릭 State
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
@@ -143,6 +146,22 @@ export default AnimalProtectRequestDetail = ({route}) => {
 		}
 	};
 
+	//더보기 클릭
+	const onPressShowMore = () => {
+		setShowMore(!showMore);
+	};
+
+	//댓글 리스트 표출 개수 제어
+	const checkDataLength = () => {
+		let tempList = [];
+		if (!showMore) {
+			if (dummy_CommentObject.length > 2) {
+				tempList = [...dummy_CommentObject.slice(0, 2)];
+				return tempList;
+			} else return dummy_CommentObject;
+		} else return dummy_CommentObject;
+	};
+
 	return (
 		<View style={[login_style.wrp_main]}>
 			<ScrollView contentContainerStyle={[animalProtectRequestDetail_style.container]}>
@@ -223,12 +242,21 @@ export default AnimalProtectRequestDetail = ({route}) => {
 					<Text style={[txt.noto24]}>{data.protect_request_content ? data.protect_request_content : ''}</Text>
 				</View>
 
-				<View style={[temp_style.commentList]}>
-					{/* CommentList에 필요한 데이터 - CommentObject, WriterObejct(UserObject), FeedObject(FeedObject), LikeCommentObject */}
-					{/* 위의 모든 데이터가 CommentList items에 담겨져 있어야 함 */}
-					<CommentList items={dummy_CommentObject} onPressReplyBtn={onReplyBtnClick} onPress_ChildComment_ReplyBtn={onChildReplyBtnClick} />
-				</View>
+				<>
+					<View style={[temp_style.commentList]}>
+						{/* CommentList에 필요한 데이터 - CommentObject, WriterObejct(UserObject), FeedObject(FeedObject), LikeCommentObject */}
+						{/* 위의 모든 데이터가 CommentList items에 담겨져 있어야 함 */}
+						<CommentList items={checkDataLength()} onPressReplyBtn={onReplyBtnClick} onPress_ChildComment_ReplyBtn={onChildReplyBtnClick} />
+					</View>
 
+					{/* 더보기 버튼 - 기본 2개 표출되며, 더보기 누르면 모두 보이도록 함. (hjs - 추후에 5개씩 더 보이게 한다거나 등등의 개수 제어 필요) */}
+					<TouchableOpacity onPress={onPressShowMore} style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
+						<Text style={[txt.noto24, {color: GRAY10}]}>더보기 </Text>
+						<View style={showMore ? {transform: [{rotate: '180deg'}]} : null}>
+							<Bracket48 />
+						</View>
+					</TouchableOpacity>
+				</>
 				{/* 보호요청 더 보기addMoreRequest */}
 				<View style={[temp_style.addMoreRequest_view]}>
 					<Text style={[txt.noto24, temp_style.addMoreRequest, {color: GRAY20}]}>보호요청 더보기</Text>
