@@ -15,14 +15,14 @@ import AniButton from './AniButton';
  * }} props
  */
 export default CheckBox = props => {
-	// console.log('props.isCheck ', props.state);
+	console.log('props.isCheck==> ', props.state);
 	const [checked, setChecked] = React.useState(false); //체크상태 여부 boolean isCheck값에 따라 초기상태 결정됨
 	const onCheck = () => {
 		setChecked(!checked);
 	};
 
 	React.useEffect(() => {
-		// console.log('props.state', props.state);
+		console.log('props.state===>', props.state);
 		setChecked(props.state);
 		props.onCheck(props.state);
 	}, [props.state]);
@@ -33,6 +33,7 @@ export default CheckBox = props => {
 
 	return (
 		<View style={{flexDirection: 'row'}}>
+			{console.log('checked=>' + checked)}
 			{props.disable ? <Rect48_GRAY30 /> : checked ? <Check50 onPress={onCheck} /> : <Rect50_Border onPress={onCheck} />}
 			<Text
 				style={[
@@ -53,5 +54,5 @@ CheckBox.defaultProps = {
 	// isCheck: false,
 	value: '',
 	disable: false,
-	onCheck: e => console.log(e),
+	// onCheck: e => console.log(e),
 };

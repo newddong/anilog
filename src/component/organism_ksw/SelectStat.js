@@ -16,10 +16,12 @@ import {selectStat} from './style_organism';
  */
 export default SelectStat = props => {
 	const [selectMode, setSelectMode] = React.useState(false);
+	let selectCNT = React.useRef(0);
 
 	//선택하기 버튼 클릭
 	const select = () => {
 		setSelectMode(true);
+		selectCNT.current = 0;
 		//useState의 비동기 실행으로 상위로 값을 넘길떄 selectMode 값이 아닌 임의값으로 지정해서 전송
 		props.onSelectMode(true);
 	};
@@ -33,6 +35,7 @@ export default SelectStat = props => {
 
 	//전체 선택
 	const selectAll = () => {
+		selectCNT.current += 1;
 		props.onSelectAllClick();
 	};
 
@@ -54,7 +57,7 @@ export default SelectStat = props => {
 				{selectMode ? (
 					<View style={[selectStat.rightContainer]}>
 						<TouchableOpacity onPress={selectAll} style={[temp_style.textBtn]}>
-							<Text style={[txt.noto24]}>전체 선택</Text>
+							<Text style={[txt.noto24]}>{selectCNT.current % 2 == 1 ? '전체 취소' : '전체 선택'} </Text>
 						</TouchableOpacity>
 						<View style={[selectStat.vertical_stick]} />
 						<TouchableOpacity onPress={deleteSelectedItem} style={[temp_style.textBtn]}>
