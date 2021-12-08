@@ -30,6 +30,7 @@ export default UserDescriptionLabel = props => {
 	const navigation = useNavigation();
 
 	const onClickLabel = () => {
+		console.log(`UserDescriptionLabel:onClickLabel()-props.data:${JSON.stringify(props.data)}`);
 		props.onClickLabel(props.data);
 	};
 
@@ -62,5 +63,5 @@ UserDescriptionLabel.defaultProps = {
 		text_intro: 'Description',
 		showStatus: false,
 	},
-	onClickLabel: e => console.log(e),
+	// onClickLabel: e => console.log(e),
 };
