@@ -30,7 +30,7 @@ export default AccountList = props => {
 			copy[i] = false;
 		});
 		setIsFollowing(copy);
-	}, []);
+	}, [props.items]);
 
 	//계정 클릭 시 해당 박스 테두리 생성 함수
 	const makeBorder = (item, index) => {
@@ -78,15 +78,20 @@ export default AccountList = props => {
 		);
 	};
 	return (
-		<View style={organism_style.accountList}>
-			<FlatList data={props.items == null ? dummy_accountList : props.items} renderItem={({item, index}) => renderItem(item, index)} />
-		</View>
+		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+				<View style={organism_style.accountList}>
+					<FlatList data={props.items == null ? dummy_accountList : props.items} renderItem={({item, index}) => renderItem(item, index)} />
+				</View>
+			</ScrollView>
+		</ScrollView>
 	);
 };
 AccountList.defaultProps = {
+	items: [],
 	onPressFavorite: e => console.log('onPressFavorite', e),
 	onDelete: e => console.log(e),
-	onSelect: e => console.log(e),
+	onSelect: e => console.log('onSelect', e),
 	onClickLabel: e => console.log('OnCLickLabel / AccountList', e),
 	makeBorderMode: true,
 	showCrossMark: true,

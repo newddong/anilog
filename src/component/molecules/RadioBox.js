@@ -1,9 +1,9 @@
 import React from 'react';
-import { txt } from 'Root/config/textstyle';
-import { Text, View, TouchableOpacity, FlatList } from 'react-native';
+import {txt} from 'Root/config/textstyle';
+import {Text, View, TouchableOpacity, FlatList} from 'react-native';
 import DP from 'Root/config/dp';
-import { GRAY20 } from 'Root/config/color';
-import { RadioChecked48, RadioUnchecked48 } from '../atom/icon';
+import {GRAY20} from 'Root/config/color';
+import {RadioChecked48, RadioUnchecked48} from '../atom/icon';
 
 /**
  *
@@ -21,12 +21,19 @@ export default RadioBox = props => {
 	Array(tabLength)
 		.fill(props.items)
 		.map((v, i) => {
-			tabState[i] = { tabName: v[i], state: false };
+			tabState[i] = {tabName: v[i], state: false};
 		});
 	// tabState[0].state = true;
 
 	const [selected, setSelected] = React.useState(tabState);
+	const [defaultSelect, setDefaultSelect] = React.useState(props.defaultSelect || '');
 	const [checkedItems, setCheckedItems] = React.useState([]);
+
+	React.useEffect(() => {
+		let copy = [...selected];
+		defaultSelect ? (copy[defaultSelect].state = true) : null;
+		setSelected(copy);
+	}, [defaultSelect]);
 
 	//선택된 Tab의 State를 True로 이외의 Tab은 False로
 	const onSelect = index => {
@@ -54,14 +61,14 @@ export default RadioBox = props => {
 		props.onSelect(index);
 	};
 
-	const renderItem = ({ item, index }) => {
+	const renderItem = ({item, index}) => {
 		return (
 			<TouchableOpacity onPress={() => onSelect(index)}>
-				<View style={{ height: 82 * DP, flexDirection: 'row' }}>
-					<View style={{ marginLeft: props.horizontal ? 25 * DP : 0 }}>
-						<View style={{ height: 82 * DP }}>{selected[index].state ? <RadioChecked48 /> : <RadioUnchecked48 />}</View>
+				<View style={{height: 82 * DP, flexDirection: 'row'}}>
+					<View style={{marginLeft: props.horizontal ? 25 * DP : 0}}>
+						<View style={{height: 82 * DP}}>{selected[index].state ? <RadioChecked48 /> : <RadioUnchecked48 />}</View>
 					</View>
-					<Text style={[txt.noto28, { color: GRAY20, lineHeight: 46 * DP, marginLeft: 12 * DP, textAlign: 'center' }]}>{item}</Text>
+					<Text style={[txt.noto28, {color: GRAY20, lineHeight: 46 * DP, marginLeft: 12 * DP, textAlign: 'center'}]}>{item}</Text>
 				</View>
 			</TouchableOpacity>
 		);
@@ -74,4 +81,5 @@ RadioBox.defaultProps = {
 	selectableNumber: 1,
 	horizontal: true,
 	onSelect: e => console.log(e),
+	// defaultSelect: 1,
 };

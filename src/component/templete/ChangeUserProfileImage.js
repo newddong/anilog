@@ -106,19 +106,3 @@ export default ChangeUserProfileImage = ({route}) => {
 ChangeUserProfileImage.defaultProps = {
 	previous_nickname: 'Previous Nickname',
 };
-
-// Input24.defaultProps = {
-// 	title: 'title', // input title
-// 	placeholder: 'placeholder',
-// 	descriptionType: 'star', // star , info - title 오른쪽 description을 별표형식 / Info형식 구분
-// 	value: 'value',
-// 	alert_msg: 'alert_msg',
-// 	confirm_msg: 'confirm_msg',
-// 	info: null, //
-// };
-
-// ProfileImageSelect.defaultProps = {
-// 	selectedImageUri: null,
-// 	defaultImageUri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
-// 	onClick: e => console.log(e),
-// };

@@ -25,29 +25,31 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 		user_profile_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
 		user_nickname: '',
 		pet_status: 'companion', //입양, 임시보호중인 동물일때는 초기값을 다르게 표기하도록(여기서는 임시보호, 반려동물 상태밖에 없음,입양된 동물은 더이상 정보수정 불가)
-		pet_is_temp_protection : false,
+		pet_is_temp_protection: false,
 	});
 
 	const [confirmed, setConfirmed] = React.useState(false); // 닉네임 폼 Validator 통과 ?
 	const [protect, setProtect] = React.useState(false); // 임시보호 동물 T/F
-
 
 	React.useEffect(() => {
 		setData({...data, user_profile_uri: route.params});
 	}, [route.params]);
 
 	React.useEffect(() => {
-		checkProtectPet({user_id: '서버에서 세션처리 할것임'}, cbObj => {
-			Modal.popTwoBtn(
-				'새로 임시보호, 입양을 하는 동물이 있습니다.\n 해당 동물을 등록하시겠습니까?',
-				'아니오',
-				'네',
-				() => Modal.close(),
-				() => Modal.close(),
-			);
-			
-		},(e)=>Modal.popOneBtn(e,'확인',()=>Modal.close()));
-	},[]);
+		checkProtectPet(
+			{user_id: '서버에서 세션처리 할것임'},
+			cbObj => {
+				Modal.popTwoBtn(
+					'새로 임시보호, 입양을 하는 동물이 있습니다.\n 해당 동물을 등록하시겠습니까?',
+					'아니오',
+					'네',
+					() => Modal.close(),
+					() => Modal.close(),
+				);
+			},
+			e => Modal.popOneBtn(e, '확인', () => Modal.close()),
+		);
+	}, []);
 
 	//중복 처리 - 미구현 상태
 	const checkDuplicateNickname = nick => {
@@ -59,9 +61,6 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 	//닉네임 Validation
 	const nickName_validator = text => {
 		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
-		// var regExp = /^(?=.*\d)(?=.*[a-zA-Zㄱ-ㅎ가-힣])[0-9a-zA-Z]{1,15}$/;
-		// var regExp = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{1,15}$/;
-		// var regExp = /^[a-z0-9_-]{2,10}$/ ;
 		var regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
 		return regExp.test(text) && checkDuplicateNickname(text);
 	};
@@ -70,14 +69,14 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 	const onPressCheckBox = () => {
 		setProtect(!protect);
 		const petStatus = !protect ? 'protect' : 'companion';
-		
-		setData({...data, pet_status: petStatus,pet_is_temp_protection:!protect});
+
+		setData({...data, pet_status: petStatus, pet_is_temp_protection: !protect});
 	};
 
 	//확인클릭
 	const goToNextStep = () => {
 		console.log('data', data);
-		navigation.push('AssignPetInfoA',{data:data});
+		navigation.push('AssignPetInfoA', {data: data});
 	};
 
 	//프로필이미지 클릭 시 PhotoSelect로 이동
@@ -90,14 +89,14 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);
-				setData({...data,user_profile_uri:responseObject.assets[responseObject.assets.length-1].uri});
+				setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri});
 			},
 		);
 	};
 
 	const onNicknameChange = text => {
 		console.log('닉네임', text);
-		setData({...data,user_nickname:text});
+		setData({...data, user_nickname: text});
 	};
 
 	const onNicknameValid = isValid => {

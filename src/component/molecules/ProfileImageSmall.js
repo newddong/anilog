@@ -17,17 +17,14 @@ import {styles} from '../atom/image/imageStyle';
 /**
  *
  *@param {{
- * img_uri: string, //image uri
- *userType: 'user' | 'user' | 'shelter' | 'hash',
- *shelterType: 'public' | 'private',
- *petStatus: 'normal' | 'protected' | 'adopted' | 'none',
- *size: "number  94 | 76 | 70 | 60 | 46"
+ *data : Object,
+ *size: "number  94 | 76 | 70 | 60 | 46 / default '94'"
  * }} props
  */
 export default ProfileImageSmall = props => {
 	// 유저의 프로필 이미지를 표시,  유저의 종류(일반유저, 반려동물, 보호소)와 상태(임시보호중,입양,공립,사립)에 따라 아이콘을 표시
 	const petStatus = () => {
-		switch (props.data.petStatus) {
+		switch (props.data.pet_status) {
 			case 'normal':
 				return <Paw30_APRI10 />;
 			case 'protected':
@@ -38,28 +35,21 @@ export default ProfileImageSmall = props => {
 				return <></>;
 		}
 	};
-	const shelter_type = () => {
-		switch (props.data.shelterType) {
-			case 'public':
-				return <Public48 />;
-			case 'private':
-				return <Private48 />;
-			default:
-				return <></>;
-		}
-	};
+
+	//user_type에 따른 라벨 이미지 마크(입양/임보, 공립/사립) 추가 결정
 	const userType = () => {
-		switch (props.data.userType) {
+		switch (props.data.user_type) {
 			case 'pet':
 				return <View style={{position: 'absolute'}}>{petStatus()}</View>;
 			case 'shelter':
-				return <View style={{position: 'absolute', right: 0, bottom: 0}}>{shelter_type()}</View>;
+				return <View style={{position: 'absolute', right: 0, bottom: 0}}>{props.data.shelter_type == 'public' ? <Public48 /> : <Private48 />}</View>;
 			default:
 				return <></>;
 		}
 	};
+
 	const getSize = () => {
-		switch (props.data.size) {
+		switch (props.size) {
 			case 94:
 				return styles.img_round_94;
 			case 76:
@@ -72,8 +62,10 @@ export default ProfileImageSmall = props => {
 				return styles.img_round_46;
 		}
 	};
+
+	//호출 용도가 해쉬리스트였을 경우 Hash아이콘 출력
 	const getHash = () => {
-		switch (props.data.size) {
+		switch (props.size) {
 			case 94:
 				return <HashLabel94 />;
 			case 76:
@@ -87,13 +79,13 @@ export default ProfileImageSmall = props => {
 		}
 	};
 	return (
-		<View style={getSize()}>
-			{props.data.userType == 'hash' ? (
+		<View>
+			{props.data.user_type == 'hash' ? (
 				getHash()
 			) : (
 				<Image
 					source={{
-						uri: props.data.img_uri,
+						uri: props.data.user_profile_uri,
 					}}
 					style={getSize()}
 				/>
@@ -104,11 +96,5 @@ export default ProfileImageSmall = props => {
 };
 
 ProfileImageSmall.defaultProps = {
-	data: {
-		img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
-		userType: 'user', //required - 유저타입 pet user shelter hash
-		shelterType: 'none', // public private
-		petStatus: 'none', // normal protected adopted none
-		size: 94, // icon size
-	},
+	size: 94,
 };

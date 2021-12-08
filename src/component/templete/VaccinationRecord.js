@@ -6,12 +6,20 @@ import OnOffSwitch from '../molecules/OnOffSwitch';
 import Vaccination from '../organism_ksw/Vaccination';
 import {login_style, temp_txt, vaccinationRecord} from './style_templete';
 import {_dummy_PetVaccinationObject} from 'Root/config/dummy_data_hjs';
-import DatePicker from '../molecules/DatePicker';
 
-export default VaccinationRecord = props => {
+export default VaccinationRecord = ({navigation}) => {
+	const [data, setData] = React.useState([]);
 	const [vaccinOnceAmonthList, setVaccinOnceAmonthList] = React.useState([]);
 	const [vaccinOnceEvery3monthsList, setVaccinOnceEvery3monthsList] = React.useState([]);
 	const [vaccinOnceAyearList, setVaccinOnceAyearList] = React.useState([]);
+
+	//Vaccin 접종 내역이 바뀔 때마다 헤더에 데이터 송신
+	React.useEffect(() => {
+		let copy = [vaccinOnceAmonthList, vaccinOnceEvery3monthsList, vaccinOnceAyearList];
+		// const data = vaccinOnceAmonthList + vaccinOnceEvery3monthsList + vaccinOnceAyearList;
+		setData(copy);
+		navigation.setParams(copy);
+	}, [vaccinOnceAmonthList, vaccinOnceEvery3monthsList, vaccinOnceAyearList]);
 
 	// [hjs] API 작업시 하단의 케이스문 리펙토링 필요
 	//API로부터 가져온 쿼리 내용을 백신별로 그룹핑 진행.
@@ -100,17 +108,14 @@ export default VaccinationRecord = props => {
 		<ScrollView style={{flex: 1}}>
 			<View style={[login_style.wrp_main, vaccinationRecord.container]}>
 				<View style={[vaccinationRecord.vaccinationForm_container]}>
-					{/* (O)Vaccination */}
 					<View style={[vaccinationRecord.vaccination_category]}>
-						<Vaccination data={vaccinOnceAmonthList} title="매월 1회 접종" onDateChange={e => onDateChange_OnceAmonthList(e)} />
+						<Vaccination data={vaccinOnceAmonthList} title="매월 1회 접종" onDateChange={onDateChange_OnceAmonthList} />
 					</View>
-					{/* (O)Vaccination */}
 					<View style={[vaccinationRecord.vaccination_category]}>
-						<Vaccination data={vaccinOnceEvery3monthsList} title="3개월에 1회 접종" onDateChange={e => onDateChange_OnceEvery3monthsList(e)} />
+						<Vaccination data={vaccinOnceEvery3monthsList} title="3개월에 1회 접종" onDateChange={onDateChange_OnceEvery3monthsList} />
 					</View>
-					{/* (O)Vaccination */}
 					<View style={[vaccinationRecord.vaccination_category]}>
-						<Vaccination data={vaccinOnceAyearList} title="매년 1회 접종" onDateChange={e => onDateChange_OnceAyearList(e)} />
+						<Vaccination data={vaccinOnceAyearList} title="매년 1회 접종" onDateChange={onDateChange_OnceAyearList} />
 					</View>
 				</View>
 				{/* 다음 예정일 알림 */}
