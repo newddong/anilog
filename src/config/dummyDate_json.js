@@ -533,6 +533,7 @@ export const dummy_MissingReportList = [
 
 		// @FeedObject
 		feed_thumbnail: 'https://t1.daumcdn.net/tistoryfile/fs8/1_tistory_2008_10_03_18_17_48e5e30cc7a63??original',
+		feed_type: 'report', //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
 		missing_animal_species: '새', //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
 		missing_animal_species_detail: '앵무새', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
 		missing_animal_sex: 'female', //실종 동물의 성별
@@ -546,6 +547,7 @@ export const dummy_MissingReportList = [
 
 		// @FeedObject
 		feed_thumbnail: 'https://www.nemopan.com/files/attach/images/166591/048/279/014/9dbf33d246404d5f20481c6703064f4b.jpg',
+		feed_type: 'report', //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
 		missing_animal_species: '개', //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
 		missing_animal_species_detail: '리트리버', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
 		missing_animal_sex: 'male', //실종 동물의 성별
@@ -559,6 +561,7 @@ export const dummy_MissingReportList = [
 
 		// @FeedObject
 		feed_thumbnail: 'https://pds.joins.com/news/component/newsis/201609/11/NISI20160909_0012162773_web.jpg',
+		feed_type: 'report', //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
 		missing_animal_species: '개', //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
 		missing_animal_species_detail: '시베리안허스키', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
 		missing_animal_sex: 'male', //실종 동물의 성별
@@ -572,6 +575,7 @@ export const dummy_MissingReportList = [
 
 		// @FeedObject
 		feed_thumbnail: 'http://image.dongascience.com/Photo/2017/06/14975908453479.JPG',
+		feed_type: 'missing', //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
 		missing_animal_species: '개', //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
 		missing_animal_species_detail: '리트리버', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
 		missing_animal_sex: 'female', //실종 동물의 성별
@@ -585,6 +589,7 @@ export const dummy_MissingReportList = [
 
 		// @FeedObject
 		feed_thumbnail: 'https://cdn.imweb.me/upload/S201712205a3a0910b89f5/a2470afad8a92.jpg',
+		feed_type: 'report', //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
 		missing_animal_species: '고양이', //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
 		missing_animal_species_detail: '잡종', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
 		missing_animal_sex: 'female', //실종 동물의 성별

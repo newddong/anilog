@@ -25,16 +25,39 @@ import {RED10} from 'Root/config/color';
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
+	console.log(`AnimalNeedHelp:data=>${JSON.stringify(data)}`);
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
-	const [thumbnailData, setThumbnailData] = React.useState({
-		img_uri: data.protect_animal_photos[0],
-		gender: data.protect_animal_sex,
-		status: data.protect_animal_status,
-	});
+
+	// 불러오는 db 필드명이 다르기에 일치시키기 위한 함수
+	const checkthumbnailData = () => {
+		resultJSON = {};
+		resultJSON.img_uri = data.protect_animal_photos[0];
+		// 보호 동물의 데이터 일 경우 (두 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
+		if (data.hasOwnProperty('protect_animal_sex') && data.hasOwnProperty('protect_animal_status')) {
+			resultJSON.gender = data.protect_animal_sex;
+			resultJSON.status = data.protect_animal_status;
+		}
+		//실종/제보 데이터 일 경우 (두 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
+		else if (data.hasOwnProperty('missing_animal_sex') && data.hasOwnProperty('feed_type')) {
+			resultJSON.gender = data.missing_animal_sex;
+			resultJSON.status = data.feed_type;
+		} else {
+			// 기타 다른 경우의 수가 있는지 추후 확인
+		}
+		return resultJSON;
+	};
+
+	const [thumbnailData, setThumbnailData] = React.useState(
+		checkthumbnailData,
+		// img_uri: data.protect_animal_photos[0],
+		// gender: data.protect_animal_sex,
+		// status: data.protect_animal_status,
+	);
 
 	React.useEffect(() => {
-		setThumbnailData({...thumbnailData, img_uri: data.protect_animal_photos[0]}); //이 부분이 있어야 사진 받아오는 곳에서 비동기처리가 가능해짐.
+		// setThumbnailData({...thumbnailData, img_uri: data.protect_animal_photos[0]}); //이 부분이 있어야 사진 받아오는 곳에서 비동기처리가 가능해짐.
+		setThumbnailData({...thumbnailData, checkthumbnailData}); //이 부분이 있어야 사진 받아오는 곳에서 비동기처리가 가능해짐.
 	}, [props.data]);
 
 	const checkSelected = () => {
@@ -134,6 +157,7 @@ export default AnimalNeedHelp = props => {
 					) : null}
 					<View style={[animalNeedHelp.protectedThumbnail_container]}>
 						{/* Pet Thumbnail */}
+						{console.log(`AnimalNeedHelp:thumbnailData=>${JSON.stringify(thumbnailData)}`)}
 						<ProtectedThumbnail data={thumbnailData} onLabelClick={(status, id) => props.onLabelClick(status, id)} />
 					</View>
 					{/* Pet Info */}

@@ -53,6 +53,11 @@ export default MissingReportList = props => {
 		console.log('즐겨찾기=>' + value + ' ' + index);
 	};
 
+	const onLabelClick = (status, id, item) => {
+		console.log(`\nMissingReportList:onLabelClick() - status=>${status} id=>${id} item=>${JSON.stringify(item)}`);
+		navigation.push('MissingAnimalDetail');
+	};
+
 	return (
 		<View style={[login_style.wrp_main, missingReportList.container]}>
 			<ScrollView style={{flex: 1}}>
@@ -71,7 +76,11 @@ export default MissingReportList = props => {
 				</View>
 				{/* (O)AnimalNeedHelpList */}
 				<View style={[missingReportList.animalNeedHelpList]}>
-					<AnimalNeedHelpList data={dummy_MissingReportList} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
+					<AnimalNeedHelpList
+						data={dummy_MissingReportList}
+						onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
+						onLabelClick={(status, id, item) => onLabelClick(status, id, item)}
+					/>
 				</View>
 			</ScrollView>
 			{showUrgentBtns ? (

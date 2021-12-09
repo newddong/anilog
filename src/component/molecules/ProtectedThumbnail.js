@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
-import {GRAY10, RED10, WHITE} from 'Root/config/color';
+import {GRAY10, RED10, WHITE, APRI10} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
 import {Mercy_Killing, Female48, Male48} from '../atom/icon';
@@ -36,8 +36,8 @@ const ProtectedThumbnail = props => {
 	const getStatusContainerStyle = () => {
 		if (props.data.status == 'missing') {
 			return {backgroundColor: RED10};
-		} else if (props.data.status == 'reported') {
-			return {backgroundColor: 'pink'};
+		} else if (props.data.status == 'report') {
+			return {backgroundColor: APRI10, borderWidth: 2 * DP, borderColor: APRI10};
 		} else if (props.data.status == 'emergency') {
 			return {backgroundColor: RED10, borderWidth: 2 * DP, borderColor: RED10};
 		} else return {backgroundColor: GRAY10};
@@ -51,7 +51,7 @@ const ProtectedThumbnail = props => {
 				return '안락사 임박';
 			case 'missing':
 				return '실종';
-			case 'reported':
+			case 'report':
 				return '제보';
 			case 'discuss':
 				return '협의 중';

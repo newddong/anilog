@@ -46,6 +46,7 @@ export default AnimalNeedHelpList = props => {
 	return (
 		//  width: 702 * DP
 		<View style={[props.borderMode ? animalNeedHelpList.container_bordermode : animalNeedHelpList.container]}>
+			{console.log(`AnimalNeedHelpList:view - props.data=>${JSON.stringify(props.data)}`)}
 			<ScrollView horizontal={false}>
 				<ScrollView horizontal={true}>
 					<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} />
