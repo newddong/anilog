@@ -168,6 +168,10 @@ export const mobile_carrier = ['SKT 텔레콤', 'LG U+', 'KT', '알뜰'];
 
 //반려동물 종류
 export const PET_KIND = ['동물종류', '개', '고양이', '새', '여우', '거북이', '햄스터'];
+
+//보호 지역
+export const PET_PROTECT_LOCATION = ['서울', '부산', '인천', '대구', '대전', '광주', '수원', '울산', '고양'];
+
 //테스트용 Array
 export const testArray = [
 	'테스트용 Array',

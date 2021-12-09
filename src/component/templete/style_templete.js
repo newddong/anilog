@@ -20,7 +20,7 @@ import DP from 'Root/config/dp';
 
 export const login_style = StyleSheet.create({
 	wrp_main: {
-		flex: 1,
+		// flex: 1,
 		alignItems: 'center',
 		// justifyContent: 'center',
 		backgroundColor: '#FFF',
@@ -2701,6 +2701,7 @@ export const searchProtectRequest = StyleSheet.create({
 		},
 	},
 	animalNeedHelpList: {
+		marginTop: 30 * DP,
 		width: 654 * DP,
 		alignSelf: 'center',
 		backgroundColor: '#FFF',
@@ -2765,7 +2766,7 @@ export const appliesRecord = StyleSheet.create({
 
 export const protectRequestList = StyleSheet.create({
 	container: {
-		flex: 1,
+		flex: 0,
 	},
 });
 export const missingReportList = StyleSheet.create({
@@ -2803,14 +2804,14 @@ export const activationList = StyleSheet.create({
 		flex: 1,
 	},
 	activityContainer: {
-		width: 654 * DP,
+		width: 750 * DP,
 		marginTop: 70 * DP,
-		alignSelf: 'center',
 	},
 	activity: {
-		width: 654 * DP,
+		width: 750 * DP,
 		height: 258 * DP,
-		marginBottom: 40 * DP,
+		marginVertical: 40 * DP,
+		alignItems: 'center',
 	},
 	activityNameContainer: {
 		width: 654 * DP,

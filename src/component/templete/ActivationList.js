@@ -27,17 +27,8 @@ export default ActivationList = props => {
 		);
 	};
 	return (
-		<ScrollView style={{flex: 1}}>
-			<View style={[login_style.wrp_main, activationList.container]}>
-				{/* Activities Container */}
-				<View style={[activationList.activityContainer]}>
-					<ScrollView horizontal={false}>
-						<ScrollView horizontal={true}>
-							<FlatList data={dummy_ActivationList} renderItem={({item, index}) => renderItem(item, index)} />
-						</ScrollView>
-					</ScrollView>
-				</View>
-			</View>
-		</ScrollView>
+		<View style={[login_style.wrp_main, activationList.container]}>
+			<FlatList data={dummy_ActivationList} renderItem={({item, index}) => renderItem(item, index)} />
+		</View>
 	);
 };

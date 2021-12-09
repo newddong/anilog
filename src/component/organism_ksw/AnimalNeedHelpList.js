@@ -45,14 +45,14 @@ export default AnimalNeedHelpList = props => {
 
 	return (
 		//  width: 702 * DP
-		<View style={[props.borderMode ? animalNeedHelpList.container_bordermode : animalNeedHelpList.container]}>
-			{console.log(`AnimalNeedHelpList:view - props.data=>${JSON.stringify(props.data)}`)}
-			<ScrollView horizontal={false}>
-				<ScrollView horizontal={true}>
+		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+				<View style={[props.borderMode ? animalNeedHelpList.container_bordermode : animalNeedHelpList.container]}>
+					{console.log(`AnimalNeedHelpList:view - props.data=>${JSON.stringify(props.data)}`)}
 					<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} />
-				</ScrollView>
+				</View>
 			</ScrollView>
-		</View>
+		</ScrollView>
 	);
 };
 

@@ -7,7 +7,7 @@ import {GRAY10} from 'Root/config/color';
 import OnOffSwitch from '../molecules/OnOffSwitch';
 import {txt} from 'Root/config/textstyle';
 import {dummy_ProtectRequestList} from 'Root/config/dummy_data_hjs';
-import {ONLY_CONTENT_FOR_ADOPTION, PET_KIND} from 'Root/i18n/msg';
+import {ONLY_CONTENT_FOR_ADOPTION, PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
 import FilterButton from '../molecules/FilterButton';
 
 export default ProtectRequestList = ({navigation, route}) => {
@@ -16,8 +16,6 @@ export default ProtectRequestList = ({navigation, route}) => {
 		kindFilter: '',
 	});
 
-	console.log(navigation.getState().routes);
-	console.log(route);
 	const filterOn = () => {
 		// alert('입양 가능한 게시글만 보기');
 		console.log('입양 가능한 게시글만 보기');
@@ -26,24 +24,28 @@ export default ProtectRequestList = ({navigation, route}) => {
 		// alert('입양 가능한 게시글만 보기 끄기');
 		console.log('입양 가능한 게시글만 보기');
 	};
-	const onOff_protectAreaFilter = () => {
-		alert('보호지역 필터 버튼 오프');
-	};
 	const onOff_FavoriteTag = (value, index) => {
 		console.log('즐겨찾기=>' + value + ' ' + index);
 	};
 
+	const onSelectLocation = location => {
+		setData({...data, protectArea: location});
+	};
+
+	const onSelectKind = kind => {
+		setData({...data, kindFilter: kind});
+	};
 	return (
-		<ScrollView style={{flex: 1}}>
-			<View style={[login_style.wrp_main, protectRequestList.container]}>
-				<View style={[searchProtectRequest.filterView]}>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
+			<ScrollView style={{flex: 1}}>
+				<View style={[searchProtectRequest.filterView, {backgroundColor: 'yellow'}]}>
 					<View style={[searchProtectRequest.filterView.inside]}>
 						<View style={{flexDirection: 'row'}}>
 							<View style={[temp_style.filterBtn]}>
-								<FilterButton btnTitle={'보호 지역'} btnLayout={btn_w306} />
+								<FilterButton menu={PET_PROTECT_LOCATION} onSelect={onSelectLocation} width={306} />
 							</View>
 							<View style={[temp_style.filterBtn]}>
-								<FilterButton menu={PET_KIND} />
+								<FilterButton menu={PET_KIND} onSelect={onSelectKind} width={306} />
 							</View>
 						</View>
 						<View style={[searchProtectRequest.filterView.onOffBtnView]}>
@@ -56,11 +58,11 @@ export default ProtectRequestList = ({navigation, route}) => {
 						</View>
 					</View>
 				</View>
-				<View style={[searchProtectRequest.animalNeedHelpList]}>
+				<View style={[searchProtectRequest.animalNeedHelpList, {backgroundColor: 'lightblue'}]}>
 					<AnimalNeedHelpList data={dummy_ProtectRequestList} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
 				</View>
-			</View>
-		</ScrollView>
+			</ScrollView>
+		</View>
 	);
 };
 

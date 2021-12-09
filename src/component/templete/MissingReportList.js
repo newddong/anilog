@@ -9,7 +9,7 @@ import {Urgent_Write1, Urgent_Write2} from '../atom/icon';
 import {useNavigation} from '@react-navigation/core';
 import {dummy_MissingReportList} from 'Root/config/dummy_data_hjs';
 import FilterButton from '../molecules/FilterButton';
-import {PET_KIND} from 'Root/i18n/msg';
+import {PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
@@ -58,24 +58,30 @@ export default MissingReportList = props => {
 		navigation.push('MissingAnimalDetail');
 	};
 
+	const onSelectLocation = location => {
+		setData({...data, protectArea: location});
+	};
+
+	const onSelectKind = kind => {
+		setData({...data, kindFilter: kind});
+	};
+
 	return (
-		<View style={[login_style.wrp_main, missingReportList.container]}>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<ScrollView style={{flex: 1}}>
-				<View style={[missingReportList.filterContainer]}>
+				<View style={[missingReportList.filterContainer, {backgroundColor: 'yellow'}]}>
 					<View style={[missingReportList.insideContainer]}>
-						{/* FilterBtns */}
 						<View style={{flexDirection: 'row'}}>
 							<View style={[temp_style.filterBtn]}>
-								<FilterButton btnTitle={'보호 지역'} btnLayout={btn_w306} onOff={onOff_protectAreaFilter} onOn={onOn_protectAreaFilter} />
+								<FilterButton menu={PET_PROTECT_LOCATION} onSelect={onSelectLocation} width={306} />
 							</View>
 							<View style={[temp_style.filterBtn]}>
-								<FilterButton menu={PET_KIND} />
+								<FilterButton menu={PET_KIND} onSelect={onSelectKind} width={306} />
 							</View>
 						</View>
 					</View>
 				</View>
-				{/* (O)AnimalNeedHelpList */}
-				<View style={[missingReportList.animalNeedHelpList]}>
+				<View style={[missingReportList.animalNeedHelpList, {backgroundColor: 'lightblue'}]}>
 					<AnimalNeedHelpList
 						data={dummy_MissingReportList}
 						onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}

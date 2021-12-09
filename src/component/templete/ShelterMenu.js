@@ -64,6 +64,7 @@ import UserLocationLabel from '../molecules/UserLocationLabel';
 import UserLocationTimeLabel from '../molecules/UserLocationTimeLabel';
 import UserPetLabel from '../molecules/UserPetLabel';
 import UserTimeLabel from '../molecules/UserTimeLabel';
+import MeatBallDropdown from '../molecules/MeatBallDropdown';
 
 export default ShelterMenu = ({route}) => {
 	const navigation = useNavigation();
@@ -167,6 +168,7 @@ export default ShelterMenu = ({route}) => {
 				<View style={[shelterMenu.shelterMenuStep1]}>
 					{/* Shelter Info*/}
 					<View style={[shelterMenu.shelterInfo]}>
+						<MeatBallDropdown menu={['d1', 'd2']} />
 						<View style={[shelterMenu.shelterInfo_container]}>
 							<View style={[shelterMenu.shelterInfo_container_left]}>
 								<View style={[temp_style.profileImageLarge]}>
