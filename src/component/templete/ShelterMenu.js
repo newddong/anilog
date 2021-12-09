@@ -204,7 +204,6 @@ export default ShelterMenu = ({route}) => {
 						</View>
 					</View>
 				</View>
-				<UserTimeLabel data={dummy_UserObject_pet[1]} />
 				{/* 하단 메뉴 */}
 				<View style={[shelterMenu.profileMenu1]}>
 					<ProfileMenu
