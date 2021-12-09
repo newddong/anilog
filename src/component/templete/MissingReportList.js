@@ -55,6 +55,7 @@ export default MissingReportList = props => {
 
 	const onLabelClick = (status, id, item) => {
 		console.log(`\nMissingReportList:onLabelClick() - status=>${status} id=>${id} item=>${JSON.stringify(item)}`);
+		navigation.push('MissingAnimalDetail');
 	};
 
 	return (
