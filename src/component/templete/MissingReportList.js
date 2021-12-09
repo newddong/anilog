@@ -1,8 +1,7 @@
 import React from 'react';
 import {ScrollView, Text, View, TouchableWithoutFeedback} from 'react-native';
-import {feedWrite, login_style, missingReportList, temp_style, temp_txt} from './style_templete';
+import {feedWrite, login_style, missingReportList, searchProtectRequest, temp_style, temp_txt} from './style_templete';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
-import {btn_w306} from '../atom/btn/btn_style';
 import {WHITE} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {Urgent_Write1, Urgent_Write2} from '../atom/icon';
@@ -69,8 +68,8 @@ export default MissingReportList = props => {
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<ScrollView style={{flex: 1}}>
-				<View style={[missingReportList.filterContainer, {backgroundColor: 'yellow'}]}>
-					<View style={[missingReportList.insideContainer]}>
+				<View style={[searchProtectRequest.filterView]}>
+					<View style={[searchProtectRequest.filterView.inside]}>
 						<View style={{flexDirection: 'row'}}>
 							<View style={[temp_style.filterBtn]}>
 								<FilterButton menu={PET_PROTECT_LOCATION} onSelect={onSelectLocation} width={306} />
@@ -81,12 +80,8 @@ export default MissingReportList = props => {
 						</View>
 					</View>
 				</View>
-				<View style={[missingReportList.animalNeedHelpList, {backgroundColor: 'lightblue'}]}>
-					<AnimalNeedHelpList
-						data={dummy_MissingReportList}
-						onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
-						onLabelClick={(status, id, item) => onLabelClick(status, id, item)}
-					/>
+				<View style={[searchProtectRequest.animalNeedHelpList]}>
+					<AnimalNeedHelpList data={dummy_MissingReportList} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
 				</View>
 			</ScrollView>
 			{showUrgentBtns ? (

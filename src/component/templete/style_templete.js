@@ -2675,7 +2675,8 @@ export const searchProtectRequest = StyleSheet.create({
 	},
 	filterView: {
 		width: 750 * DP,
-		height: 190 * DP,
+		height: 110 * DP,
+		marginTop: 40 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 		inside: {

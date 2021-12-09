@@ -38,7 +38,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<ScrollView style={{flex: 1}}>
-				<View style={[searchProtectRequest.filterView, {backgroundColor: 'yellow'}]}>
+				<View style={[searchProtectRequest.filterView]}>
 					<View style={[searchProtectRequest.filterView.inside]}>
 						<View style={{flexDirection: 'row'}}>
 							<View style={[temp_style.filterBtn]}>
@@ -58,7 +58,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 						</View>
 					</View>
 				</View>
-				<View style={[searchProtectRequest.animalNeedHelpList, {backgroundColor: 'lightblue'}]}>
+				<View style={[searchProtectRequest.animalNeedHelpList]}>
 					<AnimalNeedHelpList data={dummy_ProtectRequestList} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
 				</View>
 			</ScrollView>
