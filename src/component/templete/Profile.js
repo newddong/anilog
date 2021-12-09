@@ -1,9 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {Text, View, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
+import {View, TouchableWithoutFeedback} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {dummy_ShelterProtectAnimalObject, dummy_userObject, dummy_UserObject_shelter} from 'Root/config/dummyDate_json';
+import {
+	dummy_ShelterProtectAnimalObject,
+	dummy_userObject,
+	dummy_UserObject_protected_pet,
+	dummy_UserObject_shelter,
+} from 'Root/config/dummyDate_json';
 import {NORMAL, PET, SHELTER} from 'Root/i18n/msg';
 import {Write94} from '../atom/icon';
 import TabSelectFilled_Type2 from '../molecules/TabSelectFilled_Type2';
@@ -88,7 +93,7 @@ export default Profile = props => {
 			} else if (tabMenuSelected == 2) {
 				return (
 					<View style={[profile.protectedPetList]}>
-						<ProtectedPetList onClickLabel={item => navigation.push('UserProfile', item)} />
+						<ProtectedPetList items={dummy_UserObject_protected_pet} onClickLabel={item => navigation.push('UserProfile', item)} />
 					</View>
 				);
 			} else {

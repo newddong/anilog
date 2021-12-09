@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 // import {TouchableOpacity} from 'react-native-gesture-handler';
-import {login_style, shelterMenu, temp_txt, temp_style, btn_style} from './style_templete';
+import {login_style, shelterMenu, temp_txt, temp_style, btn_style, tabSelectBorder_Type1} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
 import ProfileImageLarge160 from '../molecules/ProfileImageLarge160';
 import {txt} from 'Root/config/textstyle';
@@ -12,7 +12,14 @@ import {FloatAddArticle_126x92} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
 import {Setting46, FavoriteTag48_Filled, Heart48_Filled, Paw46} from '../atom/icon';
-import {dummy_AnimalFromShelter_adopted, dummy_UserObject_shelter} from 'Root/config/dummyDate_json';
+import {
+	dummy_AnimalFromShelter_adopted,
+	dummy_userObject,
+	dummy_UserObject_pet,
+	dummy_UserObject_protected_pet,
+	dummy_UserObject_shelter,
+	dummy_user_shelter,
+} from 'Root/config/dummyDate_json';
 import {_dummy_VolunteerActivityApplicant, _dummy_userObject_user} from 'Root/config/dummy_data_hjs';
 import {
 	MANAGEMENT_OF_PROTECTED_ANIMAL,
@@ -34,9 +41,29 @@ import {
 	SETTING,
 	INFO_QUESTION,
 	ACCOUNT,
+	DEFAULT_PROFILE,
 } from 'Root/i18n/msg';
 import {dummy_AppliesRecord_protect} from 'Root/config/dummy_data_hjs';
 import {GRAY10} from 'Root/config/color';
+import ProfileImageLarge194 from '../molecules/ProfileImageLarge194';
+import OwnerList from '../organism_ksw/OwnerList';
+import ProtectedPetList from '../organism_ksw/ProtectedPetList';
+import ShelterVerticalLabel from '../organism_ksw/ShelterVerticalLabel';
+import ProfileImageSelect from '../molecules/ProfileImageSelect';
+import ProfileImageSmall from '../molecules/ProfileImageSmall';
+import RadioBox from '../molecules/RadioBox';
+import RescueImage from '../molecules/RescueImage';
+import SelectedMedia from '../molecules/SelectedMedia';
+import ShelterInfo from '../molecules/ShelterInfo';
+import TabSelectBorder_Type2 from '../molecules/TabSelectBorder_Type2';
+import TabSelectBorder_Type1 from '../molecules/TabSelectBorder_Type1';
+import TabSelectBorder_Type3 from '../molecules/TabSelectBorder_Type3';
+import TabSelectFilled_Type2 from '../molecules/TabSelectFilled_Type2';
+import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
+import UserLocationLabel from '../molecules/UserLocationLabel';
+import UserLocationTimeLabel from '../molecules/UserLocationTimeLabel';
+import UserPetLabel from '../molecules/UserPetLabel';
+import UserTimeLabel from '../molecules/UserTimeLabel';
 
 export default ShelterMenu = ({route}) => {
 	const navigation = useNavigation();
@@ -177,7 +204,7 @@ export default ShelterMenu = ({route}) => {
 						</View>
 					</View>
 				</View>
-
+				<UserTimeLabel data={dummy_UserObject_pet[1]} />
 				{/* 하단 메뉴 */}
 				<View style={[shelterMenu.profileMenu1]}>
 					<ProfileMenu

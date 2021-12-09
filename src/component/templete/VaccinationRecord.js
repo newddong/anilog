@@ -18,7 +18,7 @@ export default VaccinationRecord = ({navigation}) => {
 		let copy = [vaccinOnceAmonthList, vaccinOnceEvery3monthsList, vaccinOnceAyearList];
 		// const data = vaccinOnceAmonthList + vaccinOnceEvery3monthsList + vaccinOnceAyearList;
 		setData(copy);
-		navigation.setParams(copy);
+		navigation.setParams(copy); //헤더에 데이터 송신
 	}, [vaccinOnceAmonthList, vaccinOnceEvery3monthsList, vaccinOnceAyearList]);
 
 	// [hjs] API 작업시 하단의 케이스문 리펙토링 필요

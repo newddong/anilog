@@ -6,16 +6,14 @@ import {GRAY20} from 'Root/config/color';
 import {RadioChecked48, RadioUnchecked48} from '../atom/icon';
 
 /**
- *
- *@param {{
- * items: Array,
- *values: string,
- *selectableNumber: 'number / 선택가능한 Radio Box 숫자',
- *horizontal: boolean 'RadioBox 정렬방식',
- *onSelect: 'Box 선택 Callback',
- * }} props
+ * 버튼 컴포넌트트
+ * @param {object} props - Props Object
+ * @param {object} props.items - 라디오박스 목록 Array
+ * @param {boolean} props.horizontal - RadioBox 수평정렬 지정 Default=true
+ * @param {number} props.selectableNumber - 선택가능한 Radio Box 숫자 Default = 1
+ * @param {(index:number)=>void} props.onSelect - 라디오버튼 선택할 때 동작하는 콜뱍, 선택한 박스의 인덱스 반환
  */
-export default RadioBox = props => {
+const RadioBox = props => {
 	const tabLength = props.items.length;
 	let tabState = [];
 	Array(tabLength)
@@ -77,9 +75,10 @@ export default RadioBox = props => {
 };
 RadioBox.defaultProps = {
 	items: [1, 2, 3],
-	values: null,
 	selectableNumber: 1,
 	horizontal: true,
 	onSelect: e => console.log(e),
 	// defaultSelect: 1,
 };
+
+export default RadioBox;

@@ -6,16 +6,16 @@ import {Private30, Public30} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 import {APRI10, BLACK, GRAY10, GRAY20} from 'Root/config/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {DEFAULT_PROFILE} from 'Root/i18n/msg';
+
 /**
- *
- *@param {{
- * data: ' user_id, shelter_name, shelter_image, location, shelter_type'
- * onClickLabel: 'Label Click Callback',
- * }} props
+ * 보호소 Object 정보 박스
+ * @param {object} props - Props Object
+ * @param {object} props.data - 보호소 UserObject
+ * @param {(user_id:number)=>void} props.onClickLabel - 보호소 UserObject
  */
-export default ShelterSmallLabel = props => {
+const ShelterSmallLabel = props => {
 	const [validation, setValidation] = React.useState(false);
-	const [imgUri, setImgUri] = React.useState(props.data.user_profile_uri);
 	const [data, setData] = React.useState({
 		user_type: 'shelter',
 		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
@@ -33,13 +33,6 @@ export default ShelterSmallLabel = props => {
 	React.useEffect(() => {
 		setData(props.data);
 	}, [props.data]);
-
-	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정
-	React.useEffect(() => {
-		if (imgUri == null) {
-			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
-		}
-	});
 
 	//user_nickname Text 색깔 조건부적용을 위한 세션아이디 비교
 	React.useEffect(() => {
@@ -72,20 +65,16 @@ export default ShelterSmallLabel = props => {
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{uri: imgUri}} style={styles.img_round_72} />
-				{/* image_round_76이 없으므로 style 작성 */}
+				<Image source={{uri: data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_72} />
 				<View style={{position: 'absolute', right: 0, bottom: 0}}>{getStatusMark()}</View>
 			</TouchableOpacity>
 			<View style={{marginLeft: 10 * DP}}>
-				{/* Text Box 2 Height 86 - profileImage height 94 = -8  ==> PaddingVertical 4씩 textBox View에 준다 */}
-				{/* Text부분과 프로필이미지 사이의 거리 50 */}
 				<Text style={[txt.noto24b, {color: validation ? APRI10 : GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
 					{props.data.shelter_name} /{props.data.shelter_address.city} {props.data.shelter_address.district}
 				</Text>
 				<Text style={[txt.noto24, {color: GRAY20}]} numberOfLines={1} ellipsizeMode="tail">
 					{props.data.shelter_foundation_date}
 				</Text>
-				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
 			</View>
 		</View>
 	);
@@ -107,3 +96,5 @@ ShelterSmallLabel.defaultProps = {
 	},
 	onClickLabel: e => console.log(e),
 };
+
+export default ShelterSmallLabel;

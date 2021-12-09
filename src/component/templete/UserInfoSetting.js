@@ -76,7 +76,7 @@ export default UserInfoSetting = ({route}) => {
 				{/* step1 */}
 				<View style={[temp_style.userInfoSetting_step1]}>
 					<View style={[temp_style.profileImageLarge, userInfoSetting_style.profileImageLarge]}>
-						<ProfileImageLarge194 img_uri={data.user_profile_uri || DEFAULT_PROFILE} />
+						<ProfileImageLarge194 data={data} />
 					</View>
 					<View style={[btn_style.btn_w242, userInfoSetting_style.btn_w242]}>
 						<AniButton btnTitle={MODIFY_PROFILE} btnLayout={btn_w242} onPress={onPressModofyProfile} />

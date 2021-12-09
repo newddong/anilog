@@ -1,30 +1,20 @@
 import React from 'react';
-import {View, TouchableOpacity, TouchableWithoutFeedback, Text, StyleSheet} from 'react-native';
-import AniButton from 'Molecules/AniButton';
-import ActionButton from 'Molecules/ActionButton';
+import {View, TouchableWithoutFeedback, Text, StyleSheet} from 'react-native';
 import Dropdown from 'Molecules/Dropdown';
-import {btn_w280, btn_w226} from 'Atom/btn/btn_style';
-import {APRI10, BLACK, BLUE10, GRAY10, GRAY40, WHITE} from 'Root/config/color';
+import {btn_w226} from 'Atom/btn/btn_style';
+import {GRAY40, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
-import Modal from 'Component/modal/Modal';
 import {txt} from 'Root/config/textstyle';
 import DropdownSelect from './DropdownSelect';
 
 /**
- *
- * @param {{
- * btnTitle : string,
- * btnStyle : 'filled' | 'border' | 'noborder' | undefined,
- * btnLayout : '버튼의 레이아웃 ex)btn_w226' ,
- * disable : boolean,
- * titleFontStyle : number,
- * defaultIndex : '미선택 상태에서 보여지는 item의 index',
- * width :'number / DropDown 길이',
- * onOpen : Function,
- * menu : 'items',
- * onClose : Function,
- * onSelect : Function,
- * }} props
+ * 드롭다운
+ * @param {object} props - Props Object
+ * @param {object} props.menu - 드롭다운 목록
+ * @param {number} props.defaultIndex - 드롭다운의 초기값 인덱스 defulat=0
+ * @param {number} props.width - 드롭다운 길이
+ * @param {number} props.titleFontStyle - 드롭다운 내부 글꼴 크기 default=24
+ * @param {(item, index)=>void} props.onSelect - 드롭다운 선택했을 때 동작하는 콜백, 선택된 오브젝트와 인덱스를 반환
  */
 const NormalDropDown = props => {
 	//Default로 선택되어 있어야 하는 경우 ex)프로필 수정 혹은 임시저장된 데이터 호출 시에는 기존 데이터와 일치하는 Default값을 보여주어야 함
@@ -86,13 +76,9 @@ export const styles = StyleSheet.create({
 
 NormalDropDown.defaultProps = {
 	btnTitle: 'BTN_W654', //버튼의 제목
-	disable: false, // 버튼탭 사용불가 상태 boolean
 	btnLayout: btn_w226, // 버튼의 레이아웃(width, height, radius 등의 수치 결정)
 	titleFontStyle: 24, // 버튼 title의 폰트 크기
-	btnStyle: 'border', // 버튼스타일 filled border noBorder,
 	defaultIndex: null,
-	onOpen: e => console.log('NormalDropDown Default onOpen  ', e),
-	onClose: e => console.log('NormalDropDown Default onClose  ', e),
 	onSelect: (v, i) => console.log('NormalDropDown Default onSelect  ', i + ':' + v),
 	menu: [],
 	width: 200, //없으면 오류남

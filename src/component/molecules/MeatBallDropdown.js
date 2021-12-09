@@ -6,7 +6,7 @@ import {APRI10, APRI20, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import Modal from 'Component/modal/Modal';
 import {txt} from 'Root/config/textstyle';
-import MeatballButton from 'Molecules/MeatballButton';
+import MeatballButton from 'Root/component/molecules/MeatBallButton';
 
 /**
  *
@@ -18,7 +18,7 @@ import MeatballButton from 'Molecules/MeatballButton';
  * onSelect : Function,
  * }} props
  */
-export default MeatBallDropdown = props => {
+const MeatBallDropdown = props => {
 	const onOpen = () => {
 		props.onOpen();
 	};
@@ -92,3 +92,4 @@ const style = StyleSheet.create({
 		elevation: 2,
 	},
 });
+export default MeatBallDropdown;

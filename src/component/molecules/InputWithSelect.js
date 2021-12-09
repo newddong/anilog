@@ -1,33 +1,30 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, TextInput} from 'react-native';
+import {Text, View} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
-import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52} from '../atom/icon';
-import {APRI10, GRAY30, RED10} from 'Root/config/color';
+import {APRI10, RED10} from 'Root/config/color';
 import NormalDropDown from './NormalDropDown';
 import Input24 from 'Molecules/Input24';
 
 /**
- *
- *@param {{
- *placeholder: string,
- *items: 'Array / Select 목록',
- *defaultIndex: number,
- *defaultInput : string,
- *value: string,
- *title : string,
- *title_star : boolean,
- *alert_msg : string,
- *onChange: 'Input Value Chgange Callback',
- *onClear: '지우기 버튼(X) 클릭 Callback',
- *onSelectDropDown : '드롭다운 선택 콜백',
- *width: 'number / TextInput 너비 , default=200',
- *keyboardType : 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'number-pad' | 'decimal-pad',
- *onValid : (boolean)=>void
- *defaultValue: string
- * }} props
+ * 드롭다운이 추가된 인풋 컴포넌트
+ * @param {object} props - Props Object
+ * @param {object} props.items - 드롭다운 목록
+ * @param {string} props.placeholder - 인풋의 Placeholder
+ * @param {string} props.defaultValue - 인풋의 초기 값 (기존 데이터 출력용)
+ * @param {string} props.value - 인풋 값
+ * @param {string} props.title - 인풋 상단의 제목
+ * @param {string} props.alert_msg - 인풋 값의 Validator 미통과 결과 출력
+ * @param {'default' | 'email-address' | 'numeric' | 'phone-pad' | 'number-pad' | 'decimal-pad'} props.keyboardType - 버튼 테마 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'number-pad' | 'decimal-pad'
+ * @param {boolean} props.title_star - 제목 부분의 별표(강조용) 출력 여부 Default=false
+ * @param {number} props.defaultIndex - 드롭 다운의 초기값 인덱스
+ * @param {number} props.width - 인풋 너비(드롭다운은 제외) , default=200
+ * @param {(input:string)=>void} props.onChange - 인풋 값 변경 시 동작하는 콜백, 인풋 반환
+ * @param {()=>void} props.onClear - 지우기 버튼 클릭 시 동작하는 콜백, 제목 반환환
+ * @param {(item)=>void} props.onSelectDropDown - 드롭다운 항목이 선택되었을 때 동작하는 콜백, 선택된 Object 반환
+ * @param {(boolean)=>void} props.onValid - 인풋의 Validator 통과 여부 / boolean 반환
  */
-export default InputWithSelect = props => {
+const InputWithSelect = props => {
 	const [dropdownVal, setDropdownVal] = React.useState(props.items ? props.items[props.defaultIndex] : '');
 	const [input, setInput] = React.useState(props.defaultValue || '');
 	const inputRef = React.useRef();
@@ -90,7 +87,6 @@ InputWithSelect.defaultProps = {
 	title: '',
 	title_star: false,
 	alert_msg: '',
-	defaultInput: '',
 	onChange: e => console.log('InputWithSelect Default onChange   ', e),
 	onClear: e => console.log('InputWithSelect Default onClear   ', e),
 	onSelectDropDown: e => console.log('InputWithSelect Default onSelectDropDown   ', e),
@@ -98,3 +94,5 @@ InputWithSelect.defaultProps = {
 	width: 454,
 	keyboardType: 'default',
 };
+
+export default InputWithSelect;

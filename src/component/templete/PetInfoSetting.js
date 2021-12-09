@@ -88,7 +88,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 				{/* 프로필 컨테이너 */}
 				<View style={[petInfoSetting.profileContainer]}>
 					<View style={[temp_style.petImageLabel, petInfoSetting.petImageLabel]}>
-						<PetImageLabel img_uri={petData.user_profile_uri || DEFAULT_PROFILE} petStatus={petData.petStatus} />
+						<PetImageLabel data={petData} />
 					</View>
 					<View style={[btn_style.btn_w242, petInfoSetting.btn_w242]}>
 						<AniButton onPress={changeProfile} btnTitle={'프로필 변경'} btnLayout={btn_w242} btnTheme={'shadow'} />

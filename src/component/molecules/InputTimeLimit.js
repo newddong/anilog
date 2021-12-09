@@ -5,21 +5,20 @@ import DP from 'Root/config/dp';
 import {GRAY20, GRAY30, BLACK, RED10} from 'Root/config/color';
 
 /**
- *
- *@param {{
- *value: string,
- *placeholder: string,
- *timelimit: 'number / 시간 제한 [단위:초]',
- *alert_msg: 'string / 경고 메시지',
- *timeout_msg: 'string / 시간 초과 메시지',
- *width : num ,
- *onChange: 'Input Value Change Callback',
- *onClear: '지우기(X)버튼 클릭 Callback',
- *onStartTimer : 'Timer 시작 시 Callback',
- *onEndTimer : 'Timer 종료 시 Callback'
- * }} props
+ * 타임아웃이 추가된 인풋 컴포넌트
+ * @param {object} props - Props Object
+ * @param {string} props.value - 인풋 값 Default = null
+ * @param {string} props.placeholder - 인풋 PlaceHolder
+ * @param {string} props.alert_msg - 경고 메시지 (타임아웃과는 별개로 인풋 값이 Validator를 통과하지 못했을 시 출력되는 메시지)
+ * @param {string} props.timeout_msg - 시간 초과 메시지
+ * @param {number} props.timelimit - 시간 제한 [단위:초]
+ * @param {number} props.width - 인풋의 너비
+ * @param {(input:string)=>void} props.onChange - 인풋 값 변경 시 콜백, 인풋 값을 반환
+ * @param {()=>void} props.onClear - 지우기(X)버튼 클릭에 동작하는 콜백
+ * @param {()=>void} props.onStartTimer - 타이머가 시작될 시 동작하는 콜백
+ * @param {()=>void} props.onEndTimer - 타이머가 종료될 시 동작하는 콜백
  */
-export default InputTimeLimit = props => {
+const InputTimeLimit = props => {
 	const [input, setInput] = React.useState('');
 	const [confirm, setConfirm] = React.useState();
 	const inputRef = React.useRef();
@@ -153,3 +152,5 @@ InputTimeLimit.defaultProps = {
 	onStartTimer: e => console.log(e),
 	onEndTimer: e => console.log(e),
 };
+
+export default InputTimeLimit;

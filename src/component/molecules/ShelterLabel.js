@@ -9,13 +9,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 
 /**
- *
- *@param {{
- * data: ' user_id, shelter_name, shelter_image, location, shelter_type'
- * onClickLabel: 'Label Click Callback',
- * }} props
+ * 보호소 Object 정보 박스
+ * @param {object} props - Props Object
+ * @param {object} props.data - 보호소 UserObject
+ * @param {(data:object)=>void} props.onClickLabel - 보호소 UserObject
  */
-export default ShelterLabel = props => {
+const ShelterLabel = props => {
 	// console.log('props / shelterLAbel', props.data);
 	const [validation, setValidation] = React.useState(false);
 	const data = props.data ? props.data : null;
@@ -51,19 +50,15 @@ export default ShelterLabel = props => {
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
 				<Image source={{uri: data ? data.user_profile_uri : DEFAULT_PROFILE}} style={styles.img_round_94} />
-				{/* image_round_76이 없으므로 style 작성 */}
 			</TouchableOpacity>
 			<View style={{position: 'absolute', left: 66 * DP, top: 46 * DP}}>{getStatusMark()}</View>
 			<View style={{marginLeft: 50 * DP, paddingVertical: 4 * DP}}>
-				{/* Text Box 2 Height 86 - profileImage height 94 = -8  ==> PaddingVertical 4씩 textBox View에 준다 */}
-				{/* Text부분과 프로필이미지 사이의 거리 50 */}
 				<Text style={[txt.roboto28b, {color: validation ? APRI10 : BLACK}]} numberOfLines={1} ellipsizeMode="tail">
-					{props.data.shelter_name}
+					{props.data.shelter_name || ''}
 				</Text>
 				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
-					{data ? data.shelter_address.city : ''} {data ? data.shelter_address.district : ''}
+					{data.shelter_address.city || ''} {data.shelter_address.district || ''}
 				</Text>
-				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
 			</View>
 		</View>
 	);
@@ -71,3 +66,4 @@ export default ShelterLabel = props => {
 ShelterLabel.defaultProps = {
 	onClickLabel: e => console.log(e),
 };
+export default ShelterLabel;

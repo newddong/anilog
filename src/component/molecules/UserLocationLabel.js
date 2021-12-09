@@ -5,68 +5,45 @@ import DP from 'Root/screens/dp';
 import {styles} from 'Root/component/atom/image/imageStyle';
 import {APRI10, BLACK} from 'Root/config/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 
 /**
- *
- *@param {{
- * data: 'user_id, user_nickname(string), img_uri(string), location(string)',
- * onLabelClick: void,
- * }} props
+ * 유저의 프로필 사진, 닉네임, 사는지역을 출력하는 라벨
+ * @param {object} props - Props Object
+ * @param {object} props.data - UserObejct
+ * @param {(data:object)=>void} props.onClickLabel - 버튼을 눌렸을때 동작하는 콜백, 제목 반환환
  */
-
-export default UserLocationLabel = props => {
-	const [validation, setValidation] = React.useState(false);
-	const [imgUri, setImgUri] = React.useState(props.data.img_uri);
-
-	//data정보는 있지만 data.user_image가 비어있는 경우 Default propfile Image 설정
+const UserLocationLabel = props => {
+	const data = props.data;
+	const [isLoginUser, setIsLoginUser] = React.useState(false); //현재 접속 중인 아이디와 같다면 닉네임 색깔이 메인색깔
+	//현재 접속한 토큰과 출력된 유저라벨의 유저가 같은지 확인
 	React.useEffect(() => {
-		if (imgUri == false) {
-			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
-		}
-	});
-
-	//user_nickname Text 색깔 조건부적용을 위한 세션아이디 비교
-	React.useEffect(() => {
-		const getItem = async () => {
-			let token = await AsyncStorage.getItem('token');
-			if (props.data.user_id == token) {
-				setValidation(true); //일치한다면 Validation True로 nickname text color를 바꿈
-			}
-			return token;
-		};
-		getItem();
-		return () => {};
-	});
+		AsyncStorage.getItem('token', (err, res) => {
+			res == props.data._id ? setIsLoginUser(true) : setIsLoginUser(false);
+		});
+	}, [props.data]);
 
 	const onClickLabel = e => {
-		props.onLabelClick(props.data.user_id);
+		props.onLabelClick(props.data._id);
 	};
 
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{uri: props.data.img_uri}} style={styles.img_round_70} />
+				<Image source={{uri: props.data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_70} />
 			</TouchableOpacity>
-			{/* Text박스 */}
 			<View style={{marginLeft: 20 * DP}}>
-				{/* Text부분과 프로필이미지 사이의 거리 20 */}
-				<Text style={[txt.roboto28b, {color: validation ? APRI10 : BLACK}]} numberOfLines={1} ellipsizeMode="tail">
-					{props.data.user_nickname}
+				<Text style={[txt.roboto28b, {color: isLoginUser ? APRI10 : BLACK}]} numberOfLines={1} ellipsizeMode="tail">
+					{data.user_nickname || ''}
 				</Text>
 				<Text style={[txt.noto24, {lineHeight: 36 * DP}]} numberOfLines={1} ellipsizeMode="tail">
-					{props.data.location}
+					{data.user_address.city || ' '} {data.user_address.district || ' '}
 				</Text>
-				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
 			</View>
 		</View>
 	);
 };
 UserLocationLabel.defaultProps = {
-	data: {
-		user_id: 'user_id',
-		user_nickname: 'user_nickname',
-		img_uri: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-		location: 'location',
-	},
 	onClickLabel: e => console.log(e),
 };
+export default UserLocationLabel;

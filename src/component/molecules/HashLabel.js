@@ -6,7 +6,14 @@ import DP from 'Root/screens/dp';
 import {Hash50} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 
-export default HashLabel = props => {
+/**
+ * 해시태그 관련 라벨 (키워드 및 태그된 게시물 수 출력 )
+ * @param {object} props - Props Object
+ * @param {string} props.keyword - 해시태그 키워드
+ * @param {boolean} props.keywordBold - 해시태그 키워드의 글자 굵기 Default=true
+ * @param {number} props.count - 해시태그가 사용된 게시물의 갯수
+ */
+const HashLabel = props => {
 	const count = () => {
 		if (props.count > 10000) {
 			return (props.count / 10000).toFixed(1) + '만의 게시물';
@@ -52,3 +59,5 @@ HashLabel.defaultProps = {
 	keywordBold: true,
 	count: 'Count한 게시물',
 };
+
+export default HashLabel;

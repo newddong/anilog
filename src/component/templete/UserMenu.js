@@ -27,10 +27,7 @@ import {
 } from 'Root/i18n/msg';
 import {btn_w280} from '../atom/btn/btn_style';
 import {FavoriteTag48_Filled, Paw48_APRI10, Setting46} from '../atom/icon';
-import ActionButton from '../molecules/ActionButton';
-import AddPet from '../molecules/AddPet';
 import AniButton from '../molecules/AniButton';
-import DatePicker from '../molecules/DatePicker';
 import ProfileImageLarge194 from '../molecules/ProfileImageLarge194';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
 import SocialInfoB from '../organism_ksw/SocialInfoB';
@@ -98,7 +95,7 @@ export default UserMenu = props => {
 				<View style={[userMenu_style.userMenu_step1]}>
 					<View style={[temp_style.userInfo, userMenu_style.userInfo]}>
 						<View style={[temp_style.profileImageLarge, userMenu_style.profileImageLarge]}>
-							<ProfileImageLarge194 img_uri={data.user_profile_uri || DEFAULT_PROFILE} />
+							<ProfileImageLarge194 data={data} />
 						</View>
 
 						<View>

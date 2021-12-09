@@ -5,7 +5,14 @@ import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
 import {ADOPT, DEFAULT_PROFILE, DISCUSS, NEAR_RAINBOWBRIDGE, PROTECT, RESCUE} from 'Root/i18n/msg';
 import {styles} from '../atom/image/imageStyle';
-export default RescueImage = props => {
+
+/**
+ * 동물 구조 임시보호 입양 관련 이미지
+ * @param {object} props - Props Object
+ * @param {string} props.img_uri - 이미지 Uri
+ * @param {'rescue'|'discuss'|'nearrainbow'|'adopt'|'protect'} props.status - 동물의 보호활동 상태
+ */
+const RescueImage = props => {
 	const getStatusText = () => {
 		switch (props.status) {
 			case 'rescue':
@@ -24,7 +31,7 @@ export default RescueImage = props => {
 	return (
 		<View style={styles.img_rect_654x542}>
 			{/* <Image source={{uri:props.img_uri}} style={styles.img_rect_654x542} /> */}
-			<Image source={{uri: props.img_uri}} style={styles.img_rect_654x542} />
+			<Image source={{uri: props.img_uri || DEFAULT_PROFILE}} style={styles.img_rect_654x542} />
 
 			<View style={{width: 480 * DP, height: 64 * DP, borderBottomLeftRadius: 30 * DP, backgroundColor: APRI10, position: 'absolute', right: 0}}>
 				<Text style={[txt.noto36, {textAlign: 'center', color: 'white'}]}>{getStatusText()}</Text>
@@ -34,6 +41,7 @@ export default RescueImage = props => {
 };
 
 RescueImage.defaultProps = {
-	text: '',
-	img_uri: DEFAULT_PROFILE,
+	status: 'rescue',
 };
+
+export default RescueImage;

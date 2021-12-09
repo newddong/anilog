@@ -8,22 +8,22 @@ import {txt} from 'Root/config/textstyle';
 import FilterButtonContainer from './FilterButtonContainer';
 
 /**
- *
- * @param {{
- * btnTitle : string,
- * btnStyle : 'filled' | 'border' | 'noborder' | undefined,
- * btnLayout : '버튼의 레이아웃 ex)btn_w226' ,
- * disable : boolean,
- * titleFontStyle : number,
- * defaultIndex : '미선택 상태에서 보여지는 item의 index',
- * width :'number / DropDown 길이'
- * onOpen : Function,
- * menu : 'items',
- * onClose : Function,
- * onSelect : Function,
- * }} props
+ * 필터 버튼
+ * @param {object} props - Props Object
+ * @param {string} props.btnTitle - 버튼 제목
+ * @param {'shawdow'|'noShadow'|'gray'|undefined} props.btnTheme - 버튼 테마 'shawdow'|'noShadow'|'gray'|undefined
+ * @param {'filled'|'border'|'noborder'|undefined} props.btnStyle - 버튼 스타일 'filled'|'border'|'noborder'|undefined
+ * @param {object} props.btnLayout - 버튼의 레이아웃 스타일(Atoms의 btn_wXXX)
+ * @param {boolean} props.disable - 버튼 활성화 여부
+ * @param {number} props.titleFontStyle - 제목 글꼴 크기, 기본값 24
+ * @param {number} props.defaultIndex - 미선택 상태에서 보여지는 item의 index
+ * @param {number} props.width - DropDown 길이
+ * @param {()=>void} props.onOpen - 드롭다운을 열었을 때 동작하는 콜백
+ * @param {()=>void} props.onClose - 드롭다운을 닫았을 때 동작하는 콜백
+ * @param {()=>void} props.onSelect - 드롭다운 내의 항목을 선택했을 때 동작하는 콜백
+ * @param {object} props.menu - 드롭다운 항목 리스트
  */
-export default FilterButton = props => {
+const FilterButton = props => {
 	//Default로 선택되어 있어야 하는 경우 ex)프로필 수정 혹은 임시저장된 데이터 호출 시에는 기존 데이터와 일치하는 Default값을 보여주어야 함
 	const [value, setValue] = React.useState(props.menu[props.defaultIndex ? props.defaultIndex : 0]);
 	const onSelect = (v, i) => {
@@ -93,3 +93,5 @@ FilterButton.defaultProps = {
 	onSelect: (v, i) => console.log('Filter Default onSelect  ', i + ':' + v),
 	menu: [],
 };
+
+export default FilterButton;

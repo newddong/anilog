@@ -15,13 +15,12 @@ import {
 import {styles} from '../atom/image/imageStyle';
 
 /**
- *
- *@param {{
- *data : Object,
- *size: "number  94 | 76 | 70 | 60 | 46 / default '94'"
- * }} props
+ * 프로필이미지 소형(size 가변 - 94 76 70 60 46)
+ * @param {object} props - Props Object
+ * @param {object} props.data - 프로필 오브젝트
+ * @param {94|76|70|60|46} props.size - 버튼 스타일 '94'|'76'|'70'|'60'|'46'
  */
-export default ProfileImageSmall = props => {
+const ProfileImageSmall = props => {
 	// 유저의 프로필 이미지를 표시,  유저의 종류(일반유저, 반려동물, 보호소)와 상태(임시보호중,입양,공립,사립)에 따라 아이콘을 표시
 	const petStatus = () => {
 		switch (props.data.pet_status) {
@@ -98,3 +97,4 @@ export default ProfileImageSmall = props => {
 ProfileImageSmall.defaultProps = {
 	size: 94,
 };
+export default ProfileImageSmall;

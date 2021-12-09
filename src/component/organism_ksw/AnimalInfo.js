@@ -18,7 +18,7 @@ export default AnimalInfo = props => {
 
 	return (
 		<View style={[animalInfo.container]}>
-			<PetImageLabel img_uri={data.user_profile_uri} petStatus={data.pet_status} />
+			<PetImageLabel data={data} />
 			<View style={[animalInfo.infoContainer]}>
 				<Text style={[animalInfo.infoContainer_petNickname, txt.noto30b]}>{data.user_nickname}</Text>
 				<Text style={[animalInfo.infoContainer_petDetail, txt.noto24, {color: GRAY20}]}>

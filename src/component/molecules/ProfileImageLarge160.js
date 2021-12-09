@@ -5,23 +5,20 @@ import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import profile from 'Root/screens/feed/profile/profile';
 import {Paw48_Mixed, Paw48_YELL20, Paw48_APRI10, Private62, Public62} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
+
 /**
- *
- *@param {{
- * img_uri : string,
- * userType: 'user' | 'pet' | 'shelter',
- *shelterType: 'public' | 'private' ,
- *petStatus: 'normal' | 'protected' | 'adopted' | 'none',
- * }} props
+ * 프로필 이미지 160
+ * @param {object} props - Props Object
+ * @param {object} props.data - 데이터 오브젝트 (UserObject - pet , shelter_type)
  */
-export default ProfileImageLarge160 = props => {
+const ProfileImageLarge160 = props => {
 	// console.log('PrifleImageLabel / Props Data ' + JSON.stringify(props.data));
 
 	const profile_data = props.data
 		? props.data
 		: {
-				userType: 'user',
-				pet_status: 'none',
+				user_type: 'user',
+				pet_status: 'normal',
 				shelter_type: 'private',
 		  };
 
@@ -62,15 +59,11 @@ export default ProfileImageLarge160 = props => {
 	};
 	return (
 		<View style={styles.img_round_160}>
-			<Image source={{uri: profile_data.user_profile_uri ? profile_data.user_profile_uri : DEFAULT_PROFILE}} style={styles.img_round_160} />
+			<Image source={{uri: profile_data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_160} />
 			{userType()}
 		</View>
 	);
 };
 
-ProfileImageLarge160.defaultProps = {
-	img_uri: 'https://hobbyen.co.kr/news/data/20200320/p1065592519623812_956_thum.jpg', //image uri
-	userType: 'user', //required - 유저타입 pet user shelter
-	shelterType: 'none', // public private
-	petStatus: 'none', // normal protected adopted none
-};
+ProfileImageLarge160.defaultProps = {};
+export default ProfileImageLarge160;

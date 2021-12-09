@@ -46,7 +46,7 @@ export default ChildComment = props => {
 		<View style={[childComment.container]}>
 			<View style={[childComment.profileContainer]}>
 				<View style={[childComment.userTimeLabel]}>
-					<UserTimeLabel data={data ? data : null} />
+					<UserTimeLabel data={data || null} />
 				</View>
 				<View style={[childComment.meatBall50_vertical]}>
 					<MeatBallDropdown menu={isMyComment ? SETTING_OWN_COMMENT : SETTING_COMMENT} horizontal={false} />

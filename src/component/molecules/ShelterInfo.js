@@ -3,15 +3,14 @@ import {txt} from 'Root/config/textstyle';
 import {Text, View, TouchableOpacity} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, BLUE20, GRAY10} from 'Root/config/color';
-import {Private48, Public48} from '../atom/icon';
+import ProfileImageSmall from './ProfileImageSmall';
 
 /**
- *
- *@param {{
- * data: 'img_uri, shelter_name, phone_number, address'
- * }} props
+ * 보호소 Object 정보 박스
+ * @param {object} props - Props Object
+ * @param {object} props.data - 보호소 UserObject
  */
-export default ShelterInfo = props => {
+const ShelterInfo = props => {
 	const data = props.data;
 
 	return (
@@ -33,3 +32,5 @@ export default ShelterInfo = props => {
 		</View>
 	);
 };
+
+export default ShelterInfo;

@@ -1,24 +1,24 @@
 import React from 'react';
-import { txt } from 'Root/config/textstyle';
-import { Text, View, TextInput } from 'react-native';
+import {txt} from 'Root/config/textstyle';
+import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
-import { APRI10, GRAY10, GRAY30 } from 'Root/config/color';
+import {APRI10, GRAY10, GRAY30} from 'Root/config/color';
+
 /**
- *
- * @param {{
- *placeholder : string,
- *value : 'string',
- *maxLength : 'number / 최대 글자 수 제한'
- *onChange : 'Input Value Change Callback'
- * }} props
+ * 대용량 인풋 컴포넌트
+ * @param {object} props - Props Object
+ * @param {string} props.placeholder - 인풋 PlaceHolder
+ * @param {string} props.value - 인풋 값
+ * @param {number} props.maxLength - 최대 글자 수 제한
+ * @param {(input:string)=>void} props.onChange - 인풋 값 변경 콜백
  */
-export default InputLongText = props => {
+const InputLongText = props => {
 	const [content, setContent] = React.useState('');
 	const inputRef = React.useRef();
 
 	React.useEffect(() => {
-		props.value != null ? setContent(props.value) : null
-	}, [props.value])
+		props.value != null ? setContent(props.value) : null;
+	}, [props.value]);
 
 	const blur = () => {
 		inputRef.current.blur();
@@ -38,7 +38,7 @@ export default InputLongText = props => {
 	};
 
 	return (
-		<View style={{ flexDirection: 'row' }}>
+		<View style={{flexDirection: 'row'}}>
 			<View
 				style={{
 					width: 710 * DP,
@@ -49,17 +49,17 @@ export default InputLongText = props => {
 					alignItems: 'center',
 					justifyContent: 'center',
 				}}>
-				<View style={{ width: 654 * DP, height: 344 * DP }}>
+				<View style={{width: 654 * DP, height: 344 * DP}}>
 					<TextInput
-						style={[txt.noto24, { width: 654 * DP, height: 314 * DP, textAlignVertical: 'top' }]}
+						style={[txt.noto24, {width: 654 * DP, height: 314 * DP, textAlignVertical: 'top'}]}
 						onChangeText={text => onChange(text)}
 						placeholder={props.placeholder}
 						multiline={true}
 						ref={inputRef}
 						defaultValue={props.value}
 					/>
-					<View style={{ width: 95 * DP, height: 30 * DP, alignSelf: 'flex-end' }}>
-						<Text style={[txt.roboto24, { color: GRAY10 }]}>
+					<View style={{width: 95 * DP, height: 30 * DP, alignSelf: 'flex-end'}}>
+						<Text style={[txt.roboto24, {color: GRAY10}]}>
 							{content.length}/{props.maxlength}
 						</Text>
 					</View>
@@ -74,3 +74,4 @@ InputLongText.defaultProps = {
 	maxlength: 500,
 	onChange: e => console.log(e),
 };
+export default InputLongText;

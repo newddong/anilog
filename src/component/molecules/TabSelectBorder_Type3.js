@@ -5,35 +5,23 @@ import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30} from 'Root/config/color';
 
 /**
- *
- *@param {{
- * items: 'Array / Tab Box에 담길 ItemList',
- * onSelect: void,
- * }} props
+ * 커스텀 탭 (색깔이 채워지지 않은 스타일)
+ * @param {object} props - Props Object
+ * @param {object} props.items- 탭 네비게이션에 담길 목록
+ * @param {number} props.defaultIndex - 탭의 처음 선택 아이템 인덱스
+ * @param {(index:number)=>void} props.onSelect - 탭 클릭할 때 동작하는 콜백, 선택한 탭의 인덱스 반환
  */
-export default TabSelectBorder_Type3 = props => {
-	const tabLength = props.items.length;
-	let tabState = [];
-	Array(tabLength)
-		.fill(props.items)
-		.map((v, i) => {
-			tabState[i] = {tabName: v[i], state: false};
-		});
-	tabState[0].state = true;
-	const [selected, setSelected] = React.useState(tabState);
+const TabSelectBorder_Type3 = props => {
+	const [selected, setSelected] = React.useState(props.defaultIndex ? props.defaultIndex : 0);
 
 	//선택된 Tab의 State를 True로 이외의 Tab은 False로
 	const onSelect = index => {
-		const copyState = [...selected];
-		for (let i = 0; i < copyState.length; i++) {
-			i == index ? (copyState[i].state = true) : (copyState[i].state = false);
-		}
-		setSelected(copyState);
-		props.onSelect(copyState[index]);
+		setSelected(index);
+		props.onSelect(index);
 	};
 
 	const getWidth = index => {
-		if (selected[index].state) {
+		if (index == selected) {
 			return 212 * DP;
 		} else return 158 * DP;
 	};
@@ -46,15 +34,15 @@ export default TabSelectBorder_Type3 = props => {
 					width: getWidth(index),
 					height: 60 * DP,
 					borderBottomWidth: 2 * DP,
-					borderBottomColor: selected[index].state ? APRI10 : GRAY30,
+					borderBottomColor: index == selected ? APRI10 : GRAY30,
 					marginHorizontal: 0.5 * DP, //서로 다른 Border Color가 겹치는 현상방지
 					justifyContent: 'center',
 				}}>
 				<Text
 					style={[
-						selected[index].state ? txt.noto24b : txt.noto24,
+						index == selected ? txt.noto24b : txt.noto24,
 						{
-							color: selected[index].state ? APRI10 : GRAY20,
+							color: index == selected ? APRI10 : GRAY20,
 							textAlign: 'center',
 							lineHeight: 42 * DP,
 						},
@@ -71,3 +59,4 @@ TabSelectBorder_Type3.defaultProps = {
 	items: [1, 2, 3], //FlatList에 담길 배열 정보
 	onSelect: e => console.log(e), //Tab Press 이벤트
 };
+export default TabSelectBorder_Type3;

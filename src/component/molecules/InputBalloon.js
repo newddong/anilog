@@ -3,17 +3,14 @@ import {txt} from 'Root/config/textstyle';
 import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY30, RED10} from 'Root/config/color';
-
 /**
- *
- * @param {{
- *placeholder : string,
- *value : 'string',
- *title : string,
- *onChange : 'Input Value Change Callback'
- * }} props
+ * 테두리가 둥근 인풋 컴포넌트
+ * @param {object} props - Props Object
+ * @param {string} props.title - 인풋 상단의 제목
+ * @param {string} props.placeholder - 인풋의 PlaceHolder
+ * @param {(input:string)=>void} props.onChange - 인풋 값 변경 콜백
  */
-export default InputBalloon = props => {
+const InputBalloon = props => {
 	const inputRef = React.useRef();
 
 	const blur = () => {
@@ -67,3 +64,4 @@ InputBalloon.defaultProps = {
 	title: 'title',
 	onChange: e => console.log(e),
 };
+export default InputBalloon;

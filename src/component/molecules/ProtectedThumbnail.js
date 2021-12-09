@@ -7,12 +7,12 @@ import {Mercy_Killing, Female48, Male48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 
 /**
- *
- *@param {{
- * data: 'Object - img_uri, gender(female, male), status(protected, missing, reported, onNegotiation, adoption_available, adopted'
- * }} props
+ * 버튼 컴포넌트트
+ * @param {object} props - Props Object
+ * @param {object} props.data - 썸네일 오브젝트 (img_uri, gender(female, male), status(protected, missing, reported, onNegotiation, adoption_available, adopted)
+ * @param {(status:boolean, _id:number)=>void} props.onLabelClick - 썸네일 클릭할 때 동작하는 콜백, 썸네일 클릭 상태와 클릭한 썸네일의 고유 _id반환
  */
-export default ProtectedThumbnail = props => {
+const ProtectedThumbnail = props => {
 	const borderByStatus = () => {
 		if (props.data.status == 'emergency') {
 			return {
@@ -97,10 +97,6 @@ export default ProtectedThumbnail = props => {
 };
 
 ProtectedThumbnail.defaultProps = {
-	data: {
-		img_uri: '',
-		gender: 'female',
-		status: 'adoption_available', // protected, missing, reported, onNegotiation, adoption_available, adopted
-	},
 	onLabelClick: e => console.log(e),
 };
+export default ProtectedThumbnail;

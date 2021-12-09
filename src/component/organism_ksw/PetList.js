@@ -12,7 +12,7 @@ export default PetList = props => {
 			<View style={[petList.itemContainer]}>
 				<View style={[petList.petProfileImageMedium]}>
 					<TouchableOpacity onPress={() => props.onClickLabel(item)}>
-						<ProfileImageMedium120 img_uri={item.img_uri} userType={'pet'} petStatus={item.petStatus} />
+						<ProfileImageMedium120 data={item} />
 					</TouchableOpacity>
 				</View>
 

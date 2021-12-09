@@ -12,7 +12,7 @@ export default ShelterVerticalLabel = props => {
 	return (
 		<View style={[shelterLabel.container]}>
 			<TouchableOpacity style={[shelterLabel.profileImageMedium]} onPress={() => props.onLabelClick()}>
-				<ProfileImageMedium140 userType={'shelter'} shelterType={data.shelter_type} img_uri={data.user_profile_uri} />
+				<ProfileImageMedium140 data={data} />
 			</TouchableOpacity>
 			<View style={[shelterLabel.shelterInfo]}>
 				<Text style={[txt.noto28, {color: BLACK, textAlign: 'center'}]}>{data.shelter_name}</Text>

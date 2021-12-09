@@ -2,30 +2,23 @@ import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
+import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import DP from 'Root/screens/dp';
 import {Paw30_APRI10, Paw30_Mixed, Paw30_YELL20} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 
 /**
- *
- *@param {{
- *data : 'Object - needed props : user_id , user_nickname, img_uri, status' ,
- *onClickLabel : 'OnClick Callback',
- * }} props
+ * 버튼 컴포넌트트
+ * @param {object} props - Props Object
+ * @param {object} props.data -  UserObject(Pet)과 주인계정의 닉네임
+ * @param {(object)=>void} props.onClickLabel - 라벨을 클릭했을 때 동작하는 콜백, 선택된 오브젝트 반환(UserObject -pet )
  */
-export default PetLabel = props => {
-	const [imgUri, setImgUri] = React.useState(props.data.img_uri);
-	React.useEffect(() => {
-		if (imgUri == false) {
-			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
-		}
-	});
-
+const PetLabel = props => {
 	const getStatusMark = () => {
-		switch (props.data.status) {
-			case 'protected':
+		switch (props.data.pet_status) {
+			case 'protect':
 				return <Paw30_YELL20 />;
-			case 'adopted':
+			case 'adopt':
 				return <Paw30_Mixed />;
 			default:
 				return <Paw30_APRI10 />;
@@ -33,13 +26,13 @@ export default PetLabel = props => {
 	};
 
 	const onClickLabel = e => {
-		props.onLabelClick(props.data.user_id);
+		props.onLabelClick(props.data._id);
 	};
 
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{uri: imgUri}} style={styles.img_round_94} />
+				<Image source={{uri: props.data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_94} />
 				<View style={{position: 'absolute'}}>
 					{/* 팻의 상태 여부에 따른 분기 - protected, adopted, normal  */}
 					{getStatusMark()}
@@ -50,10 +43,10 @@ export default PetLabel = props => {
 				{/* Text부분과 프로필이미지 사이의 거리 30 */}
 
 				<Text style={txt.roboto28b} numberOfLines={1} ellipsizeMode="tail">
-					{props.data.user_nickname}
+					{props.data.user_nickname || ''}
 				</Text>
 				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
-					{props.data.owner}
+					/ {props.data.owner_nickname || ''}
 				</Text>
 				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
 			</View>
@@ -62,12 +55,6 @@ export default PetLabel = props => {
 };
 
 PetLabel.defaultProps = {
-	data: {
-		user_id: 'user_id',
-		user_nickname: 'user_nickname',
-		img_uri: 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-		status: 'normal',
-		owner: 'Owner',
-	},
 	onClickLabel: e => console.log(e),
 };
+export default PetLabel;

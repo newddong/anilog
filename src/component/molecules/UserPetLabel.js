@@ -1,22 +1,18 @@
 import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
 import {txt} from 'Root/config/textstyle';
+import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
+
 /**
- *
- *@param {{
- * data: 'user_id, user_nickname(string), img_uri(string)',
- * onLabelClick: void,
- * }} props
+ * 유저가 기르는 반려동물의 프로필 사진, 닉네임, 유저의 닉네임을 출력하는 라벨
+ * @param {object} props - Props Object
+ * @param {object} props.data - UserObejct
+ * @param {(data:object)=>void} props.onClickLabel - 버튼을 눌렸을때 동작하는 콜백, 제목 반환환
  */
-export default UserPetLabel = props => {
-	const [imgUri, setImgUri] = React.useState(props.data.user_image);
-	React.useEffect(() => {
-		if (imgUri == false) {
-			setImgUri('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
-		}
-	});
+const UserPetLabel = props => {
+	const data = props.data;
 
 	const onClickLabel = e => {
 		props.onLabelClick(props.data.user_id);
@@ -25,27 +21,20 @@ export default UserPetLabel = props => {
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{uri: imgUri}} style={styles.img_round_76} />
-				{/* image_round_76이 없으므로 style 작성 */}
+				<Image source={{uri: data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_76} />
 			</TouchableOpacity>
 			<View style={{marginLeft: 20 * DP}}>
-				{/* Text부분과 프로필이미지 사이의 거리 20 */}
 				<Text style={[txt.roboto28b]} numberOfLines={1} ellipsizeMode="tail">
 					{props.data.user_nickname}
 				</Text>
 				<Text style={[txt.noto24, {lineHeight: 44 * DP}]} numberOfLines={1} ellipsizeMode="tail">
-					pet_nickname
+					{props.data.user_nickname}
 				</Text>
-				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
 			</View>
 		</View>
 	);
 };
 UserPetLabel.defaultProps = {
-	data: {
-		user_id: 'user_id',
-		user_nickname: 'user_nickname',
-		img_uri: 'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-	},
 	onClickLabel: e => console.log(e),
 };
+export default UserPetLabel;
