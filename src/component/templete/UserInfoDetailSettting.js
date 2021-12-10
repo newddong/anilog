@@ -9,14 +9,15 @@ import InputWithSelect from '../molecules/InputWithSelect';
 import AddressInput from '../organism_ksw/AddressInput';
 import InterestTagList from '../organism_ksw/InterestTagList';
 import {GENDER_TAB_SELECT, INPUT_PHONE_NUM, INTEREST_ACT, INTEREST_REGION, mobile_carrier} from 'Root/i18n/msg';
+import {dummy_userObject} from 'Root/config/dummyDate_json';
 
 export default UserInfoDetailSettting = ({route, navigation}) => {
 	// console.log(route.params);
 
-	const [data, setData] = React.useState(route.params);
+	const [data, setData] = React.useState(dummy_userObject[0]); //기존 유저의 데이터가 담겨있음
 
+	//갱신되는 데이터는 Header에도 Json형태로 전해짐
 	React.useEffect(() => {
-		console.log('phone num', data.user_phone_number);
 		navigation.setParams(data);
 	}, [data]);
 

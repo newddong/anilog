@@ -28,14 +28,12 @@ const PetImageLabel = props => {
 		<View style={{width: 180 * DP, height: 180 * DP}}>
 			<Image source={{uri: props.data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_180} />
 			<View style={{position: 'absolute'}}>{petStatus()}</View>
-			<Text style={[txt.noto28, {color: GRAY10, textAlign: 'center'}]}>{props.data.user_nickname}</Text>
+			{props.showNickname ? <Text style={[txt.noto28, {color: GRAY10, textAlign: 'center'}]}>{props.data.user_nickname}</Text> : <></>}
 		</View>
 	);
 };
 
 PetImageLabel.defaultProps = {
-	// img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
-	// petStatus: 'normal', // normal protected adopted
-	// petNickname: null, // 펫 프로필이미지 아래에 출력되는 닉네임
+	showNickname: true,
 };
 export default PetImageLabel;

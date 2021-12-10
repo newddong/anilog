@@ -46,12 +46,12 @@ export default UserMenu = props => {
 
 	// 나의 반려동물 버튼 클릭
 	const onPressMyCompanion = () => {
-		navigation.push('PetInfoSetting', data); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
+		navigation.push('PetInfoSetting'); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
 	};
 
 	// 내 정보 수정 클릭
 	const onPressModifyMyInfo = () => {
-		navigation.push('UserInfoSetting', data); //userObject
+		navigation.push('UserInfoSetting'); //userObject
 	};
 
 	//하단 메뉴 클릭
@@ -80,10 +80,19 @@ export default UserMenu = props => {
 				break;
 			case '쪽지함':
 				alert('업데이트 예정입니다');
+				break;
 			case '정보/문의':
 				alert('업데이트 예정입니다');
+				break;
 			case '커뮤니티':
 				alert('업데이트 예정입니다');
+				break;
+			case '계정':
+				alert('업데이트 예정입니다');
+				break;
+			case '알림':
+				alert('업데이트 예정입니다');
+				break;
 		}
 		// navigation.push('me')
 	};
@@ -136,7 +145,7 @@ export default UserMenu = props => {
 							[FRIENDS, PEED_CONTENTS],
 							[PROTECTION_REQUEST, COMUNITY],
 						]}
-						onClick={clikedItem => menuClick(clikedItem)}
+						onClick={menuClick}
 						titleIcon={<FavoriteTag48_Filled />}
 					/>
 					<ProfileMenu
@@ -146,7 +155,7 @@ export default UserMenu = props => {
 							[APPLICATION_HISTORY, ANIMAL_PROTECTION_STATE],
 							[COMUNITY, NOTE_LIST],
 						]}
-						onClick={clikedItem => menuClick(clikedItem)}
+						onClick={menuClick}
 						titleIcon={<Paw48_APRI10 />}
 					/>
 					<ProfileMenu
@@ -155,7 +164,7 @@ export default UserMenu = props => {
 							[INFO_QUESTION, ACCOUNT],
 							[INFO, ''],
 						]}
-						onClick={clikedItem => menuClick(clikedItem)}
+						onClick={menuClick}
 						titleIcon={<Setting46 />}
 					/>
 				</View>

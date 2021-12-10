@@ -3,14 +3,12 @@ import {View} from 'react-native';
 import {login_style} from './style_templete';
 import AidRequestList from '../organism_ksw/AidRequestList';
 import {temp_style, baseInfo_style} from './style_templete';
-import {dummy_AidRequestAnimalList, dummy_ShelterProtectAnimalObject} from 'Root/config/dummyDate_json';
+import {dummy_AidRequestAnimalList, dummy_ShelterProtectAnimalObject, dummy_UserObject_shelter} from 'Root/config/dummyDate_json';
 import DP from 'Root/config/dp';
 
 //AidRequestList에서 필요한 데이터 테이블 =====> ShelterProtectAnimalObject <=====
 
 export default AidRequestAnimalList = ({route, navigation}) => {
-	const userData = route.params; //로그인한 유저의 UserObject가 담겨져 있음
-
 	//본래라면 UserObject에 담긴 _id를 토대로 보호중인 동물을 서버로부터 가져옴.
 	const dummy_AidRequestList = dummy_AidRequestAnimalList;
 

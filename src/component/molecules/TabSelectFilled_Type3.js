@@ -53,4 +53,4 @@ TabSelectFilled_Type3.defaultProps = {
 	items: [1, 2, 3], //FlatList에 담길 배열 정보
 	onSelect: e => console.log(e), //Tab Press 이벤트
 };
-export default TabSelectBorder_Type3;
+export default TabSelectFilled_Type3;

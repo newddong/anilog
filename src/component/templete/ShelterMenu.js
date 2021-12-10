@@ -45,26 +45,6 @@ import {
 } from 'Root/i18n/msg';
 import {dummy_AppliesRecord_protect} from 'Root/config/dummy_data_hjs';
 import {GRAY10} from 'Root/config/color';
-import ProfileImageLarge194 from '../molecules/ProfileImageLarge194';
-import OwnerList from '../organism_ksw/OwnerList';
-import ProtectedPetList from '../organism_ksw/ProtectedPetList';
-import ShelterVerticalLabel from '../organism_ksw/ShelterVerticalLabel';
-import ProfileImageSelect from '../molecules/ProfileImageSelect';
-import ProfileImageSmall from '../molecules/ProfileImageSmall';
-import RadioBox from '../molecules/RadioBox';
-import RescueImage from '../molecules/RescueImage';
-import SelectedMedia from '../molecules/SelectedMedia';
-import ShelterInfo from '../molecules/ShelterInfo';
-import TabSelectBorder_Type2 from '../molecules/TabSelectBorder_Type2';
-import TabSelectBorder_Type1 from '../molecules/TabSelectBorder_Type1';
-import TabSelectBorder_Type3 from '../molecules/TabSelectBorder_Type3';
-import TabSelectFilled_Type2 from '../molecules/TabSelectFilled_Type2';
-import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
-import UserLocationLabel from '../molecules/UserLocationLabel';
-import UserLocationTimeLabel from '../molecules/UserLocationTimeLabel';
-import UserPetLabel from '../molecules/UserPetLabel';
-import UserTimeLabel from '../molecules/UserTimeLabel';
-import MeatBallDropdown from '../molecules/MeatBallDropdown';
 
 export default ShelterMenu = ({route}) => {
 	const navigation = useNavigation();
@@ -72,7 +52,7 @@ export default ShelterMenu = ({route}) => {
 
 	//보호소 정보 수정
 	const moveToShelterInfoSetting = () => {
-		navigation.push('ShelterInfoSetting', userData);
+		navigation.push('ShelterInfoSetting');
 	};
 
 	//동물 추가
@@ -82,7 +62,7 @@ export default ShelterMenu = ({route}) => {
 
 	//게시물 추가
 	const moveToAidRequestAnimalList = () => {
-		navigation.push('AidRequestAnimalList', userData);
+		navigation.push('AidRequestAnimalList');
 	};
 
 	//메뉴에 해당되는 네이게이션 이동
@@ -100,7 +80,7 @@ export default ShelterMenu = ({route}) => {
 			//나의 보호소 출신 동물
 			case FROM_MY_SHELTER:
 				//listType: 'original'- 클릭시 해당 UserProfile로 go, 'twoBtn' - 클릭시 외곽 선 표출, , 'checkBox' - 해당 페이지에서 바로 체크박스 표출
-				navigation.push('AnimalFromShelter', dummy_AnimalFromShelter_adopted);
+				navigation.push('AnimalFromShelter');
 				break;
 			//봉사활동 신청 관리
 			case MANAGEMENT_OF_VOLUNTEER:
@@ -168,7 +148,6 @@ export default ShelterMenu = ({route}) => {
 				<View style={[shelterMenu.shelterMenuStep1]}>
 					{/* Shelter Info*/}
 					<View style={[shelterMenu.shelterInfo]}>
-						<MeatBallDropdown menu={['d1', 'd2']} />
 						<View style={[shelterMenu.shelterInfo_container]}>
 							<View style={[shelterMenu.shelterInfo_container_left]}>
 								<View style={[temp_style.profileImageLarge]}>

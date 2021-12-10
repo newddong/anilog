@@ -8,6 +8,7 @@ export default SearchAccountA = props => {
 	const userObejct = dummy_userObject;
 	//검색이벤트 발생 시 props.input의 값이 바뀌고 검색을 실시
 	const [searchedList, setSearchedList] = React.useState([]);
+
 	React.useEffect(() => {
 		if (props.input != null) {
 			const inputData = props.input.searchInput;
@@ -23,7 +24,7 @@ export default SearchAccountA = props => {
 	}, [props.input]);
 
 	React.useEffect(() => {
-		// console.log('searchedList', searchedList);
+		console.log('searchedList', searchedList);
 	}, [searchedList]);
 
 	return (

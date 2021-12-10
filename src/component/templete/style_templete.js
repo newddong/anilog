@@ -1922,7 +1922,7 @@ export const baseInfo_style = StyleSheet.create({
 });
 export const animalFromShelter_style = StyleSheet.create({
 	container: {
-		width: 750 * DP,
+		flex: 0,
 		marginTop: 30 * DP,
 		alignItems: 'center',
 	},
