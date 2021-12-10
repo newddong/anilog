@@ -224,14 +224,18 @@ export const dummy_ProtectRequestList = [
 
 export const dummy_MissingReportList = [
 	{
+		_id: 'missing1',
 		//임시로 지정
-		protect_animal_photos: ['https://www.nemopan.com/files/attach/images/166591/048/279/014/9dbf33d246404d5f20481c6703064f4b.jpg'],
+		protect_animal_photos: [
+			'https://w.namu.la/s/f783eaddcfb087fe23cf0fa8b5341c803721b55167cd0f94a65ee7ae9b295e5056f58155cf5d70ec62470e89eb09f039d712b43cb13519f84f2c93eac5ce25557a6b6284dcbb4fd88936dc8faf26e872',
+		],
 
 		// @FeedObject
-		feed_thumbnail: 'https://www.nemopan.com/files/attach/images/166591/048/279/014/9dbf33d246404d5f20481c6703064f4b.jpg',
+		feed_thumbnail:
+			'https://w.namu.la/s/f783eaddcfb087fe23cf0fa8b5341c803721b55167cd0f94a65ee7ae9b295e5056f58155cf5d70ec62470e89eb09f039d712b43cb13519f84f2c93eac5ce25557a6b6284dcbb4fd88936dc8faf26e872',
 		feed_type: 'missing',
 		missing_animal_species: '개', //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
-		missing_animal_species_detail: '리트리버', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_species_detail: '진돗개', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
 		missing_animal_sex: 'male', //실종 동물의 성별
 		missing_animal_age: '8살', //실종 동물의 나이
 		missing_animal_lost_location: '공덕역', //실종 동물의 실종 지역 혹은 장소
@@ -239,6 +243,7 @@ export const dummy_MissingReportList = [
 		missing_animal_date: '2021-02-11', //실종일
 	},
 	{
+		_id: 'missing2',
 		//임시로 지정
 		protect_animal_photos: ['https://t1.daumcdn.net/tistoryfile/fs8/1_tistory_2008_10_03_18_17_48e5e30cc7a63??original'],
 
@@ -254,94 +259,55 @@ export const dummy_MissingReportList = [
 		missing_animal_date: '2021-01-03', //실종일
 	},
 	{
+		_id: 'missing3',
 		//임시로 지정
-		protect_animal_photos: ['https://www.nemopan.com/files/attach/images/166591/048/279/014/9dbf33d246404d5f20481c6703064f4b.jpg'],
+		protect_animal_photos: ['https://blog.kakaocdn.net/dn/q5IiN/btqEfrdKUwJ/kCxqtCQkjuV3UyRZo4K3Ik/img.jpg'],
 
 		// @FeedObject
-		feed_thumbnail: 'https://www.nemopan.com/files/attach/images/166591/048/279/014/9dbf33d246404d5f20481c6703064f4b.jpg',
+		feed_thumbnail: 'https://blog.kakaocdn.net/dn/q5IiN/btqEfrdKUwJ/kCxqtCQkjuV3UyRZo4K3Ik/img.jpg',
 		feed_type: 'missing',
-		missing_animal_species: '개', //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
-		missing_animal_species_detail: '리트리버', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
-		missing_animal_sex: 'male', //실종 동물의 성별
-		missing_animal_age: '8살', //실종 동물의 나이
-		missing_animal_lost_location: '공덕역', //실종 동물의 실종 지역 혹은 장소
-		missing_animal_features: '온몸이 갈색이며, 무엇이든 잘 물어 뜯음', //실종 동물의 특징
-		missing_animal_date: '2021-02-11', //실종일
-	},
-	{
-		//임시로 지정
-		protect_animal_photos: ['https://t1.daumcdn.net/tistoryfile/fs8/1_tistory_2008_10_03_18_17_48e5e30cc7a63??original'],
-
-		// @FeedObject
-		feed_thumbnail: 'https://t1.daumcdn.net/tistoryfile/fs8/1_tistory_2008_10_03_18_17_48e5e30cc7a63??original',
-		feed_type: 'report',
-		missing_animal_species: '새', //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
-		missing_animal_species_detail: '앵무새', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
-		missing_animal_sex: 'female', //실종 동물의 성별
-		missing_animal_age: '3살', //실종 동물의 나이
-		missing_animal_lost_location: '집안(창문으로 나감)', //실종 동물의 실종 지역 혹은 장소
-		missing_animal_features: '실시간 말이 많음', //실종 동물의 특징
-		missing_animal_date: '2021-01-03', //실종일
-	},
-	{
-		//임시로 지정
-		protect_animal_photos: ['https://www.nemopan.com/files/attach/images/166591/048/279/014/9dbf33d246404d5f20481c6703064f4b.jpg'],
-
-		// @FeedObject
-		feed_thumbnail: 'https://www.nemopan.com/files/attach/images/166591/048/279/014/9dbf33d246404d5f20481c6703064f4b.jpg',
-		feed_type: 'missing',
-		missing_animal_species: '개', //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
-		missing_animal_species_detail: '리트리버', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
-		missing_animal_sex: 'male', //실종 동물의 성별
-		missing_animal_age: '8살', //실종 동물의 나이
-		missing_animal_lost_location: '공덕역', //실종 동물의 실종 지역 혹은 장소
-		missing_animal_features: '온몸이 갈색이며, 무엇이든 잘 물어 뜯음', //실종 동물의 특징
-		missing_animal_date: '2021-02-11', //실종일
-	},
-	{
-		//임시로 지정
-		protect_animal_photos: ['https://pds.joins.com/news/component/newsis/201609/11/NISI20160909_0012162773_web.jpg'],
-
-		// @FeedObject
-		feed_thumbnail: 'https://pds.joins.com/news/component/newsis/201609/11/NISI20160909_0012162773_web.jpg',
-		feed_type: 'report',
 		missing_animal_species: '개', //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
 		missing_animal_species_detail: '시베리안허스키', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
-		missing_animal_sex: 'male', //실종 동물의 성별
-		missing_animal_age: '3살', //실종 동물의 나이
-		missing_animal_lost_location: '서울역', //실종 동물의 실종 지역 혹은 장소
-		missing_animal_features: '잘 째려봄', //실종 동물의 특징
-		missing_animal_date: '2021-09-18', //실종일
+		missing_animal_sex: 'mail', //실종 동물의 성별
+		missing_animal_age: '2살', //실종 동물의 나이
+		missing_animal_lost_location: '청포동 이마트', //실종 동물의 실종 지역 혹은 장소
+		missing_animal_features: '자주 짖음', //실종 동물의 특징
+		missing_animal_date: '2021-11-13', //실종일
 	},
 	{
+		_id: 'missing4',
 		//임시로 지정
-		protect_animal_photos: ['http://image.dongascience.com/Photo/2017/06/14975908453479.JPG'],
+		protect_animal_photos: [
+			'https://lh3.googleusercontent.com/proxy/kKzot80pMGLttmHHHSt20eAyAQoVOfgEuId5Y8pHem0SVTFDq2gPIwrX8KaS7560Jg0ran6Tv8dPTjl3WMXCCz-9JkdnuR0cXQ5uqcxeMhxRDjHs805dohUZWrLCMzumvXEEhYM-uXC-J2iVkZx5KQLXyy6fpGBdybOlbbdO4gvd5Q',
+		],
 
 		// @FeedObject
-		feed_thumbnail: 'http://image.dongascience.com/Photo/2017/06/14975908453479.JPG',
-		feed_type: 'missing',
+		feed_thumbnail:
+			'https://lh3.googleusercontent.com/proxy/kKzot80pMGLttmHHHSt20eAyAQoVOfgEuId5Y8pHem0SVTFDq2gPIwrX8KaS7560Jg0ran6Tv8dPTjl3WMXCCz-9JkdnuR0cXQ5uqcxeMhxRDjHs805dohUZWrLCMzumvXEEhYM-uXC-J2iVkZx5KQLXyy6fpGBdybOlbbdO4gvd5Q',
+		feed_type: 'report',
 		missing_animal_species: '개', //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
-		missing_animal_species_detail: '리트리버', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
-		missing_animal_sex: 'female', //실종 동물의 성별
-		missing_animal_age: '4살', //실종 동물의 나이
-		missing_animal_lost_location: '연세대 후문', //실종 동물의 실종 지역 혹은 장소
-		missing_animal_features: '털이 비교적 없는 편이며, 잘 짖는 편', //실종 동물의 특징
-		missing_animal_date: '2021-08-02', //실종일
+		missing_animal_species_detail: '웰시코기', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: 'mail', //실종 동물의 성별
+		missing_animal_age: '1살', //실종 동물의 나이
+		missing_animal_lost_location: '한남동 동동빌라', //실종 동물의 실종 지역 혹은 장소
+		missing_animal_features: '너무 어려서 잘 걷지 못함', //실종 동물의 특징
+		missing_animal_date: '2021-10-22', //실종일
 	},
 	{
+		_id: 'missing5',
 		//임시로 지정
-		protect_animal_photos: ['https://cdn.imweb.me/upload/S201712205a3a0910b89f5/a2470afad8a92.jpg'],
+		protect_animal_photos: ['http://cdn.ksilbo.co.kr/news/photo/202106/902252_501806_3356.png'],
 
 		// @FeedObject
-		feed_thumbnail: 'https://cdn.imweb.me/upload/S201712205a3a0910b89f5/a2470afad8a92.jpg',
-		feed_type: 'report', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_thumbnail: 'http://cdn.ksilbo.co.kr/news/photo/202106/902252_501806_3356.png',
+		feed_type: 'missing',
 		missing_animal_species: '고양이', //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
-		missing_animal_species_detail: '잡종', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
-		missing_animal_sex: 'female', //실종 동물의 성별
-		missing_animal_age: '7살', //실종 동물의 나이
-		missing_animal_lost_location: '목동 푸르지오 분수대', //실종 동물의 실종 지역 혹은 장소
-		missing_animal_features: '갈색과 흰색 얼룩이며, 햇볕쬐는 것을 좋아함', //실종 동물의 특징
-		missing_animal_date: '2021-11-29', //실종일
+		missing_animal_species_detail: '나인리', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: 'mail', //실종 동물의 성별
+		missing_animal_age: '2살', //실종 동물의 나이
+		missing_animal_lost_location: '한남동 동동빌라', //실종 동물의 실종 지역 혹은 장소
+		missing_animal_features: '몸만 흰색이고 갈색등이 주를 이룸', //실종 동물의 특징
+		missing_animal_date: '2021-12-23', //실종일
 	},
 ];
 

@@ -14,6 +14,7 @@ import {GRAY10} from 'Root/config/color';
 import {SHARE} from 'Root/i18n/msg';
 
 export default FeedContent = props => {
+	const debug = true;
 	const navigation = useNavigation();
 	const dumy_data = props.data;
 	const location = '모델하우스 앞 공터';
@@ -86,11 +87,12 @@ export default FeedContent = props => {
 			<View style={[organism_style.userLocationLabel_view_feedContent]}>
 				{/* UserLocationLabel */}
 				<View style={[organism_style.userLocationLabel_feedContent]}>
-					{dumy_data != undefined ? (
+					{debug && console.log(`\nFeedContent:view - dumy_data=>:${JSON.stringify(dumy_data)}`)}
+					{/* {dumy_data != undefined ? (
 						<UserLocationLabel data={dumy_data} onLabelClick={() => navigation.push('UserProfile')} />
 					) : (
 						<UserLocationLabel data={temp_data} onLabelClick={() => navigation.push('UserProfile')} />
-					)}
+					)} */}
 				</View>
 
 				{/* type값이 status일 경우 status 버튼이 나오고 그렇지 않으면 다른 버튼 표기 */}

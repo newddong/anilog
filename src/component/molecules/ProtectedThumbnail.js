@@ -10,7 +10,7 @@ import {styles} from '../atom/image/imageStyle';
  * 버튼 컴포넌트트
  * @param {object} props - Props Object
  * @param {object} props.data - 썸네일 오브젝트 (img_uri, gender(female, male), status(protected, missing, reported, onNegotiation, adoption_available, adopted)
- * @param {(status:boolean, _id:number)=>void} props.onLabelClick - 썸네일 클릭할 때 동작하는 콜백, 썸네일 클릭 상태와 클릭한 썸네일의 고유 _id반환
+ * @param {(status:string, _id:number)=>void} props.onLabelClick - 썸네일 클릭할 때 동작하는 콜백, 썸네일 클릭 상태와 클릭한 썸네일의 고유 _id반환
  */
 const ProtectedThumbnail = props => {
 	const borderByStatus = () => {
@@ -65,7 +65,8 @@ const ProtectedThumbnail = props => {
 	};
 
 	const onClickLabel = () => {
-		props.onLabelClick(props.data.protect_request_status, props.data._id);
+		console.log(`--onClickLabel-- props.data=>${JSON.stringify(props.data)}`);
+		props.onLabelClick(props.data.status, props.data._id);
 	};
 
 	return (

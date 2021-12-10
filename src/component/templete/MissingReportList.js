@@ -10,9 +10,6 @@ import {dummy_MissingReportList} from 'Root/config/dummy_data_hjs';
 import FilterButton from '../molecules/FilterButton';
 import {PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
 
-// 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
-//ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
-
 export default MissingReportList = props => {
 	const navigation = useNavigation();
 	const [showUrgentBtns, setShowUrgentBtns] = React.useState(true); //긴급버튼목록
@@ -54,7 +51,15 @@ export default MissingReportList = props => {
 
 	const onLabelClick = (status, id, item) => {
 		console.log(`\nMissingReportList:onLabelClick() - status=>${status} id=>${id} item=>${JSON.stringify(item)}`);
-		navigation.push('MissingAnimalDetail');
+
+		switch (status) {
+			case 'missing':
+				navigation.push('MissingAnimalDetail');
+				break;
+			case 'report':
+				navigation.push('ReportDetail');
+				break;
+		}
 	};
 
 	const onSelectLocation = location => {
@@ -81,7 +86,12 @@ export default MissingReportList = props => {
 					</View>
 				</View>
 				<View style={[searchProtectRequest.animalNeedHelpList]}>
-					<AnimalNeedHelpList data={dummy_MissingReportList} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
+					{/* 플랫리스트 부분 */}
+					<AnimalNeedHelpList
+						data={dummy_MissingReportList}
+						onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
+						onLabelClick={(status, id) => onLabelClick(status, id)}
+					/>
 				</View>
 			</ScrollView>
 			{showUrgentBtns ? (
