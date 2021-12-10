@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, ScrollView, Text, View} from 'react-native';
 import FeedThumnail from '../molecules/FeedThumnail';
 
 /**
@@ -18,5 +18,12 @@ export default FeedThumbnailList = props => {
 		return <FeedThumnail data={item} onSelect={feed_id => props.onClickThumnail(index, feed_id)} selectMode={props.selectMode} />;
 	};
 
-	return <FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} numColumns={NUMCOLUMNS} />;
+	return (
+		<ScrollView horizontal={false} contentContainerStyle={{width: '100%', height: '100%'}}>
+			<ScrollView horizontal={true} contentContainerStyle={{width: '100%', height: '100%'}}>
+				<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} numColumns={NUMCOLUMNS} />
+			</ScrollView>
+		</ScrollView>
+	);
 };
+FeedThumbnailList.defaultProps = {};

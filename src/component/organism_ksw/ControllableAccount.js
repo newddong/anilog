@@ -12,6 +12,7 @@ import {controllableAccount, organism_style} from './style_organism';
  * @param {{
  * data : 'Object / UserDescriptionLabel Data 필요',
  * onFollowBtnClick: void,
+ * onClickLabel :void,
  * showCheckBox : boolean,
  * showCheckBox :boolean,
  * showButtons : boolean
@@ -23,18 +24,21 @@ export default ControllableAccount = props => {
 	const [showCrossMark, setShowCrossMark] = React.useState(props.showCrossMark); // 팔로잉 버튼 우측 Cross 출력 Boolean
 	const [following, setFollowing] = React.useState(false);
 
+	//팔로우 버튼 클릭
 	const onFollowBtnClick = () => {
 		setFollowing(!following);
 		props.onFollowBtnClick();
 	};
+
+	//지우기 버튼 클릭
 	const onCrossMarkPress = () => {
 		props.onCrossMarkPress(props.data);
 	};
 
-	React.useEffect(() => {
-		props.showCrossMark ? setShowCrossMark(true) : setShowCrossMark(false);
-		props.showCheckBox ? setShowCheckBox(true) : setShowCheckBox(false);
-	}, [props]);
+	const onClickLabel = data => {
+		props.onClickLabel(data);
+	};
+
 	return (
 		<View style={[controllableAccount.container]}>
 			{showCheckBox ? (
@@ -45,7 +49,7 @@ export default ControllableAccount = props => {
 				false
 			)}
 			<View style={[showCheckBox || showCrossMark ? controllableAccount.userDescriptionLabel_checked : controllableAccount.userDescriptionLabel]}>
-				<UserDescriptionLabel data={props.data} />
+				<UserDescriptionLabel data={props.data} onClickLabel={onClickLabel} />
 			</View>
 			{props.showButtons ? (
 				<View style={[controllableAccount.rightContainer]}>
@@ -68,6 +72,7 @@ export default ControllableAccount = props => {
 };
 ControllableAccount.defaultProps = {
 	onFollowBtnClick: e => console.log(e),
+	onClickLabel: e => console.log(e),
 	showCrossMark: false,
 	showCheckBox: false,
 	showButtons: true,

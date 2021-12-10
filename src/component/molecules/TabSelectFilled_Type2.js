@@ -9,20 +9,20 @@ import {APRI10, BLACK, WHITE} from 'Root/config/color';
  * @param {object} props - Props Object
  * @param {object} props.items- 탭 네비게이션에 담길 목록
  * @param {number} props.defaultIndex - 탭의 처음 선택 아이템 인덱스
- * @param {(index:number)=>void} props.onSelect - 탭 클릭할 때 동작하는 콜백, 선택한 탭의 인덱스 반환
+ * @param {(item:object,index:number)=>void} props.onSelect - 탭 클릭할 때 동작하는 콜백, 선택한 탭의 인덱스 반환
  */
 const TabSelectFilled_Type2 = props => {
 	const [selected, setSelected] = React.useState(props.defaultIndex ? props.defaultIndex : 0);
 
-	const onSelect = index => {
+	const onSelect = (item, index) => {
 		setSelected(index); //새로만들어진 배열로 state 변경
-		props.onSelect(index);
+		props.onSelect(item, index);
 	};
 
 	const renderItem = ({item, index}) => {
 		return (
 			<TouchableOpacity
-				onPress={() => onSelect(index)}
+				onPress={() => onSelect(item, index)}
 				style={{
 					backgroundColor: index == selected ? APRI10 : WHITE,
 					width: (750 * DP) / props.items.length + 1,

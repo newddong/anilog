@@ -1,75 +1,3 @@
-export const dummy_ParentComment = [
-	{
-		img_uri: 'https://cdn.mkhealth.co.kr/news/photo/202004/img_MKH200424005_0.jpg',
-		likeState: false,
-		likeCount: 101,
-	},
-	{
-		img_uri: 'https://image.fmkorea.com/modules/point/icons/fmkorea10/31.gif?yzv',
-		likeState: true,
-		likeCount: 39,
-	},
-];
-export const dummy_UserDescriptionLabel = [
-	{
-		user_id: 'user_id',
-		user_nickname: 'The Great Catsby',
-		img_uri: 'https://image.fmkorea.com/modules/point/icons/fmkorea10/31.gif?yzv',
-		text_intro: 'Description',
-	},
-	{
-		user_id: 'user_id',
-		user_nickname: 'DogPowder',
-		img_uri: 'http://www.skillagit.com/data/product/1617378210.jpg',
-		text_intro: 'Description2',
-	},
-	{
-		user_id: 'user_id',
-		user_nickname: '닮은 살걀',
-		img_uri:
-			'https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.pinimg.com%2F736x%2F6b%2F5a%2F62%2F6b5a62a1f52b954373cf4245de9c403e.jpg&type=a340',
-		text_intro: 'Description3',
-	},
-];
-
-export const dummy_userLocationTimeLabel = {
-	user_id: 'user_id',
-	user_nickname: '통돌이 벤제마',
-	img_uri: 'https://cdn.imweb.me/upload/S20200605d0b93b390db0f/200c0a39675ca.png',
-	location: '서울시 송파구 방이골목',
-	time: '1',
-};
-
-export const dummy_shelterLabel = {
-	user_id: 'user_id1',
-	shelter_name: '아름 아름 요양 보호소',
-	shelter_image: 'https://img.hankyung.com/photo/202101/AA.25179264.1.jpg',
-	location: '마포구 용강동',
-	shelter_type: 'public',
-};
-
-export const dummy_userLocationLabel = {
-	user_id: 'user_id',
-	user_nickname: '아롱다롱엄마',
-	img_uri: 'https://www.superprof.co.kr/images/teachers/teacher-home-attractive-figure-drawing-with-solid-basics.jpg',
-	location: 'location',
-};
-
-export const dummy_userPetLabel = {
-	user_id: 'user_id',
-	user_nickname: '크림히어로즈',
-	img_uri:
-		'https://femiwiki-uploaded-files-thumb.s3.amazonaws.com/5/55/%ED%81%AC%EB%A6%BC%ED%9E%88%EC%96%B4%EB%A1%9C%EC%A6%88_%EC%B8%84%EC%B8%84.jpeg/600px-%ED%81%AC%EB%A6%BC%ED%9E%88%EC%96%B4%EB%A1%9C%EC%A6%88_%EC%B8%84%EC%B8%84.jpeg',
-};
-
-export const dummy_userTimeLabel = {
-	user_id: 'user_id',
-	user_nickname: '집사와 나',
-	img_uri:
-		'https://femiwiki-uploaded-files-thumb.s3.amazonaws.com/0/0c/%ED%81%AC%EB%A6%BC%ED%9E%88%EC%96%B4%EB%A1%9C%EC%A6%88_%EC%BD%94%EC%BD%94.jpeg/600px-%ED%81%AC%EB%A6%BC%ED%9E%88%EC%96%B4%EB%A1%9C%EC%A6%88_%EC%BD%94%EC%BD%94.jpeg',
-	time: 1,
-};
-
 export const dummy_AccountHashList = [
 	{
 		type: 'user',
@@ -101,47 +29,6 @@ export const dummy_AccountHashList = [
 		keywordBold: true,
 		count: 920000,
 		checkBoxState: false,
-	},
-];
-
-export const dummy_protectedPetList = [
-	{
-		img_uri:
-			'https://product.cdn.cevaws.com/var/storage/images/_aliases/reference/media/feliway-2017/images/kor-kr/1_gnetb-7sfmbx49emluey4a/6341829-1-kor-KR/1_gNETb-7SfMBX49EMLUeY4A.jpg',
-		petStatus: 'normal',
-		breed: '개냥이',
-		name: 'Protected',
-	},
-	{
-		img_uri:
-			'https://www.thoughtco.com/thmb/FyeEGYYlxuHCW9TsJO-iq_1YA7U=/2848x2136/filters:fill(auto,1)/Close-up_of_mole-56a12a2e3df78cf77268038c.jpg',
-		petStatus: 'protected',
-		breed: '땅굴',
-		name: '두더지',
-	},
-	{
-		img_uri: 'https://t1.daumcdn.net/cfile/tistory/2155B04D584FA5050A',
-		petStatus: 'adopted',
-		breed: '핏불',
-		name: '요네',
-	},
-	{
-		img_uri: 'https://pbs.twimg.com/profile_images/719984599456043009/whcMczoB_400x400.jpg',
-		petStatus: 'normal',
-		location: '인천광역시 남동구',
-		name: '다리우스',
-	},
-	{
-		img_uri: 'https://t1.daumcdn.net/cfile/tistory/994D85495A5978580A',
-		petStatus: 'protected',
-		location: '브리즈번',
-		name: '케넨',
-	},
-	{
-		img_uri: 'https://dimg.donga.com/wps/NEWS/IMAGE/2013/12/18/59635708.3.jpg',
-		petStatus: 'adopted',
-		location: '세부',
-		name: '야스오',
 	},
 ];
 
@@ -785,6 +672,12 @@ export const dummy_UserObject_pet = [
 		pet_status: 'protect',
 		pet_adopter: null, //반려동물 입양자
 		pet_protector: 1, //반려동물 임시보호자
+		user_upload_count: 142142, //업로드 게시물 숫자
+		user_follow_count: 12324, //팔로우 숫자
+		user_follower_count: 1245667, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+		user_register_date: '2021-11-24', //가입일
+		user_introduction: '우리 애교 넘치는 교용이. ',
 	},
 	{
 		_id: 12, //temp
@@ -792,7 +685,7 @@ export const dummy_UserObject_pet = [
 		user_profile_uri: 'https://i.pinimg.com/236x/d7/3d/30/d73d30cb3d816a517a11025dc6851c4f--the-ojays.jpg',
 		user_nickname: '구룸이',
 		pet_is_temp_protection: true, //반려동물이 임시보호 중인지 여부
-		pet_species: '고양이', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+		pet_species: '개', //반려동물의 종류(ex 개, 고양이, 토끼 등)
 		pet_species_detail: '도사견', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
 		pet_sex: 'female', //반려동물의 성별
 		pet_neutralization: 'yes', //반려동물 중성화 여부
@@ -801,6 +694,12 @@ export const dummy_UserObject_pet = [
 		pet_status: 'normal',
 		pet_adopter: null, //반려동물 입양자
 		pet_protector: 1, //반려동물 임시보호자
+		user_upload_count: 142142, //업로드 게시물 숫자
+		user_follow_count: 12324, //팔로우 숫자
+		user_follower_count: 1245667, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+		user_register_date: '2021-11-24', //가입일
+		user_introduction: '우리 애교 넘치는 교용이. ',
 	},
 	{
 		_id: 13, //temp
@@ -808,8 +707,8 @@ export const dummy_UserObject_pet = [
 		user_profile_uri: 'https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG',
 		user_nickname: '앵지',
 		pet_is_temp_protection: true, //반려동물이 임시보호 중인지 여부
-		pet_species: '악어', //반려동물의 종류(ex 개, 고양이, 토끼 등)
-		pet_species_detail: '스크류 엘리게이터', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+		pet_species: '개', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+		pet_species_detail: '요들', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
 		pet_sex: 'female', //반려동물의 성별
 		pet_neutralization: 'unknown', //반려동물 중성화 여부
 		pet_birthday: '2020-12-03', //반려동물 생일
@@ -1400,6 +1299,219 @@ export const dummy_VolunteerAcitivityApplicantObject = [
 
 // Title : ShelterProtectAnimalObject
 export const dummy_ShelterProtectAnimalObject = [
+	{
+		//feedObject
+		feed_type: 'feed',
+
+		//@ShelterPRotectAnimalObject
+		_id: 1,
+		protect_animal_photos: [
+			'https://contents.creators.mypetlife.co.kr/content/uploads/2020/10/13134542/20201013131307_365d1baf95782ec7b30225d1fe1616a5_j6xk.jpg',
+		], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '자운동', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '러브숏', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'male', //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //중성화 여부
+		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: '1.2', //몸무게
+		protect_animal_status: 'protect', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_adoption_days_remain: 10,
+		protect_animal_protect_request: true,
+		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
+		//임시보호가 되면 protect로 변경
+		//입양을 가게 되면 상태가 adopt로 변경
+		//임시보호, 입양 협의중이면 discuss로 변경
+		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
+		protect_animal_writer_id: 21, // Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
+		protect_animal_protect_request_id: 2, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
+		protect_animal_adoptor_id: 1, //Mongodb_ID(ref:UserObject), //입양자
+		protect_animal_protector_id: 21, //Mongodb_ID(ref:UserObject), //임시보호자
+		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
+
+		// @ProtectRequestObject 보호요청 게시글
+		protect_request_photos: [
+			'https://mblogthumb-phinf.pstatic.net/20141204_276/firstgjp_14176838057819gNtv_JPEG/___.jpg?type=w2',
+			'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/h_9JUWqGXTUGB9ZLyetUmpLpUhk.jpg',
+		], //보호요청 게시물의 첨부사진 uri
+		protect_request_photo_thumbnail: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202006/06/76723291-7f53-4b1a-b058-766f6215d566.jpg', //보호요청 게시물 썸네일 uri
+		protect_animal_id: 11, //보호요청할 동물 ShelterProtectAnimalObject
+		protect_request_title: '밍키의 새 보금자리를 찾아요', //보호요청 게시물의 제목
+		protect_request_content: '밍키의 새 집사가 되어주실수 있으신 분 무한 찾습니다', //보호요청 게시물 내용
+		protect_request_writer_id: 21, //보호요청 게시물 작성자 UserObject
+		protect_request_hit: 102, //보호요청 게시물 조회수
+		protect_request_favorite_count: 21, //보호요청 게시물을 즐겨찾기 한 숫자
+		protect_request_status: 'discuss', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //항목 추가 필요
+		//입양가능(rescue), 보호소에서 구조가 이루어졌으므로 입양가능한 상태임,
+		//협의중(discuss)
+		//안락사 임박(nearrainbow)
+		//완료(complete), 입양, 임시보호가 되면 보호요청 게시글은 완료 상태로 변경됨, 해당 동물은(adopt,protect)가 됨
+		//사망(rainbowbridge)
+
+		protect_request_date: '2021.11.21', //보호요청 게시글 작성일시
+		protect_request_update_date: '2021.11.25', //보호요청 게시글 수정일시
+		protect_request_comment_count: null, //보호요청 게시물 댓글의 수
+
+		//@UserObejct(shelter)
+		user_type: 'shelter',
+		user_profile_uri: 'https://upload.wikimedia.org/wikipedia/en/4/4b/DWG_KIA_logo.png',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '홍단 보호소', //보호소 이름
+		shelter_address: {
+			city: '강원도', //시,도
+			district: '평창군', //군,구
+			neighbor: '용평면', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '강원도 평창군 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 123, //업로드 게시물 숫자
+		user_follow_count: 1034545, //팔로우 숫자
+		user_follower_count: 555, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+	},
+	{
+		//@feedObject
+		feed_type: 'feed',
+
+		//@ShelterPRotectAnimalObject
+		_id: 2,
+		protect_animal_photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiD1HUODwudK8Bghzqxx0YGuiNC2pfyw28Pw&usqp=CAU'], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '간석동 호수주변', //보호중인 동물의 구조장소
+		protect_animal_species: '개', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '치와와', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'male', //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //중성화 여부
+		protect_animal_estimate_age: '12', //보호중인 동물의 추정 연령
+		protect_animal_weight: '1.2', //몸무게
+		protect_animal_status: 'emergency', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_adoption_days_remain: 11,
+		protect_animal_protect_request: false,
+		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
+		//임시보호가 되면 protect로 변경
+		//입양을 가게 되면 상태가 adopt로 변경
+		//임시보호, 입양 협의중이면 discuss로 변경
+		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
+		protect_animal_writer_id: 21, // Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
+		protect_animal_protect_request_id: 5, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
+		protect_animal_adoptor_id: 1, //Mongodb_ID(ref:UserObject), //입양자
+		protect_animal_protector_id: 21, //Mongodb_ID(ref:UserObject), //임시보호자
+		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
+
+		// @ProtectRequestObject 보호요청 게시글
+		protect_request_photos: [
+			'https://mblogthumb-phinf.pstatic.net/20141204_276/firstgjp_14176838057819gNtv_JPEG/___.jpg?type=w2',
+			'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/h_9JUWqGXTUGB9ZLyetUmpLpUhk.jpg',
+		], //보호요청 게시물의 첨부사진 uri
+		protect_request_photo_thumbnail: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202006/06/76723291-7f53-4b1a-b058-766f6215d566.jpg', //보호요청 게시물 썸네일 uri
+		protect_animal_id: 11, //보호요청할 동물 ShelterProtectAnimalObject
+		protect_request_title: '달리의 새 보금자리를 찾아요', //보호요청 게시물의 제목
+		protect_request_content: '달리의 새 집사가 되어주실수 있으신 분 무한 찾습니다', //보호요청 게시물 내용
+		protect_request_writer_id: 21, //보호요청 게시물 작성자 UserObject
+		protect_request_hit: 102, //보호요청 게시물 조회수
+		protect_request_favorite_count: 21, //보호요청 게시물을 즐겨찾기 한 숫자
+		protect_request_status: 'adopt', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //항목 추가 필요
+		//입양가능(rescue), 보호소에서 구조가 이루어졌으므로 입양가능한 상태임,
+		//협의중(discuss)
+		//안락사 임박(nearrainbow)
+		//완료(complete), 입양, 임시보호가 되면 보호요청 게시글은 완료 상태로 변경됨, 해당 동물은(adopt,protect)가 됨
+		//사망(rainbowbridge)
+		protect_request_date: '2021.11.29', //보호요청 게시글 작성일시
+		protect_request_update_date: '2021.11.29', //보호요청 게시글 수정일시
+		protect_request_comment_count: null, //보호요청 게시물 댓글의 수
+
+		//@UserObejct(shelter)
+		user_type: 'shelter',
+		user_profile_uri: 'https://upload.wikimedia.org/wikipedia/en/4/4b/DWG_KIA_logo.png',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '홍단 보호소', //보호소 이름
+		shelter_address: {
+			city: '강원도', //시,도
+			district: '평창군', //군,구
+			neighbor: '용평면', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '강원도 평창군 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 123, //업로드 게시물 숫자
+		user_follow_count: 142, //팔로우 숫자
+		user_follower_count: 555, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+	},
+	{
+		//feedObject
+		feed_type: 'feed',
+
+		//@ShelterPRotectAnimalObject
+		_id: 3,
+		protect_animal_photos: ['https://i.ytimg.com/vi/JumpaYjsges/hqdefault.jpg'], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '송파구 석촌호수 주변', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '불분명', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'female', //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //중성화 여부
+		protect_animal_estimate_age: '12', //보호중인 동물의 추정 연령
+		protect_animal_weight: '1.2', //몸무게
+		protect_animal_status: 'adopted', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_adoption_days_remain: null,
+		protect_animal_protect_request: false,
+		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
+		//임시보호가 되면 protect로 변경
+		//입양을 가게 되면 상태가 adopt로 변경
+		//임시보호, 입양 협의중이면 discuss로 변경
+		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
+		protect_animal_writer_id: 21, // Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
+		protect_animal_protect_request_id: 5, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
+		protect_animal_adoptor_id: 1, //Mongodb_ID(ref:UserObject), //입양자
+		protect_animal_protector_id: 21, //Mongodb_ID(ref:UserObject), //임시보호자
+		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
+
+		// @ProtectRequestObject 보호요청 게시글
+		protect_request_photos: [
+			'https://mblogthumb-phinf.pstatic.net/20141204_276/firstgjp_14176838057819gNtv_JPEG/___.jpg?type=w2',
+			'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/h_9JUWqGXTUGB9ZLyetUmpLpUhk.jpg',
+		], //보호요청 게시물의 첨부사진 uri
+		protect_request_photo_thumbnail: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202006/06/76723291-7f53-4b1a-b058-766f6215d566.jpg', //보호요청 게시물 썸네일 uri
+		protect_animal_id: 11, //보호요청할 동물 ShelterProtectAnimalObject
+		protect_request_title: '히야의 새 보금자리를 찾아요', //보호요청 게시물의 제목
+		protect_request_content: '히야의 새 집사가 되어주실수 있으신 분 무한 찾습니다', //보호요청 게시물 내용
+		protect_request_writer_id: 21, //보호요청 게시물 작성자 UserObject
+		protect_request_hit: 102, //보호요청 게시물 조회수
+		protect_request_favorite_count: 21, //보호요청 게시물을 즐겨찾기 한 숫자
+		protect_request_status: 'adopt', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //항목 추가 필요
+		//입양가능(rescue), 보호소에서 구조가 이루어졌으므로 입양가능한 상태임,
+		//협의중(discuss)
+		//안락사 임박(nearrainbow)
+		//완료(complete), 입양, 임시보호가 되면 보호요청 게시글은 완료 상태로 변경됨, 해당 동물은(adopt,protect)가 됨
+		//사망(rainbowbridge)
+		protect_request_date: '2021.11.21', //보호요청 게시글 작성일시
+		protect_request_update_date: '2021.11.21', //보호요청 게시글 수정일시
+		protect_request_comment_count: null, //보호요청 게시물 댓글의 수
+
+		//@UserObejct(shelter)
+		user_type: 'shelter',
+		user_profile_uri: 'https://upload.wikimedia.org/wikipedia/en/4/4b/DWG_KIA_logo.png',
+		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
+		shelter_name: '홍단 보호소', //보호소 이름
+		shelter_address: {
+			city: '강원도', //시,도
+			district: '평창군', //군,구
+			neighbor: '용평면', //동,읍,면
+		}, //보호소 주소
+		shelter_homepage: 'http://google.com', //보호소 홈페이지 uri
+		shelter_delegate_contact_number: '010-4442-1325', //보호소 대표 전화번호, 휴대폰 번호
+		shelter_foundation_date: '2012.05.02', //보호소 설립일
+		user_introduction: '강원도 평창군 소재의 입양보호소', //프로필에 노출될 자기소개
+		user_upload_count: 123, //업로드 게시물 숫자
+		user_follow_count: 142, //팔로우 숫자
+		user_follower_count: 555, //팔로워 숫자
+		user_denied: false, //유저의 차단여부
+	},
 	{
 		//feedObject
 		feed_type: 'feed',
@@ -2569,6 +2681,602 @@ export const _dummyData_favoriteFeeds = [
 ];
 
 export const dummy_FeedObject = [
+	{
+		//피드 게시물
+		_id: 1,
+		feed_content: '자꾸 앞머리 잘라주는 편이 낫다고 해서 잘랐어요~', //피드 본문
+		feed_thumbnail:
+			'https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fhappypet%2F9075e36d837244bd84cc370a63444825.jpg',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri:
+					'https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fhappypet%2F9075e36d837244bd84cc370a63444825.jpg', //피드 첨부된 미디어의 aws s3 uri
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 11, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '마포구 신수동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'feed', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 2,
+		feed_content: '루퐁이네 "제발 그만 귀여어ㅜ~~이러다 다 죽어~~" 유튜브 업로드 되었습니다~', //피드 본문
+		feed_thumbnail: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201901/20/28017477-0365-4a43-b546-008b603da621.jpg',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201901/20/28017477-0365-4a43-b546-008b603da621.jpg',
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 12, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '용산구 우산동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'feed', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 3,
+		feed_content: '새벽마다 냉장고 앞에 나타나는 강아지가 있다는데...원하는 마늠 간식을 먹은 후에야 다시 자러간대여', //피드 본문
+		feed_thumbnail:
+			'https://pro2-bar-s3-cdn-cf2.myportfolio.com/c3de7d5eaa03f1fbdf4593a06d4c69d2/dca948a8-475d-427f-bb65-ed65c37592f6_rw_1200.jpg?h=fc2452990e4e8230ca2b05fa0aaf75dc',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri:
+					'https://pro2-bar-s3-cdn-cf2.myportfolio.com/c3de7d5eaa03f1fbdf4593a06d4c69d2/dca948a8-475d-427f-bb65-ed65c37592f6_rw_1200.jpg?h=fc2452990e4e8230ca2b05fa0aaf75dc',
+				tags: null,
+			},
+			{
+				is_video: true, //미디어가 동영상인지 여부를 판단
+				duration: 15000, //동영상일 경우 재생 시간
+				media_uri:
+					'https://pro2-bar-s3-cdn-cf2.myportfolio.com/c3de7d5eaa03f1fbdf4593a06d4c69d2/dca948a8-475d-427f-bb65-ed65c37592f6_rw_1200.jpg?h=fc2452990e4e8230ca2b05fa0aaf75dc',
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 13, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '강원도 원주시 단계동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'feed', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 4,
+		feed_content: '매일 산책하다가 인형이잘 있는지 확인하는 포토관에 드디어 입성!', //피드 본문
+		feed_thumbnail: 'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri: 'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png',
+				tags: null,
+			},
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri: 'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png',
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 13, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '강원도 원주시 단계동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'missing', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 1,
+		feed_content: '자꾸 앞머리 잘라주는 편이 낫다고 해서 잘랐어요~', //피드 본문
+		feed_thumbnail:
+			'https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fhappypet%2F9075e36d837244bd84cc370a63444825.jpg',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri:
+					'https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fhappypet%2F9075e36d837244bd84cc370a63444825.jpg', //피드 첨부된 미디어의 aws s3 uri
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 11, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '마포구 신수동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'feed', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 2,
+		feed_content: '루퐁이네 "제발 그만 귀여어ㅜ~~이러다 다 죽어~~" 유튜브 업로드 되었습니다~', //피드 본문
+		feed_thumbnail: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201901/20/28017477-0365-4a43-b546-008b603da621.jpg',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201901/20/28017477-0365-4a43-b546-008b603da621.jpg',
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 12, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '용산구 우산동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'feed', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 3,
+		feed_content: '새벽마다 냉장고 앞에 나타나는 강아지가 있다는데...원하는 마늠 간식을 먹은 후에야 다시 자러간대여', //피드 본문
+		feed_thumbnail:
+			'https://pro2-bar-s3-cdn-cf2.myportfolio.com/c3de7d5eaa03f1fbdf4593a06d4c69d2/dca948a8-475d-427f-bb65-ed65c37592f6_rw_1200.jpg?h=fc2452990e4e8230ca2b05fa0aaf75dc',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri:
+					'https://pro2-bar-s3-cdn-cf2.myportfolio.com/c3de7d5eaa03f1fbdf4593a06d4c69d2/dca948a8-475d-427f-bb65-ed65c37592f6_rw_1200.jpg?h=fc2452990e4e8230ca2b05fa0aaf75dc',
+				tags: null,
+			},
+			{
+				is_video: true, //미디어가 동영상인지 여부를 판단
+				duration: 15000, //동영상일 경우 재생 시간
+				media_uri:
+					'https://pro2-bar-s3-cdn-cf2.myportfolio.com/c3de7d5eaa03f1fbdf4593a06d4c69d2/dca948a8-475d-427f-bb65-ed65c37592f6_rw_1200.jpg?h=fc2452990e4e8230ca2b05fa0aaf75dc',
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 13, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '강원도 원주시 단계동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'feed', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 4,
+		feed_content: '매일 산책하다가 인형이잘 있는지 확인하는 포토관에 드디어 입성!', //피드 본문
+		feed_thumbnail: 'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri: 'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png',
+				tags: null,
+			},
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri: 'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png',
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 13, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '강원도 원주시 단계동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'missing', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 1,
+		feed_content: '자꾸 앞머리 잘라주는 편이 낫다고 해서 잘랐어요~', //피드 본문
+		feed_thumbnail:
+			'https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fhappypet%2F9075e36d837244bd84cc370a63444825.jpg',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri:
+					'https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fhappypet%2F9075e36d837244bd84cc370a63444825.jpg', //피드 첨부된 미디어의 aws s3 uri
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 11, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '마포구 신수동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'feed', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 2,
+		feed_content: '루퐁이네 "제발 그만 귀여어ㅜ~~이러다 다 죽어~~" 유튜브 업로드 되었습니다~', //피드 본문
+		feed_thumbnail: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201901/20/28017477-0365-4a43-b546-008b603da621.jpg',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201901/20/28017477-0365-4a43-b546-008b603da621.jpg',
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 12, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '용산구 우산동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'feed', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 3,
+		feed_content: '새벽마다 냉장고 앞에 나타나는 강아지가 있다는데...원하는 마늠 간식을 먹은 후에야 다시 자러간대여', //피드 본문
+		feed_thumbnail:
+			'https://pro2-bar-s3-cdn-cf2.myportfolio.com/c3de7d5eaa03f1fbdf4593a06d4c69d2/dca948a8-475d-427f-bb65-ed65c37592f6_rw_1200.jpg?h=fc2452990e4e8230ca2b05fa0aaf75dc',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri:
+					'https://pro2-bar-s3-cdn-cf2.myportfolio.com/c3de7d5eaa03f1fbdf4593a06d4c69d2/dca948a8-475d-427f-bb65-ed65c37592f6_rw_1200.jpg?h=fc2452990e4e8230ca2b05fa0aaf75dc',
+				tags: null,
+			},
+			{
+				is_video: true, //미디어가 동영상인지 여부를 판단
+				duration: 15000, //동영상일 경우 재생 시간
+				media_uri:
+					'https://pro2-bar-s3-cdn-cf2.myportfolio.com/c3de7d5eaa03f1fbdf4593a06d4c69d2/dca948a8-475d-427f-bb65-ed65c37592f6_rw_1200.jpg?h=fc2452990e4e8230ca2b05fa0aaf75dc',
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 13, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '강원도 원주시 단계동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'feed', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 4,
+		feed_content: '매일 산책하다가 인형이잘 있는지 확인하는 포토관에 드디어 입성!', //피드 본문
+		feed_thumbnail: 'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri: 'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png',
+				tags: null,
+			},
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri: 'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png',
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 13, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '강원도 원주시 단계동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'missing', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 1,
+		feed_content: '자꾸 앞머리 잘라주는 편이 낫다고 해서 잘랐어요~', //피드 본문
+		feed_thumbnail:
+			'https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fhappypet%2F9075e36d837244bd84cc370a63444825.jpg',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri:
+					'https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fhappypet%2F9075e36d837244bd84cc370a63444825.jpg', //피드 첨부된 미디어의 aws s3 uri
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 11, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '마포구 신수동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'feed', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 2,
+		feed_content: '루퐁이네 "제발 그만 귀여어ㅜ~~이러다 다 죽어~~" 유튜브 업로드 되었습니다~', //피드 본문
+		feed_thumbnail: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201901/20/28017477-0365-4a43-b546-008b603da621.jpg',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201901/20/28017477-0365-4a43-b546-008b603da621.jpg',
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 12, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '용산구 우산동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'feed', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 3,
+		feed_content: '새벽마다 냉장고 앞에 나타나는 강아지가 있다는데...원하는 마늠 간식을 먹은 후에야 다시 자러간대여', //피드 본문
+		feed_thumbnail:
+			'https://pro2-bar-s3-cdn-cf2.myportfolio.com/c3de7d5eaa03f1fbdf4593a06d4c69d2/dca948a8-475d-427f-bb65-ed65c37592f6_rw_1200.jpg?h=fc2452990e4e8230ca2b05fa0aaf75dc',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri:
+					'https://pro2-bar-s3-cdn-cf2.myportfolio.com/c3de7d5eaa03f1fbdf4593a06d4c69d2/dca948a8-475d-427f-bb65-ed65c37592f6_rw_1200.jpg?h=fc2452990e4e8230ca2b05fa0aaf75dc',
+				tags: null,
+			},
+			{
+				is_video: true, //미디어가 동영상인지 여부를 판단
+				duration: 15000, //동영상일 경우 재생 시간
+				media_uri:
+					'https://pro2-bar-s3-cdn-cf2.myportfolio.com/c3de7d5eaa03f1fbdf4593a06d4c69d2/dca948a8-475d-427f-bb65-ed65c37592f6_rw_1200.jpg?h=fc2452990e4e8230ca2b05fa0aaf75dc',
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 13, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '강원도 원주시 단계동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'feed', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
+	{
+		//피드 게시물
+		_id: 4,
+		feed_content: '매일 산책하다가 인형이잘 있는지 확인하는 포토관에 드디어 입성!', //피드 본문
+		feed_thumbnail: 'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png',
+		feed_medias: [
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri: 'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png',
+				tags: null,
+			},
+			{
+				is_video: false, //미디어가 동영상인지 여부를 판단
+				duration: null, //동영상일 경우 재생 시간
+				media_uri: 'https://cdn.imweb.me/upload/S20190926a0754ded73eb5/dc9933a6cf7b3.png',
+				tags: null,
+			},
+		],
+		feed_writer_id: 1, //게시글 작성자의 db고유 아이디
+		feed_avatar_id: 13, //주인공 동물로 지정한 반려동물 계정의 id, 작성자가 avatar_id로 클라이언트에 표시됨
+		feed_location: '강원도 원주시 단계동', //게시글의 작성 지역정보
+		feed_date: '2021-11-30', //피드 최초 작성일자
+		feed_update_date: '2021-11-30', //피드 최종 업로드 날자
+		feed_type: 'missing', //Enum(‘feed’,’missing’,’report’), //게시글의 타잎, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+		feed_is_protect_diary: false, //임보일기일 경우 true
+		feed_like_count: 112, //게시글에 좋아요를 누른 수
+		feed_favorite_count: 552, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 11, //게시글에 달린 댓글의 수(대댓글 포함)
+		missing_animal_species: null, //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: null, //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: null, // Enum('male','female','unknown'), //실종 동물의 성별
+		missing_animal_age: null, //String, //실종 동물의 나이
+		missing_animal_lost_location: null, // String, //실종 동물의 실종 지역 혹은 장소
+		missing_animal_contact: null, //String, //실종 동물의 제보를 받을 사람의 연락처
+		missing_animal_features: null, //LongText, //실종 동물의 특징
+		report_witness_date: null, //제보일자(해당 동물의 목격일)
+		report_witness_location: null, //제보장소(목격장소)
+	},
 	{
 		//피드 게시물
 		_id: 1,

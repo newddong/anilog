@@ -15,6 +15,7 @@ import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
  *onHashClick : 'boolean / HashClick Callback',
  *onPressAdoptorInfo : 'void / 테두리 모드 입양처 보기 클릭'
  *onPressProtectRequest : 'void / 테두리 모드 게시글보기 클릭'
+ *onLayout : void,
  * }} props
  */
 export default AnimalNeedHelpList = props => {
@@ -48,7 +49,7 @@ export default AnimalNeedHelpList = props => {
 		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
 			<ScrollView horizontal={true} contentContainerStyle={{flex: 0}}>
 				<View style={[props.borderMode ? animalNeedHelpList.container_bordermode : animalNeedHelpList.container]}>
-					{console.log(`AnimalNeedHelpList:view - props.data=>${JSON.stringify(props.data)}`)}
+					{/* {console.log(`AnimalNeedHelpList:view - props.data=>${JSON.stringify(props.data)}`)} */}
 					<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} />
 				</View>
 			</ScrollView>

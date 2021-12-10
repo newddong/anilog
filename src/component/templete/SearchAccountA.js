@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {dummy_userObject} from 'Root/config/dummyDate_json';
 import ControllableAccountList from '../organism_ksw/ControllableAccountList';
-import {login_style, searchAccountA, temp_style} from './style_templete';
+import {login_style, searchAccountA} from './style_templete';
 
 export default SearchAccountA = props => {
 	const userObejct = dummy_userObject;
@@ -23,13 +23,14 @@ export default SearchAccountA = props => {
 		}
 	}, [props.input]);
 
-	React.useEffect(() => {
-		console.log('searchedList', searchedList);
-	}, [searchedList]);
+	//계정 클릭 콜백
+	const onClickAccount = data => {
+		console.log('data', data);
+	};
 
 	return (
 		<View style={[searchAccountA.container]}>
-			<ControllableAccountList data={searchedList ? searchedList : []} showCrossMark={false} showButtons={false} />
+			<ControllableAccountList data={searchedList ? searchedList : []} onClickAccount={onClickAccount} showCrossMark={false} showButtons={false} />
 		</View>
 	);
 };

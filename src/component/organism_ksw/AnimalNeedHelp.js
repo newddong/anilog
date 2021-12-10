@@ -161,7 +161,7 @@ export default AnimalNeedHelp = props => {
 					) : null}
 					<View style={[animalNeedHelp.protectedThumbnail_container]}>
 						{/* Pet Thumbnail */}
-						{console.log(`AnimalNeedHelp:thumbnailData=>${JSON.stringify(thumbnailData)}`)}
+						{/* {console.log(`AnimalNeedHelp:thumbnailData=>${JSON.stringify(thumbnailData)}`)} */}
 						<ProtectedThumbnail data={thumbnailData} onLabelClick={(status, id) => props.onLabelClick(status, id)} />
 					</View>
 					{/* Pet Info */}

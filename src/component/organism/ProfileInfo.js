@@ -30,7 +30,7 @@ export default ProfileInfo = props => {
 
 	const [showMore, setShowMore] = React.useState(false); // 프로필 Description 우측 더보기 클릭 State
 	const [followState, setFollowState] = React.useState(false); // 팔로우 T/F
-	const [ownerListState, setOwnerListState] = React.useState(true); // userType이 Pet일 경우 반려인계정 State T/F
+	const [ownerListState, setOwnerListState] = React.useState(false); // userType이 Pet일 경우 반려인계정 State T/F
 
 	//더보기 클릭
 	const onPressShowMore = () => {
@@ -39,7 +39,7 @@ export default ProfileInfo = props => {
 
 	//반려인 계정 보이기
 	const showOwner = () => {
-		setOwnerListState(true);
+		setOwnerListState(!ownerListState);
 		props.onShowOwnerBtnClick();
 	};
 	//반려인 계정 숨기기
@@ -61,21 +61,21 @@ export default ProfileInfo = props => {
 	// props.data의 유저타입에 따라 다른 버튼이 출력
 	// NORMAL - [팔로우, 반려동물] / PET - [팔로우, 반려인계정 OR 입양하기] / SHELTER - [팔로우, 봉사활동 ]
 	const getButton = () => {
-		if (profile_data.userType == PET) {
-			if (profile_data.petStatus == 'protected') {
+		if (profile_data.user_type == PET) {
+			if (profile_data.pet_status == 'protected') {
 				return <AniButton btnTitle={'입양 하기'} btnStyle={'border'} titleFontStyle={30} btnLayout={btn_w280} onPress={onPressAdoption} />;
 			} else
 				return (
 					<ActionButton
 						btnTitle={'반려인 계정'}
-						btnStyle={ownerListState ? 'border' : 'filled'}
+						btnStyle={ownerListState ? 'filled' : 'border'}
 						titleFontStyle={30}
 						btnLayout={btn_w280}
 						onOpen={showOwner}
 						onClose={hideOwner}
 					/>
 				);
-		} else if (profile_data.userType == NORMAL) {
+		} else if (profile_data.user_type == NORMAL) {
 			return (
 				<ActionButton
 					btnTitle={'반려동물'}
@@ -104,7 +104,6 @@ export default ProfileInfo = props => {
 				</View>
 			</View>
 
-			{/* Profile Introduction */}
 			<View style={[organism_style.content_view_profileInfo, profileInfo_style.content_view]}>
 				<Text
 					ellipsizeMode={'tail'}
