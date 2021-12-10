@@ -33,7 +33,7 @@ export default ManageVolunteer = ({route}) => {
 	};
 
 	return (
-		<View style={[login_style.wrp_main]}>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<ScrollView contentContainerStyle={manageVolunteer.container}>
 				{/* 활동 예정 중인 신청 */}
 				<View style={[manageVolunteer.title]}>

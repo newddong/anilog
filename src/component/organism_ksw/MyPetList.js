@@ -20,7 +20,7 @@ export default MyPetList = props => {
 					<AddPet onAdd={() => props.addPet()} />
 				) : (
 					<TouchableOpacity onPress={() => props.onLabelClick(item)}>
-						<PetImageLabel data={item} />
+						<PetImageLabel data={item} showNickname={true} />
 					</TouchableOpacity>
 				)}
 			</View>

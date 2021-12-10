@@ -36,7 +36,6 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 
 	//계정 추가 - 미구현 상태
 	const addAccompany = () => {
-		console.log('Search');
 		navigation.push('Search');
 	};
 

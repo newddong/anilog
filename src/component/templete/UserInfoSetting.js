@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity, TextInput} from 'react-native';
 import {GRAY10, GRAY40} from 'Root/config/color';
-import {dummy_CompanionObject, dummy_UserObject_pet} from 'Root/config/dummyDate_json';
+import {dummy_CompanionObject, dummy_userObject, dummy_UserObject_pet} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
 import {DEFAULT_PROFILE, MODIFY_PROFILE} from 'Root/i18n/msg';
 import {btn_w114, btn_w242} from '../atom/btn/btn_style';
@@ -15,19 +15,22 @@ import {login_style, btn_style, temp_style, userInfoSetting_style} from './style
 // 필요한 데이터 - 로그인 유저 제반 데이터, 나의 반려동물 관련 데이터(CompanionObject 참조)
 export default UserInfoSetting = ({route}) => {
 	const navigation = useNavigation();
-	const [data, setData] = React.useState(route.params); // 로그인 유저의 UserObject
+	const [data, setData] = React.useState(dummy_userObject[0]); // 로그인 유저의 UserObject
 	const [companions, setCompanions] = React.useState(dummy_UserObject_pet); //반려동물 userObject
 	const [modifyMode, setModifyMode] = React.useState(false);
 	const [intro_modified, setIntro_modified] = React.useState('');
 	const modifyRef = React.useRef();
+
 	//상세 정보 클릭
 	const onPressDetail = () => {
-		navigation.push('UserInfoDetailSetting', data);
+		navigation.push('UserInfoDetailSetting');
 	};
 
 	//프로필 변경을 통한 사진변경이 발생했을 경우 params로 해당 포토 uri를 받아오고 data에 적용
 	React.useEffect(() => {
-		route.params.changedPhoto ? setData({...data, user_profile_uri: route.params.changedPhoto}) : null;
+		if (route.params != undefined) {
+			route.params.changedPhoto ? setData({...data, user_profile_uri: route.params.changedPhoto}) : null;
+		}
 	}, [route.params]);
 
 	//소개란 수정모드

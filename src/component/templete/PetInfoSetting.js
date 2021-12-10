@@ -26,10 +26,12 @@ export default PetInfoSetting = ({route, navigation}) => {
 
 	//가족계정 추가에서 받아온 Account가 있을 경우 FamilyAccountList에 추가해서 적용
 	React.useEffect(() => {
-		if (route.params.addedAccount) {
-			let copy = [...familyAccountList];
-			copy.push(route.params.addedAccount);
-			setFamilyAccountList(copy);
+		if (route.params != undefined) {
+			if (route.params.addedAccount != undefined) {
+				let copy = [...familyAccountList];
+				copy.push(route.params.addedAccount);
+				setFamilyAccountList(copy);
+			}
 		}
 	}, [route.params]);
 

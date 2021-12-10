@@ -3,6 +3,7 @@ import {Text, View} from 'react-native';
 import {GRAY20} from 'Root/config/color';
 import {dummy_AnimalNeedHelpList, dummy_AnimalNeedHelpList_various_status} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
+import {PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
 import FilterButton from '../molecules/FilterButton';
 import OnOffSwitch from '../molecules/OnOffSwitch';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
@@ -22,10 +23,10 @@ export default SearchProtectRequest = props => {
 				<View style={[searchProtectRequest.filterView.inside]}>
 					<View style={{flexDirection: 'row'}}>
 						<View style={[temp_style.filterBtn]}>
-							<FilterButton menu={['보호 지역']} width={306} />
+							<FilterButton menu={PET_PROTECT_LOCATION} width={306} />
 						</View>
 						<View style={[temp_style.filterBtn]}>
-							<FilterButton menu={['동물 종류']} width={306} />
+							<FilterButton menu={PET_KIND} width={306} />
 						</View>
 					</View>
 					<View style={[searchProtectRequest.filterView.onOffBtnView]}>

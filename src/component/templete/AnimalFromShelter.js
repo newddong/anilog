@@ -3,11 +3,11 @@ import {View} from 'react-native';
 import {login_style, temp_style, baseInfo_style, animalFromShelter_style} from './style_templete';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import {useNavigation} from '@react-navigation/core';
-import {dummy_AdoptorInformation} from 'Root/config/dummyDate_json';
+import {dummy_AdoptorInformation, dummy_AnimalFromShelter_adopted} from 'Root/config/dummyDate_json';
 
 export default AnimalFromShelter = ({route}) => {
 	const navigation = useNavigation();
-	const animalFromMyShelterList = route.params; //AnimalNeedHelpList에 보낼 리스트정보
+	const animalFromMyShelterList = dummy_AnimalFromShelter_adopted; //AnimalNeedHelpList에 보낼 리스트정보
 
 	const navigationGo = (status, user_id) => {
 		console.log('status , id => ' + status + '_' + user_id);
