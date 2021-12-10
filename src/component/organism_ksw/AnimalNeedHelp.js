@@ -33,6 +33,7 @@ export default AnimalNeedHelp = props => {
 	const checkthumbnailData = () => {
 		resultJSON = {};
 		resultJSON.img_uri = data.protect_animal_photos[0];
+		resultJSON._id = data._id;
 		// 보호 동물의 데이터 일 경우 (두 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
 		if (data.hasOwnProperty('protect_animal_sex') && data.hasOwnProperty('protect_animal_status')) {
 			resultJSON.gender = data.protect_animal_sex;
