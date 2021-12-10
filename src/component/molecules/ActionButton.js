@@ -94,7 +94,7 @@ const ActionButtonProps = {
 	/** @type {string} 버튼 스타일 'filled'|'border'|'noborder'|undefined */
 	btnStyle: string,
 	/** @type {object} 버튼의 레이아웃 스타일(Atoms의 btn_wXXX) */
-	btnLayout: string,
+	btnLayout: object,
 	/** @type {boolean} 버튼 활성화 여부 */
 	disable: bool,
 	/** @type {boolean} 버튼의 초기상태 false이면 close, true이면 open */
