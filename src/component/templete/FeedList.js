@@ -7,7 +7,9 @@ import Feed from '../organism/Feed';
 import {feedList, login_style, missingAnimalDetail, temp_style} from './style_templete';
 
 export default FeedList = ({route, navigation}) => {
-	console.log('feeD_id', route.params);
+	const debug = true;
+	debug && console.log('FeedList:feed_id-', route.params);
+	debug && console.log('FeedList:dummy_FeedObject-', dummy_FeedObject);
 
 	const moveToFeedWrite = () => {
 		navigation.push('FeedWrite');

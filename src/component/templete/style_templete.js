@@ -2705,7 +2705,7 @@ export const searchProtectRequest = StyleSheet.create({
 		marginTop: 30 * DP,
 		width: 654 * DP,
 		alignSelf: 'center',
-		backgroundColor: '#FFF',
+		// backgroundColor: '#FF00FF',
 	},
 });
 

@@ -21,7 +21,7 @@ export default ReportDetail = props => {
 	const [privateComment, setPrivateComment] = React.useState(false); // 공개 설정 클릭 state
 	const [replyText, setReplyText] = React.useState(); //댓글 텍스트 state
 	const [showMore, setShowMore] = React.useState(false); //더보기 클릭 State
-
+	const debug = false;
 	React.useEffect(() => {
 		setPhoto(props.route.params);
 	}, [props.route.params]);
@@ -41,8 +41,8 @@ export default ReportDetail = props => {
 
 	//답글 쓰기 => Input 작성 후 보내기 클릭 콜백 함수
 	const onWrite = () => {
-		console.log('onWrite', replyText);
-		console.log('commentData=>' + commentData.comment_contentsdsf);
+		debug && console.log('onWrite', replyText);
+		debug && console.log('commentData=>' + commentData.comment_contentsdsf);
 		setCommentData({...commentData, comment_contents: replyText, comment_is_secure: privateComment, comment_feed_id: ''});
 	};
 
