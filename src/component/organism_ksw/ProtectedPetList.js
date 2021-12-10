@@ -1,14 +1,13 @@
 import React from 'react';
 import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {GRAY20} from 'Root/config/color';
-import {dummy_protectedPetList} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
 import ProfileImageMedium120 from '../molecules/ProfileImageMedium120';
 import {protectedPetList} from './style_organism';
 
 export default ProtectedPetList = props => {
 	const renderItem = (item, index) => {
-		console.log('item', item);
+		// console.log('item', item);
 		return (
 			<View style={[protectedPetList.itemContainer]}>
 				<View style={[protectedPetList.petProfileImageMedium]}>

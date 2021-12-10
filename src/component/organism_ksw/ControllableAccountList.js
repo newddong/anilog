@@ -1,9 +1,9 @@
 import React from 'react';
-import {FlatList, Text, TouchableOpacity, TouchableWithoutFeedback, View} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import ControllableAccount from './ControllableAccount';
-import {dummy_UserDescriptionLabel} from '../../config/dummyDate_json';
+import {dummy_userObject} from '../../config/dummyDate_json';
 import {controllableAccountList} from './style_organism';
 
 /**
@@ -11,6 +11,7 @@ import {controllableAccountList} from './style_organism';
  * @param {{
  * data : 'Object / UserDescriptionLabel Data 필요',
  * onFollowBtnClick: void,
+ * onClickAccount : void,
  * showCheckBox : boolean,
  * showCheckBox :boolean,
  * showButtons : boolean
@@ -20,8 +21,10 @@ export default ControllableAccountList = props => {
 	const [selectedItem, setSelectedItem] = React.useState(0);
 	//AccountList 선택이벤트
 	const onSelectItem = index => {
+		props.onClickAccount(index);
 		setSelectedItem(index);
 	};
+
 	const renderItem = (item, index) => {
 		return (
 			<TouchableOpacity
@@ -39,12 +42,13 @@ export default ControllableAccountList = props => {
 					<Text style={[txt.noto24, {color: GRAY10}]}>{props.title}</Text>
 				</View>
 			)}
-			<FlatList data={dummy_UserDescriptionLabel} renderItem={({item, index}) => renderItem(item, index)} />
+			<FlatList data={dummy_userObject} renderItem={({item, index}) => renderItem(item, index)} />
 		</View>
 	);
 };
 
 ControllableAccountList.defaultProps = {
+	onClickAccount: e => console.log(e),
 	title: null,
 	showCrossMark: false,
 	showCheckBox: false,

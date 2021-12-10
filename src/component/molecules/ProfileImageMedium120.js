@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Image} from 'react-native';
-import {DEFAULT_PROFILE} from 'Root/i18n/msg';
+import {DEFAULT_PROFILE, PET_STATUS_ADOPT, PET_STATUS_COMPANION, PET_STATUS_PROTECT, PRIVATE, PUBLIC} from 'Root/i18n/msg';
 import {Paw48_Mixed, Paw48_YELL20, Paw48_APRI10, Private48, Public48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 
@@ -14,11 +14,11 @@ const ProfileImageMedium120 = props => {
 
 	const petStatus = () => {
 		switch (props.data.pet_status) {
-			case 'normal':
+			case PET_STATUS_COMPANION:
 				return <Paw48_APRI10 />;
-			case 'protected':
+			case PET_STATUS_PROTECT:
 				return <Paw48_YELL20 />;
-			case 'adopted':
+			case PET_STATUS_ADOPT:
 				return <Paw48_Mixed />;
 			default:
 				return <></>;
@@ -27,9 +27,9 @@ const ProfileImageMedium120 = props => {
 
 	const shelter_type = () => {
 		switch (props.data.shelter_type) {
-			case 'public':
+			case PUBLIC:
 				return <Public48 />;
-			case 'private':
+			case PRIVATE:
 				return <Private48 />;
 			default:
 				return <></>;

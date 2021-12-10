@@ -17,8 +17,8 @@ export default PetList = props => {
 				</View>
 
 				<View style={[petList.petProfileInfo]}>
-					<Text style={[txt.noto24, {color: GRAY10}]}> {item.name}</Text>
-					<Text style={[txt.noto24, {color: GRAY10}]}>{item.breed}</Text>
+					<Text style={[txt.noto24, {color: GRAY10}]}> {item.user_nickname}</Text>
+					<Text style={[txt.noto24, {color: GRAY10}]}>{item.pet_species_detail}</Text>
 				</View>
 			</View>
 		);
@@ -27,12 +27,13 @@ export default PetList = props => {
 	return (
 		<View style={[petList.container]}>
 			<View style={[petList.insideContainer]}>
-				<FlatList data={dummy_petList} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
+				<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
 			</View>
 		</View>
 	);
 };
 PetList.defaultProps = {
+	items: [],
 	onClickLabel: e => console.log(e),
 };
 // ProfileImageMedium120 - props

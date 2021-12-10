@@ -8,8 +8,8 @@ import {login_style, searchHashTag, temp_style} from './style_templete';
 
 export default SearchHashTag = props => {
 	console.log('props.Search', props.input);
-	const recent_search_tagList = dummy_hashTagListObject;
-	const searched_tagList = dummy_hashTagListObject.slice(0, 3); //검색 후 받아올 데이터 더미
+	const [tagList, setTagList] = React.useState(dummy_hashTagListObject);
+	const searched_tagList = tagList.slice(0, 3); //검색 후 받아올 데이터 더미
 	return (
 		<View style={[login_style.wrp_main, searchHashTag.container]}>
 			{/* 검색내역이 없을 경우 최근 검색한 태그를 출력 */}
@@ -19,7 +19,7 @@ export default SearchHashTag = props => {
 						<Text style={[txt.noto24, {color: GRAY20}]}>최근 검색한 태그</Text>
 					</View>
 					<View style={[temp_style.hashTagList]}>
-						<HashTagList items={recent_search_tagList} />
+						<HashTagList items={tagList} />
 					</View>
 				</View>
 			) : (

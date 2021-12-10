@@ -159,7 +159,7 @@ export const ORI_ACCOUNT = '본 계정';
 export const day = ['일', '월', '화', '수', '목', '금', '토']; //요일 정보
 
 //Usertype - Profile Templete
-export const NORMAL = 'normal';
+export const NORMAL = 'user';
 export const PET = 'pet';
 export const SHELTER = 'shelter';
 
@@ -172,24 +172,14 @@ export const PET_KIND = ['동물종류', '개', '고양이', '새', '여우', '�
 //보호 지역
 export const PET_PROTECT_LOCATION = ['서울', '부산', '인천', '대구', '대전', '광주', '수원', '울산', '고양'];
 
-//테스트용 Array
-export const testArray = [
-	'테스트용 Array',
-	'테스트용 Array',
-	'테스트용 Array',
-	'테스트용 Array',
-	'테스트용 Array',
-	'테스트용 Array',
-	'테스트용 Array',
-	'테스트용 Array',
-	'테스트용 Array',
-	'테스트용 Array',
-	'테스트용 Array',
-	'테스트용 Array',
-	'테스트용 Array',
-	'테스트용 Array',
-	'테스트용 Array',
-];
+//반려동물 상태( 임보, 반려, 입양)
+export const PET_STATUS_PROTECT = 'protect';
+export const PET_STATUS_ADOPT = 'adopt';
+export const PET_STATUS_COMPANION = 'companion';
+
+//보호소 종류 (공립 사립)
+export const PUBLIC = 'public';
+export const PRIVATE = 'private';
 
 //DefaultImage uri
 export const DEFAULT_PROFILE = 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg';

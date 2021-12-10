@@ -1,7 +1,6 @@
 import React from 'react';
 import {FlatList, TouchableOpacity, ScrollView} from 'react-native';
 import {Text, View, TouchableWithoutFeedback} from 'react-native';
-import {testArray} from 'Root/i18n/msg';
 import {socialRelation, login_style, temp_style} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
 import TopTabNavigation_Border from '../organism_ksw/TopTabNavigation_Border';

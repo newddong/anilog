@@ -3610,8 +3610,9 @@ export const profile = StyleSheet.create({
 		marginVertical: 30 * DP,
 		// height: 416 * DP,
 	},
-	feedListContainer: {},
-	feedThumbNailList: {},
+	feedListContainer: {
+		marginLeft: 6 * DP,
+	},
 	floatingBtn: {
 		position: 'absolute',
 		right: 30 * DP,
@@ -3619,14 +3620,11 @@ export const profile = StyleSheet.create({
 	},
 	petList: {
 		width: 750 * DP,
-		height: 220 * DP,
-	},
-	protectedPetList: {
-		width: 750 * DP,
-		height: 252 * DP,
 	},
 	animalNeedHelpList: {
-		height: 1000 * DP,
+		width: 750 * DP,
+		alignItems: 'center',
+		marginTop: 20 * DP,
 	},
 });
 
