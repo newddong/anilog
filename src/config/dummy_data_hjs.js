@@ -311,6 +311,25 @@ export const dummy_MissingReportList = [
 	},
 ];
 
+export const dummy_MissingAnimalDetail = [
+	{
+		_id: 'missingdetail1',
+		//임시로 지정
+		user_profile_uri:
+			'https://w.namu.la/s/f783eaddcfb087fe23cf0fa8b5341c803721b55167cd0f94a65ee7ae9b295e5056f58155cf5d70ec62470e89eb09f039d712b43cb13519f84f2c93eac5ce25557a6b6284dcbb4fd88936dc8faf26e872',
+
+		// @FeedObject
+		feed_type: 'missing',
+		missing_animal_species: '개', //실종 동물의 종류(ex 강아지, 고양이, 토끼 등)
+		missing_animal_species_detail: '진돗개', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+		missing_animal_sex: 'male', //실종 동물의 성별
+		missing_animal_age: '8살', //실종 동물의 나이
+		missing_animal_lost_location: '공덕역', //실종 동물의 실종 지역 혹은 장소
+		missing_animal_features: '온몸이 갈색이며, 무엇이든 잘 물어 뜯음', //실종 동물의 특징
+		missing_animal_date: '2021-02-11', //실종일
+	},
+];
+
 export const dummy_AppliesRecord_protect = [
 	{
 		//@FeedObject
@@ -1036,4 +1055,34 @@ export const _dummy_PetVaccinationObject = {
 		next_vaccination_date: '2023.12.21',
 		is_vaccinated: true,
 	}, //인플루엔자
+};
+
+export const _dummy_MissingDetail = {
+	_id: 'user_99',
+	user_nickname: '웹툰작가99',
+	user_profile_uri: 'http://pds.joins.com/news/component/moneytoday/201507/23/2015072308581995198_1.jpg',
+	user_address: {
+		city: '서울시', //시,도
+		district: '강남구', //군,구
+		neighbor: '신사동', //동,읍,면
+	},
+	feed_type: 'missing',
+	feed_content:
+		'집 문을 잠시 열어놨었는데..그틈을 타서 집에서 나간 것 같아요. 워낙 활발한 아이라서 이 사람 저사람 잘 따르기도 하지만 음식을 가리는 편이라 걱정이네요. 주위에서 보신 분들은 꼭 연락 부탁드립니다.',
+};
+
+export const _dummy_ReportDetail = {
+	_id: 'user_99',
+	user_nickname: '웹툰작가99',
+	user_profile_uri: 'http://pds.joins.com/news/component/moneytoday/201507/23/2015072308581995198_1.jpg',
+	user_address: {
+		city: '서울시', //시,도
+		district: '강남구', //군,구
+		neighbor: '신사동', //동,읍,면
+	},
+	feed_type: 'report',
+	feed_content:
+		'호수공원 옆 돌담길에서 저 강아지를 보았어요. 너무나 귀엽게 생겼지만 주인 손을 떠난지 몇개월 된 것 같았어요. 목걸이가 있는 것 같은데 보려고 해도 자꾸 도망가서 확인할 길이 없네요.',
+	report_witness_date: '2021.10.21',
+	report_witness_location: '경기도 김포시 김포한강8로 16-6 비닐하우스',
 };

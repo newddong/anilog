@@ -5,6 +5,9 @@ import {login_style, reportDetail, temp_style} from './style_templete';
 import FeedContent from '../organism/FeedContent';
 import {useNavigation} from '@react-navigation/core';
 import {report_user_info} from 'Root/config/dummyDate_json';
+// import {_dummy_MissingReportDetail} from 'Root/config/dummy_data_hjs';
+import {_dummy_ReportDetail} from 'Root/config/dummy_data_hjs';
+import {dummy_CommentObject} from 'Root/config/dummyDate_json';
 
 export default ReportDetail = props => {
 	const navigation = useNavigation();
@@ -17,6 +20,7 @@ export default ReportDetail = props => {
 	const [editComment, setEditComment] = React.useState(false); //답글 작성란 View 보이기 T/F
 	const [privateComment, setPrivateComment] = React.useState(false); // 공개 설정 클릭 state
 	const [replyText, setReplyText] = React.useState(); //댓글 텍스트 state
+	const [showMore, setShowMore] = React.useState(false); //더보기 클릭 State
 
 	React.useEffect(() => {
 		setPhoto(props.route.params);
@@ -73,6 +77,22 @@ export default ReportDetail = props => {
 		setPhoto([]);
 	};
 
+	//더보기 클릭
+	const onPressShowMore = () => {
+		setShowMore(!showMore);
+	};
+
+	//댓글 리스트 표출 개수 제어
+	const checkDataLength = () => {
+		let tempList = [];
+		if (!showMore) {
+			if (dummy_CommentObject.length > 2) {
+				tempList = [...dummy_CommentObject.slice(0, 2)];
+				return tempList;
+			} else return dummy_CommentObject;
+		} else return dummy_CommentObject;
+	};
+
 	return (
 		<View style={[login_style.wrp_main]}>
 			<ScrollView contentContainerStyle={[reportDetail.container]}>
@@ -88,11 +108,16 @@ export default ReportDetail = props => {
 				</View>
 				<View style={[temp_style.feedContent, reportDetail.feedContent]}>
 					{/* DB에서 가져오는 제보 피드글 데이터를 FeedContent에 넘겨준다. */}
-					<FeedContent data={report_user_info} />
+					<FeedContent data={_dummy_ReportDetail} />
 				</View>
+				{/* [hjs] 이 화면 댓글도 AnimalProtectRequestDetail 같이 더보기 버튼이 있는것인지..아니면 쭉 늘어놓을 것인지 결정 필요. */}
 				{/* 댓글에 관한 내용 - API에서 넘겨주는 값 확인 후 재수정 필요*/}
 				<View style={[temp_style.commentList, reportDetail.commentList]}>
-					<CommentList onPressReplyBtn={onReplyBtnClick} onPress_ChildComment_ReplyBtn={comment => onChildReplyBtnClick(comment)} />
+					<CommentList
+						items={checkDataLength()}
+						onPressReplyBtn={onReplyBtnClick}
+						onPress_ChildComment_ReplyBtn={comment => onChildReplyBtnClick(comment)}
+					/>
 				</View>
 			</ScrollView>
 			{editComment ? (

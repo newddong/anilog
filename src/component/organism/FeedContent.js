@@ -20,15 +20,19 @@ export default FeedContent = props => {
 	const location = '모델하우스 앞 공터';
 
 	let temp_data = {
-		user_nickname: 'user_nickname',
-		user_id: 'user_id',
-		img_uri: 'https://i.ytimg.com/vi/ERAMkP92arE/maxresdefault.jpg',
-		location: 'location',
-		text_intro: 'Text/Intro',
-		feedText_contents:
-			'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. That is not a propblem ' +
-			'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. 다른 강아지들은 높은곳을 무서워한다는데 정말 알 수가 없네요ㅎㅎㅎ' +
-			'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. 다른 강아지들은 높은곳을 무서워한다는데 정말 알 수가 없네요ㅎㅎㅎ',
+		_id: 'user_99',
+		user_nickname: '웹툰작가99',
+		user_profile_uri: 'http://pds.joins.com/news/component/moneytoday/201507/23/2015072308581995198_1.jpg',
+		user_address: {
+			city: '서울시', //시,도
+			district: '강남구', //군,구
+			neighbor: '신사동', //동,읍,면
+		},
+		// text_intro: 'Text/Intro',
+		// feedText_contents:
+		// 	'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. That is not a propblem ' +
+		// 	'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. 다른 강아지들은 높은곳을 무서워한다는데 정말 알 수가 없네요ㅎㅎㅎ' +
+		// 	'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. 다른 강아지들은 높은곳을 무서워한다는데 정말 알 수가 없네요ㅎㅎㅎ',
 	};
 
 	//화면전환 시 isGotHeight는 초기값으로 가서 차후 호출 시, Height를 다시 받아오도록 함
@@ -88,6 +92,7 @@ export default FeedContent = props => {
 				{/* UserLocationLabel */}
 				<View style={[organism_style.userLocationLabel_feedContent]}>
 					{debug && console.log(`\nFeedContent:view - dumy_data=>:${JSON.stringify(dumy_data)}`)}
+					<UserLocationLabel data={dumy_data} onLabelClick={() => navigation.push('UserProfile', {_id: dumy_data._id})} />
 					{/* {dumy_data != undefined ? (
 						<UserLocationLabel data={dumy_data} onLabelClick={() => navigation.push('UserProfile')} />
 					) : (
@@ -136,10 +141,10 @@ export default FeedContent = props => {
 			</View>
 
 			{/* line 1-1 (제보관련 내용) */}
-			{props.data.tipOff && (
+			{props.data.feed_type == 'report' && (
 				<View style={[organism_style.tipOff_feedContent, feedContent_style.tipOff]}>
-					<Text style={[txt.noto28]}>제보 날짜: {dumy_data.report_date}</Text>
-					<Text style={[txt.noto28]}>제보 장소: {dumy_data.report_place}</Text>
+					<Text style={[txt.noto28]}>제보 날짜: {dumy_data.report_witness_date}</Text>
+					<Text style={[txt.noto28]}>제보 장소: {dumy_data.report_witness_location}</Text>
 				</View>
 			)}
 
@@ -159,11 +164,11 @@ export default FeedContent = props => {
 					},
 				]}
 				onLayout={onLayout}>
-				{dumy_data != undefined ? (
-					<FeedText text={dumy_data.missing_data} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
-				) : (
-					<FeedText text={temp_data.feedText_contents} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
-				)}
+				{/* {dumy_data != undefined ? ( */}
+				<FeedText text={dumy_data.feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
+				{/* // <FeedText text={dumy_data.missing_data} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
+				// ) : ( // <FeedText text={temp_data.feedText_contents} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
+				// )} */}
 			</View>
 			{/* 피드 작성 날짜  3 */}
 			<View style={[organism_style.time_view_feedContent, {marginTop: btnStatus ? null : 10 * DP}]}>
