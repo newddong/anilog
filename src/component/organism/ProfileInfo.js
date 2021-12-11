@@ -22,6 +22,8 @@ import dp from 'Root/screens/dp';
  * onPressVolunteer: void,
  * onShowOwnerBtnClick : void,
  * onHideOwnerBtnClick : void,
+ * onShowCompanion : void,
+ * onHideCompanion :void,
  * adoptionBtnClick: void
  * }} props
  */
@@ -31,6 +33,8 @@ export default ProfileInfo = props => {
 	const [showMore, setShowMore] = React.useState(false); // 프로필 Description 우측 더보기 클릭 State
 	const [followState, setFollowState] = React.useState(false); // 팔로우 T/F
 	const [ownerListState, setOwnerListState] = React.useState(false); // userType이 Pet일 경우 반려인계정 State T/F
+	const [companionListState, setCompanionListState] = React.useState(false); // userType이 Pet일 경우 반려인계정 State T/F
+	const [into_height, setIntro_height] = React.useState(0); //user_introduction 의 길이 => 길이에 따른 '더보기' 버튼 출력 여부 결정
 
 	//더보기 클릭
 	const onPressShowMore = () => {
@@ -39,7 +43,7 @@ export default ProfileInfo = props => {
 
 	//반려인 계정 보이기
 	const showOwner = () => {
-		setOwnerListState(!ownerListState);
+		setOwnerListState(true);
 		props.onShowOwnerBtnClick();
 	};
 	//반려인 계정 숨기기
@@ -56,6 +60,22 @@ export default ProfileInfo = props => {
 	// 펫 계정 => 입양하기 버튼 클릭
 	const onPressAdoption = () => {
 		props.adoptionBtnClick();
+	};
+
+	//유저 계정 => 반려동물 액션버튼 오픈
+	const showCompanion = () => {
+		setCompanionListState(true);
+		props.onShowCompanion();
+	};
+
+	//유저 계정 => 반려동물 액션버튼 클로즈
+	const hideCompanion = () => {
+		setCompanionListState(false);
+		props.onHideCompanion();
+	};
+	const onLayout = e => {
+		console.log('e', e.nativeEvent.layout);
+		setIntro_height(e.nativeEvent.layout.height);
 	};
 
 	// props.data의 유저타입에 따라 다른 버튼이 출력
@@ -79,11 +99,11 @@ export default ProfileInfo = props => {
 			return (
 				<ActionButton
 					btnTitle={'반려동물'}
-					btnStyle={'border'}
+					btnStyle={companionListState ? 'filled' : 'border'}
 					titleFontStyle={30}
 					btnLayout={btn_w280}
-					onOpen={() => console.log('반려동물 Open')}
-					onClose={() => console.log('반려동물 CLose')}
+					onOpen={showCompanion}
+					onClose={hideCompanion}
 				/>
 			);
 		}
@@ -91,6 +111,7 @@ export default ProfileInfo = props => {
 	};
 	return (
 		<View style={organism_style.profileInfo_main}>
+			{/* 프로필 INFO */}
 			<View style={[organism_style.profileImageLarge_view_profileInfo]}>
 				<View style={[organism_style.profileImageLarge_profileInfo, profileInfo_style.profileImageLarge]}>
 					<ProfileImageLarge160 data={props.data} />
@@ -104,6 +125,13 @@ export default ProfileInfo = props => {
 				</View>
 			</View>
 
+			{/* user_introduction 높이정보를 얻기 위한 더미 ScrollView / 투명도 설정으로 화면에는 출력이 되지 않음 */}
+			<ScrollView onLayout={onLayout} style={{position: 'absolute', opacity: 0}}>
+				<Text ellipsizeMode={'tail'} numberOfLines={showMore ? null : 2} style={[txt.noto24, profileInfo_style.content_expanded]}>
+					{profile_data.user_introduction}
+				</Text>
+			</ScrollView>
+
 			<View style={[organism_style.content_view_profileInfo, profileInfo_style.content_view]}>
 				<Text
 					ellipsizeMode={'tail'}
@@ -111,12 +139,18 @@ export default ProfileInfo = props => {
 					style={[txt.noto24, showMore ? profileInfo_style.content_expanded : profileInfo_style.content]}>
 					{profile_data.user_introduction}
 				</Text>
-				<TouchableOpacity onPress={onPressShowMore} style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
-					<Text style={[txt.noto24, {color: GRAY10}]}>더보기 </Text>
-					<View style={showMore ? {transform: [{rotate: '180deg'}]} : null}>
-						<Bracket48 />
-					</View>
-				</TouchableOpacity>
+				{into_height > 50 * DP ? (
+					<TouchableOpacity onPress={onPressShowMore} style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
+						<View style={{flexDirection: 'row'}}>
+							<Text style={[txt.noto24, {color: GRAY10, top: 2}]}>더보기 </Text>
+							<View style={[showMore ? {transform: [{rotate: '180deg'}]} : null]}>
+								<Bracket48 />
+							</View>
+						</View>
+					</TouchableOpacity>
+				) : (
+					<></>
+				)}
 			</View>
 
 			{/* 프로필 관련 버튼 */}
@@ -157,4 +191,6 @@ ProfileInfo.defaultProps = {
 	adoptionBtnClick: e => console.log(e),
 	onShowOwnerBtnClick: e => console.log(e),
 	onHideOwnerBtnClick: e => console.log(e),
+	onShowCompanion: e => console.log(e),
+	onHideCompanion: e => console.log(e),
 };

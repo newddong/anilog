@@ -19,7 +19,7 @@ export default FeedList = ({route, navigation}) => {
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1, backgroundColor: WHITE}]}>
-			<FlatList data={dummy_FeedObject.feed_medias} renderItem={({item}) => renderItem(item)} nestedScrollEnabled />
+			<FlatList data={dummy_FeedObject} renderItem={({item}) => renderItem(item)} nestedScrollEnabled />
 			<View style={[temp_style.floatingBtn, feedList.floatingBtn]}>
 				<Write94 onPress={moveToFeedWrite} />
 			</View>

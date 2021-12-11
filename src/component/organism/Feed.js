@@ -7,7 +7,6 @@ import FeedMedia_temp from '../molecules/FeedMedia_temp';
 import {useNavigation} from '@react-navigation/core';
 import {txt} from 'Root/config/textstyle';
 import {GRAY10} from 'Root/config/color';
-import {missingAnimalDetail, temp_style} from '../templete/style_templete';
 
 export default Feed = props => {
 	const navigation = useNavigation();

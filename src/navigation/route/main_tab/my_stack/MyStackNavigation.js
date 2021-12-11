@@ -50,18 +50,23 @@ import ConfirmInputHeader from 'Navigation/header/ConfirmInputHeader';
 import ConfirmHeader from 'Navigation/header/ConfirmHeader';
 import SaveButtonHeader from 'Navigation/header/SaveButtonHeader';
 import InputAndSearchHeader from 'Root/navigation/header/InputAndSearchHeader';
+import MeatBallHeader from 'Root/navigation/header/MeatBallHeader';
 
 const MyStack = createStackNavigator();
 
 export default MyStackNavigation = () => {
 	return (
-		<MyStack.Navigator initialRouteName="UserProfile">
+		<MyStack.Navigator initialRouteName="SocialRelation">
 			<MyStack.Screen name="UserFeedList" component={FeedList} />
 			<MyStack.Screen name="UserFeeds" component={FavoriteFeeds} />
 			<MyStack.Screen name="HashFeedList" component={FeedList} />
 			<MyStack.Screen name="ProtectAnimalFeedList" component={FeedList} />
 			<MyStack.Screen name="UserTagFeedList" component={FeedList} />
-			<MyStack.Screen name="UserProfile" component={Profile} />
+			<MyStack.Screen
+				name="UserProfile"
+				component={Profile}
+				options={{header: props => <MeatBallHeader {...props} menu={['신고하기', '신고']} />, title: 'UserProfile'}}
+			/>
 			<MyStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} />
 			<MyStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
 			<MyStack.Screen name="FeedCommentList" component={FeedCommentList} />

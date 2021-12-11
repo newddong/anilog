@@ -751,12 +751,8 @@ export const assignCheckList = StyleSheet.create({
 
 export const protectedPetList = StyleSheet.create({
 	container: {
-		width: 750 * DP,
-		height: 252 * DP,
+		marginTop: 20 * DP,
 		justifyContent: 'center',
-	},
-	insideContainer: {
-		width: 750 * DP,
 	},
 	itemContainer: {
 		width: 184 * DP,

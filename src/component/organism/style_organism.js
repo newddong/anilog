@@ -257,9 +257,7 @@ export const organism_style = StyleSheet.create({
 		// height: 80 * DP,
 	},
 	addMore_profileInfo: {
-		width: 114 * DP,
-		height: 48 * DP,
-		alignItems: 'center',
+		alignItems: 'flex-end',
 		flexDirection: 'row',
 	},
 	btn_w280_view_profileInfo: {
@@ -383,7 +381,7 @@ export const profileInfo_style = StyleSheet.create({
 		width: 492 * DP,
 	},
 	addMore: {
-		marginTop: 32 * DP,
+		top: 10 * DP,
 		marginLeft: 20 * DP,
 	},
 	btn_w280_view: {

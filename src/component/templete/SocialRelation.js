@@ -51,7 +51,6 @@ export default SocialRelation = props => {
 	];
 	return (
 		<View style={[login_style.wrp_main, socialRelation.container]}>
-			{/* (O)topTabNavigation */}
 			<View style={[temp_style.topTabNavigation_border, socialRelation.topTabNavigation]}>
 				<TopTabNavigation_Border
 					items={tabBarItems} //Tab에 출력될 Label 배열

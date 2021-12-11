@@ -28,9 +28,7 @@ export default ProtectedPetList = props => {
 	};
 	return (
 		<View style={[protectedPetList.container]}>
-			<View style={[protectedPetList.insideContainer]}>
-				<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
-			</View>
+			<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
 		</View>
 	);
 };
@@ -38,8 +36,3 @@ export default ProtectedPetList = props => {
 ProtectedPetList.defaultProps = {
 	onClickLabel: e => console.log(e),
 };
-// ProfileImageMedium120 - props
-// img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
-// 	userType: 'user', //required - 유저타입 pet user shelter
-// 	shelterType: 'none', // public private
-// 	petStatus: 'none', // normal protected adopted none

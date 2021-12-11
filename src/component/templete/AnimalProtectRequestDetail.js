@@ -167,10 +167,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 			<ScrollView contentContainerStyle={[animalProtectRequestDetail_style.container]}>
 				{/* 임시보호 후보자 협의 중 사진 */}
 				<View style={[temp_style.rescueImage]}>
-					<RescueImage
-						status={data.protect_request_status ? data.protect_request_status : 'adopt'}
-						img_uri={data.protect_animal_photos[0] ? data.protect_animal_photos[0] : DEFAULT_PROFILE}
-					/>
+					<RescueImage status={data.protect_request_status || 'adopt'} img_uri={data.protect_animal_photos[0] || DEFAULT_PROFILE} />
 				</View>
 				<View style={[temp_style.requestProtect_view]}>
 					<Text style={[txt.noto24, temp_style.requestProtect, {color: GRAY10}]}>보호요청</Text>
