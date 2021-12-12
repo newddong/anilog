@@ -69,14 +69,15 @@ export const organism_style = StyleSheet.create({
 		marginBottom: 40 * DP,
 	},
 	accountList: {
-		width: 674 * DP,
+		width: 750 * DP,
+		// marginBottom: 80 * DP,
 	},
 	accountListItem: {
 		width: 654 * DP,
 		height: 120 * DP,
+		// marginLeft: 48 * DP,
 		marginBottom: 20 * DP,
 		justifyContent: 'center',
-		alignSelf: 'center',
 		borderColor: WHITE,
 		borderWidth: 5 * DP,
 		borderRadius: 30 * DP,
@@ -110,7 +111,7 @@ export const controllableAccount = StyleSheet.create({
 		alignItems: 'flex-start',
 	},
 	userDescriptionLabel_checked: {
-		width: 446 * DP,
+		width: 400 * DP,
 
 		justifyContent: 'center',
 		alignItems: 'flex-start',
@@ -136,12 +137,12 @@ export const controllableAccount = StyleSheet.create({
 
 export const controllableAccountList = StyleSheet.create({
 	container: {
-		width: 654 * DP,
+		width: 750 * DP,
 		marginTop: 30 * DP,
 		alignSelf: 'center',
 	},
 	title: {
-		width: 300 * DP,
+		marginLeft: 48 * DP,
 		height: 42 * DP,
 		marginBottom: 16 * DP,
 	},
@@ -194,13 +195,13 @@ export const controllableHashTagList = StyleSheet.create({
 
 export const accountHashList = StyleSheet.create({
 	container: {
-		width: 654 * DP,
-		marginTop: 30 * DP,
-		alignSelf: 'center',
+		width: 750 * DP,
+		alignItems: 'center',
+		marginBottom: 100 * DP,
 		// backgroundColor: BGCOLOR,
 	},
 	userAccount: {
-		width: 654 * DP,
+		width: 750 * DP,
 		height: 94 * DP,
 		marginBottom: 40 * DP,
 	},
@@ -926,13 +927,12 @@ export const aidRequest = StyleSheet.create({
 
 export const aidRequestList = StyleSheet.create({
 	container: {
-		width: 672 * DP,
-		height: 1150 * DP,
-		// backgroundColor: 'lightcyan',
+		width: 750 * DP,
 	},
 	itemContainer: {
+		alignSelf: 'center',
 		flexDirection: 'row',
-		marginBottom: 10 * DP,
+		marginBottom: 20 * DP,
 	},
 	addProtectedPetContainer: {
 		width: 654 * DP,
@@ -942,6 +942,7 @@ export const aidRequestList = StyleSheet.create({
 		borderWidth: 2 * DP,
 		marginTop: 30 * DP,
 		alignItems: 'center',
+		alignSelf: 'center',
 		justifyContent: 'center',
 		flexDirection: 'row',
 	},
@@ -956,6 +957,7 @@ export const aidRequestList = StyleSheet.create({
 		color: APRI10,
 	},
 	aidRequestListCont: {
+		width: 750 * DP,
 		marginTop: 20 * DP,
 	},
 });
@@ -979,7 +981,8 @@ export const volunteerItem = StyleSheet.create({
 
 export const volunteerItemList = StyleSheet.create({
 	container: {
-		width: 654 * DP,
+		width: 750 * DP,
+		alignItems: 'center',
 	},
 	itemContainer: {
 		width: 654 * DP,
@@ -1156,7 +1159,8 @@ export const animalNeedHelpList = StyleSheet.create({
 		// marginTop: 20 * DP,
 	},
 	container_bordermode: {
-		// width: 654 * DP,
+		width: 750 * DP,
+		marginBottom: 40 * DP,
 		// marginTop: 20 * DP,
 	},
 	itemContainer: {
@@ -1227,6 +1231,7 @@ export const userAccount = StyleSheet.create({
 		width: 654 * DP,
 		height: 94 * DP,
 		flexDirection: 'row',
+		alignSelf: 'center',
 	},
 	checkBox: {
 		width: 80 * DP,
@@ -1301,6 +1306,17 @@ export const stagebar_style = StyleSheet.create({
 		borderWidth: 4 * DP,
 		borderColor: APRI10,
 	},
-	insideBar: {width: 80 * DP, height: 20 * DP, backgroundColor: APRI10, borderRadius: 18 * DP},
-	text: {marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10},
+	insideBar: {
+		width: 80 * DP,
+		height: 20 * DP,
+		backgroundColor: APRI10,
+		borderRadius: 18 * DP,
+	},
+	text: {
+		marginLeft: 18 * DP,
+		width: 40 * DP,
+		height: 32 * DP,
+		marginBottom: 0 * DP,
+		color: GRAY10,
+	},
 });

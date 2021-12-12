@@ -81,7 +81,7 @@ export default LoginTemplete = props => {
 	};
 
 	return (
-		<View style={[login_style.wrp_main]}>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* confirm without login */}
 			<View style={loginTemplete_style.without_login}>
 				<TouchableOpacity onPress={moveToMainTab}>

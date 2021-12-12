@@ -10,7 +10,7 @@ import {TouchableOpacity} from 'react-native';
 /**
  * 인풋 크기 30
  * @type {React.ForwardRefRenderFunction<?,Input30Props>}
- * 
+ *
  */
 const Input30 = React.forwardRef((props, ref) => {
 	React.useImperativeHandle(ref, () => ({
@@ -48,9 +48,9 @@ const Input30 = React.forwardRef((props, ref) => {
 			if (props.value == undefined || props.value.length == 0) {
 				return null;
 			} else if (confirmed == true) {
-				return <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>;
+				return <Text style={(txt.noto22, {color: GREEN, lineHeight: 48 * DP})}>{props.confirm_msg}</Text>;
 			} else if (confirmed == false) {
-				return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>;
+				return <Text style={(txt.noto22, {color: RED10, lineHeight: 48 * DP})}>{props.alert_msg}</Text>;
 			}
 		}
 	};
@@ -126,8 +126,6 @@ const Input30 = React.forwardRef((props, ref) => {
 	);
 });
 
-
-
 const Input30Props = {
 	/** @type {boolean} 제목 표시여부*/
 	showTitle: bool,
@@ -136,7 +134,7 @@ const Input30Props = {
 	/** @type {string} 플레이스홀더 */
 	placeholder: string,
 	/** @type {string}  showTitle True일 시 출력되는 안내메시지*/
-	description:string,
+	description: string,
 	/** @type {string} 표시 설정 ('star'|'info'|'none') */
 	descriptionType: string,
 	/** @type {string} 입력창에 입력된 값 */
@@ -168,9 +166,9 @@ const Input30Props = {
 	/** @type {()=>boolean} true/false를 반환하는 입력 양식 검증함수 */
 	validator: func,
 	/** @type {(result:boolean)=>void} validator가 실행될 때마다 발생하는 콜백함수, validator의 결과값을 매개변수로 통보*/
-	onValid:func,
+	onValid: func,
 	/** @type {string} 인풋 키보드 타잎 default|number-pad|decimal-pad|numeric|email-address|phone-pad 다른 속성은 RN공식문서 참조 */
-	keyboardType:string
+	keyboardType: string,
 };
 
 Input30.propTypes = Input30Props;
@@ -190,7 +188,7 @@ Input30.defaultProps = {
 	validator: e => console.log('Input30 default validator', e),
 	onValid: e => console.log('Input30 default onValid ', e),
 	width: 300, // TextInput 너비,
-	keyboardType:'default'
+	keyboardType: 'default',
 };
 
 export default Input30;

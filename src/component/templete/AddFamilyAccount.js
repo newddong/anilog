@@ -12,7 +12,7 @@ import Modal from '../modal/Modal';
 
 export default AddFamilyAccount = ({route, navigation}) => {
 	// console.log('route', route.params);
-	const [searched_accountList, setSearched_accountList] = React.useState(dummy_userObject.slice(1, 4));
+	const [searched_accountList, setSearched_accountList] = React.useState(dummy_userObject);
 	const [selectedAccount, setSelectedAccount] = React.useState(null);
 
 	//돋보기 버튼 클릭 콜백

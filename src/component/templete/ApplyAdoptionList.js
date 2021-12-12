@@ -31,7 +31,7 @@ export default ApplyAdoptionList = props => {
 							: () => navigation.push('ApplyAdoptionDetails', props.route.params)
 					}
 					onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
-					onLabelClick={(status, id, item) => onLabelClick(item)}
+					onClickLabel={(status, id, item) => onLabelClick(item)}
 				/>
 			</View>
 			{/* </FlatList> */}

@@ -107,10 +107,10 @@ export default AssignProtectAnimalInfo = ({route}) => {
 				<Stagebar
 					backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨
 					insideBarStyle={stagebar_style.insideBar} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+					textStyle={[txt.roboto24, stagebar_style.text]} //text의 스타일
 					current={4} //현재 단계를 정의
 					maxstage={4} //전체 단계를 정의
 					width={600 * DP} //bar의 너비
-					textStyle={[txt.roboto24, stagebar_style.text]} //text의 스타일
 				/>
 			</View>
 

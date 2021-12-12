@@ -63,13 +63,15 @@ export default AssignProtectAnimalImage = props => {
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);
-				let photoList = [];
-				responseObject.assets.map((v, i) => {
-					console.log('v', i, v.uri);
-					photoList.push(v.uri);
-				});
-				setImageList(photoList);
-				setData({...data, protect_animal_photos: photoList || data.protect_animal_photos});
+				if (!responseObject.didCancel) {
+					let photoList = [];
+					responseObject.assets.map((v, i) => {
+						console.log('v', i, v.uri);
+						photoList.push(v.uri);
+					});
+					setImageList(photoList);
+					setData({...data, protect_animal_photos: photoList || data.protect_animal_photos});
+				}
 			},
 		);
 	};

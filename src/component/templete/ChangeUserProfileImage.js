@@ -43,7 +43,9 @@ export default ChangeUserProfileImage = ({route}) => {
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);
-				setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || data.user_profile_uri});
+				responseObject.didCancel
+					? console.log('선택취소')
+					: setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || data.user_profile_uri});
 			},
 		);
 	};

@@ -68,7 +68,7 @@ export default AnimalNeedHelp = props => {
 	//우상단 즐겨찾기 깃발 아이콘 클릭 콜백
 	const onPressFavoriteTag = () => {
 		setFavorite(!favorite);
-		props.onFavoriteTag(favorite);
+		props.onFavoriteTag(!favorite);
 	};
 
 	//입양자 정보 클릭
@@ -163,7 +163,7 @@ export default AnimalNeedHelp = props => {
 					<View style={[animalNeedHelp.protectedThumbnail_container]}>
 						{/* Pet Thumbnail */}
 						{/* {console.log(`AnimalNeedHelp:thumbnailData=>${JSON.stringify(thumbnailData)}`)} */}
-						<ProtectedThumbnail data={thumbnailData} onLabelClick={(status, id) => props.onLabelClick(status, id)} />
+						<ProtectedThumbnail data={thumbnailData} onLabelClick={(status, id) => props.onClickLabel(status, id)} />
 					</View>
 					{/* Pet Info */}
 					{/* borderMode가 true일 경우에만 TouchableOpacity가 가능하도록 함. */}
@@ -190,7 +190,7 @@ export default AnimalNeedHelp = props => {
 
 AnimalNeedHelp.defaultProps = {
 	selected: false,
-	onLabelClick: e => console.log(e),
+	onClickLabel: e => console.log(e),
 	onFavoriteTag: e => console.log(e),
 	onPressAdoptorInfo: e => console.log('e'),
 	isChecked: false,

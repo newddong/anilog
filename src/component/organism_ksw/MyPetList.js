@@ -1,7 +1,6 @@
 import React from 'react';
 import {FlatList, TouchableOpacity} from 'react-native';
 import {Text, View} from 'react-native';
-import {dummy_myPetList} from 'Root/config/dummyDate_json';
 import AddPet from '../molecules/AddPet';
 import PetImageLabel from '../molecules/PetImageLabel';
 import {myPetList} from './style_organism';

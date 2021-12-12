@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {GRAY10} from 'Root/config/color';
@@ -8,7 +9,12 @@ import {login_style, temp_style, baseInfo_style, animalProtectList} from './styl
 
 //접근 테이블 - ProtectAnimalObject, UserObject(pet)
 export default AnimalProtectList = ({route}) => {
+	const navigation = useNavigation();
 	const [data, setData] = React.useState(dummy_AnimalProtectList); // 최종적으로 AnimalInfoList에 들어갈 임보 동물 정보
+	const onPressLabel = (item, index) => {
+		console.log('index', item);
+		navigation.push('UserProfile', item);
+	};
 	return (
 		<View style={[login_style.wrp_main]}>
 			<ScrollView contentContainerStyle={[animalProtectList.container]}>
@@ -16,7 +22,7 @@ export default AnimalProtectList = ({route}) => {
 					<View style={[animalProtectList.title]}>
 						<Text style={[txt.noto24, {color: GRAY10}]}>임시보호 중인 동물</Text>
 					</View>
-					<AnimalInfoList items={data} />
+					<AnimalInfoList items={data} onPressLabel={onPressLabel} />
 				</View>
 			</ScrollView>
 		</View>

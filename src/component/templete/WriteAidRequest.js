@@ -70,12 +70,14 @@ export default WriteAidRequest = ({route, navigation}) => {
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);
-				let photoList = [];
-				responseObject.assets.map((v, i) => {
-					photoList.push(v.uri);
-				});
-				setImageList(photoList);
-				setData({...data, protect_request_photos: photoList || data.protect_request_photos});
+				if (!responseObject.didCancel) {
+					let photoList = [];
+					responseObject.assets.map((v, i) => {
+						photoList.push(v.uri);
+					});
+					setImageList(photoList);
+					setData({...data, protect_request_photos: photoList || data.protect_request_photos});
+				}
 			},
 		);
 	};

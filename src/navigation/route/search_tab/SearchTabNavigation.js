@@ -12,7 +12,7 @@ const SearchTabNav = createMaterialTopTabNavigator();
 
 export default SearchTabNavigation = ({route, navigation}) => {
 	const [searchInput, setSearchInput] = React.useState();
-
+	const tabList = ['피드', '커뮤니티', '보호요청'];
 	//SearchHeader에서 작성한 검색어와 검색클릭이 행해지면 SearchInput에 값이 들어감
 	React.useEffect(() => {
 		setSearchInput(route.params);
@@ -35,6 +35,7 @@ export default SearchTabNavigation = ({route, navigation}) => {
 						onSelect={pressedTab => onSelectTab(pressedTab)} // 현재 클릭된 상태인 tab (pressedTab에는 클릭된 index가 담겨져있음)
 						select={state.index} // gesture Handler(손가락으로 swipe)로 tab을 움직였을 시 자식까지 state를 연동시키기 위한 props
 						fontSize={24}
+						menu={tabList}
 					/>
 				);
 			}}>

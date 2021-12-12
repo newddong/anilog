@@ -18,7 +18,7 @@ export default SocialRelationTopTabNavigation = () => {
 						merge: true,
 					});
 				};
-				const number_of_accounts_followed_together = 15; // 함께아는사람 숫자,  현재 더미데이타
+				const number_of_accounts_followed_together = 1032; // 함께아는사람 숫자,  현재 더미데이타
 				const number_of_follower = 623; // 해당 계정의 팔로워 숫자,  현재 더미데이타
 				const number_of_following = 1029; // 해당 계정의 팔로윙 숫자,  현재 더미데이타
 				const tabBarItems = [

@@ -11,6 +11,7 @@ import {DEFAULT_PROFILE} from 'Root/i18n/msg';
  * 유저의 프로필 사진, 닉네임, 소개글, 팔로우 상태를 출력하는 라벨
  * @param {object} props - Props Object
  * @param {object} props.data - UserObejct
+ * @param {number} props.width - user_introduction 너비
  * @param {(data:object)=>void} props.onClickLabel - 버튼을 눌렸을때 동작하는 콜백, 제목 반환환
  */
 const UserDescriptionLabel = props => {
@@ -44,7 +45,10 @@ const UserDescriptionLabel = props => {
 					</Text>
 					{props.data.showStatus ? <Text style={[txt.noto22, {color: APRI10, alignSelf: 'center', paddingLeft: 10 * DP}]}> STATUS</Text> : null}
 				</View>
-				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10, maxWidth: 400 * DP}]} numberOfLines={1} ellipsizeMode="tail">
+				<Text
+					style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10, maxWidth: props.width * DP || 400 * DP}]}
+					numberOfLines={1}
+					ellipsizeMode="tail">
 					{props.data.user_introduction || ''}
 				</Text>
 			</View>

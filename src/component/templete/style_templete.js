@@ -411,9 +411,10 @@ export const temp_style = StyleSheet.create({
 		alignItems: 'center',
 	},
 	feedThumbnailList: {
-		width: 750 * DP,
+		width: 734 * DP,
 		// height: 1032 * DP,
-		alignItems: 'center',
+		// alignItems: 'center',
+		alignSelf: 'center',
 		justifyContent: 'center',
 	},
 	topTabNavigation_filled: {
@@ -443,9 +444,10 @@ export const temp_style = StyleSheet.create({
 		width: 654 * DP,
 		marginTop: 40 * DP,
 		marginBottom: 20 * DP,
+		marginLeft: 48 * DP,
 	},
 	hashTagList: {
-		width: 654 * DP,
+		width: 750 * DP,
 		marginTop: 20 * DP,
 	},
 	filterBtn: {
@@ -805,7 +807,7 @@ export const temp_style = StyleSheet.create({
 		borderRightWidth: 2 * DP,
 	},
 	AnimalNeedHelpList: {
-		width: 654 * DP,
+		width: 750 * DP,
 		// height: 1324 * DP,
 		marginTop: 40 * DP,
 		marginBottom: 60 * DP,
@@ -840,8 +842,6 @@ export const temp_style = StyleSheet.create({
 		width: 750 * DP,
 		// height: 1384 * DP,
 		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#FFF',
 	},
 	filterbutton_view: {
 		flexDirection: 'row',
@@ -863,8 +863,9 @@ export const temp_style = StyleSheet.create({
 		backgroundColor: '#FFF',
 	},
 	baseFlatList_protectRequestList: {
-		width: 654 * DP,
+		width: 750 * DP,
 		// height: 1286 * DP,
+		marginBottom: 70 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#FFF',
@@ -1040,7 +1041,7 @@ export const loginTemplete_style = StyleSheet.create({
 	},
 	without_login: {
 		width: 654 * DP,
-		height: 316 * DP,
+		height: 216 * DP,
 		marginTop: 80 * DP,
 	},
 	without_login_text: {
@@ -2651,6 +2652,10 @@ export const searchAccountA = StyleSheet.create({
 		backgroundColor: WHITE,
 		alignItems: 'center',
 	},
+	listContainer: {
+		width: 750 * DP,
+		alignSelf: 'center',
+	},
 });
 
 export const searchAccountB = StyleSheet.create({
@@ -2703,7 +2708,7 @@ export const searchProtectRequest = StyleSheet.create({
 	},
 	animalNeedHelpList: {
 		marginTop: 30 * DP,
-		width: 654 * DP,
+		width: 750 * DP,
 		alignSelf: 'center',
 		// backgroundColor: '#FF00FF',
 	},
@@ -2714,7 +2719,7 @@ export const appliesRecord = StyleSheet.create({
 		flex: 1,
 	},
 	record: {
-		width: 654 * DP,
+		width: 750 * DP,
 		marginTop: 30 * DP,
 		alignItems: 'center',
 		alignSelf: 'center',
@@ -2741,8 +2746,8 @@ export const appliesRecord = StyleSheet.create({
 			moreTxt: {
 				width: 100 * DP,
 				height: 48 * DP,
-				marginLeft: 290 * DP,
-
+				position: 'absolute',
+				right: 40 * DP,
 				alignItems: 'center',
 				justifyContent: 'center',
 			},
@@ -2759,7 +2764,8 @@ export const appliesRecord = StyleSheet.create({
 		},
 	},
 	shelterList_container: {
-		width: 654 * DP,
+		alignItems: 'center',
+		width: 750 * DP,
 		height: 312 * DP,
 		marginVertical: 30 * DP,
 	},
@@ -2830,6 +2836,9 @@ export const activationList = StyleSheet.create({
 export const activationDetail = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	insideContainer: {
+		width: 750 * DP,
 	},
 	imageContainer: {
 		width: 654 * DP,
@@ -2948,7 +2957,7 @@ export const applyVolunteer = StyleSheet.create({
 		marginTop: 20 * DP,
 	},
 	accountList: {
-		width: 528 * DP,
+		width: 654 * DP,
 	},
 	addParticipantBtn: {
 		width: 654 * DP,
@@ -3329,7 +3338,7 @@ export const accountPicker = StyleSheet.create({
 		flex: 1,
 	},
 	accountList: {
-		width: 654 * DP,
+		width: 750 * DP,
 		marginTop: 42 * DP,
 	},
 });
@@ -3341,7 +3350,7 @@ export const selectAccount = StyleSheet.create({
 	},
 	accountList: {
 		marginTop: 32 * DP,
-		width: 670 * DP,
+		width: 654 * DP,
 	},
 });
 
@@ -3361,22 +3370,25 @@ export const aidRequestList = StyleSheet.create({
 
 export const manageVolunteer = StyleSheet.create({
 	container: {
-		width: 654 * DP,
+		width: 750 * DP,
 		alignItems: 'center',
 	},
 	volunteerList: {
 		width: 654 * DP,
+		marginBottom: 100 * DP,
 	},
 	previous_volunteerList: {
-		maxHeight: 522 * DP,
+		width: 750 * DP,
+		height: 522 * DP,
 	},
 	previous_volunteerList_expanded: {
-		width: 654 * DP,
+		width: 750 * DP,
 	},
 	title: {
 		height: 35 * DP,
 		marginTop: 40 * DP,
 		marginBottom: 20 * DP,
+		marginLeft: 48 * DP,
 		flexDirection: 'row',
 		alignSelf: 'flex-start',
 	},
@@ -3388,8 +3400,8 @@ export const manageVolunteer = StyleSheet.create({
 	showMoreContainer: {
 		width: 214 * DP,
 		height: 48 * DP,
+		marginBottom: 50 * DP,
 		flexDirection: 'row',
-		alignSelf: 'center',
 		alignItems: 'center',
 	},
 	showMoreContainer_text: {
@@ -3708,7 +3720,7 @@ export const animalProtectList = StyleSheet.create({
 
 export const saveFavorite = StyleSheet.create({
 	accountHashList: {
-		width: 654 * DP,
+		width: 750 * DP,
 		// height: 1324 * DP,
 		marginTop: 30 * DP,
 		alignItems: 'center',
@@ -3724,13 +3736,24 @@ export const linkedAccountList = StyleSheet.create({
 		backgroundColor: WHITE,
 	},
 	insideContainer: {
-		width: 750 * DP,
+		// width: 750 * DP,
+		alignItems: 'center',
+		flex: 3,
 	},
+	title: {
+		width: 300 * DP,
+		height: 42 * DP,
+		marginBottom: 16 * DP,
+	},
+
 	accountList_step1: {
-		marginTop: 40 * DP,
+		flex: 1,
+		alignItems: 'center',
+		marginTop: 30 * DP,
 	},
 	accountList_step2: {
-		marginTop: 70 * DP,
+		width: 750 * DP,
+		marginTop: 30 * DP,
 	},
 	floatingBtn: {
 		position: 'absolute',
@@ -3742,11 +3765,11 @@ export const linkedAccountList = StyleSheet.create({
 export const followerList = StyleSheet.create({
 	container: {
 		flex: 1,
+
 		alignItems: 'center',
 		backgroundColor: WHITE,
 	},
 	insideContainer: {
-		width: 750 * DP,
 		alignItems: 'center',
 	},
 
@@ -3754,6 +3777,7 @@ export const followerList = StyleSheet.create({
 		marginTop: 38 * DP,
 	},
 	accountList_step1: {
+		width: 750 * DP,
 		marginTop: 40 * DP,
 	},
 	accountList_step2: {

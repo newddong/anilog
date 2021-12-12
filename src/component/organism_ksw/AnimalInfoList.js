@@ -14,7 +14,7 @@ export default AnimalInfoList = props => {
 	const renderItem = (item, index) => {
 		return (
 			<View style={[animalInfoList.itemContainer]}>
-				<AnimalInfo data={item} />
+				<AnimalInfo data={item} onPressLabel={() => props.onPressLabel(item, index)} />
 			</View>
 		);
 	};
@@ -23,9 +23,13 @@ export default AnimalInfoList = props => {
 		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
 			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
 				<View style={[animalInfoList.container]}>
-					<FlatList data={data} renderItem={({item, index}) => renderItem(item, index)} />
+					<FlatList data={data} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled={false} />
 				</View>
 			</ScrollView>
 		</ScrollView>
 	);
+};
+
+AnimalInfoList.defaultProps = {
+	onPressLabel: e => {},
 };

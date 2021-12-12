@@ -10,7 +10,7 @@ import MeatBallDropdown from '../molecules/MeatBallDropdown';
 export default ShelterProtectRequests = ({route, navigation}) => {
 	const [protectAnimalList, setProtectAnimalList] = React.useState(dummy_ShelterProtectAnimalObject); // AnimalNeedHelpList 내가 올린 보호요청 게시글 목록 리스트
 
-	const onLabelClick = (status, user_id, item) => {
+	const onClickLabel = (status, user_id, item) => {
 		// console.log('status , id => ' + status + '_' + user_id);
 		console.log('item / ShelterProtectRequestList', item);
 		navigation.push('AnimalProtectRequestDetail', dummy_AnimalNeedHelpList_various_status[0]);
@@ -37,7 +37,7 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 				</View>
 			</View>
 			<View style={[temp_style.baseFlatList_protectRequestList, baseInfo_style.list]}>
-				<AnimalNeedHelpList data={protectAnimalList} onLabelClick={onLabelClick} onFavoriteTag={onFavoriteTag} />
+				<AnimalNeedHelpList data={protectAnimalList} onClickLabel={onLabelClick} onFavoriteTag={onFavoriteTag} />
 			</View>
 		</View>
 	);

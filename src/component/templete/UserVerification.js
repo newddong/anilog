@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, ScrollView,TouchableWithoutFeedback} from 'react-native';
+import {Text, View, ScrollView, TouchableWithoutFeedback} from 'react-native';
 import {APRI10, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w654} from '../atom/btn/btn_style';
@@ -8,6 +8,7 @@ import Stagebar from '../molecules/Stagebar';
 import TabSelectBorder_Type1 from '../molecules/TabSelectBorder_Type1';
 import EmailVerification from '../organism_ksw/EmailVerification';
 import PhoneNumVerification from '../organism_ksw/PhoneNumVerification';
+import {stagebar_style} from '../organism_ksw/style_organism';
 import {login_style, btn_style, temp_style, progressbar_style, userAssign} from './style_templete';
 
 // DropDown 컴포넌트 해결될 시 props처리와 data처리 추가해야함
@@ -20,7 +21,6 @@ export default UserVerification = props => {
 		user_phone_number: '01096450422',
 		user_mobile_company: 'SKT',
 	}).current;
-
 
 	const [tabState, setTabState] = React.useState(0);
 	const [verified, setVerified] = React.useState(false);
@@ -43,13 +43,13 @@ export default UserVerification = props => {
 		console.log(name);
 	};
 	const onPhoneNumberInputChange = phone_num => {
-		console.log('Userverification onPhoneNumberInputChange      ',phone_num);
-		user_data.user_phone_number=phone_num;
+		console.log('Userverification onPhoneNumberInputChange      ', phone_num);
+		user_data.user_phone_number = phone_num;
 	};
-	const onMobileCompanyInputChange = (company,index) => {
-		console.log('Userverification onMobileCompanyInputChange      ',company, index);
-		user_data.user_mobile_company=company;
-	}
+	const onMobileCompanyInputChange = (company, index) => {
+		console.log('Userverification onMobileCompanyInputChange      ', company, index);
+		user_data.user_mobile_company = company;
+	};
 
 	const verificationRequest = () => {
 		console.log(verified_num);
@@ -68,20 +68,12 @@ export default UserVerification = props => {
 				{/* (M)StageBar	 */}
 				<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 					<Stagebar
-						style={{}} //전체 container style, text와 bar를 감싸는 view의 style
-						backgroundBarStyle={{
-							width: 400 * DP,
-							height: 20 * DP,
-							backgroundColor: 'white',
-							borderRadius: 10 * DP,
-							borderWidth: 4 * DP,
-							borderColor: APRI10,
-						}} //배경이 되는 bar의 style, width props으로 너비결정됨
-						insideBarStyle={{height: 20 * DP, backgroundColor: APRI10, borderRadius: 5 * DP}} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+						backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨
+						insideBarStyle={stagebar_style.insideBar} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+						textStyle={[txt.roboto24, stagebar_style.text]} //text의 스타일
 						current={2} //현재 단계를 정의
 						maxstage={4} //전체 단계를 정의
 						width={600 * DP} //bar의 너비
-						textStyle={[txt.roboto24, {marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10}]} //text의 스타일
 					/>
 				</View>
 

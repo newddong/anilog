@@ -51,7 +51,7 @@ export default AnimalFromShelter = ({route}) => {
 				<AnimalNeedHelpList
 					data={animalFromMyShelterList}
 					borderMode={true}
-					onLabelClick={(status, id) => navigationGo(status, id)}
+					onClickLabel={(status, id) => navigationGo(status, id)}
 					onPressAdoptorInfo={item => onPressAdoptorInfo(item)}
 					onPressProtectRequest={item => onPressProtectRequest(item)}
 				/>

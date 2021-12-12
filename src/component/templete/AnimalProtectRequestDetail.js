@@ -146,6 +146,10 @@ export default AnimalProtectRequestDetail = ({route}) => {
 		}
 	};
 
+	const onPressFavoriteTag = (item, index) => {
+		console.log('FavoriteTag', index, item);
+	};
+
 	//더보기 클릭
 	const onPressShowMore = () => {
 		setShowMore(!showMore);
@@ -263,7 +267,8 @@ export default AnimalProtectRequestDetail = ({route}) => {
 				<View style={[accountPicker.accountList]}>
 					<AnimalNeedHelpList
 						data={dummy_AnimalNeedHelpList_various_status}
-						onLabelClick={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)}
+						onClickLabel={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)}
+						onFavoriteTag={onPressFavoriteTag}
 					/>
 				</View>
 				{/* 보호소 계정이 나의 보호요청 게시글을 통해 들어왔을 경우 버튼 출력 X */}

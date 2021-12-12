@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Text} from 'react-native';
+import {View, Image, Text, TouchableOpacity} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
@@ -24,16 +24,21 @@ const PetImageLabel = props => {
 		}
 	};
 
+	const onPressLabel = () => {
+		props.onPressLabel();
+	};
+
 	return (
-		<View style={{width: 180 * DP, height: 180 * DP}}>
+		<TouchableOpacity onPress={onPressLabel} style={{width: 180 * DP, height: 180 * DP}}>
 			<Image source={{uri: props.data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_180} />
 			<View style={{position: 'absolute'}}>{petStatus()}</View>
 			{props.showNickname ? <Text style={[txt.noto28, {color: GRAY10, textAlign: 'center'}]}>{props.data.user_nickname}</Text> : <></>}
-		</View>
+		</TouchableOpacity>
 	);
 };
 
 PetImageLabel.defaultProps = {
+	onPressLabel: e => {},
 	showNickname: true,
 };
 export default PetImageLabel;

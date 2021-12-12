@@ -10,9 +10,6 @@ import Modal from 'Component/modal/Modal';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {assignUser} from 'Root/api/userapi';
 
-// 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
-//ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
-
 export default AssignUserProfileImage = props => {
 	// React.useEffect(() => {
 	// 	props.route.params == null
@@ -32,7 +29,7 @@ export default AssignUserProfileImage = props => {
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);
-				setImgSelected(responseObject.assets[responseObject.assets.length - 1].uri);
+				responseObject.didCancel ? console.log('선택취소') : setImgSelected(responseObject.assets[responseObject.assets.length - 1].uri);
 			},
 		);
 	};
@@ -54,8 +51,8 @@ export default AssignUserProfileImage = props => {
 						//네비게이션 초기화, 로그인으로 이동
 						props.navigation.reset({
 							index: 0,
-							routes: [{ name: 'Login' }],
-						 });
+							routes: [{name: 'Login'}],
+						});
 					},
 					() => {
 						Modal.close();
@@ -108,7 +105,8 @@ export default AssignUserProfileImage = props => {
 	};
 
 	return (
-		<View style={[login_style.wrp_main, {flex: 1}]}>
+		<KeyboardAvoidingView style={[login_style.wrp_main, {flex: 1}]} behavior={'position'} contentContainerStyle={{alignItems: 'center'}}>
+			{/* contentContainerStyle​ : The style of the content container (View) when behavior is 'position'. */}
 			<TouchableWithoutFeedback onPress={() => console.log(props.route.params)}>
 				<View
 					style={{backgroundColor: 'red', height: 30, width: 30, position: 'absolute', borderWidth: 1, borderColor: 'blue', top: 0, left: 0}}></View>
@@ -148,6 +146,6 @@ export default AssignUserProfileImage = props => {
 					<AniButton btnTitle={'확인'} titleFontStyle={'32'} disable={true} btnLayout={btn_w522} />
 				)}
 			</View>
-		</View>
+		</KeyboardAvoidingView>
 	);
 };

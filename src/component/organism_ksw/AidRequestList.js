@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, FlatList, Text, TouchableOpacity} from 'react-native';
+import {View, FlatList, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import {AddItem64} from '../atom/icon';
 import AidRequest from './AidRequest';
@@ -50,9 +50,13 @@ export default AidRequestList = props => {
 					<Text style={[txt.noto30, aidRequestList.addProtectedPetText]}>보호중인 동물 추가하기</Text>
 				</TouchableOpacity>
 			) : null}
-			<View style={aidRequestList.aidRequestListCont}>
-				<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} />
-			</View>
+			<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+				<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+					<View style={aidRequestList.aidRequestListCont}>
+						<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled={false} />
+					</View>
+				</ScrollView>
+			</ScrollView>
 		</View>
 	);
 };

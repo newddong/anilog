@@ -31,7 +31,7 @@ export default CommentList = props => {
 			<Text style={{marginBottom: 10 * DP}}>댓글 {props.items.length}개 </Text>
 			<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
 				<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
-					<FlatList data={props.items} renderItem={({item}) => renderItem(item)} />
+					<FlatList data={props.items} renderItem={({item}) => renderItem(item)} scrollEnabled={false} />
 				</ScrollView>
 			</ScrollView>
 		</View>

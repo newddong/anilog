@@ -8,7 +8,7 @@ import {Cross52, Eye52_APRI10, Eye52_GRAY20} from '../atom/icon';
 import {BackgroundColor} from 'chalk';
 import Input24 from 'Molecules/Input24';
 
- /**
+/**
  * 비밀번호 입력
  * @type {React.ForwardRefRenderFunction<?,PasswordInputProps>}
  *
@@ -37,11 +37,11 @@ const PasswordInput = React.forwardRef((props, ref) => {
 	//Input 하단 메시지 출력 분기
 	const getMsg = () => {
 		if (input.length == 0) {
-			return <Text style={(txt.noto22, {color: GRAY20, lineHeight: 36 * DP})}>{props.information}</Text>;
+			return <Text style={(txt.noto22, {color: GRAY20, lineHeight: 48 * DP})}>{props.information}</Text>;
 		} else if (confirm == true) {
-			return <Text style={(txt.noto22, {color: GREEN, lineHeight: 36 * DP})}>{props.confirm_msg}</Text>;
+			return <Text style={(txt.noto22, {color: GREEN, lineHeight: 48 * DP})}>{props.confirm_msg}</Text>;
 		} else if (confirm == false) {
-			return <Text style={(txt.noto22, {color: RED10, lineHeight: 36 * DP})}>{props.alert_msg}</Text>;
+			return <Text style={(txt.noto22, {color: RED10, lineHeight: 48 * DP})}>{props.alert_msg}</Text>;
 		} else return false;
 	};
 
@@ -87,16 +87,17 @@ const PasswordInput = React.forwardRef((props, ref) => {
 						flexDirection: 'row',
 						alignItems: 'center',
 					}}>
-					<Input24 ref={inputRef} 
-					placeholder={props.placeholder}
-					onChange={onChange}
-					width={props.width}
-					value={input}
-					secureTextEntry={pwdSecureState} //암호 별모양 표시 boolean
+					<Input24
+						ref={inputRef}
+						placeholder={props.placeholder}
+						onChange={onChange}
+						width={props.width}
+						value={input}
+						secureTextEntry={pwdSecureState} //암호 별모양 표시 boolean
 					/>
 					{/* /* X버튼은 TextInput과 28px 차이, 최하단 View테두리와는 14px 차이, 텍스트 길이가 1 이상일 경우에만 보여짐(입력값이 없을때 보여질 필요 없음) */}
 					{input.length > 0 && (
-						<View style={{position: 'absolute', right: 50*DP, flexDirection: 'row'}}>
+						<View style={{position: 'absolute', right: 50 * DP, flexDirection: 'row'}}>
 							<View style={{marginRight: 10 * DP}}>
 								{pwdSecureState ? <Eye52_GRAY20 onPress={onShowPassword} /> : <Eye52_APRI10 onPress={onShowPassword} />}
 							</View>
@@ -113,9 +114,9 @@ const PasswordInputProps = {
 	/** @type {string} 비밀번호란 상단 타이틀 */
 	title: string,
 	/** @type {string} placeholder  */
-	placeholder: string, 
+	placeholder: string,
 	/** @type {string} confirm state가 'normal'일 경우 출력될 하단 메시지  */
-	information: string, 
+	information: string,
 	/** @type {string} pwd input 값   */
 	value: string,
 	/** @type {string}  confrim state가 false일 경우 출력될 하단 메시지 */
@@ -138,10 +139,9 @@ const PasswordInputProps = {
 	validator: func,
 	/** @type {(result:boolean)=>void} validator가 실행될 때마다 발생하는 콜백함수, validator의 결과값을 매개변수로 통보*/
 	onValid: func,
-}
+};
 
 PasswordInput.propTypes = PasswordInputProps;
-
 
 PasswordInput.defaultProps = {
 	title: 'title', //비밀번호란 상단 타이틀

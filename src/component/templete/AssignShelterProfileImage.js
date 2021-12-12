@@ -22,10 +22,10 @@ export default AssignShelterProfileImage = props => {
 			successmsg => {
 				Modal.close(); //NoBtn팝업 종료
 				Modal.popNoBtn('보호소 등록이 완료되었습니다.');
-				setTimeout(()=>{
+				setTimeout(() => {
 					Modal.close();
-					props.navigation.reset({index:0,routes:[{name:'Login'}]});
-				},1000);
+					props.navigation.reset({index: 0, routes: [{name: 'Login'}]});
+				}, 1000);
 			},
 			errormsg => {
 				Modal.close();
@@ -46,7 +46,9 @@ export default AssignShelterProfileImage = props => {
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);
-				setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri});
+				responseObject.didCancel
+					? console.log('선택취소')
+					: setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri});
 			},
 		);
 	};

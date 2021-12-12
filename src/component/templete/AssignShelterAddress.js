@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, TouchableWithoutFeedback} from 'react-native';
+import {Text, View, TouchableWithoutFeedback, KeyboardAvoidingView} from 'react-native';
 import {login_style, btn_style, temp_style, progressbar_style, assignShelterAddress_style} from './style_templete';
 import {APRI10, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
@@ -9,6 +9,7 @@ import Stagebar from '../molecules/Stagebar';
 import Input24 from '../molecules/Input24';
 import AddressInput from '../organism_ksw/AddressInput';
 import axios from 'axios';
+import {stagebar_style} from '../organism_ksw/style_organism';
 
 export default AssignShelterAddress = props => {
 	const [confirmed, setConfirmed] = React.useState(false); //주소란이 모두 작성되었다며 통과가능
@@ -73,7 +74,7 @@ export default AssignShelterAddress = props => {
 		});
 	};
 	return (
-		<View style={[login_style.wrp_main, {flex: 1}]}>
+		<KeyboardAvoidingView style={[login_style.wrp_main, {flex: 1}]} behavior={'padding'}>
 			{/* (M)StageBar	 */}
 			<TouchableWithoutFeedback onPress={test}>
 				<View
@@ -90,20 +91,12 @@ export default AssignShelterAddress = props => {
 			</TouchableWithoutFeedback>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
-					style={{}} //전체 container style, text와 bar를 감싸는 view의 style
-					backgroundBarStyle={{
-						width: 400 * DP,
-						height: 20 * DP,
-						backgroundColor: 'white',
-						borderRadius: 10 * DP,
-						borderWidth: 4 * DP,
-						borderColor: APRI10,
-					}} //배경이 되는 bar의 style, width props으로 너비결정됨
-					insideBarStyle={{height: 20 * DP, backgroundColor: APRI10, borderRadius: 5 * DP}} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+					backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨
+					insideBarStyle={stagebar_style.insideBar} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+					textStyle={[txt.roboto24, stagebar_style.text]} //text의 스타일
 					current={2} //현재 단계를 정의
 					maxstage={4} //전체 단계를 정의
 					width={600 * DP} //bar의 너비
-					textStyle={[txt.roboto24, {marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10}]} //text의 스타일
 				/>
 			</View>
 
@@ -148,6 +141,6 @@ export default AssignShelterAddress = props => {
 					onPress={goToNextStep}
 				/>
 			</View>
-		</View>
+		</KeyboardAvoidingView>
 	);
 };

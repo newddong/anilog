@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {dummy_userObject} from 'Root/config/dummyDate_json';
 import ControllableAccountList from '../organism_ksw/ControllableAccountList';
 import {login_style, searchAccountA} from './style_templete';
@@ -30,7 +30,11 @@ export default SearchAccountA = props => {
 
 	return (
 		<View style={[searchAccountA.container]}>
-			<ControllableAccountList data={searchedList ? searchedList : []} onClickAccount={onClickAccount} showCrossMark={false} showButtons={false} />
+			<ScrollView style={{flex: 1}}>
+				<View style={[searchAccountA.listContainer]}>
+					<ControllableAccountList items={userObejct} onClickAccount={onClickAccount} showCrossMark={true} />
+				</View>
+			</ScrollView>
 		</View>
 	);
 };
