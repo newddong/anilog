@@ -8,11 +8,11 @@ import AniButton from '../molecules/AniButton';
 import Stagebar from '../molecules/Stagebar';
 import Input24 from '../molecules/Input24';
 import AddressInput from '../organism_ksw/AddressInput';
+import axios from 'axios';
 
 export default AssignShelterAddress = props => {
-
 	const [confirmed, setConfirmed] = React.useState(false); //주소란이 모두 작성되었다며 통과가능
-	const [confirmName, setConfirmName] = React.useState(false);//이름 입력되었다면 통과가능
+	const [confirmName, setConfirmName] = React.useState(false); //이름 입력되었다면 통과가능
 	const [data, setData] = React.useState({
 		...props.route.params.data,
 		shelter_name: '',
@@ -27,17 +27,17 @@ export default AssignShelterAddress = props => {
 
 	//다음
 	const goToNextStep = () => {
-		props.navigation.push('AssignShelterInformation', {data:data});
+		props.navigation.push('AssignShelterInformation', {data: data});
 	};
 
 	//주소
 	const onChangeAddress = addr => {
-		setData({...data, shelter_address: {...data.shelter_address,brief: addr}});
+		setData({...data, shelter_address: {...data.shelter_address, brief: addr}});
 	};
 
 	//세부주소
 	const onChangeDeatilAddress = addr => {
-		setData({...data, shelter_address: {...data.shelter_address,detail: addr}});
+		setData({...data, shelter_address: {...data.shelter_address, detail: addr}});
 	};
 
 	//주소찾기 클릭
@@ -52,26 +52,30 @@ export default AssignShelterAddress = props => {
 	};
 
 	const nameValidator = name => {
-		console.log('이름 유효성 검사',name.length>0)
-		return name.length>0;
+		console.log('이름 유효성 검사', name.length > 0);
+		return name.length > 0;
 	};
 	const onValidName = isValid => {
 		setConfirmName(isValid);
 	};
 
-	const addressValidator = (addr,detailAddr) => {
-		return addr.length>0 && detailAddr.length>0;
-	}
+	const addressValidator = (addr, detailAddr) => {
+		return addr.length > 0 && detailAddr.length > 0;
+	};
 
 	const onValidAddress = isValid => {
-		console.log('onvalid',isValid);
+		console.log('onvalid', isValid);
 		setConfirmed(isValid);
-	}
-
+	};
+	const test = () => {
+		axios.post('http://10.0.2.2:3000/user/test', {nickname: {nest: 'dasdf'}}).then(r => {
+			console.log(r);
+		});
+	};
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* (M)StageBar	 */}
-			<TouchableWithoutFeedback onPress={() => console.log(data)}>
+			<TouchableWithoutFeedback onPress={test}>
 				<View
 					style={{
 						backgroundColor: 'red',
@@ -116,7 +120,6 @@ export default AssignShelterAddress = props => {
 					showMsg
 					confirm_msg={''}
 					alert_msg={'보호소 이름을 입력하세요'}
-
 				/>
 			</View>
 
@@ -139,7 +142,7 @@ export default AssignShelterAddress = props => {
 				<AniButton
 					btnTitle={'다음'}
 					btnTheme={'shadow'}
-					disable={!confirmName||!confirmed}
+					disable={!confirmName || !confirmed}
 					btnLayout={btn_w654}
 					titleFontStyle={32}
 					onPress={goToNextStep}

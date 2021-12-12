@@ -12,10 +12,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {boolean} params.user_agreement.is_location_service_info - (동의)위치정보제공
  * @param {boolean} params.user_agreement.is_donation_info - (동의)기부정보
  * @param {boolean} params.user_agreement.is_marketting_info - (동의)마케팅정보
+ * @param {object} params.user_address
+ * @param {string} params.user_address.city - 사용자 주소(시,도,군)
+ * @param {string} params.user_address.district - 사용자 주소(군,구)
+ * @param {string} params.user_address.neighbor - 사용자 주소(동,읍,면)
  * @param {string} params.user_mobile_company - 이동통신사
  * @param {string} params.user_name - 유저 이름(실명)
  * @param {string} params.user_password - 유저 패스워드
  * @param {string} params.user_phone_number - 유저 핸드폰 번호
+ * @param {string} params.user_nickname - 유저저 닉네임
+ * @param {string} params.user_profile_uri - 유저 프로필 사진
  * @param {boolean} params.user_is_verified_phone_number - 핸드폰 인증여부
  * @param {function} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
@@ -59,8 +65,14 @@ export const checkProtectPet = async (params, callback, errcallback) => {
  * @param {object} params.user_id - 등록하고 있는 유저 ID(몽고디비 오브젝트 아이디)
  * @param {string} params.pet_birthday - 동물 생일
  * @param {boolean} params.pet_is_temp_protection - 임시보호 여부
- * @param {string} params.pet_neutralization - 중성화 여부
- * @param {string} params.pet_sex - 성별
+ * @param {'yes'|'no'|'unknown'} params.pet_neutralization - 중성화 여부 {'yes'|'no'|'unknown'}
+ * @param {'male'|'female'|'unknown'} params.pet_sex - 성별 { 'male'|'female'|'unknown'} 
+ * @param {string} params.pet_species - 반려동물의 종류(ex 개, 고양이, 토끼 등)
+ * @param {string} params.pet_species_detail - 반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+ * @param {string} params.pet_status - 반려동물의 상태, 임시보호중(protect), 입양됨(adopt), 반려동물(companion) {'protect'|'adopt'|'companion'}
+ * @param {string} params.pet_weight - 반려동물 몸무게
+ * @param {string} params.user_nickname - 반려동물 닉네임
+ * @param {string} params.user_profile_uri - 반려동물 프로필 사진
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
@@ -87,7 +99,7 @@ export const assignPet = async (params, callback, errcallback) => {
  * @param {string} params.shelter_foundation_date - 보호소 설립일자
  * @param {string} params.shelter_homepage - 보호소 홈페이지 uri
  * @param {string} params.shelter_name - 보호소 이름
- * @param {string} params.shleter_type - 보호소 타잎 ('private'|'public')
+ * @param {'private'|'public'} params.shleter_type - 보호소 타잎 ('private'|'public')
  * @param {string} params.user_email - 보호소 이메일
  * @param {string} params.user_password - 보호소 접속 패스워드
  * @param {string} params.user_profile_uri - 보호소 프로필 사진 uri
@@ -132,12 +144,12 @@ export const assignPet = async (params, callback, errcallback) => {
  * 로그인
  * 
  * @param {object} params
- * @param {string} params.login_id - 보호소 확인코드
- * @param {string} params.login_password - 보호소 확인코드
+ * @param {string} params.login_id - 아이디
+ * @param {string} params.login_password - 패스워드
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const useLogin = async (params, callback, errcallback) => {
+ export const userLogin = async (params, callback, errcallback) => {
 	try{
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
