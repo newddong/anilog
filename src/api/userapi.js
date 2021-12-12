@@ -162,6 +162,30 @@ export const assignPet = async (params, callback, errcallback) => {
 }
 
 
+/**
+ * 유저 프로필
+ * 
+ * @param {object} params
+ * @param {string} params.user_id - 아이디
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+export const getUserProfile = async (params, callback, errcallback) => {
+	try{
+		//서버와 통신
+		// throw new Error('확인되지 않은 코드');
+		setTimeout(callback,1000,params);
+	}
+	catch(err){
+		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
+	}
+
+}
+
+
+
+
+
 
 
 //--이전 버전의 API들 --
