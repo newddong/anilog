@@ -62,9 +62,3 @@ UserAccount.defaultProps = {
 	checkBoxMode: false,
 	checkBoxState: false,
 };
-
-// HashLabel.defaultProps = {
-// 	keyword: '#KEYWORD',
-// 	keywordBold: true,
-// 	count: 'Count한 게시물',
-// };

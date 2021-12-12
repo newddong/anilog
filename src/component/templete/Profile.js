@@ -29,7 +29,7 @@ export default Profile = props => {
 	const navigation = useNavigation();
 
 	const userData = dummy_userObject[0]; //로그인 유저의 userObject data
-	const [profile_data, setProfile_data] = React.useState(props.route.params || dummy_userObject[0]); //라벨을 클릭한 유저의 userObject data
+	const [profile_data, setProfile_data] = React.useState(props.route.params || dummy_UserObject_shelter[0]); //라벨을 클릭한 유저의 userObject data
 	const [tabMenuSelected, setTabMenuSelected] = React.useState(0); //프로필 Tab의 선택상태
 	const [showOwnerState, setShowOwnerState] = React.useState(false); // 현재 로드되어 있는 profile의 userType이 Pet인 경우 반려인 계정 리스트의 출력 여부
 	const [showCompanion, setShowCompanion] = React.useState(false); // User계정이 반려동물버튼을 클릭
@@ -122,7 +122,7 @@ export default Profile = props => {
 				<View style={[profile.animalNeedHelpList]}>
 					<AnimalNeedHelpList
 						data={dummy_ShelterProtectAnimalObject}
-						onLabelClick={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)}
+						onClickLabel={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)}
 					/>
 				</View>
 			);
@@ -158,7 +158,7 @@ export default Profile = props => {
 
 	return (
 		<View style={[login_style.wrp_main, profile.container]}>
-			<ScrollView contentContainerStyle={{flex: 1}}>
+			<ScrollView style={{flex: 1}}>
 				<View style={[profile.profileInfo]}>
 					<ProfileInfo
 						data={profile_data}

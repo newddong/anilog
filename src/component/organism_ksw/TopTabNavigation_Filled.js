@@ -5,13 +5,13 @@ import DP from 'Root/config/dp';
 import TabSelectFilled_Type3 from '../molecules/TabSelectFilled_Type3';
 
 export default TopTabNavigation_Filled = props => {
-	const tabList = ['피드', '커뮤니티', '보호요청'];
 	return (
 		<View style={{borderBottomColor: APRI10, borderBottomWidth: 3 * DP}}>
-			<TabSelectFilled_Type3 items={tabList} onSelect={index => props.onSelect(index)} />
+			<TabSelectFilled_Type3 items={props.menu} onSelect={index => props.onSelect(index)} />
 		</View>
 	);
 };
 TopTabNavigation_Filled.defaultProps = {
 	onSelect: e => console.log('TabNavigation Filled' + e),
+	menu: [1, 2, 3],
 };

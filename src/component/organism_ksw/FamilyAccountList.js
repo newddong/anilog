@@ -1,6 +1,5 @@
 import React from 'react';
 import {FlatList, Text, View, TouchableOpacity, ScrollView} from 'react-native';
-import {dummy_familyAccountList} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
 import {Cross52} from '../atom/icon';
 import ProfileImageSmall from '../molecules/ProfileImageSmall';

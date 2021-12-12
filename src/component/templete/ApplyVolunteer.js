@@ -2,7 +2,6 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, FlatList, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
-import {dummy_shelterInfo, dummy_userObject} from 'Root/config/dummyDate_json';
 import {APRI10, GRAY10, GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w226} from '../atom/btn/btn_style';
@@ -14,6 +13,7 @@ import {applyVolunteer, btn_style, login_style} from './style_templete';
 import DatePicker from '../molecules/DatePicker';
 import Input24 from '../molecules/Input24';
 import Modal from '../modal/Modal';
+import {dummy_userObject} from 'Root/config/dummyDate_json';
 
 export default ApplyVolunteer = ({route, navigation}) => {
 	// console.log('route/params at ApplyVolunteer', route.params);
@@ -93,70 +93,72 @@ export default ApplyVolunteer = ({route, navigation}) => {
 	};
 
 	return (
-		<ScrollView horizontal={false} contentContainerStyle={{flex: 1}}>
-			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
-				<View style={[login_style.wrp_main, applyVolunteer.container]}>
-					{/* 보호소 정보 박스 */}
-					<View style={[applyVolunteer.shelterInfo]}>
-						<ShelterInfo data={shelter_data} />
-					</View>
-					{/* 봉사활동 희망 날짜 */}
-					<View style={[applyVolunteer.viewForm]}>
-						<View style={[applyVolunteer.viewForm_step1]}>
-							<View style={[applyVolunteer.icon48]}>
-								<Calendar48_Filled />
-							</View>
-							<View style={[applyVolunteer.title]}>
-								<Text style={[txt.noto24b, {color: GRAY10}]}>봉사활동 희망 날짜</Text>
-							</View>
+		<View style={[login_style.wrp_main, applyVolunteer.container]}>
+			<ScrollView style={{flex: 1}} contentContainerStyle={{alignItems: 'center'}}>
+				{/* 보호소 정보 박스 */}
+				<View style={[applyVolunteer.shelterInfo]}>
+					<ShelterInfo data={shelter_data} />
+				</View>
+				{/* 봉사활동 희망 날짜 */}
+				<View style={[applyVolunteer.viewForm]}>
+					<View style={[applyVolunteer.viewForm_step1]}>
+						<View style={[applyVolunteer.icon48]}>
+							<Calendar48_Filled />
 						</View>
-						<DatePicker width={654} onDateChange={onDateChange} />
-						{/* 봉사활동 희망날짜 FlatList */}
-						<FlatList data={data.volunteer_wish_date} renderItem={({item, index}) => renderItem(item, index)} />
-					</View>
-					{/* 참여인원 */}
-					<View style={[applyVolunteer.participants]}>
-						<View style={[applyVolunteer.participants_step1]}>
-							<View style={[applyVolunteer.icon48]}>
-								<Person48 />
-							</View>
-							<View style={[applyVolunteer.title]}>
-								<Text style={[txt.noto24b, {color: GRAY10}]}>참여 인원</Text>
-								<Text style={[txt.noto22, {color: GRAY20}]}>(비회원 포함 기입 / 계정 추가는 생략 가능)</Text>
-							</View>
-						</View>
-						<TextInput style={[applyVolunteer.number_of_volunteerers]} value={data.volunteer_accompany.length + ' 명'} />
-						{/* 봉활참여인원 FlatList 여기 */}
-						<View style={[applyVolunteer.participants_step2]}>
-							<View style={[applyVolunteer.accountList]}>
-								<AccountList items={data.volunteer_accompany} width={446} onDelete={onDeleteAccount} />
-							</View>
-							<View style={[applyVolunteer.addParticipantBtn]}>
-								<Add_Volunteer onPress={addVolunteer} />
-								<Text style={[txt.noto28, applyVolunteer.addParticipantTxt]}>계정 추가</Text>
-							</View>
+						<View style={[applyVolunteer.title]}>
+							<Text style={[txt.noto24b, {color: GRAY10}]}>봉사활동 희망 날짜</Text>
 						</View>
 					</View>
-					{/* 봉사활동자 연락처 */}
-					<View style={[applyVolunteer.participants_contact]}>
-						<View style={[applyVolunteer.viewForm_step1]}>
-							<View style={[applyVolunteer.icon48]}>
-								<Phone48 />
-							</View>
-							<View style={[applyVolunteer.title]}>
-								<Text style={[txt.noto24b, {color: GRAY10}]}>봉사 활동자 연락처</Text>
-							</View>
+					<DatePicker width={654} onDateChange={onDateChange} />
+					{/* 봉사활동 희망날짜 FlatList */}
+					<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+						<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+							<FlatList data={data.volunteer_wish_date} renderItem={({item, index}) => renderItem(item, index)} />
+						</ScrollView>
+					</ScrollView>
+				</View>
+				{/* 참여인원 */}
+				<View style={[applyVolunteer.participants]}>
+					<View style={[applyVolunteer.participants_step1]}>
+						<View style={[applyVolunteer.icon48]}>
+							<Person48 />
 						</View>
-						<View style={[applyVolunteer.participants_contact_text]}>
-							<Input24 width={654} placeholder={'연락처를 적어주세요.'} onChange={onChangePhoneNumber} value={data.volunteer_delegate_contact} />
+						<View style={[applyVolunteer.title]}>
+							<Text style={[txt.noto24b, {color: GRAY10}]}>참여 인원</Text>
+							<Text style={[txt.noto22, {color: GRAY20}]}>(비회원 포함 기입 / 계정 추가는 생략 가능)</Text>
 						</View>
 					</View>
-					{/* 신청 버튼 */}
-					<View style={[btn_style.btn_w226, applyVolunteer.btn_w226]}>
-						<AniButton btnLayout={btn_w226} btnTitle={'신청'} onPress={onRegister} />
+					<TextInput style={[applyVolunteer.number_of_volunteerers]} value={data.volunteer_accompany.length + ' 명'} />
+					{/* 봉활참여인원 FlatList 여기 */}
+					<View style={[applyVolunteer.participants_step2]}>
+						<View style={[applyVolunteer.accountList]}>
+							<AccountList items={dummy_userObject} width={446} onDelete={onDeleteAccount} />
+						</View>
+						<View style={[applyVolunteer.addParticipantBtn]}>
+							<Add_Volunteer onPress={addVolunteer} />
+							<Text style={[txt.noto28, applyVolunteer.addParticipantTxt]}>계정 추가</Text>
+						</View>
 					</View>
 				</View>
+				{/* 봉사활동자 연락처 */}
+				<View style={[applyVolunteer.participants_contact]}>
+					<View style={[applyVolunteer.viewForm_step1]}>
+						<View style={[applyVolunteer.icon48]}>
+							<Phone48 />
+						</View>
+						<View style={[applyVolunteer.title]}>
+							<Text style={[txt.noto24b, {color: GRAY10}]}>봉사 활동자 연락처</Text>
+						</View>
+					</View>
+					<View style={[applyVolunteer.participants_contact_text]}>
+						<Input24 width={654} placeholder={'연락처를 적어주세요.'} onChange={onChangePhoneNumber} value={data.volunteer_delegate_contact} />
+					</View>
+				</View>
+				{/* 신청 버튼 */}
+				<View style={[btn_style.btn_w226, applyVolunteer.btn_w226]}>
+					<AniButton btnLayout={btn_w226} btnTitle={'신청'} onPress={onRegister} />
+				</View>
 			</ScrollView>
-		</ScrollView>
+		</View>
 	);
 };

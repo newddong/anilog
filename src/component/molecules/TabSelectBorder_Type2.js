@@ -1,6 +1,6 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import {Text, TouchableOpacity, FlatList} from 'react-native';
+import {Text, TouchableOpacity, FlatList, View} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30} from 'Root/config/color';
 
@@ -27,12 +27,20 @@ const TabSelectBorder_Type2 = props => {
 		props.onSelect(index);
 	};
 
+	const getWidth = index => {
+		let width = (720 * DP) / props.items.length - 10;
+		if (index == selected) {
+			return (720 * DP) / props.items.length + 30;
+		}
+		return width;
+	};
+
 	const renderItem = ({item, index}) => {
 		return (
 			<TouchableOpacity
 				onPress={() => onSelect(index)}
 				style={{
-					width: (720 * DP) / props.items.length,
+					width: getWidth(index),
 					height: 70 * DP,
 					borderBottomWidth: 2 * DP,
 					borderBottomColor: index == selected ? APRI10 : GRAY30,
@@ -48,20 +56,25 @@ const TabSelectBorder_Type2 = props => {
 							lineHeight: 42 * DP,
 							fontSize: props.fontSize * DP,
 						},
-					]}>
+					]}
+					numberOfLines={1}>
 					{item}
 				</Text>
 			</TouchableOpacity>
 		);
 	};
 
-	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />;
+	return (
+		<View style={{alignItems: 'center'}}>
+			<FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />
+		</View>
+	);
 };
 
 TabSelectBorder_Type2.defaultProps = {
 	items: [1, 2, 3], //FlatList에 담길 배열 정보
 	onSelect: e => console.log(e), //Tab Press 이벤트
 	select: 0,
-	fontSize: 30,
+	fontSize: 24,
 };
 export default TabSelectBorder_Type2;

@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {Text, View, TouchableOpacity, ScrollView, Image, TouchableWithoutFeedback} from 'react-native';
+import {Text, View, TouchableOpacity, ScrollView, Image, TouchableWithoutFeedback, KeyboardAvoidingView} from 'react-native';
 import {APRI10, GRAY10, GRAY20} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
@@ -89,7 +89,9 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);
-				setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri});
+				responseObject.didCancel
+					? console.log('선택취소')
+					: setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri});
 			},
 		);
 	};
@@ -105,7 +107,8 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 	};
 
 	return (
-		<ScrollView contentContainerStyle={{flex: 1}}>
+		<KeyboardAvoidingView style={[login_style.wrp_main, {flex: 1}]} behavior={'position'} contentContainerStyle={{alignItems: 'center'}}>
+			{/* contentContainerStyle​ : The style of the content container (View) when behavior is 'position'. */}
 			<View style={[login_style.wrp_main, {flex: 1}]}>
 				<TouchableWithoutFeedback onPress={() => console.log(data)}>
 					<View
@@ -126,10 +129,10 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 					<Stagebar
 						backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨
 						insideBarStyle={stagebar_style.insideBar} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+						textStyle={[txt.roboto24, stagebar_style.text]} //text의 스타일
 						current={1} //현재 단계를 정의
 						maxstage={3} //전체 단계를 정의
 						width={600 * DP} //bar의 너비
-						textStyle={[txt.roboto24, stagebar_style.text]} //text의 스타일
 					/>
 				</View>
 
@@ -175,7 +178,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 					)}
 				</View>
 			</View>
-		</ScrollView>
+		</KeyboardAvoidingView>
 	);
 };
 

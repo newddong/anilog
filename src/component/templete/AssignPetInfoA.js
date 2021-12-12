@@ -105,13 +105,12 @@ export default AssignPetInfoA = props => {
 			{/* (M)StageBar	 */}
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
-					style={{}} //전체 container style, text와 bar를 감싸는 view의 style
 					backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨
 					insideBarStyle={stagebar_style.insideBar} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
 					current={isProtectAnimalRoute ? 3 : 2} //현재 단계를 정의
 					maxstage={isProtectAnimalRoute ? 4 : 3} //전체 단계를 정의
 					width={600 * DP} //bar의 너비
-					textStyle={[txt.roboto24, {marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10}]} //text의 스타일
+					textStyle={[txt.roboto24, stagebar_style.text]} //text의 스타일
 				/>
 			</View>
 

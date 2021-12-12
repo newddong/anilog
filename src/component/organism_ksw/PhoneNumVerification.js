@@ -38,16 +38,16 @@ export default PhoneNumVerification = props => {
 	const onPhoneNumberInputChange = number => {
 		props.onPhoneNumberInputChange(number);
 	};
-	const onMobileCompanyInputChange = (company,index) => {
-		props.onMobileCompanyInputChange(company,index);
-	}
+	const onMobileCompanyInputChange = (company, index) => {
+		props.onMobileCompanyInputChange(company, index);
+	};
 	const onVerificationNumberChange = verified_num => {
 		props.onVerificationNumberChange(verified_num);
 	};
 	return (
 		<View style={[phoneNumVerification.container]}>
 			<View style={[temp_style.input30, phoneNumVerification.input30]}>
-				<Input30 showTitle={false} width={654} placeholder={'이름 입력'} onChange={onNameInputChange} value={userName}/>
+				<Input30 showTitle={false} width={654} placeholder={'이름 입력'} onChange={onNameInputChange} value={userName} />
 			</View>
 			<View style={[temp_style.inputWithSelect, phoneNumVerification.inputWithSelect]}>
 				<InputWithSelect
@@ -72,16 +72,9 @@ export default PhoneNumVerification = props => {
 				</View>
 				<View style={[btn_style.btn_w226, phoneNumVerification.btn_w226]}>
 					{timeOut ? (
-						<AniButton
-							btnLayout={btn_w226}
-							btnTitle={'인증 재요청'}
-							btnTheme={'shadow'}
-							btnStyle={'border'}
-							titleFontStyle={24}
-							onPress={requestReVerification}
-						/>
+						<AniButton btnTitle={'인증 재요청'} btnStyle={'border'} onPress={requestReVerification} />
 					) : (
-						<AniButton btnLayout={btn_w226} btnTitle={'인증 요청'} btnTheme={'shadow'} titleFontStyle={24} onPress={requestVerification} />
+						<AniButton btnTitle={'인증 요청'} onPress={requestVerification} />
 					)}
 				</View>
 			</View>
@@ -97,11 +90,3 @@ PhoneNumVerification.defaultProps = {
 	onVerificationNumberChange: e => console.log(e),
 	onMobileCompanyInputChange: e => console.log(e),
 };
-
-// btnTitle: 'title', //버튼의 제목
-// 	btnTheme: 'shadow', // btnTheme - ’shadow’, ‘noShadow’, ‘gray’에서 결정
-// 	btnStyle: 'filled', // btnStyle - ‘filled’, ‘border’, ‘noBorder’ 에서 결정
-// 	disable: false, // disable - 기본값은 false true일 경우 버튼 탭을 할수없도록 하고 표시를 바
-// 	titleFontStyle: 24 * DP, // titleFontStyle - title의 폰트 크기
-// 	btnLayout: btn_w226, // btnLayout - 버튼의 레이아웃(width, height, borderRadius를 결정)
-// 	onPress: {}, // 버튼을 탭했을때 발생하는 콜백

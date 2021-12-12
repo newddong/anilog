@@ -1,23 +1,31 @@
 import React from 'react';
 import {FlatList, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {dummy_userObject} from 'Root/config/dummyDate_json';
 import {Write94} from '../atom/icon';
 import InputWithSearchIcon from '../molecules/InputWithSearchIcon';
 import ControllableAccountList from '../organism_ksw/ControllableAccountList';
 import {followerList} from './style_templete';
 
 export default RecommendedAccountList = props => {
+	const [searchInput, setSearchInput] = React.useState('');
 	const onWrite = () => {
 		console.log('Onwrite');
 	};
+	const onChangeSearchInput = text => {
+		console.log('text', text);
+	};
 
+	const onSearch = () => {
+		console.log('Search Start');
+	};
 	return (
 		<View style={followerList.container}>
 			<ScrollView contentContainerStyle={followerList.insideContainer}>
 				<View style={[followerList.inputWitchSearch]}>
-					<InputWithSearchIcon />
+					<InputWithSearchIcon onChange={onChangeSearchInput} onSearch={onSearch} placeholder={'검색어를 입력해주세요.'} />
 				</View>
 				<View style={[followerList.accountList_step1]}>
-					<ControllableAccountList showCrossMark={true} />
+					<ControllableAccountList items={dummy_userObject} showCrossMark={true} />
 				</View>
 			</ScrollView>
 			<View style={[followerList.floatingBtn]}>

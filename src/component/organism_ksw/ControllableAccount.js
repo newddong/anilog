@@ -25,16 +25,17 @@ export default ControllableAccount = props => {
 	const [following, setFollowing] = React.useState(false);
 
 	//팔로우 버튼 클릭
-	const onFollowBtnClick = () => {
+	const onClickFollowBtn = () => {
 		setFollowing(!following);
-		props.onFollowBtnClick();
+		props.onClickFollowBtn();
 	};
 
 	//지우기 버튼 클릭
-	const onCrossMarkPress = () => {
-		props.onCrossMarkPress(props.data);
+	const onPressCrossMark = () => {
+		props.onPressCrossMark(props.data);
 	};
 
+	//프로필 라벨 클릭
 	const onClickLabel = data => {
 		props.onClickLabel(data);
 	};
@@ -49,20 +50,20 @@ export default ControllableAccount = props => {
 				false
 			)}
 			<View style={[showCheckBox || showCrossMark ? controllableAccount.userDescriptionLabel_checked : controllableAccount.userDescriptionLabel]}>
-				<UserDescriptionLabel data={props.data} onClickLabel={onClickLabel} />
+				<UserDescriptionLabel data={props.data} onClickLabel={onClickLabel} width={300} />
 			</View>
 			{props.showButtons ? (
 				<View style={[controllableAccount.rightContainer]}>
 					<View style={[controllableAccount.btn_w108_controllableAccount]}>
 						{following ? (
-							<AniButton btnTitle={'팔로우'} btnTheme={'gray'} btnStyle={'border'} btnLayout={btn_w108} onPress={onFollowBtnClick} />
+							<AniButton btnTitle={'팔로우'} btnTheme={'gray'} btnStyle={'border'} btnLayout={btn_w108} onPress={onClickFollowBtn} />
 						) : (
-							<AniButton btnTitle={'팔로잉'} btnTheme={'shadow'} btnLayout={btn_w108} onPress={onFollowBtnClick} />
+							<AniButton btnTitle={'팔로잉'} btnLayout={btn_w108} onPress={onClickFollowBtn} />
 						)}
 					</View>
 					{showCrossMark ? (
 						<View style={[organism_style.cross46, controllableAccount.cross46]}>
-							<Cross46 onPress={onCrossMarkPress} />
+							<Cross46 onPress={onPressCrossMark} />
 						</View>
 					) : null}
 				</View>
@@ -71,8 +72,9 @@ export default ControllableAccount = props => {
 	);
 };
 ControllableAccount.defaultProps = {
-	onFollowBtnClick: e => console.log(e),
+	onClickFollowBtn: e => console.log(e),
 	onClickLabel: e => console.log(e),
+	onPressCrossMark: e => {},
 	showCrossMark: false,
 	showCheckBox: false,
 	showButtons: true,

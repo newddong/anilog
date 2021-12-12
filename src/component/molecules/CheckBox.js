@@ -17,6 +17,7 @@ import AniButton from './AniButton';
 export default CheckBox = props => {
 	// console.log('props.checkBoxState ', props.checkBoxState);
 	const [checked, setChecked] = React.useState(false); //체크상태 여부 boolean isCheck값에 따라 초기상태 결정됨
+
 	const onCheck = () => {
 		setChecked(!checked);
 	};

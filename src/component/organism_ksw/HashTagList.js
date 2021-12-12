@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, ScrollView, Text, View} from 'react-native';
 import HashLabel from '../molecules/HashLabel';
 import {hashTagList, organism_style} from './style_organism';
 
@@ -22,7 +22,13 @@ export default HashTagList = props => {
 		);
 	};
 
-	return <FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} />;
+	return (
+		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+				<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled={false} />
+			</ScrollView>
+		</ScrollView>
+	);
 };
 
 HashTagList.defaultProps = {

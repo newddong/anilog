@@ -48,6 +48,14 @@ const Input24 = React.forwardRef((props, ref) => {
 		props.onChange && props.onChange(text);
 	};
 
+	const onFocus = () => {
+		props.onFocus();
+	};
+
+	const onBlur = () => {
+		props.onBlur();
+	};
+
 	const onClear = () => {
 		inputRef.current.clear();
 		// props.showHttp ? setInput('http://') : setInput(''); Input24보다 더 상위 레벨에서 사용용
@@ -101,6 +109,8 @@ const Input24 = React.forwardRef((props, ref) => {
 				<TextInput
 					ref={inputRef}
 					onChangeText={onChange}
+					onFocus={onFocus}
+					onBlur={onBlur}
 					value={props.value}
 					placeholder={props.placeholder}
 					defaultValue={props.defaultValue}
@@ -162,6 +172,10 @@ const Input24Props = {
 	onChange: func,
 	/** @type {()=>void} 초기화 버튼 클릭시 발생하는 콜백 */
 	onClear: func,
+	/** @type {()=>void} 인풋이 포커스 되었을 때 발생하는 콜백 */
+	onFocus: func,
+	/** @type {()=>void} 인풋이 포커스 해제되었을 때 발생하는 콜백 */
+	onBlur: func,
 	/** @type {boolean} 인터넷 주소를 입력할때 http표시 */
 	showHttp: bool,
 	/** @type {()=>boolean} true/false를 반환하는 입력 양식 검증함수 */
@@ -193,6 +207,8 @@ Input24.defaultProps = {
 	onChange: e => {},
 	validator: () => true,
 	onValid: e => {},
+	onFocus: e => {},
+	onBlur: e => {},
 	keyboardType: 'default',
 	secureTextEntry: false,
 };

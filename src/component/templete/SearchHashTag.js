@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {GRAY20} from 'Root/config/color';
 import {dummy_hashTagListObject} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
@@ -12,22 +12,24 @@ export default SearchHashTag = props => {
 	const searched_tagList = tagList.slice(0, 3); //검색 후 받아올 데이터 더미
 	return (
 		<View style={[login_style.wrp_main, searchHashTag.container]}>
-			{/* 검색내역이 없을 경우 최근 검색한 태그를 출력 */}
-			{props.input == null || props.input == undefined ? (
-				<View>
-					<View style={[temp_style.controllableHashTagList]}>
-						<Text style={[txt.noto24, {color: GRAY20}]}>최근 검색한 태그</Text>
+			<ScrollView style={{flex: 1}}>
+				{/* 검색내역이 없을 경우 최근 검색한 태그를 출력 */}
+				{props.input == null || props.input == undefined ? (
+					<View>
+						<View style={[temp_style.controllableHashTagList]}>
+							<Text style={[txt.noto24, {color: GRAY20}]}>최근 검색한 태그</Text>
+						</View>
+						<View style={[temp_style.hashTagList]}>
+							<HashTagList items={tagList} />
+						</View>
 					</View>
+				) : (
+					// 검색 내역이 존재할 경우 API를 통해 받아온 내역 출력
 					<View style={[temp_style.hashTagList]}>
-						<HashTagList items={tagList} />
+						<HashTagList items={searched_tagList} />
 					</View>
-				</View>
-			) : (
-				// 검색 내역이 존재할 경우 API를 통해 받아온 내역 출력
-				<View style={[temp_style.hashTagList]}>
-					<HashTagList items={searched_tagList} />
-				</View>
-			)}
+				)}
+			</ScrollView>
 		</View>
 	);
 };

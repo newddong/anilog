@@ -31,7 +31,9 @@ export default ChangePetProfileImage = props => {
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);
-				setPetData({...petData, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || petData.user_profile_uri});
+				responseObject.didCancel
+					? console.log('선택취소')
+					: setPetData({...petData, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || petData.user_profile_uri});
 			},
 		);
 	};

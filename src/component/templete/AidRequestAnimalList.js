@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {login_style} from './style_templete';
 import AidRequestList from '../organism_ksw/AidRequestList';
 import {temp_style, baseInfo_style} from './style_templete';
@@ -18,10 +18,12 @@ export default AidRequestAnimalList = ({route, navigation}) => {
 	};
 
 	return (
-		<View style={[login_style.wrp_main, {flex: 1, width: 750 * DP}]}>
-			<View style={[temp_style.aidRequestList_aidRequestManage, baseInfo_style.list]}>
-				<AidRequestList items={dummy_AidRequestList} onPressAddProtectAnimal={onPressAddProtectAnimal} />
-			</View>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
+			<ScrollView style={{flex: 1}}>
+				<View style={[temp_style.aidRequestList_aidRequestManage, baseInfo_style.list]}>
+					<AidRequestList items={dummy_AidRequestList} onPressAddProtectAnimal={onPressAddProtectAnimal} />
+				</View>
+			</ScrollView>
 		</View>
 	);
 };

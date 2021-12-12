@@ -10,8 +10,8 @@ import {activationList, login_style, temp_style} from './style_templete';
 
 export default ActivationList = props => {
 	const boxClick = category => {
-		// alert(category.title);
-		props.navigation.push('ActivationDetail', category.title);
+		console.log(category);
+		props.navigation.push('ActivationDetail', category);
 	};
 
 	const renderItem = (item, index) => {

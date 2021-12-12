@@ -27,8 +27,7 @@ export default AssignCheckList = props => {
 				<AssignCheckListItem
 					data={item}
 					onCheck={isCheck => props.onCheck(item, index, isCheck)}
-					isCheck={props.isCheckAll}
-					state={item.state}
+					state={item.state || props.isCheckAll}
 					onPressDetail={() => props.onPressDetail(index)}
 				/>
 			</View>

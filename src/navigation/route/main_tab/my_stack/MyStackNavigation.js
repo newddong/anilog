@@ -51,12 +51,13 @@ import ConfirmHeader from 'Navigation/header/ConfirmHeader';
 import SaveButtonHeader from 'Navigation/header/SaveButtonHeader';
 import InputAndSearchHeader from 'Root/navigation/header/InputAndSearchHeader';
 import MeatBallHeader from 'Root/navigation/header/MeatBallHeader';
+import SocialRelationTopTabNavigation from '../protection_stack/socialRelation_tab/SocialRelationTopTabNavigation';
 
 const MyStack = createStackNavigator();
 
 export default MyStackNavigation = () => {
 	return (
-		<MyStack.Navigator initialRouteName="SocialRelation">
+		<MyStack.Navigator initialRouteName="UserMenu">
 			<MyStack.Screen name="UserFeedList" component={FeedList} />
 			<MyStack.Screen name="UserFeeds" component={FavoriteFeeds} />
 			<MyStack.Screen name="HashFeedList" component={FeedList} />
@@ -70,7 +71,7 @@ export default MyStackNavigation = () => {
 			<MyStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} />
 			<MyStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
 			<MyStack.Screen name="FeedCommentList" component={FeedCommentList} />
-			<MyStack.Screen name="SocialRelation" component={SocialRelation} />
+			<MyStack.Screen name="SocialRelation" component={SocialRelationTopTabNavigation} />
 
 			<MyStack.Screen name="UserMenu" component={UserMenu} />
 			<MyStack.Screen name="UserInfoSetting" component={UserInfoSetting} />

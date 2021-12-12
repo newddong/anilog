@@ -8,7 +8,7 @@ import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
  *
  *@param {{
  *nowRoute: parentName,
- *onLabelClick: 'void / Label클릭 콜백함수 '
+ *onClickLabel: 'void / Label클릭 콜백함수 '
  *onFavoriteTag : 'void / 즐겨찾기 태그 깃발 클릭 ',
  *borderMode : 'boolean / 테두리 및 입양처보기, 게시글보기 모드 ',
  *onCheckBox : 'boolean / CheckBox 보이기',
@@ -20,9 +20,9 @@ import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
  */
 export default AnimalNeedHelpList = props => {
 	const debug = false;
-	const onLabelClick = (status, id) => {
+	const onClickLabel = (status, id) => {
 		console.log(`status=>${status} id=>${id}`);
-		props.onLabelClick(status, id);
+		props.onClickLabel(status, id);
 	};
 
 	const renderItem = (item, index) => {
@@ -35,7 +35,7 @@ export default AnimalNeedHelpList = props => {
 					isChecked={item.checkBoxState}
 					isCheckAll={props.isCheckAll}
 					borderMode={props.borderMode}
-					onLabelClick={(status, id) => onLabelClick(status, id)}
+					onClickLabel={(status, id) => onClickLabel(status, id)}
 					onHashClick={() => props.onHashClick(item)}
 					onCheckBox={e => props.onCheckBox(e, index)}
 					onFavoriteTag={e => props.onFavoriteTag(e, index)}
@@ -54,7 +54,7 @@ export default AnimalNeedHelpList = props => {
 				{/* [hjs borderMode 모드일때와 아닐때 width 값 추후에 확인 할 것] */}
 				<View style={[!props.borderMode ? animalNeedHelpList.container_bordermode : animalNeedHelpList.container]}>
 					{/* {console.log(`AnimalNeedHelpList:view - props.data=>${JSON.stringify(props.data)}`)} */}
-					<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} />
+					<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled={false} />
 				</View>
 			</ScrollView>
 		</ScrollView>
@@ -63,6 +63,8 @@ export default AnimalNeedHelpList = props => {
 
 AnimalNeedHelpList.defaultProps = {
 	data: dummy_AnimalNeedHelpList,
-	onLabelClick: e => console.log(e),
+	onClickLabel: e => console.log(e),
+	onFavoriteTag: e => console.log('FavoriteTag ', e),
+	onHashClick: e => console.log('HashClick AnimalNeedHelpList', e),
 	checkBoxState: false,
 };

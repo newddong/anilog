@@ -14,8 +14,8 @@ export default ManageVolunteer = ({route}) => {
 	const navigation = useNavigation();
 	const [data, setData] = React.useState(dummy_manageUserVolunteer);
 
-	const [scheduled_list, setScheduled_list] = React.useState(data.slice(0, 3)); //활동 예정중인 신청
-	const [done_list, setDone_list] = React.useState(data.slice(4, 7)); // 지난 신청
+	const [scheduled_list, setScheduled_list] = React.useState(data); //활동 예정중인 신청
+	const [done_list, setDone_list] = React.useState(data); // 지난 신청
 	const [showMoreHistory, setShowMoreHistory] = React.useState(false); //지난 내역 더보기
 	const [arrowStatus, setArrowStatus] = React.useState(false); // 화살표
 

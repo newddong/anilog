@@ -98,36 +98,6 @@ export default ParentComment = props => {
 		</View>
 	);
 };
-
-const e = {
-	_id: 2,
-	comment_contents: ' 제 주인 사진도 보고 가세요',
-	comment_date: '2021-11-23',
-	comment_dislike_count: 0,
-	comment_feed_id: 1,
-	comment_feed_writer_id: 1,
-	comment_is_delete: false,
-	comment_is_secure: false,
-	comment_like_count: 122,
-	comment_parent: 1,
-	comment_parent_writer_id: 1,
-	comment_photo_uri: 'https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/MdR4J997-uHmKvzDMVa68hXFt1U',
-	comment_protect_request_id: 1,
-	comment_protect_request_writer_id: 1,
-	comment_report_block: false,
-	comment_report_count: 0,
-	comment_update_date: '2021-11-30',
-	comment_writer_id: 1,
-	like_comment_id: 1,
-	like_commnet_user_id: 1,
-	user_address: {city: '서울시', district: '마포구', neighbor: '신수동 89-77'},
-	user_denied: false,
-	user_name: '권상우',
-	user_nickname: 'Dende',
-	user_profile_uri: 'https://photo.jtbc.joins.com/news/2017/06/05/20170605100602700.jpg',
-	user_type: 'user',
-};
-
 ParentComment.defaultProps = {
 	onPressReplyBtn: e => console.log(e), //부모 댓글의 답글 쓰기 클릭 이벤트
 	onPress_ChildComment_ReplyBtn: e => console.log(e), //자식 댓글의 답글 쓰기 클릭 이벤ㅌ

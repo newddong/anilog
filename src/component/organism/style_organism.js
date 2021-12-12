@@ -303,6 +303,7 @@ export const organism_style = StyleSheet.create({
 	childCommentList: {
 		width: 574 * DP,
 		marginBottom: 30 * DP,
+		flexDirection: 'row',
 		// backgroundColor: '#B4EAD3',
 	},
 });

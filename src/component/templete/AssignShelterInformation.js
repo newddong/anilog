@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,TouchableWithoutFeedback} from 'react-native';
+import {View, TouchableWithoutFeedback, KeyboardAvoidingView, Platform, Keyboard} from 'react-native';
 import {APRI10, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w654} from '../atom/btn/btn_style';
@@ -11,6 +11,7 @@ import InputWithSelect from '../molecules/InputWithSelect';
 import {initial_number, email_supplier} from 'Root/config/dummyDate_json';
 import InputWithEmail from '../molecules/InputWithEmail';
 import DatePicker from '../molecules/DatePicker';
+import {stagebar_style} from '../organism_ksw/style_organism';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
@@ -26,7 +27,6 @@ export default AssignShelterInformation = props => {
 
 	const [phoneConfirmed, setPhoneConfirmed] = React.useState(false);
 	const [emailConfirmed, setEmailConfirmed] = React.useState(false);
-	
 
 	//확인버튼 클릭
 	const goToNextStep = () => {
@@ -60,7 +60,6 @@ export default AssignShelterInformation = props => {
 
 	const onValidEmail = isValid => {
 		setEmailConfirmed(isValid);
-	
 	};
 
 	const onValidPhoneNumber = isValid => {
@@ -71,35 +70,27 @@ export default AssignShelterInformation = props => {
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
-					style={{}} //전체 container style, text와 bar를 감싸는 view의 style
-					backgroundBarStyle={{
-						width: 400 * DP,
-						height: 20 * DP,
-						backgroundColor: 'white',
-						borderRadius: 10 * DP,
-						borderWidth: 4 * DP,
-						borderColor: APRI10,
-					}} //배경이 되는 bar의 style, width props으로 너비결정됨
-					insideBarStyle={{height: 20 * DP, backgroundColor: APRI10, borderRadius: 5 * DP}} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+					backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨
+					insideBarStyle={stagebar_style.insideBar} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+					textStyle={[txt.roboto24, stagebar_style.text]} //text의 스타일
 					current={3} //현재 단계를 정의
 					maxstage={4} //전체 단계를 정의
 					width={600 * DP} //bar의 너비
-					textStyle={[txt.roboto24, {marginLeft: 18 * DP, width: 40 * DP, height: 32 * DP, marginBottom: 10 * DP, color: GRAY10}]} //text의 스타일
 				/>
 			</View>
 			<TouchableWithoutFeedback onPress={() => console.log(data)}>
-					<View
-						style={{
-							backgroundColor: 'red',
-							height: 30,
-							width: 30,
-							position: 'absolute',
-							borderWidth: 1,
-							borderColor: 'blue',
-							top: 0,
-							left: 0,
-						}}></View>
-				</TouchableWithoutFeedback>
+				<View
+					style={{
+						backgroundColor: 'red',
+						height: 30,
+						width: 30,
+						position: 'absolute',
+						borderWidth: 1,
+						borderColor: 'blue',
+						top: 0,
+						left: 0,
+					}}></View>
+			</TouchableWithoutFeedback>
 			{/* InputForm */}
 			<View>
 				{/* (M)InputWithSelect */}
@@ -113,7 +104,6 @@ export default AssignShelterInformation = props => {
 						keyboardType={'number-pad'}
 						onChange={onChangePhoneNumber}
 						onValid={onValidPhoneNumber}
-
 					/>
 				</View>
 
@@ -153,7 +143,7 @@ export default AssignShelterInformation = props => {
 				<AniButton
 					btnTitle={'확인'}
 					btnTheme={'shadow'}
-					disable={!phoneConfirmed||!emailConfirmed}
+					disable={!phoneConfirmed || !emailConfirmed}
 					btnLayout={btn_w654}
 					titleFontStyle={32}
 					onPress={goToNextStep}

@@ -26,6 +26,7 @@ export default AccountHashList = props => {
 };
 
 AccountHashList.defaultProps = {
+	items: [],
 	onLabelClick: e => console.log(e), // UserAccount의 UserDescriptionLabel 클릭
 	onCheckBox: e => console.log(e),
 	checkBoxMode: false, // CheckBox 콘테이너 Show T/F

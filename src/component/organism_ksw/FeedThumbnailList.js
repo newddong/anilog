@@ -19,9 +19,11 @@ export default FeedThumbnailList = props => {
 	};
 
 	return (
-		<ScrollView horizontal={false} contentContainerStyle={{width: '100%', height: '100%'}}>
-			<ScrollView horizontal={true} contentContainerStyle={{width: '100%', height: '100%'}}>
-				<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} numColumns={NUMCOLUMNS} />
+		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+				<View style={{marginBottom: 50}}>
+					<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} numColumns={NUMCOLUMNS} scrollEnabled={false} />
+				</View>
 			</ScrollView>
 		</ScrollView>
 	);

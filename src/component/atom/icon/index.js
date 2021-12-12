@@ -117,6 +117,7 @@ import kakaoIcon from './kakaoIcon';
 import instagramIcon from './instagramIcon';
 import facebookIcon from './facebookIcon';
 import crossMark_filled from './crossMark_filled';
+import childCommentLinker from './childCommentLinker';
 
 import DP from 'Screens/dp';
 import {APRI10, YELL20, GRAY20, GRAY30, GRAY10, BLACK} from 'Root/config/color';
@@ -296,3 +297,4 @@ export const Kakao_Icon = makeSvg(kakaoIcon, size80);
 export const Instagram_Icon = makeSvg(instagramIcon, size80);
 export const Facebook_Icon = makeSvg(facebookIcon, size80);
 export const CrossMark_Filled = makeSvg(crossMark_filled, size50);
+export const ChildCommentLinker = makeSvg(childCommentLinker, {width: 14 * DP, height: 14 * DP});

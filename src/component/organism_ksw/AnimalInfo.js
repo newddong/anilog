@@ -18,22 +18,18 @@ export default AnimalInfo = props => {
 
 	return (
 		<View style={[animalInfo.container]}>
-			<PetImageLabel data={data} showNickname={false} />
+			<PetImageLabel data={data} onPressLabel={() => props.onPressLabel()} showNickname={false} />
 			<View style={[animalInfo.infoContainer]}>
-				<Text style={[animalInfo.infoContainer_petNickname, txt.noto30b]}>{data.user_nickname}</Text>
+				<Text style={[animalInfo.infoContainer_petNickname, txt.noto30b]}>{data.user_nickname || ''}</Text>
 				<Text style={[animalInfo.infoContainer_petDetail, txt.noto24, {color: GRAY20}]}>
-					{data.pet_species}/{data.pet_species_detail}
+					{data.pet_species || ''}/{data.pet_species_detail || ''}
 				</Text>
-				<Text style={[animalInfo.infoContainer_petDetail, txt.noto24, {color: GRAY20}]}>임시보호 {data.protect_animal_date}일 째</Text>
+				<Text style={[animalInfo.infoContainer_petDetail, txt.noto24, {color: GRAY20}]}>임시보호 {data.protect_animal_date || ''}일 째</Text>
 			</View>
 		</View>
 	);
 };
 
-AnimalInfo.defaultProps = {};
-
-// PetImageLabel.defaultProps = {
-// 	img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
-// 	petStatus: 'normal', // normal protected adopted
-// 	petNickname: null, // 펫 프로필이미지 아래에 출력되는 닉네임
-// };
+AnimalInfo.defaultProps = {
+	onPressLabel: e => {},
+};

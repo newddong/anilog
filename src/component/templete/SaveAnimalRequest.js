@@ -116,7 +116,7 @@ export default SaveAnimalRequest = props => {
 					data={_dummyData}
 					checkBoxMode={checkBoxMode}
 					// onLabelClick={item => navigation.push('UserProfile', item)}
-					onLabelClick={(status, id) => navigationGo(status, id)}
+					onClickLabel={(status, id) => navigationGo(status, id)}
 					onHashClick={item => navigation.push('FeedListForHashTag', item)}
 					onCheckBox={(item, index) => onCheckBox(item, index)}
 					isCheckAll={acceptAllState}

@@ -49,7 +49,7 @@ export default MissingReportList = props => {
 		console.log('즐겨찾기=>' + value + ' ' + index);
 	};
 
-	const onLabelClick = (status, id, item) => {
+	const onClickLabel = (status, id, item) => {
 		console.log(`\nMissingReportList:onLabelClick() - status=>${status} id=>${id} item=>${JSON.stringify(item)}`);
 
 		switch (status) {
@@ -90,7 +90,7 @@ export default MissingReportList = props => {
 					<AnimalNeedHelpList
 						data={dummy_MissingReportList}
 						onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
-						onLabelClick={(status, id) => onLabelClick(status, id)}
+						onClickLabel={(status, id) => onClickLabel(status, id)}
 					/>
 				</View>
 			</ScrollView>
