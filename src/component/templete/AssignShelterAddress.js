@@ -8,6 +8,7 @@ import AniButton from '../molecules/AniButton';
 import Stagebar from '../molecules/Stagebar';
 import Input24 from '../molecules/Input24';
 import AddressInput from '../organism_ksw/AddressInput';
+import axios from 'axios';
 import {stagebar_style} from '../organism_ksw/style_organism';
 
 export default AssignShelterAddress = props => {
@@ -67,11 +68,15 @@ export default AssignShelterAddress = props => {
 		console.log('onvalid', isValid);
 		setConfirmed(isValid);
 	};
-
+	const test = () => {
+		axios.post('http://10.0.2.2:3000/user/test', {nickname: {nest: 'dasdf'}}).then(r => {
+			console.log(r);
+		});
+	};
 	return (
 		<KeyboardAvoidingView style={[login_style.wrp_main, {flex: 1}]} behavior={'padding'}>
 			{/* (M)StageBar	 */}
-			<TouchableWithoutFeedback onPress={() => console.log(data)}>
+			<TouchableWithoutFeedback onPress={test}>
 				<View
 					style={{
 						backgroundColor: 'red',

@@ -2,6 +2,99 @@ import axios from 'axios';
 import {serveruri, cookieReset} from 'Screens/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+/**
+ * @typedef Tags
+ * @property {string} tag_user_id - 태그된 유저의 아이디
+ * @property {number} position_x - 태그의 사진 프레임에서 x좌표
+ * @property {number} position_y - 태그의 사진 프레임에서 y좌표
+ */
+
+/**
+ * @typedef FeedMedias
+ * @property {boolean} is_video - 동영상 여부
+ * @property {number} duration - 동영상 재생 시간
+ * @property {string} media_uri - 미디어의 uri(서버에서 처리)
+ * @property {Array.<Tags>} tags - 미디어의 태그 목록
+ */
+
+/**
+ * 피드 작성
+ *
+ * @param {object} params
+ * @param {string} params.feed_content - 피드 텍스트 내용
+ * @param {string} params.feed_location - 피드 작성 지역
+ * @param {string} params.feed_avatar_id - 피드의 작성자로 지정하고 싶은 반려동물 ID
+ * @param {Array.<string>} params.feed_attachments - 피드 첨부파일 uri리스트
+ * @param {Array.<FeedMedias>} params.feed_medias - 첨부 객체정보 리스트
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+export const createFeed = async (params, callback, errcallback) => {
+	try {
+		//서버와 통신
+		// throw new Error('확인되지 않은 코드');
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
+	}
+};
+
+/**
+ * 실종 게시물 작성
+ *
+ * @param {object} params
+ * @param {string} params.feed_content - 게시물 내용
+ * @param {string} params.feed_location - 게시물 작성 지역
+ * @param {Array.<string>} params.feed_attachments - 게시물 첨부파일 uri리스트
+ * @param {Array.<FeedMedias>} params.feed_medias - 첨부 객체정보 리스트
+ *
+ * @param {Number} params.missing_animal_age - 실종 동물 나이
+ * @param {string} params.missing_animal_features - 실종 동물 특징
+ * @param {string} params.missing_animal_contact - 실종 동물의 주인 연락처
+ * @param {string} params.missing_animal_lost_location - 실종 동물 실종 지점
+ * @param {'male'|'female'|'unknown'} params.missing_animal_sex - 실종 동물 성별
+ * @param {string} params.missing_animal_species - 실종 동물 종류(개, 고양이, 새)
+ * @param {string} params.missing_animal_species_detail - 실종 동물 세부 종류(리트리버,푸들,말티즈)
+ *
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+export const createMissing = async (params, callback, errcallback) => {
+	try {
+		//서버와 통신
+		// throw new Error('확인되지 않은 코드');
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
+	}
+};
+
+
+/**
+ * 제보 게시물 작성
+ *
+ * @param {object} params
+ * @param {string} params.feed_content - 제보 게시물 내용
+ * @param {string} params.feed_location - 제보 게시물 작성 지역
+ * @param {Array.<string>} params.feed_attachments - 제보 게시물 첨부파일 uri리스트
+ * @param {Array.<FeedMedias>} params.feed_medias - 첨부 객체정보 리스트
+ * @param {string} report_witness_date - 제보일자
+ * @param {string} report_witness_location - 제보장소
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+export const createReport = async (params, callback, errcallback) => {
+	try {
+		//서버와 통신
+		// throw new Error('확인되지 않은 코드');
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
+	}
+};
+
+
+//--이전 버전의 API들 --
 export const getPostList = async (params, /*data, likedPosts,*/ callback) => {
 	console.log('getPostList');
 	try {
@@ -54,7 +147,7 @@ export const getPostListByUserId = async (params, /*data, likedPosts,*/ callback
 	try {
 		// data.splice(0);
 		let recieved = await axios.post(serveruri + '/post/getPostListByUserId', {
-			user_id: params.user_id,//수정
+			user_id: params.user_id, //수정
 			post_id: params.post_id,
 			number: params.number,
 		});
@@ -79,7 +172,7 @@ export const getPostListByUserId = async (params, /*data, likedPosts,*/ callback
 export const getMorePostListByUserId = async (params, /* data, likedPosts,*/ callback) => {
 	try {
 		let recieved = await axios.post(serveruri + '/post/getMorePostListByUserId', {
-			user_id: params.user_id,//수정
+			user_id: params.user_id, //수정
 			post_id: params.post_id,
 			option: params.option,
 			number: params.number,
@@ -145,58 +238,61 @@ export const dislikePost = async (params, callback) => {
 };
 
 export const createPost = async (params, callback) => {
-	console.log('createPost=>'+ params);
+	console.log('createPost=>' + params);
 	let form = new FormData();
-	form.append('location',params.location);
-	form.append('time',params.time);
-	params.imageList?.map((v)=>{
-		form.append('imgfile',{
-			name:v.uri,type:'image/jpeg',uri:v.uri
-		})
+	form.append('location', params.location);
+	form.append('time', params.time);
+	params.imageList?.map(v => {
+		form.append('imgfile', {
+			name: v.uri,
+			type: 'image/jpeg',
+			uri: v.uri,
+		});
 	});
-	form.append('content',params.content);
+	form.append('content', params.content);
 	params.imageList?.forEach(v => {
-		form.append('images',JSON.stringify(v));
+		form.append('images', JSON.stringify(v));
 	});
 
-	try{
+	try {
 		await cookieReset(await AsyncStorage.getItem('token'));
 		let result = await axios.post(serveruri + '/post/createPost', form, {
-			headers:{
-				'Content-Type':'multipart/form-data'
-			}
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
 		});
-		if(result.data.status === 200){
+		if (result.data.status === 200) {
 			callback(result.data);
-		}else{
-			alert('createPost Network Error : '+JSON.stringify(result.data.msg));
+		} else {
+			alert('createPost Network Error : ' + JSON.stringify(result.data.msg));
 		}
+	} catch (err) {
+		alert('createPost Code Error : ' + JSON.stringify(err));
 	}
-	catch(err){
-		alert('createPost Code Error : '+JSON.stringify(err));
-	}
-}
+};
 
 export const editPost = async (params, callback) => {
 	// console.log('editPost=>'+ JSON.stringify(params));
 	let form = new FormData();
-	form.append('post_id',params.post_id);
-	form.append('location',params.location);
-	form.append('time',params.time);
-	form.append('content',params.content);
-	if(Array.isArray(params.images)){
-		params.images.forEach((v)=>{
-			if(v.uri.includes('http')){
-				form.append('httpImages',JSON.stringify(v));
+	form.append('post_id', params.post_id);
+	form.append('location', params.location);
+	form.append('time', params.time);
+	form.append('content', params.content);
+	if (Array.isArray(params.images)) {
+		params.images.forEach(v => {
+			if (v.uri.includes('http')) {
+				form.append('httpImages', JSON.stringify(v));
 				// form.append('httpImages',v);
-			}else{
-				form.append('localImages',JSON.stringify(v));
+			} else {
+				form.append('localImages', JSON.stringify(v));
 				// form.append('localImages',v);
-				form.append('imgfile',{
-					name:v.uri,type:'image/jpeg',uri:v.uri
-				})
+				form.append('imgfile', {
+					name: v.uri,
+					type: 'image/jpeg',
+					uri: v.uri,
+				});
 			}
-		})
+		});
 	}
 	// params.imageList?.map((v)=>{
 	// 	form.append('imgfile',{
@@ -207,31 +303,24 @@ export const editPost = async (params, callback) => {
 	// 	form.append('images',JSON.stringify(v));
 	// });
 	// console.log(form.getAll('images'));
-	try{
+	try {
 		// await cookieReset(await AsyncStorage.getItem('token'));
 		let result = await axios.post(serveruri + '/post/editPost', form, {
-			headers:{
-				'Content-Type':'multipart/form-data'
-			}
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
 		});
-		if(result.data.status === 200){
+		if (result.data.status === 200) {
 			callback(result.data.msg);
-		}else{
-			alert('editPost Network Error : '+JSON.stringify(result.data.msg));
+		} else {
+			alert('editPost Network Error : ' + JSON.stringify(result.data.msg));
 		}
+	} catch (err) {
+		alert('editPost Code Error : ' + JSON.stringify(err));
 	}
-	catch(err){
-		alert('editPost Code Error : '+JSON.stringify(err));
-	}
-}
-
-
-
+};
 
 //comment api
-
-
-
 
 export const getCommentList = async (params, callback) => {
 	console.log('getCommentList');
