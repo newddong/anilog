@@ -13,15 +13,14 @@ import {applyVolunteer, btn_style, login_style} from './style_templete';
 import DatePicker from '../molecules/DatePicker';
 import Input24 from '../molecules/Input24';
 import Modal from '../modal/Modal';
-import {dummy_userObject} from 'Root/config/dummyDate_json';
 
 export default ApplyVolunteer = ({route, navigation}) => {
-	// console.log('route/params at ApplyVolunteer', route.params);
-	const shelter_data = route.params; //선택한 보호소프로필의 userObject가 담겨있음
-
+	// console.log('route.params', route.params);
+	const param = route.params;
+	const shelter_data = param.profile_data; //선택한 보호소프로필의 userObject가 담겨있음
 	//VolunteerAcitivityApplicantObject 를 기준으로 데이터 write실시
 	const [data, setData] = React.useState({
-		volunteer_target_shelter: shelter_data._id,
+		volunteer_target_shelter: '',
 		volunteer_wish_date: [],
 		volunteer_accompany: [],
 		volunteer_delegate_contact: '',
@@ -29,7 +28,16 @@ export default ApplyVolunteer = ({route, navigation}) => {
 	});
 
 	React.useEffect(() => {
-		console.log('data', data.volunteer_delegate_contact);
+		// console.log('raddedVolunteer', param.addedVolunteer);
+		if (param.addedVolunteer != undefined) {
+			let copy = [...data.volunteer_accompany];
+			copy.push(param.addedVolunteer);
+			setData({...data, volunteer_accompany: copy});
+		}
+	}, [param.addedVolunteer]);
+
+	React.useEffect(() => {
+		console.log('data', data);
 	}, [data]);
 
 	//최종 신청
@@ -48,7 +56,7 @@ export default ApplyVolunteer = ({route, navigation}) => {
 
 	//계정추가 버튼 클릭
 	const addVolunteer = () => {
-		navigation.push('Search');
+		navigation.push('Search', {mother: 0, child: 1, prevNav: route.name});
 		// let copy = [...data.volunteer_accompany];
 		// //유저 계정 검색 구현되면 userObject 얻어오는 로직 추가해야함 현재는 더미로 진행
 		// copy.push(dummy_userObject[1]);
@@ -132,7 +140,7 @@ export default ApplyVolunteer = ({route, navigation}) => {
 					{/* 봉활참여인원 FlatList 여기 */}
 					<View style={[applyVolunteer.participants_step2]}>
 						<View style={[applyVolunteer.accountList]}>
-							<AccountList items={dummy_userObject} width={446} onDelete={onDeleteAccount} />
+							<AccountList items={data.volunteer_accompany} width={446} onDelete={onDeleteAccount} />
 						</View>
 						<View style={[applyVolunteer.addParticipantBtn]}>
 							<Add_Volunteer onPress={addVolunteer} />
@@ -162,3 +170,5 @@ export default ApplyVolunteer = ({route, navigation}) => {
 		</View>
 	);
 };
+
+ApplyVolunteer.defaultProps = {};

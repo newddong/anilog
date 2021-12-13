@@ -65,7 +65,7 @@ export default Profile = props => {
 
 	//보호소프로필의 봉사활동 클릭
 	const onClick_Volunteer_ShelterProfile = () => {
-		navigation.push('ApplyVolunteer', profile_data);
+		navigation.push('ApplyVolunteer', {profile_data: profile_data});
 	};
 
 	//보호소프로필의 보호활동 탭의 피드 썸네일 클릭

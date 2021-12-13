@@ -7,7 +7,7 @@ import TabSelectFilled_Type3 from '../molecules/TabSelectFilled_Type3';
 export default TopTabNavigation_Filled = props => {
 	return (
 		<View style={{borderBottomColor: APRI10, borderBottomWidth: 3 * DP}}>
-			<TabSelectFilled_Type3 items={props.menu} onSelect={index => props.onSelect(index)} />
+			<TabSelectFilled_Type3 items={props.menu} defaultIndex={props.select} onSelect={index => props.onSelect(index)} />
 		</View>
 	);
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import {Text, TouchableOpacity, FlatList} from 'react-native';
+import {Text, TouchableOpacity, FlatList, View} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY20, GRAY30} from 'Root/config/color';
 
@@ -21,9 +21,11 @@ const TabSelectBorder_Type3 = props => {
 	};
 
 	const getWidth = index => {
+		let width = (720 * DP) / props.items.length - 10;
 		if (index == selected) {
-			return 212 * DP;
-		} else return 158 * DP;
+			return (720 * DP) / props.items.length + 30;
+		}
+		return width;
 	};
 
 	const renderItem = ({item, index}) => {
@@ -39,6 +41,7 @@ const TabSelectBorder_Type3 = props => {
 					justifyContent: 'center',
 				}}>
 				<Text
+					numberOfLines={1}
 					style={[
 						index == selected ? txt.noto24b : txt.noto24,
 						{
@@ -52,7 +55,11 @@ const TabSelectBorder_Type3 = props => {
 			</TouchableOpacity>
 		);
 	};
-	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />;
+	return (
+		<View style={{alignItems: 'center'}}>
+			<FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />
+		</View>
+	);
 };
 
 TabSelectBorder_Type3.defaultProps = {

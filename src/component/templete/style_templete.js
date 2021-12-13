@@ -412,10 +412,9 @@ export const temp_style = StyleSheet.create({
 	},
 	feedThumbnailList: {
 		width: 734 * DP,
+		marginBottom: 100 * DP,
 		// height: 1032 * DP,
 		// alignItems: 'center',
-		alignSelf: 'center',
-		justifyContent: 'center',
 	},
 	topTabNavigation_filled: {
 		width: 750 * DP,
@@ -2886,7 +2885,7 @@ export const applyVolunteer = StyleSheet.create({
 		marginBottom: 68 * DP,
 	},
 	shelterInfo: {
-		width: 702 * DP,
+		width: 750 * DP,
 		height: 246 * DP,
 		justifyContent: 'center',
 		alignItems: 'center',

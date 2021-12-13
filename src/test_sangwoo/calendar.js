@@ -75,7 +75,7 @@ const Calendar = props => {
 		let years = [];
 		let this_year = new Date().getFullYear();
 		for (let i = 0; i < 40; i++) {
-			const year_to_String = JSON.stringify(this_year - i);
+			const year_to_String = JSON.stringify(this_year + 4 - i);
 			years.push(year_to_String);
 		}
 		return years;
@@ -87,7 +87,7 @@ const Calendar = props => {
 
 	return (
 		<View style={styles.outside}>
-			<YearDropDown menu={years()} onSelect={onSelectYear} />
+			<YearDropDown menu={years()} defaultIndex={4} onSelect={onSelectYear} />
 			<View style={[styles.headerCont]}>
 				<TouchableOpacity
 					style={styles.changeMonthBtn}

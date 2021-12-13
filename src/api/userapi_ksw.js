@@ -20,8 +20,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  */
 export const assignAdoption = async (params, callback, errcallback) => {
 	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
+		//현재 params에 누락된 부분 :
+		//  protect_act_applicant_id(임시보호 및 입양자 고유 아이디) ,
+		// protect_act_Request_article_id(동물보호 게시글),
+		// protect_act_request_shelter_id (동물보호 게시글 작성한 보호소 아이디)
 		let form = new FormData();
 		form.append('protect_act_type', params.protect_act_type);
 		form.append('protect_act_address', params.protect_act_address);
@@ -32,7 +34,8 @@ export const assignAdoption = async (params, callback, errcallback) => {
 		form.append('protect_act_applicant_id', params.protect_act_applicant_id);
 		form.append('protect_act_request_article_id', params.protect_act_request_article_id);
 		form.append('protect_act_request_shelter_id', params.protect_act_request_shelter_id);
-		form.append('protect_act_applicant_id', AsyncStorage.getItem('token'));
+		let token = await AsyncStorage.getItem('token');
+		form.append('protect_act_applicant_id', token);
 		setTimeout(callback, 1000, params);
 	} catch (err) {
 		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백

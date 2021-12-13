@@ -61,7 +61,7 @@ export default AddFamilyAccount = ({route, navigation}) => {
 	};
 
 	return (
-		<ScrollView contentContainerStyle={{flex: 1}}>
+		<ScrollView style={{flex: 1}}>
 			<View style={[login_style.wrp_main, addFamilyAccount_style.container]}>
 				<View style={[temp_style.inputWithSearchIcon, addFamilyAccount_style.inputWithSearchIcon]}>
 					<InputWithSearchIcon onSearch={onSearch} onChange={onChangeKeyword} width={654} placeholder={'가족 계정을 검색해주세요.'} />

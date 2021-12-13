@@ -6,24 +6,28 @@ import SearchFeed from 'Templete/SearchFeed';
 import SearchHashTag from 'Templete/SearchHashTag';
 import ConfirmInputHeader from 'Root/navigation/header/ConfirmInputHeader';
 import TopTabNavigation_Border from 'Root/component/organism_ksw/TopTabNavigation_Border';
+import TopTabNavigation_Border_Type2 from 'Root/component/organism_ksw/TopTabNavigation_Border_Type2';
 
 const SearchFeedTabNav = createMaterialTopTabNavigator();
 
 export default SearchFeedTabNavigation = props => {
 	const [searchInput, setSearchInput] = React.useState();
+	const prev = props.prevNav;
 
-	//SearchHeader에서 작성한 검색어와 검색클릭이 행해지면 SearchInput에 값이 들어감
 	React.useEffect(() => {
+		//SearchHeader에서 작성한 검색어와 검색클릭이 행해지면 SearchInput에 값이 들어감
 		setSearchInput(props.input);
 	}, [props.input]);
 
+	const menuItem = ['게시글', '계정', '태그'];
+	const navName = ['SearchFeed', 'SearchAccountA', 'SearchHashTag'];
+
 	return (
 		<SearchFeedTabNav.Navigator
-			initialRouteName={'FEED'}
+			initialRouteName={navName[props.defaultIndex]}
 			tabBar={({state, descriptors, navigation, position}) => {
 				const onSelectTab = pressedTab => {
-					console.log('press', state.routes[pressedTab].name);
-
+					// console.log('press', state.routes[pressedTab].name);
 					navigation.navigate({
 						//현재 Tab state가 가지는 routes들 중 pressedTab 인덱스
 						name: state.routes[pressedTab].name,
@@ -31,10 +35,10 @@ export default SearchFeedTabNavigation = props => {
 					});
 				};
 				return (
-					<TopTabNavigation_Border
-						items={['게시글', '계정', '태그']}
-						onSelect={pressedTab => onSelectTab(pressedTab)} // 현재 클릭된 상태인 tab (pressedTab에는 클릭된 index가 담겨져있음)
-						select={state.index} // gesture Handler(손가락으로 swipe)로 tab을 움직였을 시 자식까지 state를 연동시키기 위한 props
+					<TopTabNavigation_Border_Type2
+						items={menuItem}
+						onSelect={onSelectTab} // 현재 클릭된 상태인 tab (pressedTab에는 클릭된 index가 담겨져있음)
+						select={props.defaultIndex || 0} // gesture Handler(손가락으로 swipe)로 tab을 움직였을 시 자식까지 state를 연동시키기 위한 props
 						fontSize={24}
 					/>
 				);
@@ -42,7 +46,9 @@ export default SearchFeedTabNavigation = props => {
 			{/* 게시글 */}
 			<SearchFeedTabNav.Screen name="SearchFeed">{props => <SearchFeed {...props} input={searchInput} />}</SearchFeedTabNav.Screen>
 			{/* 계정 */}
-			<SearchFeedTabNav.Screen name="SearchAccountA">{props => <SearchAccountA {...props} input={searchInput} />}</SearchFeedTabNav.Screen>
+			<SearchFeedTabNav.Screen name="SearchAccountA">
+				{props => <SearchAccountA {...props} prevNav={prev} input={searchInput} />}
+			</SearchFeedTabNav.Screen>
 			{/* 태그 */}
 			<SearchFeedTabNav.Screen name="SearchHashTag">{props => <SearchHashTag {...props} input={searchInput} />}</SearchFeedTabNav.Screen>
 		</SearchFeedTabNav.Navigator>

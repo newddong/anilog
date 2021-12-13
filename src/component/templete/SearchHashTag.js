@@ -7,7 +7,7 @@ import HashTagList from '../organism_ksw/HashTagList';
 import {login_style, searchHashTag, temp_style} from './style_templete';
 
 export default SearchHashTag = props => {
-	console.log('props.Search', props.input);
+	// console.log('props.Search', props.input);
 	const [tagList, setTagList] = React.useState(dummy_hashTagListObject);
 	const searched_tagList = tagList.slice(0, 3); //검색 후 받아올 데이터 더미
 	return (

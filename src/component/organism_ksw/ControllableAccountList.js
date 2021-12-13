@@ -21,8 +21,8 @@ export default ControllableAccountList = props => {
 	const [selectedItem, setSelectedItem] = React.useState(0);
 
 	//AccountList 선택이벤트
-	const onSelectItem = index => {
-		props.onClickAccount(index);
+	const onSelectItem = (item, index) => {
+		props.onClickAccount(item, index);
 		setSelectedItem(index);
 	};
 
@@ -39,7 +39,7 @@ export default ControllableAccountList = props => {
 	const renderItem = (item, index) => {
 		return (
 			<TouchableOpacity
-				onPress={() => onSelectItem(index)}
+				onPress={() => onSelectItem(item, index)}
 				style={[selectedItem == index ? controllableAccountList.selectedItem : controllableAccountList.no_selectedItem]}>
 				<ControllableAccount
 					data={item}
