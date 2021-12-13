@@ -81,13 +81,7 @@ export const assignPet = async (params, callback, errcallback) => {
 };
 
 
-export const newAPI = () => {
 
-
-
-
-	
-}
 
 
 /**
