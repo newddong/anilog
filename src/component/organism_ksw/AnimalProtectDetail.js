@@ -16,7 +16,7 @@ import {animalProtectDetail} from './style_organism';
 // AnimalProtectDetail 호출하는 템플릿 - AdoptorInformation(data), ApplyDetails(data), (T)ProtectApplyForm
 // AnimalProtectDetail이 접근하는 테이블 : @UserObject, @ProtectRequestObject , @ShelterProtectAnimalObject, @ProtectionActivityApllicantObject
 export default AnimalProtectDetail = props => {
-	console.log(' AnimalProtectDetail / props.data', props.data);
+	// console.log(' AnimalProtectDetail / props.data', props.data);
 
 	const [data, setData] = React.useState(props.data);
 

@@ -15,7 +15,7 @@ import DP from 'Root/config/dp';
 import CommentList from '../organism_ksw/CommentList';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import ReplyWriteBox from '../organism_ksw/ReplyWriteBox';
-import {dummy_AnimalNeedHelpList_various_status, dummy_CommentObject} from 'Root/config/dummyDate_json';
+import {dummy_AnimalNeedHelpList_various_status, dummy_CommentObject, dummy_ShelterProtectAnimalObject} from 'Root/config/dummyDate_json';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {launchImageLibrary} from 'react-native-image-picker';
@@ -33,11 +33,11 @@ import {Bracket48} from '../atom/icon';
 // - AnimalNeedHelp Item의 BorderMode=true 에서 게시글보기를 클릭하였을 경우 호출
 
 export default AnimalProtectRequestDetail = ({route}) => {
-	// console.log('AnimalProtectRequestDetail', route.params);d
+	// console.log('AnimalProtectRequestDetail', route.params);
 	const navigation = useNavigation();
 	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
-
 	const [data, setData] = React.useState(route.params); // ProtectRequestObject, ShelterProtectAnimalObject 정보가 담겨 있는 상태
+
 	const [editComment, setEditComment] = React.useState(false); // 댓글 쓰기 클릭
 	const [privateComment, setPrivateComment] = React.useState(false); // 팝업된 댓글창에서 비밀글 상태
 	const [photo, setPhoto] = React.useState(); // PhotoSelect에서 가져온 Photo uri
@@ -276,9 +276,8 @@ export default AnimalProtectRequestDetail = ({route}) => {
 					<></>
 				) : (
 					<View style={[animalProtectRequestDetail_style.btnContainer]}>
-						<AniButton btnLayout={btn_w226} btnStyle={'border'} btnTitle={'임시보호 신청'} titleFontStyle={30} onPress={onPressProtectRequest} />
-						<View style={{width: 62 * DP}} />
-						<AniButton btnLayout={btn_w226} btnTitle={'입양 신청'} titleFontStyle={30} onPress={onPressAdoptionRequest} />
+						<AniButton btnStyle={'border'} btnTitle={'임시보호 신청'} titleFontStyle={30} onPress={onPressProtectRequest} />
+						<AniButton btnTitle={'입양 신청'} titleFontStyle={30} onPress={onPressAdoptionRequest} />
 					</View>
 				)}
 			</ScrollView>

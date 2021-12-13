@@ -169,7 +169,7 @@ export const btn_style = StyleSheet.create({
 	btn_w226: {
 		width: 226 * DP,
 		// height: 70 * DP,
-		alignItems: 'center',
+		alignItems: 'flex-end',
 		justifyContent: 'center',
 	},
 	btn_w176: {
@@ -3699,7 +3699,8 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 			height: 2 * DP,
 		},
 		elevation: 2,
-		marginVertical: 80 * DP,
+		paddingHorizontal: 50 * DP,
+		justifyContent: 'space-between',
 	},
 });
 

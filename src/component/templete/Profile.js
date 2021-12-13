@@ -5,6 +5,7 @@ import {View, TouchableWithoutFeedback} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import DP from 'Root/config/dp';
 import {
+	dummy_AnimalFromShelter_adopted,
 	dummy_FeedObject,
 	dummy_ShelterProtectAnimalObject,
 	dummy_userObject,
@@ -57,7 +58,7 @@ export default Profile = props => {
 		navigation.push('ProtectAnimalFeedList');
 	};
 
-	//보호소프로필의 피드 및 태그 탭 썸네일 클릭
+	//보호소프로필의 피드 및 태그 탭 썸네일 클릭xx
 	const onClick_FeedThumbnail_ShelterProfile = () => {
 		console.log('보호소프로필의 피드 및 태그 탭 => Thumbnail 클릭');
 	};
@@ -121,7 +122,7 @@ export default Profile = props => {
 			) : (
 				<View style={[profile.animalNeedHelpList]}>
 					<AnimalNeedHelpList
-						data={dummy_ShelterProtectAnimalObject}
+						data={dummy_AnimalFromShelter_adopted}
 						onClickLabel={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)}
 					/>
 				</View>

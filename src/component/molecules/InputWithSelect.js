@@ -49,7 +49,7 @@ const InputWithSelect = props => {
 	};
 
 	return (
-		<View style={{height: 82 * DP}}>
+		<View style={{height: 82 * DP, maxWidth: 654 * DP}}>
 			{props.title != null ? (
 				<View style={{flexDirection: 'row'}}>
 					<Text style={[txt.noto24, {color: APRI10}]}>{props.title}</Text>
@@ -63,18 +63,19 @@ const InputWithSelect = props => {
 					alignItems: 'center',
 				}}>
 				<NormalDropDown menu={props.items} width={200} defaultIndex={props.defaultIndex ? props.defaultIndex : 0} onSelect={onSelectDropDown} />
-
-				<Input24
-					placeholder={props.placeholder}
-					value={input}
-					ref={inputRef}
-					keyboardType={props.keyboardType}
-					// defaultValue={props.defaultValue}
-					onChange={onChange}
-					validator={validator}
-					onValid={onValid}
-					width={props.width || 450}
-				/>
+				<View style={{marginLeft: 20 * DP}}>
+					<Input24
+						placeholder={props.placeholder}
+						value={input}
+						ref={inputRef}
+						keyboardType={props.keyboardType}
+						// defaultValue={props.defaultValue}
+						onChange={onChange}
+						validator={validator}
+						onValid={onValid}
+						width={props.width || 450}
+					/>
+				</View>
 			</View>
 		</View>
 	);
