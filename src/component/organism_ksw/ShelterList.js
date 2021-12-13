@@ -16,7 +16,13 @@ export default ShelterList = props => {
 	};
 	return (
 		<View style={[shelterList.container]}>
-			<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} nestedScrollEnabled />
+			<FlatList
+				data={props.items}
+				renderItem={({item, index}) => renderItem(item, index)}
+				horizontal={true}
+				nestedScrollEnabled
+				showsHorizontalScrollIndicator={false}
+			/>
 		</View>
 	);
 };

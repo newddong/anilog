@@ -24,7 +24,7 @@ export default AppliesRecord = ({route}) => {
 	};
 
 	const showMoreVolunteer = () => {
-		navigation.push('ManageUserVolunteer', dummy_manageUserVolunteer); // 활동 예정중인 신청, 지난 신청 등 나의 신청 목록을 보내줘야 알 수 있는 부분
+		navigation.push('ManageUserVolunteer'); // 활동 예정중인 신청, 지난 신청 등 나의 신청 목록을 보내줘야 알 수 있는 부분
 	};
 
 	const onOff_FavoriteTag = (value, index) => {
@@ -43,28 +43,28 @@ export default AppliesRecord = ({route}) => {
 				<View style={[appliesRecord.record]}>
 					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>입양 신청 </Text>
-						<Text style={[appliesRecord.animalNeedHelp.headerContainer.moreTxt]}>더보기 </Text>
-						<View style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
-							<NextMark onPress={showMoreAdoption} />
-						</View>
+						<TouchableOpacity onPress={showMoreAdoption} style={[appliesRecord.showMoreBox]}>
+							<Text style={[]}>더보기 </Text>
+							<NextMark />
+						</TouchableOpacity>
 					</View>
 					<AnimalNeedHelpList data={dummy_rescue} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
 				</View>
 				<View style={[appliesRecord.record]}>
 					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>임시보호 신청 </Text>
-						<Text style={[appliesRecord.animalNeedHelp.headerContainer.moreTxt]}>더보기 </Text>
-						<View style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
-							<NextMark onPress={showMoreProtection} />
-						</View>
+						<TouchableOpacity onPress={showMoreProtection} style={[appliesRecord.showMoreBox]}>
+							<Text style={[]}>더보기 </Text>
+							<NextMark />
+						</TouchableOpacity>
 					</View>
 					<AnimalNeedHelpList data={dummy_protect} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
 				</View>
 				<View style={[appliesRecord.shelterList_container]}>
 					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>봉사활동 신청 </Text>
-						<Text style={[appliesRecord.animalNeedHelp.headerContainer.moreTxt]}>더보기 </Text>
-						<TouchableOpacity onPress={showMoreVolunteer} style={[appliesRecord.animalNeedHelp.headerContainer.moreBtn]}>
+						<TouchableOpacity onPress={showMoreVolunteer} style={[appliesRecord.showMoreBox]}>
+							<Text style={[]}>더보기 </Text>
 							<NextMark />
 						</TouchableOpacity>
 					</View>

@@ -9,7 +9,7 @@ import {useNavigation} from '@react-navigation/core';
 import {dummy_MissingReportList} from 'Root/config/dummy_data_hjs';
 import FilterButton from '../molecules/FilterButton';
 import {PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
-import {getPostListByFeedId} from 'Root/api/feedapi_hjs';
+import {getFeedListByFeedId} from 'Root/api/feedapi_hjs';
 
 export default MissingReportList = props => {
 	const navigation = useNavigation();
@@ -23,18 +23,18 @@ export default MissingReportList = props => {
 	});
 
 	//실종 데이터 불러오기 (아직 API 미작업 )
-	React.useEffect(() => {
-		console.log('MissingReportList:feedlist of missing');
-		getPostListByFeedId(
-			{
-				_id: route.params._id,
-			},
-			data => {
-				console.log('data' + JSON.stringify(`data${data}`));
-				setData(data);
-			},
-		);
-	}, [route.params]);
+	// React.useEffect(() => {
+	// 	console.log('MissingReportList:feedlist of missing');
+	// 	getFeedListByFeedId(
+	// 		{
+	// 			feed_object_id: props.route.params.feed_object_id,
+	// 		},
+	// 		data => {
+	// 			console.log('data' + JSON.stringify(`data${data}`));
+	// 			setData(data);
+	// 		},
+	// 	);
+	// }, [props.route.params]);
 
 	//[hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
 	const [data1, setData1] = React.useState({

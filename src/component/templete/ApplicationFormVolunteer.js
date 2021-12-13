@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import {FlatList, ScrollView, Text, TextInput, View} from 'react-native';
+import {Dimensions, FlatList, ScrollView, Text, TextInput, View} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import {dummy_userObject, dummy_VolunteerAcitivityApplicantObject} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
@@ -17,7 +17,7 @@ import {_dummy_ApplicationFormVolunteer_shelter} from 'Root/config/dummy_data_hj
 // ==> ManageVolunteer에서 더보기 클릭, 혹은 AppliesRecord(신청내역)에서 보호소 라벨 클릭 <==
 export default ApplicationFormVolunteer = ({route, navigation}) => {
 	// console.log('shelterData', route.params);
-	console.log('route / app', route.params);
+	// console.log('route / ApplicationFormVolunteer', route.params);
 	const [data, setData] = React.useState(route.params);
 	const [isShelterOwner, setIsShelterOwner] = React.useState(false); // 해당 보호소 계정 == 로그인 유저일 경우 최하단 버튼을 활동승인으로 출력
 	const [login_user_type, setLogin_user_type] = React.useState(true);
@@ -42,7 +42,6 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 	// 참여인원 삭제작업 , API 연결 작업 필요
 	const onDeleteAccompany = (index, item) => {
 		let copy = [...data.volunteer_accompany];
-		console.log('copy', copy);
 		copy.splice(index, 1);
 		//삭제를 클릭한 AccountItem의 userObject 고유 _id를 얻어옴
 		// 이후 해당 봉사활동 Object의 봉활자 Array [유저,유저,유저] 와 비교 후 _id 일치하는 data는 삭제
@@ -91,7 +90,7 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 	};
 
 	const onSelect = (item, index) => {
-		console.log('item', item);
+		// console.log('item', item);
 		navigation.push('UserProfile', item);
 	};
 

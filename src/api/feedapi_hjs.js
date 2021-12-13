@@ -8,19 +8,19 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  *
  * @param {string} params.feed_object_id - 피드 ID
  */
-export const getPostListByFeedId = async (params, callback) => {
+export const getFeedListByFeedId = async (params, callback) => {
 	try {
-		let recieved = await axios.post(serveruri + '/post/getPostListByFeedId', {
+		let recieved = await axios.post(serveruri + '/post/getFeedListByFeedId', {
 			feed_object_id: params.feed_object_id,
 		});
 		const data = recieved.data;
-		console.log(`getPostListByFeedId data:${data}`);
+		console.log(`getFeedListByFeedId data:${data}`);
 		if (data.status === 200) {
 			callback(data);
 		} else {
-			alert('getPostListByFeedId Network Error : ' + JSON.stringify(msg));
+			alert('getFeedListByFeedId Network Error : ' + JSON.stringify(msg));
 		}
 	} catch (err) {
-		alert('getPostListByFeedId Code Error : ' + JSON.stringify(err));
+		alert('getFeedListByFeedId Code Error : ' + JSON.stringify(err));
 	}
 };
