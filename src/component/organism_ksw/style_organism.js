@@ -1172,6 +1172,7 @@ export const animalNeedHelpList = StyleSheet.create({
 export const animalProtectDetail = StyleSheet.create({
 	container: {
 		alignSelf: 'center',
+		marginBottom: 50 * DP,
 	},
 	animalNeedHelp_container: {
 		marginBottom: 10 * DP,

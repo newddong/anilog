@@ -27,7 +27,3 @@ export default ShelterVerticalLabel = props => {
 ShelterVerticalLabel.defaultProps = {
 	onLabelClick: e => console.log(e),
 };
-// img_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg', //image uri
-// 	userType: 'user', //required - 유저타입 pet user shelter
-// 	shelterType: 'none', // public private
-// 	petStatus: 'none', // normal protected adopted none

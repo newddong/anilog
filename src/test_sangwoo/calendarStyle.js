@@ -1,10 +1,13 @@
-import { StyleSheet } from 'react-native';
-import { APRI10, BLUE10, GRAY10, LIGHT_SALMON, MIDNIGHT_BLUE, PALETUR, WHITE } from 'Root/config/color';
+import {StyleSheet} from 'react-native';
+import {APRI10, BLUE10, GRAY10, LIGHT_SALMON, MIDNIGHT_BLUE, PALETUR, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
 export const styles = StyleSheet.create({
+	yearCont: {
+		flexDirection: 'row',
+	},
 	outside: {
 		width: '100%',
-		height: '60%',
+		height: '100%',
 		marginTop: 200 * DP,
 		backgroundColor: 'white',
 		alignItems: 'center',
@@ -14,12 +17,10 @@ export const styles = StyleSheet.create({
 	popUpWindow: {
 		// backgroundColor: BLUE10,
 		alignItems: 'center',
-
 	},
 	headerCont: {
 		flexDirection: 'row',
 		alignSelf: 'center',
-		height: 140 * DP,
 	},
 	headerText: {
 		fontSize: 58 * DP,
@@ -86,18 +87,20 @@ export const styles = StyleSheet.create({
 	days_this_month: {
 		width: 94 * DP,
 		height: 54 * DP,
-		justifyContent: 'center', alignItems: 'center'
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	today: {
 		width: 94 * DP,
 		height: 54 * DP,
-		justifyContent: 'center', alignItems: 'center'
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 
 	msg: {
 		marginBottom: 30 * DP,
 		color: GRAY10,
-		textAlign: 'center'
+		textAlign: 'center',
 	},
 	buttonContainer: {
 		flexDirection: 'row',
@@ -112,5 +115,5 @@ export const styles = StyleSheet.create({
 			height: 2 * DP,
 		},
 		elevation: 2,
-	}
+	},
 });
