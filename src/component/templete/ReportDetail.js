@@ -7,6 +7,7 @@ import {useNavigation} from '@react-navigation/core';
 // import {_dummy_MissingReportDetail} from 'Root/config/dummy_data_hjs';
 import {_dummy_ReportDetail} from 'Root/config/dummy_data_hjs';
 import {dummy_CommentObject} from 'Root/config/dummyDate_json';
+import {getPostListByFeedId} from 'Root/api/feedapi_hjs';
 
 export default ReportDetail = props => {
 	const navigation = useNavigation();
@@ -31,11 +32,57 @@ export default ReportDetail = props => {
 		});
 	});
 
-	const [data, setData] = React.useState({
-		comment_photo_uri: '', //댓글 첨부 이미지 uri
-		comment_contents: '', //댓글 내용
-		comment_is_secure: '', //true일때는 writer와 댓글이 달린 게시글 작성자만 볼수있음,
-		comment_feed_id: '', //댓글이 작성된 피드 게시물
+	//제보 데이터 불러오기 (아직 API 미작업 )
+	React.useEffect(() => {
+		console.log('ReportDetail:feedlist of report');
+		getPostListByFeedId(
+			{
+				_id: route.params._id,
+			},
+			data => {
+				console.log('data' + JSON.stringify(`data${data}`));
+				setData(data);
+			},
+		);
+	}, [route.params]);
+
+	// [hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
+	const [data1, setData1] = React.useState({
+		//user object (게시글 작성자의 db 고유 아이디를 통해 조회)
+		user_profile_uri: '',
+		user_nickname: '',
+		user_address: '',
+
+		//feed object
+		_id: '', //피드 아이디
+		feed_writer_id: '', //게시글 작성자의 db 고유 아이디
+		feed_medias: '', //피드 첨부된 미디어 매체
+		feed_location: '',
+		report_witness_date: '', //제보 게시날짜
+		report_witness_location: '', //제보 장소
+		feed_content: '', //컨텐츠 내용
+		feed_date: '', //피드 최초 작성일자
+		feed_update_date: '', //피드 최종 업로드 날자
+		feed_favorite_count: 0, //게시글을 즐겨찾기로 등록한 수
+		feed_comment_count: 0, //게시글에 달린 댓글의 수
+
+		//comment object (배열 형식으로 받음)  댓글 사용자 정보
+		comment: [
+			{
+				user_profile_uri: '',
+				user_nickname: '',
+				user_address: '',
+
+				comment_contents: '', //댓글 내용
+				comment_photo_uri: '', //댓글 첨부 이미지 uri
+				comment_is_secure: '', //true일때는 writer와 댓글이 달린 게시글 작성자만 볼수있음,
+				comment_date: '', //댓글 작성일시
+				comment_update_date: '', //댓글 최정 수정일시
+				comment_like_count: '', //댓글 좋아요 숫자
+				comment_parent: '', //대댓글이 달린 댓글의 ID
+				comment_parent_writer_id: '', //부모 댓글의 작성자 ID
+			},
+		],
 	});
 
 	//답글 쓰기 => Input 작성 후 보내기 클릭 콜백 함수
