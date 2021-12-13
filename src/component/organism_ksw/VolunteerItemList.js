@@ -1,7 +1,5 @@
 import React from 'react';
-import {FlatList, Text, TouchableOpacity, View, ScrollView} from 'react-native';
-import {GRAY20} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
+import {FlatList, View, ScrollView} from 'react-native';
 import {volunteerItemList} from './style_organism';
 import VolunteerItem from './VolunteerItem';
 

@@ -23,25 +23,6 @@ export default AssignProtectAnimalImage = props => {
 		protect_animal_photos: null,
 	});
 
-	// React.useEffect(() => {
-	// 	if (props.route.params == null) {
-	// 		// setImgSelected('https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg')
-	// 	} else if (props.route.params.photo) {
-	// 		const photos = props.route.params.photo;
-	// 		let copy = [...imageList];
-	// 		photos.map((v, i) => {
-	// 			copy.push(v);
-	// 		});
-	// 		setImageList(copy);
-	// 		setData({...data, protect_animal_photos: props.route.params.photo});
-	// 	}
-	// }, [props.route.params]);
-
-	//사진 추가 클릭
-	// const gotoSelectPicture = () => {
-	// 	navigation.push('MultiPhotoSelect', props.route.name);
-	// };
-
 	//SelectedMedia 아이템의 X마크를 클릭
 	const onDelete = index => {
 		let copy = [...imageList];
@@ -64,7 +45,7 @@ export default AssignProtectAnimalImage = props => {
 			responseObject => {
 				console.log('선택됨', responseObject);
 				if (!responseObject.didCancel) {
-					let photoList = [];
+					let photoList = [...imageList];
 					responseObject.assets.map((v, i) => {
 						console.log('v', i, v.uri);
 						photoList.push(v.uri);

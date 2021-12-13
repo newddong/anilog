@@ -21,16 +21,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export const assignUser = async (params, callback, errcallback) => {
-	try{
+	try {
 		//서버와 통신
-		setTimeout(callback,1000,params);
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
-	catch(err){
-		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
-		
-	}
-}
-
+};
 
 /**
  * 유저가 등록중인 임시보호/입양할 동물이 있는지 체크
@@ -41,20 +38,18 @@ export const assignUser = async (params, callback, errcallback) => {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export const checkProtectPet = async (params, callback, errcallback) => {
-	try{
+	try {
 		//서버와 통신
-		setTimeout(callback,1000,params);
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
-	catch(err){
-		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
-	}
-
-}
+};
 
 /**
  * 반려동물등록
  * 등록 결과를 콜백으로 반환
- * 
+ *
  * @param {object} params
  * @param {object} params.user_id - 등록하고 있는 유저 ID(몽고디비 오브젝트 아이디)
  * @param {string} params.pet_birthday - 동물 생일
@@ -65,20 +60,17 @@ export const checkProtectPet = async (params, callback, errcallback) => {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export const assignPet = async (params, callback, errcallback) => {
-	try{
+	try {
 		//서버와 통신
-		setTimeout(callback,1000,params);
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
-	catch(err){
-		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
-	}
-
-}
-
+};
 
 /**
  * 보호소 등록
- * 
+ *
  * @param {object} params
  * @param {object} params.shelter_address
  * @param {string} params.shelter_address.brief - 보호소 주소
@@ -94,63 +86,52 @@ export const assignPet = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const assignShelter = async (params, callback, errcallback) => {
-	try{
+export const assignShelter = async (params, callback, errcallback) => {
+	try {
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback,1000,params);
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
-	catch(err){
-		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
-	}
-
-}
-
+};
 
 /**
  * 보호소 코드 체크
- * 
+ *
  * @param {object} params
  * @param {string} params.shelter_code - 보호소 확인코드
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const checkShelterCode = async (params, callback, errcallback) => {
-	try{
+export const checkShelterCode = async (params, callback, errcallback) => {
+	try {
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback,1000,params);
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
-	catch(err){
-		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
-	}
-
-}
-
+};
 
 /**
  * 로그인
- * 
+ *
  * @param {object} params
  * @param {string} params.login_id - 보호소 확인코드
  * @param {string} params.login_password - 보호소 확인코드
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const useLogin = async (params, callback, errcallback) => {
-	try{
+export const useLogin = async (params, callback, errcallback) => {
+	try {
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback,1000,params);
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
-	catch(err){
-		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
-	}
-
-}
-
-
-
+};
 
 //--이전 버전의 API들 --
 
@@ -226,11 +207,12 @@ export const addPet = async (params, callback) => {
 		form.append('animalKindDetail', params.animalKindDetail);
 		form.append('animalNo', params.animalNo);
 		form.append('nickname', params.nickname);
-		params.profileImgUri&&form.append('imgfile', {
-			name: params.profileImgUri,
-			type: 'image/jpeg',
-			uri: params.profileImgUri,
-		});
+		params.profileImgUri &&
+			form.append('imgfile', {
+				name: params.profileImgUri,
+				type: 'image/jpeg',
+				uri: params.profileImgUri,
+			});
 
 		let token = await AsyncStorage.getItem('token');
 
@@ -255,11 +237,10 @@ export const addPet = async (params, callback) => {
 export const getUserPetList = async (params, callback) => {
 	console.log('getUserPetList');
 	try {
-
 		let token = await AsyncStorage.getItem('token');
 		await cookieReset(token);
 
-		let result = await axios.post(serveruri + '/user/getUserPetList', {user_id:params.user_id});
+		let result = await axios.post(serveruri + '/user/getUserPetList', {user_id: params.user_id});
 
 		if (result.data.status === 200) {
 			callback(result.data.msg);

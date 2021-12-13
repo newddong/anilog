@@ -15,7 +15,7 @@ export default SocialInfoA = props => {
 			let count = (cnt / 1000000).toFixed(0) + 'm';
 			return count;
 		} else if (cnt > 1000) {
-			let count = (cnt / 1000).toFixed(0) + 'k';
+			let count = (cnt / 1000).toFixed(1) + 'k';
 			return count;
 		} else {
 			return cnt;

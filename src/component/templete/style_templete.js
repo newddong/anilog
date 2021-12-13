@@ -832,8 +832,7 @@ export const temp_style = StyleSheet.create({
 		backgroundColor: '#C4C483',
 	},
 	animalProtectDetails_adoptorInformation: {
-		width: 654 * DP,
-		// height: 1386 * DP,
+		width: 750 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#FFF',
@@ -3375,7 +3374,7 @@ export const manageVolunteer = StyleSheet.create({
 	},
 	volunteerList: {
 		width: 654 * DP,
-		marginBottom: 100 * DP,
+		marginBottom: 50 * DP,
 	},
 	previous_volunteerList: {
 		width: 750 * DP,

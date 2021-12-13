@@ -27,7 +27,7 @@ export default SelectedMediaList = props => {
 
 	return (
 		<View style={[props.layout == styles.img_square_round_190 ? selectedMediaList.container_190 : selectedMediaList.container_410]}>
-			<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
+			<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} showsHorizontalScrollIndicator={false} />
 		</View>
 	);
 };
