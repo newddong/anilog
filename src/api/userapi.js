@@ -80,6 +80,16 @@ export const assignPet = async (params, callback, errcallback) => {
 	}
 };
 
+
+export const newAPI = () => {
+
+
+
+
+	
+}
+
+
 /**
  * 보호소 등록
  *
