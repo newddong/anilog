@@ -24,7 +24,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {string} params.feed_content - 피드 텍스트 내용
  * @param {string} params.feed_location - 피드 작성 지역
  * @param {string} params.feed_avatar_id - 피드의 작성자로 지정하고 싶은 반려동물 ID
- * @param {Array.<string>} params.feed_attachments - 피드 첨부파일 uri리스트
+ * @param {Array.<string>} params.media_uri - 피드 첨부파일 uri리스트
  * @param {Array.<FeedMedias>} params.feed_medias - 첨부 객체정보 리스트
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
@@ -45,7 +45,7 @@ export const createFeed = async (params, callback, errcallback) => {
  * @param {object} params
  * @param {string} params.feed_content - 게시물 내용
  * @param {string} params.feed_location - 게시물 작성 지역
- * @param {Array.<string>} params.feed_attachments - 게시물 첨부파일 uri리스트
+ * @param {Array.<string>} params.media_uri - 게시물 첨부파일 uri리스트
  * @param {Array.<FeedMedias>} params.feed_medias - 첨부 객체정보 리스트
  *
  * @param {Number} params.missing_animal_age - 실종 동물 나이
@@ -76,7 +76,7 @@ export const createMissing = async (params, callback, errcallback) => {
  * @param {object} params
  * @param {string} params.feed_content - 제보 게시물 내용
  * @param {string} params.feed_location - 제보 게시물 작성 지역
- * @param {Array.<string>} params.feed_attachments - 제보 게시물 첨부파일 uri리스트
+ * @param {Array.<string>} params.media_uri - 제보 게시물 첨부파일 uri리스트
  * @param {Array.<FeedMedias>} params.feed_medias - 첨부 객체정보 리스트
  * @param {string} report_witness_date - 제보일자
  * @param {string} report_witness_location - 제보장소

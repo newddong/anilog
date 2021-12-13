@@ -163,10 +163,10 @@ export const assignPet = async (params, callback, errcallback) => {
 
 
 /**
- * 유저 프로필
+ * 유저 프로필조회
  * 
  * @param {object} params
- * @param {string} params.user_id - 아이디
+ * @param {string} params.user_id - 아이디(DB의 유저 객체 ID, _id필드)
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
@@ -182,10 +182,45 @@ export const getUserProfile = async (params, callback, errcallback) => {
 
 }
 
+/**
+ * 닉네임의 중복을 체크
+ * 
+ * @param {object} params
+ * @param {string} params.user_nickname - 중복체크할 닉네임
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+export const nicknameDuplicationCheck = async (params, callback, errcallback) => {
+	try{
+		//서버와 통신
+		// throw new Error('확인되지 않은 코드');
+		setTimeout(callback,1000,params);
+	}
+	catch(err){
+		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
+	}
 
+} 
 
+/**
+ * 유저 정보 수정
+ * 
+ * @param {object} params
+ * @param {string} params.user_nickname - 중복체크할 닉네임
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+export const updateUserInformation = async (params, callback, errcallback) => {
+	try{
+		//서버와 통신
+		// throw new Error('확인되지 않은 코드');
+		setTimeout(callback,1000,params);
+	}
+	catch(err){
+		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
+	}
 
-
+} 
 
 
 //--이전 버전의 API들 --
@@ -209,22 +244,6 @@ export const getUserList = async (params, callback) => {
 		}
 	} catch (err) {
 		alert('getUserList Code Error : ' + JSON.stringify(err));
-	}
-};
-
-export const getUserProfile = async (params, callback) => {
-	console.log('getUserProfile');
-	try {
-		let token = await AsyncStorage.getItem('token');
-		await cookieReset(token);
-		let result = await axios.post(serveruri + '/user/getUserProfile', {user_id: params.user_id});
-		if (result.data.status === 200) {
-			callback(result.data.msg);
-		} else {
-			alert('getUserProfile Network Error : ' + JSON.stringify(result.data.msg));
-		}
-	} catch (err) {
-		alert('getUserProfile Code Error : ' + JSON.stringify(err));
 	}
 };
 
