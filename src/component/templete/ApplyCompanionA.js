@@ -18,6 +18,7 @@ import {applyCompanionA, btn_style, login_style, temp_style} from './style_templ
 // ShelterProtectAnimalObject - 유저가 클릭한 동물의 정보가 들어있는 테이블 [ 입양 및 임시보호 Data Write가 완료된 뒤 ApplyDetail에서 보여질 대상 동물 관련 Data]
 
 export default ApplyCompanionA = ({route}) => {
+	// console.log('route.params', route.params);
 	const navigation = useNavigation();
 	const isProtect = route.name == 'ApplyProtectActivityA'; //임시보호 신청여부 , false일 경우 자동으로 입양모드 전환
 	const [confirmed, setConfirmed] = React.useState(false);
@@ -25,9 +26,11 @@ export default ApplyCompanionA = ({route}) => {
 	const [data, setData] = React.useState({
 		protect_act_type: isProtect ? 'protect' : 'adopt',
 		protect_act_address: {
-			city: null,
-			district: null,
-			neighbor: null,
+			city: '',
+			district: '',
+			neighbor: '',
+			brief: '',
+			detail: '',
 		},
 		protect_act_phone_number: null,
 		protect_request_pet_data: null,
@@ -45,8 +48,26 @@ export default ApplyCompanionA = ({route}) => {
 		data.protect_act_address != null && data.protect_act_phone_number != null ? setConfirmed(true) : setConfirmed(false);
 	}, [data]);
 
+	React.useEffect(() => {
+		if (route.params.addr != undefined) {
+			const addr = route.params.addr;
+			setData({
+				...data,
+				protect_act_address: {
+					city: addr.siNm + ' ' + addr.sggNm,
+					district: addr.emdNm + ' ',
+					neighbor: addr.rn + ' ' + addr.buldMnnm,
+					brief: addr.siNm + ' ' + addr.sggNm + ' ' + addr.emdNm,
+					detail: null,
+				},
+			});
+		}
+	}, [route.params.addr]);
+
 	//주소찾기 버튼 클릭
-	const goToAddressSearch = () => {};
+	const goToAddressSearch = () => {
+		navigation.push('AddressSearch', {addr: '', from: route.name});
+	};
 
 	//연락처 Value 콜백
 	const onChangePhoneNum = num => {
@@ -56,29 +77,22 @@ export default ApplyCompanionA = ({route}) => {
 		setData({...data, protect_act_phone_number: result});
 	};
 
-	//주소 입력
-	const onChangeAddress = addr => {
-		setData({
-			...data,
-			protect_act_address: {
-				city: addr,
-				district: addr,
-			},
-		});
-	};
-
 	//세부주소 입력
 	const onChangeDeatilAddress = addr => {
+		let addrData = {...data.protect_act_address};
+		addrData = {
+			...addrData,
+			detail: addr,
+		};
 		setData({
 			...data,
-			protect_act_address: {
-				neighbor: addr,
-			},
+			protect_act_address: addrData,
 		});
 	};
 
 	//확인 버튼 클릭
 	const goToNextStep = () => {
+		console.log('data', data);
 		route.name == 'ApplyProtectActivityA' ? navigation.push('ApplyProtectActivityB', data) : navigation.push('ApplyAnimalAdoptionB', data);
 	};
 
@@ -105,8 +119,8 @@ export default ApplyCompanionA = ({route}) => {
 				<View style={[temp_style.addressInput]}>
 					<AddressInput
 						title={'보호장소'}
-						onChangeAddress={addr => onChangeAddress(addr)}
-						onChangeDeatilAddress={addr => onChangeDeatilAddress(addr)}
+						address={data.protect_act_address}
+						onChangeDeatilAddress={onChangeDeatilAddress}
 						onPressSearchAddr={goToAddressSearch}
 					/>
 				</View>

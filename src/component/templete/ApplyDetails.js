@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, Image} from 'react-native';
+import {assignAdoption} from 'Root/api/userapi_ksw';
 import {CONFIRM_ADOPT_REQUEST, CONFIRM_FINALIZED, CONFIRM_PROTECT_REQUEST} from 'Root/i18n/msg';
 import {btn_w226} from '../atom/btn/btn_style';
 import {styles} from '../atom/image/imageStyle';
@@ -8,9 +9,9 @@ import Modal from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
 import AnimalProtectDetail from '../organism_ksw/AnimalProtectDetail';
 import {applyDetails, btn_style, login_style, temp_style} from './style_templete';
+import {CommonActions} from '@react-navigation/native';
 
-export default ApplyDetails = ({route}) => {
-	const navigation = useNavigation();
+export default ApplyDetails = ({route, navigation}) => {
 	const [data, setData] = React.useState({...route.params});
 
 	// 임보 및 입양 신청 관련 Data, 대상 동물 Data(protect_request_pet_data),
@@ -23,21 +24,34 @@ export default ApplyDetails = ({route}) => {
 		// Modal.close()
 	}, [data]);
 
-	//실제 DB에 넣는 작업이 행해질 부분 / Modal 순서까지만 구현
-	const REGISTER = () => {
-		setTimeout(() => {
-			Modal.popNoBtn(CONFIRM_FINALIZED);
-		}, 1000);
-		setTimeout(() => {
-			Modal.close();
-			navigation.navigate('UserProfile');
-		}, 4000);
-	};
-
 	//모달창에서 최종 확인을 클릭
 	const onFinalize = () => {
+		//현재 데이터에 누락된 부분 :
+		//  protect_act_applicant_id ,
+		// protect_act_Request_article_id(동물보호 게시글),
+		// protect_act_request_shelter_id (동물보호 게시글 작성한 보호소 아이디)
 		Modal.close();
-		REGISTER();
+
+		assignAdoption(
+			data,
+			successed => {
+				console.log('successed', successed._id);
+				Modal.close();
+				Modal.popOneBtn(CONFIRM_FINALIZED, '확 인', () => {
+					//다음단계로
+					Modal.close();
+					navigation.navigate('MainTab');
+				});
+			},
+			error => {
+				console.log('error', error);
+				Modal.close();
+				Modal.popOneBtn(error, '확인', () => {
+					//에러, 대기
+					Modal.close();
+				});
+			},
+		);
 	};
 
 	//등록버튼 클릭

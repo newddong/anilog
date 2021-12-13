@@ -494,8 +494,9 @@ export const addressInput = StyleSheet.create({
 		alignSelf: 'flex-start',
 	},
 	btn_w226: {
-		marginLeft: 40 * DP,
-		justifyContent: 'flex-end',
+		position: 'absolute',
+		right: 0,
+		top: 50 * DP,
 		marginBottom: 10 * DP,
 		// marginTop: 60 * DP,
 	},

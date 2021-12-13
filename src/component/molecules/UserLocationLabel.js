@@ -37,7 +37,7 @@ const UserLocationLabel = props => {
 					{data.user_nickname || ''}
 				</Text>
 				<Text style={[txt.noto24, {lineHeight: 36 * DP}]} numberOfLines={1} ellipsizeMode="tail">
-					{data.user_address.city || ' '} {data.user_address.district || ' '}
+					{data ? data.user_address.city || ' ' : ''} {data ? data.user_address.district || ' ' : ''}
 				</Text>
 			</View>
 		</View>

@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
-import {btn_w226} from '../atom/btn/btn_style';
+import {btn_w108, btn_w176, btn_w226} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import Input24 from '../molecules/Input24';
 import {btn_style, temp_style} from '../templete/style_templete';
@@ -26,6 +26,8 @@ import {addressInput} from './style_organism';
  */
 
 const AddressInput = props => {
+	// console.log('addressInpit', props.address);
+	const [detailAddr, setDetailAddr] = React.useState();
 	const validator = (addr, detailAddr) => {
 		let isValid = props.validator(addr, detailAddr);
 		props.onValid && props.onValid(isValid);
@@ -43,6 +45,7 @@ const AddressInput = props => {
 		// console.log(addr);
 		props.validator && validator(props.address, addr);
 		props.onChangeDeatilAddress(addr);
+		setDetailAddr(addr);
 	};
 
 	//주소 찾기 클릭
@@ -56,8 +59,9 @@ const AddressInput = props => {
 			<View style={[addressInput.upperContainer]}>
 				<View style={[addressInput.input24A]}>
 					<Input24
-						value={props.address}
-						width={388}
+						value={props.address.brief + ' ' + props.address.neighbor}
+						editable={false}
+						width={470}
 						placeholder={'주소 찾기를 눌러주세요'}
 						onChange={onChangeAddress}
 						title={props.title}
@@ -67,13 +71,13 @@ const AddressInput = props => {
 					/>
 				</View>
 				<View style={[btn_style.btn_w226, addressInput.btn_w226]}>
-					<AniButton btnTitle={'주소 찾기'} btnLayout={btn_w226} btnTheme={'shadow'} onPress={onPressSearchAddr} />
+					<AniButton btnTitle={'주소 찾기'} btnLayout={btn_w176} btnTheme={'shadow'} onPress={onPressSearchAddr} />
 				</View>
 			</View>
 			<View style={[temp_style.inputNoTitle, addressInput.inputNoTitle]}>
 				<Input24
 					width={654}
-					value={props.detailAddress}
+					value={detailAddr}
 					defaultValue={props.detailAddressDefault}
 					placeholder={'세부 주소를 입력해 주세요.'}
 					onChange={onChangeDetailAddress}
@@ -86,7 +90,7 @@ const AddressInput = props => {
 AddressInput.defaultProps = {
 	title: '나의 장소',
 	titleColor: GRAY10,
-	addressDefault: null,
+	addressDefault: '주소 찾기를 눌러주세요',
 	detailAddressDefault: null,
 	onChangeDeatilAddress: e => {},
 	onChangeAddress: e => {},

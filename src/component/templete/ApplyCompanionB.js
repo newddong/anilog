@@ -20,6 +20,7 @@ export default ApplyCompanionC = props => {
 		...props.route.params,
 		protect_act_companion_history: [],
 	});
+
 	const [isTempDataAdded, setIsTempDataAdded] = React.useState(false);
 	const [companionList, setCompanionList] = React.useState([]);
 	const [tempData, setTempData] = React.useState([]); //임시저장 정보가 들어갈 컨테이너
@@ -111,7 +112,6 @@ export default ApplyCompanionC = props => {
 		};
 		setCompanionList(copy);
 	};
-	const COMPANION_STATUS3 = ['함께 생활하고 있어요.', '입양이 되었어요.', '무지개 다리를 건넜어요.'];
 
 	//다음버튼 클릭
 	const goToNextStep = () => {
@@ -159,17 +159,15 @@ export default ApplyCompanionC = props => {
 				</View>
 
 				{/* 반려생활 추가 */}
-				<View style={[applyCompanionB.addPetBtnView]}>
+				<TouchableOpacity onPress={onPressAddCompanion} style={[applyCompanionB.addPetBtnView]}>
 					<AddItem64 />
 					<View style={[applyCompanionB.addPetTextView]}>
-						<TouchableOpacity onPress={onPressAddCompanion}>
-							<Text style={[txt.noto30, {color: APRI10}]}>반려 생활 추가</Text>
-						</TouchableOpacity>
+						<Text style={[txt.noto30, {color: APRI10}]}>반려 생활 추가</Text>
 						{/* <TouchableOpacity onPress={deleteAs}>
 							<Text style={[txt.noto30, { color: APRI10 }]}>어싱크 체크</Text>
 						</TouchableOpacity> */}
 					</View>
-				</View>
+				</TouchableOpacity>
 				{/* 3개 버튼 */}
 				<View style={[applyCompanionC.btnContainer]}>
 					<View style={[btn_style.btn_w176, applyCompanionC.btn_w176]}>

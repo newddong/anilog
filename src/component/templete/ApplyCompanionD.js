@@ -55,7 +55,7 @@ export default ApplyCompanionD = props => {
 
 	//다음버튼
 	const goToNextStep = () => {
-		console.log('data Before Next', data);
+		// console.log('data Before Next', data);
 		props.route.name == 'ApplyProtectActivityD' ? navigation.push('ApplyProtectActivityE', data) : navigation.push('ApplyAnimalAdoptionE', data);
 	};
 

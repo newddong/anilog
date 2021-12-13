@@ -37,7 +37,7 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 				</View>
 			</View>
 			<View style={[temp_style.baseFlatList_protectRequestList, baseInfo_style.list]}>
-				<AnimalNeedHelpList data={protectAnimalList} onClickLabel={onLabelClick} onFavoriteTag={onFavoriteTag} />
+				<AnimalNeedHelpList data={protectAnimalList} onClickLabel={onClickLabel} onFavoriteTag={onFavoriteTag} />
 			</View>
 		</View>
 	);

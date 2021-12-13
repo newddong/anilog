@@ -21,7 +21,7 @@ export default FeedThumbnailList = props => {
 	return (
 		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
 			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
-				<View style={{marginBottom: 50}}>
+				<View style={{marginBottom: 0}}>
 					<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} numColumns={NUMCOLUMNS} scrollEnabled={false} />
 				</View>
 			</ScrollView>

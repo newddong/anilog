@@ -20,7 +20,7 @@ import {applyCompanionC, btn_style, login_style, temp_style} from './style_templ
 // 	is_knowledge_sanitation : Boolean, //반려동물 미용,위생 지식여부
 // 	}, //보호신청 체크리스트
 
-export default ApplyCompanionD = props => {
+export default ApplyCompanionC = props => {
 	const navigation = useNavigation();
 
 	const [data, setData] = React.useState({
