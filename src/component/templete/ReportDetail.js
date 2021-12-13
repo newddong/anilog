@@ -35,7 +35,7 @@ export default ReportDetail = props => {
 	//제보 데이터 불러오기 (아직 API 미작업 )
 	React.useEffect(() => {
 		console.log('ReportDetail:feedlist of report');
-		getPostListByFeedId(
+		getFeedListByFeedId(
 			{
 				feed_object_id: route.params.feed_object_id,
 			},

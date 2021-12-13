@@ -25,7 +25,7 @@ export default MissingReportList = props => {
 	//실종 데이터 불러오기 (아직 API 미작업 )
 	React.useEffect(() => {
 		console.log('MissingReportList:feedlist of missing');
-		getPostListByFeedId(
+		getFeedListByFeedId(
 			{
 				_id: route.params._id,
 			},
