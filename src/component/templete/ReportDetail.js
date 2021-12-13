@@ -37,7 +37,7 @@ export default ReportDetail = props => {
 		console.log('ReportDetail:feedlist of report');
 		getPostListByFeedId(
 			{
-				_id: route.params._id,
+				feed_object_id: route.params.feed_object_id,
 			},
 			data => {
 				console.log('data' + JSON.stringify(`data${data}`));
@@ -54,7 +54,7 @@ export default ReportDetail = props => {
 		user_address: '',
 
 		//feed object
-		_id: '', //피드 아이디
+		feed_object_id: '', //피드 아이디
 		feed_writer_id: '', //게시글 작성자의 db 고유 아이디
 		feed_medias: '', //피드 첨부된 미디어 매체
 		feed_location: '',
