@@ -94,6 +94,37 @@ export const createReport = async (params, callback, errcallback) => {
 };
 
 
+/**
+ * 특정 유저가 작성한 피드 리스트를 불러온다.
+ *
+ * @param {object} params
+ * @param {string} params.userobject_id - 피드 리스트를 불로오고자 하는 유저의 몽고디비 아이디
+ * @param {number} params.request_number - 요청할 리스트의 갯수
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+export const getFeedListByUserId = async (params, callback, errcallback) => {
+	try {
+		//서버와 통신
+		// throw new Error('확인되지 않은 코드');
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
+	}
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 //--이전 버전의 API들 --
 export const getPostList = async (params, /*data, likedPosts,*/ callback) => {
 	console.log('getPostList');

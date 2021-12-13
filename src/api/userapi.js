@@ -39,7 +39,7 @@ export const assignUser = async (params, callback, errcallback) => {
  * 유저가 등록중인 임시보호/입양할 동물이 있는지 체크
  * 있으면 해당 동물의 정보를 콜백의 오브젝트로 반환
  * @param {object} params
- * @param {string} params.user_id - 검색에 사용할 유저 ID(몽고디비 오브젝트 아이디)
+ * @param {string} params.userobject_id - 검색에 사용할 유저 ID(몽고디비 오브젝트 아이디)
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
@@ -57,7 +57,7 @@ export const checkProtectPet = async (params, callback, errcallback) => {
  * 등록 결과를 콜백으로 반환
  *
  * @param {object} params
- * @param {object} params.user_id - 등록하고 있는 유저 ID(몽고디비 오브젝트 아이디)
+ * @param {object} params.userobject_id - 등록하고 있는 유저 ID(몽고디비 오브젝트 아이디)
  * @param {string} params.pet_birthday - 동물 생일
  * @param {boolean} params.pet_is_temp_protection - 임시보호 여부
  * @param {'yes'|'no'|'unknown'} params.pet_neutralization - 중성화 여부 {'yes'|'no'|'unknown'}
@@ -153,7 +153,7 @@ export const userLogin = async (params, callback, errcallback) => {
  * 유저 프로필조회
  * 
  * @param {object} params
- * @param {string} params.user_id - 아이디(DB의 유저 객체 ID, _id필드)
+ * @param {string} params.userobject_id - 아이디(DB의 유저 객체 ID, _id필드)
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
@@ -192,7 +192,9 @@ export const nicknameDuplicationCheck = async (params, callback, errcallback) =>
  * 유저 정보 수정
  * 
  * @param {object} params
- * @param {string} params.user_nickname - 중복체크할 닉네임
+ * @param {string} params.userobject_id - 정보를 수정할 유저 몽고디비 도큐먼트 ID
+ * @param {string} params.user_nickname - 유저의 수정할 닉네임
+ * @param {string} params.user_profile_uri - 유저 프로필 사진 로컬 경로
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
@@ -208,6 +210,45 @@ export const updateUserInformation = async (params, callback, errcallback) => {
 
 } 
 
+/**
+ * @typedef UserInterest
+ * @property {string} location - 지역 관심사 
+ * @property {string} activity - 활동 관심사
+ */
+
+/**
+ * @typedef UserAddress
+ * @property {string} city - 시,도
+ * @property {string} district - 군,구
+ * @property {string} neighbor - 동,읍,면
+ * @property {string} brief - 검색주소
+ * @property {string} detail - 검색주소(자세히)
+ */
+
+
+/**
+ * 유저 상세정보 수정
+ * 
+ * @param {object} params
+ * @param {string} params.userobject_id - 정보를 수정할 유저 몽고디비 도큐먼트 ID
+ * @param {string} params.user_birthday - 유저 생일, 마이메뉴-프로필 상세정보에서 수정
+ * @param {'male'|'female'} params.user_sex - 유저 성별, 마이메뉴-프로필 상세정보에서 수정
+ * @param {Array.<UserInterest>} params.user_interests - 유저의 관심사, 마이메뉴-프로필 상세정보에서 수정
+ * @param {UserAddress} params.user_address - 유저 지역정보
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export const updateUserDetailInformation = async (params, callback, errcallback) => {
+	try{
+		//서버와 통신
+		// throw new Error('확인되지 않은 코드');
+		setTimeout(callback,1000,params);
+	}
+	catch(err){
+		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
+	}
+
+} 
 
 //--이전 버전의 API들 --
 
