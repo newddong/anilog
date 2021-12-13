@@ -16,6 +16,30 @@ export default ProtectRequestList = ({navigation, route}) => {
 		kindFilter: '',
 	});
 
+	//보호 요청 데이터 불러오기 (아직 API 미작업 )
+	// React.useEffect(() => {
+	// 	console.log('ProtectRequestList:feedlist of Shelterprotect');
+	// 	getProtectRequestList(
+	// 		{
+	// 			//필터 - 보호지역
+
+	// 			//필터 - 동물종류
+	// 			protect_animal_species: data.protect_animal_species,
+	// 			//입양 가능한 게시글만 보기 (rescue)
+	// 			protect_request_status: 'rescue',
+	// 		},
+	// 		data => {
+	// 			console.log('data' + JSON.stringify(`data${data}`));
+	// 			setData(data);
+	// 		},
+	// 	);
+	// }, [route.params]);
+
+	//[hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
+	const [data1, setData1] = React.useState({
+		//user object (게시글 작성자의 db 고유 아이디를 통해 조회)
+	});
+
 	const filterOn = () => {
 		// alert('입양 가능한 게시글만 보기');
 		console.log('입양 가능한 게시글만 보기');

@@ -7,7 +7,7 @@ import {useNavigation} from '@react-navigation/core';
 // import {_dummy_MissingReportDetail} from 'Root/config/dummy_data_hjs';
 import {_dummy_ReportDetail} from 'Root/config/dummy_data_hjs';
 import {dummy_CommentObject} from 'Root/config/dummyDate_json';
-import {getPostListByFeedId} from 'Root/api/feedapi_hjs';
+import {getFeedListByFeedId} from 'Root/api/feedapi_hjs';
 
 export default ReportDetail = props => {
 	const navigation = useNavigation();
@@ -33,18 +33,18 @@ export default ReportDetail = props => {
 	});
 
 	//제보 데이터 불러오기 (아직 API 미작업 )
-	React.useEffect(() => {
-		console.log('ReportDetail:feedlist of report');
-		getPostListByFeedId(
-			{
-				_id: route.params._id,
-			},
-			data => {
-				console.log('data' + JSON.stringify(`data${data}`));
-				setData(data);
-			},
-		);
-	}, [route.params]);
+	// React.useEffect(() => {
+	// 	console.log('ReportDetail:feedlist of report');
+	// 	getFeedListByFeedId(
+	// 		{
+	// 			feed_object_id: route.params.feed_object_id,
+	// 		},
+	// 		data => {
+	// 			console.log('data' + JSON.stringify(`data${data}`));
+	// 			setData(data);
+	// 		},
+	// 	);
+	// }, [props.route.params]);
 
 	// [hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
 	const [data1, setData1] = React.useState({
@@ -54,7 +54,7 @@ export default ReportDetail = props => {
 		user_address: '',
 
 		//feed object
-		_id: '', //피드 아이디
+		feed_object_id: '', //피드 아이디
 		feed_writer_id: '', //게시글 작성자의 db 고유 아이디
 		feed_medias: '', //피드 첨부된 미디어 매체
 		feed_location: '',
