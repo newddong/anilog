@@ -8,6 +8,8 @@ import {login_style, manageVolunteer} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
 import {_dummy_userObject_user, _dummy_VolunteerActivityApplicant} from 'Root/config/dummy_data_hjs';
 import {dummy_manageUserVolunteer} from 'Root/config/dummyDate_json';
+import {getUserVolunteerItemList} from 'Root/api/userapi_ksw';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default ManageVolunteer = ({route}) => {
 	// console.log(route.params);
@@ -19,6 +21,24 @@ export default ManageVolunteer = ({route}) => {
 	const [showMoreHistory, setShowMoreHistory] = React.useState(false); //지난 내역 더보기
 	const [arrowStatus, setArrowStatus] = React.useState(false); // 화살표
 
+	React.useEffect(() => {
+		//VolunteerActivityApplicantObject에서 volunteer_accompany 배열에 로그인 유저의 _id가 포함되어 있으면 Get
+		async function getVolunteerList() {
+			let token = await AsyncStorage.getItem('token');
+			getUserVolunteerItemList(
+				token,
+				successed => {
+					console.log('success', successed);
+					//API에서 받아온 로그인한 유저 라벨 데이터를 Volunteer_accompany 배열 0번 인덱스에 넣음
+				},
+				err => {
+					console.log('err', err);
+				},
+			);
+		}
+		getVolunteerList();
+	}, []);
+
 	// 지난 신청 더보기 클릭
 	const showMore = () => {
 		setShowMoreHistory(!showMoreHistory);
@@ -28,7 +48,6 @@ export default ManageVolunteer = ({route}) => {
 	// 라벨 클릭 => 봉사활동 신청서 필요 데이터 : 보호소 정보 / 해당 봉사활동 데이터
 	const goToAssignVolunteer = shelterData => {
 		// console.log('shelter', shelterData);
-		console.log('route');
 		route.params == 'ShelterMenu' ? navigation.push('ShelterVolunteerForm', shelterData) : navigation.push('UserVolunteerForm', shelterData);
 	};
 
