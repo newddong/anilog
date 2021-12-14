@@ -8,12 +8,51 @@ import {NextMark} from '../atom/icon';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import ShelterList from '../organism_ksw/ShelterList';
 import {appliesRecord, login_style} from './style_templete';
+import {getAppliesRecord} from 'Root/api/appliesapi_hjs.js';
 
 export default AppliesRecord = ({route}) => {
 	//첫번째 값만 신청내역에 보여주기 위함. AnimalNeedHelpList가 배열 데이터를 다루기 때문에 반드시 객체가 배열이어야 함.
 	const navigation = useNavigation();
 	const dummy_protect = [...dummy_AppliesRecord_protect.slice(0, 1)];
 	const dummy_rescue = [...dummy_AppliesRecord_rescue.slice(0, 1)];
+
+	//보호 요청 데이터 불러오기 (아직 API 미작업 )
+	React.useEffect(() => {
+		console.log('- getAppliesRecord data -');
+		getAppliesRecord(
+			{
+				userobject_id: route.params.userobject_id,
+			},
+			data => {
+				console.log('data' + JSON.stringify(`data${data}`));
+				setData(data);
+			},
+		);
+	}, [route.params]);
+
+	const [data1, setData1] = React.useState([]);
+
+	// //ProtectionActivityApplicantObject
+	// protectionActivityApplicantObject_id: '', //신청서 아이디
+	// protect_act_type: '', //신청한 보호 활동의 종류, 임시보호(protect), 입양(adopt)
+	// city : '', //보호장소
+
+	// //ProtectRequestObject
+	// protect_request_photo_thumbnail: '',//보호요청 게시물 썸네일 uri
+	// protect_request_status : '', //상태 [입양가능(rescue),협의중(discuss),안락사 임박(nearrainbow), 완료(complete), 사망(rainbowbridge)]
+	// protect_request_date //보호요청 게시글 작성일시
+
+	//ShelterProtectAnimalObject
+	// protect_animal_rescue_location : '', //보호중인 동물의 구조장소
+	// protect_animal_species : '', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+	// protect_animal_species_detail : '', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+	// protect_animal_sex : '', //보호중인 동물의 성별
+
+	//UserObject - array 형식
+	// userobject_id : '',//보호소 아이디
+	// user_profile_uri : '', //프로필 사진
+	// shelter_name : '', //보호소 이름
+	// city : '', //보호소 주소(시, 구 까지 표기)
 
 	const showMoreAdoption = () => {
 		navigation.push('ApplyAdoptionList', dummy_AppliesRecord_rescue);
