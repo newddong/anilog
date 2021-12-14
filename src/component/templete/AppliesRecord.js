@@ -1,9 +1,10 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import {dummy_manageUserVolunteer, dummy_UserObject_shelter, dummy_VolunteerAcitivityApplicantObject} from 'Root/config/dummyDate_json';
+import {dummy_manageUserVolunteer} from 'Root/config/dummyDate_json';
 import {dummy_AppliesRecord_protect} from 'Root/config/dummy_data_hjs';
 import {dummy_AppliesRecord_rescue} from 'Root/config/dummy_data_hjs';
+import {txt} from 'Root/config/textstyle';
 import {NextMark} from '../atom/icon';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import ShelterList from '../organism_ksw/ShelterList';
@@ -15,6 +16,10 @@ export default AppliesRecord = ({route}) => {
 	const navigation = useNavigation();
 	const dummy_protect = [...dummy_AppliesRecord_protect.slice(0, 1)];
 	const dummy_rescue = [...dummy_AppliesRecord_rescue.slice(0, 1)];
+	const [adopt_application_list, setAdopt_application_list] = React.useState();
+	const [protect_application_list, setProtect_application_list] = React.useState();
+
+	React.useEffect(() => {}, []);
 
 	//보호 요청 데이터 불러오기 (아직 API 미작업 )
 	React.useEffect(() => {
@@ -83,27 +88,27 @@ export default AppliesRecord = ({route}) => {
 					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>입양 신청 </Text>
 						<TouchableOpacity onPress={showMoreAdoption} style={[appliesRecord.showMoreBox]}>
-							<Text style={[]}>더보기 </Text>
+							<Text style={[txt.noto24]}>더보기 </Text>
 							<NextMark />
 						</TouchableOpacity>
 					</View>
-					<AnimalNeedHelpList data={dummy_rescue} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
+					<AnimalNeedHelpList data={dummy_rescue} onFavoriteTag={onOff_FavoriteTag} />
 				</View>
 				<View style={[appliesRecord.record]}>
 					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>임시보호 신청 </Text>
 						<TouchableOpacity onPress={showMoreProtection} style={[appliesRecord.showMoreBox]}>
-							<Text style={[]}>더보기 </Text>
+							<Text style={[txt.noto24]}>더보기 </Text>
 							<NextMark />
 						</TouchableOpacity>
 					</View>
-					<AnimalNeedHelpList data={dummy_protect} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
+					<AnimalNeedHelpList data={dummy_protect} onFavoriteTag={onOff_FavoriteTag} />
 				</View>
 				<View style={[appliesRecord.shelterList_container]}>
 					<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
 						<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>봉사활동 신청 </Text>
 						<TouchableOpacity onPress={showMoreVolunteer} style={[appliesRecord.showMoreBox]}>
-							<Text style={[]}>더보기 </Text>
+							<Text style={[txt.noto24]}>더보기 </Text>
 							<NextMark />
 						</TouchableOpacity>
 					</View>

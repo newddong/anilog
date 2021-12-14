@@ -30,7 +30,7 @@ export default FamilyAccountList = props => {
 	return (
 		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
 			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
-				<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} />
+				<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled={false} />
 			</ScrollView>
 		</ScrollView>
 	);

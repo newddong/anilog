@@ -2207,6 +2207,15 @@ export const applicationFormVolunteer = StyleSheet.create({
 		borderBottomWidth: 2 * DP,
 		justifyContent: 'center',
 	},
+	wish_date_separator: {
+		width: 540 * DP,
+		height: 82 * DP,
+		marginLeft: 48 * DP,
+		alignItems: 'center',
+		flexDirection: 'row',
+		borderBottomWidth: 4 * DP,
+		borderBottomColor: APRI10,
+	},
 	volunteer_date: {},
 	participants: {
 		width: 654 * DP,
@@ -2217,9 +2226,8 @@ export const applicationFormVolunteer = StyleSheet.create({
 		height: 52 * DP,
 		flexDirection: 'row',
 	},
-
 	participants_step2: {
-		width: 590 * DP,
+		width: 450 * DP,
 		marginTop: 20 * DP,
 	},
 	addParticipantBtn: {

@@ -6217,10 +6217,10 @@ export const dummy_manageUserVolunteer = [
 	{
 		_id: 1,
 		volunteer_target_shelter: 21, //봉사활동 대상 보호소
-		volunteer_wish_date: ['21.11.30', '21.11.30', '21.12.06', '21.11.30', '21.11.30', '21.12.06'], //봉사활동 희망 날짜
+		volunteer_wish_date: ['21.11.01', '21.11.02', '21.12.03', '21.11.04', '21.11.05', '21.12.06'], //봉사활동 희망 날짜
 		volunteer_accompany: [dummy_userObject[0], dummy_userObject[1]], //봉사활동 신청자 목록
 		volunteer_delegate_contact: '010-6694-1921', //봉사활동 신청 대표자 전화번호
-		volunteer_status: 'accept',
+		volunteer_status: 'waiting',
 		// Enum('done','notaccept','accept’,’waiting’,’cancel') //봉사활동 신청서 상태
 		//완료(done)
 		//신청승인안됨(notaccept)
@@ -6250,7 +6250,7 @@ export const dummy_manageUserVolunteer = [
 		volunteer_wish_date: ['21.11.22', '21.11.28', '21.12.06'], //봉사활동 희망 날짜
 		volunteer_accompany: [dummy_userObject[0], dummy_userObject[2]], //봉사활동 신청자 목록
 		volunteer_delegate_contact: '010-6694-1921', //봉사활동 신청 대표자 전화번호
-		volunteer_status: 'done',
+		volunteer_status: 'waiting',
 		user_type: 'shelter',
 		user_profile_uri: 'https://abandonedpetrescue.org/wp-content/uploads/2016/10/logo.png',
 		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
@@ -6274,7 +6274,7 @@ export const dummy_manageUserVolunteer = [
 		volunteer_wish_date: ['21.11.23', '21.11.28', '21.12.06'], //봉사활동 희망 날짜
 		volunteer_accompany: [dummy_userObject[0], dummy_userObject[1], dummy_userObject[3]], //봉사활동 신청자 목록
 		volunteer_delegate_contact: '010-6694-1921', //봉사활동 신청 대표자 전화번호
-		volunteer_status: 'done',
+		volunteer_status: 'waiting',
 		user_type: 'shelter',
 		user_profile_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
 		shelter_type: 'public', //보호소 유형, 공립(public), 사립(private)로 나뉨
@@ -6298,7 +6298,7 @@ export const dummy_manageUserVolunteer = [
 		volunteer_wish_date: ['21.11.24'], //봉사활동 희망 날짜
 		volunteer_accompany: [dummy_userObject[0], dummy_userObject[1]], //봉사활동 신청자 목록
 		volunteer_delegate_contact: '010-1235-2356', //봉사활동 신청 대표자 전화번호
-		volunteer_status: 'done',
+		volunteer_status: 'waiting',
 		user_type: 'shelter',
 		user_profile_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
 		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨
@@ -6322,7 +6322,7 @@ export const dummy_manageUserVolunteer = [
 		volunteer_wish_date: ['21.11.24'], //봉사활동 희망 날짜
 		volunteer_accompany: [dummy_userObject[2], dummy_userObject[3]], //봉사활동 신청자 목록
 		volunteer_delegate_contact: '010-1235-2356', //봉사활동 신청 대표자 전화번호
-		volunteer_status: 'done',
+		volunteer_status: 'waiting',
 		user_type: 'shelter',
 		user_profile_uri: 'https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/38404/1/?bust=1498744192',
 		shelter_type: 'private', //보호소 유형, 공립(public), 사립(private)로 나뉨

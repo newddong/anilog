@@ -14,8 +14,8 @@ import {organism_style} from './style_organism';
  * makeBorderMode: 'boolean / 클릭 시 테두리 생기는 모드 on/off , default = true',
  * onDelete: '계정 지우기 마크 클릭 Callback',
  * onClickLabel : void,
- * showCrossMark : 'boolean / X마크 출력 여부 ',
- * showStarMark : 'boolean / 별 마크(즐겨찾기 여부) 출력 여부 / '
+ * showCrossMark : 'boolean / X마크 출력 여부 , default = true',
+ * showStarMark : 'boolean / 별 마크(즐겨찾기 여부) 출력 여부 / default = false'
  * }} props
  */
 export default AccountList = props => {
@@ -79,9 +79,14 @@ export default AccountList = props => {
 	};
 	return (
 		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
-			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}} scrollEnabled={false}>
 				<View style={organism_style.accountList}>
-					<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled={false} />
+					<FlatList
+						data={props.items}
+						renderItem={({item, index}) => renderItem(item, index)}
+						scrollEnabled={false}
+						showsVerticalScrollIndicator={false}
+					/>
 				</View>
 			</ScrollView>
 		</ScrollView>
