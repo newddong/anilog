@@ -7,7 +7,7 @@ import {useNavigation} from '@react-navigation/core';
 // import {_dummy_MissingReportDetail} from 'Root/config/dummy_data_hjs';
 import {_dummy_ReportDetail} from 'Root/config/dummy_data_hjs';
 import {dummy_CommentObject} from 'Root/config/dummyDate_json';
-import {getFeedListByFeedId} from 'Root/api/feedapi_hjs';
+import {getFeedDetailByFeedId} from 'Root/api/feedapi_hjs';
 
 export default ReportDetail = props => {
 	const navigation = useNavigation();
@@ -35,7 +35,7 @@ export default ReportDetail = props => {
 	//제보 데이터 불러오기 (아직 API 미작업 )
 	// React.useEffect(() => {
 	// 	console.log('ReportDetail:feedlist of report');
-	// 	getFeedListByFeedId(
+	// 	getFeedDetailByFeedId(
 	// 		{
 	// 			feed_object_id: route.params.feed_object_id,
 	// 		},

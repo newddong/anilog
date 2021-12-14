@@ -9,6 +9,7 @@ import {useNavigation} from '@react-navigation/core';
 import {dummy_missing_user_info} from 'Root/config/dummyDate_json';
 import {_dummy_MissingDetail} from 'Root/config/dummy_data_hjs';
 import {dummy_CommentObject} from 'Root/config/dummyDate_json';
+import {getFeedDetailByFeedId} from 'Root/api/feedapi_hjs';
 
 export default MissingAnimalDetail = props => {
 	const navigation = useNavigation();
@@ -43,8 +44,8 @@ export default MissingAnimalDetail = props => {
 
 	//실종 데이터 불러오기 (아직 API 미작업 )
 	// React.useEffect(() => {
-	// 	console.log('MissingReportList:feedlist of missing');
-	// 	getFeedListByFeedId(
+	// 	console.log('MissingAnimalDetail:feedlist of missing');
+	// 	getFeedDetailByFeedId(
 	// 		{
 	// 			feed_object_id: props.route.params.feed_object_id,
 	// 		},
