@@ -32,8 +32,8 @@ export default ProfileInfo = props => {
 
 	const [showMore, setShowMore] = React.useState(false); // 프로필 Description 우측 더보기 클릭 State
 	const [followState, setFollowState] = React.useState(false); // 팔로우 T/F
-	const [ownerListState, setOwnerListState] = React.useState(false); // userType이 Pet일 경우 반려인계정 State T/F
-	const [companionListState, setCompanionListState] = React.useState(false); // userType이 Pet일 경우 반려인계정 State T/F
+	const [ownerListState, setOwnerListState] = React.useState(false); // userType이 Pet일 경우 반려인계정 출력 여부 T/F
+	const [companionListState, setCompanionListState] = React.useState(false); // userType이 User일 경우 반렫동물 리스트 출력 여부 T/F
 	const [into_height, setIntro_height] = React.useState(0); //user_introduction 의 길이 => 길이에 따른 '더보기' 버튼 출력 여부 결정
 
 	//더보기 클릭

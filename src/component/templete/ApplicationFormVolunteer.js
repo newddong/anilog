@@ -45,7 +45,8 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 			() => Modal.close(),
 			() => {
 				Modal.close();
-				//봉사활동 신청 취소
+				//봉사활동 신청 취소 - 대상 봉사활동의 고유 아이디를 보내고 해당 봉사활동의 봉사활동자 목록(volunteer_accompany)에서 현재 유저를 제외.
+				//만약 현재 봉사활동자 목록이 단 한명이 남은 상태(로그인 유저)라면 봉사활동 자체가 취소 상태로 되는 로직 구현 필요
 				cancelVolunteer(
 					data._id,
 					successed => {
@@ -96,6 +97,11 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 		Linking.openURL(`tel:${data.volunteer_delegate_contact}`);
 	};
 
+	const onClickLabel = data => {
+		console.log('data', data);
+		navigation.push('UserProfile', data);
+	};
+
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<ScrollView contentContainerStyle={[applicationFormVolunteer.container]} showsVerticalScrollIndicator={false}>
@@ -117,32 +123,28 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 							<Text style={[txt.noto24b, {color: GRAY10}]}>봉사활동 희망 날짜</Text>
 						</View>
 					</View>
-					<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
-						<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
-							{/* [hjs]API 선작업까지만 유효한 부분 추후에 변경 필요 */}
-							{/* {console.log('_dummy_ApplicationFormVolunteer_shelter=>' + JSON.stringify(_dummy_ApplicationFormVolunteer_shelter[0]))} */}
-							<View style={{}}>
-								{Array(data.volunteer_wish_date.length / 3) //페이징 3개 단위로 나눔
-									.fill(1) // undefined면 값이 호출되지 않으니 1로 일괄 추가
-									.map((v, pagingNumber) => {
-										return (
-											<View key={pagingNumber} style={[applicationFormVolunteer.wish_date_separator]}>
-												{data.volunteer_wish_date.map((v, i) => {
-													if (Math.floor(i / 3) == pagingNumber)
-														// 페이징 기준인 3으로 나눈 몫이 각 pagingNumber값과 일치하는 경우만 출력
-														return (
-															<Text key={i} style={[txt.roboto28]}>
-																{'   '}
-																{v} {'  /  '}
-															</Text>
-														);
-												})}
-											</View>
-										);
-									})}
-							</View>
-						</ScrollView>
-					</ScrollView>
+					{/* [hjs]API 선작업까지만 유효한 부분 추후에 변경 필요 */}
+					{/* {console.log('_dummy_ApplicationFormVolunteer_shelter=>' + JSON.stringify(_dummy_ApplicationFormVolunteer_shelter[0]))} */}
+					<View style={{}}>
+						{Array(data.volunteer_wish_date.length / 3) //페이징 3개 단위로 나눔
+							.fill(1) // undefined면 값이 호출되지 않으니 1로 일괄 추가
+							.map((v, pagingNumber) => {
+								return (
+									<View key={pagingNumber} style={[applicationFormVolunteer.wish_date_separator]}>
+										{data.volunteer_wish_date.map((v, i) => {
+											if (Math.floor(i / 3) == pagingNumber)
+												// 페이징 기준인 3으로 나눈 몫이 각 pagingNumber값과 일치하는 경우만 출력
+												return (
+													<Text key={i} style={[txt.roboto28]}>
+														{'   '}
+														{v} {'  /  '}
+													</Text>
+												);
+										})}
+									</View>
+								);
+							})}
+					</View>
 				</View>
 				{/* 참여인원 */}
 				<View style={[applicationFormVolunteer.participants]}>
@@ -158,7 +160,7 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 					</View>
 					{/* 참여 리스트 */}
 					<View style={[applicationFormVolunteer.participants_step2]}>
-						<AccountList items={data.volunteer_accompany || []} makeBorderMode={false} showCrossMark={false} />
+						<AccountList items={data.volunteer_accompany || []} onClickLabel={onClickLabel} makeBorderMode={false} showCrossMark={false} />
 					</View>
 				</View>
 				{/* 봉사활동자 연락처 */}

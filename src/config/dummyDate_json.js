@@ -2034,7 +2034,7 @@ export const dummy_ShelterProtectAnimalObject = [
 		protect_request_writer_id: 21, //보호요청 게시물 작성자 UserObject
 		protect_request_hit: 102, //보호요청 게시물 조회수
 		protect_request_favorite_count: 21, //보호요청 게시물을 즐겨찾기 한 숫자
-		protect_request_status: 'adopt', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //항목 추가 필요
+		protect_request_status: 'rescue', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //항목 추가 필요
 		//입양가능(rescue), 보호소에서 구조가 이루어졌으므로 입양가능한 상태임,
 		//협의중(discuss)
 		//안락사 임박(nearrainbow)

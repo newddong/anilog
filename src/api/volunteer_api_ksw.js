@@ -91,17 +91,22 @@ export const getVolunteerItemDetail = async (params, callback, errcallback) => {
 
 /**
  * 유저 봉사활동 신청 취소 [ 관련 테이블 - VolunteerActivityApplicantObject, ]
+ * 대상 봉사활동의 고유 아이디를 받고 해당 봉사활동의 봉사활동자 목록(volunteer_accompany)에서 현재 유저를 제외.
+ * 현재 유저는 api에서 토큰을 통해 조회
+ * 만약 현재 봉사활동자 목록이 단 한명이 남은 상태(로그인 유저)라면 봉사활동 자체가 취소 상태로 되는 로직 구현 필요
  * 관련 템플릿 - ApplicationFormVolunteer
  * @param {object} params
- * @param {string} params._id - 봉사활동 신청 오브젝트 고유 아이디
+ * @param {string} params._id - 봉사활동 오브젝트 고유 아이디
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export const cancelVolunteer = async (params, callback, errcallback) => {
 	try {
 		console.log('params / cancelVolunteer', params);
+		let token = await AsyncStorage.getItem('token'); //토큰
 		let result = await axios.post(serveruri + '/post/cancelVolunteer', {
 			volunteer_id: params._id,
+			userObject_id: token,
 		});
 		setTimeout(callback, 1000, result);
 		if (result.data.status === 200) {

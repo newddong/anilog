@@ -72,4 +72,5 @@ AnimalNeedHelpList.defaultProps = {
 	onFavoriteTag: e => console.log('FavoriteTag ', e),
 	onHashClick: e => console.log('HashClick AnimalNeedHelpList', e),
 	checkBoxState: false,
+	borderMode: false,
 };

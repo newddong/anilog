@@ -28,7 +28,7 @@ export default ProtectedPetList = props => {
 	};
 	return (
 		<View style={[protectedPetList.container]}>
-			<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
+			<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} showsHorizontalScrollIndicator={false} />
 		</View>
 	);
 };

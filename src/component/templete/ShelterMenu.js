@@ -42,13 +42,30 @@ import {
 	INFO_QUESTION,
 	ACCOUNT,
 	DEFAULT_PROFILE,
+	MODIFY_SHELTER_DATA,
 } from 'Root/i18n/msg';
 import {dummy_AppliesRecord_protect} from 'Root/config/dummy_data_hjs';
 import {GRAY10} from 'Root/config/color';
+import {getUserProfile} from 'Root/api/userapi_ksw';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default ShelterMenu = ({route}) => {
 	const navigation = useNavigation();
-	const userData = dummy_UserObject_shelter[0]; //우선 userObject_Shelter 0번 추가
+	const [data, setData] = React.useState(dummy_UserObject_shelter[0]); //우선 userObject_Shelter 0번 추가
+
+	React.useEffect(() => {
+		AsyncStorage.getItem('token', (err, res) => {
+			getUserProfile(
+				{
+					user_id: res,
+				},
+				userObject => {
+					console.log('userObject', userObject);
+					setData(userObject);
+				},
+			);
+		});
+	}, []);
 
 	//보호소 정보 수정
 	const moveToShelterInfoSetting = () => {
@@ -80,7 +97,7 @@ export default ShelterMenu = ({route}) => {
 			//나의 보호소 출신 동물
 			case FROM_MY_SHELTER:
 				//listType: 'original'- 클릭시 해당 UserProfile로 go, 'twoBtn' - 클릭시 외곽 선 표출, , 'checkBox' - 해당 페이지에서 바로 체크박스 표출
-				navigation.push('AnimalFromShelter');
+				navigation.push('AnimalFromShelter', data._id);
 				break;
 			//봉사활동 신청 관리
 			case MANAGEMENT_OF_VOLUNTEER:
@@ -120,7 +137,7 @@ export default ShelterMenu = ({route}) => {
 			// 보호 요청 올린 게시글
 			case UPLOADED_POST_FOR_REQ_PROTECTION:
 				//보호요청 게시글 스크린 필요 데이터 : ShelterProtectAnimalObject.protect_animal_writer_id == userData._id가 일치하는 것을 검색해야한다
-				navigation.push('ShelterProtectRequests');
+				navigation.push('ShelterProtectRequests', data._id);
 				break;
 			//커뮤니티
 			case COMUNITY:
@@ -151,29 +168,29 @@ export default ShelterMenu = ({route}) => {
 						<View style={[shelterMenu.shelterInfo_container]}>
 							<View style={[shelterMenu.shelterInfo_container_left]}>
 								<View style={[temp_style.profileImageLarge]}>
-									<ProfileImageLarge160 data={userData} />
+									<ProfileImageLarge160 data={data} />
 								</View>
 							</View>
 							<View style={[shelterMenu.shelterInfo_container_right]}>
 								{/* 보호소 이름 */}
 								<View style={[shelterMenu.shelterInfo_user_id]}>
-									<Text style={txt.noto36b}>{userData.shelter_name}</Text>
+									<Text style={txt.noto36b}>{data.shelter_name || ''}</Text>
 								</View>
 								{/* user_introduction */}
 								<View style={[shelterMenu.shelterInfo_contents]}>
-									<Text style={[txt.noto24, {color: GRAY10}]}>{userData.user_introduction}</Text>
+									<Text style={[txt.noto24, {color: GRAY10}]}>{data.user_introduction}</Text>
 								</View>
 							</View>
 						</View>
 					</View>
 					{/* SocialInfo */}
 					<View style={[temp_style.socialInfoB, shelterMenu.socialInfoB_4Items]}>
-						<SocialInfoB data={userData} />
+						<SocialInfoB data={data} />
 					</View>
 
 					<View style={[shelterMenu.btnView]}>
 						<View style={[btn_style.btn_w280]}>
-							<AniButton btnTitle={'보호소 정보수정'} btnStyle={'border'} btnLayout={btn_w280} onPress={moveToShelterInfoSetting} />
+							<AniButton btnTitle={MODIFY_SHELTER_DATA} btnStyle={'border'} btnLayout={btn_w280} onPress={moveToShelterInfoSetting} />
 						</View>
 
 						<View style={[shelterMenu.btnView_floadAddPet_126x92]}>

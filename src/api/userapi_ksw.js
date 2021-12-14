@@ -92,7 +92,7 @@ export const getUserProfile = async (prarms, callback) => {
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
 	} catch (err) {
-		console.log('getUser Profile Cde Error :' + JSON.stringify(err)); //에러 처리 콜백
+		console.log('getUser Profile Cde Error :' + JSON.stringify(err.message)); //에러 처리 콜백
 	}
 };
 

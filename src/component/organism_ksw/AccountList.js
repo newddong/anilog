@@ -13,7 +13,7 @@ import {organism_style} from './style_organism';
  * onSelect : 'void / 계정 클릭  Callback'
  * makeBorderMode: 'boolean / 클릭 시 테두리 생기는 모드 on/off , default = true',
  * onDelete: '계정 지우기 마크 클릭 Callback',
- * onClickLabel : void,
+ * onClickLabel : 'void / 계정 라벨 클릭 - ',
  * showCrossMark : 'boolean / X마크 출력 여부 , default = true',
  * showStarMark : 'boolean / 별 마크(즐겨찾기 여부) 출력 여부 / default = false'
  * }} props

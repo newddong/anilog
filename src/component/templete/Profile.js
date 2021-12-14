@@ -25,7 +25,7 @@ import ProtectedPetList from '../organism_ksw/ProtectedPetList';
 import {login_style, profile, temp_style} from './style_templete';
 
 export default Profile = props => {
-	// console.log('profile props', props.route.params);
+	console.log('profile props', props.route.params);
 
 	const navigation = useNavigation();
 

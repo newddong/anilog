@@ -6,7 +6,7 @@ import {APRI10, APRI20, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import Modal from 'Component/modal/Modal';
 import {txt} from 'Root/config/textstyle';
-import MeatballButton from 'Root/component/molecules/MeatBallButton';
+import MeatBallButton from 'Root/component/molecules/MeatBallButton';
 
 /**
  *
@@ -27,19 +27,25 @@ const MeatBallDropdown = props => {
 		props.onClose();
 		Modal.close();
 	};
+	const onSelect = (v, i) => {
+		props.onSelect(v, i);
+		dropdown.current.button.current.press();
+	};
+	const dropdown = React.useRef();
 	return (
 		<Dropdown
 			// buttonComponent={<ActionButton {...props} initState={false} noStateChange />}
 			alignBottom
+			ref={dropdown}
 			horizontalOffset={320 * DP}
-			buttonComponent={<MeatballButton {...props} initState={false} />}
+			buttonComponent={<MeatBallButton {...props} initState={false} />}
 			dropdownList={
 				<View>
 					<TouchableWithoutFeedback>
 						{/*부모의 터치 이벤트를 dropdownList로 오지 않도록 차단 더 세련된 방법을 찾아야함*/}
 						<View style={[style.dropdownList, style.shadow]}>
 							{props.menu.map((v, i) => (
-								<TouchableWithoutFeedback onPress={() => props.onSelect(v, i)} key={i}>
+								<TouchableWithoutFeedback onPress={() => onSelect(v, i)} key={i}>
 									<View style={{width: 320 * DP, marginVertical: 15 * DP}}>
 										<Text
 											style={[
