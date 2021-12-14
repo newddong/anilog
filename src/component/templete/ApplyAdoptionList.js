@@ -20,9 +20,7 @@ export default ApplyAdoptionList = props => {
 	console.log(props.route.name);
 	return (
 		<View style={login_style.wrp_main}>
-			{/* <FlatList> */}
 			<View style={[temp_style.baseFlatList, baseInfo_style.list]}>
-				{/* (O)AnimalNeedHelpList */}
 				<AnimalNeedHelpList
 					data={props.route.params}
 					onItemClick={
@@ -34,7 +32,6 @@ export default ApplyAdoptionList = props => {
 					onClickLabel={(status, id, item) => onLabelClick(item)}
 				/>
 			</View>
-			{/* </FlatList> */}
 		</View>
 	);
 };

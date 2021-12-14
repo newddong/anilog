@@ -106,7 +106,7 @@ export default FavoriteFeeds = props => {
 	};
 
 	return (
-		<View style={[login_style.wrp_main, {flex: 1, alignItems: 'center'}]}>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<View style={[temp_style.selectstat_view]}>
 				<View style={[temp_style.selectstat, selectstat_view_style.selectstat]}>
 					<SelectStat
@@ -119,7 +119,7 @@ export default FavoriteFeeds = props => {
 			</View>
 
 			{/* 즐겨찾기한 FeedList출력하는 FeedThumbnailList */}
-			<View style={[temp_style.FeedThumbnailList]}>
+			<View style={[temp_style.FeedThumbnailList, {flex: 1}]}>
 				<FeedThumbnailList items={_dummyData} selectMode={selectMode} onClickThumnail={onClickThumnail} />
 			</View>
 		</View>

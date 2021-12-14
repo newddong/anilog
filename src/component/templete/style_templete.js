@@ -821,7 +821,7 @@ export const temp_style = StyleSheet.create({
 		// height: 1324 * DP,
 	},
 	baseFlatList: {
-		width: 654 * DP,
+		width: 750 * DP,
 	},
 	animalProtectDetails_protectApplyForm: {
 		width: 654 * DP,
@@ -3703,14 +3703,18 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 
 export const animalProtectList = StyleSheet.create({
 	container: {
-		// flex: 1,
 		width: 750 * DP,
+		marginTop: 40 * DP,
 		alignItems: 'center',
 	},
+	insideContainer: {
+		width: 654 * DP,
+		marginBottom: 40 * DP,
+	},
 	title: {
-		// width: 654 * DP,
+		width: 654 * DP,
 		height: 35 * DP,
-		alignSelf: 'flex-start',
+		alignSelf: 'center',
 		marginBottom: 21 * DP,
 	},
 });
