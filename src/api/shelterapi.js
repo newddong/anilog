@@ -27,3 +27,24 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
 };
+
+
+/**
+ * 동물보호 요청 게시물을 작성한다.
+ * 
+ * @param {object} params
+ * @param {Array.<String>} protect_request_photos - 보호요청 게시물의 첨부사진 uri
+ * @param {String} shelter_protect_animal_object_id - 보호요청할 동물 ID
+ * @param {String} protect_request_title - 보호요청 게시물의 제목
+ * @param {String} protect_request_content - 보호요청 게시물 내용 
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export const createProtectRequest = async (params, callback, errcallback) => {
+	try {
+		//서버와 통신
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
+	}
+};
