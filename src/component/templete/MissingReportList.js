@@ -9,7 +9,7 @@ import {useNavigation} from '@react-navigation/core';
 import {dummy_MissingReportList} from 'Root/config/dummy_data_hjs';
 import FilterButton from '../molecules/FilterButton';
 import {PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
-import {getFeedListByFeedId} from 'Root/api/feedapi_hjs';
+import {getMissingReportList} from 'Root/api/protect_request_api_hjs.js';
 
 export default MissingReportList = props => {
 	const navigation = useNavigation();
@@ -23,21 +23,21 @@ export default MissingReportList = props => {
 	});
 
 	//실종 데이터 불러오기 (아직 API 미작업 )
-	React.useEffect(() => {
-		console.log('MissingReportList:feedlist of missing');
-		getMissingReportList(
-			{
-				//필터 - 보호지역 (user_address.city 데이터)
-				city: data.city,
-				//필터 - 동물종류
-				protect_animal_species: data.protect_animal_species,
-			},
-			data => {
-				console.log('data' + JSON.stringify(`data${data}`));
-				setData(data);
-			},
-		);
-	}, [props.route.params]);
+	// React.useEffect(() => {
+	// 	console.log('MissingReportList:feedlist of missing');
+	// 	getMissingReportList(
+	// 		{
+	// 			//필터 - 보호지역 (user_address.city 데이터)
+	// 			city: data.city,
+	// 			//필터 - 동물종류
+	// 			protect_animal_species: data.protect_animal_species,
+	// 		},
+	// 		data => {
+	// 			console.log('data' + JSON.stringify(`data${data}`));
+	// 			setData(data);
+	// 		},
+	// 	);
+	// }, [props.route.params]);
 
 	// [hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
 	const [data1, setData1] = React.useState([]);
