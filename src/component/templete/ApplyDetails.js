@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, Image} from 'react-native';
-import {assignAdoption} from 'Root/api/userapi_ksw';
+import {assignProtectionActivity} from 'Root/api/userapi_ksw';
 import {CONFIRM_ADOPT_REQUEST, CONFIRM_FINALIZED, CONFIRM_PROTECT_REQUEST} from 'Root/i18n/msg';
 import {btn_w226} from '../atom/btn/btn_style';
 import {styles} from '../atom/image/imageStyle';
@@ -32,7 +32,7 @@ export default ApplyDetails = ({route, navigation}) => {
 		// protect_act_request_shelter_id (동물보호 게시글 작성한 보호소 아이디)
 		Modal.close();
 
-		assignAdoption(
+		assignProtectionActivity(
 			data,
 			successed => {
 				console.log('successed', successed._id);

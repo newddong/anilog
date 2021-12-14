@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import {getUserProfile} from 'Root/api/userapi_ksw';
 import {GRAY10} from 'Root/config/color';
 import {dummy_userObject, dummy_UserObject_shelter} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
@@ -43,6 +44,18 @@ export default UserMenu = props => {
 	React.useEffect(() => {
 		AsyncStorage.setItem('token', JSON.stringify(data._id));
 	}, [data]);
+
+	React.useEffect(() => {
+		getUserProfile(
+			{
+				user_id: '61b6a6263271772d17ad6498',
+			},
+			userlist => {
+				console.log(userlist);
+				setData(userlist);
+			},
+		);
+	}, []);
 
 	// 나의 반려동물 버튼 클릭
 	const onPressMyCompanion = () => {

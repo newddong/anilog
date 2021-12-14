@@ -84,7 +84,7 @@ export default ShelterMenu = ({route}) => {
 				break;
 			//봉사활동 신청 관리
 			case MANAGEMENT_OF_VOLUNTEER:
-				navigation.push('ManageShelterVolunteer', route.name);
+				navigation.push('ManageShelterVolunteer');
 				break;
 			//---------------즐겨찾기
 			//친구

@@ -18,7 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const assignAdoption = async (params, callback, errcallback) => {
+export const assignProtectionActivity = async (params, callback, errcallback) => {
 	try {
 		//현재 params에 누락된 부분 :
 		//  protect_act_applicant_id(임시보호 및 입양자 고유 아이디) ,
@@ -69,55 +69,62 @@ export const getUserLabel = async (params, callback, errcallback) => {
 };
 
 /**
- * 봉사활동 신청
- * @param {object} params
- * @param {string} params.volunteer_target_shelter - 봉사활동 대상 보호소 고유 아이디
- * @param {Array.<string>} params.volunteer_wish_date - 봉사활동 희망 날짜 목록
- * @param {Array.<object>} params.volunteer_accompany - 봉사활동 희망자 목록
- * @param {string} params.volunteer_delegate_contact - 봉사활동 대표자 번호
- * @param {string} params.volunteer_status - 봉사활동 대표자 번호
- * @param {({}:object)=>void} callback - API응답처리 콜백
- * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
- */
-export const assignVolunteer = async (params, callback, errcallback) => {
-	try {
-		let form = new FormData();
-		form.append('volunteer_target_shelter', params.volunteer_target_shelter);
-		form.append('volunteer_wish_date', params.volunteer_wish_date);
-		form.append('volunteer_accompany', params.volunteer_accompany);
-		form.append('volunteer_delegate_contact', params.volunteer_delegate_contact);
-		form.append('volunteer_status', params.volunteer_status);
-		// console.log('form', form);
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
-};
-
-/**
- * 유저 봉사활동 신청 정보 가져오기 [ 관련 테이블 - VolunteerActivityApplicantObject]
- * [ 활동 예정 중인 신청 / 이미 완료된 신청 ] 구분에 대한 논의 필요
+ * UserObject 정보 가져오기 [ params - _id]
+ *
  * @param {object} params
  * @param {string} params._id - 유저 고유 아이디
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const getUserVolunteerItemList = async (params, callback, errcallback) => {
+export const getUserProfile = async (prarms, callback) => {
+	// console.log('para', prarms.user_id);
 	try {
-		console.log('params', params);
-		let received = await axios.post(serveruri + '/post/getUserVolunteerItemList', {
-			_id: params._id,
+		let result = await axios.post(serveruri + '/user/getUserProfile', {
+			userobject_id: prarms.user_id,
 		});
-		const data = received.data;
-		setTimeout(callback, 1000, params);
-
-		console.log(`getUserVolunteerItemList data:${data}`);
-		if (data.status === 200) {
-			callback(data);
+		const {msg, status} = result.data;
+		if (status === 200) {
+			// console.log('msg', msg);
+			callback(msg);
 		} else {
-			alert('getUserVolunteerItemList Network Error : ' + JSON.stringify(msg));
+			console.log('getUserProfile Network Error : ' + JSON.stringify(result.data.msg));
 		}
+
+		//서버와 통신
+
+		// throw new Error('확인되지 않은 코드');
 	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
+		console.log('getUser Profile Cde Error :' + JSON.stringify(err)); //에러 처리 콜백
+	}
+};
+
+/**
+ * 임시 보호 신청 정보 가져오기 [ params - _id]
+ *
+ * @param {object} params
+ * @param {string} params._id - 유저 고유 아이디
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+export const getProtect_act_list = async (prarms, callback) => {
+	// console.log('para', prarms.user_id);
+	try {
+		const cookie = Asy;
+		let result = await axios.post(serveruri + '/user/getUserProfile', {
+			user_id: prarms.user_id,
+		});
+		const {msg, status} = result.data;
+		if (status === 200) {
+			// console.log('msg', msg);
+			callback(msg);
+		} else {
+			console.log('getUserProfile Network Error : ' + JSON.stringify(result.data.msg));
+		}
+
+		//서버와 통신
+
+		// throw new Error('확인되지 않은 코드');
+	} catch (err) {
+		console.log('getUser Profile Cde Error :' + JSON.stringify(err)); //에러 처리 콜백
 	}
 };
