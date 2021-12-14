@@ -47,7 +47,7 @@ export const createFeed = async (params, callback, errcallback) => {
  * @param {string} params.feed_location - 게시물 작성 지역
  * @param {Array.<string>} params.media_uri - 게시물 첨부파일 uri리스트
  * @param {Array.<FeedMedias>} params.feed_medias - 첨부 객체정보 리스트
- *
+ * @param {string} params.missing_animal_date - 실종 동물 실종 추정일자
  * @param {Number} params.missing_animal_age - 실종 동물 나이
  * @param {string} params.missing_animal_features - 실종 동물 특징
  * @param {string} params.missing_animal_contact - 실종 동물의 주인 연락처

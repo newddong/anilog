@@ -80,10 +80,6 @@ export const assignPet = async (params, callback, errcallback) => {
 	}
 };
 
-
-
-
-
 /**
  * 보호소 등록
  *
@@ -151,7 +147,7 @@ export const userLogin = async (params, callback, errcallback) => {
 
 /**
  * 유저 프로필조회
- * 
+ *
  * @param {object} params
  * @param {string} params.userobject_id - 아이디(DB의 유저 객체 ID, _id필드)
  * @param {({}:object)=>void} callback - API응답처리 콜백
@@ -165,32 +161,29 @@ export const getUserProfile = async (params, callback, errcallback) => {
 	} catch (err) {
 		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
-
-}
+};
 
 /**
  * 닉네임의 중복을 체크
- * 
+ *
  * @param {object} params
  * @param {string} params.user_nickname - 중복체크할 닉네임
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export const nicknameDuplicationCheck = async (params, callback, errcallback) => {
-	try{
+	try {
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback,1000,params);
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
-	catch(err){
-		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
-	}
-
-} 
+};
 
 /**
  * 유저 정보 수정
- * 
+ *
  * @param {object} params
  * @param {string} params.userobject_id - 정보를 수정할 유저 몽고디비 도큐먼트 ID
  * @param {string} params.user_nickname - 유저의 수정할 닉네임
@@ -199,20 +192,18 @@ export const nicknameDuplicationCheck = async (params, callback, errcallback) =>
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export const updateUserInformation = async (params, callback, errcallback) => {
-	try{
+	try {
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback,1000,params);
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
-	catch(err){
-		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
-	}
-
-} 
+};
 
 /**
  * @typedef UserInterest
- * @property {string} location - 지역 관심사 
+ * @property {string} location - 지역 관심사
  * @property {string} activity - 활동 관심사
  */
 
@@ -225,10 +216,9 @@ export const updateUserInformation = async (params, callback, errcallback) => {
  * @property {string} detail - 검색주소(자세히)
  */
 
-
 /**
- * 유저 상세정보 수정
- * 
+ * 유저 상세정보 수정(반려동물, 보호소모두 적용가능)
+ *
  * @param {object} params
  * @param {string} params.userobject_id - 정보를 수정할 유저 몽고디비 도큐먼트 ID
  * @param {string} params.user_birthday - 유저 생일, 마이메뉴-프로필 상세정보에서 수정
@@ -238,19 +228,38 @@ export const updateUserInformation = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const updateUserDetailInformation = async (params, callback, errcallback) => {
-	try{
+export const updateUserDetailInformation = async (params, callback, errcallback) => {
+	try {
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback,1000,params);
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
-	catch(err){
-		setTimeout(errcallback,1000,err+'');//에러 처리 콜백
+};
+
+/**
+ * 반려동물 상세 정보를 수정
+ * 
+ * @param {object} params
+ * @param {string} params.userobject_id - 반려동물 유저 객체 ID
+ * @param {'male'|'female'|'unknown'} params.pet_sex - 반려동물의 성별 
+ * @param {'yes'|'no'|'unknown'} params.pet_neutralization - 반려동물 중성화 여부 
+ * @param {Date} params.pet_birthday - 반려동물 생일 
+ * @param {String} params.pet_weight - 반려동물 몸무게 
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+export const updatePetDetailInformation = async (params, callback, errcallback) => {
+	try {
+		//서버와 통신
+		// throw new Error('확인되지 않은 코드');
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
-
-} 
-
-//--이전 버전의 API들 --
+};
+//=================================이전 router code =============================================================================
 
 export const getUserList = async (params, callback) => {
 	console.log('getUserList');
