@@ -17,6 +17,37 @@ export default ApplyAdoptionList = props => {
 		navigation.push('ApplyAdoptionDetails', item);
 	};
 
+	//입양신청 및 임시보호 신청 데이터 불러오기
+	// React.useEffect(() => {
+	// 	console.log('- ApplyAdoptionList - ');
+	// 	getApplyAdoptionList(
+	// 		{
+	// 			userobject_id: props.route.params.userobject_id,
+	// 			protect_act_type: props.route.params.protect_act_type,
+	// 		},
+	// 		data => {
+	// 			console.log('data' + JSON.stringify(`data${data}`));
+	// 			setData(data);
+	// 		},
+	// 	);
+	// }, [props.route.params]);
+
+	// //ProtectionActivityApplicantObject
+	// city : '', //보호장소
+
+	// //ProtectRequestObject
+	// protect_request_photo_thumbnail: '',//보호요청 게시물 썸네일 uri
+	// protect_request_status : '', //상태 [입양가능(rescue),협의중(discuss),안락사 임박(nearrainbow), 완료(complete), 사망(rainbowbridge)]
+	// protect_request_date //보호요청 게시글 작성일시
+
+	//ShelterProtectAnimalObject
+	// protect_animal_rescue_location : '', //보호중인 동물의 구조장소
+	// protect_animal_species : '', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+	// protect_animal_species_detail : '', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+	// protect_animal_sex : '', //보호중인 동물의 성별
+
+	// bookmark: false,
+
 	console.log(props.route.name);
 	return (
 		<View style={login_style.wrp_main}>

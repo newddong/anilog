@@ -64,7 +64,7 @@ export default MissingAnimalDetail = props => {
 		user_address: '',
 
 		//feed object
-		feed_object_id: '', //피드 아이디
+		feedobject_id: '', //피드 아이디
 		feed_writer_id: '', //게시글 작성자의 db 고유 아이디
 		feed_medias: '', //피드 첨부된 미디어 매체
 		feed_location: '',
