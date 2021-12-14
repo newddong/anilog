@@ -10,7 +10,8 @@ import Input24 from '../molecules/Input24';
 import PasswordInput from '../molecules/PasswordInput';
 import {login_style, btn_style, loginTemplete_style} from './style_templete';
 import Modal from 'Component/modal/Modal';
-import {useLogin} from 'Root/api/userapi';
+import {useLogin, userLogin} from 'Root/api/userapi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default LoginTemplete = props => {
 	const [id, setId] = React.useState('');
@@ -18,17 +19,20 @@ export default LoginTemplete = props => {
 
 	const tryToLogin = () => {
 		Modal.popNoBtn('로그인을 요청합니다.');
-		useLogin(
+		userLogin(
 			{
 				login_id: id,
 				login_password: password,
 			},
 			e => {
+				console.log('e', e);
 				Modal.close();
 				Modal.popNoBtn(e.login_id + '님 로그인이 성공하였습니다.');
+				AsyncStorage.setItem('token', e.login_id);
 				setTimeout(() => {
 					Modal.close();
 					alert('홈으로 이동');
+					props.navigation.navigate('MainTab');
 				}, 1000);
 			},
 			error => {
@@ -46,6 +50,8 @@ export default LoginTemplete = props => {
 	const moveToAssign = () => {
 		props.navigation.push('AgreementCheck');
 	};
+
+	//보호소 코드 체크
 	const moveToShelterCodeCheck = () => {
 		props.navigation.push('ShelterCodeCheck');
 	};

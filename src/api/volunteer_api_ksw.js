@@ -23,6 +23,7 @@ export const assignVolunteer = async (params, callback, errcallback) => {
 		form.append('volunteer_delegate_contact', params.volunteer_delegate_contact);
 		form.append('volunteer_status', params.volunteer_status);
 		// console.log('form', form);
+
 		setTimeout(callback, 1000, params);
 	} catch (err) {
 		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
@@ -40,14 +41,14 @@ export const assignVolunteer = async (params, callback, errcallback) => {
  */
 export const getUserVolunteerItemList = async (params, callback, errcallback) => {
 	try {
-		console.log('params / getUserVolunteerItemList', params);
+		// console.log('params / getUserVolunteerItemList', params);
 		let received = await axios.post(serveruri + '/post/getUserVolunteerItemList', {
 			_id: params._id,
 		});
 		const data = received.data;
-		// setTimeout(callback, 1000, params);
+		setTimeout(callback, 1000, params);
 
-		console.log(`getUserVolunteerItemList data:${data}`);
+		// console.log(`getUserVolunteerItemList data:${data}`);
 		if (data.status === 200) {
 			callback(data);
 		} else {
@@ -57,7 +58,6 @@ export const getUserVolunteerItemList = async (params, callback, errcallback) =>
 		// console.log('getUserVolunteerItemList Profile Cde Error :' + JSON.stringify(err)); //에러 처리 콜백
 	}
 };
-
 /**
  * 유저 봉사활동 신청 디테일 가져오기 [ 관련 테이블 - VolunteerActivityApplicantObject, UserObeject(대상 보호소), UserObject(참여인원 정보) ]
  * 관련 템플릿 - ApplicationFormVolunteer
@@ -68,21 +68,24 @@ export const getUserVolunteerItemList = async (params, callback, errcallback) =>
  */
 export const getVolunteerItemDetail = async (params, callback, errcallback) => {
 	try {
-		console.log('params', params);
-		// let received = await axios.post(serveruri + '/post/getUserVolunteerItemList', {
-		// 	_id: params._id,
-		// });
-		// const data = received.data;
-		setTimeout(callback, 1000, params);
-
-		console.log(`getUserVolunteerItemList data:${data}`);
-		if (data.status === 200) {
-			callback(data);
+		// console.log('params / Volunteer Item Detail', params);
+		// volunteer_target_shelter);
+		// volunteer_wish_date);
+		// volunteer_accompany);
+		// volunteer_delegate_contact);
+		// volunteer_status);
+		let result = await axios.post(serveruri + '/post/getVolunteerItemDetail', {
+			volunteer_id: params._id,
+		});
+		console.log('result ', result);
+		if (result.data.status === 200) {
+			callback(result.data.msg);
+			setTimeout(callback, 1000, params);
 		} else {
-			// console.log('getUserVolunteerItemList Network Error : ' + JSON.stringify(msg));
+			alert('getVolunteerItemDetail Network Error : ' + JSON.stringify(result.data.msg));
 		}
 	} catch (err) {
-		// console.log('getUserVolunteerItemList Profile Cde Error :' + JSON.stringify(err)); //에러 처리 콜백
+		console.log('getVolunteerItemDetail Profile Cde Error :' + JSON.stringify(err.message)); //에러 처리 콜백
 	}
 };
 
@@ -96,20 +99,18 @@ export const getVolunteerItemDetail = async (params, callback, errcallback) => {
  */
 export const cancelVolunteer = async (params, callback, errcallback) => {
 	try {
-		console.log('params', params);
-		// let received = await axios.post(serveruri + '/post/cancelVolunteer', {
-		// 	_id: params._id,
-		// });
-		// const data = received.data;
-		setTimeout(callback, 1000, params);
-		// console.log(`cancelVolunteer data:${data}`);
-		// if (data.status === 200) {
-		// 	callback(data);
-		// } else {
-		// 	console.log('cancelVolunteer Network Error : ' + JSON.stringify(msg));
-		// }
+		console.log('params / cancelVolunteer', params);
+		let result = await axios.post(serveruri + '/post/cancelVolunteer', {
+			volunteer_id: params._id,
+		});
+		setTimeout(callback, 1000, result);
+		if (result.data.status === 200) {
+			callback(result.data.msg);
+		} else {
+			console.log('cancelVolunteer Network Error : ' + JSON.stringify(result.data.msg));
+		}
 	} catch (err) {
-		// console.log('cancelVolunteer Profile Cde Error :' + JSON.stringify(err)); //에러 처리 콜백
+		console.log('cancelVolunteer Profile Cde Error :' + JSON.stringify(err.message)); //에러 처리 콜백
 	}
 };
 
@@ -123,18 +124,18 @@ export const cancelVolunteer = async (params, callback, errcallback) => {
  */
 export const acceptVolunteer = async (params, callback, errcallback) => {
 	try {
-		console.log('params', params);
+		console.log('params / acceptVolunteer', params);
 		let form = new FormData();
 		form.append('volunteer_target_shelter', params.volunteer_target_shelter);
 		form.append('volunteer_status', 'accept');
 		setTimeout(callback, 1000, params);
-		// console.log(`acceptVolunteer data:${data}`);
-		// if (data.status === 200) {
-		// 	callback(data);
-		// } else {
-		// 	console.log('acceptVolunteer Network Error : ' + JSON.stringify(msg));
-		// }
+		let result = await axios.post(serveruri + '/volunteer/acceptVolunteer', form, {headers: {'Content-Type': 'multipart/form-data'}});
+		if (result.data.status === 200) {
+			callback(result.data.msg, result.data.user);
+		} else {
+			alert('acceptVolunteer Network Error : ' + JSON.stringify(result.data.msg));
+		}
 	} catch (err) {
-		console.log('acceptVolunteer Profile Cde Error :' + JSON.stringify(err)); //에러 처리 콜백
+		console.log('acceptVolunteer Profile Cde Error :' + JSON.stringify(err.message)); //에러 처리 콜백
 	}
 };

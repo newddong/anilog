@@ -30,7 +30,7 @@ export default ManageVolunteer = ({route}) => {
 			getUserVolunteerItemList(
 				token,
 				successed => {
-					console.log('success', successed);
+					console.log('success / getUserVolunterItemList', successed);
 					//받아온 list들을 volunteer_status - Enum('done','notaccept','accept’,’waiting’,’cancel')에 따라 분류
 					//wating : scheduled_list에 추가
 				},

@@ -36,25 +36,22 @@ import {login_style, temp_style, userMenu_style} from './style_templete';
 
 export default UserMenu = props => {
 	const navigation = useNavigation();
-	console.log('route.');
 
 	const [data, setData] = React.useState(dummy_userObject[0]); //우선 userObject 0번 추가
 
 	//토큰에 로그인한 유저의 _id를 저장
 	React.useEffect(() => {
-		AsyncStorage.setItem('token', JSON.stringify(data._id));
-	}, [data]);
-
-	React.useEffect(() => {
-		getUserProfile(
-			{
-				user_id: '61b6a6263271772d17ad6498',
-			},
-			userlist => {
-				console.log(userlist);
-				setData(userlist);
-			},
-		);
+		AsyncStorage.getItem('token', (err, res) => {
+			getUserProfile(
+				{
+					user_id: res,
+				},
+				userObject => {
+					console.log('userObject', userObject);
+					setData(userObject);
+				},
+			);
+		});
 	}, []);
 
 	// 나의 반려동물 버튼 클릭
