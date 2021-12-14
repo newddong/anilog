@@ -23,55 +23,41 @@ export default MissingReportList = props => {
 	});
 
 	//실종 데이터 불러오기 (아직 API 미작업 )
-	// React.useEffect(() => {
-	// 	console.log('MissingReportList:feedlist of missing');
-	// 	getFeedListByFeedId(
-	// 		{
-	// 			feed_object_id: props.route.params.feed_object_id,
-	// 		},
-	// 		data => {
-	// 			console.log('data' + JSON.stringify(`data${data}`));
-	// 			setData(data);
-	// 		},
-	// 	);
-	// }, [props.route.params]);
-
-	//[hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
-	const [data1, setData1] = React.useState({
-		//user object (게시글 작성자의 db 고유 아이디를 통해 조회)
-		user_profile_uri: '',
-		user_nickname: '',
-		user_address: '',
-
-		//feed object
-		feed_object_id: '', //피드 아이디
-		feed_writer_id: '', //게시글 작성자의 db 고유 아이디
-		feed_medias: '', //피드 첨부된 미디어 매체
-		feed_location: '',
-		feed_content: '', //컨텐츠 내용
-		feed_date: '', //피드 최초 작성일자
-		feed_update_date: '', //피드 최종 업로드 날자
-		feed_favorite_count: 0, //게시글을 즐겨찾기로 등록한 수
-		feed_comment_count: 0, //게시글에 달린 댓글의 수
-
-		//comment object (배열 형식으로 받음)  댓글 사용자 정보
-		comment: [
+	React.useEffect(() => {
+		console.log('MissingReportList:feedlist of missing');
+		getMissingReportList(
 			{
-				user_profile_uri: '',
-				user_nickname: '',
-				user_address: '',
-
-				comment_contents: '', //댓글 내용
-				comment_photo_uri: '', //댓글 첨부 이미지 uri
-				comment_is_secure: '', //true일때는 writer와 댓글이 달린 게시글 작성자만 볼수있음,
-				comment_date: '', //댓글 작성일시
-				comment_update_date: '', //댓글 최정 수정일시
-				comment_like_count: '', //댓글 좋아요 숫자
-				comment_parent: '', //대댓글이 달린 댓글의 ID
-				comment_parent_writer_id: '', //부모 댓글의 작성자 ID
+				//필터 - 보호지역 (user_address.city 데이터)
+				city: data.city,
+				//필터 - 동물종류
+				protect_animal_species: data.protect_animal_species,
 			},
-		],
-	});
+			data => {
+				console.log('data' + JSON.stringify(`data${data}`));
+				setData(data);
+			},
+		);
+	}, [props.route.params]);
+
+	// [hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
+	const [data1, setData1] = React.useState([]);
+
+	// //FeedObject
+	// feedobject_id: '', //피드 아이디
+	// feed_thumbnail: '', //보호요청 게시물 썸네일 uri
+	// feed_type: '', //게시글의 타입, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
+	// missing_animal_species: '', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+	// missing_animal_species_detail: '', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+	// missing_animal_sex: '', //보호중인 동물의 성별
+	//missing_animal_age: '', //실종 동물의 나이
+	// missing_animal_lost_location: '',  //실종 동물의 실종 지역 혹은 장소
+	// missing_animal_features: '', //실종 동물의 특징
+	// missing_animal_date: '', //실종일
+	// report_witness_date:'', //제보일자(해당 동물의 목격일)
+	// report_witness_location: '',//제보장소(목격장소)
+
+	// //BookmarkProtectRequestObject
+	// bookmark: false, //유저-보호요청 북마크
 
 	const filterOn = () => {
 		alert('입양 가능한 게시글만 보기');
