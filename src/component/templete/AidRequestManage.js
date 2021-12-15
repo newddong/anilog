@@ -3,6 +3,7 @@ import {ScrollView, View} from 'react-native';
 import {login_style, temp_style, baseInfo_style} from './style_templete';
 import AidRequestList from '../organism_ksw/AidRequestList';
 import {dummy_AidRequestAnimalList, dummy_requestAnimalListApplied} from 'Root/config/dummyDate_json';
+import {getRequestAnimalListApplied, getShelterAnimalList} from 'Root/api/protect_request_api_ksw';
 
 //ShelterMenu => 신청서 조회 [Nav명 - ProtectApplyList]
 //ShelterMenu => 보호중인 동물 [Nav명 - ShelterProtectAnimalList]
@@ -11,7 +12,31 @@ export default AidRequestManage = ({route, navigation}) => {
 	const [data, setData] = React.useState(dummy_requestAnimalListApplied);
 
 	React.useEffect(() => {
-		//token(id)를 토대로 보호소 계정이 등록한 보호요청 게시글 중 신청서가 들어와 있는 목록을 조회
+		if (route.params.nav == 'ShelterProtectAnimalList') {
+			//token(id)를 토대로 보호소 계정이 등록한 보호동물 리스트 조회
+
+			getShelterAnimalList(
+				token,
+				successed => {
+					console.log('successed / getShelterAnimalList', successed);
+				},
+				err => {
+					console.log('err / getShelterAnimalList', err);
+				},
+			);
+		} else {
+			//token(id)를 토대로 보호소 계정이 등록한 보호요청 게시글 중 신청서가 들어와 있는 목록을 조회
+
+			getRequestAnimalListApplied(
+				token,
+				successed => {
+					console.log('successed / getShelterAnimalList', successed);
+				},
+				err => {
+					console.log('err / getShelterAnimalList', err);
+				},
+			);
+		}
 	}, []);
 	//선택 시 이동
 	const onSelect = index => {

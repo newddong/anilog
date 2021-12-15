@@ -40,22 +40,18 @@ export const assignAidRequest = async (params, callback, errcallback) => {
 };
 
 /**
- * 보호소가 올린 보호요청 게시글 리스트 조회 [ AidRequestList 출력용 ]
+ * 보호소의 보호동물 리스트 조회 [ AidRequestList 출력용 ]
  * 연관 템플릿 - AidRequestAnimalList(ShelterMenu => 게시글 작성 버튼 클릭 )
- * 연관 테이블 - ShelterProtectAnimalObject,  ProtectRequestObject, ProtectionActivityApplicantObject
+ * 연관 테이블 - ShelterProtectAnimalObject,
  * 필요 컬럼 디테일 -
  * ShelterPRotectAnimalObject
- *       [  protect_animal_rescue_location,protect_animal_species ,protect_animal_species_detail,
- * 		 protect_animal_sex, protect_animal_protect_request_id  ]
- * ProtectRequestObject
- *  	 [ protect_request_photo_thumbnail]
- * ProtectionActivityApplicantObject
- * 		 [ 컬럼이 필요하다기 보다는 해당 보호요청 게시글에 대해서 보호 및 입양 신청을 한 지원자의 숫자를 알아야 함. AidRequest 컴포넌트 우상단의 숫자에 넣을 데이터.]
+ *       [ protect_animal_photos, protect_animal_rescue_location,protect_animal_species ,protect_animal_species_detail,
+ * 		 protect_animal_sex, protect_animal_protect_request_id, protect_animal_protector_discussion_id  ]
  * @param {object} params - token아이디(보호소 계정)
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const getShelterAidRequestList = async (params, callback) => {
+export const getShelterAnimalList = async (params, callback) => {
 	console.log('getShelterAidRequestList / params', params);
 	try {
 		let result = await axios.post(serveruri + '/user/getShelterAidRequestList', {
@@ -79,12 +75,8 @@ export const getShelterAidRequestList = async (params, callback) => {
  * 연관 테이블 - ShelterProtectAnimalObject,  ProtectRequestObject, ProtectionActivityApplicantObject
  * 필요 컬럼 디테일 -
  * ShelterPRotectAnimalObject
- *       [  protect_animal_rescue_location,protect_animal_species ,protect_animal_species_detail,
- * 		 protect_animal_sex, protect_animal_protect_request_id  ]
- * ProtectRequestObject
- *  	 [ protect_request_photo_thumbnail]
- * ProtectionActivityApplicantObject
- * 		 [ 컬럼이 필요하다기 보다는 해당 보호요청 게시글에 대해서 보호 및 입양 신청을 한 지원자의 숫자를 알아야 함. AidRequest 컴포넌트 우상단의 숫자에 넣을 데이터.]
+ *       [ protect_animal_photos, protect_animal_rescue_location,protect_animal_species ,protect_animal_species_detail,
+ * 		 protect_animal_sex, protect_animal_protect_request_id, protect_animal_protector_discussion_id  ]
  * @param {object} params - token아이디(보호소 계정)
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백

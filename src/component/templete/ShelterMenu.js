@@ -88,11 +88,11 @@ export default ShelterMenu = ({route}) => {
 			//--------------- 보호 동물 관리
 			// 보호중인 동물
 			case PROTECTED_ANIMAL:
-				navigation.navigate('ShelterProtectAnimalList', {name: 'ShelterProtectAnimalList', token: data._id});
+				navigation.navigate('ShelterProtectAnimalList', {nav: 'ShelterProtectAnimalList', token: data._id});
 				break;
 			// 신청서 조회
 			case INQUERY_APPLICATION:
-				navigation.navigate('ProtectApplyList', {name: 'ProtectApplyList', token: data._id});
+				navigation.navigate('ProtectApplyList', {nav: 'ProtectApplyList', token: data._id});
 				break;
 			//나의 보호소 출신 동물
 			case FROM_MY_SHELTER:
