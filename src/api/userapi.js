@@ -157,10 +157,26 @@ export const userLogin = async (params, callback, errcallback) => {
 };
 
 /**
+ * 로그아웃
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export const userLogout = async (params, callback, errcallback) => {
+	try {
+		//서버와 통신
+		// throw new Error('확인되지 않은 코드');
+		setTimeout(callback, 1000, params);
+	} catch (err) {
+		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
+	}
+};
+
+/**
  * 유저 프로필조회
  *
  * @param {object} params
  * @param {string} params.userobject_id - 아이디(DB의 유저 객체 ID, _id필드)
+ * @param {'user'|'pet'|'shelter'} params.user_type - 
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
