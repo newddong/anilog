@@ -3,14 +3,33 @@ import {ScrollView, View} from 'react-native';
 import {login_style} from './style_templete';
 import AidRequestList from '../organism_ksw/AidRequestList';
 import {temp_style, baseInfo_style} from './style_templete';
-import {dummy_AidRequestAnimalList, dummy_ShelterProtectAnimalObject, dummy_UserObject_shelter} from 'Root/config/dummyDate_json';
-import DP from 'Root/config/dp';
+import {dummy_AidRequestAnimalList} from 'Root/config/dummyDate_json';
+import {getShelterAidRequestList} from 'Root/api/protect_request_api_ksw';
 
-//AidRequestList에서 필요한 데이터 테이블 =====> ShelterProtectAnimalObject <=====
-
+//ShelterMenu => 보호요청 게시글 작성하기 버튼 클릭
+//연관 테이블 : ShelterProtectAnimalObject
 export default AidRequestAnimalList = ({route, navigation}) => {
-	//본래라면 UserObject에 담긴 _id를 토대로 보호중인 동물을 서버로부터 가져옴.
-	const dummy_AidRequestList = dummy_AidRequestAnimalList;
+	// console.log('route', props);
+	const token = route.params;
+	const [data, setData] = React.useState(dummy_AidRequestAnimalList);
+
+	React.useEffect(() => {
+		// 토큰을 토대로 해당 보호소가 작성한 보호요청 게시글 목록을 서버로부터 가져옴.
+		getShelterAidRequestList(
+			token,
+			successed => {
+				console.log('succeseed / getShelterAidRequestList', successed);
+			},
+			err => {
+				console.log('err / getShelterAidRequestList', err);
+			},
+		);
+	}, []);
+
+	const onSelectRequestItem = index => {
+		//SendHeader에 보내는 파라미터 - 선택된 요청게시글의 protect_animal_protect_request_id , 네비게이션 네임
+		navigation.setParams({data: data[index], nav: route.name});
+	};
 
 	const onPressAddProtectAnimal = () => {
 		navigation.push('AssignProtectAnimalImage');
@@ -21,7 +40,7 @@ export default AidRequestAnimalList = ({route, navigation}) => {
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<ScrollView style={{flex: 1}}>
 				<View style={[temp_style.aidRequestList_aidRequestManage, baseInfo_style.list]}>
-					<AidRequestList items={dummy_AidRequestList} onPressAddProtectAnimal={onPressAddProtectAnimal} />
+					<AidRequestList items={data} onSelect={onSelectRequestItem} onPressAddProtectAnimal={onPressAddProtectAnimal} />
 				</View>
 			</ScrollView>
 		</View>

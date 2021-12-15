@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, FlatList, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {View, FlatList, Text, TouchableOpacity, ScrollView, TouchableWithoutFeedback} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import {AddItem64} from '../atom/icon';
 import AidRequest from './AidRequest';
@@ -9,7 +9,7 @@ import {aidRequestList} from './style_organism';
  *
  * @param {{
  * items : 'ArrayList',
- * onSelect : void,
+ * onSelect : '(index:number) => void /',
  * onPressAddProtectAnimal : void,
  * selectBorderMode : 'Boolean / 선택시 테두리 및 투명도 적용 모드 default true'
  * }} props
@@ -18,6 +18,8 @@ export default AidRequestList = props => {
 	const [selectedIndex, setSelectedIndex] = React.useState();
 	const [isSelectedOnce, setIsSelectedOnce] = React.useState(false);
 	const onPressAddProtectAnimal = () => {
+		setIsSelectedOnce(false);
+		setSelectedIndex(-1);
 		props.onPressAddProtectAnimal();
 	};
 
@@ -25,6 +27,11 @@ export default AidRequestList = props => {
 		setIsSelectedOnce(true); //첫 화면에서는 모든 Item이 붙투명, 허나 한번이라도 item이 선택된다면 투명도가 적용된 View상태로 적용
 		setSelectedIndex(index);
 		props.onSelect(index);
+	};
+
+	const cancelSelect = () => {
+		setSelectedIndex(-1);
+		setIsSelectedOnce(false);
 	};
 
 	const renderItem = (item, index) => {
@@ -39,25 +46,27 @@ export default AidRequestList = props => {
 	};
 
 	return (
-		<View style={[aidRequestList.container]}>
-			{/* {console.log('ProtectRequestList=>' + JSON.stringify(dummy_ProtectRequestList))} */}
-			{/* '보호중인 동물' 메뉴에 들어갔을때만 '보호중인 동물 추가하기 기능 보임' */}
-			{props.nvName != 'ProtectApplyList' ? (
-				<TouchableOpacity onPress={onPressAddProtectAnimal} style={[aidRequestList.addProtectedPetContainer]}>
-					<View style={[aidRequestList.addProtectedPet_insideContainer]}>
-						<AddItem64 />
-					</View>
-					<Text style={[txt.noto30, aidRequestList.addProtectedPetText]}>보호중인 동물 추가하기</Text>
-				</TouchableOpacity>
-			) : null}
-			<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
-				<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
-					<View style={aidRequestList.aidRequestListCont}>
-						<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled={false} />
-					</View>
+		<TouchableWithoutFeedback onPress={cancelSelect}>
+			<View style={[aidRequestList.container]}>
+				{/* {console.log('ProtectRequestList=>' + JSON.stringify(dummy_ProtectRequestList))} */}
+				{/* '보호중인 동물' 메뉴에 들어갔을때만 '보호중인 동물 추가하기 기능 보임' */}
+				{props.nvName != 'ProtectApplyList' ? (
+					<TouchableOpacity onPress={onPressAddProtectAnimal} style={[aidRequestList.addProtectedPetContainer]}>
+						<View style={[aidRequestList.addProtectedPet_insideContainer]}>
+							<AddItem64 />
+						</View>
+						<Text style={[txt.noto30, aidRequestList.addProtectedPetText]}>보호중인 동물 추가하기</Text>
+					</TouchableOpacity>
+				) : null}
+				<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+					<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+						<View style={aidRequestList.aidRequestListCont}>
+							<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled={false} />
+						</View>
+					</ScrollView>
 				</ScrollView>
-			</ScrollView>
-		</View>
+			</View>
+		</TouchableWithoutFeedback>
 	);
 };
 

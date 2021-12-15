@@ -63,7 +63,7 @@ export default AidRequest = props => {
 									<Text style={[txt.noto24, {color: GRAY20}]}>체중</Text>
 								</View>
 								<View style={[aidRequest.right_middleMenu_content]}>
-									<Text style={[txt.noto24]}>{data.protect_animal_weight ? data.protect_animal_weight + 'kg' : '모름'}</Text>
+									<Text style={[txt.noto24]}>{data.protect_animal_weight ? parseFloat(data.protect_animal_weight).toFixed(1) + 'kg' : '모름'}</Text>
 								</View>
 							</View>
 							<View style={[aidRequest.right_lowerMenu]}>
@@ -89,7 +89,7 @@ export default AidRequest = props => {
 				</View>
 			</View>
 			{/* 해당 동물의 보호요청 및 입양 신청한 유저의 숫자, 현재는 억지로 배열형태로 더미데이터로 만들어서 하는 중  */}
-			{data.protect_act_applicant_id ? (
+			{data.protect_act_applicant_id.length > 0 ? (
 				<View style={[aidRequest.numberContainer]}>
 					<Text style={{color: WHITE}}>{data.protect_act_applicant_id.length} </Text>
 				</View>

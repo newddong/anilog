@@ -59,7 +59,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 					{name: 'ShelterMenu'},
 					{
 						name: 'WriteAidRequest',
-						params: data,
+						params: {data: data},
 					},
 				],
 			}),

@@ -520,7 +520,7 @@ export const temp_style = StyleSheet.create({
 	},
 	editComment: {},
 	aidRequest: {
-		width: 654 * DP,
+		// width: 654 * DP,
 		accountInfo_depth2: {
 			flexDirection: 'row',
 		},
@@ -834,11 +834,18 @@ export const temp_style = StyleSheet.create({
 		width: 750 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#FFF',
 	},
 	aidRequestList_aidRequestManage: {
 		width: 750 * DP,
 		// height: 1384 * DP,
+		shadowColor: APRI10,
+		shadowOpacity: 0.27,
+		shadowRadius: 2,
+		shadowOffset: {
+			width: 2,
+			height: 1,
+		},
+		elevation: 2,
 		alignItems: 'center',
 	},
 	filterbutton_view: {
@@ -1869,8 +1876,8 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	pic: {
 		flexDirection: 'row',
 		alignSelf: 'flex-start',
+		marginLeft: 48 * DP,
 		width: 160 * DP,
-		alignItems: 'center',
 		height: 54 * DP,
 	},
 	addpic: {
@@ -3370,7 +3377,7 @@ export const manageVolunteer = StyleSheet.create({
 		alignItems: 'center',
 	},
 	volunteerList: {
-		width: 750 * DP,
+		width: 654 * DP,
 		marginBottom: 50 * DP,
 	},
 	previous_volunteerList: {
@@ -3415,20 +3422,26 @@ export const manageVolunteer = StyleSheet.create({
 
 export const writeAidRequest = StyleSheet.create({
 	container: {
-		alignItems: 'center',
 		flex: 1,
 	},
 	aidRequest: {
 		marginTop: 40 * DP,
 	},
+	aidRequestCont: {
+		width: 750 * DP,
+		alignItems: 'center',
+		marginTop: 40 * DP,
+	},
 	titleContainer: {
 		marginBottom: 20 * DP,
-		height: 70 * DP,
+		height: 80 * DP,
 		borderBottomColor: APRI10,
 		borderBottomWidth: 4 * DP,
 	},
 	titleInput: {
 		paddingLeft: 15 * DP,
+		lineHeight: 40 * DP,
+		height: 80 * DP,
 	},
 	feedTextEdit: {
 		marginTop: 80 * DP,
@@ -3465,8 +3478,10 @@ export const writeAidRequest = StyleSheet.create({
 		borderColor: APRI10,
 	},
 	selectedMediaList: {
+		alignSelf: 'flex-start',
 		marginTop: 30 * DP,
-		marginLeft: 10 * DP,
+		marginBottom: 40 * DP,
+		marginLeft: 48 * DP,
 	},
 });
 
@@ -3716,6 +3731,12 @@ export const animalProtectList = StyleSheet.create({
 		height: 35 * DP,
 		alignSelf: 'center',
 		marginBottom: 21 * DP,
+	},
+	menuHeader: {
+		width: 654 * DP,
+		height: 48 * DP,
+		alignItems: 'center',
+		flexDirection: 'row',
 	},
 });
 

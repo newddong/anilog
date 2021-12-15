@@ -60,7 +60,7 @@ export default ShelterMenu = ({route}) => {
 					user_id: res,
 				},
 				userObject => {
-					console.log('userObject', userObject);
+					console.log('userObject', userObject._id);
 					setData(userObject);
 				},
 			);
@@ -79,7 +79,7 @@ export default ShelterMenu = ({route}) => {
 
 	//게시물 추가
 	const moveToAidRequestAnimalList = () => {
-		navigation.push('AidRequestAnimalList');
+		navigation.push('AidRequestAnimalList', data._id);
 	};
 
 	//메뉴에 해당되는 네이게이션 이동
@@ -88,11 +88,11 @@ export default ShelterMenu = ({route}) => {
 			//--------------- 보호 동물 관리
 			// 보호중인 동물
 			case PROTECTED_ANIMAL:
-				navigation.navigate('ShelterProtectAnimalList', {name: 'ShelterProtectAnimalList'});
+				navigation.navigate('ShelterProtectAnimalList', {name: 'ShelterProtectAnimalList', token: data._id});
 				break;
 			// 신청서 조회
 			case INQUERY_APPLICATION:
-				navigation.navigate('ProtectApplyList', {name: 'ProtectApplyList'});
+				navigation.navigate('ProtectApplyList', {name: 'ProtectApplyList', token: data._id});
 				break;
 			//나의 보호소 출신 동물
 			case FROM_MY_SHELTER:
