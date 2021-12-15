@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  */
 export const getProtectRequestList = async (params, callback) => {
 	try {
-		let recieved = await axios.post(serveruri + '/post/getProtectRequestList', {
+		let recieved = await axios.post(serveruri + '/feed/getProtectRequestList', {
 			city: params.city,
 			protect_animal_species: params.protect_animal_species,
 			adoptable_posts: params.adoptable_posts,
@@ -36,7 +36,7 @@ export const getProtectRequestList = async (params, callback) => {
  */
 export const getMissingReportList = async (params, callback) => {
 	try {
-		let recieved = await axios.post(serveruri + '/post/getMissingReportList', {
+		let recieved = await axios.post(serveruri + '/feed/getMissingReportList', {
 			city: params.city,
 			protect_animal_species: params.protect_animal_species,
 		});

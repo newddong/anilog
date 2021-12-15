@@ -42,19 +42,19 @@ export default MissingAnimalDetail = props => {
 		comment_feed_id: '', //댓글이 작성된 피드 게시물
 	});
 
-	//실종 데이터 불러오기 (아직 API 미작업 )
-	// React.useEffect(() => {
-	// 	console.log('MissingAnimalDetail:feedlist of missing');
-	// 	getFeedDetailByFeedId(
-	// 		{
-	// 			feed_object_id: props.route.params.feed_object_id,
-	// 		},
-	// 		data => {
-	// 			console.log('data' + JSON.stringify(`data${data}`));
-	// 			setData(data);
-	// 		},
-	// 	);
-	// }, [props.route.params]);
+	// 실종 데이터 불러오기 (아직 API 미작업 )
+	React.useEffect(() => {
+		console.log('MissingAnimalDetail:feedlist of missing');
+		getFeedDetailByFeedId(
+			{
+				feedobject_id: props.route.params.feedobject_id,
+			},
+			data => {
+				console.log('data' + JSON.stringify(`data${data}`));
+				setData(data);
+			},
+		);
+	}, [props.route.params]);
 
 	//[hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
 	const [data1, setData1] = React.useState({
