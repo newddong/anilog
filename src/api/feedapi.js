@@ -80,6 +80,12 @@ export const createMissing = async (params, callback, errcallback) => {
  * @param {Array.<FeedMedias>} params.feed_medias - 첨부 객체정보 리스트
  * @param {string} report_witness_date - 제보일자
  * @param {string} report_witness_location - 제보장소
+ * @param { String} report_animal_species - 제보 동물의 종류(ex 강아지, 고양이, 토끼 등)
+ * @param { String} report_animal_species_detail - 제보 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
+ * @param { 'male'|'female'|'unknown'} report_animal_sex - 제보 동물의 성별
+ * @param { String} report_animal_age - 제보 동물의 나이
+ * @param { String} report_animal_contact - 제보자  연락처
+ * @param { String} report_animal_features - 제보 동물의 특징
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
@@ -115,6 +121,32 @@ export const getFeedListByUserId = async (params, callback, errcallback) => {
 
 
 
+/**
+ * 실종/제보 가져오기
+ *
+ * @param {string} params.city - 제보지역 (서울,부산,인천 등등)
+ * @param {string} params.missing_animal_species - 보호중인 동물의 종류 (개, 고양이, 새 등등)
+ * @param {string} params.feedobject_id - 커서 역할을 할 실종/제보 피드오브잭트(페이징 처리)
+ * @param {number} params.request_number - 요청할 숫자
+ * 
+ */
+ export const getMissingReportList = async (params, callback) => {
+	try {
+		let recieved = await axios.post(serveruri + '/post/getMissingReportList', {
+			city: params.city,
+			protect_animal_species: params.protect_animal_species,
+		});
+		const data = recieved.data;
+		console.log(`getMissingReportList data:${data}`);
+		if (data.status === 200) {
+			callback(data);
+		} else {
+			console.log('getMissingReportList Network Error : ' + JSON.stringify(msg));
+		}
+	} catch (err) {
+		console.log('getMissingReportList Code Error : ' + JSON.stringify(err));
+	}
+};
 
 
 
