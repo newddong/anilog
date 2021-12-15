@@ -16,6 +16,7 @@ import {stagebar_style} from '../organism_ksw/style_organism';
 import {CommonActions} from '@react-navigation/native';
 import NormalDropDown from '../molecules/NormalDropDown';
 import Input30 from '../molecules/Input30';
+import {assignShelterAnimal} from 'Root/api/shelterapi';
 
 export default AssignProtectAnimalInfo = ({route}) => {
 	// console.log('Assing', route.params);
@@ -73,11 +74,37 @@ export default AssignProtectAnimalInfo = ({route}) => {
 		navigation.push('ShelterMenu');
 	};
 
+	const registerProtectPet = () => {
+		assignShelterAnimal(
+			{
+				protect_animal_photo_uri_list: route.params.protect_animal_photos, //보호중인 동물의 사진 로컬 경로 목록
+				protect_animal_rescue_date: protect_animal_rescue_date, //보호중인 동물의 구조날짜
+				protect_animal_rescue_location: protect_animal_rescue_location, //보호중인 동물의 구조장소
+				protect_animal_species: protect_animal_species, //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+				protect_animal_species_detail: protect_animal_species_detail, //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+				protect_animal_sex: protect_animal_sex, //보호중인 동물의 성별
+				protect_animal_neutralization: protect_animal_neutralization, //중성화 여부 'yes'|'no'|'unknown'
+				protect_animal_estimate_age: protect_animal_estimate_age, //동물의 예상 연령
+				protect_animal_weight: protect_animal_weight, //동물의 몸무게
+			},
+			data => {
+				console.log(`assignShelterAnimal callback:${data}`);
+			},
+		);
+	};
+
 	//다음 버튼 클릭
 	const gotoNextStep = () => {
 		console.log('data At Last', data);
 		//컨펌하는 복합모달 제작완료 후 붙일 예정
-		Modal.popTwoBtn('보호 동물이 등록되었습니다. 바로 보호요청 글을 작성하시겠습니까?', '아니오', '새 글 작성', goToShelterMenu, goToWriteAidRequest);
+		registerProtectPet;
+		Modal.popTwoBtn(
+			'보호 동물이 등록되었습니다. \n바로 보호요청 글을 작성하시겠습니까?',
+			'아니오',
+			'새 글 작성',
+			goToShelterMenu,
+			goToWriteAidRequest,
+		);
 	};
 
 	const goBack = () => {
@@ -163,7 +190,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 					<AniButton btnTitle={'뒤로'} btnTheme={'shadow'} btnStyle={'border'} btnLayout={btn_w226} onPress={goBack} />
 				</View>
 				<View style={[btn_style.btn_w226]}>
-					<AniButton btnTitle={'다음'} btnTheme={'shadow'} btnLayout={btn_w226} onPress={gotoNextStep} />
+					<AniButton btnTitle={'등록'} btnTheme={'shadow'} btnLayout={btn_w226} onPress={gotoNextStep} />
 				</View>
 			</View>
 		</View>

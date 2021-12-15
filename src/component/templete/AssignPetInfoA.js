@@ -35,7 +35,7 @@ export default AssignPetInfoA = props => {
 	});
 
 	React.useEffect(() => {
-		console.log('data', data);
+		console.log('data / AssignPetInfoA :', data);
 	}, [data]);
 
 	//성별 선택
