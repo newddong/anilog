@@ -128,8 +128,9 @@ export const getFeedListByUserId = async (params, callback, errcallback) => {
  * @param {string} params.missing_animal_species - 보호중인 동물의 종류 (개, 고양이, 새 등등)
  * @param {string} params.feedobject_id - 커서 역할을 할 실종/제보 피드오브잭트(페이징 처리)
  * @param {number} params.request_number - 요청할 숫자
- * 
- */
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+*/
  export const getMissingReportList = async (params, callback) => {
 	try {
 		let recieved = await axios.post(serveruri + '/post/getMissingReportList', {
@@ -149,7 +150,30 @@ export const getFeedListByUserId = async (params, callback, errcallback) => {
 };
 
 
-
+/**
+ * 피드,실종,제보 게시글 상세정보 가져오기
+ * 실종글일 경우 제보글 데이터의 report_witness_date, report_witness_location가 null 값인 상태에서 가져오면 됨.
+ *
+ * @param {string} params.feedobject_id - 피드 ID
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export const getFeedDetailById = async (params, callback) => {
+	try {
+		let recieved = await axios.post(serveruri + '/post/getFeedDetailByFeedId', {
+			feedobject_id: params.feedobject_id,
+		});
+		const data = recieved.data;
+		console.log(`getFeedDetailByFeedId data:${data}`);
+		if (data.status === 200) {
+			callback(data);
+		} else {
+			alert('getFeedDetailByFeedId Network Error : ' + JSON.stringify(msg));
+		}
+	} catch (err) {
+		alert('getFeedDetailByFeedId Code Error : ' + JSON.stringify(err));
+	}
+};
 
 
 
