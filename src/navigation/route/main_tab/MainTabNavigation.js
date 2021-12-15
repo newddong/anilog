@@ -17,6 +17,7 @@ export default MainTabNavigation = () => {
 			<MainTabNav.Screen name="PROTECTION" component={ProtectionStackNavigation} options={{tabBarLabel: '동물보호'}} />
 			<MainTabNav.Screen name="COMMUNITY" component={Temp} options={{tabBarLabel: '커뮤니티'}} />
 			<MainTabNav.Screen name="MY" component={MyStackNavigation} options={{tabBarLabel: 'MY'}} />
+			<MainTabNav.Screen name="Logout" component={Temp} options={{tabBarLabel: 'Logout'}} />
 		</MainTabNav.Navigator>
 	);
 };

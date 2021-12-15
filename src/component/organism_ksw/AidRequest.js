@@ -18,8 +18,7 @@ import {useNavigation} from '@react-navigation/core';
  */
 export default AidRequest = props => {
 	const [data, setData] = React.useState(props.data);
-	// console.log('data', data.protect_act_applicant_id);
-
+	console.log('data', data.protect_animal_photo_uri_list);
 	//해당 AidRequest박스 선택 시 부모컴포넌트 OnSelect 실행
 	const onSelect = () => {
 		props.onSelect();
@@ -40,7 +39,7 @@ export default AidRequest = props => {
 					<View style={[aidRequest.gender]}>{data.protect_animal_sex == 'male' ? <Male48 /> : <Female48 />}</View>
 					<Image
 						style={[props.selected ? aidRequest.img_irregular_174_border : styles.img_irregular_174]}
-						source={{uri: data.protect_animal_photos ? data.protect_animal_photos[0] : DEFAULT_PROFILE}}
+						source={{uri: data.protect_animal_photo_uri_list ? data.protect_animal_photo_uri_list[0] : DEFAULT_PROFILE}}
 					/>
 				</View>
 				<View style={[aidRequest.rightContainer]}>
@@ -89,9 +88,9 @@ export default AidRequest = props => {
 				</View>
 			</View>
 			{/* 해당 동물의 보호요청 및 입양 신청한 유저의 숫자, 현재는 억지로 배열형태로 더미데이터로 만들어서 하는 중  */}
-			{data.protect_act_applicant_id.length > 0 ? (
+			{data.protect_animal_protector_discussion_id.length > 0 ? (
 				<View style={[aidRequest.numberContainer]}>
-					<Text style={{color: WHITE}}>{data.protect_act_applicant_id.length} </Text>
+					<Text style={{color: WHITE}}>{data.protect_animal_protector_discussion_id.length} </Text>
 				</View>
 			) : (
 				<></>

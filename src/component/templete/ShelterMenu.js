@@ -49,20 +49,23 @@ import {GRAY10} from 'Root/config/color';
 import {getUserProfile} from 'Root/api/userapi_ksw';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getShelterMenu} from 'Root/api/shelterapi_hjs';
+import Modal from '../modal/Modal';
 
 export default ShelterMenu = ({route}) => {
 	const navigation = useNavigation();
 	const [data, setData] = React.useState(dummy_UserObject_shelter[0]); //우선 userObject_Shelter 0번 추가
 
 	React.useEffect(() => {
-		AsyncStorage.getItem('token', (err, res) => {
-			getUserProfile(
+		AsyncStorage.getItem('token', async (err, res) => {
+			Modal.popNoBtn('Loading');
+			await getUserProfile(
 				{
-					user_id: res,
+					userobject_id: res,
 				},
 				userObject => {
 					console.log('userObject', userObject._id);
 					setData(userObject);
+					Modal.close();
 				},
 			);
 		});

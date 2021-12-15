@@ -72,19 +72,20 @@ export const getUserLabel = async (params, callback, errcallback) => {
  * UserObject 정보 가져오기 [ params - _id]
  *
  * @param {object} params
- * @param {string} params._id - 유저 고유 아이디
+ * @param {string} params.userobject_id - 유저 고유 아이디
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const getUserProfile = async (prarms, callback) => {
-	// console.log('para', prarms.user_id);
+export const getUserProfile = async (params, callback, errcallback) => {
+	console.log('para', params);
 	try {
 		let result = await axios.post(serveruri + '/user/getUserProfile', {
-			userobject_id: prarms.user_id,
+			userobject_id: '61b9eba4185a4f69d5981ad6',
 		});
 		const {msg, status} = result.data;
+		console.log('msg', msg);
 		if (status === 200) {
-			// console.log('msg', msg);
+			console.log('msg', msg);
 			callback(msg);
 		} else {
 			console.log('getUserProfile Network Error : ' + JSON.stringify(result.data.msg));
@@ -124,5 +125,33 @@ export const getProtect_act_list = async (prarms, callback) => {
 		// throw new Error('확인되지 않은 코드');
 	} catch (err) {
 		console.log('getUser Profile Cde Error :' + JSON.stringify(err)); //에러 처리 콜백
+	}
+};
+
+/**
+ * 임시 로그아웃
+ *
+ * @param {object} params - 유저 고유 아이디
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+export const logoutTemp = async (params, callback, errcallback) => {
+	console.log('para', params);
+	try {
+		// const cookie = Asy;
+		let result = await axios.post(serveruri + '/user/userLogout');
+		// console.log('result', result);
+		const {msg, status} = result.data;
+		if (status === 200) {
+			callback(msg);
+		} else {
+			console.log('logoutTemp Network Error : ' + JSON.stringify(result.data.msg));
+		}
+
+		//서버와 통신
+
+		// throw new Error('확인되지 않은 코드');
+	} catch (err) {
+		console.log('logoutTemp Cde Error :' + JSON.stringify(err.message)); //에러 처리 콜백
 	}
 };

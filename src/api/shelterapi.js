@@ -2,10 +2,9 @@ import axios from 'axios';
 import {serveruri, cookieReset} from 'Screens/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
 /**
  * 보호소가 보호중인 동물을 등록한다.
- * 
+ *
  * @param {object} params
  * @param {Array.<string>} params.protect_animal_photo_uri_list - 보호중인 동물의 사진 로컬 경로 목록
  * @param {string} params.protect_animal_rescue_date - 보호중인 동물의 구조날자
@@ -19,7 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const assignShelterAnimal = async (params, callback, errcallback) => {
+export const assignShelterAnimal = async (params, callback, errcallback) => {
 	try {
 		//서버와 통신
 		setTimeout(callback, 1000, params);
@@ -28,19 +27,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 	}
 };
 
-
 /**
  * 동물보호 요청 게시물을 작성한다.
- * 
+ *
  * @param {object} params
  * @param {Array.<String>} protect_request_photos - 보호요청 게시물의 첨부사진 uri
  * @param {String} shelter_protect_animal_object_id - 보호요청할 동물 ID
  * @param {String} protect_request_title - 보호요청 게시물의 제목
- * @param {String} protect_request_content - 보호요청 게시물 내용 
+ * @param {String} protect_request_content - 보호요청 게시물 내용
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const createProtectRequest = async (params, callback, errcallback) => {
+export const createProtectRequest = async (params, callback, errcallback) => {
 	try {
 		//서버와 통신
 		setTimeout(callback, 1000, params);
@@ -58,9 +56,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {string} params.protect_request_object_id - 커서 역할을 할 보호요청 오브잭트(페이징 처리)
  * @param {number} params.request_number -  보호요청게시글 요청 숫자
  * @param {({}:object)=>void} callback - API응답처리 콜백
- * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백 * 
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백 *
  */
- export const getProtectRequestList = async (params, callback) => {
+export const getProtectRequestList = async (params, callback) => {
 	try {
 		let recieved = await axios.post(serveruri + '/post/getProtectRequestList', {
 			city: params.city,
@@ -95,13 +93,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const getShelterProtectAnimalList = async (params, callback) => {
+export const getShelterProtectAnimalList = async (params, callback) => {
 	console.log('getShelterProtectAnimalList / params', params);
 	try {
-		let result = await axios.post(serveruri + '/user/getShelterProtectAnimalList', {
-			shelter_id: params,
+		let result = await axios.post(serveruri + '/shelter/getShelterProtectAnimalList', {
+			shelter_protect_animal_object_id: params.shelter_protect_animal_object_id,
+			request_number: params.request_number,
 		});
 		const {msg, status} = result.data;
+		callback(msg);
+
 		if (status === 200) {
 			// console.log('msg', msg);
 			callback(msg);

@@ -137,11 +137,22 @@ export const checkShelterCode = async (params, callback, errcallback) => {
  */
 export const userLogin = async (params, callback, errcallback) => {
 	try {
+		let result = await axios.post(serveruri + '/user/userLogin', {
+			login_id: params.login_id,
+			login_password: params.login_password,
+		});
+		const {msg, status} = result.data;
+		console.log('msg', msg);
+		if (status === 200) {
+			// console.log('msg', msg);
+			callback(msg);
+		} else {
+			console.log('getUserProfile Network Error : ' + JSON.stringify(result.data.msg));
+		}
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
 	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
+		console.log('getUser Profile Cde Error :' + JSON.stringify(err.message)); //에러 처리 콜백
 	}
 };
 
@@ -240,13 +251,13 @@ export const updateUserDetailInformation = async (params, callback, errcallback)
 
 /**
  * 반려동물 상세 정보를 수정
- * 
+ *
  * @param {object} params
  * @param {string} params.userobject_id - 반려동물 유저 객체 ID
- * @param {'male'|'female'|'unknown'} params.pet_sex - 반려동물의 성별 
- * @param {'yes'|'no'|'unknown'} params.pet_neutralization - 반려동물 중성화 여부 
- * @param {Date} params.pet_birthday - 반려동물 생일 
- * @param {String} params.pet_weight - 반려동물 몸무게 
+ * @param {'male'|'female'|'unknown'} params.pet_sex - 반려동물의 성별
+ * @param {'yes'|'no'|'unknown'} params.pet_neutralization - 반려동물 중성화 여부
+ * @param {Date} params.pet_birthday - 반려동물 생일
+ * @param {String} params.pet_weight - 반려동물 몸무게
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
@@ -260,19 +271,16 @@ export const updatePetDetailInformation = async (params, callback, errcallback) 
 	}
 };
 
-
-
-
 /**
  * 반려동물의 가족계정에 특정 유저를 추가
- * 
+ *
  * @param {object} params
  * @param {string} params.userobject_id - 반려동물 유저 객체 ID
  * @param {string} params.family_userobject_id - 반려동물의 가족 계정에 추가할 유저의 ID
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const addUserToFamily = async (params, callback, errcallback) => {
+export const addUserToFamily = async (params, callback, errcallback) => {
 	try {
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
@@ -284,7 +292,7 @@ export const updatePetDetailInformation = async (params, callback, errcallback) 
 
 /**
  * 유저의 패스워드를 변경
- * 
+ *
  * @param {object} params
  * @param {string} params.userobject_id - 비밀번호를 변경하기 위한 유저의 객체 ID
  * @param {string} params.user_password - 유저의 현재 비밀번호
@@ -301,8 +309,6 @@ export const changeUserPassword = async (params, callback, errcallback) => {
 		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
 };
-
-
 
 //=================================이전 router code =============================================================================
 
