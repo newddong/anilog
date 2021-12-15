@@ -52,6 +52,7 @@ import SaveButtonHeader from 'Navigation/header/SaveButtonHeader';
 import InputAndSearchHeader from 'Root/navigation/header/InputAndSearchHeader';
 import MeatBallHeader from 'Root/navigation/header/MeatBallHeader';
 import SocialRelationTopTabNavigation from '../protection_stack/socialRelation_tab/SocialRelationTopTabNavigation';
+import SendHeader from 'Root/navigation/header/SendHeader';
 
 const MyStack = createStackNavigator();
 
@@ -128,7 +129,7 @@ export default MyStackNavigation = () => {
 			<MyStack.Screen
 				name="AidRequestAnimalList"
 				component={AidRequestAnimalList}
-				options={{header: props => <SendHeader {...props} />, title: '동물 보호 요청'}}
+				options={{header: props => <SendHeader {...props} />, title: 'AidRequestAnimalList'}}
 			/>
 			<MyStack.Screen
 				name="WriteAidRequest"

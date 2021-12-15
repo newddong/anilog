@@ -18,7 +18,7 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 	React.useEffect(() => {
 		getShelterProtectAnimalList(
 			//현재 로그인한 보호소의 고유 _id를 파라미터로 보내고
-			//_id를 통해 얻어온 보호소의 보호중인 동물의 목록을 가져옴
+			//_id를 통해 얻어온 보호소의 보호 요청 게시글 리스트를 출력
 			route.params,
 			successed => {
 				console.log('successed', successed);

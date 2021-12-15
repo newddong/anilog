@@ -3943,40 +3943,82 @@ export const dummy_AnimalNeedHelpList_various_status = [
 	},
 ];
 
-export const dummy_AdoptorInformation = [
-	{
-		//필요한 것 - AnimalNeedHelp ====> ShelterProtectAnimalObject
-
-		//하단 메뉴 @ProtectionActivityApplicantObject
-		_id: 1,
-		protect_act_type: 'adopt', //Enum('protect','adopt'), //신청한 보호 활동의 종류, 임시보호(protect), 입양(adopt)
-		protect_act_address: {
-			city: '서울시', //시,도,군
-			district: '성북구', //구
-			neighbor: '가례 3동 11-44', //읍,면,동
-		}, //보호 신청자의 주소
-		protect_act_phone_number: '010-9645-0422', //보호 신청자의 전화번호
-		protect_act_companion_history: [
-			{
-				companion_pet_species: '개',
-				companion_pet_age: '3년 이상',
-				companion_pet_period: '6개월',
-				companion_pet_current_status: 'living', //Enum('living', 'died', 'adopted'), //상태정보 카테고리 정해야함
-			},
-		], //보호 신청자의 반려생활 이력
-		protect_act_checklist: {
-			is_adult: true, //성인여부
-			is_near_veterinary: true, //보호지 근처의 동물병원 여부
-			is_agreed_housemate: true, //가족, 동거인의 동의 여부
-			is_experience_defecate: true, //배변훈련 지식여부
-			is_knowledge_sanitation: true, //반려동물 미용,위생 지식여부
-		}, //보호신청 체크리스트
-		protect_act_motivation: '키우던 개의 가족을 만들어주고 싶습니다.', //보호활동 신청동기
-		protect_act_applicant_id: 1, //보호활동 신청자
-		protect_act_request_article_id: 3, //동물보호 게시글
-		protect_act_request_shelter_id: 11, //동물보호 게시글 작성한 보호소
+export const dummy_AdoptorInformation = {
+	_id: 1,
+	feed_id: 1,
+	feed_type: 'feed',
+	feed_writer_id: 21,
+	protect_act_address: {city: '서울시', district: '성북구', neighbor: '가례 3동 11-44'},
+	protect_act_applicant_id: 1,
+	protect_act_checklist: {
+		is_adult: true,
+		is_agreed_housemate: true,
+		is_experience_defecate: true,
+		is_knowledge_sanitation: true,
+		is_near_veterinary: true,
 	},
-];
+	protect_act_companion_history: [
+		{companion_pet_age: '3년 이상', companion_pet_current_status: 'living', companion_pet_period: '6개월', companion_pet_species: '개'},
+	],
+	protect_act_motivation: '키우던 개의 가족을 만들어주고 싶습니다.',
+	protect_act_phone_number: '010-9645-0422',
+	protect_act_request_article_id: 3,
+	protect_act_request_shelter_id: 11,
+	protect_act_type: 'adopt',
+	//@ShelterPRotectAnimalObject
+
+	protect_animal_adoption_days_remain: null,
+	protect_animal_adoptor_id: 1,
+	protect_animal_estimate_age: '6개월',
+	protect_animal_id: 11,
+	protect_animal_neutralization: 'yes',
+	protect_animal_photos: [
+		'https://contents.creators.mypetlife.co.kr/content/uploads/2020/10/13134542/20201013131307_365d1baf95782ec7b30225d1fe1616a5_j6xk.jpg',
+	],
+	protect_animal_protect_request: false,
+	protect_animal_protect_request_id: 2,
+	protect_animal_protector_discussion_id: null,
+	protect_animal_protector_id: 21,
+	protect_animal_rescue_date: '2021-11-24',
+	protect_animal_rescue_location: '자운동',
+	protect_animal_sex: 'male',
+	protect_animal_species: '고양이',
+	protect_animal_species_detail: '러브숏',
+	protect_animal_status: 'adopted',
+	protect_animal_weight: '1.2',
+	protect_animal_writer_id: 21,
+	// @ProtectRequestObject 보호요청 게시글
+	protect_request_comment_count: null,
+	protect_request_content: '밍키의 새 집사가 되어주실수 있으신 분 무한 찾습니다',
+	protect_request_date: '2021.11.21',
+	protect_request_favorite_count: 21,
+	protect_request_hit: 102,
+	protect_request_id: 1,
+	protect_request_photo_thumbnail: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202006/06/76723291-7f53-4b1a-b058-766f6215d566.jpg',
+	protect_request_photos: [
+		'https://mblogthumb-phinf.pstatic.net/20141204_276/firstgjp_14176838057819gNtv_JPEG/___.jpg?type=w2',
+		'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/h_9JUWqGXTUGB9ZLyetUmpLpUhk.jpg',
+	],
+	protect_request_status: 'adopt',
+	protect_request_title: '밍키의 새 보금자리를 찾아요',
+	protect_request_update_date: '2021.11.25',
+	protect_request_writer_id: 21,
+	//@UserObejct(shelter)
+
+	shelter_address: {city: '강원도', district: '평창군', neighbor: '용평면'},
+	shelter_delegate_contact_number: '010-4442-1325',
+	shelter_foundation_date: '2012.05.02',
+	shelter_homepage: 'http://google.com',
+	shelter_name: '홍단 보호소',
+	shelter_type: 'private',
+	user_denied: false,
+	user_follow_count: 1034545,
+	user_follower_count: 555,
+	user_introduction: '강원도 평창군 소재의 입양보호소',
+	user_profile_uri: 'https://upload.wikimedia.org/wikipedia/en/4/4b/DWG_KIA_logo.png',
+	user_type: 'shelter',
+	user_upload_count: 123,
+};
 
 export const dummy_CommentObject = [
 	{
@@ -4167,11 +4209,228 @@ export const dummy_ChildComment = [
 	},
 ];
 
+export const dummy_requestAnimalListApplied = [
+	{
+		//@UserObject
+		shelter_name: '홍단 보호소',
+
+		//@ProtectRequestObject
+		protect_request_date: '2021.11.30',
+
+		//@ShelterProtectAnimalObject
+		_id: 1,
+		protect_animal_photos: ['https://storage.cobak.co/uploads/1588405371328060_143f1eabc3.jpg'], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021.11.23', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '바른치킨 서강대역점 주변', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '러시안블루', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'female', // Enum('male','female','unknown'), //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //Enum('yes','no','unknown'), //중성화 여부
+		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: 1.2, //몸무게
+		protect_animal_status: 'protect', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_protect_request: false,
+		protect_animal_adoption_days_remain: 10,
+		protect_animal_writer_id: 21, //보호요청을 작성한 작성자(보호소)
+		protect_animal_protect_request_id: 1, //보호요청 게시물
+		protect_animal_adoptor_id: null, //입양자
+		protect_animal_protector_id: null, //임시보호자
+		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
+
+		//@ProtectionActivityApllicantObject -
+		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_address: {
+			city: '서울시',
+			district: '마포구',
+			neighbor: '신수동',
+		},
+		protect_act_companion_history: [
+			{
+				companion_pet_species: '개',
+				companion_pet_age: '3년 이상',
+				companion_pet_period: '6개월',
+				companion_pet_current_status: 'living', //Enum('living', 'died', 'adopted'), //상태정보 카테고리 정해야함
+			},
+		], //보호 신청자의 반려생활 이력
+		protect_act_checklist: {
+			is_adult: true, //성인여부
+			is_near_veterinary: true, //보호지 근처의 동물병원 여부
+			is_agreed_housemate: true, //가족, 동거인의 동의 여부
+			is_experience_defecate: true, //배변훈련 지식여부
+			is_knowledge_sanitation: true, //반려동물 미용,위생 지식여부
+		}, //보호신청 체크리스트
+		protect_act_phone_number: '010-7780-6690',
+		protect_act_motivation: '키우던 개의 가족을 만들어주고 싶습니다.', //보호활동 신청동기
+	},
+	{
+		//@UserObject
+		shelter_name: '홍단 보호소',
+
+		//@ProtectRequestObject
+		protect_request_date: '2021.11.30',
+
+		//@ShelterProtectAnimalObject
+		_id: 2,
+		protect_animal_photos: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBPMjNlensOfXbaEJkMyyzjNnidrSWRvzXMA&usqp=CAU'], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021-11-24', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '자운동', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '러브숏', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'male', //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //중성화 여부
+		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: '1.2', //몸무게
+		protect_animal_status: 'rescue', // Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_adoption_days_remain: 10,
+		protect_animal_protect_request: true,
+		//기본상태는 rescue임 (동물이 구조되어 보호소로 들어온 최초 상태)
+		//임시보호가 되면 protect로 변경
+		//입양을 가게 되면 상태가 adopt로 변경
+		//임시보호, 입양 협의중이면 discuss로 변경
+		//안락사, 혹은 폐사상태가 되면 rainbowbridge로 변경
+		protect_animal_writer_id: 21, // Mongodb_ID(ref:UserObject), //보호요청을 작성한 작성자(보호소)
+		protect_animal_protect_request_id: 2, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
+		protect_animal_adoptor_id: null, //Mongodb_ID(ref:UserObject), //입양자
+		protect_animal_protector_id: null, //Mongodb_ID(ref:UserObject), //임시보호자
+		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
+
+		//@ProtectionActivityApllicantObject -
+		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_address: {
+			city: '서울시',
+			district: '송파구',
+			neighbor: '송정동',
+		},
+		protect_act_companion_history: [
+			{
+				companion_pet_species: '개',
+				companion_pet_age: '3년 이상',
+				companion_pet_period: '6개월',
+				companion_pet_current_status: 'living', //Enum('living', 'died', 'adopted'), //상태정보 카테고리 정해야함
+			},
+		], //보호 신청자의 반려생활 이력
+		protect_act_checklist: {
+			is_adult: true, //성인여부
+			is_near_veterinary: true, //보호지 근처의 동물병원 여부
+			is_agreed_housemate: true, //가족, 동거인의 동의 여부
+			is_experience_defecate: true, //배변훈련 지식여부
+			is_knowledge_sanitation: true, //반려동물 미용,위생 지식여부
+		}, //보호신청 체크리스트
+		protect_act_phone_number: '010-4742-6690',
+		protect_act_motivation: '키우던 개의 가족을 만들어주고 싶습니다.', //보호활동 신청동기
+	},
+	{
+		//@UserObject
+		shelter_name: '홍단 보호소',
+
+		//@ProtectRequestObject
+		protect_request_date: '2021.11.30',
+
+		//@ShelterProtectAnimalObject
+		_id: 3,
+		protect_animal_photos: [
+			'https://t3.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2D9/image/bw39r42kS9dlP_tnNMix6z2iXUM',
+		], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021.11.23', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '굴다리 식당 공덕점', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '키스숏', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'female', // Enum('male','female','unknown'), //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //Enum('yes','no','unknown'), //중성화 여부
+		protect_animal_estimate_age: '1년', //보호중인 동물의 추정 연령
+		protect_animal_weight: 2, //몸무게
+		protect_animal_status: 'adopt', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_protect_request: false,
+		protect_animal_adoption_days_remain: 10,
+		protect_animal_writer_id: 22, //보호요청을 작성한 작성자(보호소)
+		protect_animal_protect_request_id: 3, //보호요청 게시물
+		protect_animal_adoptor_id: 3, //입양자
+		protect_animal_protector_id: 2, //임시보호자
+		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
+
+		//@ProtectionActivityApllicantObject -
+		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_address: {
+			city: '서울시',
+			district: '송파구',
+			neighbor: '송정동',
+		},
+		protect_act_companion_history: [
+			{
+				companion_pet_species: '개',
+				companion_pet_age: '3년 이상',
+				companion_pet_period: '6개월',
+				companion_pet_current_status: 'living', //Enum('living', 'died', 'adopted'), //상태정보 카테고리 정해야함
+			},
+		], //보호 신청자의 반려생활 이력
+		protect_act_checklist: {
+			is_adult: true, //성인여부
+			is_near_veterinary: true, //보호지 근처의 동물병원 여부
+			is_agreed_housemate: true, //가족, 동거인의 동의 여부
+			is_experience_defecate: true, //배변훈련 지식여부
+			is_knowledge_sanitation: true, //반려동물 미용,위생 지식여부
+		}, //보호신청 체크리스트
+		protect_act_phone_number: '010-4742-6690',
+		protect_act_motivation: '아이를 키워보고 싶습니다.', //보호활동 신청동기
+	},
+	{
+		//@FeedObeject
+
+		//@UserObject
+		shelter_name: '홍단 보호소',
+
+		//@ProtectRequestObject
+		protect_request_date: '2021.11.30',
+
+		//@ShelterProtectAnimalObject
+		_id: 1,
+		protect_animal_photos: ['https://storage.cobak.co/uploads/1588405371328060_143f1eabc3.jpg'], //보호중인 동물 사진
+		protect_animal_rescue_date: '2021.11.23', //보호중인 동물의 구조일자(보호소가 동물을 맡은 일자)
+		protect_animal_rescue_location: '바른치킨 서강대역점 주변', //보호중인 동물의 구조장소
+		protect_animal_species: '고양이', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
+		protect_animal_species_detail: '러시안블루', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+		protect_animal_sex: 'female', // Enum('male','female','unknown'), //보호중인 동물의 성별
+		protect_animal_neutralization: 'yes', //Enum('yes','no','unknown'), //중성화 여부
+		protect_animal_estimate_age: '6개월', //보호중인 동물의 추정 연령
+		protect_animal_weight: 1.2, //몸무게
+		protect_animal_status: 'protect', //Enum(‘rescue’,’adopt’,’protect’,’rainbowbridge’,’discuss’), //보호중인 동물의 상태
+		protect_animal_protect_request: false,
+		protect_animal_adoption_days_remain: 10,
+		protect_animal_writer_id: 21, //보호요청을 작성한 작성자(보호소)
+		protect_animal_protect_request_id: 1, //보호요청 게시물
+		protect_animal_adoptor_id: null, //입양자
+		protect_animal_protector_id: null, //임시보호자
+		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
+
+		//@ProtectionActivityApllicantObject -
+		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_address: {
+			city: '서울시',
+			district: '마포구',
+			neighbor: '신수동',
+		},
+		protect_act_companion_history: [
+			{
+				companion_pet_species: '개',
+				companion_pet_age: '3년 이상',
+				companion_pet_period: '6개월',
+				companion_pet_current_status: 'living', //Enum('living', 'died', 'adopted'), //상태정보 카테고리 정해야함
+			},
+		], //보호 신청자의 반려생활 이력
+		protect_act_checklist: {
+			is_adult: true, //성인여부
+			is_near_veterinary: true, //보호지 근처의 동물병원 여부
+			is_agreed_housemate: true, //가족, 동거인의 동의 여부
+			is_experience_defecate: true, //배변훈련 지식여부
+			is_knowledge_sanitation: true, //반려동물 미용,위생 지식여부
+		}, //보호신청 체크리스트
+		protect_act_phone_number: '010-7780-6690',
+		protect_act_motivation: '키우던 개의 가족을 만들어주고 싶습니다.', //보호활동 신청동기
+	},
+];
+
 export const dummy_AidRequestAnimalList = [
 	{
-		//@FeedObeject
-		feed_type: 'feed',
-
 		//@UserObject
 		shelter_name: '홍단 보호소',
 
@@ -4199,7 +4458,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
-		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
 		protect_act_address: {
 			city: '서울시',
 			district: '마포구',
@@ -4224,8 +4483,6 @@ export const dummy_AidRequestAnimalList = [
 		protect_act_motivation: '키우던 개의 가족을 만들어주고 싶습니다.', //보호활동 신청동기
 	},
 	{
-		feed_type: 'feed',
-
 		//@UserObject
 		shelter_name: '홍단 보호소',
 
@@ -4258,7 +4515,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
-		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
 		protect_act_address: {
 			city: '서울시',
 			district: '송파구',
@@ -4283,8 +4540,6 @@ export const dummy_AidRequestAnimalList = [
 		protect_act_motivation: '키우던 개의 가족을 만들어주고 싶습니다.', //보호활동 신청동기
 	},
 	{
-		feed_type: 'feed',
-
 		//@UserObject
 		shelter_name: '홍단 보호소',
 
@@ -4314,7 +4569,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
-		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
 		protect_act_address: {
 			city: '서울시',
 			district: '송파구',
@@ -4340,7 +4595,6 @@ export const dummy_AidRequestAnimalList = [
 	},
 	{
 		//@FeedObeject
-		feed_type: 'feed',
 
 		//@UserObject
 		shelter_name: '홍단 보호소',
@@ -4369,7 +4623,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
-		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
 		protect_act_address: {
 			city: '서울시',
 			district: '마포구',
@@ -4394,8 +4648,6 @@ export const dummy_AidRequestAnimalList = [
 		protect_act_motivation: '키우던 개의 가족을 만들어주고 싶습니다.', //보호활동 신청동기
 	},
 	{
-		feed_type: 'feed',
-
 		//@UserObject
 		shelter_name: '홍단 보호소',
 
@@ -4428,7 +4680,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
-		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
 		protect_act_address: {
 			city: '서울시',
 			district: '송파구',
@@ -4453,8 +4705,6 @@ export const dummy_AidRequestAnimalList = [
 		protect_act_motivation: '키우던 개의 가족을 만들어주고 싶습니다.', //보호활동 신청동기
 	},
 	{
-		feed_type: 'feed',
-
 		//@UserObject
 		shelter_name: '홍단 보호소',
 
@@ -4484,7 +4734,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
-		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
 		protect_act_address: {
 			city: '서울시',
 			district: '송파구',
@@ -4510,7 +4760,6 @@ export const dummy_AidRequestAnimalList = [
 	},
 	{
 		//@FeedObeject
-		feed_type: 'feed',
 
 		//@UserObject
 		shelter_name: '홍단 보호소',
@@ -4539,7 +4788,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
-		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
 		protect_act_address: {
 			city: '서울시',
 			district: '마포구',
@@ -4598,7 +4847,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
-		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
 		protect_act_address: {
 			city: '서울시',
 			district: '송파구',
@@ -4654,7 +4903,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
-		protect_act_applicant_id: [1, 2, 3], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
+		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
 		protect_act_address: {
 			city: '서울시',
 			district: '송파구',

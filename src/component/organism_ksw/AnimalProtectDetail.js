@@ -1,12 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {HomeIcon} from 'Asset/image';
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
-import {GRAY10, APRI10} from 'Root/config/color';
+import {View, Text, ScrollView, Linking, TouchableOpacity} from 'react-native';
+import {GRAY10, APRI10, BLUE20} from 'Root/config/color';
 import {dummy_adoptorInfo} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
 import {House48, Phone48, Paw48_APRI10, Check48, TextBalloon48, Person48} from '../atom/icon';
 import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
+import {animalProtectList} from '../templete/style_templete';
 import AnimalNeedHelp from './AnimalNeedHelp';
 import {animalProtectDetail} from './style_organism';
 
@@ -34,9 +35,12 @@ export default AnimalProtectDetail = props => {
 				return '다른 친구에게 입양되었어요.';
 		}
 	};
+	const onPressPhoneNum = () => {
+		Linking.openURL(`tel:${data.shelter_delegate_contact_number}`);
+	};
 
 	return (
-		<ScrollView>
+		<ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
 			<View style={[animalProtectDetail.container]}>
 				<View style={[animalProtectDetail.animalNeedHelp_container]}>
 					<AnimalNeedHelp data={data} />
@@ -63,13 +67,9 @@ export default AnimalProtectDetail = props => {
 					}
 
 					<View style={[animalProtectDetail.detail]}>
-						<View style={{flexDirection: 'row'}}>
-							<View style={[animalProtectDetail.detail_icon48]}>
-								<House48 />
-							</View>
-							<View style={[animalProtectDetail.detail_title]}>
-								<Text style={[txt.noto24b, {color: GRAY10}]}>보호장소</Text>
-							</View>
+						<View style={[animalProtectList.menuHeader]}>
+							<House48 />
+							<Text style={[txt.noto24b, {color: GRAY10}]}>{'   '}보호장소</Text>
 						</View>
 						<View style={[animalProtectDetail.detail_content]}>
 							<Text style={[txt.noto24]}>
@@ -79,27 +79,19 @@ export default AnimalProtectDetail = props => {
 					</View>
 					{/* 연락처 */}
 					<View style={[animalProtectDetail.detail]}>
-						<View style={{flexDirection: 'row'}}>
-							<View style={[animalProtectDetail.detail_icon48]}>
-								<Phone48 />
-							</View>
-							<View style={[animalProtectDetail.detail_title]}>
-								<Text style={[txt.noto24b, {color: GRAY10}]}>연락처</Text>
-							</View>
+						<View style={[animalProtectList.menuHeader]}>
+							<Phone48 />
+							<Text style={[txt.noto24b, {color: GRAY10}]}>{'   '}연락처</Text>
 						</View>
-						<View style={[animalProtectDetail.detail_content]}>
-							<Text style={[txt.noto24]}>{data.protect_act_phone_number || ''}</Text>
-						</View>
+						<TouchableOpacity onPress={onPressPhoneNum} style={[animalProtectDetail.detail_content]}>
+							<Text style={[txt.noto24, {color: BLUE20, textDecorationLine: 'underline'}]}>{data.protect_act_phone_number || ''}</Text>
+						</TouchableOpacity>
 					</View>
 					{/* 반려 동물 생활 */}
 					<View style={[animalProtectDetail.detail]}>
-						<View style={{flexDirection: 'row'}}>
-							<View style={[animalProtectDetail.detail_icon48]}>
-								<Paw48_APRI10 />
-							</View>
-							<View style={[animalProtectDetail.detail_title]}>
-								<Text style={[txt.noto24b, {color: GRAY10}]}>반려 동물 생활</Text>
-							</View>
+						<View style={[animalProtectList.menuHeader]}>
+							<Paw48_APRI10 />
+							<Text style={[txt.noto24b, {color: GRAY10}]}>{'   '}반려 동물 생활</Text>
 						</View>
 						{data.protect_act_companion_history.map((v, i) => {
 							return (
@@ -114,13 +106,9 @@ export default AnimalProtectDetail = props => {
 					</View>
 					{/* 체크 포인트  */}
 					<View style={[animalProtectDetail.detail]}>
-						<View style={{flexDirection: 'row'}}>
-							<View style={[animalProtectDetail.detail_icon48]}>
-								<Check48 />
-							</View>
-							<View style={[animalProtectDetail.detail_title]}>
-								<Text style={[txt.noto24b, {color: GRAY10}]}>체크 포인트</Text>
-							</View>
+						<View style={[animalProtectList.menuHeader]}>
+							<Check48 />
+							<Text style={[txt.noto24b, {color: GRAY10}]}>{'   '}체크 포인트</Text>
 						</View>
 						<View style={[animalProtectDetail.detail_content]}>
 							<Text style={[txt.noto24, {color: data.protect_act_checklist.is_adult ? APRI10 : GRAY10}]}>- 성인 확인</Text>
@@ -134,13 +122,9 @@ export default AnimalProtectDetail = props => {
 					</View>
 					{/* 신청 동기  */}
 					<View style={[animalProtectDetail.detail]}>
-						<View style={{flexDirection: 'row'}}>
-							<View style={[animalProtectDetail.detail_icon48]}>
-								<TextBalloon48 />
-							</View>
-							<View style={[animalProtectDetail.detail_title]}>
-								<Text style={[txt.noto24b, {color: GRAY10}]}>신청 동기</Text>
-							</View>
+						<View style={[animalProtectList.menuHeader]}>
+							<TextBalloon48 />
+							<Text style={[txt.noto24b, {color: GRAY10}]}>{'   '}신청 동기</Text>
 						</View>
 						<View style={[animalProtectDetail.detail_content]}>
 							<Text style={[txt.noto24]}>{data.protect_act_motivation || ''}</Text>

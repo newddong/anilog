@@ -48,3 +48,67 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
 };
+
+/**
+ * 보호요청 가져오기
+ *
+ * @param {string} params.city - 보존지역 (서울,부산,인천 등등)
+ * @param {string} params.protect_animal_species - 보호중이 동물의 종류 (개, 고양이, 새 등등)
+ * @param {Boolean} params.adoptable_posts - //입양 가능한 게시글만 보기
+ * @param {string} params.protect_request_object_id - 커서 역할을 할 보호요청 오브잭트(페이징 처리)
+ * @param {number} params.request_number -  보호요청게시글 요청 숫자
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백 * 
+ */
+ export const getProtectRequestList = async (params, callback) => {
+	try {
+		let recieved = await axios.post(serveruri + '/post/getProtectRequestList', {
+			city: params.city,
+			protect_animal_species: params.protect_animal_species,
+			adoptable_posts: params.adoptable_posts,
+		});
+		const data = recieved.data;
+		console.log(`getProtectRequestList data:${data}`);
+		if (data.status === 200) {
+			callback(data);
+		} else {
+			console.log('getProtectRequestList Network Error : ' + JSON.stringify(msg));
+		}
+	} catch (err) {
+		console.log('getProtectRequestList Code Error : ' + JSON.stringify(err));
+	}
+};
+
+/**
+ * 보호소의 보호중인 동물 리스트 조회
+ * 연관 템플릿 - ShelterPRotectRequest(ShelterMenu => 보호요청 게시글 메뉴 )
+ * 연관 테이블 - ShelterProtectAnimalObject, ProtectRequestObject,
+ * 필요 컬럼 디테일 -
+ * ShelterPRotectAnimalObject
+ *       [ _id, protect_animal_rescue_location,protect_animal_species ,protect_animal_species_detail,
+ * 		 protect_animal_sex, protect_animal_status , protect_animal_protect_request, protect_animal_protect_request_id  ]
+ * ProtectRequestObject
+ *  	 [ protect_request_photo_thumbnail,  protect_request_status]
+ * @param {object} params - token아이디
+ * @param {string} params.shelter_protect_animal_object_id - 페이징에 사용할 오브젝트 ID, 입력하면 커서처럼 동작함.
+ * @param {number} params.request_number - 요청할 게시물의 숫자
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export const getShelterProtectAnimalList = async (params, callback) => {
+	console.log('getShelterProtectAnimalList / params', params);
+	try {
+		let result = await axios.post(serveruri + '/user/getShelterProtectAnimalList', {
+			shelter_id: params,
+		});
+		const {msg, status} = result.data;
+		if (status === 200) {
+			// console.log('msg', msg);
+			callback(msg);
+		} else {
+			console.log('getShelterProtectAnimalList Network Error : ' + JSON.stringify(result.data.msg));
+		}
+	} catch (err) {
+		console.log('getShelterProtectAnimalList Cde Error :' + JSON.stringify(err.message)); //에러 처리 콜백
+	}
+};
