@@ -19,16 +19,17 @@ export default LoginTemplete = props => {
 
 	const tryToLogin = () => {
 		Modal.popNoBtn('로그인을 요청합니다.');
+
 		userLogin(
 			{
 				login_id: id,
 				login_password: password,
 			},
 			userObject => {
-				console.log('userObject', userObject.data.msg);
+				console.log('userObject', userObject.msg);
 				Modal.close();
-				Modal.popNoBtn(userObject.data.msg.user_nickname + '님 로그인이 성공하였습니다.');
-				AsyncStorage.setItem('token', userObject.data.msg._id);
+				Modal.popNoBtn(userObject.msg.user_nickname + '님 로그인이 성공하였습니다.');
+				AsyncStorage.setItem('token', userObject.msg._id);
 				setTimeout(() => {
 					Modal.close();
 					// alert('홈으로 이동');
@@ -66,19 +67,19 @@ export default LoginTemplete = props => {
 
 	//아이디 입력
 	const onChangeId = id => {
-		console.log('유저 아이디 입력', id);
+		// console.log('유저 아이디 입력', id);
 		setId(id);
 	};
 
 	//암호입력
 	const onChangePassword = pwd => {
-		console.log('암호입력', pwd);
+		// console.log('암호입력', pwd);
 		setPassword(pwd);
 	};
 
 	//Password Text Input Validator
 	const passwordValidator = text => {
-		console.log('Validator' + text);
+		// console.log('Validator' + text);
 		return true;
 	};
 	//Id Text Input Validator

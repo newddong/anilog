@@ -4455,7 +4455,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protect_request_id: 1, //보호요청 게시물
 		protect_animal_adoptor_id: null, //입양자
 		protect_animal_protector_id: null, //임시보호자
-		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
+		protect_animal_protector_discussion_id: [], //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
 		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
@@ -4512,7 +4512,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protect_request_id: 2, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
 		protect_animal_adoptor_id: null, //Mongodb_ID(ref:UserObject), //입양자
 		protect_animal_protector_id: null, //Mongodb_ID(ref:UserObject), //임시보호자
-		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
+		protect_animal_protector_discussion_id: [], //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
 		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
@@ -4566,7 +4566,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protect_request_id: 3, //보호요청 게시물
 		protect_animal_adoptor_id: 3, //입양자
 		protect_animal_protector_id: 2, //임시보호자
-		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
+		protect_animal_protector_discussion_id: [], //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
 		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
@@ -4620,7 +4620,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protect_request_id: 1, //보호요청 게시물
 		protect_animal_adoptor_id: null, //입양자
 		protect_animal_protector_id: null, //임시보호자
-		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
+		protect_animal_protector_discussion_id: [], //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
 		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
@@ -4677,7 +4677,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protect_request_id: 2, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
 		protect_animal_adoptor_id: null, //Mongodb_ID(ref:UserObject), //입양자
 		protect_animal_protector_id: null, //Mongodb_ID(ref:UserObject), //임시보호자
-		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
+		protect_animal_protector_discussion_id: [], //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
 		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
@@ -4731,7 +4731,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protect_request_id: 3, //보호요청 게시물
 		protect_animal_adoptor_id: 3, //입양자
 		protect_animal_protector_id: 2, //임시보호자
-		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
+		protect_animal_protector_discussion_id: [], //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
 		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
@@ -4785,7 +4785,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protect_request_id: 1, //보호요청 게시물
 		protect_animal_adoptor_id: null, //입양자
 		protect_animal_protector_id: null, //임시보호자
-		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
+		protect_animal_protector_discussion_id: [], //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
 		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
@@ -4844,7 +4844,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protect_request_id: 2, //Mongodb_ID(ref:ProtectRequestObject), //보호요청 게시물
 		protect_animal_adoptor_id: null, //Mongodb_ID(ref:UserObject), //입양자
 		protect_animal_protector_id: null, //Mongodb_ID(ref:UserObject), //임시보호자
-		protect_animal_protector_discussion_id: null, // Mongodb_ID(ref:UserObject), //입양, 임시보호 협의중인 유저
+		protect_animal_protector_discussion_id: [], //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
 		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list
@@ -4900,7 +4900,7 @@ export const dummy_AidRequestAnimalList = [
 		protect_animal_protect_request_id: 3, //보호요청 게시물
 		protect_animal_adoptor_id: 3, //입양자
 		protect_animal_protector_id: 2, //임시보호자
-		protect_animal_protector_discussion_id: null, //입양, 임시보호 협의중인 유저
+		protect_animal_protector_discussion_id: [], //입양, 임시보호 협의중인 유저
 
 		//@ProtectionActivityApllicantObject -
 		protect_act_applicant_id: [], // 해당 보호동물에 대한 보호활동신청을 함 지원자들의 id list

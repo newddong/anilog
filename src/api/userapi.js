@@ -28,7 +28,7 @@ import {apiController, apiFormController} from './apiController';
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function assignUser (params, callback, errcallback){
-	apiFormController(serveruri,'/user/assignUser',arguments);
+	apiController(serveruri,'/user/assignUser',arguments);
 };
 
 
@@ -42,9 +42,9 @@ export async function assignUser (params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function checkProtectPet (params, callback, errcallback){
-	apiController(serveruri,'/user/checkProtectPet',arguments);
-};
+export async function checkProtectPet(params, callback, errcallback) {
+	apiController(serveruri, '/user/checkProtectPet', arguments);
+}
 
 /**
  * 반려동물등록
@@ -65,9 +65,9 @@ export async function checkProtectPet (params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function assignPet(params, callback, errcallback){
-	apiController(serveruri,'/user/assignPet',arguments);
-};
+export async function assignPet(params, callback, errcallback) {
+	apiController(serveruri, '/user/assignPet', arguments);
+}
 
 /**
  * 보호소 등록
@@ -87,9 +87,9 @@ export async function assignPet(params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function assignShelter(params, callback, errcallback){
-	apiController(serveruri,'/user/assignShelter',arguments);
-};
+export async function assignShelter(params, callback, errcallback) {
+	apiController(serveruri, '/user/assignShelter', arguments);
+}
 
 /**
  * 보호소 코드 체크
@@ -99,9 +99,9 @@ export async function assignShelter(params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function checkShelterCode(params, callback, errcallback){
-	apiController(serveruri,'/user/checkShelterCode',arguments);
-};
+export async function checkShelterCode(params, callback, errcallback) {
+	apiController(serveruri, '/user/checkShelterCode', arguments);
+}
 
 /**
  * 로그인
@@ -112,31 +112,32 @@ export async function checkShelterCode(params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function userLogin(params, callback, errcallback){
-	apiController(serveruri,'/user/userLogin',arguments);
-};
+export async function userLogin(params, callback, errcallback) {
+	// console.log('param userLogin', params);
+	apiController(serveruri, '/user/userLogin', arguments);
+}
 
 /**
  * 로그아웃
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export async function userLogout(params, callback, errcallback){
-	apiController(serveruri,'/user/userLogout',arguments);
-};
+export async function userLogout(params, callback, errcallback) {
+	apiController(serveruri, '/user/userLogout', arguments);
+}
 
 /**
  * 유저 프로필조회
  *
  * @param {object} params
  * @param {string} params.userobject_id - 아이디(DB의 유저 객체 ID, _id필드)
- * @param {'user'|'pet'|'shelter'} params.user_type - 
+ * @param {'user'|'pet'|'shelter'} params.user_type -
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function getUserProfile(params, callback, errcallback){
-	apiController(serveruri,'/user/getUserProfile',arguments);
-};
+export async function getUserProfile(params, callback, errcallback) {
+	apiController(serveruri, '/user/getUserProfile', arguments);
+}
 
 /**
  * 닉네임의 중복을 체크
@@ -146,9 +147,9 @@ export async function getUserProfile(params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function nicknameDuplicationCheck(params, callback, errcallback){
-	apiController(serveruri,'/user/nicknameDuplicationCheck',arguments);
-};
+export async function nicknameDuplicationCheck(params, callback, errcallback) {
+	apiController(serveruri, '/user/nicknameDuplicationCheck', arguments);
+}
 
 /**
  * 유저 정보 수정
@@ -160,9 +161,9 @@ export async function nicknameDuplicationCheck(params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function updateUserInformation(params, callback, errcallback){
-	apiController(serveruri,'/user/updateUserInformation',arguments);
-};
+export async function updateUserInformation(params, callback, errcallback) {
+	apiController(serveruri, '/user/updateUserInformation', arguments);
+}
 
 /**
  * @typedef UserInterest
@@ -191,9 +192,9 @@ export async function updateUserInformation(params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function updateUserDetailInformation(params, callback, errcallback){
-	apiController(serveruri,'/user/updateUserDetailInformation',arguments);
-};
+export async function updateUserDetailInformation(params, callback, errcallback) {
+	apiController(serveruri, '/user/updateUserDetailInformation', arguments);
+}
 
 /**
  * 반려동물 상세 정보를 수정
@@ -207,9 +208,9 @@ export async function updateUserDetailInformation(params, callback, errcallback)
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function updatePetDetailInformation(params, callback, errcallback){
-	apiController(serveruri,'/user/updatePetDetailInformation',arguments);
-};
+export async function updatePetDetailInformation(params, callback, errcallback) {
+	apiController(serveruri, '/user/updatePetDetailInformation', arguments);
+}
 
 /**
  * 반려동물의 가족계정에 특정 유저를 추가
@@ -220,9 +221,9 @@ export async function updatePetDetailInformation(params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export async function addUserToFamily(params, callback, errcallback){
-	apiController(serveruri,'/user/addUserToFamily',arguments);
-};
+export async function addUserToFamily(params, callback, errcallback) {
+	apiController(serveruri, '/user/addUserToFamily', arguments);
+}
 
 /**
  * 유저의 패스워드를 변경
@@ -234,13 +235,13 @@ export async function updatePetDetailInformation(params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function changeUserPassword(params, callback, errcallback){
-	apiController(serveruri,'/user/changeUserPassword',arguments);
-};
+export async function changeUserPassword(params, callback, errcallback) {
+	apiController(serveruri, '/user/changeUserPassword', arguments);
+}
 
 //=================================이전 router code =============================================================================
 
-export async function getUserList (params, callback){
+export async function getUserList(params, callback) {
 	console.log('getUserList');
 	try {
 		let recieved = await axios.post(serveruri + '/user/getUserList', {nickname: params.nickname});
@@ -260,9 +261,9 @@ export async function getUserList (params, callback){
 	} catch (err) {
 		alert('getUserList Code Error : ' + JSON.stringify(err));
 	}
-};
+}
 
-export async function addUser (params, callback){
+export async function addUser(params, callback) {
 	console.log('addUser');
 	try {
 		let form = new FormData();
@@ -284,9 +285,9 @@ export async function addUser (params, callback){
 	} catch (err) {
 		alert('addUser Code Error : ' + JSON.stringify(err));
 	}
-};
+}
 
-export async function addPet (params, callback){
+export async function addPet(params, callback) {
 	console.log('addPet');
 	try {
 		let form = new FormData();
@@ -321,9 +322,9 @@ export async function addPet (params, callback){
 	} catch (err) {
 		alert('addPet Code Error : ' + JSON.stringify(err));
 	}
-};
+}
 
-export async function getUserPetList (params, callback){
+export async function getUserPetList(params, callback) {
 	console.log('getUserPetList');
 	try {
 		let token = await AsyncStorage.getItem('token');
@@ -339,4 +340,4 @@ export async function getUserPetList (params, callback){
 	} catch (err) {
 		alert('getUserPetList Code Error : ' + JSON.stringify(err));
 	}
-};
+}

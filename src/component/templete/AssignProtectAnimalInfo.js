@@ -74,30 +74,42 @@ export default AssignProtectAnimalInfo = ({route}) => {
 		navigation.push('ShelterMenu');
 	};
 
+	const log = {
+		pet_neutralization: 'unknown',
+		pet_sex: 'female',
+		pet_species: '개',
+		pet_species_detail: '요크',
+		protect_animal_estimate_age: '1년 1개월',
+		protect_animal_neutralization: 'unknown',
+		protect_animal_photos: [
+			'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/7A7A3552-9E9F-4364-A61E-6C0B10F84A89/tmp/E693BC58-3E16-4BFF-B1BC-740BBA50E064.jpg',
+		],
+		protect_animal_rescue_date: '2021.12.08',
+		protect_animal_rescue_location: 'Dalas',
+		protect_animal_sex: 'female',
+		protect_animal_species: '개',
+		protect_animal_species_detail: '요크',
+		protect_animal_weight: '1.5',
+	};
+
 	const registerProtectPet = () => {
+		console.log('register? ', data);
 		assignShelterAnimal(
-			{
-				protect_animal_photo_uri_list: route.params.protect_animal_photos, //보호중인 동물의 사진 로컬 경로 목록
-				protect_animal_rescue_date: protect_animal_rescue_date, //보호중인 동물의 구조날짜
-				protect_animal_rescue_location: protect_animal_rescue_location, //보호중인 동물의 구조장소
-				protect_animal_species: protect_animal_species, //보호중인 동물의 종류(ex 개, 고양이, 토끼)
-				protect_animal_species_detail: protect_animal_species_detail, //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
-				protect_animal_sex: protect_animal_sex, //보호중인 동물의 성별
-				protect_animal_neutralization: protect_animal_neutralization, //중성화 여부 'yes'|'no'|'unknown'
-				protect_animal_estimate_age: protect_animal_estimate_age, //동물의 예상 연령
-				protect_animal_weight: protect_animal_weight, //동물의 몸무게
-			},
+			data,
 			data => {
 				console.log(`assignShelterAnimal callback:${data}`);
+			},
+			err => {
+				console.log('err', err);
 			},
 		);
 	};
 
 	//다음 버튼 클릭
 	const gotoNextStep = () => {
-		console.log('data At Last', data);
+		// console.log('data At Last', data);
 		//컨펌하는 복합모달 제작완료 후 붙일 예정
-		registerProtectPet;
+		registerProtectPet();
 		Modal.popTwoBtn(
 			'보호 동물이 등록되었습니다. \n바로 보호요청 글을 작성하시겠습니까?',
 			'아니오',
@@ -152,7 +164,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 						<Text style={[txt.noto28]}>예상 연령</Text>
 					</View>
 					<View style={[assignProtectAnimal_style.dropdownSelect_year]}>
-						<NormalDropDown menu={PET_YEAR} onSelect={onSelectYear} defaultIndex={0} />
+						<NormalDropDown menu={PET_YEAR} height={500} onSelect={onSelectYear} defaultIndex={0} />
 					</View>
 					<Text style={[txt.noto24, assignProtectAnimal_style.text118]}>년</Text>
 					<View style={[assignProtectAnimal_style.dropdownSelect_year]}>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {serveruri, cookieReset} from 'Screens/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {apiController} from './apiController';
 
 /**
  * 입양 임시보호 등록
@@ -80,7 +81,7 @@ export const getUserProfile = async (params, callback, errcallback) => {
 	console.log('para', params);
 	try {
 		let result = await axios.post(serveruri + '/user/getUserProfile', {
-			userobject_id: '61b9eba4185a4f69d5981ad6',
+			userobject_id: params,
 		});
 		const {msg, status} = result.data;
 		console.log('msg', msg);
@@ -136,6 +137,8 @@ export const getProtect_act_list = async (prarms, callback) => {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export const logoutTemp = async (params, callback, errcallback) => {
+	// apiController(serveruri, '/user/userLogout', arguments);
+
 	console.log('para', params);
 	try {
 		// const cookie = Asy;
