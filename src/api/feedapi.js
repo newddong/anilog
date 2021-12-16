@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {serveruri, cookieReset} from 'Screens/server';
+import {serveruri, cookieReset} from 'Root/config/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
@@ -30,7 +30,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function createFeed(params, callback, errcallback){
-	apiController(serveruri,'/feed/createFeed',arguments);
+	apiController('/feed/createFeed',arguments);
 };
 
 /**
@@ -54,7 +54,7 @@ export async function createFeed(params, callback, errcallback){
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function createMissing(params, callback, errcallback){
-	apiController(serveruri,'/feed/createMissing',arguments);
+	apiController('/feed/createMissing',arguments);
 };
 
 
@@ -78,7 +78,7 @@ export async function createMissing(params, callback, errcallback){
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function createReport(params, callback, errcallback){
-	apiController(serveruri,'/feed/createReport',arguments);
+	apiController('/feed/createReport',arguments);
 };
 
 
@@ -92,7 +92,7 @@ export async function createReport(params, callback, errcallback){
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function getFeedListByUserId(params, callback, errcallback){
-	apiController(serveruri,'/feed/getFeedListByUserId',arguments);
+	apiController('/feed/getFeedListByUserId',arguments);
 };
 
 
@@ -108,7 +108,7 @@ export async function getFeedListByUserId(params, callback, errcallback){
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
 */
  export async function getMissingReportList(params, callback, errcallback){
-	apiController(serveruri,'/feed/getMissingReportList',arguments);
+	apiController('/feed/getMissingReportList',arguments);
 };
 
 
@@ -121,7 +121,7 @@ export async function getFeedListByUserId(params, callback, errcallback){
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
  export async function getFeedDetailById(params, callback, errcallback){
-	apiController(serveruri,'/feed/getFeedDetailById',arguments);
+	apiController('/feed/getFeedDetailById',arguments);
 };
 
 
