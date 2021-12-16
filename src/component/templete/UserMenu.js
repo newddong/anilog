@@ -36,7 +36,7 @@ import {login_style, temp_style, userMenu_style} from './style_templete';
 
 export default UserMenu = props => {
 	const navigation = useNavigation();
-
+	//-test for commit -
 	const [data, setData] = React.useState(dummy_userObject[0]); //우선 userObject 0번 추가
 
 	//토큰에 로그인한 유저의 _id를 저장
