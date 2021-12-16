@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
-import {login_style, manageVolunteer} from './style_templete';
+import {login_style, manageVolunteer, protectApplicant} from './style_templete';
 import {txt} from 'Root/config/textstyle';
 import {GRAY20} from 'Root/config/color';
 import AccountList from '../organism_ksw/AccountList';
@@ -26,20 +26,20 @@ export default ProtectApplicant = ({route, navigation}) => {
 		// );
 	}, []);
 
-	const getDbFiled = [
-		{
-			//ProtectionActivityApplicantObject
-			protectionActivityApplicantObject_id, //보호 활동 신청서 ID
-			protect_act_type, //신청한 보호 활동의 종류, 임시보호(protect), 입양(adopt)
-			protect_act_applicant_id, //보호활동 신청자
+	// const getDbFiled = [
+	// 	{
+	// 		//ProtectionActivityApplicantObject
+	// 		protectionActivityApplicantObject_id, //보호 활동 신청서 ID
+	// 		protect_act_type, //신청한 보호 활동의 종류, 임시보호(protect), 입양(adopt)
+	// 		protect_act_applicant_id, //보호활동 신청자
 
-			//UserObject
-			user_profile_uri, //사용자 프로필 사진
-			user_nickname, //닉네임
-			user_introduction, //프로필에 노출될 자기소개
-			bookmark, //보호소가 신청자에 한해 북마크
-		},
-	];
+	// 		//UserObject
+	// 		user_profile_uri, //사용자 프로필 사진
+	// 		user_nickname, //닉네임
+	// 		user_introduction, //프로필에 노출될 자기소개
+	// 		bookmark, //보호소가 신청자에 한해 북마크
+	// 	},
+	// ];
 
 	//AccountList의 라벨 클릭 콜백 함수
 	const onClickLabel = data => {
@@ -65,7 +65,7 @@ export default ProtectApplicant = ({route, navigation}) => {
 						<Text style={[txt.noto28]}>입양 신청</Text>
 						<Text style={[txt.noto28, {color: GRAY20}]}> {adoptor_list.length}</Text>
 					</View>
-					<View style={[manageVolunteer.volunteerList]}>
+					<View style={[protectApplicant.accountListContainer]}>
 						{adoptor_list.length == 0 ? (
 							<Text style={[txt.noto24, manageVolunteer.none_adoptor_text]}>입양 신청건이 없습니다.</Text>
 						) : (
@@ -84,7 +84,7 @@ export default ProtectApplicant = ({route, navigation}) => {
 						<Text style={[txt.noto28]}>임시보호 신청</Text>
 						<Text style={[txt.noto28, {color: GRAY20}]}> {protector_list.length}</Text>
 					</View>
-					<View style={[manageVolunteer.volunteerList]}>
+					<View style={[protectApplicant.accountListContainer]}>
 						{adoptor_list.length == 0 ? (
 							<Text style={[txt.noto24, manageVolunteer.none_adoptor_text]}>임시보호 신청건이 없습니다.</Text>
 						) : (

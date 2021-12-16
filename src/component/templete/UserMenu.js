@@ -35,13 +35,15 @@ import SocialInfoB from '../organism_ksw/SocialInfoB';
 import {login_style, temp_style, userMenu_style} from './style_templete';
 // import {getUserProfile} from 'Root/api/usermenuapi';
 import {getUserProfile} from 'Root/api/userapi';
+import Modal from '../modal/Modal';
 export default UserMenu = props => {
 	const navigation = useNavigation();
 	//-test for commit -
-	const [data, setData] = React.useState(dummy_userObject[0]); //우선 userObject 0번 추가
+	const [data, setData] = React.useState({}); //우선 userObject 0번 추가
 
 	//토큰에 로그인한 유저의 _id를 저장
 	React.useEffect(() => {
+		Modal.popNoBtn('로그인 중입니다.');
 		AsyncStorage.getItem('token', (err, res) => {
 			console.log('token id ', res);
 			getUserProfile(
@@ -50,6 +52,7 @@ export default UserMenu = props => {
 				},
 				userObject => {
 					setData(userObject.msg);
+					Modal.close();
 				},
 
 				err => {

@@ -2,7 +2,6 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity, TextInput} from 'react-native';
 import {GRAY10, GRAY40} from 'Root/config/color';
-import {dummy_CompanionObject, dummy_userObject, dummy_UserObject_pet} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
 import {DEFAULT_PROFILE, MODIFY_PROFILE} from 'Root/i18n/msg';
 import {btn_w114, btn_w242} from '../atom/btn/btn_style';
@@ -17,21 +16,21 @@ import {getUserProfile} from 'Root/api/userapi';
 // 필요한 데이터 - 로그인 유저 제반 데이터, 나의 반려동물 관련 데이터(CompanionObject 참조)
 export default UserInfoSetting = ({route}) => {
 	const navigation = useNavigation();
-	const [data, setData] = React.useState(dummy_userObject[0]); // 로그인 유저의 UserObject
-	const [companions, setCompanions] = React.useState(dummy_UserObject_pet); //반려동물 userObject
+	const [data, setData] = React.useState([]); // 로그인 유저의 UserObject
+	const [companions, setCompanions] = React.useState([]); //반려동물 userObject
 	const [modifyMode, setModifyMode] = React.useState(false);
 	const [intro_modified, setIntro_modified] = React.useState('');
 	const modifyRef = React.useRef();
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
-			console.log('token id ', res);
 			getUserProfile(
 				{
 					userobject_id: res,
 				},
 				userObject => {
 					setData(userObject.msg);
+					console.log('userObject.msg.myPets?', userObject.msg.user_my_pets);
 				},
 				err => {
 					console.log('er', err);

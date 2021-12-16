@@ -3819,3 +3819,9 @@ export const protectApplyForm = StyleSheet.create({
 		marginVertical: 40 * DP,
 	},
 });
+
+export const protectApplicant = StyleSheet.create({
+	accountListContainer: {
+		width: 654 * DP,
+	},
+});
