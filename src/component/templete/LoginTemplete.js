@@ -26,14 +26,14 @@ export default LoginTemplete = props => {
 				login_password: password,
 			},
 			userObject => {
-				console.log('userObject', userObject.msg);
+				// console.log('userObject', userObject.msg.user_type);
 				Modal.close();
 				Modal.popNoBtn(userObject.msg.user_nickname + '님 \n로그인이 성공하였습니다.');
 				AsyncStorage.setItem('token', userObject.msg._id);
 				setTimeout(() => {
 					Modal.close();
 					// alert('홈으로 이동');
-					props.navigation.navigate('MainTab');
+					props.navigation.navigate('MainTab', userObject.msg.user_type);
 				}, 1000);
 			},
 			error => {

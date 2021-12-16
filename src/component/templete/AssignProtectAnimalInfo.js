@@ -24,6 +24,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 
 	const [data, setData] = React.useState({
 		...route.params,
+		shelter_protect_animal_object_id: '',
 		protect_animal_estimate_age: year + '년 ' + month + '개월',
 		// protect_animal_estimate_month: PET_MONTH[0],
 		protect_animal_weight: '',
@@ -48,9 +49,9 @@ export default AssignProtectAnimalInfo = ({route}) => {
 	};
 
 	//등록 버튼 => 모달에서 '새 글 작성' 클릭
-	const goToWriteAidRequest = () => {
+	const goToWriteAidRequest = animalData => {
 		Modal.close();
-		console.log('before Write Aid REquest', data);
+		console.log('AssignProtectAnimalInfo Data_id', data._id);
 		navigation.dispatch(
 			CommonActions.reset({
 				index: 1,
@@ -58,7 +59,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 					{name: 'ShelterMenu'},
 					{
 						name: 'WriteAidRequest',
-						params: {data: data},
+						params: {data: animalData},
 					},
 				],
 			}),
@@ -72,6 +73,34 @@ export default AssignProtectAnimalInfo = ({route}) => {
 		navigation.push('ShelterMenu');
 	};
 
+	const e = {
+		pet_neutralization: 'unknown',
+		pet_sex: 'female',
+		pet_species: '개',
+		pet_species_detail: '치와와',
+		protect_animal_estimate_age: '1년 1개월',
+		protect_animal_neutralization: 'unknown',
+		protect_animal_photo_uri_list: [
+			'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/7A7A3552-9E9F-4364-A61E-6C0B10F84A89/tmp/E42EBC70-66D0-4840-8CE1-3B8889395320.jpg',
+			'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/7A7A3552-9E9F-4364-A61E-6C0B10F84A89/tmp/C6BA7E67-3129-4908-933E-DEBD9F0EEE0E.jpg',
+			'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/7A7A3552-9E9F-4364-A61E-6C0B10F84A89/tmp/7FD8A76E-10D8-4012-B1FB-B5E4085C6029.jpg',
+		],
+		protect_animal_rescue_date: '2021.12.02',
+		protect_animal_rescue_location: 'D1',
+		protect_animal_sex: 'female',
+		protect_animal_species: '개',
+		protect_animal_species_detail: '치와와',
+		protect_animal_weight: '1',
+	};
+	// * @param {Array.<string>} params.protect_animal_photo_uri_list - 보호중인 동물의 사진 로컬 경로 목록
+	// * @param {string} params.protect_animal_rescue_date - 보호중인 동물의 구조날자
+	// * @param {string} params.protect_animal_rescue_location - 보호중인 동물의 구조장소
+	// * @param {string} params.protect_animal_species - 보호중인 동물의 종류(ex 개, 고양이, 토끼)
+	// * @param {string} params.protect_animal_species_detail - 보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+	// * @param {'yes'|'no'|'unknown'} params.protect_animal_neutralization - { 'yes'|'no'|'unknown'} 중성화 여부
+	// * @param {'male'|'female'|'unknown'} params.protect_animal_sex - 보호중인 동물의 성별
+	// * @param {string} params.protect_animal_estimate_age - 보호중인 동물의 예상 연령
+	// * @param {number} params.protect_animal_weight - 보호중인 동물의 몸무게
 	const registerProtectPet = () => {
 		// console.log('register? ', data);
 		assignShelterAnimal(
@@ -80,7 +109,11 @@ export default AssignProtectAnimalInfo = ({route}) => {
 				console.log(`assignShelterAnimal callback:${data}`);
 			},
 			err => {
-				console.log('err', err);
+				console.log('err / AssignProtectAnimalInfo', err);
+				setData(err);
+				Modal.popTwoBtn('보호 동물이 등록되었습니다. \n바로 보호요청 글을 작성하시겠습니까?', '아니오', '새 글 작성', goToShelterMenu, () =>
+					goToWriteAidRequest(err),
+				);
 			},
 		);
 	};
@@ -90,13 +123,6 @@ export default AssignProtectAnimalInfo = ({route}) => {
 		// console.log('data At Last', data);
 		//컨펌하는 복합모달 제작완료 후 붙일 예정
 		registerProtectPet();
-		Modal.popTwoBtn(
-			'보호 동물이 등록되었습니다. \n바로 보호요청 글을 작성하시겠습니까?',
-			'아니오',
-			'새 글 작성',
-			goToShelterMenu,
-			goToWriteAidRequest,
-		);
 	};
 
 	const goBack = () => {

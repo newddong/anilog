@@ -1,26 +1,14 @@
 import React from 'react';
-import {Text, TextInput, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {BackArrow32, Send60_Big} from 'Atom/icon';
 import DP from 'Root/config/dp';
 import {WHITE, APRI10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import Modal from 'Root/component/modal/Modal';
-import {assignAidRequest} from 'Root/api/protect_request_api_ksw';
 import {createProtectRequest} from 'Root/api/shelterapi';
 
 export default SendHeader = ({route, navigation, options}) => {
-	console.log('props SendHeader', route.params);
-
-	const res = {
-		protect_animal_id: '61ba0dfa4772b1e1d3f2ebaa',
-		protect_request_content: 'Cc1',
-		protect_request_photo_thumbnail: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
-		protect_request_photos: [
-			'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/7A7A3552-9E9F-4364-A61E-6C0B10F84A89/tmp/2316A79B-8F91-4B85-8625-3FF5CB81CACB.jpg',
-		],
-		protect_request_status: 'rescue',
-		protect_request_title: 'Dd1',
-	};
+	// console.log('props SendHeader', route.params);
 
 	const onSend = () => {
 		if (route.params.data) {
@@ -39,7 +27,7 @@ export default SendHeader = ({route, navigation, options}) => {
 						'확인',
 						() => Modal.close(),
 						() => {
-							console.log('Before Create', data);
+							console.log('SendHeader / Before Create AidRequest ', data);
 							createProtectRequest(
 								{
 									protect_request_photos: data.protect_request_photos,

@@ -15,13 +15,13 @@ import {apiController} from './apiController';
  * @param {'yes'|'no'|'unknown'} params.protect_animal_neutralization - { 'yes'|'no'|'unknown'} 중성화 여부
  * @param {'male'|'female'|'unknown'} params.protect_animal_sex - 보호중인 동물의 성별
  * @param {string} params.protect_animal_estimate_age - 보호중인 동물의 예상 연령
- * @param {number} params.protect_animal_weight - 보호중인 동물의 몸무게
+ * @param {string} params.protect_animal_weight - 보호중인 동물의 몸무게
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export async function assignShelterAnimal(params, callback, errcallback){
-	apiController(serveruri,'/shelter/assignShelterAnimal',arguments);
-};
+export async function assignShelterAnimal(params, callback, errcallback) {
+	apiController(serveruri, '/shelter/assignShelterAnimal', arguments);
+}
 
 /**
  * 동물보호 요청 게시물을 작성한다.
@@ -34,9 +34,9 @@ import {apiController} from './apiController';
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export async function createProtectRequest(params, callback, errcallback){
-	apiController(serveruri,'/shelter/createProtectRequest',arguments);
-};
+export async function createProtectRequest(params, callback, errcallback) {
+	apiController(serveruri, '/shelter/createProtectRequest', arguments);
+}
 
 /**
  * 보호요청 가져오기
@@ -49,9 +49,9 @@ import {apiController} from './apiController';
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백 *
  */
- export async function getProtectRequestList(params, callback, errcallback){
-	apiController(serveruri,'/shelter/getProtectRequestList',arguments);
-};
+export async function getProtectRequestList(params, callback, errcallback) {
+	apiController(serveruri, '/shelter/getProtectRequestList', arguments);
+}
 
 /**
  * 보호소의 보호중인 동물 리스트 조회
@@ -69,6 +69,6 @@ import {apiController} from './apiController';
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export async function getShelterProtectAnimalList(params, callback, errcallback){
-	apiController(serveruri,'/shelter/getShelterProtectAnimalList',arguments);
-};
+export async function getShelterProtectAnimalList(params, callback, errcallback) {
+	apiController(serveruri, '/shelter/getShelterProtectAnimalList', arguments);
+}

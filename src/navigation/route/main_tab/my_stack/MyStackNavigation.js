@@ -46,19 +46,17 @@ import PhotoSelect from 'Templete/PhotoSelect';
 import AnimalProtectRequestDetail from 'Templete/AnimalProtectRequestDetail';
 import SelectAccount from 'Templete/SelectAccount';
 import ConfirmInputHeader from 'Navigation/header/ConfirmInputHeader';
-
-import ConfirmHeader from 'Navigation/header/ConfirmHeader';
 import SaveButtonHeader from 'Navigation/header/SaveButtonHeader';
-import InputAndSearchHeader from 'Root/navigation/header/InputAndSearchHeader';
 import MeatBallHeader from 'Root/navigation/header/MeatBallHeader';
 import SocialRelationTopTabNavigation from '../protection_stack/socialRelation_tab/SocialRelationTopTabNavigation';
 import SendHeader from 'Root/navigation/header/SendHeader';
 
 const MyStack = createStackNavigator();
 
-export default MyStackNavigation = () => {
+export default MyStackNavigation = props => {
+	// console.log('MyStack', props.user_type);
 	return (
-		<MyStack.Navigator initialRouteName="UserMenu">
+		<MyStack.Navigator initialRouteName={props.user_type == 'shelter' ? 'ShelterMenu' : 'UserMenu'}>
 			<MyStack.Screen name="UserFeedList" component={FeedList} />
 			<MyStack.Screen name="UserFeeds" component={FavoriteFeeds} />
 			<MyStack.Screen name="HashFeedList" component={FeedList} />
