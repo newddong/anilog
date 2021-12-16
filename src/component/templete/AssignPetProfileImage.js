@@ -37,7 +37,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 
 	React.useEffect(() => {
 		checkProtectPet(
-			{user_id: '서버에서 세션처리 할것임'},
+			{userobject_id: route.params.userobject_id},
 			cbObj => {
 				Modal.popTwoBtn(
 					'새로 임시보호, 입양을 하는 동물이 있습니다.\n 해당 동물을 등록하시겠습니까?',

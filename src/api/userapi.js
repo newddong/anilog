@@ -28,7 +28,7 @@ import {apiController, apiFormController} from './apiController';
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function assignUser (params, callback, errcallback){
-	apiFormController(serveruri,'/user/assignUser',arguments);
+	apiController(serveruri,'/user/assignUser',arguments);
 };
 
 
