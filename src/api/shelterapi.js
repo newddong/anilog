@@ -5,7 +5,7 @@ import {apiController} from './apiController';
 
 /**
  * 보호소가 보호중인 동물을 등록한다.
- * 
+ *
  * @param {object} params
  * @param {Array.<string>} params.protect_animal_photo_uri_list - 보호중인 동물의 사진 로컬 경로 목록
  * @param {string} params.protect_animal_rescue_date - 보호중인 동물의 구조날자
@@ -23,15 +23,14 @@ import {apiController} from './apiController';
 	apiController(serveruri,'/shelter/assignShelterAnimal',arguments);
 };
 
-
 /**
  * 동물보호 요청 게시물을 작성한다.
- * 
+ *
  * @param {object} params
  * @param {Array.<String>} protect_request_photos - 보호요청 게시물의 첨부사진 uri
  * @param {String} shelter_protect_animal_object_id - 보호요청할 동물 ID
  * @param {String} protect_request_title - 보호요청 게시물의 제목
- * @param {String} protect_request_content - 보호요청 게시물 내용 
+ * @param {String} protect_request_content - 보호요청 게시물 내용
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
@@ -48,7 +47,7 @@ import {apiController} from './apiController';
  * @param {string} params.protect_request_object_id - 커서 역할을 할 보호요청 오브잭트(페이징 처리)
  * @param {number} params.request_number -  보호요청게시글 요청 숫자
  * @param {({}:object)=>void} callback - API응답처리 콜백
- * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백 * 
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백 *
  */
  export async function getProtectRequestList(params, callback, errcallback){
 	apiController(serveruri,'/shelter/getProtectRequestList',arguments);

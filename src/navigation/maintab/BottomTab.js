@@ -5,23 +5,24 @@ import SvgWrapper, {SvgWrap} from 'Screens/svgwrapper';
 import {MainTabFeed, MainTabMy, MainTabVideo, MainTabSaveAnimal} from 'Asset/image_v2';
 import {txt} from 'Root/config/textstyle';
 import {tab, layout} from './style_BottomTab';
-import {APRI10,GRAY20 } from 'Root/config/color';
-import {FeedTabFilled,FeedTabBorder,AnimalSavingTabBorder,AnimalSavingTabFilled,CommunityTabBorder,CommunityTabFilled,MyTabBorder,MyTabFilled} from 'Atom/icon';
+import {APRI10, GRAY20} from 'Root/config/color';
+import {
+	FeedTabFilled,
+	FeedTabBorder,
+	AnimalSavingTabBorder,
+	AnimalSavingTabFilled,
+	CommunityTabBorder,
+	CommunityTabFilled,
+	MyTabBorder,
+	MyTabFilled,
+} from 'Atom/icon';
+import {logoutTemp} from 'Root/api/userapi_ksw';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function BottomTab({state, descriptors, navigation}) {
 	const focusedOptions = descriptors[state.routes[state.index].key].options;
-	const icons = [
-		<FeedTabBorder/>,
-		<AnimalSavingTabBorder/>,
-		<CommunityTabBorder/>,
-		<MyTabBorder/>,
-	];
-	const iconsFocused = [
-		<FeedTabFilled/>,
-		<AnimalSavingTabFilled/>,
-		<CommunityTabFilled/>,
-		<MyTabFilled/>,
-	];
+	const icons = [<FeedTabBorder />, <AnimalSavingTabBorder />, <CommunityTabBorder />, <MyTabBorder />];
+	const iconsFocused = [<FeedTabFilled />, <AnimalSavingTabFilled />, <CommunityTabFilled />, <MyTabFilled />];
 
 	const iconlayout = [tab.tab_feed, tab.tab_animal_saving, tab.tab_community, tab.tab_my];
 
@@ -42,7 +43,7 @@ export default function BottomTab({state, descriptors, navigation}) {
 					const textStyle = isFocused ? txt.noto22b : txt.noto22;
 					const textStyleEng = isFocused ? txt.roboto22b : txt.roboto22;
 
-					const onPress = () => {
+					const onPress = async () => {
 						const event = navigation.emit({
 							type: 'tabPress',
 							target: route.key,
@@ -50,7 +51,7 @@ export default function BottomTab({state, descriptors, navigation}) {
 						});
 
 						if (!isFocused && !event.defaultPrevented) {
-							navigation.navigate({name:route.name,merge:true});
+							navigation.navigate({name: route.name, merge: true});
 						}
 					};
 
@@ -63,10 +64,10 @@ export default function BottomTab({state, descriptors, navigation}) {
 
 					const renderTab = index => {
 						return (
-							<View style={[tab.hitboxLayout,iconlayout[index]]}>
+							<View style={[tab.hitboxLayout, iconlayout[index]]}>
 								{/* <SvgWrapper style={iconlayout[index]} svg={isFocused ? iconsFocused[index] : icons[index]} /> */}
-								{isFocused?iconsFocused[index]:icons[index]}
-								<Text style={[index === 3 ? textStyleEng : textStyle,{color: color,lineHeight:36*DP,marginTop:7*DP}]}>{label}</Text>
+								{isFocused ? iconsFocused[index] : icons[index]}
+								<Text style={[index === 3 ? textStyleEng : textStyle, {color: color, lineHeight: 36 * DP, marginTop: 7 * DP}]}>{label}</Text>
 							</View>
 						);
 					};

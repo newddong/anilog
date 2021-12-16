@@ -22,7 +22,7 @@ export default AssignProtectAnimalDate = props => {
 	});
 
 	React.useEffect(() => {
-		console.log('data / AnimalDate', data);
+		console.log('data / AnimalDate:', data);
 	}, [data]);
 
 	//구조날짜 값 변경 콜백

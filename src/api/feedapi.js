@@ -29,14 +29,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function createFeed (params, callback, errcallback){
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function createFeed(params, callback, errcallback){
+	apiController(serveruri,'/feed/createFeed',arguments);
 };
 
 /**
@@ -59,14 +53,8 @@ export async function createFeed (params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function createMissing (params, callback, errcallback){
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function createMissing(params, callback, errcallback){
+	apiController(serveruri,'/feed/createMissing',arguments);
 };
 
 
@@ -89,14 +77,8 @@ export async function createMissing (params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function createReport (params, callback, errcallback){
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function createReport(params, callback, errcallback){
+	apiController(serveruri,'/feed/createReport',arguments);
 };
 
 
@@ -109,14 +91,8 @@ export async function createReport (params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function getFeedListByUserId (params, callback, errcallback){
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function getFeedListByUserId(params, callback, errcallback){
+	apiController(serveruri,'/feed/getFeedListByUserId',arguments);
 };
 
 
@@ -131,22 +107,8 @@ export async function getFeedListByUserId (params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
 */
- export async function getMissingReportList (params, callback){
-	try {
-		let recieved = await axios.post(serveruri + '/post/getMissingReportList', {
-			city: params.city,
-			protect_animal_species: params.protect_animal_species,
-		});
-		const data = recieved.data;
-		console.log(`getMissingReportList data:${data}`);
-		if (data.status === 200) {
-			callback(data);
-		} else {
-			console.log('getMissingReportList Network Error : ' + JSON.stringify(msg));
-		}
-	} catch (err) {
-		console.log('getMissingReportList Code Error : ' + JSON.stringify(err));
-	}
+ export async function getMissingReportList(params, callback, errcallback){
+	apiController(serveruri,'/feed/getMissingReportList',arguments);
 };
 
 
@@ -158,21 +120,8 @@ export async function getFeedListByUserId (params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export async function getFeedDetailById (params, callback){
-	try {
-		let recieved = await axios.post(serveruri + '/post/getFeedDetailByFeedId', {
-			feedobject_id: params.feedobject_id,
-		});
-		const data = recieved.data;
-		console.log(`getFeedDetailByFeedId data:${data}`);
-		if (data.status === 200) {
-			callback(data);
-		} else {
-			alert('getFeedDetailByFeedId Network Error : ' + JSON.stringify(msg));
-		}
-	} catch (err) {
-		alert('getFeedDetailByFeedId Code Error : ' + JSON.stringify(err));
-	}
+ export async function getFeedDetailById(params, callback, errcallback){
+	apiController(serveruri,'/feed/getFeedDetailById',arguments);
 };
 
 

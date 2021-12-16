@@ -57,6 +57,7 @@ import SelectModal from 'Molecules/SelectModal';
 import Modal from 'Component/modal/Modal';
 import Calendar from 'Root/test_sangwoo/calendar';
 import InputAndSearchHeader from '../header/InputAndSearchHeader';
+import LogoutView from 'Root/test_sangwoo/LogoutView';
 // import Camera from 'Root/component/templete/Camera';
 const RootStack = createStackNavigator();
 
@@ -125,7 +126,7 @@ export default RootStackNavigation = () => {
 		<SafeAreaView style={{flex: 1}}>
 			<NavigationContainer>
 				<RootStack.Navigator initialRouteName="Login">
-					<RootStack.Screen name="MainTab" component={MainTabNavigation} />
+					<RootStack.Screen name="MainTab" component={MainTabNavigation} options={{header: props => <LogoutView {...props} />}} />
 					<RootStack.Screen name="Login" component={LoginTemplete} options={{headerShown: false}} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} options={{header: props => <InputAndSearchHeader {...props} />}} />
 
