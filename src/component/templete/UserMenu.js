@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
-import {getUserProfile} from 'Root/api/userapi_ksw';
+
 import {GRAY10} from 'Root/config/color';
 import {dummy_userObject, dummy_UserObject_shelter} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
@@ -33,7 +33,7 @@ import ProfileImageLarge194 from '../molecules/ProfileImageLarge194';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
 import SocialInfoB from '../organism_ksw/SocialInfoB';
 import {login_style, temp_style, userMenu_style} from './style_templete';
-
+import {getUserProfile} from 'Root/api/usermenuapi';
 export default UserMenu = props => {
 	const navigation = useNavigation();
 	//-test for commit -
@@ -42,9 +42,10 @@ export default UserMenu = props => {
 	//토큰에 로그인한 유저의 _id를 저장
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
+			console.log('token id ', res);
 			getUserProfile(
 				{
-					user_id: res,
+					userobject_id: res,
 				},
 				userObject => {
 					console.log('userObject', userObject);
