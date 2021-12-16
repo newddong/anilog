@@ -31,7 +31,7 @@ export const getUserProfile = async (params, callback) => {
 		const {msg, status} = result.data;
 
 		if (status === 200) {
-			console.log('msg', msg);
+			// console.log('msg', msg);
 			callback(msg);
 		} else {
 			console.log('getUserProfile Network Error : ' + JSON.stringify(result.data.msg));
@@ -43,8 +43,8 @@ export const getUserProfile = async (params, callback) => {
 	}
 };
 
-export const updateUserInformation = async params => {
-	console.log('updatUserInfo', params);
+export const updateUserInformation = async (params, callback) => {
+	console.log('=========updatUserInfo-----', params);
 	try {
 		let result = await axios.post(serveruri + '/user/updateUserInformation', {
 			userobject_id: params.userobject_id,
@@ -54,7 +54,9 @@ export const updateUserInformation = async params => {
 		const {msg, status} = result.data;
 
 		if (status === 200) {
-			console.log('success');
+			console.log('success ProfileChange');
+			console.log('return message', msg);
+			callback(msg);
 		} else {
 			console.log('updateUserInfo Network Error : ' + JSON.stringify(msg));
 		}
