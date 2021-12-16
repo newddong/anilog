@@ -69,6 +69,7 @@ export const getUserLabel = async (params, callback, errcallback) => {
 	}
 };
 
+// user/getUserInfoById에 구현
 /**
  * UserObject 정보 가져오기 [ params - _id]
  *
@@ -129,6 +130,7 @@ export const getProtect_act_list = async (prarms, callback) => {
 	}
 };
 
+//user/userLogout에 구현
 /**
  * 임시 로그아웃
  *

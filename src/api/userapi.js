@@ -239,6 +239,19 @@ export async function changeUserPassword(params, callback, errcallback) {
 	apiController( '/user/changeUserPassword', arguments);
 }
 
+/**
+ * 유저의 상세 정보를 조회
+ * 유저의 타잎에 따라 정보의 필드가 달라짐
+ * @param {object} params
+ * @param {string} params.userobject_id - 비밀번호를 변경하기 위한 유저의 객체 ID
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+export async function getUserInfoById(params, callback, errcallback) {
+	apiController( '/user/getUserInfoById', arguments);
+}
+
+
 //=================================이전 router code =============================================================================
 
 export async function getUserList(params, callback) {

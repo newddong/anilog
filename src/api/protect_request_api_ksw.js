@@ -2,12 +2,13 @@ import axios from 'axios';
 import {serveruri, cookieReset} from 'Screens/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// shelter/createProtectRequest에 구현
 /**
  * 보호소의 보호요청 게시글 등록
  * 연관 템플릿 - WriteAidRequest / SendHeader(함수는 헤더에 존재)
  * 연관 테이블 - ProtectRequestObject
  * @param {object} params
- * @param {Array.<string>} params.protect_request_photos - 신청한 보호 활동의 종류 ( 임시보호 - protect / 입양 - adopt)
+ * @param {Array.<string>} params.protect_request_photos_uri - 신청한 보호 활동의 종류 ( 임시보호 - protect / 입양 - adopt)
  * @param {string} params.protect_request_photo_thumbnail - 보호신청자의 주소
  * @param {string} params.protect_animal_id - 보호 신청자의 반려생활 이력
  * @param {string} params.protect_request_title - 보호활동 신청동기
@@ -22,7 +23,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const assignAidRequest = async (params, callback, errcallback) => {
 	try {
 		let form = new FormData();
-		form.append('protect_request_photos', params.protect_request_photos);
+		form.append('protect_request_photos_uri', params.protect_request_photos_uri);
 		form.append('protect_request_photo_thumbnail', params.protect_request_photo_thumbnail);
 		form.append('protect_animal_id', params.protect_animal_id);
 		form.append('protect_request_title', params.protect_request_title);
@@ -39,6 +40,7 @@ export const assignAidRequest = async (params, callback, errcallback) => {
 	}
 };
 
+// shelter/getShelterProtectAnimalList에 구현
 /**
  * 보호소의 보호동물 리스트 조회 [ AidRequestList 출력용 ]
  * 연관 템플릿 - AidRequestAnimalList(ShelterMenu => 게시글 작성 버튼 클릭 )

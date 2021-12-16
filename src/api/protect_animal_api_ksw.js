@@ -2,6 +2,7 @@ import axios from 'axios';
 import {serveruri, cookieReset} from 'Screens/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// /protect/getUserProtectAnimalList에 구현
 /**
  * 일반 유저가 임시보호 중인 동물 목록 조회
  *
@@ -27,6 +28,7 @@ export const getProtectAnimalList = async (params, callback) => {
 	}
 };
 
+// shelter/getShelterProtectAnimalList에 구현
 /**
  * 보호소의 보호중인 동물 리스트 조회 [ AnimalNeedHelpList 출력용 ]
  * 연관 템플릿 - ShelterPRotectRequest(ShelterMenu => 보호요청 게시글 메뉴 )
