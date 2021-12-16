@@ -26,7 +26,7 @@ import {addressInput} from './style_organism';
  */
 
 const AddressInput = props => {
-	// console.log('addressInpit', props.address);
+	console.log('addressInpit', props.address);
 	const [detailAddr, setDetailAddr] = React.useState();
 	const validator = (addr, detailAddr) => {
 		let isValid = props.validator(addr, detailAddr);

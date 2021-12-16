@@ -22,8 +22,8 @@ export default AidRequestManage = ({route, navigation}) => {
 					request_number: 2,
 				},
 				successed => {
-					console.log('successed / getShelterAnimalList', successed);
-					setData(successed);
+					console.log('successed / getShelterAnimalList', successed.msg);
+					setData(successed.msg);
 				},
 				err => {
 					console.log('err / getShelterAnimalList', err);

@@ -7,6 +7,7 @@ import {PET_KIND, PROTECT_STATUS} from 'Root/i18n/msg';
 import FilterButton from '../molecules/FilterButton';
 import MeatBallDropdown from '../molecules/MeatBallDropdown';
 import {getShelterProtectAnimalList} from 'Root/api/protect_animal_api_ksw';
+import {getProtectRequestList} from 'Root/api/shelterapi';
 
 // ShelterMenu - 보호요청 올린 게시글 클릭
 // params - 로그인한 보호소 유저의 _id
@@ -16,13 +17,19 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 	const [filterStatus, setFilterStatus] = React.useState('');
 
 	React.useEffect(() => {
-		getShelterProtectAnimalList(
+		getProtectRequestList(
 			//현재 로그인한 보호소의 고유 _id를 파라미터로 보내고
 			//_id를 통해 얻어온 보호소의 보호 요청 게시글 리스트를 출력
-			route.params,
+			{
+				city: null,
+				protect_animal_species: filterSpecies,
+				adoptable_posts: filterSpecies == 'rescue',
+				protect_request_object_id: null,
+				request_number: 5,
+			},
 			successed => {
-				console.log('successed', successed);
-				// setProtectAnimalList(successed)
+				console.log('successed', successed.msg);
+				setProtectAnimalList(successed.msg);
 				// 받아온 protect_animal_protect_Request_id로 해당 게시글 좋아요 여부도 판별해야함
 			},
 			err => {

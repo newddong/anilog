@@ -1,4 +1,4 @@
-
+import axios from 'axios';
 /**
  * axios와 api파일의 각 함수들의 공통 작업을 연결하기 위한 컨트롤러
  * @param {string} serveruri - 서버 호스트
@@ -8,10 +8,10 @@
 export async function apiController(serveruri, path, args) {
 	try {
 		let result = await axios.post(serveruri + path, args[0]);
-		if(result.status==200){
-			args[1](result);
-		}else{
-			args[2](result);
+		if (result.status == 200) {
+			args[1](result.data);
+		} else {
+			args[2](result.data);
 		}
 	} catch (err) {
 		args[2](err + ''); //에러 처리 콜백

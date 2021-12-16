@@ -19,16 +19,17 @@ export default LoginTemplete = props => {
 
 	const tryToLogin = () => {
 		Modal.popNoBtn('로그인을 요청합니다.');
+
 		userLogin(
 			{
 				login_id: id,
 				login_password: password,
 			},
 			userObject => {
-				console.log('userObject', userObject);
+				// console.log('userObject / LoginTemplter', userObject.msg._id);
 				Modal.close();
-				Modal.popNoBtn(userObject.user_nickname + '님 로그인이 성공하였습니다.');
-				AsyncStorage.setItem('token', userObject._id);
+				Modal.popNoBtn(userObject.msg.user_nickname + '님 \n 로그인이 성공하였습니다.');
+				AsyncStorage.setItem('token', userObject.msg._id);
 				setTimeout(() => {
 					Modal.close();
 					// alert('홈으로 이동');
