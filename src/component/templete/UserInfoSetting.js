@@ -40,6 +40,7 @@ export default UserInfoSetting = ({route}) => {
 	}, []);
 
 	React.useEffect(() => {
+		console.log(`data${JSON.stringify(data)}`);
 		setCompanions(data.user_my_pets);
 	}, [data]);
 

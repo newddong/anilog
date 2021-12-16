@@ -1,17 +1,16 @@
 import axios from 'axios';
-import {serveruri, cookieReset} from 'Screens/server';
+import {serveruri, cookieReset} from 'Root/config/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
  * axios와 api파일의 각 함수들의 공통 작업을 연결하기 위한 컨트롤러
- * @param {string} serveruri - 서버 호스트
  * @param {string} path - API 호출 경로
  * @param {IArguments}} args - 함수의 arguments, MDN참조
  */
-export async function apiController(serveruri, path, args) {
+export async function apiController(path, args) {
 	let existFileField = Object.keys(args[0]).some((v)=>v.includes('uri'));
 	if(existFileField){
-		apiFormController(serveruri,path,args);
+		apiFormController(path,args);
 		return;
 	}
 
@@ -37,11 +36,11 @@ export async function apiController(serveruri, path, args) {
 /**
  * axios와 api파일의 각 함수들의 공통 작업을 연결하기 위한 컨트롤러
  * FormData를 이용
- * @param {string} serveruri - 서버 호스트
  * @param {string} path - API 호출 경로
  * @param {IArguments}} args - 함수의 arguments, MDN참조
  */
-export async function apiFormController(serveruri, path, args) {
+export async function apiFormController(path, args) {
+	
 	try {
 		let form = new FormData();
 		Object.entries(args[0]).forEach((v)=>{
