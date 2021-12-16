@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {serveruri, cookieReset} from 'Screens/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {apiController} from './apiController';
+import {apiController, apiFormController} from './apiController';
 
 /**
  * 유저를 등록하는 함수
@@ -28,7 +28,7 @@ import {apiController} from './apiController';
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function assignUser (params, callback, errcallback){
-	apiController(serveruri,'/user/assignUser',arguments);
+	apiFormController(serveruri,'/user/assignUser',arguments);
 };
 
 
