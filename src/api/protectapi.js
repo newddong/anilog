@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {serveruri, cookieReset} from 'Screens/server';
+import {serveruri, cookieReset} from 'Root/config/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**

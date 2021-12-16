@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {serveruri, cookieReset} from 'Screens/server';
+import {serveruri, cookieReset} from 'Root/config/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {apiController} from './apiController';
 
@@ -20,7 +20,7 @@ import {apiController} from './apiController';
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function assignShelterAnimal(params, callback, errcallback) {
-	apiController(serveruri, '/shelter/assignShelterAnimal', arguments);
+	apiController( '/shelter/assignShelterAnimal', arguments);
 }
 
 /**
@@ -35,7 +35,7 @@ export async function assignShelterAnimal(params, callback, errcallback) {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function createProtectRequest(params, callback, errcallback) {
-	apiController(serveruri, '/shelter/createProtectRequest', arguments);
+	apiController( '/shelter/createProtectRequest', arguments);
 }
 
 /**
@@ -50,7 +50,7 @@ export async function createProtectRequest(params, callback, errcallback) {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백 *
  */
 export async function getProtectRequestList(params, callback, errcallback) {
-	apiController(serveruri, '/shelter/getProtectRequestList', arguments);
+	apiController( '/shelter/getProtectRequestList', arguments);
 }
 
 /**
@@ -70,5 +70,5 @@ export async function getProtectRequestList(params, callback, errcallback) {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function getShelterProtectAnimalList(params, callback, errcallback) {
-	apiController(serveruri, '/shelter/getShelterProtectAnimalList', arguments);
+	apiController( '/shelter/getShelterProtectAnimalList', arguments);
 }

@@ -28,7 +28,7 @@ import {apiController, apiFormController} from './apiController';
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function assignUser (params, callback, errcallback){
-	apiController(serveruri,'/user/assignUser',arguments);
+	apiController('/user/assignUser',arguments);
 };
 
 
@@ -43,7 +43,7 @@ export async function assignUser (params, callback, errcallback){
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function checkProtectPet(params, callback, errcallback) {
-	apiController(serveruri, '/user/checkProtectPet', arguments);
+	apiController( '/user/checkProtectPet', arguments);
 }
 
 /**
@@ -66,7 +66,7 @@ export async function checkProtectPet(params, callback, errcallback) {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function assignPet(params, callback, errcallback) {
-	apiController(serveruri, '/user/assignPet', arguments);
+	apiController( '/user/assignPet', arguments);
 }
 
 /**
@@ -88,7 +88,7 @@ export async function assignPet(params, callback, errcallback) {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function assignShelter(params, callback, errcallback) {
-	apiController(serveruri, '/user/assignShelter', arguments);
+	apiController( '/user/assignShelter', arguments);
 }
 
 /**
@@ -100,7 +100,7 @@ export async function assignShelter(params, callback, errcallback) {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function checkShelterCode(params, callback, errcallback) {
-	apiController(serveruri, '/user/checkShelterCode', arguments);
+	apiController( '/user/checkShelterCode', arguments);
 }
 
 /**
@@ -114,7 +114,7 @@ export async function checkShelterCode(params, callback, errcallback) {
  */
 export async function userLogin(params, callback, errcallback) {
 	// console.log('param userLogin', params);
-	apiController(serveruri, '/user/userLogin', arguments);
+	apiController( '/user/userLogin', arguments);
 }
 
 /**
@@ -123,7 +123,7 @@ export async function userLogin(params, callback, errcallback) {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function userLogout(params, callback, errcallback) {
-	apiController(serveruri, '/user/userLogout', arguments);
+	apiController( '/user/userLogout', arguments);
 }
 
 /**
@@ -136,7 +136,7 @@ export async function userLogout(params, callback, errcallback) {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function getUserProfile(params, callback, errcallback) {
-	apiController(serveruri, '/user/getUserProfile', arguments);
+	apiController( '/user/getUserProfile', arguments);
 }
 
 /**
@@ -148,7 +148,7 @@ export async function getUserProfile(params, callback, errcallback) {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function nicknameDuplicationCheck(params, callback, errcallback) {
-	apiController(serveruri, '/user/nicknameDuplicationCheck', arguments);
+	apiController( '/user/nicknameDuplicationCheck', arguments);
 }
 
 /**
@@ -162,7 +162,7 @@ export async function nicknameDuplicationCheck(params, callback, errcallback) {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function updateUserInformation(params, callback, errcallback) {
-	apiController(serveruri, '/user/updateUserInformation', arguments);
+	apiController( '/user/updateUserInformation', arguments);
 }
 
 /**
@@ -193,7 +193,7 @@ export async function updateUserInformation(params, callback, errcallback) {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function updateUserDetailInformation(params, callback, errcallback) {
-	apiController(serveruri, '/user/updateUserDetailInformation', arguments);
+	apiController( '/user/updateUserDetailInformation', arguments);
 }
 
 /**
@@ -209,7 +209,7 @@ export async function updateUserDetailInformation(params, callback, errcallback)
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function updatePetDetailInformation(params, callback, errcallback) {
-	apiController(serveruri, '/user/updatePetDetailInformation', arguments);
+	apiController( '/user/updatePetDetailInformation', arguments);
 }
 
 /**
@@ -222,7 +222,7 @@ export async function updatePetDetailInformation(params, callback, errcallback) 
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function addUserToFamily(params, callback, errcallback) {
-	apiController(serveruri, '/user/addUserToFamily', arguments);
+	apiController( '/user/addUserToFamily', arguments);
 }
 
 /**
@@ -236,7 +236,7 @@ export async function addUserToFamily(params, callback, errcallback) {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
 export async function changeUserPassword(params, callback, errcallback) {
-	apiController(serveruri, '/user/changeUserPassword', arguments);
+	apiController( '/user/changeUserPassword', arguments);
 }
 
 //=================================이전 router code =============================================================================
