@@ -29,7 +29,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const createFeed = async (params, callback, errcallback) => {
+export async function createFeed (params, callback, errcallback){
 	try {
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
@@ -59,7 +59,7 @@ export const createFeed = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const createMissing = async (params, callback, errcallback) => {
+export async function createMissing (params, callback, errcallback){
 	try {
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
@@ -89,7 +89,7 @@ export const createMissing = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const createReport = async (params, callback, errcallback) => {
+export async function createReport (params, callback, errcallback){
 	try {
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
@@ -109,7 +109,7 @@ export const createReport = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const getFeedListByUserId = async (params, callback, errcallback) => {
+export async function getFeedListByUserId (params, callback, errcallback){
 	try {
 		//서버와 통신
 		// throw new Error('확인되지 않은 코드');
@@ -131,7 +131,7 @@ export const getFeedListByUserId = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
 */
- export const getMissingReportList = async (params, callback) => {
+ export async function getMissingReportList (params, callback){
 	try {
 		let recieved = await axios.post(serveruri + '/post/getMissingReportList', {
 			city: params.city,
@@ -158,7 +158,7 @@ export const getFeedListByUserId = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const getFeedDetailById = async (params, callback) => {
+ export async function getFeedDetailById (params, callback){
 	try {
 		let recieved = await axios.post(serveruri + '/post/getFeedDetailByFeedId', {
 			feedobject_id: params.feedobject_id,
@@ -182,7 +182,7 @@ export const getFeedListByUserId = async (params, callback, errcallback) => {
 
 
 //--이전 버전의 API들 --
-export const getPostList = async (params, /*data, likedPosts,*/ callback) => {
+export async function getPostList (params, /*data, likedPosts,*/ callback){
 	console.log('getPostList');
 	try {
 		let recieved = await axios.post(serveruri + '/post/getPostList', {number: params.number});
@@ -204,7 +204,7 @@ export const getPostList = async (params, /*data, likedPosts,*/ callback) => {
 	}
 };
 
-export const getMorePostList = async (params, /*data, likedPosts,*/ callback) => {
+export async function getMorePostList (params, /*data, likedPosts,*/ callback){
 	console.log('getMorePostList' + params.post_id);
 	try {
 		let recieved = await axios.post(serveruri + '/post/getMorePostList', {
@@ -230,7 +230,7 @@ export const getMorePostList = async (params, /*data, likedPosts,*/ callback) =>
 	}
 };
 
-export const getPostListByUserId = async (params, /*data, likedPosts,*/ callback) => {
+export async function getPostListByUserId (params, /*data, likedPosts,*/ callback){
 	try {
 		// data.splice(0);
 		let recieved = await axios.post(serveruri + '/post/getPostListByUserId', {
@@ -256,7 +256,7 @@ export const getPostListByUserId = async (params, /*data, likedPosts,*/ callback
 	}
 };
 
-export const getMorePostListByUserId = async (params, /* data, likedPosts,*/ callback) => {
+export async function getMorePostListByUserId (params, /* data, likedPosts,*/ callback){
 	try {
 		let recieved = await axios.post(serveruri + '/post/getMorePostListByUserId', {
 			user_id: params.user_id, //수정
@@ -292,7 +292,7 @@ export const getMorePostListByUserId = async (params, /* data, likedPosts,*/ cal
 	}
 };
 
-export const likePost = async (params, callback) => {
+export async function likePost (params, callback){
 	console.log('likePost=>' + params.post_id);
 	try {
 		let result = await axios.post(serveruri + '/post/likePost', {
@@ -308,7 +308,7 @@ export const likePost = async (params, callback) => {
 	}
 };
 
-export const dislikePost = async (params, callback) => {
+export async function dislikePost (params, callback){
 	console.log('dislikePost=>' + params.post_id);
 	try {
 		let result = await axios.post(serveruri + '/post/dislikePost', {
@@ -324,7 +324,7 @@ export const dislikePost = async (params, callback) => {
 	}
 };
 
-export const createPost = async (params, callback) => {
+export async function createPost (params, callback){
 	console.log('createPost=>' + params);
 	let form = new FormData();
 	form.append('location', params.location);
@@ -358,7 +358,7 @@ export const createPost = async (params, callback) => {
 	}
 };
 
-export const editPost = async (params, callback) => {
+export async function editPost (params, callback){
 	// console.log('editPost=>'+ JSON.stringify(params));
 	let form = new FormData();
 	form.append('post_id', params.post_id);
@@ -409,7 +409,7 @@ export const editPost = async (params, callback) => {
 
 //comment api
 
-export const getCommentList = async (params, callback) => {
+export async function getCommentList (params, callback){
 	console.log('getCommentList');
 	try {
 		let result = await axios.post(serveruri + '/comment/getCommentList', {
@@ -425,7 +425,7 @@ export const getCommentList = async (params, callback) => {
 	}
 };
 
-export const getChildCommentList = async (params, callback) => {
+export async function getChildCommentList (params, callback){
 	console.log('getChildCommentList');
 	try {
 		let result = await axios.post(serveruri + '/comment/getChildCommentList', {
@@ -441,7 +441,7 @@ export const getChildCommentList = async (params, callback) => {
 	}
 };
 
-export const createComment = async (params, callback) => {
+export async function createComment (params, callback){
 	console.log('createComment');
 	let form = new FormData();
 	form.append('post_id', params.post_id);
@@ -463,7 +463,7 @@ export const createComment = async (params, callback) => {
 	}
 };
 
-export const modifyComment = async (params, callback) => {
+export async function modifyComment (params, callback){
 	console.log('editComment');
 	let form = new FormData();
 	form.append('comment_id', params.comment_id);
@@ -492,7 +492,7 @@ export const modifyComment = async (params, callback) => {
 	}
 };
 
-export const deleteComment = async (params, callback) => {
+export async function deleteComment (params, callback){
 	console.log('deleteComment');
 	try {
 		let result = await axios.post(serveruri + '/comment/deleteComment', {
@@ -508,7 +508,7 @@ export const deleteComment = async (params, callback) => {
 	}
 };
 
-export const likeComment = async (params, callback) => {
+export async function likeComment (params, callback){
 	console.log('likeComment=>' + params.comment_id);
 	try {
 		let result = await axios.post(serveruri + '/comment/likeComment', {
@@ -524,7 +524,7 @@ export const likeComment = async (params, callback) => {
 	}
 };
 
-export const dislikeComment = async (params, callback) => {
+export async function dislikeComment (params, callback){
 	console.log('dislikeComment=>' + params.comment_id);
 	try {
 		let result = await axios.post(serveruri + '/comment/dislikeComment', {

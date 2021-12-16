@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {serveruri, cookieReset} from 'Screens/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {apiController} from './apiController';
 
 /**
  * 유저를 등록하는 함수
@@ -26,14 +27,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {function} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const assignUser = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function assignUser (params, callback, errcallback){
+	apiController(serveruri,'/user/assignUser',arguments);
 };
+
+
+
 
 /**
  * 유저가 등록중인 임시보호/입양할 동물이 있는지 체크
@@ -43,13 +42,8 @@ export const assignUser = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const checkProtectPet = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function checkProtectPet (params, callback, errcallback){
+	apiController(serveruri,'/user/checkProtectPet',arguments);
 };
 
 /**
@@ -71,13 +65,8 @@ export const checkProtectPet = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const assignPet = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function assignPet(params, callback, errcallback){
+	apiController(serveruri,'/user/assignPet',arguments);
 };
 
 /**
@@ -98,14 +87,8 @@ export const assignPet = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const assignShelter = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function assignShelter(params, callback, errcallback){
+	apiController(serveruri,'/user/assignShelter',arguments);
 };
 
 /**
@@ -116,14 +99,8 @@ export const assignShelter = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const checkShelterCode = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function checkShelterCode(params, callback, errcallback){
+	apiController(serveruri,'/user/checkShelterCode',arguments);
 };
 
 /**
@@ -135,14 +112,8 @@ export const checkShelterCode = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const userLogin = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function userLogin(params, callback, errcallback){
+	apiController(serveruri,'/user/userLogin',arguments);
 };
 
 /**
@@ -150,14 +121,8 @@ export const userLogin = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const userLogout = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+ export async function userLogout(params, callback, errcallback){
+	apiController(serveruri,'/user/userLogout',arguments);
 };
 
 /**
@@ -169,14 +134,8 @@ export const userLogin = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const getUserProfile = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function getUserProfile(params, callback, errcallback){
+	apiController(serveruri,'/user/getUserProfile',arguments);
 };
 
 /**
@@ -187,14 +146,8 @@ export const getUserProfile = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const nicknameDuplicationCheck = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function nicknameDuplicationCheck(params, callback, errcallback){
+	apiController(serveruri,'/user/nicknameDuplicationCheck',arguments);
 };
 
 /**
@@ -207,14 +160,8 @@ export const nicknameDuplicationCheck = async (params, callback, errcallback) =>
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const updateUserInformation = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function updateUserInformation(params, callback, errcallback){
+	apiController(serveruri,'/user/updateUserInformation',arguments);
 };
 
 /**
@@ -244,14 +191,8 @@ export const updateUserInformation = async (params, callback, errcallback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const updateUserDetailInformation = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function updateUserDetailInformation(params, callback, errcallback){
+	apiController(serveruri,'/user/updateUserDetailInformation',arguments);
 };
 
 /**
@@ -266,14 +207,8 @@ export const updateUserDetailInformation = async (params, callback, errcallback)
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const updatePetDetailInformation = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function updatePetDetailInformation(params, callback, errcallback){
+	apiController(serveruri,'/user/updatePetDetailInformation',arguments);
 };
 
 
@@ -288,14 +223,8 @@ export const updatePetDetailInformation = async (params, callback, errcallback) 
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const addUserToFamily = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+ export async function addUserToFamily(params, callback, errcallback){
+	apiController(serveruri,'/user/addUserToFamily',arguments);
 };
 
 /**
@@ -308,21 +237,15 @@ export const updatePetDetailInformation = async (params, callback, errcallback) 
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const changeUserPassword = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+export async function changeUserPassword(params, callback, errcallback){
+	apiController(serveruri,'/user/changeUserPassword',arguments);
 };
 
 
 
 //=================================이전 router code =============================================================================
 
-export const getUserList = async (params, callback) => {
+export async function getUserList (params, callback){
 	console.log('getUserList');
 	try {
 		let recieved = await axios.post(serveruri + '/user/getUserList', {nickname: params.nickname});
@@ -344,7 +267,7 @@ export const getUserList = async (params, callback) => {
 	}
 };
 
-export const addUser = async (params, callback) => {
+export async function addUser (params, callback){
 	console.log('addUser');
 	try {
 		let form = new FormData();
@@ -368,7 +291,7 @@ export const addUser = async (params, callback) => {
 	}
 };
 
-export const addPet = async (params, callback) => {
+export async function addPet (params, callback){
 	console.log('addPet');
 	try {
 		let form = new FormData();
@@ -405,7 +328,7 @@ export const addPet = async (params, callback) => {
 	}
 };
 
-export const getUserPetList = async (params, callback) => {
+export async function getUserPetList (params, callback){
 	console.log('getUserPetList');
 	try {
 		let token = await AsyncStorage.getItem('token');
