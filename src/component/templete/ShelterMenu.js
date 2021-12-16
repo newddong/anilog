@@ -57,7 +57,7 @@ export default ShelterMenu = ({route}) => {
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', async (err, res) => {
-			Modal.popNoBtn('Loading');
+			// Modal.popNoBtn('Loading');
 			await getUserProfile(
 				{
 					userobject_id: res,
@@ -65,7 +65,7 @@ export default ShelterMenu = ({route}) => {
 				userObject => {
 					console.log('userObject', userObject._id);
 					setData(userObject);
-					Modal.close();
+					// Modal.close();
 				},
 			);
 		});
@@ -176,7 +176,7 @@ export default ShelterMenu = ({route}) => {
 			// 보호 요청 올린 게시글
 			case UPLOADED_POST_FOR_REQ_PROTECTION:
 				//보호요청 게시글 스크린 필요 데이터 : ShelterProtectAnimalObject.protect_animal_writer_id == userData._id가 일치하는 것을 검색해야한다
-				navigation.push('ShelterProtectRequests', data._id);
+				navigation.push('ShelterProtectRequests');
 				break;
 			//커뮤니티
 			case COMUNITY:

@@ -81,7 +81,7 @@ export const getUserProfile = async (params, callback, errcallback) => {
 	console.log('para', params);
 	try {
 		let result = await axios.post(serveruri + '/user/getUserProfile', {
-			userobject_id: '61b9eba4185a4f69d5981ad6',
+			userobject_id: params,
 		});
 		const {msg, status} = result.data;
 		console.log('msg', msg);

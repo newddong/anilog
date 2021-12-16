@@ -35,9 +35,9 @@ export default Profile = props => {
 	const [showOwnerState, setShowOwnerState] = React.useState(false); // 현재 로드되어 있는 profile의 userType이 Pet인 경우 반려인 계정 리스트의 출력 여부
 	const [showCompanion, setShowCompanion] = React.useState(false); // User계정이 반려동물버튼을 클릭
 	//현재 접속 중인 계정의 _id를 토큰에 저장
-	React.useEffect(() => {
-		AsyncStorage.setItem('token', JSON.stringify(userData._id));
-	}, []);
+	// React.useEffect(() => {
+	// 	AsyncStorage.setItem('token', JSON.stringify(userData._id));
+	// }, []);
 
 	React.useEffect(() => {
 		// console.log('profileData userTYpe', profile_data.user_type);

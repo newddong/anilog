@@ -19,7 +19,7 @@ export default LogoutView = ({route}) => {
 						1,
 						e => {
 							console.log('e', e);
-							AsyncStorage.removeItem('token');
+							AsyncStorage.clear();
 							alert('Logout 성공');
 							navigation.navigate('Login');
 						},

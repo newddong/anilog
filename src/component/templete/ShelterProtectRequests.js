@@ -6,7 +6,6 @@ import {dummy_AnimalNeedHelpList_various_status, dummy_ShelterProtectAnimalObjec
 import {PET_KIND, PROTECT_STATUS} from 'Root/i18n/msg';
 import FilterButton from '../molecules/FilterButton';
 import MeatBallDropdown from '../molecules/MeatBallDropdown';
-import {getShelterProtectAnimalList} from 'Root/api/protect_animal_api_ksw';
 import {getProtectRequestList} from 'Root/api/shelterapi';
 
 // ShelterMenu - 보호요청 올린 게시글 클릭
@@ -23,12 +22,12 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 			{
 				city: null,
 				protect_animal_species: filterSpecies,
-				adoptable_posts: filterSpecies == 'rescue',
+				adoptable_posts: filterStatus == 'rescue',
 				protect_request_object_id: null,
 				request_number: 5,
 			},
 			successed => {
-				console.log('successed', successed.msg);
+				// console.log('successed', successed.msg);
 				setProtectAnimalList(successed.msg);
 				// 받아온 protect_animal_protect_Request_id로 해당 게시글 좋아요 여부도 판별해야함
 			},
@@ -36,27 +35,15 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 				console.log('err', err);
 			},
 		);
-	}, [route]);
+	}, []);
 
 	React.useEffect(() => {
-		//동물종류에 따른 필터 => 보호동물 리스트 갱신
-		if (filterSpecies != '동물종류') {
-			let copy = [...dummy_ShelterProtectAnimalObject]; //시작은 항상 기존의 DB자료
-			copy = copy.filter(e => e.protect_animal_species == filterSpecies);
-			setProtectAnimalList(copy);
-		} else {
-			setProtectAnimalList(dummy_ShelterProtectAnimalObject); // 디폴트인 '동물종류'가 된다면 다시 기존의 리스트로 회귀
-		}
-	}, [filterSpecies]);
-
-	React.useEffect(() => {
-		//보호동물의 상태에 따른 필터 => 보호동물 리스트 갱신
-		if (filterStatus) {
-			let copy = [...dummy_ShelterProtectAnimalObject];
-			copy = copy.filter(e => e.protect_request_status == filterStatus);
-			setProtectAnimalList(copy);
-		}
-	}, [filterStatus]);
+		//getProtectRequestList만으로는 AnimalNeedHelpList를 출력할 수 없음.
+		//펫정보가 없기 때문 ShelterProtectAnimal 정보를 얻어와야함
+		protectAnimalList.map((v, i) => {
+			console.log('v', v.protect_animal_id);
+		});
+	}, [protectAnimalList]);
 
 	//보호 게시글 목록의 라벨 클릭 콜백
 	const onClickLabel = (status, user_id, item) => {
@@ -108,3 +95,63 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 		</View>
 	);
 };
+
+const suc = [
+	{
+		__v: 0,
+		_id: '61b8bb76bd39aff1f156d4eb',
+		protect_animal_id: '61b852bcc02491f75d05851f',
+		protect_request_comment_count: 0,
+		protect_request_content: '성스러운 동물입니다.',
+		protect_request_date: '2021-12-14T15:42:46.237Z',
+		protect_request_favorite_count: 0,
+		protect_request_hit: 0,
+		protect_request_photos: [
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639496566052_5Os47PJIncQ.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639496566058_ZqmyLg58kgA.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639469755996_GQduCe7EI_0.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639469756009_P5v-dOEsmdw.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639469756038_Uhky0oIkFCE.jpg',
+		],
+		protect_request_status: 'rescue',
+		protect_request_title: '어디선가 용이 집앞에 왓어요',
+		protect_request_update_date: '2021-12-14T15:42:46.237Z',
+		protect_request_writer_id: '61b585861d58f109766f5f0f',
+	},
+	{
+		__v: 0,
+		_id: '61b9ec5a185a4f69d5981ade',
+		protect_animal_id: '61b9ec3c185a4f69d5981adb',
+		protect_request_comment_count: 0,
+		protect_request_content: '제곧내',
+		protect_request_date: '2021-12-15T13:23:38.284Z',
+		protect_request_favorite_count: 0,
+		protect_request_hit: 0,
+		protect_request_photos: [
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639574618193_%EC%BA%A1%EC%B2%98.JPG',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639574588100_%EC%BA%A1%EC%B2%98.JPG',
+		],
+		protect_request_status: 'rescue',
+		protect_request_title: '우리 덴데의 어머니를 찾아요',
+		protect_request_update_date: '2021-12-15T13:23:38.284Z',
+		protect_request_writer_id: '61b9eba4185a4f69d5981ad6',
+	},
+	{
+		__v: 0,
+		_id: '61baa01b4772b1e1d3f2ed7a',
+		protect_animal_id: '61ba9e454772b1e1d3f2ed64',
+		protect_request_comment_count: 0,
+		protect_request_content: '너 귀여운 믹스견입니다. 잘먹고 잘싸고 귀엽네요 ~ 혹시 생각이 있으신분들은 연락 바랍니다.',
+		protect_request_date: '2021-12-16T02:10:35.222Z',
+		protect_request_favorite_count: 0,
+		protect_request_hit: 0,
+		protect_request_photos: [
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639620635071_0.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639620165628_0.jpg',
+		],
+		protect_request_status: 'rescue',
+		protect_request_title: '귀여운 아가 믹스견',
+		protect_request_update_date: '2021-12-16T02:10:35.222Z',
+		protect_request_writer_id: '61b9eba4185a4f69d5981ad6',
+	},
+];

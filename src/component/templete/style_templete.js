@@ -3377,7 +3377,7 @@ export const manageVolunteer = StyleSheet.create({
 		alignItems: 'center',
 	},
 	volunteerList: {
-		width: 654 * DP,
+		width: 750 * DP,
 		marginBottom: 50 * DP,
 	},
 	previous_volunteerList: {

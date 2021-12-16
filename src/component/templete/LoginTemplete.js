@@ -26,7 +26,7 @@ export default LoginTemplete = props => {
 				login_password: password,
 			},
 			userObject => {
-				// console.log('userObject / LoginTemplter', userObject.msg._id);
+				console.log('userObject / LoginTemplter', userObject.msg._id);
 				Modal.close();
 				Modal.popNoBtn(userObject.msg.user_nickname + '님 \n 로그인이 성공하였습니다.');
 				AsyncStorage.setItem('token', userObject.msg._id);
@@ -67,19 +67,19 @@ export default LoginTemplete = props => {
 
 	//아이디 입력
 	const onChangeId = id => {
-		console.log('유저 아이디 입력', id);
+		// console.log('유저 아이디 입력', id);
 		setId(id);
 	};
 
 	//암호입력
 	const onChangePassword = pwd => {
-		console.log('암호입력', pwd);
+		// console.log('암호입력', pwd);
 		setPassword(pwd);
 	};
 
 	//Password Text Input Validator
 	const passwordValidator = text => {
-		console.log('Validator' + text);
+		// console.log('Validator' + text);
 		return true;
 	};
 	//Id Text Input Validator
