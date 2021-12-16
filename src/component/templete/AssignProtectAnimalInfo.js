@@ -26,7 +26,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 		...route.params,
 		protect_animal_estimate_age: year + '년 ' + month + '개월',
 		// protect_animal_estimate_month: PET_MONTH[0],
-		protect_animal_weight: '0',
+		protect_animal_weight: '',
 		//AssignPetInfoA 에서는 UserObject 반려동물 등록에 맞춘 컬럼명으로 지정되어 있으므로 이를 Protect_animal로 처리
 		protect_animal_sex: route.params.pet_sex,
 		protect_animal_species: route.params.pet_species,
@@ -37,13 +37,10 @@ export default AssignProtectAnimalInfo = ({route}) => {
 
 	const [year, setYear] = React.useState(PET_YEAR[0]);
 	const [month, setMonth] = React.useState(PET_MONTH[0]);
+
 	React.useEffect(() => {
 		setData({...data, protect_animal_estimate_age: year == 0 ? month + '개월' : year + '년 ' + month + '개월'});
 	}, [year, month]);
-
-	React.useEffect(() => {
-		console.log('data', data);
-	}, [data]);
 
 	//체중 Value 변동 시 실행
 	const onChangeKg = kg => {
@@ -53,6 +50,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 	//등록 버튼 => 모달에서 '새 글 작성' 클릭
 	const goToWriteAidRequest = () => {
 		Modal.close();
+		console.log('before Write Aid REquest', data);
 		navigation.dispatch(
 			CommonActions.reset({
 				index: 1,
@@ -74,26 +72,8 @@ export default AssignProtectAnimalInfo = ({route}) => {
 		navigation.push('ShelterMenu');
 	};
 
-	const log = {
-		pet_neutralization: 'unknown',
-		pet_sex: 'female',
-		pet_species: '개',
-		pet_species_detail: '요크',
-		protect_animal_estimate_age: '1년 1개월',
-		protect_animal_neutralization: 'unknown',
-		protect_animal_photos: [
-			'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/7A7A3552-9E9F-4364-A61E-6C0B10F84A89/tmp/E693BC58-3E16-4BFF-B1BC-740BBA50E064.jpg',
-		],
-		protect_animal_rescue_date: '2021.12.08',
-		protect_animal_rescue_location: 'Dalas',
-		protect_animal_sex: 'female',
-		protect_animal_species: '개',
-		protect_animal_species_detail: '요크',
-		protect_animal_weight: '1.5',
-	};
-
 	const registerProtectPet = () => {
-		console.log('register? ', data);
+		// console.log('register? ', data);
 		assignShelterAnimal(
 			data,
 			data => {
@@ -157,7 +137,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 				<Text style={[txt.noto24, {color: GRAY10}]}>해당 동물의 예상 연령과 체중, 중성화 여부를 적어주세요.</Text>
 			</View>
 
-			<View style={[temp_style.inputForm_assignProtectAnimal, assignProtectAnimal_style.selectedMediaList]}>
+			<View style={[temp_style.inputForm_assignProtectAnimal]}>
 				{/* 예상 연령 */}
 				<View style={[temp_style.inputForm_assignProtectAnimal_line1]}>
 					<View style={assignProtectAnimal_style.width118}>

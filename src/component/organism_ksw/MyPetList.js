@@ -23,7 +23,9 @@ export default MyPetList = props => {
 	return (
 		<View style={[myPetList.container]}>
 			<AddPet onAdd={() => props.addPet()} />
-			<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
+			<>
+				<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
+			</>
 		</View>
 	);
 };
