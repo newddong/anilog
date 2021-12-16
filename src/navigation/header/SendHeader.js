@@ -6,17 +6,32 @@ import {WHITE, APRI10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import Modal from 'Root/component/modal/Modal';
 import {assignAidRequest} from 'Root/api/protect_request_api_ksw';
+import {createProtectRequest} from 'Root/api/shelterapi';
 
 export default SendHeader = ({route, navigation, options}) => {
-	// console.log('props SendHeader', props);
+	console.log('props SendHeader', route.params);
+
+	const res = {
+		protect_animal_id: '61ba0dfa4772b1e1d3f2ebaa',
+		protect_request_content: 'Cc1',
+		protect_request_photo_thumbnail: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+		protect_request_photos: [
+			'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/7A7A3552-9E9F-4364-A61E-6C0B10F84A89/tmp/2316A79B-8F91-4B85-8625-3FF5CB81CACB.jpg',
+		],
+		protect_request_status: 'rescue',
+		protect_request_title: 'Dd1',
+	};
+
 	const onSend = () => {
 		if (route.params.data) {
-			// console.log('route, SendHeader', route.params.data);
-
+			console.log('OnSend', route.params.data);
+			const data = route.params.data;
 			switch (route.params.nav) {
-				case 'AidRequestAnimalList':
-					navigation.push('WriteAidRequest', {data: route.params.data});
+				case 'AidRequestAnimalList': {
+					console.log('route, SendHeader / AidRequestAnimalList', data);
+					navigation.push('WriteAidRequest', {data: data});
 					break;
+				}
 				case 'WriteAidRequest': {
 					Modal.popTwoBtn(
 						'해당 내용으로 보호요청 \n 게시글을 작성하시겠습니까?',
@@ -24,10 +39,16 @@ export default SendHeader = ({route, navigation, options}) => {
 						'확인',
 						() => Modal.close(),
 						() => {
-							assignAidRequest(
-								route.params.data,
+							console.log('Before Create', data);
+							createProtectRequest(
+								{
+									protect_request_photos: data.protect_request_photos,
+									shelter_protect_animal_object_id: data.protect_animal_id,
+									protect_request_title: data.protect_request_title,
+									protect_request_content: data.protect_request_content,
+								},
 								successed => {
-									console.log('successed / assignAidRequest', successed);
+									console.log('successed / createProtectRequest', successed);
 									Modal.popNoBtn('보호요청 게시글 \n 작성이 완료되었습니다!');
 									setTimeout(() => {
 										Modal.close();
@@ -35,7 +56,7 @@ export default SendHeader = ({route, navigation, options}) => {
 									}, 1500);
 								},
 								err => {
-									console.log('err, assignAidRequest', err);
+									console.log('err, createProtectRequest', err);
 								},
 							);
 							Modal.close();

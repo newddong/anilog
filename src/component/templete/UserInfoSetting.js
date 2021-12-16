@@ -74,6 +74,7 @@ export default UserInfoSetting = ({route}) => {
 	};
 
 	const onClickCompanionLabel = myPetData => {
+		console.log('myPetdata', myPetData);
 		navigation.push('PetInfoSetting', myPetData);
 	};
 
@@ -179,7 +180,7 @@ export default UserInfoSetting = ({route}) => {
 						</View>
 					</View>
 					<View style={[temp_style.myPetList_myPetList]}>
-						<MyPetList items={companions} onLabelClick={myPetData => onClickCompanionLabel(myPetData)} addPet={onPressAddPet} />
+						<MyPetList items={companions} onLabelClick={onClickCompanionLabel} addPet={onPressAddPet} />
 					</View>
 				</View>
 			</ScrollView>

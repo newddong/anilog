@@ -22,8 +22,8 @@ export default AidRequestManage = ({route, navigation}) => {
 					request_number: 2,
 				},
 				successed => {
-					console.log('successed / getShelterAnimalList', successed);
-					setData(successed);
+					console.log('successed / getShelterAnimalList', successed.msg);
+					setData(successed.msg);
 				},
 				err => {
 					console.log('err / getShelterAnimalList', err);
@@ -32,10 +32,14 @@ export default AidRequestManage = ({route, navigation}) => {
 		} else {
 			//token(id)를 토대로 보호소 계정이 등록한 보호요청 게시글 중 신청서가 들어와 있는 목록을 조회
 
-			getRequestAnimalListApplied(
-				token,
+			getShelterProtectAnimalList(
+				{
+					shelter_protect_animal_object_id: null,
+					request_number: 2,
+				},
 				successed => {
-					console.log('successed / getShelterAnimalList', successed);
+					console.log('successed / getShelterAnimalList', successed.msg);
+					setData(successed.msg);
 				},
 				err => {
 					console.log('err / getShelterAnimalList', err);

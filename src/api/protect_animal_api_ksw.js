@@ -43,20 +43,4 @@ export const getProtectAnimalList = async (params, callback) => {
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export const getShelterProtectAnimalList = async (params, callback) => {
-	console.log('getShelterProtectAnimalList / params', params);
-	try {
-		let result = await axios.post(serveruri + '/user/getShelterProtectAnimalList', {
-			shelter_id: params,
-		});
-		const {msg, status} = result.data;
-		if (status === 200) {
-			// console.log('msg', msg);
-			callback(msg);
-		} else {
-			console.log('getShelterProtectAnimalList Network Error : ' + JSON.stringify(result.data.msg));
-		}
-	} catch (err) {
-		console.log('getShelterProtectAnimalList Cde Error :' + JSON.stringify(err.message)); //에러 처리 콜백
-	}
-};
+export const getShelterProtectAnimalList = async (params, callback) => {};

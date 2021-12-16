@@ -25,6 +25,7 @@ import {RED10} from 'Root/config/color';
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
+	console.log('AnimalNeedHelp', data);
 	// console.log(`AnimalNeedHelp:data=>${JSON.stringify(data)}`);
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
@@ -32,7 +33,7 @@ export default AnimalNeedHelp = props => {
 	// 불러오는 db 필드명이 다르기에 일치시키기 위한 함수
 	const checkthumbnailData = () => {
 		resultJSON = {};
-		resultJSON.img_uri = data.protect_animal_photos[0];
+		resultJSON.img_uri = data.protect_request_photos[0];
 		resultJSON._id = data._id;
 		// 보호 동물의 데이터 일 경우 (두 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
 		if (data.hasOwnProperty('protect_animal_sex') && data.hasOwnProperty('protect_animal_status')) {
@@ -195,3 +196,27 @@ AnimalNeedHelp.defaultProps = {
 	onPressAdoptorInfo: e => console.log('e'),
 	isChecked: false,
 };
+
+const suc = [
+	{
+		__v: 0,
+		_id: '61b8bb76bd39aff1f156d4eb',
+		protect_animal_id: '61b852bcc02491f75d05851f',
+		protect_request_comment_count: 0,
+		protect_request_content: '성스러운 동물입니다.',
+		protect_request_date: '2021-12-14T15:42:46.237Z',
+		protect_request_favorite_count: 0,
+		protect_request_hit: 0,
+		protect_request_photos: [
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639496566052_5Os47PJIncQ.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639496566058_ZqmyLg58kgA.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639469755996_GQduCe7EI_0.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639469756009_P5v-dOEsmdw.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639469756038_Uhky0oIkFCE.jpg',
+		],
+		protect_request_status: 'rescue',
+		protect_request_title: '어디선가 용이 집앞에 왓어요',
+		protect_request_update_date: '2021-12-14T15:42:46.237Z',
+		protect_request_writer_id: '61b585861d58f109766f5f0f',
+	},
+];

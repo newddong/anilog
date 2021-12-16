@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import {serveruri, cookieReset} from 'Screens/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -93,7 +92,6 @@ export async function apiFormController(serveruri, path, args) {
 	// 	setTimeout(args[2], 1000, err + ''); //에러 처리 콜백
 	// }
 }
-
 
 //export async function (.*?) \(.*?\)\{\n(.*?\n)*?\};
 //export async function $1(params, callback, errcallback){\n\tapiController(serveruri,'/user/$1',arguments);\n};
