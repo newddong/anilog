@@ -33,7 +33,8 @@ import ProfileImageLarge194 from '../molecules/ProfileImageLarge194';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
 import SocialInfoB from '../organism_ksw/SocialInfoB';
 import {login_style, temp_style, userMenu_style} from './style_templete';
-import {getUserProfile} from 'Root/api/usermenuapi';
+// import {getUserProfile} from 'Root/api/usermenuapi';
+import {getUserProfile} from 'Root/api/userapi';
 export default UserMenu = props => {
 	const navigation = useNavigation();
 	//-test for commit -
@@ -48,8 +49,11 @@ export default UserMenu = props => {
 					userobject_id: res,
 				},
 				userObject => {
-					console.log('userObject', userObject);
-					setData(userObject);
+					setData(userObject.msg);
+				},
+
+				err => {
+					console.log('er', err);
 				},
 			);
 		});

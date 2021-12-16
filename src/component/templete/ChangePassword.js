@@ -6,7 +6,8 @@ import Modal from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
 import PasswordChecker from '../organism_ksw/PasswordChecker';
 import {login_style, btn_style, temp_style, changePassword_style} from './style_templete';
-import {changeUserPassword} from 'Root/api/usermenuapi';
+// import {changeUserPassword} from 'Root/api/usermenuapi';
+import {changeUserPassword} from 'Root/api/userapi';
 import {useEffect} from 'react';
 export default ChangePassword = ({route, navigation}) => {
 	const [confirmed, setConfirmed] = React.useState(false);
@@ -88,7 +89,15 @@ export default ChangePassword = ({route, navigation}) => {
 	//확인 버튼 클릭 => 최종 확인 모달에서 확인버튼 다시 클릭 => DB접근 Update 예정
 	const changeFinalize = () => {
 		Modal.close();
-		changeUserPassword({user_password: prevpwd, new_user_password: pwd});
+		changeUserPassword(
+			{user_password: prevpwd, new_user_password: pwd},
+			success => {
+				console.log('success', success);
+			},
+			err => {
+				console.log('er', err);
+			},
+		);
 		navigation.goBack();
 	};
 

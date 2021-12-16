@@ -10,7 +10,8 @@ import Input24 from '../molecules/Input24';
 import ProfileImageSelect from '../molecules/ProfileImageSelect';
 import {login_style, btn_style, temp_style, changeUserProfileImage_style} from './style_templete';
 import {CommonActions} from '@react-navigation/routers';
-
+// import {nicknameDuplicationCheck} from 'Root/api/usermenuapi';
+import {updateUserInformation, nicknameDuplicationCheck} from 'Root/api/userapi';
 export default ChangeUserProfileImage = ({route}) => {
 	// console.log('route / Profile', route.params);1
 
@@ -18,6 +19,12 @@ export default ChangeUserProfileImage = ({route}) => {
 	const [newNick, setNewNick] = React.useState('');
 	const navigation = useNavigation();
 	const [confirmed, setConfirmed] = React.useState(false);
+	const [duplicated, setDuplicated] = React.useState(false);
+
+	React.useEffect(() => {
+		console.log('data useEffect', data);
+		setConfirmed(true); //사진 선택시 확인버튼 누르게
+	}, [data]);
 
 	const onConfirmed = () => {
 		navigation.dispatch(
@@ -32,6 +39,16 @@ export default ChangeUserProfileImage = ({route}) => {
 				],
 			}),
 		);
+		updateUserInformation(
+			{
+				userobject_id: data._id,
+				user_nickname: newNick == '' ? data.user_nickname : newNick,
+				user_profile_uri: data.user_profile_uri,
+			},
+
+			// console.log('userObject', userObject);
+			setData,
+		);
 	};
 
 	const selectPhoto = () => {
@@ -42,18 +59,22 @@ export default ChangeUserProfileImage = ({route}) => {
 				selectionLimit: 1,
 			},
 			responseObject => {
-				console.log('선택됨', responseObject);
+				console.log('선택됨!!', responseObject);
+				// setUri(responseObject.assets[responseObject.assets.length - 1].uri);
+
 				responseObject.didCancel
 					? console.log('선택취소')
-					: setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || data.user_profile_uri});
+					: // : setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || data.user_profile_uri});
+					  setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || data.user_profile_uri});
 			},
 		);
 	};
 
 	//중복 처리
 	const checkDuplicateNickname = nick => {
-		const result = true;
-		return result;
+		nicknameDuplicationCheck(nick, setDuplicated);
+		// console.log('duplicated', !duplicated);
+		return duplicated;
 	};
 
 	//닉네임 Validation
