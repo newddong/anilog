@@ -46,10 +46,10 @@ import {
 } from 'Root/i18n/msg';
 import {dummy_AppliesRecord_protect} from 'Root/config/dummy_data_hjs';
 import {GRAY10} from 'Root/config/color';
-import {getUserProfile} from 'Root/api/userapi_ksw';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getShelterMenu} from 'Root/api/shelterapi_hjs';
 import Modal from '../modal/Modal';
+import {getUserProfile} from 'Root/api/userapi';
 
 export default ShelterMenu = ({route}) => {
 	const navigation = useNavigation();
@@ -57,15 +57,16 @@ export default ShelterMenu = ({route}) => {
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', async (err, res) => {
-			// Modal.popNoBtn('Loading');
+			Modal.popNoBtn('Loading');
+			console.log('res', res);
 			await getUserProfile(
 				{
 					userobject_id: res,
 				},
 				userObject => {
-					console.log('userObject', userObject._id);
+					console.log('userObject/ ShelterMenu', userObject._id);
 					setData(userObject);
-					// Modal.close();
+					Modal.close();
 				},
 			);
 		});

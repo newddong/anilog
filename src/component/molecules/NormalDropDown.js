@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TouchableWithoutFeedback, Text, StyleSheet} from 'react-native';
+import {View, TouchableWithoutFeedback, Text, StyleSheet, ScrollView} from 'react-native';
 import Dropdown from 'Molecules/Dropdown';
 import {btn_w226} from 'Atom/btn/btn_style';
 import {GRAY40, WHITE} from 'Root/config/color';
@@ -34,7 +34,7 @@ const NormalDropDown = props => {
 			dropdownList={
 				<View style={{backgroundColor: WHITE, borderRadius: 10 * DP, alignItems: 'center', borderWidth: 2 * DP}}>
 					<TouchableWithoutFeedback>
-						<View>
+						<ScrollView style={{height: props.height * DP || null}} contentContainerStyle={{}}>
 							{props.menu.map((v, i) => (
 								<View key={i}>
 									<TouchableWithoutFeedback onPress={() => onSelect(v, i)}>
@@ -54,7 +54,7 @@ const NormalDropDown = props => {
 									<View style={[styles.separator, {width: props.width != null ? props.width * DP : props.btnLayout.width}]} />
 								</View>
 							))}
-						</View>
+						</ScrollView>
 					</TouchableWithoutFeedback>
 				</View>
 			}

@@ -15,9 +15,7 @@ export default MyPetList = props => {
 	const renderItem = (item, index) => {
 		return (
 			<View style={[myPetList.petImageLabel]}>
-				<TouchableOpacity onPress={() => props.onLabelClick(item)}>
-					<PetImageLabel data={item} showNickname={true} />
-				</TouchableOpacity>
+				<PetImageLabel data={item} showNickname={true} onPressLabel={() => props.onLabelClick(item)} />
 			</View>
 		);
 	};

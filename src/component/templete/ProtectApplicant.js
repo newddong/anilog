@@ -11,6 +11,36 @@ export default ProtectApplicant = ({route, navigation}) => {
 	const adoptor_list = dummy_userObject; //입양신청자 계정 내역
 	const protector_list = dummy_userObject; //임시보호 신청자 계정 내역
 
+	React.useEffect(() => {
+		// getProtectApplicant(
+		// 	{
+		// 		protectionActivityApplicantObject_id: protectionActivityApplicantObject_id,
+		// 	},
+		// 	data => {
+		// 		console.log('ProtectApplicant : getProtectApplicant data - ', data);
+		// 		setData(data);
+		// 	},
+		// 	err => {
+		// 		console.log('ProtectApplicant : getProtectApplicant data - ', err);
+		// 	},
+		// );
+	}, []);
+
+	const getDbFiled = [
+		{
+			//ProtectionActivityApplicantObject
+			protectionActivityApplicantObject_id, //보호 활동 신청서 ID
+			protect_act_type, //신청한 보호 활동의 종류, 임시보호(protect), 입양(adopt)
+			protect_act_applicant_id, //보호활동 신청자
+
+			//UserObject
+			user_profile_uri, //사용자 프로필 사진
+			user_nickname, //닉네임
+			user_introduction, //프로필에 노출될 자기소개
+			bookmark, //보호소가 신청자에 한해 북마크
+		},
+	];
+
 	//AccountList의 라벨 클릭 콜백 함수
 	const onClickLabel = data => {
 		navigation.push('UserProfile', data);

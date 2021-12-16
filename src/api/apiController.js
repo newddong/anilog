@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export async function apiController(serveruri, path, args) {
 	try {
 		let result = await axios.post(serveruri + path, args[0]);
+		console.log('ressult', result);
 		if (result.status == 200) {
 			args[1](result.data);
 		} else {

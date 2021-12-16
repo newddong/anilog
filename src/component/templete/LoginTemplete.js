@@ -26,9 +26,9 @@ export default LoginTemplete = props => {
 				login_password: password,
 			},
 			userObject => {
-				console.log('userObject / LoginTemplter', userObject.msg._id);
+				console.log('userObject', userObject.msg);
 				Modal.close();
-				Modal.popNoBtn(userObject.msg.user_nickname + '님 \n 로그인이 성공하였습니다.');
+				Modal.popNoBtn(userObject.msg.user_nickname + '님 로그인이 성공하였습니다.');
 				AsyncStorage.setItem('token', userObject.msg._id);
 				setTimeout(() => {
 					Modal.close();
