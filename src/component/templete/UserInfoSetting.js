@@ -11,7 +11,8 @@ import AniButton from '../molecules/AniButton';
 import ProfileImageLarge194 from '../molecules/ProfileImageLarge194';
 import MyPetList from '../organism_ksw/MyPetList';
 import {login_style, btn_style, temp_style, userInfoSetting_style} from './style_templete';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {getUserProfile} from 'Root/api/usermenuapi';
 // 필요한 데이터 - 로그인 유저 제반 데이터, 나의 반려동물 관련 데이터(CompanionObject 참조)
 export default UserInfoSetting = ({route}) => {
 	const navigation = useNavigation();
@@ -20,6 +21,25 @@ export default UserInfoSetting = ({route}) => {
 	const [modifyMode, setModifyMode] = React.useState(false);
 	const [intro_modified, setIntro_modified] = React.useState('');
 	const modifyRef = React.useRef();
+
+	React.useEffect(() => {
+		AsyncStorage.getItem('token', (err, res) => {
+			console.log('token id ', res);
+			getUserProfile(
+				{
+					userobject_id: res,
+				},
+				userObject => {
+					console.log('userObject', userObject);
+					setData(userObject);
+				},
+			);
+		});
+	}, []);
+
+	React.useEffect(() => {
+		setCompanions(data.user_my_pets);
+	}, [data]);
 
 	//상세 정보 클릭
 	const onPressDetail = () => {
@@ -95,7 +115,7 @@ export default UserInfoSetting = ({route}) => {
 						{/* 이메일, 비밀번호 변경하기*/}
 						<View style={[temp_style.accountInfo_depth2]}>
 							<View style={[temp_style.user_email_userInfoSetting, userInfoSetting_style.user_email]}>
-								<Text style={[txt.roboto24]}>{data.user_email || ''}</Text>
+								<Text style={[txt.roboto24]}>{data.user_nickname || ''}</Text>
 							</View>
 							<View style={[temp_style.changePassword_userInfoSetting, userInfoSetting_style.changePassword]}>
 								<TouchableOpacity onPress={onPressChangePwd}>
