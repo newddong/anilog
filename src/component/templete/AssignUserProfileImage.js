@@ -8,7 +8,7 @@ import ProfileImageSelect from '../molecules/ProfileImageSelect';
 import {login_style, btn_style, temp_style, progressbar_style, assignUserProfileImage_style} from './style_templete';
 import Modal from 'Component/modal/Modal';
 import {launchImageLibrary} from 'react-native-image-picker';
-import {assignUser} from 'Root/api/userapi';
+import {assignUser, nicknameDuplicationCheck} from 'Root/api/userapi';
 
 export default AssignUserProfileImage = props => {
 	// React.useEffect(() => {
@@ -37,6 +37,21 @@ export default AssignUserProfileImage = props => {
 	//확인버튼
 	const pressConfirm = () => {
 		let params = {...props.route.params, user_nickname: nickname, user_profile_uri: imgSelected};
+		nicknameDuplicationCheck(
+			{user_nickname: params.user_nickname},
+			result => {
+				if(result.msg){
+					Modal.popOneBtn('이미 사용자가 있는 닉네임입니다.', '확인', () => Modal.close());
+				}else{
+					assign(params);
+				}
+			},
+			error => {Modal.popOneBtn(error, '확인', () => Modal.close())}
+		);
+		
+	};
+
+	const assign = (params) => {
 		Modal.popNoBtn('등록중입니다.');
 		assignUser(
 			params,
@@ -72,7 +87,7 @@ export default AssignUserProfileImage = props => {
 				});
 			},
 		);
-	};
+	}
 
 	//중복 처리
 	const checkDuplicateNickname = nick => {

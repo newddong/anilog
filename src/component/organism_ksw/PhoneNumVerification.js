@@ -53,6 +53,7 @@ export default PhoneNumVerification = props => {
 				<InputWithSelect
 					width={654}
 					items={mobile_carrier}
+					delimiter='|'
 					placeholder={'휴대폰 번호 입력(-제외)'}
 					onChange={onPhoneNumberInputChange}
 					onSelectDropDown={onMobileCompanyInputChange}

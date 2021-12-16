@@ -19,6 +19,7 @@ import Input24 from 'Molecules/Input24';
  * @param {boolean} props.title_star - 제목 부분의 별표(강조용) 출력 여부 Default=false
  * @param {number} props.defaultIndex - 드롭 다운의 초기값 인덱스
  * @param {number} props.width - 인풋 너비(드롭다운은 제외) , default=200
+ * @param {string} props.delimiter - 드롭다운 결과값과 인풋 값과의 구분문자
  * @param {(input:string)=>void} props.onChange - 인풋 값 변경 시 동작하는 콜백, 인풋 반환
  * @param {()=>void} props.onClear - 지우기 버튼 클릭 시 동작하는 콜백, 제목 반환환
  * @param {(item)=>void} props.onSelectDropDown - 드롭다운 항목이 선택되었을 때 동작하는 콜백, 선택된 Object 반환
@@ -30,13 +31,13 @@ const InputWithSelect = props => {
 	const inputRef = React.useRef();
 
 	const onChange = text => {
-		props.onChange(dropdownVal + text);
+		props.onChange(dropdownVal+ props.delimiter + text);
 		setInput(text);
 	};
 
 	const onSelectDropDown = (v, i) => {
 		console.log('드롭다운 선택확인 ', v, i);
-		props.onChange(v + input);
+		props.onChange(v + props.delimiter+ input);
 		setDropdownVal(v);
 	};
 
@@ -94,6 +95,7 @@ InputWithSelect.defaultProps = {
 	onValid: e => {},
 	width: 454,
 	keyboardType: 'default',
+	delimiter: '',
 };
 
 export default InputWithSelect;

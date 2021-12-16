@@ -15,7 +15,7 @@ import Stagebar from '../molecules/Stagebar';
 import {stagebar_style} from '../organism_ksw/style_organism';
 import {login_style, btn_style, temp_style, progressbar_style, assignPetProfileImage_style} from './style_templete';
 import {launchImageLibrary} from 'react-native-image-picker';
-import {checkProtectPet} from 'Root/api/userapi';
+import {checkProtectPet, nicknameDuplicationCheck} from 'Root/api/userapi';
 
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
@@ -26,18 +26,19 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 		user_nickname: '',
 		pet_status: 'companion', //입양, 임시보호중인 동물일때는 초기값을 다르게 표기하도록(여기서는 임시보호, 반려동물 상태밖에 없음,입양된 동물은 더이상 정보수정 불가)
 		pet_is_temp_protection: false,
+		userobject_id: route.params?.userobject_id,
 	});
 
 	const [confirmed, setConfirmed] = React.useState(false); // 닉네임 폼 Validator 통과 ?
 	const [protect, setProtect] = React.useState(false); // 임시보호 동물 T/F
-
-	React.useEffect(() => {
-		setData({...data, user_profile_uri: route.params});
-	}, [route.params]);
+	const [alertmsg, setAlertMsg] = React.useState('사용 불가능한 닉네임입니다.');
+	// React.useEffect(() => {
+	// 	route.params && setData({...data, user_profile_uri: route.params});
+	// }, [route.params]);
 
 	React.useEffect(() => {
 		checkProtectPet(
-			{userobject_id: route.params.userobject_id},
+			{userobject_id: data.userobject_id},
 			cbObj => {
 				Modal.popTwoBtn(
 					'새로 임시보호, 입양을 하는 동물이 있습니다.\n 해당 동물을 등록하시겠습니까?',
@@ -51,32 +52,35 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 		);
 	}, []);
 
-	//중복 처리 - 미구현 상태
-	const checkDuplicateNickname = nick => {
-		if (true) {
-			return true;
-		} else return false;
-	};
+	const nicknameInput = React.useRef();
 
 	//닉네임 Validation
 	const nickName_validator = text => {
 		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
 		var regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
-		return regExp.test(text) && checkDuplicateNickname(text);
+		return regExp.test(text);
 	};
 
 	//임시보호 동물 체크박스 클릭(코드 보완 필요, 가독성이 좋지 않음)
 	const onPressCheckBox = () => {
 		setProtect(!protect);
 		const petStatus = !protect ? 'protect' : 'companion';
-
 		setData({...data, pet_status: petStatus, pet_is_temp_protection: !protect});
 	};
 
 	//확인클릭
 	const goToNextStep = () => {
-		console.log('data', data);
-		navigation.push('AssignPetInfoA', {data: data});
+		nicknameDuplicationCheck(
+			{user_nickname: data.user_nickname},
+			result => {
+				if(result.msg){
+					Modal.popOneBtn('이미 사용자가 있는 닉네임입니다.', '확인', () => Modal.close());
+				}else{
+					navigation.push('AssignPetInfoA', {data: data});
+				}
+			},
+			error => {Modal.popOneBtn(error, '확인', () => Modal.close())}
+		);
 	};
 
 	//프로필이미지 클릭 시 PhotoSelect로 이동
@@ -155,11 +159,12 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 							showTitle={false}
 							width={654}
 							confirm_msg={'사용 가능한 닉네임입니다.'}
-							alert_msg={'사용 불가능한 닉네임입니다.'}
+							alert_msg={alertmsg}
 							placeholder={'반려동물의 닉네임을 입력해주세요.'}
 							validator={nickName_validator}
 							onChange={onNicknameChange}
 							onValid={onNicknameValid}
+							ref={nicknameInput}
 						/>
 					</View>
 					<View style={[temp_style.checkBox_assignPetProfileImage, assignPetProfileImage_style.checkBox]}>

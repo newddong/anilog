@@ -58,10 +58,16 @@ export default AssignPetInfoB = props => {
 	const onRegister = () => {
 		Modal.popNoBtn('반려동물 등록 중입니다.');
 		assignPet(
-			{},
+			data,
 			() => {
 				Modal.close();
-				Modal.popOneBtn('반려동물 등록이 완료되었습니다.', '확인', () => Modal.close());
+				Modal.popOneBtn('반려동물 등록이 완료되었습니다.', '확인', () => {
+					Modal.close();
+					props.navigation.reset({
+						index: 0,
+						routes: [{name: 'Login'}],
+					});
+				});
 			},
 			error => {
 				error => Modal.popOneBtn(error, '확인', () => Modal.close());

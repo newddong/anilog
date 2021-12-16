@@ -44,7 +44,10 @@ export default UserVerification = props => {
 	};
 	const onPhoneNumberInputChange = phone_num => {
 		console.log('Userverification onPhoneNumberInputChange      ', phone_num);
-		user_data.user_phone_number = phone_num;
+		let phoneNum = phone_num.split('|');
+		
+		user_data.user_phone_number = phoneNum[1];
+		user_data.user_mobile_company = phoneNum[0];
 	};
 	const onMobileCompanyInputChange = (company, index) => {
 		console.log('Userverification onMobileCompanyInputChange      ', company, index);
