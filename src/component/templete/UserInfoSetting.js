@@ -17,8 +17,8 @@ import {getUserProfile} from 'Root/api/userapi';
 // 필요한 데이터 - 로그인 유저 제반 데이터, 나의 반려동물 관련 데이터(CompanionObject 참조)
 export default UserInfoSetting = ({route}) => {
 	const navigation = useNavigation();
-	const [data, setData] = React.useState(dummy_userObject[0]); // 로그인 유저의 UserObject
-	const [companions, setCompanions] = React.useState(dummy_UserObject_pet); //반려동물 userObject
+	const [data, setData] = React.useState([]); // 로그인 유저의 UserObject
+	const [companions, setCompanions] = React.useState([]); //반려동물 userObject
 	const [modifyMode, setModifyMode] = React.useState(false);
 	const [intro_modified, setIntro_modified] = React.useState('');
 	const modifyRef = React.useRef();
@@ -41,6 +41,7 @@ export default UserInfoSetting = ({route}) => {
 	}, []);
 
 	React.useEffect(() => {
+		console.log(`data${JSON.stringify(data)}`);
 		setCompanions(data.user_my_pets);
 	}, [data]);
 
