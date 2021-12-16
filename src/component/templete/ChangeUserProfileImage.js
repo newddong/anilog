@@ -10,7 +10,8 @@ import Input24 from '../molecules/Input24';
 import ProfileImageSelect from '../molecules/ProfileImageSelect';
 import {login_style, btn_style, temp_style, changeUserProfileImage_style} from './style_templete';
 import {CommonActions} from '@react-navigation/routers';
-import {updateUserInformation, nicknameDuplicationCheck} from 'Root/api/usermenuapi';
+// import {nicknameDuplicationCheck} from 'Root/api/usermenuapi';
+import {updateUserInformation, nicknameDuplicationCheck} from 'Root/api/userapi';
 export default ChangeUserProfileImage = ({route}) => {
 	// console.log('route / Profile', route.params);1
 
@@ -44,10 +45,9 @@ export default ChangeUserProfileImage = ({route}) => {
 				user_nickname: newNick == '' ? data.user_nickname : newNick,
 				user_profile_uri: data.user_profile_uri,
 			},
-			userObject => {
-				// console.log('userObject', userObject);
-				setData(userObject);
-			},
+
+			// console.log('userObject', userObject);
+			setData,
 		);
 	};
 

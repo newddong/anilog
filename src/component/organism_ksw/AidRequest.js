@@ -25,6 +25,23 @@ export default AidRequest = props => {
 		// setSelected(!selected);
 		// moveToProtectApplicant();
 	};
+	const e = {
+		pet_neutralization: 'unknown',
+		pet_sex: 'male',
+		pet_species: '개',
+		pet_species_detail: '치와와',
+		protect_animal_estimate_age: '1개월',
+		protect_animal_neutralization: 'unknown',
+		protect_animal_photo_uri_list: [
+			'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/7A7A3552-9E9F-4364-A61E-6C0B10F84A89/tmp/E935DF14-9FB9-4954-AB52-81D3D87BA8A3.jpg',
+		],
+		protect_animal_rescue_date: '',
+		protect_animal_rescue_location: 'D1',
+		protect_animal_sex: 'male',
+		protect_animal_species: '개',
+		protect_animal_species_detail: '치와와',
+		protect_animal_weight: '1',
+	};
 
 	return (
 		<View style={[aidRequest.container]}>
@@ -87,7 +104,7 @@ export default AidRequest = props => {
 				</View>
 			</View>
 			{/* 해당 동물의 보호요청 및 입양 신청한 유저의 숫자, 현재는 억지로 배열형태로 더미데이터로 만들어서 하는 중  */}
-			{data.protect_animal_protector_discussion_id.length > 0 ? (
+			{data.protect_animal_protector_discussion_id && data.protect_animal_protector_discussion_id.length > 0 ? (
 				<View style={[aidRequest.numberContainer]}>
 					<Text style={{color: WHITE}}>{data.protect_animal_protector_discussion_id.length} </Text>
 				</View>

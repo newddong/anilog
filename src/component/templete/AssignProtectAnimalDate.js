@@ -56,7 +56,7 @@ export default AssignProtectAnimalDate = props => {
 				<Text style={[txt.noto24, {color: GRAY10}]}>{PLEASE_GIVE_ME_DATE_AND_PLACE}</Text>
 			</View>
 
-			<View style={[temp_style.inputForm_assignProtectAnimal, assignProtectAnimal_style.selectedMediaList]}>
+			<View style={[temp_style.inputForm_assignProtectAnimal]}>
 				{/* 구조날짜 */}
 				<View style={[temp_style.inputForm_assignProtectAnimal_line1]}>
 					<Text style={txt.noto28}>구조날짜</Text>

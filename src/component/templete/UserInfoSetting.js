@@ -12,7 +12,8 @@ import ProfileImageLarge194 from '../molecules/ProfileImageLarge194';
 import MyPetList from '../organism_ksw/MyPetList';
 import {login_style, btn_style, temp_style, userInfoSetting_style} from './style_templete';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {getUserProfile} from 'Root/api/usermenuapi';
+// import {getUserProfile} from 'Root/api/usermenuapi';
+import {getUserProfile} from 'Root/api/userapi';
 // 필요한 데이터 - 로그인 유저 제반 데이터, 나의 반려동물 관련 데이터(CompanionObject 참조)
 export default UserInfoSetting = ({route}) => {
 	const navigation = useNavigation();
@@ -30,8 +31,10 @@ export default UserInfoSetting = ({route}) => {
 					userobject_id: res,
 				},
 				userObject => {
-					console.log('userObject', userObject);
-					setData(userObject);
+					setData(userObject.msg);
+				},
+				err => {
+					console.log('er', err);
 				},
 			);
 		});

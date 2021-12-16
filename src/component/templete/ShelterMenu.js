@@ -49,7 +49,7 @@ import {GRAY10} from 'Root/config/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getShelterMenu} from 'Root/api/shelterapi_hjs';
 import Modal from '../modal/Modal';
-import {getUserProfile} from 'Root/api/userapi';
+import {getUserProfile} from 'Root/api/usermenuapi';
 
 export default ShelterMenu = ({route}) => {
 	const navigation = useNavigation();

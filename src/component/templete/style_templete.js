@@ -771,6 +771,7 @@ export const temp_style = StyleSheet.create({
 		width: 654 * DP,
 		height: 224 * DP,
 		backgroundColor: '#FFF',
+		marginTop: 70 * DP,
 	},
 	dropdownSelect_assignProtectAnimalInfo: {
 		width: 160 * DP,
@@ -1843,6 +1844,7 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	selectedMediaList: {
 		marginTop: 70 * DP,
 		marginLeft: 10 * DP,
+		alignSelf: 'flex-start',
 	},
 	btn_w226_view_image: {
 		marginVertical: 110 * DP,
