@@ -13,11 +13,12 @@ export default AnimalAdoption = props => {
 
 	//임시보호에서 반려 동물 변경 응원 팝업창 !
 	const onCheerUp = () => {
-		Modal.popNoBtn('임시보호가 아닌 반려동물로서의 새로운 삶을 살게 된 구름이를 응원합니다!');
-		setTimeout(() => {
-			Modal.close();
-			navigation.navigate('SelectAccount');
-		}, 3000);
+		console.log('- onCheerUp - ');
+		// Modal.popNoBtn('임시보호가 아닌 반려동물로서의 새로운 삶을 살게 된 구름이를 응원합니다!');
+		// setTimeout(() => {
+		// 	Modal.close();
+		// 	navigation.navigate('SelectAccount');
+		// }, 1000);
 	};
 
 	return (
@@ -82,8 +83,10 @@ export default AnimalAdoption = props => {
 								'없음',
 								'계정 찾기',
 								() => Modal.close(),
-								() => navigation.push('SelectAccount'),
-								() => Modal.close(),
+								() => {
+									Modal.close();
+									navigation.push('SelectAccount');
+								},
 							);
 						}}
 					/>

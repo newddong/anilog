@@ -91,7 +91,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 
 	//접종 내역 버튼
 	const goToVaccinationRecord = () => {
-		navigation.push('VaccinationRecord');
+		navigation.push('VaccinationRecord', {userobject_id: petData._id});
 	};
 
 	//가족계정 추가 버튼
