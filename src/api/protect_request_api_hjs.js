@@ -2,6 +2,8 @@ import axios from 'axios';
 import {serveruri, cookieReset} from 'Screens/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
+// shelter/getProtectRequestList에 구현
 /**
  * 보호요청 가져오기
  *
@@ -28,6 +30,7 @@ export const getProtectRequestList = async (params, callback) => {
 	}
 };
 
+// feed/getMissingReportList에 구현됨
 /**
  * 실종/제보 가져오기
  *

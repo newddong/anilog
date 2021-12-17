@@ -21,6 +21,41 @@ export default VaccinationRecord = ({navigation}) => {
 		navigation.setParams(copy); //헤더에 데이터 송신
 	}, [vaccinOnceAmonthList, vaccinOnceEvery3monthsList, vaccinOnceAyearList]);
 
+	React.useEffect(() => {
+		// getVaccinationRecord(
+		// 	{
+		// 		vaccination_pet_id: vaccination_pet_id,
+		// 	},
+		// 	data => {
+		// 		console.log('VaccinationRecord : getVaccinationRecord data - ', data);
+		// 		setData(data);
+		// 	},
+		// 	err => {
+		// 		console.log('VaccinationRecord : getVaccinationRecord data - ', err);
+		// 	},
+		// );
+	}, []);
+
+	const getDbFiled = [
+		{
+			//UserObject
+			user_profile_uri: '', // 프로필 사진
+			user_nickname: '', // 닉네임
+			pet_species: '', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+			pet_species_detail: '', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+			pet_status: '', //반려동물의 상태, 임시보호중(protect), 입양됨(adopt), 반려동물(companion)
+			pet_family: [
+				{
+					//반려동물 가족계정들
+					userobject_id: '',
+					user_profile_uri: '',
+					user_nickname: '',
+				},
+			],
+			user_denied: '', //
+		},
+	];
+
 	// [hjs] API 작업시 하단의 케이스문 리펙토링 필요
 	//API로부터 가져온 쿼리 내용을 백신별로 그룹핑 진행.
 	React.useEffect(() => {

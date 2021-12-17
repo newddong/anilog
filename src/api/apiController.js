@@ -73,7 +73,11 @@ export async function apiFormController(path, args) {
 				}
 			}
 		});
-		let result = await axios.post(serveruri + path, form);
+		let result = await axios.post(serveruri + path, form,{
+			headers: {
+				'Content-Type': 'multipart/form-data'
+			}
+		});
 		if(result.data.status==200){
 			args[1](result.data);
 		}else{
@@ -91,6 +95,11 @@ export async function apiFormController(path, args) {
 	// 	setTimeout(args[2], 1000, err + ''); //에러 처리 콜백
 	// }
 }
+
+//쿠키 리셋 코드
+// let token = await AsyncStorage.getItem('token');
+// await cookieReset(token);
+
 
 //export async function (.*?) \(.*?\)\{\n(.*?\n)*?\};
 //export async function $1(params, callback, errcallback){\n\tapiController(serveruri,'/user/$1',arguments);\n};

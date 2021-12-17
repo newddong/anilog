@@ -39,6 +39,41 @@ export default PetInfoSetting = ({route, navigation}) => {
 		console.log('FamilAcc', familyAccountList.length);
 	}, [familyAccountList]);
 
+	React.useEffect(() => {
+		// getPetInfoSetting(
+		// 	{
+		// 		userobject_id: userobject_id,
+		// 	},
+		// 	data => {
+		// 		console.log('PetInfoSetting : getPetInfoSetting data - ', data);
+		// 		setData(data);
+		// 	},
+		// 	err => {
+		// 		console.log('PetInfoSetting : getPetInfoSetting data - ', err);
+		// 	},
+		// );
+	}, []);
+
+	const getDbFiled = [
+		{
+			//UserObject
+			user_profile_uri: '', // 프로필 사진
+			user_nickname: '', // 닉네임
+			pet_species: '', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+			pet_species_detail: '', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+			pet_status: '', //반려동물의 상태, 임시보호중(protect), 입양됨(adopt), 반려동물(companion)
+			pet_family: [
+				{
+					//반려동물 가족계정들
+					userobject_id: '',
+					user_profile_uri: '',
+					user_nickname: '',
+				},
+			],
+			user_denied: '', //
+		},
+	];
+
 	//계정정보 - '종' 변경하기 버튼 클릭
 	const changePetInfo = () => {
 		Modal.popSelect(['개', '고양이', '기타'], ['리트리버', '말티즈', '푸들', '치와와'], (val1, val2) => alert(val1 + ':' + val2), '동물선택');
@@ -138,6 +173,8 @@ export default PetInfoSetting = ({route, navigation}) => {
 					</View>
 				</View>
 				{/* 가족 계정 추가 */}
+				{/* 반려 동물 상태가 companion인 경우에만 보이도록 추후 변경 예정 */}
+				{/* {data.pet_status == 'companion' && ( */}
 				<View style={[petInfoSetting.familyAccountSetting.container]}>
 					<View style={[petInfoSetting.familyAccountSetting.insideContainer]}>
 						<View style={[petInfoSetting.familyAccountSetting.menuView]}>
@@ -159,6 +196,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 						</View>
 					</View>
 				</View>
+				{/* )} */}
 				{/* 계정 공개 여부 변경 */}
 				<View style={[petInfoSetting.exposureSetting.container]}>
 					<View style={[petInfoSetting.exposureSetting.insideContainer]}>
@@ -178,6 +216,8 @@ export default PetInfoSetting = ({route, navigation}) => {
 					</View>
 				</View>
 				{/* 반려동물 입양 상태 변경 */}
+				{/* 반려 동물 상태가 companion가 아닐 경우에만 보이도록 추후 변경 예정 */}
+				{/* {data.pet_status != 'companion' && ( */}
 				<View style={[petInfoSetting.changeAdoptionStatus.container]}>
 					<View style={[petInfoSetting.familyAccountSetting.insideContainer]}>
 						<View style={[petInfoSetting.changeAdoptionStatus.menuView]}>
@@ -190,6 +230,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 						</View>
 					</View>
 				</View>
+				{/* )} */}
 			</View>
 		</ScrollView>
 	);

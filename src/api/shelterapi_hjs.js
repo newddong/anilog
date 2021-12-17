@@ -2,6 +2,7 @@ import axios from 'axios';
 import {serveruri, cookieReset} from 'Screens/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// user/getUserInfoById에 구현
 /**
  * MY에서 보호소 기본 정보 불러오기.
  *
@@ -26,6 +27,7 @@ export const getShelterMenu = async (params, callback, errcallback) => {
 		console.log('getShelterMenu Code Error : ' + JSON.stringify(err));
 	}
 };
+
 
 /**
  * 보호소 프로필 정보 불러오기.
@@ -52,6 +54,7 @@ export const getShelterProfile = async (params, callback, errcallback) => {
 	}
 };
 
+// user/getUserInfoById에 구현
 /**
  * 보호소 프로필 수정하기 위한 정보 불러오기.
  *
