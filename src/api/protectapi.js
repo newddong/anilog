@@ -63,3 +63,13 @@ export async function createProtectActivity(params, callback, errcallback){
 	apiController( '/protect/createProtectActivity', arguments);
 };
 
+
+/**
+ * 유저의 동물보호 신청내역 가져오기
+ * (입양신청, 임시보호 신청, 봉사활동 신청 - 한 화면에서 입양신청 1개, 임시보호 신청 1개, 봉사활동 신청 3 ~ 4개 표출)
+ * @param {string} params.userobject_id - 사용자 계정 id
+ * 
+ */
+export async function getAppliesRecord(params, callback, errcallback){
+	apiController( '/protect/getAppliesRecord', arguments);
+};
