@@ -39,6 +39,41 @@ export default PetInfoSetting = ({route, navigation}) => {
 		console.log('FamilAcc', familyAccountList.length);
 	}, [familyAccountList]);
 
+	React.useEffect(() => {
+		// getPetInfoSetting(
+		// 	{
+		// 		userobject_id: userobject_id,
+		// 	},
+		// 	data => {
+		// 		console.log('PetInfoSetting : getPetInfoSetting data - ', data);
+		// 		setData(data);
+		// 	},
+		// 	err => {
+		// 		console.log('PetInfoSetting : getPetInfoSetting data - ', err);
+		// 	},
+		// );
+	}, []);
+
+	const getDbFiled = [
+		{
+			//UserObject
+			user_profile_uri: '', // 프로필 사진
+			user_nickname: '', // 닉네임
+			pet_species: '', //반려동물의 종류(ex 개, 고양이, 토끼 등)
+			pet_species_detail: '', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
+			pet_status: '', //반려동물의 상태, 임시보호중(protect), 입양됨(adopt), 반려동물(companion)
+			pet_family: [
+				{
+					//반려동물 가족계정들
+					userobject_id: '',
+					user_profile_uri: '',
+					user_nickname: '',
+				},
+			],
+			user_denied: '', //
+		},
+	];
+
 	//계정정보 - '종' 변경하기 버튼 클릭
 	const changePetInfo = () => {
 		Modal.popSelect(['개', '고양이', '기타'], ['리트리버', '말티즈', '푸들', '치와와'], (val1, val2) => alert(val1 + ':' + val2), '동물선택');
