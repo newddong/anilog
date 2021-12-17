@@ -173,6 +173,8 @@ export default PetInfoSetting = ({route, navigation}) => {
 					</View>
 				</View>
 				{/* 가족 계정 추가 */}
+				{/* 반려 동물 상태가 companion인 경우에만 보이도록 추후 변경 예정 */}
+				{/* {data.pet_status == 'companion' && ( */}
 				<View style={[petInfoSetting.familyAccountSetting.container]}>
 					<View style={[petInfoSetting.familyAccountSetting.insideContainer]}>
 						<View style={[petInfoSetting.familyAccountSetting.menuView]}>
@@ -194,6 +196,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 						</View>
 					</View>
 				</View>
+				{/* )} */}
 				{/* 계정 공개 여부 변경 */}
 				<View style={[petInfoSetting.exposureSetting.container]}>
 					<View style={[petInfoSetting.exposureSetting.insideContainer]}>
@@ -213,6 +216,8 @@ export default PetInfoSetting = ({route, navigation}) => {
 					</View>
 				</View>
 				{/* 반려동물 입양 상태 변경 */}
+				{/* 반려 동물 상태가 companion가 아닐 경우에만 보이도록 추후 변경 예정 */}
+				{/* {data.pet_status != 'companion' && ( */}
 				<View style={[petInfoSetting.changeAdoptionStatus.container]}>
 					<View style={[petInfoSetting.familyAccountSetting.insideContainer]}>
 						<View style={[petInfoSetting.changeAdoptionStatus.menuView]}>
@@ -225,6 +230,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 						</View>
 					</View>
 				</View>
+				{/* )} */}
 			</View>
 		</ScrollView>
 	);
