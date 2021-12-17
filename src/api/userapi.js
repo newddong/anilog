@@ -269,7 +269,15 @@ export async function getUserInfoById(params, callback, errcallback) {
  * 보호소 상세 정보를 수정
  *
  * @param {object} params
- * 
+ * @param {string} userobject_id - 수정할 보호소 오브젝트 아이디
+ * @param {string} shelter_name - 보호소 이름 
+ * @param {object} params.shelter_address
+ * @param {string} params.shelter_address.brief - 보호소 주소
+ * @param {string} params.shelter_address.detail - 보호소 상세 주소
+ * @param {string} shelter_delegate_contact_number - 보호소 대표 전화번호, 휴대폰 번호 
+ * @param {string} user_email - 이메일 
+ * @param {string} shelter_homepage - 보호소 홈페이지 uri 
+ * @param {string} shelter_foundation_date - 보호소 설립일 
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
@@ -277,3 +285,30 @@ export async function getUserInfoById(params, callback, errcallback) {
 	apiController( '/user/updateShelterDetailInformation', arguments);
 }
 
+/** 유저닉네임으로 유저 계정을 검색, 리스트를 반환 
+ * @param {object} params
+ * @param {string} params.user_nickname - 검색할 유저의 닉네임
+ * @param {number} params.request_number - 요청할 유저 계정 숫자
+ * @param {string} params.userobject_id - 커서 객체(페이징 처리)
+ * 
+ * @param {string} params.user_type - 조회할 유저의 타잎 {'user'|'shelter'|'pet'}
+ * 
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+*/
+export async function getUserListByNickname(params, callback, errcallback) {
+	apiController( '/user/getUserListByNickname', arguments);
+}
+
+
+
+/** 가족 계정에서 대상 유저를 삭제
+ * @param {object} params
+ * @param {string} params.target_userobject_id - 가족계정에서 뺄 유저아이디
+ * @param {number} params.pet_userobject_id - 가족계정을 조정할 반려동물아이디
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+*/
+export async function removeUserFromFamily(params, callback, errcallback) {
+	apiController( '/user/removeUserFromFamily', arguments);
+}

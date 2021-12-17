@@ -63,7 +63,10 @@ export async function createProtectActivity(params, callback, errcallback){
 /**
  * 유저의 동물보호 신청내역 가져오기
  * (입양신청, 임시보호 신청, 봉사활동 신청 - 한 화면에서 입양신청 1개, 임시보호 신청 1개, 봉사활동 신청 3 ~ 4개 표출)
+ * @param {object} params
  * @param {string} params.userobject_id - 사용자 계정 id
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  * 
  */
 export async function getAppliesRecord(params, callback, errcallback){
@@ -71,7 +74,18 @@ export async function getAppliesRecord(params, callback, errcallback){
 };
 
 
+
+
+
 /**
- * 보호소에서 동물보호 신청자 조회
- * 
+ * 유저의 보호활동(입양,임시보호) 신청 내역을 가져오기
+ * @param {object} params
+ * @param {'protect'|'adopt'} params.protect_act_type - 가져올 보호 활동의 종류, 임시보호(protect), 입양(adopt) {'protect'|'adopt'}
+ * @param {number} params.request_number - 요청할 게시물의 숫자
+ * @param {string} params.protect_act_object_id - 페이징을 위한 오브젝트 객체 아이디
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
+ export async function getUserAdoptProtectionList(params, callback, errcallback){
+	apiController( '/protect/getUserAdoptProtectionList', arguments);
+};
