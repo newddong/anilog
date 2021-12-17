@@ -82,10 +82,14 @@ export default AnimalAdoption = props => {
 								'입양 예정자가 애니로그 계정이 있나요?',
 								'없음',
 								'계정 찾기',
-								() => Modal.close(),
 								() => {
 									Modal.close();
-									navigation.push('SelectAccount');
+									navigation.push('PetInfoSetting', {userobject_id: props.route.params.userobject_id});
+								},
+								() => {
+									Modal.close();
+									console.log('모달창 닫힘');
+									navigation.push('SelectAccount', {userobject_id: props.route.params.userobject_id});
 								},
 							);
 						}}

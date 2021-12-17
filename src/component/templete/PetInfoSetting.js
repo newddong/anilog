@@ -116,7 +116,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 
 	//반려동물 입양 상태 변경
 	const goToAnimalAdoption = () => {
-		navigation.push('AnimalAdoption');
+		navigation.push('AnimalAdoption', {userobject_id: petData._id});
 	};
 
 	return (
