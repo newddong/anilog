@@ -69,3 +69,9 @@ export async function createProtectActivity(params, callback, errcallback){
 export async function getAppliesRecord(params, callback, errcallback){
 	apiController( '/protect/getAppliesRecord', arguments);
 };
+
+
+/**
+ * 보호소에서 동물보호 신청자 조회
+ * 
+ */

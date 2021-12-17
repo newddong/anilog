@@ -2,10 +2,10 @@ import axios from 'axios';
 import {serveruri, cookieReset} from 'Screens/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {apiController} from './apiController';
-
+//protect/createProtectActivity에 구현
 /**
  * 입양 임시보호 등록
- *
+ * 
  * @param {object} params
  * @param {object} params.protect_act_type - 신청한 보호 활동의 종류 ( 임시보호 - protect / 입양 - adopt)
  * @param {object} params.protect_act_address - 보호신청자의 주소
@@ -42,7 +42,7 @@ export const assignProtectionActivity = async (params, callback, errcallback) =>
 		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
 	}
 };
-
+// user/getUserInfoById에 구현
 /**
  * 유저 라벨 정보 가져오기 [일반적으로 유저닉네임, 프로필uri, intro ]
  * 유저타입에 따른 분류 - 같은 라벨의 호출이라면 타입이 달라도 같은 함수를 사용할 것인가는 차후  논의
@@ -98,7 +98,7 @@ export const getUserProfile = async (params, callback, errcallback) => {
 		console.log('getUser Profile Cde Error :' + JSON.stringify(err.message)); //에러 처리 콜백
 	}
 };
-
+// protect/getAppliesRecord 구현
 /**
  * 임시 보호 신청 정보 가져오기 [ params - _id]
  *

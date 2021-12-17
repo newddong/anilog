@@ -263,3 +263,17 @@ export async function getUserInfoById(params, callback, errcallback) {
  export async function updateUserIntroduction(params, callback, errcallback) {
 	apiController( '/user/updateUserIntroduction', arguments);
 }
+
+
+/**
+ * 보호소 상세 정보를 수정
+ *
+ * @param {object} params
+ * 
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export async function updateShelterDetailInformation(params, callback, errcallback) {
+	apiController( '/user/updateShelterDetailInformation', arguments);
+}
+
