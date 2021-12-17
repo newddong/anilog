@@ -73,36 +73,8 @@ export default AssignProtectAnimalInfo = ({route}) => {
 		navigation.push('ShelterMenu');
 	};
 
-	const e = {
-		pet_neutralization: 'unknown',
-		pet_sex: 'female',
-		pet_species: '개',
-		pet_species_detail: '치와와',
-		protect_animal_estimate_age: '1년 1개월',
-		protect_animal_neutralization: 'unknown',
-		protect_animal_photo_uri_list: [
-			'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/7A7A3552-9E9F-4364-A61E-6C0B10F84A89/tmp/E42EBC70-66D0-4840-8CE1-3B8889395320.jpg',
-			'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/7A7A3552-9E9F-4364-A61E-6C0B10F84A89/tmp/C6BA7E67-3129-4908-933E-DEBD9F0EEE0E.jpg',
-			'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/7A7A3552-9E9F-4364-A61E-6C0B10F84A89/tmp/7FD8A76E-10D8-4012-B1FB-B5E4085C6029.jpg',
-		],
-		protect_animal_rescue_date: '2021.12.02',
-		protect_animal_rescue_location: 'D1',
-		protect_animal_sex: 'female',
-		protect_animal_species: '개',
-		protect_animal_species_detail: '치와와',
-		protect_animal_weight: '1',
-	};
-	// * @param {Array.<string>} params.protect_animal_photo_uri_list - 보호중인 동물의 사진 로컬 경로 목록
-	// * @param {string} params.protect_animal_rescue_date - 보호중인 동물의 구조날자
-	// * @param {string} params.protect_animal_rescue_location - 보호중인 동물의 구조장소
-	// * @param {string} params.protect_animal_species - 보호중인 동물의 종류(ex 개, 고양이, 토끼)
-	// * @param {string} params.protect_animal_species_detail - 보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
-	// * @param {'yes'|'no'|'unknown'} params.protect_animal_neutralization - { 'yes'|'no'|'unknown'} 중성화 여부
-	// * @param {'male'|'female'|'unknown'} params.protect_animal_sex - 보호중인 동물의 성별
-	// * @param {string} params.protect_animal_estimate_age - 보호중인 동물의 예상 연령
-	// * @param {number} params.protect_animal_weight - 보호중인 동물의 몸무게
 	const registerProtectPet = () => {
-		// console.log('register? ', data);
+		console.log('Before AssiginShelterAnimal Data? ', data);
 		assignShelterAnimal(
 			data,
 			data => {
@@ -213,4 +185,42 @@ export default AssignProtectAnimalInfo = ({route}) => {
 			</View>
 		</View>
 	);
+};
+
+const before = {
+	pet_neutralization: 'unknown',
+	pet_sex: 'female',
+	pet_species: '고양이',
+	pet_species_detail: '메인쿤',
+	protect_animal_estimate_age: '3년 1개월',
+	protect_animal_neutralization: 'unknown',
+	protect_animal_photo_uri_list: [
+		'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/BB150CB5-956F-4D19-A0F6-BD580E5CAB02/tmp/57D33D50-2021-446A-8BEE-CE526D6BA2A7.jpg',
+		'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/BB150CB5-956F-4D19-A0F6-BD580E5CAB02/tmp/55908728-375D-4C3D-8E06-90D3DBEC8AFB.jpg',
+		'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/BB150CB5-956F-4D19-A0F6-BD580E5CAB02/tmp/08A677CD-A7B3-406B-905A-EC9F723AE0F7.jpg',
+	],
+	protect_animal_rescue_date: '',
+	protect_animal_rescue_location: 'Tustin',
+	protect_animal_sex: 'female',
+	protect_animal_species: '고양이',
+	protect_animal_species_detail: '메인쿤',
+	protect_animal_weight: '1',
+	shelter_protect_animal_object_id: '',
+};
+
+const after = {
+	__v: 0,
+	_id: '61bb59779c25946f89154d86',
+	protect_animal_belonged_shelter_id: '61b9eba4185a4f69d5981ad6',
+	protect_animal_estimate_age: '3년 1개월',
+	protect_animal_neutralization: 'unknown',
+	protect_animal_photo_uri_list: [],
+	protect_animal_protector_discussion_id: [],
+	protect_animal_rescue_date: null,
+	protect_animal_rescue_location: 'Tustin',
+	protect_animal_sex: 'female',
+	protect_animal_species: '고양이',
+	protect_animal_species_detail: '메인쿤',
+	protect_animal_status: 'rescue',
+	protect_animal_weight: 1,
 };

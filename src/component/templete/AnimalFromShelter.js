@@ -4,7 +4,7 @@ import {login_style, animalFromShelter_style} from './style_templete';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import {useNavigation} from '@react-navigation/core';
 import {dummy_AdoptorInformation, dummy_AnimalFromShelter_adopted} from 'Root/config/dummyDate_json';
-import {getShelterProtectAnimalList} from 'Root/api/protect_animal_api_ksw';
+import {getShelterProtectAnimalList} from 'Root/api/shelterapi';
 
 export default AnimalFromShelter = ({route}) => {
 	const navigation = useNavigation();
@@ -12,17 +12,17 @@ export default AnimalFromShelter = ({route}) => {
 
 	React.useEffect(() => {
 		getShelterProtectAnimalList(
-			//현재 로그인한 보호소의 고유 _id를 파라미터로 보내고
-			//_id를 통해 얻어온 보호소의 보호중인 동물의 목록을 가져옴
-			route.params,
+			{
+				shelter_protect_animal_object_id: null,
+				request_number: 2,
+			},
 			successed => {
-				console.log('successed', successed);
-				// setProtectAnimalList(successed)
-				// protect_animal_protect_Request_id로 해당 게시글 좋아요 여부도 판별
-				// protect_animal_protect_request_id로 게시글보기 클릭 시 해당 보호요청 게시글 조회 실시
+				console.log('successed / getShelterProtectAnimalList', successed.msg);
+				setData(successed.msg);
 			},
 			err => {
-				console.log('err', err);
+				console.log('err / getShelterProtectAnimalList', err);
+				setData(err);
 			},
 		);
 	}, [route]);

@@ -48,7 +48,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 					() => Modal.close(),
 				);
 			},
-			e => Modal.popOneBtn(e, '확인', () => Modal.close()),
+			e => Modal.popOneBtn(e + 'CheckProtectPet', '확인', () => Modal.close()),
 		);
 	}, []);
 
@@ -73,13 +73,15 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 		nicknameDuplicationCheck(
 			{user_nickname: data.user_nickname},
 			result => {
-				if(result.msg){
+				if (result.msg) {
 					Modal.popOneBtn('이미 사용자가 있는 닉네임입니다.', '확인', () => Modal.close());
-				}else{
+				} else {
 					navigation.push('AssignPetInfoA', {data: data});
 				}
 			},
-			error => {Modal.popOneBtn(error, '확인', () => Modal.close())}
+			error => {
+				Modal.popOneBtn(error, '확인', () => Modal.close());
+			},
 		);
 	};
 

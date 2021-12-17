@@ -45,9 +45,13 @@ export default ChangeUserProfileImage = ({route}) => {
 				user_nickname: newNick == '' ? data.user_nickname : newNick,
 				user_profile_uri: data.user_profile_uri,
 			},
-
+			success => {
+				console.log('success', success);
+			},
 			// console.log('userObject', userObject);
-			setData,
+			err => {
+				console.log('err', err);
+			},
 		);
 	};
 
