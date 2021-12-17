@@ -1,14 +1,15 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Text, View} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
+import address from 'Root/screens/common/address';
 import {btn_w108, btn_w176, btn_w226} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import Input24 from '../molecules/Input24';
 import {btn_style, temp_style} from '../templete/style_templete';
 import {addressInput} from './style_organism';
-
 /**
  *
  * @param {object} props
@@ -32,8 +33,9 @@ const AddressInput = props => {
 		let isValid = props.validator(addr, detailAddr);
 		props.onValid && props.onValid(isValid);
 	};
-
+	console.log('addressInput props', props);
 	//주소 값 변경 콜백
+	const navigation = useNavigation();
 	const onChangeAddress = addr => {
 		// console.log(addr);
 		props.validator && validator(addr, props.detailAddress);
@@ -49,9 +51,13 @@ const AddressInput = props => {
 	};
 
 	//주소 찾기 클릭
+	// const onPressSearchAddr = () => {
+	// 	// console.log('onPressSearchAddr');
+
+	// 	props.onPressSearchAddr();
+	// };
 	const onPressSearchAddr = () => {
-		// console.log('onPressSearchAddr');
-		props.onPressSearchAddr();
+		navigation.push('ChangeUserAddress', detailAddr);
 	};
 
 	return (
@@ -59,7 +65,9 @@ const AddressInput = props => {
 			<View style={[addressInput.upperContainer]}>
 				<View style={[addressInput.input24A]}>
 					<Input24
-						value={props.address.brief + ' ' + props.address.neighbor}
+						// value={props.address.brief + ' ' + props.address.neighbor}
+						// value={props.address.district + ' ' + props.address.neighbor}
+						value={props.address}
 						editable={false}
 						width={470}
 						placeholder={'주소 찾기를 눌러주세요'}

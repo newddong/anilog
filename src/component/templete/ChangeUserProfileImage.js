@@ -12,6 +12,8 @@ import {login_style, btn_style, temp_style, changeUserProfileImage_style} from '
 import {CommonActions} from '@react-navigation/routers';
 // import {nicknameDuplicationCheck} from 'Root/api/usermenuapi';
 import {updateUserInformation, nicknameDuplicationCheck} from 'Root/api/userapi';
+import Modal from '../modal/Modal';
+
 export default ChangeUserProfileImage = ({route}) => {
 	// console.log('route / Profile', route.params);1
 
@@ -20,39 +22,61 @@ export default ChangeUserProfileImage = ({route}) => {
 	const navigation = useNavigation();
 	const [confirmed, setConfirmed] = React.useState(false);
 	const [duplicated, setDuplicated] = React.useState(false);
-
+	const [changed, setChanged] = React.useState(false);
 	React.useEffect(() => {
-		console.log('data useEffect', data);
+		// console.log('data useEffect', data);
 		setConfirmed(true); //사진 선택시 확인버튼 누르게
 	}, [data]);
 
+	React.useEffect(() => {
+		if (changed) {
+			Modal.close();
+			navigation.dispatch(
+				CommonActions.reset({
+					index: 1,
+					routes: [
+						// {name: 'UserMenu'},
+						{
+							name: 'UserInfoSetting',
+							params: {changedPhoto: data.user_profile_uri},
+						},
+					],
+				}),
+			);
+		}
+	}, [changed]);
+
 	const onConfirmed = () => {
-		navigation.dispatch(
-			CommonActions.reset({
-				index: 1,
-				routes: [
-					{name: 'UserMenu'},
-					{
-						name: 'UserInfoSetting',
-						params: {changedPhoto: data.user_profile_uri},
-					},
-				],
-			}),
-		);
+		Modal.popNoBtn('프로필을 바꾸는 중입니다.');
 		updateUserInformation(
 			{
 				userobject_id: data._id,
 				user_nickname: newNick == '' ? data.user_nickname : newNick,
+				// user_nickname: newNick,
 				user_profile_uri: data.user_profile_uri,
 			},
 			success => {
-				console.log('success', success);
+				setChanged(true);
+				console.log('profileChange success', success);
 			},
 			// console.log('userObject', userObject);
 			err => {
+				setChanged(true);
 				console.log('err', err);
 			},
 		);
+		// navigation.dispatch(
+		// 	CommonActions.reset({
+		// 		index: 1,
+		// 		routes: [
+		// 			{name: 'UserMenu'},
+		// 			{
+		// 				name: 'UserInfoSetting',
+		// 				params: {changedPhoto: data.user_profile_uri},
+		// 			},
+		// 		],
+		// 	}),
+		// );
 	};
 
 	const selectPhoto = () => {

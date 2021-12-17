@@ -31,13 +31,13 @@ const InputWithSelect = props => {
 	const inputRef = React.useRef();
 
 	const onChange = text => {
-		props.onChange(dropdownVal+ props.delimiter + text);
+		props.onChange(dropdownVal + props.delimiter + text);
 		setInput(text);
 	};
 
 	const onSelectDropDown = (v, i) => {
 		console.log('드롭다운 선택확인 ', v, i);
-		props.onChange(v + props.delimiter+ input);
+		props.onChange(v + props.delimiter + input);
 		setDropdownVal(v);
 	};
 

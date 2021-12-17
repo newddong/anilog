@@ -23,6 +23,7 @@ export default AddressSearch = props => {
 	useEffect(() => {
 		// console.log('refresh component');
 		// console.log(addr);
+		console.log(props);
 		setAddrList({common: {}, list: []});
 		setSelectedIndex(-1);
 		search(data.keyword, 1);

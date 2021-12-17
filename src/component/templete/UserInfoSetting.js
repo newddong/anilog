@@ -12,7 +12,7 @@ import MyPetList from '../organism_ksw/MyPetList';
 import {login_style, btn_style, temp_style, userInfoSetting_style} from './style_templete';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import {getUserProfile} from 'Root/api/usermenuapi';
-import {getUserProfile} from 'Root/api/userapi';
+import {getUserProfile, updateUserIntroduction} from 'Root/api/userapi';
 // 필요한 데이터 - 로그인 유저 제반 데이터, 나의 반려동물 관련 데이터(CompanionObject 참조)
 export default UserInfoSetting = ({route}) => {
 	const navigation = useNavigation();
@@ -90,6 +90,16 @@ export default UserInfoSetting = ({route}) => {
 	const modify_finalize = () => {
 		setModifyMode(!modifyMode);
 		setData({...data, user_introduction: intro_modified});
+		console.log('intro', intro_modified, typeof intro_modified);
+		updateUserIntroduction(
+			{user_introduction: intro_modified},
+			success => {
+				console.log('suceess', success);
+			},
+			err => {
+				console.log('er', err);
+			},
+		);
 	};
 
 	//수정 TextInput 콜백 함수

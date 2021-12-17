@@ -15,6 +15,8 @@ export default SaveButtonHeader = ({navigation, route, options, back}) => {
 	const hasUnsavedChanges = Boolean(data);
 
 	const save = () => {
+		console.log('save button', data);
+		console.log('save button route', route.params);
 		setData(route.params);
 		navigation.setParams(data);
 	};

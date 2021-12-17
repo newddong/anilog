@@ -10,17 +10,43 @@ import AddressInput from '../organism_ksw/AddressInput';
 import InterestTagList from '../organism_ksw/InterestTagList';
 import {GENDER_TAB_SELECT, INPUT_PHONE_NUM, INTEREST_ACT, INTEREST_REGION, mobile_carrier} from 'Root/i18n/msg';
 import {dummy_userObject} from 'Root/config/dummyDate_json';
-
+import {getUserInfoById} from 'Root/api/userapi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Modal from '../modal/Modal';
 export default UserInfoDetailSettting = ({route, navigation}) => {
 	// console.log(route.params);
 
 	const [data, setData] = React.useState(dummy_userObject[0]); //기존 유저의 데이터가 담겨있음
-
+	const [loaded, setLoaded] = React.useState(false);
 	//갱신되는 데이터는 Header에도 Json형태로 전해짐
-	React.useEffect(() => {
-		navigation.setParams(data);
-	}, [data]);
+	// React.useEffect(() => {
+	// 	navigation.setParams(data);
+	// 	console.log('changing Data', data);
+	// }, [data]);
 
+	React.useEffect(() => {
+		AsyncStorage.getItem('token', (err, res) => {
+			console.log('token id ', res);
+			Modal.popNoBtn('Loading');
+			getUserInfoById(
+				{
+					userobject_id: res,
+				},
+				userInfo => {
+					console.log('userInfo', userInfo.msg);
+					setData(userInfo.msg);
+					setLoaded(true);
+					Modal.close();
+				},
+				err => {
+					console.log('er', err);
+				},
+			);
+		});
+	}, []);
+	const onPressSearchAddress = () => {
+		navigation.push('ChangeUserAddress', data);
+	};
 	//생일 값 변경 콜백
 	const onDateChange = date => {
 		setData({...data, user_birthday: date});
@@ -28,6 +54,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 
 	//통신사 드롭다운 선택 콜백
 	const onSelectMobileCompany = (v, i) => {
+		console.log('이동통신사ㅏㅏ', v);
 		setData({...data, user_mobile_company: v});
 	};
 
@@ -47,7 +74,12 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	};
 
 	const onChangePhoneNum = num => {
-		setData({...data, user_phone_number: num});
+		console.log('splited', num.split(' '));
+		let phone_number = num.slice(-11); //num의 인자값이 통신사와 같이 넘어와서 처리
+		let phone_company = num.slice(0, -11); //통신사 처리
+		console.log('전화 번호값', num.slice(-11, num.length));
+		setData({...data, user_phone_number: phone_number});
+		setData({...data, user_mobile_company: phone_company});
 	};
 
 	//관심지역 태그 X마크 삭제클릭
@@ -81,76 +113,80 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 		const found = mobile_carrier.findIndex(e => e == data.user_mobile_company);
 		return found;
 	};
-
-	return (
-		<ScrollView>
-			<View style={[login_style.wrp_main, {flex: 1}]}>
-				<View style={[temp_style.inputForm_userInfoDetailSettting, userInfoDetailSettting_style.inputForm]}>
-					{/* 성별 */}
-					<View style={[userInfoDetailSettting_style.inputForm_detail]}>
-						<View style={[temp_style.text_userInfoDetailSettting, userInfoDetailSettting_style.text]}>
-							<Text style={[txt.noto28, {color: GRAY10}]}>성별</Text>
+	if (loaded) {
+		return (
+			<ScrollView>
+				<View style={[login_style.wrp_main, {flex: 1}]}>
+					<View style={[temp_style.inputForm_userInfoDetailSettting, userInfoDetailSettting_style.inputForm]}>
+						{/* 성별 */}
+						<View style={[userInfoDetailSettting_style.inputForm_detail]}>
+							<View style={[temp_style.text_userInfoDetailSettting, userInfoDetailSettting_style.text]}>
+								<Text style={[txt.noto28, {color: GRAY10}]}>성별</Text>
+							</View>
+							<View style={[temp_style.tabSelectFilled_Type1]}>
+								<TabSelectFilled_Type1 items={GENDER_TAB_SELECT} width={500} defaultIndex={data.user_sex == 'male' ? 0 : 1} />
+							</View>
 						</View>
-						<View style={[temp_style.tabSelectFilled_Type1]}>
-							<TabSelectFilled_Type1 items={GENDER_TAB_SELECT} width={500} defaultIndex={data.user_gender == 'male' ? 0 : 1} />
+						{/* 생일 */}
+						<View style={[userInfoDetailSettting_style.inputForm_detail]}>
+							<View style={[temp_style.text_userInfoDetailSettting, userInfoDetailSettting_style.text]}>
+								<Text style={[txt.noto28, {color: GRAY10}]}>생일</Text>
+							</View>
+							<View style={[temp_style.tabSelectFilled_Type1]}>
+								<DatePicker onDateChange={date => onDateChange(date)} defaultDate={data.user_birthday} />
+							</View>
 						</View>
-					</View>
-					{/* 생일 */}
-					<View style={[userInfoDetailSettting_style.inputForm_detail]}>
-						<View style={[temp_style.text_userInfoDetailSettting, userInfoDetailSettting_style.text]}>
-							<Text style={[txt.noto28, {color: GRAY10}]}>생일</Text>
+						{/* 전화번호 */}
+						<View style={[userInfoDetailSettting_style.inputWithSelect]}>
+							<View style={[temp_style.text_userInfoDetailSettting, userInfoDetailSettting_style.text]}>
+								<Text style={[txt.noto28, {color: GRAY10}]}>전화번호</Text>
+							</View>
+							<View style={[userInfoDetailSettting_style.phone_num_input]}>
+								<InputWithSelect
+									onChange={num => onChangePhoneNum(num)}
+									onSelectDropDown={(v, i) => onSelectMobileCompany(v, i)}
+									items={mobile_carrier}
+									placeholder={INPUT_PHONE_NUM}
+									width={300}
+									defaultValue={data.user_phone_number || ''}
+									defaultIndex={getDefault()}
+									defaultInput={data.user_phone_number || ''}
+								/>
+							</View>
 						</View>
-						<View style={[temp_style.tabSelectFilled_Type1]}>
-							<DatePicker onDateChange={date => onDateChange(date)} defaultDate={data.user_birthday} />
-						</View>
-					</View>
-					{/* 전화번호 */}
-					<View style={[userInfoDetailSettting_style.inputWithSelect]}>
-						<View style={[temp_style.text_userInfoDetailSettting, userInfoDetailSettting_style.text]}>
-							<Text style={[txt.noto28, {color: GRAY10}]}>전화번호</Text>
-						</View>
-						<View style={[userInfoDetailSettting_style.phone_num_input]}>
-							<InputWithSelect
-								onChange={num => onChangePhoneNum(num)}
-								onSelectDropDown={(v, i) => onSelectMobileCompany(v, i)}
-								items={mobile_carrier}
-								placeholder={INPUT_PHONE_NUM}
-								width={300}
-								defaultValue={data.user_phone_number || ''}
-								defaultIndex={getDefault()}
-								defaultInput={data.user_phone_number || ''}
+						{/* 나의 지역 */}
+						<View style={[temp_style.addressInput]}>
+							<AddressInput
+								title={'나의 지역'}
+								address={data.user_address}
+								onChangeAddress={addr => onChangeAddress(addr)}
+								onChangeDeatilAddress={addr => onChangeDeatilAddress(addr)}
+								addressDefault={data ? data.user_address.city + '  ' + data.user_address.district : ''}
+								detailAddressDefault={data ? data.user_address.neighbor : ''}
 							/>
 						</View>
-					</View>
-					{/* 나의 지역 */}
-					<View style={[temp_style.addressInput]}>
-						<AddressInput
-							title={'나의 지역'}
-							onChangeAddress={addr => onChangeAddress(addr)}
-							onChangeDeatilAddress={addr => onChangeDeatilAddress(addr)}
-							addressDefault={data ? data.user_address.city + '  ' + data.user_address.district : ''}
-							detailAddressDefault={data ? data.user_address.neighbor : ''}
-						/>
-					</View>
-					{/* 관심지역 및 활동 */}
-					<View style={[userInfoDetailSettting_style.tagListContainer]}>
-						<View style={[userInfoDetailSettting_style.interestTagList]}>
-							<InterestTagList
-								title={INTEREST_REGION}
-								items={data ? data.user_interests.location : null}
-								onDelete={index => onDeleteInterestRegion(index)}
-							/>
-						</View>
-						<View style={[userInfoDetailSettting_style.interestTagList]}>
-							<InterestTagList
-								title={INTEREST_ACT}
-								items={data ? data.user_interests.activity : null}
-								onDelete={index => onDeleteInterestAct(index)}
-							/>
+						{/* 관심지역 및 활동 */}
+						<View style={[userInfoDetailSettting_style.tagListContainer]}>
+							<View style={[userInfoDetailSettting_style.interestTagList]}>
+								<InterestTagList
+									title={INTEREST_REGION}
+									items={data ? data.user_interests.location : null}
+									onDelete={index => onDeleteInterestRegion(index)}
+								/>
+							</View>
+							<View style={[userInfoDetailSettting_style.interestTagList]}>
+								<InterestTagList
+									title={INTEREST_ACT}
+									items={data ? data.user_interests.activity : null}
+									onDelete={index => onDeleteInterestAct(index)}
+								/>
+							</View>
 						</View>
 					</View>
 				</View>
-			</View>
-		</ScrollView>
-	);
+			</ScrollView>
+		);
+	} else {
+		return <View></View>;
+	}
 };
