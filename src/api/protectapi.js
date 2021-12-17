@@ -89,3 +89,16 @@ export async function getAppliesRecord(params, callback, errcallback){
  export async function getUserAdoptProtectionList(params, callback, errcallback){
 	apiController( '/protect/getUserAdoptProtectionList', arguments);
 };
+
+
+
+/**
+ * 유저의 보호활동(입양,임시보호) 신청서 자세히 보기
+ * @param {object} params
+ * @param {string} params.protect_act_object_id - 불러올 신청서의 오브젝트 아이디
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+export async function getApplyDetailById(params, callback, errcallback){
+apiController( '/protect/getApplyDetailById', arguments);
+};
