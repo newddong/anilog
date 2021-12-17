@@ -7,11 +7,12 @@ import Vaccination from '../organism_ksw/Vaccination';
 import {login_style, temp_txt, vaccinationRecord} from './style_templete';
 import {_dummy_PetVaccinationObject} from 'Root/config/dummy_data_hjs';
 
-export default VaccinationRecord = ({navigation}) => {
+export default VaccinationRecord = ({route, navigation}) => {
 	const [data, setData] = React.useState([]);
 	const [vaccinOnceAmonthList, setVaccinOnceAmonthList] = React.useState([]);
 	const [vaccinOnceEvery3monthsList, setVaccinOnceEvery3monthsList] = React.useState([]);
 	const [vaccinOnceAyearList, setVaccinOnceAyearList] = React.useState([]);
+	const [alaram, setAlaram] = React.useState(true);
 
 	//Vaccin 접종 내역이 바뀔 때마다 헤더에 데이터 송신
 	React.useEffect(() => {
@@ -24,7 +25,7 @@ export default VaccinationRecord = ({navigation}) => {
 	React.useEffect(() => {
 		// getVaccinationRecord(
 		// 	{
-		// 		vaccination_pet_id: vaccination_pet_id,
+		// 		vaccination_pet_id: userobject_id,
 		// 	},
 		// 	data => {
 		// 		console.log('VaccinationRecord : getVaccinationRecord data - ', data);
@@ -35,6 +36,53 @@ export default VaccinationRecord = ({navigation}) => {
 		// 	},
 		// );
 	}, []);
+
+	const updateVaccinationRecord = () => {
+		setVaccinationRecord(
+			{
+				vaccination_pet_id: route.params.userobject_id, //접종 대상 반려동물
+
+				//심장사상충
+				vaccination_heartworm: {
+					nearest_vaccination_date: nearest_vaccination_date,
+				},
+				//외부 기생충
+				vaccination_ectozoon: {
+					nearest_vaccination_date: nearest_vaccination_date,
+				},
+				//구충제
+				vaccination_anthelmintic: {
+					nearest_vaccination_date: nearest_vaccination_date,
+				},
+				//종합접종
+				vaccination_comprehensive: {
+					nearest_vaccination_date: nearest_vaccination_date,
+				},
+				//코로나 장염
+				vaccination_coronaviral_enteritis: {
+					nearest_vaccination_date: nearest_vaccination_date,
+				},
+				//기관지염
+				vaccination_bronchitis: {
+					nearest_vaccination_date: nearest_vaccination_date,
+				},
+				//광견병
+				vaccination_hydrophobia: {
+					nearest_vaccination_date: nearest_vaccination_date,
+				},
+				//인플루엔자
+				vaccination_influenza: {
+					nearest_vaccination_date: nearest_vaccination_date,
+				},
+				//다음 예정일 알람
+				nextAlarmValue: alaram,
+			},
+			result => {
+				console.log(`result:${result}`);
+				navigation.push('PetInfoSetting', route.params.userobject_id);
+			},
+		);
+	};
 
 	const getDbFiled = [
 		{
@@ -139,6 +187,16 @@ export default VaccinationRecord = ({navigation}) => {
 		setVaccinOnceAyearList(e);
 	};
 
+	const onSwtichOn = () => {
+		console.log(`-onSwtichOn-`);
+		setAlaram(true);
+	};
+
+	const onSwtichOff = () => {
+		console.log(`-onSwtichOff-`);
+		setAlaram(false);
+	};
+
 	return (
 		<ScrollView style={{flex: 1}}>
 			<View style={[login_style.wrp_main, vaccinationRecord.container]}>
@@ -159,7 +217,7 @@ export default VaccinationRecord = ({navigation}) => {
 						<Text style={[txt.noto24, {color: GRAY10}]}>다음예정일 알림</Text>
 					</View>
 					<View style={[vaccinationRecord.dueDateSwitch]}>
-						<OnOffSwitch />
+						<OnOffSwitch onSwtichOn={onSwtichOn} onSwtichOff={onSwtichOff} />
 					</View>
 				</View>
 				{/* 접종표 관련 권고사항 메시지 */}

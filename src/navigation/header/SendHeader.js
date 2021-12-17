@@ -29,12 +29,7 @@ export default SendHeader = ({route, navigation, options}) => {
 						() => {
 							console.log('SendHeader / Before Create AidRequest ', data);
 							createProtectRequest(
-								{
-									protect_request_photos: data.protect_request_photos,
-									shelter_protect_animal_object_id: data.protect_animal_id,
-									protect_request_title: data.protect_request_title,
-									protect_request_content: data.protect_request_content,
-								},
+								data,
 								successed => {
 									console.log('successed / createProtectRequest', successed);
 									Modal.popNoBtn('보호요청 게시글 \n 작성이 완료되었습니다!');

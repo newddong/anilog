@@ -2,7 +2,6 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity, TextInput} from 'react-native';
 import {GRAY10, GRAY40} from 'Root/config/color';
-import {dummy_CompanionObject, dummy_userObject, dummy_UserObject_pet} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
 import {DEFAULT_PROFILE, MODIFY_PROFILE} from 'Root/i18n/msg';
 import {btn_w114, btn_w242} from '../atom/btn/btn_style';
@@ -25,13 +24,13 @@ export default UserInfoSetting = ({route}) => {
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
-			console.log('token id ', res);
 			getUserProfile(
 				{
 					userobject_id: res,
 				},
 				userObject => {
 					setData(userObject.msg);
+					console.log('userObject.msg.myPets?', userObject.msg.user_my_pets);
 				},
 				err => {
 					console.log('er', err);

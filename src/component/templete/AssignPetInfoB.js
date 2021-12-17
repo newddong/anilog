@@ -5,7 +5,6 @@ import {APRI10, GRAY10, GRAY20} from 'Root/config/color';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
 import Stagebar from '../molecules/Stagebar';
-import {btn_w226} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import {login_style, btn_style, temp_style, progressbar_style, assignPetInfo_style} from './style_templete';
 import DatePicker from '../molecules/DatePicker';
@@ -59,7 +58,8 @@ export default AssignPetInfoB = props => {
 		Modal.popNoBtn('반려동물 등록 중입니다.');
 		assignPet(
 			data,
-			() => {
+			success => {
+				console.log('success', success);
 				Modal.close();
 				Modal.popOneBtn('반려동물 등록이 완료되었습니다.', '확인', () => {
 					Modal.close();
@@ -70,7 +70,10 @@ export default AssignPetInfoB = props => {
 				});
 			},
 			error => {
-				error => Modal.popOneBtn(error, '확인', () => Modal.close());
+				console.log('error', error);
+				Modal.close();
+
+				Modal.popOneBtn(error, '확인', () => Modal.close());
 			},
 		);
 	};

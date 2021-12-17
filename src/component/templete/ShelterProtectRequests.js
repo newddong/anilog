@@ -27,12 +27,13 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 				request_number: 5,
 			},
 			successed => {
-				// console.log('successed', successed.msg);
-				setProtectAnimalList(successed.msg);
+				console.log('successed', successed.msg);
+				// setProtectAnimalList(successed.msg);
 				// 받아온 protect_animal_protect_Request_id로 해당 게시글 좋아요 여부도 판별해야함
 			},
 			err => {
 				console.log('err', err);
+				setProtectAnimalList(err);
 			},
 		);
 	}, []);
