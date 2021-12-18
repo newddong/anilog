@@ -16,7 +16,7 @@ import Modal from '../modal/Modal';
 export default UserInfoDetailSettting = ({route, navigation}) => {
 	// console.log(route.params);
 
-	const [data, setData] = React.useState(dummy_userObject[0]); //기존 유저의 데이터가 담겨있음
+	const [data, setData] = React.useState({}); //기존 유저의 데이터가 담겨있음
 	const [loaded, setLoaded] = React.useState(false);
 	//갱신되는 데이터는 Header에도 Json형태로 전해짐
 	// React.useEffect(() => {
@@ -26,14 +26,13 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
-			console.log('token id ', res);
 			Modal.popNoBtn('Loading');
 			getUserInfoById(
 				{
 					userobject_id: res,
 				},
 				userInfo => {
-					console.log('userInfo', userInfo.msg);
+					// console.log('userInfo', userInfo.msg);
 					setData(userInfo.msg);
 					setLoaded(true);
 					Modal.close();
@@ -143,8 +142,8 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 							</View>
 							<View style={[userInfoDetailSettting_style.phone_num_input]}>
 								<InputWithSelect
-									onChange={num => onChangePhoneNum(num)}
-									onSelectDropDown={(v, i) => onSelectMobileCompany(v, i)}
+									onChange={onChangePhoneNum}
+									onSelectDropDown={onSelectMobileCompany}
 									items={mobile_carrier}
 									placeholder={INPUT_PHONE_NUM}
 									width={300}
@@ -158,9 +157,9 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 						<View style={[temp_style.addressInput]}>
 							<AddressInput
 								title={'나의 지역'}
-								address={data.user_address}
-								onChangeAddress={addr => onChangeAddress(addr)}
-								onChangeDeatilAddress={addr => onChangeDeatilAddress(addr)}
+								address={data.user_address.city + ' ' + data.user_address.district + ' ' + data.user_address.neighbor}
+								onChangeAddress={onChangeAddress}
+								onChangeDeatilAddress={onChangeDeatilAddress}
 								addressDefault={data ? data.user_address.city + '  ' + data.user_address.district : ''}
 								detailAddressDefault={data ? data.user_address.neighbor : ''}
 							/>
@@ -168,18 +167,10 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 						{/* 관심지역 및 활동 */}
 						<View style={[userInfoDetailSettting_style.tagListContainer]}>
 							<View style={[userInfoDetailSettting_style.interestTagList]}>
-								<InterestTagList
-									title={INTEREST_REGION}
-									items={data ? data.user_interests.location : null}
-									onDelete={index => onDeleteInterestRegion(index)}
-								/>
+								<InterestTagList title={INTEREST_REGION} items={data ? data.user_interests.location : null} onDelete={onDeleteInterestRegion} />
 							</View>
 							<View style={[userInfoDetailSettting_style.interestTagList]}>
-								<InterestTagList
-									title={INTEREST_ACT}
-									items={data ? data.user_interests.activity : null}
-									onDelete={index => onDeleteInterestAct(index)}
-								/>
+								<InterestTagList title={INTEREST_ACT} items={data ? data.user_interests.activity : null} onDelete={onDeleteInterestAct} />
 							</View>
 						</View>
 					</View>

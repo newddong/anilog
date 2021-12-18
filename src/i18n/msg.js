@@ -164,7 +164,7 @@ export const PET = 'pet';
 export const SHELTER = 'shelter';
 
 //통신사
-export const mobile_carrier = ['SKT 텔레콤', 'LG U+', 'KT', '알뜰'];
+export const mobile_carrier = ['SKT텔레콤', 'LG U+', 'KT', '알뜰'];
 
 //반려동물 종류
 export const PET_KIND = ['동물종류', '개', '고양이', '새', '여우', '거북이', '햄스터'];

@@ -17,15 +17,15 @@ export default AidRequestManage = ({route, navigation}) => {
 			getShelterProtectAnimalList(
 				{
 					shelter_protect_animal_object_id: null,
-					request_number: 2,
+					request_number: 100,
 				},
 				successed => {
-					console.log('successed / getShelterProtectAnimalList', successed.msg);
+					console.log('successed / getShelterProtectAnimalList / ShelterProtectAnimalList', successed.msg);
 					setData(successed.msg);
 				},
 				err => {
 					console.log('err / getShelterProtectAnimalList', err);
-					setData(err);
+					// setData(err);
 				},
 			);
 		} else {
@@ -34,10 +34,26 @@ export default AidRequestManage = ({route, navigation}) => {
 			getShelterProtectAnimalList(
 				{
 					shelter_protect_animal_object_id: null,
-					request_number: 2,
+					request_number: 100,
 				},
 				successed => {
-					console.log('successed / getShelterAnimalList', successed.msg);
+					console.log('successed / getShelterAnimalList / ProtectApplyList', successed.msg);
+					const example = {
+						__v: 0,
+						_id: '61bdff9b244ae6ea37b64e28',
+						protect_animal_belonged_shelter_id: '61b9eba4185a4f69d5981ad6',
+						protect_animal_estimate_age: '2년 1개월',
+						protect_animal_neutralization: 'unknown',
+						protect_animal_photo_uri_list: [],
+						protect_animal_protector_discussion_id: [],
+						protect_animal_rescue_date: '2021-12-01T00:00:00.000Z',
+						protect_animal_rescue_location: 'Cora st ',
+						protect_animal_sex: 'female',
+						protect_animal_species: '개',
+						protect_animal_species_detail: '치와와',
+						protect_animal_status: 'rescue',
+						protect_animal_weight: 5,
+					};
 					setData(successed.msg);
 				},
 				err => {

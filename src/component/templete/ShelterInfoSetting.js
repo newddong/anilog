@@ -1,20 +1,33 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
 import {Text, View, TouchableOpacity} from 'react-native';
-import {login_style, temp_style, shelterInfoSetting, temp_txt} from './style_templete';
+import {login_style, temp_style, shelterInfoSetting} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
 import {btn_w114, btn_w242} from '../atom/btn/btn_style';
 import ProfileImageLarge160 from '../molecules/ProfileImageLarge160';
 import {txt} from 'Root/screens/assign/style_assign';
 import AniButton from '../molecules/AniButton';
-import {dummy_ShelterInfo} from 'Root/config/dummy_data_hjs';
 import {GRAY10} from 'Root/config/color';
+import {getUserInfoById} from 'Root/api/userapi';
 
 export default ShelterInfoSetting = ({route}) => {
-	// console.log('ShelterInfoSetting', route.params);
+	console.log('ShelterInfoSetting', route.params);
 	const navigation = useNavigation();
 
-	const [data, setData] = React.useState(route.params);
+	const [data, setData] = React.useState({});
+
+	React.useEffect(() => {
+		getUserInfoById(
+			{userobject_id: route.params},
+			result => {
+				console.log('result / getUserInfoById / ShelterInfoSetting   : ', result);
+				setData(result.msg);
+			},
+			err => {
+				console.log('err / getUserInfoById', err);
+			},
+		);
+	}, []);
 
 	const moveToChangeUserProfileImage = () => {
 		navigation.push('ChangeUserProfileImage');
@@ -95,9 +108,7 @@ export default ShelterInfoSetting = ({route}) => {
 								<Text style={[txt.noto30, {color: GRAY10}]}>주소</Text>
 							</View>
 							<View style={temp_style.addressContents}>
-								<Text style={[txt.noto28]}>
-									{data.shelter_address.city + ' ' + data.shelter_address.district + ' ' + data.shelter_address.neighbor}
-								</Text>
+								<Text style={[txt.noto28]}>{data.shelter_address ? data.shelter_address.brief + ' ' + data.shelter_address.detail + ' ' : ''}</Text>
 							</View>
 						</View>
 						<View style={temp_style.title_type_shelterInfoSetting_view}>

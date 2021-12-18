@@ -57,23 +57,6 @@ export default AnimalNeedHelp = props => {
 		// status: data.protect_animal_status,
 	);
 
-	const e = {
-		__v: 0,
-		_id: '61bb57379c25946f89154d71',
-		protect_animal_belonged_shelter_id: '61b9eba4185a4f69d5981ad6',
-		protect_animal_estimate_age: '1개월',
-		protect_animal_neutralization: 'no',
-		protect_animal_photo_uri_list: [],
-		protect_animal_protector_discussion_id: [],
-		protect_animal_rescue_date: null,
-		protect_animal_rescue_location: '마포구',
-		protect_animal_sex: 'female',
-		protect_animal_species: '기타',
-		protect_animal_species_detail: '햄스터',
-		protect_animal_status: 'rescue',
-		protect_animal_weight: 1,
-	};
-
 	React.useEffect(() => {
 		// setThumbnailData({...thumbnailData, img_uri: data.protect_animal_photos[0]}); //이 부분이 있어야 사진 받아오는 곳에서 비동기처리가 가능해짐.
 		setThumbnailData({...thumbnailData, checkthumbnailData}); //이 부분이 있어야 사진 받아오는 곳에서 비동기처리가 가능해짐.

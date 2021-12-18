@@ -30,7 +30,7 @@ export default SaveAnimalRequest = ({route}) => {
 						getUserProtectAnimalList(
 							{userobject_id: res},
 							result => {
-								// console.log('result / getUserProtectAnimalList', result.msg);
+								console.log('result / getUserProtectAnimalList', result.msg);
 								setData(result.msg);
 								Modal.close();
 							},
@@ -186,8 +186,7 @@ export default SaveAnimalRequest = ({route}) => {
 		</View>
 	);
 };
-
-[
+const e = [
 	{
 		__v: 0,
 		_id: '61bb6e499c25946f89154dca',

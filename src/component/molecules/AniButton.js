@@ -1,16 +1,16 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
-import { APRI10, GRAY20, GRAY30, WHITE } from 'Root/config/color';
+import {Text, View, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
+import {APRI10, GRAY20, GRAY30, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
-import { txt } from 'Root/config/textstyle';
-import { btn_w226 } from '../atom/btn/btn_style';
+import {txt} from 'Root/config/textstyle';
+import {btn_w226} from '../atom/btn/btn_style';
 /**
  * 버튼 컴포넌트트
  * @param {object} props - Props Object
  * @param {string} props.btnTitle - 버튼 제목목
  * @param {'shawdow'|'noShadow'|'gray'|undefined} props.btnTheme - 버튼 테마 'shawdow'|'noShadow'|'gray'|undefined
  * @param {'filled'|'border'|'noborder'|undefined} props.btnStyle - 버튼 스타일 'filled'|'border'|'noborder'|undefined
- * @param {object} props.btnLayout - 버튼의 레이아웃 스타일(Atoms의 btn_wXXX)
+ * @param {object} props.btnLayout - 버튼의 레이아웃 스타일(Atoms의 btn_wXXX) / Default : btn_w226
  * @param {boolean} props.disable - 버튼 활성화 여부
  * @param {number} props.titleFontStyle - 제목 글꼴 크기, 기본값 24
  * @param {(title:string)=>void} props.onPress - 버튼을 눌렸을때 동작하는 콜백, 제목 반환환
@@ -44,9 +44,9 @@ const AniButton = props => {
 	//default는 APRI10, Gray의 경우 GRAY20
 	const border = () => {
 		if (props.btnStyle == 'border' && props.btnTheme == 'gray') {
-			return { borderColor: GRAY20, borderWidth: 4 * DP };
+			return {borderColor: GRAY20, borderWidth: 4 * DP};
 		} else if (props.btnStyle == 'border') {
-			return { borderColor: APRI10, borderWidth: 4 * DP };
+			return {borderColor: APRI10, borderWidth: 4 * DP};
 		}
 	};
 
@@ -67,7 +67,7 @@ const AniButton = props => {
 
 	const insideView = () => {
 		return (
-			<View style={[props.btnLayout, btnTheme(), border(), { backgroundColor: btnStyle(), justifyContent: 'center' }]}>
+			<View style={[props.btnLayout, btnTheme(), border(), {backgroundColor: btnStyle(), justifyContent: 'center'}]}>
 				<Text
 					style={[
 						txt.noto24b,
