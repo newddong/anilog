@@ -59,7 +59,7 @@ export default AidRequestList = props => {
 					</TouchableOpacity>
 				) : null}
 				<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
-					<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
+					<ScrollView horizontal={true} contentContainerStyle={{flex: 1}} scrollEnabled={false}>
 						<View style={aidRequestList.aidRequestListCont}>
 							<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled={false} />
 						</View>

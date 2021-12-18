@@ -52,7 +52,9 @@ export default UserMenu = props => {
 				},
 				userObject => {
 					setData(userObject.msg);
-					Modal.close();
+					setTimeout(() => {
+						Modal.close();
+					}, 1000);
 				},
 
 				err => {
@@ -82,7 +84,7 @@ export default UserMenu = props => {
 				navigation.push('FavoriteFeeds'); // FavoriteFeedObject
 				break;
 			case '보호 요청':
-				navigation.push('SaveAnimalRequest'); // BookmarkProtectRequestObject
+				navigation.push('UserSaveAnimalRequest'); // BookmarkProtectRequestObject
 				break;
 			case '내 게시글':
 				navigation.push('UserFeeds');

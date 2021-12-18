@@ -49,24 +49,27 @@ import {GRAY10} from 'Root/config/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getShelterMenu} from 'Root/api/shelterapi_hjs';
 import Modal from '../modal/Modal';
-import {getUserProfile} from 'Root/api/usermenuapi';
+import {getUserProfile} from 'Root/api/userapi';
 
 export default ShelterMenu = ({route}) => {
 	const navigation = useNavigation();
-	const [data, setData] = React.useState(dummy_UserObject_shelter[0]); //우선 userObject_Shelter 0번 추가
+	const [data, setData] = React.useState({}); //우선 userObject_Shelter 0번 추가
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', async (err, res) => {
 			Modal.popNoBtn('Loading');
 			console.log('res', res);
-			await getUserProfile(
+			getUserProfile(
 				{
 					userobject_id: res,
 				},
 				userObject => {
-					console.log('userObject/ ShelterMenu', userObject._id);
-					setData(userObject);
+					console.log('userObject/ ShelterMenu', userObject);
+					setData(userObject.msg);
 					Modal.close();
+				},
+				err => {
+					console.log('err', err);
 				},
 			);
 		});
@@ -155,7 +158,7 @@ export default ShelterMenu = ({route}) => {
 			//보호요청(저장)
 			case REQ_PROTECTION_SAVE:
 				//listType: 'original'- 클릭시 해당 UserProfile로 go, 'twoBtn' - 클릭시 외곽 선 표출, , 'checkBox' - 해당 페이지에서 선택하기 시 체크박스 표출
-				navigation.push('SaveAnimalRequest', dummy_AppliesRecord_protect);
+				navigation.push('ShelterSaveAnimalRequest');
 				break;
 			//커뮤니티
 			case COMUNITY:
@@ -214,7 +217,7 @@ export default ShelterMenu = ({route}) => {
 							<View style={[shelterMenu.shelterInfo_container_right]}>
 								{/* 보호소 이름 */}
 								<View style={[shelterMenu.shelterInfo_user_id]}>
-									<Text style={txt.noto36b}>{data.shelter_name || ''}</Text>
+									<Text style={txt.noto36b}>{data.user_nickname || ''}</Text>
 								</View>
 								{/* user_introduction */}
 								<View style={[shelterMenu.shelterInfo_contents]}>
@@ -283,4 +286,18 @@ export default ShelterMenu = ({route}) => {
 			</ScrollView>
 		</View>
 	);
+};
+
+const t = {
+	_id: '61b9eba4185a4f69d5981ad6',
+	feedList: [[Object], [Object], [Object], [Object], [Object], [Object], [Object]],
+	user_denied: false,
+	user_follow_count: 0,
+	user_follower_count: 0,
+	user_introduction: '',
+	user_my_pets: [],
+	user_nickname: '상우 보호소',
+	user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639574436056_DWG_KIA_logo.png',
+	user_type: 'shelter',
+	user_upload_count: 0,
 };

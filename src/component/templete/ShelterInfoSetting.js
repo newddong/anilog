@@ -11,9 +11,10 @@ import {dummy_ShelterInfo} from 'Root/config/dummy_data_hjs';
 import {GRAY10} from 'Root/config/color';
 
 export default ShelterInfoSetting = ({route}) => {
+	// console.log('ShelterInfoSetting', route.params);
 	const navigation = useNavigation();
 
-	const [_dummyData, set_dummyData] = React.useState(dummy_ShelterInfo);
+	const [data, setData] = React.useState(route.params);
 
 	const moveToChangeUserProfileImage = () => {
 		navigation.push('ChangeUserProfileImage');
@@ -34,7 +35,7 @@ export default ShelterInfoSetting = ({route}) => {
 				{/* 프로필 이미지 및 프로필 변경 */}
 				<View style={[shelterInfoSetting.shelterInfoSetting_step1]}>
 					<View style={[temp_style.profileImageLarge]}>
-						<ProfileImageLarge160 data={_dummyData} />
+						<ProfileImageLarge160 data={data} />
 					</View>
 
 					<View style={[shelterInfoSetting.btn_w242]}>
@@ -49,7 +50,7 @@ export default ShelterInfoSetting = ({route}) => {
 							<Text style={txt.noto30b}>계정정보</Text>
 						</View>
 						<View style={[temp_style.accountInfo_email_shelterInfoSetting_view, shelterInfoSetting.email_view]}>
-							<Text>{_dummyData._id}</Text>
+							<Text>{data.user_nickname}</Text>
 							<TouchableOpacity onPress={moveToChangePassword}>
 								<Text style={txt.noto24}>비밀번호 변경하기</Text>
 							</TouchableOpacity>
@@ -67,7 +68,7 @@ export default ShelterInfoSetting = ({route}) => {
 						</View>
 						<View style={[temp_style.introduceMent_shelterInfoSetting]}>
 							<Text style={txt.noto24} ellipsizeMode={'tail'} numberOfLines={3}>
-								{_dummyData.user_introduction}
+								{data.user_introduction}
 							</Text>
 						</View>
 					</View>
@@ -78,13 +79,7 @@ export default ShelterInfoSetting = ({route}) => {
 								<Text style={txt.noto30b}>보호소 정보</Text>
 							</View>
 							<View style={shelterInfoSetting.btn_w114}>
-								<AniButton
-									btnLayout={btn_w114}
-									btnStyle={'border'}
-									btnTheme={'shadow'}
-									btnTitle={'수정'}
-									onPress={() => navigation.push('EditShelterInfo')}
-								/>
+								<AniButton btnLayout={btn_w114} btnStyle={'border'} btnTitle={'수정'} onPress={() => navigation.push('EditShelterInfo')} />
 							</View>
 						</View>
 						<View style={temp_style.title_type_shelterInfoSetting_view}>
@@ -92,7 +87,7 @@ export default ShelterInfoSetting = ({route}) => {
 								<Text style={[txt.noto30, {color: GRAY10}]}>보호소</Text>
 							</View>
 							<View style={temp_style.littleContents}>
-								<Text style={[txt.noto28]}>{_dummyData.shelter_name}</Text>
+								<Text style={[txt.noto28]}>{data.shelter_name}</Text>
 							</View>
 						</View>
 						<View style={temp_style.address_type_shelterInfoSetting_view}>
@@ -101,7 +96,7 @@ export default ShelterInfoSetting = ({route}) => {
 							</View>
 							<View style={temp_style.addressContents}>
 								<Text style={[txt.noto28]}>
-									{_dummyData.shelter_address.city + ' ' + _dummyData.shelter_address.district + ' ' + _dummyData.shelter_address.neighbor}
+									{data.shelter_address.city + ' ' + data.shelter_address.district + ' ' + data.shelter_address.neighbor}
 								</Text>
 							</View>
 						</View>
@@ -110,7 +105,7 @@ export default ShelterInfoSetting = ({route}) => {
 								<Text style={[txt.noto30, {color: GRAY10}]}>전화번호</Text>
 							</View>
 							<View style={temp_style.littleContents}>
-								<Text style={[txt.noto28]}>{_dummyData.shelter_delegate_contact_number}</Text>
+								<Text style={[txt.noto28]}>{data.shelter_delegate_contact_number}</Text>
 							</View>
 						</View>
 						<View style={temp_style.title_type_shelterInfoSetting_view}>
@@ -118,7 +113,7 @@ export default ShelterInfoSetting = ({route}) => {
 								<Text style={[txt.noto30, {color: GRAY10}]}>E-mail</Text>
 							</View>
 							<View style={temp_style.littleContents}>
-								<Text style={[txt.noto28]}>{_dummyData.user_email}</Text>
+								<Text style={[txt.noto28]}>{data.user_email}</Text>
 							</View>
 						</View>
 						<View style={temp_style.title_type_shelterInfoSetting_view}>
@@ -126,7 +121,7 @@ export default ShelterInfoSetting = ({route}) => {
 								<Text style={[txt.noto30, {color: GRAY10}]}>홈페이지</Text>
 							</View>
 							<View style={temp_style.littleContents}>
-								<Text style={[txt.noto28]}>{_dummyData.shelter_homepage}</Text>
+								<Text style={[txt.noto28]}>{data.shelter_homepage}</Text>
 							</View>
 						</View>
 						<View style={temp_style.title_type_shelterInfoSetting_view}>
@@ -134,7 +129,7 @@ export default ShelterInfoSetting = ({route}) => {
 								<Text style={[txt.noto30, {color: GRAY10}]}>설립일</Text>
 							</View>
 							<View style={temp_style.littleContents}>
-								<Text style={[txt.noto28]}>{_dummyData.shelter_foundation_date}</Text>
+								<Text style={[txt.noto28]}>{data.shelter_foundation_date}</Text>
 							</View>
 						</View>
 					</View>

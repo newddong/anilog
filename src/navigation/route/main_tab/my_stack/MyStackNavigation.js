@@ -107,7 +107,8 @@ export default MyStackNavigation = props => {
 			<MyStack.Screen name="AssignPetInfoB" component={AssignPetInfoB} />
 
 			<MyStack.Screen name="SaveFavorite" component={SaveFavorite} />
-			<MyStack.Screen name="SaveAnimalRequest" component={SaveAnimalRequest} />
+			<MyStack.Screen name="UserSaveAnimalRequest" component={SaveAnimalRequest} />
+			<MyStack.Screen name="ShelterSaveAnimalRequest" component={SaveAnimalRequest} />
 			<MyStack.Screen name="FavoriteFeeds" component={FavoriteFeeds} />
 			<MyStack.Screen name="FavoriteFeedList" component={FeedList} />
 			<MyStack.Screen name="TagMeFeedList" component={FeedList} />

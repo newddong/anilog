@@ -29,7 +29,7 @@ export default WriteAidRequest = ({route, navigation}) => {
 	const [imageList, setImageList] = React.useState([]); //PhotoSelect에서 선택된 사진List
 
 	React.useEffect(() => {
-		console.log('ProtectRequestData ', protectRequestData.shelter_protect_animal_object_id);
+		console.log('ProtectRequestData / WriteAidRequest ', protectRequestData.shelter_protect_animal_object_id);
 		navigation.setParams({data: protectRequestData, nav: route.name});
 	}, [protectRequestData]);
 

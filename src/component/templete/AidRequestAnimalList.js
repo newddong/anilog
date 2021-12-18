@@ -22,7 +22,7 @@ export default AidRequestAnimalList = ({route, navigation}) => {
 				setData(result.msg);
 			},
 			err => {
-				console.log('err / getShelterProtectAnimalList', err);
+				console.log('err / getShelterProtectAnimalList / AidRequestAnimalList   :  ', err);
 				setData(err);
 			},
 		);
@@ -48,38 +48,3 @@ export default AidRequestAnimalList = ({route, navigation}) => {
 		</View>
 	);
 };
-
-const result = [
-	{
-		__v: 0,
-		_id: '61b9ec3c185a4f69d5981adb',
-		protect_animal_belonged_shelter_id: '61b9eba4185a4f69d5981ad6',
-		protect_animal_estimate_age: '3년',
-		protect_animal_neutralization: 'yes',
-		protect_animal_photo_uri_list: ['https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639574588100_%EC%BA%A1%EC%B2%98.JPG'],
-		protect_animal_protector_discussion_id: [],
-		protect_animal_rescue_date: '2021-11-15T00:00:00.000Z',
-		protect_animal_rescue_location: '강원도 평창군청',
-		protect_animal_sex: 'female',
-		protect_animal_species: '고양이',
-		protect_animal_species_detail: '러시안블루',
-		protect_animal_status: 'rescue',
-		protect_animal_weight: 1.2,
-	},
-	{
-		__v: 0,
-		_id: '61ba0dfa4772b1e1d3f2ebaa',
-		protect_animal_belonged_shelter_id: '61b9eba4185a4f69d5981ad6',
-		protect_animal_estimate_age: '3개월',
-		protect_animal_neutralization: 'yes',
-		protect_animal_photo_uri_list: ['https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639583226124_%EC%BA%A1%EC%B2%98.JPG'],
-		protect_animal_protector_discussion_id: [],
-		protect_animal_rescue_date: '2021-11-07T00:00:00.000Z',
-		protect_animal_rescue_location: '성수동',
-		protect_animal_sex: 'male',
-		protect_animal_species: '고양이',
-		protect_animal_species_detail: '미딕',
-		protect_animal_status: 'rescue',
-		protect_animal_weight: 1.5,
-	},
-];
