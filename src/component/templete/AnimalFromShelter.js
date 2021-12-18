@@ -3,25 +3,24 @@ import {View} from 'react-native';
 import {login_style, animalFromShelter_style} from './style_templete';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import {useNavigation} from '@react-navigation/core';
-import {dummy_AdoptorInformation, dummy_AnimalFromShelter_adopted} from 'Root/config/dummyDate_json';
 import {getShelterProtectAnimalList} from 'Root/api/shelterapi';
 
 export default AnimalFromShelter = ({route}) => {
 	const navigation = useNavigation();
-	const [data, setData] = React.useState(dummy_AnimalFromShelter_adopted); //AnimalNeedHelpList에 보낼 리스트정보
+	const [data, setData] = React.useState([]); //AnimalNeedHelpList에 보낼 리스트정보
 
 	React.useEffect(() => {
 		getShelterProtectAnimalList(
 			{
 				shelter_protect_animal_object_id: null,
-				request_number: 2,
+				request_number: 100,
 			},
 			successed => {
 				console.log('successed / getShelterProtectAnimalList', successed.msg);
-				setData(successed.msg);
+				// setData(successed.msg);
 			},
 			err => {
-				console.log('err / getShelterProtectAnimalList', err);
+				console.log('err / getShelterProtectAnimalList / AnimalFromShelter  :  ', err);
 				setData(err);
 			},
 		);

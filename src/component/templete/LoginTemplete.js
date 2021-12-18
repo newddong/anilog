@@ -16,7 +16,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default LoginTemplete = props => {
 	const [id, setId] = React.useState('');
 	const [password, setPassword] = React.useState('');
-
 	const tryToLogin = () => {
 		Modal.popNoBtn('로그인을 요청합니다.');
 
@@ -26,10 +25,11 @@ export default LoginTemplete = props => {
 				login_password: password,
 			},
 			userObject => {
-				// console.log('userObject', userObject.msg.user_type);
+				// console.log('userObject', userObject.msg);
 				Modal.close();
 				Modal.popNoBtn(userObject.msg.user_nickname + '님 \n로그인이 성공하였습니다.');
 				AsyncStorage.setItem('token', userObject.msg._id);
+				AsyncStorage.setItem('type', userObject.msg.user_type);
 				setTimeout(() => {
 					Modal.close();
 					// alert('홈으로 이동');
@@ -45,8 +45,9 @@ export default LoginTemplete = props => {
 		);
 	};
 
-	const moveToMainTab = () => {
-		props.navigation.push('MainTab');
+	const moveToMainTab = async () => {
+		let type = await AsyncStorage.getItem('type');
+		props.navigation.push('MainTab', type);
 	};
 	const moveToAssign = () => {
 		props.navigation.push('AgreementCheck');
@@ -58,11 +59,11 @@ export default LoginTemplete = props => {
 	};
 	//자동로그인 박스 클릭
 	const onCheckAutoLogin = state => {
-		console.log('자동로그인', state);
+		// console.log('자동로그인', state);
 	};
 	//아이디 저장 박스 클릭
 	const onCheckSaveId = state => {
-		console.log('아이디저장', state);
+		// console.log('아이디저장', state);
 	};
 
 	//아이디 입력

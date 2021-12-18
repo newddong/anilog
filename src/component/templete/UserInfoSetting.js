@@ -71,14 +71,15 @@ export default UserInfoSetting = ({route}) => {
 		navigation.push('AssignPetProfileImage');
 	};
 
+	//나의 반려동물 => 반려클릭
+	const onClickCompanionLabel = myPetData => {
+		console.log('myPetdata', myPetData);
+		navigation.push('PetInfoSetting', myPetData._id);
+	};
+
 	//비밀번호 변경하기 클릭
 	const onPressChangePwd = () => {
 		navigation.push('ChangePassword', data.user_password);
-	};
-
-	const onClickCompanionLabel = myPetData => {
-		console.log('myPetdata', myPetData);
-		navigation.push('PetInfoSetting', myPetData);
 	};
 
 	//User_intro 수정 버튼 클릭

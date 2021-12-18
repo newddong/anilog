@@ -25,23 +25,6 @@ export default AidRequest = props => {
 		// setSelected(!selected);
 		// moveToProtectApplicant();
 	};
-	const e = {
-		pet_neutralization: 'unknown',
-		pet_sex: 'male',
-		pet_species: '개',
-		pet_species_detail: '치와와',
-		protect_animal_estimate_age: '1개월',
-		protect_animal_neutralization: 'unknown',
-		protect_animal_photo_uri_list: [
-			'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/7A7A3552-9E9F-4364-A61E-6C0B10F84A89/tmp/E935DF14-9FB9-4954-AB52-81D3D87BA8A3.jpg',
-		],
-		protect_animal_rescue_date: '',
-		protect_animal_rescue_location: 'D1',
-		protect_animal_sex: 'male',
-		protect_animal_species: '개',
-		protect_animal_species_detail: '치와와',
-		protect_animal_weight: '1',
-	};
 
 	return (
 		<View style={[aidRequest.container]}>

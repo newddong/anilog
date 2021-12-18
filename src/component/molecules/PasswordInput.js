@@ -55,7 +55,7 @@ const PasswordInput = React.forwardRef((props, ref) => {
 	//Validator인데 onChange가 있는데 굳이 있어야 하는가 의문? onChange내부에 validator루틴을 넣을수 있도록 해서 사용자가 값을 입력시마다 validator가 true인지 false인지 판단하여
 	//검증 로직을 외부(부모)에서 넣을수 있도록 함
 	const validator = text => {
-		console.log('props.validator text', props.validator(text));
+		// console.log('props.validator text', props.validator(text));
 		let isValid = props.validator(text);
 		props.onValid(isValid);
 		setConfirm(isValid);

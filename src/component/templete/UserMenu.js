@@ -42,7 +42,7 @@ export default UserMenu = props => {
 	const [data, setData] = React.useState({}); //우선 userObject 0번 추가
 
 	//토큰에 로그인한 유저의 _id를 저장
-	React.useEffect(() => {
+	React.useLayoutEffect(() => {
 		Modal.popNoBtn('로그인 중입니다.');
 		AsyncStorage.getItem('token', (err, res) => {
 			console.log('token id ', res);
@@ -51,8 +51,11 @@ export default UserMenu = props => {
 					userobject_id: res,
 				},
 				userObject => {
+					console.log('user', userObject.msg.user_my_pets);
 					setData(userObject.msg);
-					Modal.close();
+					setTimeout(() => {
+						Modal.close();
+					}, 1000);
 				},
 
 				err => {
@@ -64,7 +67,7 @@ export default UserMenu = props => {
 
 	// 나의 반려동물 버튼 클릭
 	const onPressMyCompanion = () => {
-		navigation.push('PetInfoSetting'); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
+		navigation.push('PetInfoSetting', data.user_my_pets[0]._id); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
 	};
 
 	// 내 정보 수정 클릭
@@ -82,7 +85,7 @@ export default UserMenu = props => {
 				navigation.push('FavoriteFeeds'); // FavoriteFeedObject
 				break;
 			case '보호 요청':
-				navigation.push('SaveAnimalRequest'); // BookmarkProtectRequestObject
+				navigation.push('UserSaveAnimalRequest'); // BookmarkProtectRequestObject
 				break;
 			case '내 게시글':
 				navigation.push('UserFeeds');

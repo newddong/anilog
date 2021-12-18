@@ -17,7 +17,7 @@ export default FavoriteFeeds = props => {
 
 	React.useEffect(() => {
 		_dummyData.map((v, i) => {
-			console.log('useEffect + ' + i + ' : ' + v.checkBoxState);
+			// console.log('useEffect + ' + i + ' : ' + v.checkBoxState);
 		});
 	}, [_dummyData]);
 

@@ -12,6 +12,7 @@ import Modal from '../modal/Modal';
 import Input30 from '../molecules/Input30';
 import {assignPet} from 'Root/api/userapi';
 import {stagebar_style} from '../organism_ksw/style_organism';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default AssignPetInfoB = props => {
 	console.log(props.route.params);
@@ -53,11 +54,29 @@ export default AssignPetInfoB = props => {
 		setData({...data, pet_weight: kg});
 	};
 
+	const e = {
+		pet_birthday: '2021.11.18',
+		pet_is_temp_protection: true,
+		pet_neutralization: 'unknown',
+		pet_sex: 'male',
+		pet_species: '기타',
+		pet_species_detail: '토끼',
+		pet_status: 'protect',
+		pet_weight: '1',
+		user_nickname: '우사기',
+		user_profile_uri:
+			'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/DF4BC943-9D90-4DC6-ACF2-18B4AD440006/tmp/3AD4B6FE-9E25-435D-ACED-AE9BD7235449.jpg',
+		userobject_id: undefined,
+	};
 	//등록 완료
-	const onRegister = () => {
+	const onRegister = async () => {
+		let token = await AsyncStorage.getItem('token');
+		console.log('token', token);
+
 		Modal.popNoBtn('반려동물 등록 중입니다.');
+		console.log('data before assiginPet', data);
 		assignPet(
-			data,
+			{...data, userobject_id: token},
 			success => {
 				console.log('success', success);
 				Modal.close();
@@ -65,7 +84,7 @@ export default AssignPetInfoB = props => {
 					Modal.close();
 					props.navigation.reset({
 						index: 0,
-						routes: [{name: 'Login'}],
+						routes: [{name: 'UserMenu'}],
 					});
 				});
 			},

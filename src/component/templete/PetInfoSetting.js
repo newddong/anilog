@@ -14,15 +14,16 @@ import {_dummy_petInfo_from_user} from 'Root/config/dummy_data_hjs';
 import {dummy_userObject} from 'Root/config/dummyDate_json';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import Modal from '../modal/Modal';
+import {getUserInfoById} from 'Root/api/userapi';
 
 //이 화면에 들어오면서 특정 _id를 API 연동으로 데이터를 가져 옴.
 //이전 화면에서 모든 데이터를 가진 상태에서 들어오는 것이 아님.
 //변수들은 모두 db 변수로 스네이크 형식으로 추후에 변경 필요.
 
 export default PetInfoSetting = ({route, navigation}) => {
-	// console.log('route.params', route.params);
-	const [petData, setPetData] = React.useState(_dummy_petInfo_from_user[0]); // 현재 반려동물 프로필 데이터
-	const [familyAccountList, setFamilyAccountList] = React.useState(dummy_userObject.slice(1, 4)); //가족 계정 목록 데이터
+	console.log('route.params', route.params);
+	const [petData, setPetData] = React.useState({}); // 현재 반려동물 프로필 데이터
+	const [familyAccountList, setFamilyAccountList] = React.useState([]); //가족 계정 목록 데이터
 
 	//가족계정 추가에서 받아온 Account가 있을 경우 FamilyAccountList에 추가해서 적용
 	React.useEffect(() => {
@@ -40,39 +41,17 @@ export default PetInfoSetting = ({route, navigation}) => {
 	}, [familyAccountList]);
 
 	React.useEffect(() => {
-		// getPetInfoSetting(
-		// 	{
-		// 		userobject_id: userobject_id,
-		// 	},
-		// 	data => {
-		// 		console.log('PetInfoSetting : getPetInfoSetting data - ', data);
-		// 		setData(data);
-		// 	},
-		// 	err => {
-		// 		console.log('PetInfoSetting : getPetInfoSetting data - ', err);
-		// 	},
-		// );
+		getUserInfoById(
+			{userobject_id: route.params},
+			result => {
+				// console.log('result / GetUserInfoById / PetInfoSetting', result.msg);
+				setPetData(result.msg);
+			},
+			err => {
+				console.log('err / GetUserInfoById / PetInfosetting', err);
+			},
+		);
 	}, []);
-
-	const getDbFiled = [
-		{
-			//UserObject
-			user_profile_uri: '', // 프로필 사진
-			user_nickname: '', // 닉네임
-			pet_species: '', //반려동물의 종류(ex 개, 고양이, 토끼 등)
-			pet_species_detail: '', //반려동물의 종류(ex 리트리버, 불독, 진돗개 등)
-			pet_status: '', //반려동물의 상태, 임시보호중(protect), 입양됨(adopt), 반려동물(companion)
-			pet_family: [
-				{
-					//반려동물 가족계정들
-					userobject_id: '',
-					user_profile_uri: '',
-					user_nickname: '',
-				},
-			],
-			user_denied: '', //
-		},
-	];
 
 	//계정정보 - '종' 변경하기 버튼 클릭
 	const changePetInfo = () => {
@@ -125,10 +104,10 @@ export default PetInfoSetting = ({route, navigation}) => {
 				{/* 프로필 컨테이너 */}
 				<View style={[petInfoSetting.profileContainer]}>
 					<View style={[temp_style.petImageLabel, petInfoSetting.petImageLabel]}>
-						<PetImageLabel data={petData} />
+						<PetImageLabel data={petData} showNickname={false} />
 					</View>
 					<View style={[btn_style.btn_w242, petInfoSetting.btn_w242]}>
-						<AniButton onPress={changeProfile} btnTitle={'프로필 변경'} btnLayout={btn_w242} btnTheme={'shadow'} />
+						<AniButton onPress={changeProfile} btnTitle={'프로필 변경'} btnLayout={btn_w242} />
 					</View>
 				</View>
 				{/* 계정정보 */}

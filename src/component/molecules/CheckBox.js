@@ -15,8 +15,8 @@ import AniButton from './AniButton';
  * }} props
  */
 export default CheckBox = props => {
-	// console.log('props.checkBoxState ', props.checkBoxState);
-	const [checked, setChecked] = React.useState(false); //체크상태 여부 boolean isCheck값에 따라 초기상태 결정됨
+	// console.log('props.checkBoxState ', props.index, props.checkBoxState);
+	const [checked, setChecked] = React.useState(props.checkBoxState || false); //체크상태 여부 boolean isCheck값에 따라 초기상태 결정됨
 
 	const onCheck = () => {
 		setChecked(!checked);
@@ -29,8 +29,8 @@ export default CheckBox = props => {
 	}, [props.state]);
 
 	React.useEffect(() => {
-		// setChecked(props.checkBoxState);
-	}, [props.checkBoxState]);
+		setChecked(false);
+	}, [props.isDeleted]);
 
 	React.useEffect(() => {
 		// console.log('CheckBox state?', checked);
@@ -57,7 +57,6 @@ export default CheckBox = props => {
 };
 
 CheckBox.defaultProps = {
-	isCheck: false,
 	value: '',
 	disable: false,
 	// onCheck: e => console.log(e),

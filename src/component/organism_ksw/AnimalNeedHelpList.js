@@ -31,6 +31,8 @@ export default AnimalNeedHelpList = props => {
 			<View style={[animalNeedHelpList.itemContainer]}>
 				{/* {console.log('item:item.checkBoxState=>' + item.checkBoxState)} */}
 				<AnimalNeedHelp
+					index={index}
+					isDeleted={props.isDeleted}
 					data={item}
 					checkBoxMode={props.checkBoxMode}
 					isChecked={item.checkBoxState}
@@ -50,7 +52,7 @@ export default AnimalNeedHelpList = props => {
 	return (
 		//  width: 702 * DP
 		<ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
-			<ScrollView horizontal={true}>
+			<ScrollView horizontal={true} scrollEnabled={false}>
 				{debug && console.log(`AnimalNeedHelpList:props.borderMode - ${JSON.stringify(props.borderMode)}`)}
 				{/* [hjs borderMode 모드일때와 아닐때 width 값 추후에 확인 할 것] */}
 				<View style={[!props.borderMode ? animalNeedHelpList.container_bordermode : animalNeedHelpList.container]}>

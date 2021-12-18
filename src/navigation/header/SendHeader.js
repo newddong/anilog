@@ -28,6 +28,15 @@ export default SendHeader = ({route, navigation, options}) => {
 						() => Modal.close(),
 						() => {
 							console.log('SendHeader / Before Create AidRequest ', data);
+							const bd = {
+								protect_animal_id: '61be0063244ae6ea37b64e2d',
+								protect_request_content: 'Asdas',
+								protect_request_photo_thumbnail: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+								protect_request_photos: undefined,
+								protect_request_status: 'rescue',
+								protect_request_title: 'Dd1',
+								shelter_protect_animal_object_id: '61be0063244ae6ea37b64e2d',
+							};
 							createProtectRequest(
 								data,
 								successed => {

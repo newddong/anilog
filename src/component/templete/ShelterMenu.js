@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 // import {TouchableOpacity} from 'react-native-gesture-handler';
-import {login_style, shelterMenu, temp_txt, temp_style, btn_style, tabSelectBorder_Type1} from './style_templete';
+import {login_style, shelterMenu, temp_txt, temp_style, btn_style} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
 import ProfileImageLarge160 from '../molecules/ProfileImageLarge160';
 import {txt} from 'Root/config/textstyle';
@@ -12,14 +12,6 @@ import {FloatAddArticle_126x92} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
 import {Setting46, FavoriteTag48_Filled, Heart48_Filled, Paw46} from '../atom/icon';
-import {
-	dummy_AnimalFromShelter_adopted,
-	dummy_userObject,
-	dummy_UserObject_pet,
-	dummy_UserObject_protected_pet,
-	dummy_UserObject_shelter,
-	dummy_user_shelter,
-} from 'Root/config/dummyDate_json';
 import {_dummy_VolunteerActivityApplicant, _dummy_userObject_user} from 'Root/config/dummy_data_hjs';
 import {
 	MANAGEMENT_OF_PROTECTED_ANIMAL,
@@ -44,72 +36,38 @@ import {
 	DEFAULT_PROFILE,
 	MODIFY_SHELTER_DATA,
 } from 'Root/i18n/msg';
-import {dummy_AppliesRecord_protect} from 'Root/config/dummy_data_hjs';
 import {GRAY10} from 'Root/config/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {getShelterMenu} from 'Root/api/shelterapi_hjs';
 import Modal from '../modal/Modal';
-import {getUserProfile} from 'Root/api/usermenuapi';
+import {getUserProfile} from 'Root/api/userapi';
 
 export default ShelterMenu = ({route}) => {
 	const navigation = useNavigation();
-	const [data, setData] = React.useState(dummy_UserObject_shelter[0]); //우선 userObject_Shelter 0번 추가
+	const [data, setData] = React.useState({}); //우선 userObject_Shelter 0번 추가
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', async (err, res) => {
 			Modal.popNoBtn('Loading');
 			console.log('res', res);
-			await getUserProfile(
+			getUserProfile(
 				{
 					userobject_id: res,
 				},
 				userObject => {
 					console.log('userObject/ ShelterMenu', userObject._id);
-					setData(userObject);
+					setData(userObject.msg);
 					Modal.close();
+				},
+				err => {
+					console.log('err', err);
 				},
 			);
 		});
 	}, []);
 
-	// 보호소 메뉴 데이터 불러오기 (아직 API 미작업 )
-	// React.useEffect(() => {
-	// 	console.log('MissingAnimalDetail:feedlist of missing');
-	// 	getFeedDetailByFeedId(
-	// 		{
-	// 			userobject_id: props.route.params.userobject_id,
-	// 		},
-	// 		data => {
-	// 			console.log('data' + JSON.stringify(`data${data}`));
-	// 			setData(data);
-	// 		},
-	// 	);
-	// }, [props.route.params]);
-
-	// [hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
-	const [data1, setData1] = React.useState([]);
-
-	// //UserObject
-	// shelter_name: '', //보호소 이름
-
-	// //protectRequestObject
-	// protect_request_photo_thumbnail: '', //보호요청 게시물 썸네일 uri
-	// protect_request_status: '', //	보호요청 상태
-	// protect_animal_id: '', //보호요청할 동물
-	// protect_request_date: '', //보호요청 게시글 작성일시
-
-	// //ShelterProtectAnimalObject
-	// protect_animal_species: '', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
-	// protect_animal_species_detail: '', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
-	// protect_animal_sex: '', //보호중인 동물의 성별
-	// protect_animal_rescue_location: '', //보호중인 동물의 구조장소
-
-	// //BookmarkProtectRequestObject
-	// bookmark: false, //유저-보호요청 북마크
-
 	//보호소 정보 수정
 	const moveToShelterInfoSetting = () => {
-		navigation.push('ShelterInfoSetting');
+		navigation.push('ShelterInfoSetting', data._id);
 	};
 
 	//동물 추가
@@ -155,7 +113,7 @@ export default ShelterMenu = ({route}) => {
 			//보호요청(저장)
 			case REQ_PROTECTION_SAVE:
 				//listType: 'original'- 클릭시 해당 UserProfile로 go, 'twoBtn' - 클릭시 외곽 선 표출, , 'checkBox' - 해당 페이지에서 선택하기 시 체크박스 표출
-				navigation.push('SaveAnimalRequest', dummy_AppliesRecord_protect);
+				navigation.push('ShelterSaveAnimalRequest');
 				break;
 			//커뮤니티
 			case COMUNITY:
@@ -214,7 +172,7 @@ export default ShelterMenu = ({route}) => {
 							<View style={[shelterMenu.shelterInfo_container_right]}>
 								{/* 보호소 이름 */}
 								<View style={[shelterMenu.shelterInfo_user_id]}>
-									<Text style={txt.noto36b}>{data.shelter_name || ''}</Text>
+									<Text style={txt.noto36b}>{data.user_nickname || ''}</Text>
 								</View>
 								{/* user_introduction */}
 								<View style={[shelterMenu.shelterInfo_contents]}>
@@ -283,4 +241,18 @@ export default ShelterMenu = ({route}) => {
 			</ScrollView>
 		</View>
 	);
+};
+
+const t = {
+	_id: '61b9eba4185a4f69d5981ad6',
+	feedList: [[Object], [Object], [Object], [Object], [Object], [Object], [Object]],
+	user_denied: false,
+	user_follow_count: 0,
+	user_follower_count: 0,
+	user_introduction: '',
+	user_my_pets: [],
+	user_nickname: '상우 보호소',
+	user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639574436056_DWG_KIA_logo.png',
+	user_type: 'shelter',
+	user_upload_count: 0,
 };
