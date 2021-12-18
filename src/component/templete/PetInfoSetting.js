@@ -21,9 +21,9 @@ import {getUserInfoById} from 'Root/api/userapi';
 //변수들은 모두 db 변수로 스네이크 형식으로 추후에 변경 필요.
 
 export default PetInfoSetting = ({route, navigation}) => {
-	// console.log('route.params', route.params);
-	const [petData, setPetData] = React.useState(_dummy_petInfo_from_user[0]); // 현재 반려동물 프로필 데이터
-	const [familyAccountList, setFamilyAccountList] = React.useState(dummy_userObject.slice(1, 4)); //가족 계정 목록 데이터
+	console.log('route.params', route.params);
+	const [petData, setPetData] = React.useState({}); // 현재 반려동물 프로필 데이터
+	const [familyAccountList, setFamilyAccountList] = React.useState([]); //가족 계정 목록 데이터
 
 	//가족계정 추가에서 받아온 Account가 있을 경우 FamilyAccountList에 추가해서 적용
 	React.useEffect(() => {
@@ -44,7 +44,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 		getUserInfoById(
 			{userobject_id: route.params},
 			result => {
-				console.log('result / GetUserInfoById / PetInfoSetting', result.msg);
+				// console.log('result / GetUserInfoById / PetInfoSetting', result.msg);
 				setPetData(result.msg);
 			},
 			err => {
@@ -52,66 +52,6 @@ export default PetInfoSetting = ({route, navigation}) => {
 			},
 		);
 	}, []);
-
-	const e = {
-		__v: 0,
-		_id: '61bb6e499c25946f89154dca',
-		pet_birthday: '2021-05-05T00:00:00.000Z',
-		pet_family: [
-			{
-				__v: 3,
-				_id: '61b84ddb4a1b66f74b699b1e',
-				pet_family: [Array],
-				user_address: [Object],
-				user_agreement: [Object],
-				user_denied: false,
-				user_follow_count: 0,
-				user_follower_count: 0,
-				user_interests: [Array],
-				user_introduction: '',
-				user_is_verified_email: false,
-				user_is_verified_phone_number: true,
-				user_mobile_company: 'SKT텔레콤',
-				user_my_pets: [Array],
-				user_name: '권상우',
-				user_nickname: 'Di1',
-				user_password: 'tkddn123',
-				user_phone_number: '01096450422',
-				user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639666144077_B70FDBD2-53F4-4FAA-A6F1-13345B04FEE3.jpg',
-				user_register_date: '2021-12-14T07:55:07.933Z',
-				user_type: 'user',
-				user_upload_count: 0,
-			},
-		],
-		pet_is_temp_protection: true,
-		pet_neutralization: 'no',
-		pet_sex: 'male',
-		pet_species: '개',
-		pet_species_detail: '도사견',
-		pet_status: 'protect',
-		pet_weight: '1.2',
-		user_agreement: {
-			is_donation_info: false,
-			is_location_service_info: false,
-			is_marketting_info: false,
-			is_over_fourteen: false,
-			is_personal_info: false,
-			is_service: false,
-		},
-		user_denied: false,
-		user_follow_count: 0,
-		user_follower_count: 0,
-		user_interests: [],
-		user_introduction: '',
-		user_is_verified_email: false,
-		user_is_verified_phone_number: false,
-		user_my_pets: [],
-		user_nickname: '상우아들',
-		user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639673417309_11.jpg',
-		user_register_date: '2021-12-16T16:50:17.408Z',
-		user_type: 'pet',
-		user_upload_count: 0,
-	};
 
 	//계정정보 - '종' 변경하기 버튼 클릭
 	const changePetInfo = () => {

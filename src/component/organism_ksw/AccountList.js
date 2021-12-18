@@ -78,7 +78,7 @@ export default AccountList = props => {
 		);
 	};
 	return (
-		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+		<ScrollView horizontal={false} contentContainerStyle={{flex: 0}} showsVerticalScrollIndicator={false}>
 			<ScrollView horizontal={true} contentContainerStyle={{flex: 1}} scrollEnabled={false}>
 				<View style={organism_style.accountList}>
 					<FlatList
