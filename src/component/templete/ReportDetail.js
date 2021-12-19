@@ -7,7 +7,7 @@ import {useNavigation} from '@react-navigation/core';
 // import {_dummy_MissingReportDetail} from 'Root/config/dummy_data_hjs';
 import {_dummy_ReportDetail} from 'Root/config/dummy_data_hjs';
 import {dummy_CommentObject} from 'Root/config/dummyDate_json';
-import {getFeedDetailByFeedId} from 'Root/api/feedapi_hjs';
+import {getFeedDetailById} from 'Root/api/feedapi';
 
 export default ReportDetail = props => {
 	const navigation = useNavigation();
@@ -32,19 +32,25 @@ export default ReportDetail = props => {
 		});
 	});
 
-	//제보 데이터 불러오기 (아직 API 미작업 )
-	// React.useEffect(() => {
-	// 	console.log('ReportDetail:feedlist of report');
-	// 	getFeedDetailByFeedId(
-	// 		{
-	// 			feed_object_id: route.params.feed_object_id,
-	// 		},
-	// 		data => {
-	// 			console.log('data' + JSON.stringify(`data${data}`));
-	// 			setData(data);
-	// 		},
-	// 	);
-	// }, [props.route.params]);
+	//api 실제 작업 후 하단에 있는 data로 변경 예정 (현재는 에러 방지 코드)
+	const [data, setData] = React.useState({});
+
+	// 제보 데이터 불러오기 (아직 API 미작업 )
+	React.useEffect(() => {
+		console.log(' - ReportDetail -');
+		getFeedDetailById(
+			{
+				feedobject_id: '61b6f5979f3c17ec4676578c',
+			},
+			data => {
+				console.log(`ReportDetail data:${JSON.stringify(data.msg)}`);
+				setData(data.msg);
+			},
+			errcallback => {
+				console.log(`errcallback:${JSON.stringify(errcallback)}`);
+			},
+		);
+	}, []);
 
 	// [hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
 	const [data1, setData1] = React.useState({

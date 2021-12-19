@@ -9,7 +9,7 @@ import {useNavigation} from '@react-navigation/core';
 import {dummy_MissingReportList} from 'Root/config/dummy_data_hjs';
 import FilterButton from '../molecules/FilterButton';
 import {PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
-import {getMissingReportList} from 'Root/api/protect_request_api_hjs.js';
+import {getMissingReportList} from 'Root/api/feedapi.js';
 
 export default MissingReportList = props => {
 	const navigation = useNavigation();
