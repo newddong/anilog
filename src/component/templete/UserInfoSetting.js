@@ -30,7 +30,7 @@ export default UserInfoSetting = ({route}) => {
 				},
 				userObject => {
 					setData(userObject.msg);
-					// console.log('userObject.msg.myPets?', userObject.msg.user_my_pets);
+					console.log('userObject.msg.myPets?', userObject.msg.user_my_pets);
 				},
 				err => {
 					console.log('er', err);

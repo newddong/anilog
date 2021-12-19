@@ -62,7 +62,7 @@ export default UserMenu = props => {
 
 	// 나의 반려동물 버튼 클릭
 	const onPressMyCompanion = () => {
-		navigation.push('PetInfoSetting', data.user_my_pets[0]._id); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
+		navigation.push('PetInfoSetting', {pet_id: data.user_my_pets[0]._id}); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
 	};
 
 	// 내 정보 수정 클릭

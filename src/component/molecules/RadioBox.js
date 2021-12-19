@@ -29,7 +29,11 @@ const RadioBox = props => {
 
 	React.useEffect(() => {
 		let copy = [...selected];
-		defaultSelect ? (copy[defaultSelect].state = true) : null;
+		if (!defaultSelect) {
+			copy[0].state = true;
+		} else {
+			defaultSelect ? (copy[defaultSelect].state = true) : null;
+		}
 		setSelected(copy);
 	}, [defaultSelect]);
 

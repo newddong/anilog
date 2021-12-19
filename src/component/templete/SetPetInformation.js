@@ -6,6 +6,7 @@ import TabSelectFilled_Type1 from '../molecules/TabSelectFilled_Type1';
 import DatePicker from '../molecules/DatePicker';
 import Input30 from '../molecules/Input30';
 import RadioBox from '../molecules/RadioBox';
+import moment from 'moment';
 
 export default SetPetInformation = ({route, navigation}) => {
 	const [selectedBirthDate, setSelectedBirthDate] = React.useState('2021.11.01');
@@ -13,9 +14,19 @@ export default SetPetInformation = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params);
 
 	React.useEffect(() => {
-		// console.log('SetPetInformation_data: ', data);
-		navigation.setParams(data);
+		navigation.setParams({route_name: route.name, data: data});
 	}, [data]);
+
+	//생일 TypeParsing / 차후 정리 예정
+	const parseBirth = () => {
+		if (data.pet_birthday.length < 15) {
+			return data.pet_birthday;
+		} else {
+			let date = moment(data.pet_birthday).format('YYYY.MM.DD');
+			date = date.toString();
+			return date;
+		}
+	};
 
 	//생녈월일 계산 함수
 	const getBirthDate = () => {
@@ -54,13 +65,13 @@ export default SetPetInformation = ({route, navigation}) => {
 
 	//성별 변경 발생
 	const onSexChange = e => {
-		e => console.log('성별선택=>' + e);
-		setData({...data, user_mobile_company: v});
+		let gender = '';
+		e == 0 ? (gender = 'male') : (gender = 'female');
+		setData({...data, pet_sex: gender});
 	};
 
 	//중성화 선택
 	const onSelectNeutralization = index => {
-		console.log('중성화 ', index);
 		let neutralization = '';
 		if (index == 0) {
 			neutralization = 'yes';
@@ -70,6 +81,24 @@ export default SetPetInformation = ({route, navigation}) => {
 			neutralization = 'unknown';
 		}
 		setData({...data, pet_neutralization: neutralization});
+	};
+
+	const getNeutralizationDefault = () => {
+		let index = 0;
+		switch (data.pet_neutralization) {
+			case 'yes':
+				index = 0;
+				break;
+			case 'no':
+				index = 1;
+				break;
+			case 'unknown':
+				index = 2;
+				break;
+			default:
+				break;
+		}
+		return index;
 	};
 
 	return (
@@ -94,7 +123,7 @@ export default SetPetInformation = ({route, navigation}) => {
 						</View>
 					</View>
 					<View style={[setPetInformation.datePicker]}>
-						<DatePicker onDateChange={onSelectBirthDate} defaultDate={data.pet_birthday} width={290} />
+						<DatePicker onDateChange={onSelectBirthDate} defaultDate={parseBirth()} width={290} />
 					</View>
 					<View style={[setPetInformation.birthTime]}>{getBirthDate()}</View>
 				</View>
@@ -130,7 +159,7 @@ export default SetPetInformation = ({route, navigation}) => {
 						<Text style={[txt.noto28]}>중성화</Text>
 					</View>
 					<View style={[setPetInformation.radioBox_right]}>
-						<RadioBox items={['예', '아니오', '모름']} onSelect={onSelectNeutralization} defaultSelect={1} />
+						<RadioBox items={['예', '아니오', '모름']} onSelect={onSelectNeutralization} defaultSelect={getNeutralizationDefault()} />
 					</View>
 				</View>
 			</View>
