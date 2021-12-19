@@ -11,137 +11,188 @@ import {btn_w654} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import {useNavigation} from '@react-navigation/core';
 import {dummy_ShelterInfo} from 'Root/config/dummy_data_hjs';
+import {GRAY10} from 'Root/config/color';
+import InputWithSelect from '../molecules/InputWithSelect';
+import moment from 'moment';
 
-export default EditShelterInfo = props => {
-	const [_dummyData, set_dummyData] = React.useState(dummy_ShelterInfo);
-	const emailList = ['naver.com', 'nate.com', 'daum.net'];
-	const [selectedBirthDate, setSelectedBirthDate] = React.useState('2021.03.01');
-	const navigation = useNavigation();
+export default EditShelterInfo = ({route, navigation}) => {
+	const [data, setData] = React.useState(route.params.data);
+	// console.log('data', data);
+	const [addrSearched, setAddrSearched] = React.useState(false);
 
-	const gotoNextStep = () => {
-		navigation.push('ShelterInfoSetting');
+	React.useEffect(() => {
+		if (route.params != null) {
+			if (route.params.addr && !addrSearched) {
+				console.log('route.params.Address Changed?   ', route.params.addr);
+				const addr = route.params.addr;
+				setData({...data, shelter_address: {brief: addr.siNm + ' ' + addr.sggNm + ' ' + addr.rn + ' ' + addr.buldMnnm, detail: 'dd '}});
+				setAddrSearched(true);
+			}
+		}
+	}, [route.params]);
+
+	//주소찾기 클릭
+	const onPressSearchAddr = () => {
+		setAddrSearched(false);
+		navigation.push('AddressSearch', {addr: data.shelter_address.brief, from: route.name});
 	};
 
-	const [data, setData] = React.useState({
-		shelter_name: '',
-		shelter_delegate_contact_number: '',
-		shelter_homepage: '',
-		shelter_foundation_date: '',
-	});
-
-	const onShelter_name = e => {
-		setData({...data, shelter_name: e.nativeEvent.text});
+	const onChangeShelterName = name => {
+		setData({...data, shelter_name: name});
 	};
 
-	const onShelter_delegate_contact_number = e => {
-		setData({...data, shelter_delegate_contact_number: e.nativeEvent.text});
+	const onChangeContact = num => {
+		setData({...data, shelter_delegate_contact_number: num});
 	};
 
 	const onShelter_homepage = e => {
 		setData({...data, shelter_homepage: e.nativeEvent.text});
 	};
 
-	const onShelter_foundation_date = e => {
-		setData({...data, shelter_foundation_date: e.nativeEvent.text});
+	const onChangeDate = date => {
+		setData({...data, shelter_foundation_date: date});
+	};
+
+	//보호소 네임 Validation
+	const shelterNameValidator = text => {
+		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
+		// console.log('text', text);
+		var regExp2 = /^[가-힣a-zA-Z\s]{3,15}$/;
+		return regExp2.test(data.shelter_name);
+	};
+
+	const onSelectDomain = (item, index) => {
+		console.log('item', item);
+		console.log('item', index);
+	};
+
+	const onChangeEmail = email => {
+		console.log('email', email);
+	};
+
+	const getFoundationDate = () => {
+		let date = data.shelter_foundation_date;
+		if (date.length < 15) {
+			return date;
+		} else {
+			date = moment(date).format('YYYY-MM-DD');
+			return date;
+		}
+	};
+
+	//수정 완료 클릭
+	const finalized = () => {
+		navigation.push('ShelterInfoSetting');
 	};
 
 	return (
 		<View style={[login_style.wrp_main, editShelterInfo.container]}>
-			<ScrollView>
-				{/* shelterInfoForm */}
+			<ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
 				<View style={[editShelterInfo.shelterInfoForm]}>
-					{/* Input30 단위 */}
-					<View style={{flexDirection: 'row', alignSelf: 'flex-start'}}>
+					{/* 보호소 이름 */}
+					<View style={[editShelterInfo.input30WithMsg]}>
 						<View style={[editShelterInfo.category]}>
 							<View style={[editShelterInfo.text]}>
-								<Text style={txt.noto28}>보호소 </Text>
+								<Text style={[txt.noto28, {color: GRAY10}]}>보호소 </Text>
 							</View>
 						</View>
 						<View style={[editShelterInfo.input30]}>
 							<Input30
+								value={data.shelter_name}
+								defaultValue={data.shelter_name}
 								showTitle={false}
 								width={520}
+								confirm_msg={'사용 가능한 보호소명입니다.'}
+								alert_msg={'사용 불가능한 보호소 이름입니다.'}
 								placeholder={'보호소 이름을 입력해 주세요.'}
-								defaultValue={_dummyData.shelter_name}
 								confirm={true}
-								onchange={(e = () => onShelter_name(e))}
+								validator={shelterNameValidator}
+								onChange={onChangeShelterName}
 							/>
 						</View>
 					</View>
-					{/* addressInput */}
+					{/* 주소 찾기 */}
 					<View style={[editShelterInfo.addressInput]}>
-						<AddressInput width={654} title={'나의 지역'} />
+						<AddressInput
+							width={654}
+							title={'나의 지역'}
+							address={data.shelter_address.brief || ''}
+							detailAddress={data.shelter_address.detail || ''}
+							onPressSearchAddr={onPressSearchAddr}
+						/>
 					</View>
-					{/* Input30 단위 */}
-					<View style={{flexDirection: 'row', alignSelf: 'flex-start'}}>
+					{/* 전ㄴ화번호 */}
+					<View style={[editShelterInfo.inputCont]}>
 						<View style={[editShelterInfo.category]}>
 							<View style={[editShelterInfo.text]}>
-								<Text>전화번호</Text>
+								<Text style={[txt.noto28, {color: GRAY10}]}>전화번호</Text>
 							</View>
 						</View>
 						<View style={[editShelterInfo.input30]}>
 							<Input30
+								value={data.shelter_delegate_contact_number}
+								defaultValue={data.shelter_delegate_contact_number}
 								showTitle={false}
+								showmsg={false}
+								confirm={true}
 								width={520}
 								placeholder={'전화번호를 기재해주세요.'}
-								defaultValue={_dummyData.shelter_delegate_contact_number}
-								confirm={true}
-								onchange={(e = () => onShelter_delegate_contact_number(e))}
+								onChange={onChangeContact}
 							/>
 						</View>
 					</View>
-					{/* Input30 단위 */}
-					<View style={{flexDirection: 'row', alignSelf: 'flex-start'}}>
+					{/* 이메일 단위 */}
+					<View style={[editShelterInfo.inputEmail]}>
 						<View style={[editShelterInfo.category]}>
-							<View style={[editShelterInfo.text]}>
-								<Text>이메일</Text>
+							<View style={[editShelterInfo.emailText]}>
+								<Text style={[txt.noto28, {color: GRAY10}]}>이메일</Text>
 							</View>
 						</View>
-						<View style={[temp_style.input30, editShelterInfo.input30]}>
-							<InputWithEmail itemList={emailList} placeholder={'placeholder'} value={null} defaultIndex={0} />
+						<View style={[editShelterInfo.input30]}>
+							<InputWithEmail
+								onSelectDropDown={onSelectDomain}
+								onChange={onChangeEmail}
+								value={data.user_email.split('@')[0]}
+								width={240}
+								placeholder={'이메일을 입력'}
+							/>
 						</View>
 					</View>
-					<View style={{flexDirection: 'row', alignSelf: 'flex-start'}}>
+					{/* 홈페이지 */}
+					<View style={[editShelterInfo.inputCont]}>
 						<View style={[editShelterInfo.category]}>
 							<View style={[editShelterInfo.text]}>
-								<Text>홈페이지</Text>
+								<Text style={[txt.noto28, {color: GRAY10}]}>홈페이지</Text>
 							</View>
 						</View>
-						<View style={[temp_style.input30, editShelterInfo.input30]}>
+						<View style={[editShelterInfo.input30]}>
 							<Input30
+								value={data.shelter_homepage || ''}
 								showTitle={false}
+								showmsg={false}
 								width={520}
 								placeholder={'http://'}
 								confirm={true}
-								defaultValue={_dummyData.shelter_homepage}
+								defaultValue={data.shelter_homepage}
 								onchange={(e = () => onShelter_homepage(e))}
 							/>
 						</View>
 					</View>
-					<View style={{flexDirection: 'row', alignSelf: 'flex-start'}}>
+					{/* 설립일 */}
+					<View style={[editShelterInfo.inputCont]}>
 						<View style={[editShelterInfo.category]}>
 							<View style={[editShelterInfo.text]}>
-								<Text>설립일</Text>
+								<Text style={[txt.noto28, {color: GRAY10}]}>설립일</Text>
 							</View>
 						</View>
-						<View style={[temp_style.input30, editShelterInfo.input30]}>
-							{/* <View style={[temp_style.datePicker_assignPetInfo_depth1, assignPetInfo_style.datePicker_depth1]}> */}
-							<DatePicker width={530} onDateChange={e => onShelter_foundation_date(e)} defaultDate={_dummyData.shelter_foundation_date} />
-							{/* </View> */}
+						<View style={[editShelterInfo.input30]}>
+							<DatePicker width={530} onDateChange={onChangeDate} defaultDate={getFoundationDate()} />
 						</View>
 					</View>
 				</View>
 
-				{/* (A)Btn_w654 */}
 				<View style={[editShelterInfo.btn_w654]}>
-					<AniButton
-						btnLayout={[btn_w654]}
-						btnTitle={COMPLETE_MODIFY}
-						btnTheme={'’shadow’'}
-						btnStyle={'filled'}
-						titleFontStyle={32}
-						onPress={gotoNextStep}
-					/>
+					<AniButton btnLayout={btn_w654} btnTitle={COMPLETE_MODIFY} titleFontStyle={32} onPress={finalized} />
 				</View>
 			</ScrollView>
 		</View>

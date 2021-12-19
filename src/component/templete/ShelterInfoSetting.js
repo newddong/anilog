@@ -29,17 +29,19 @@ export default ShelterInfoSetting = ({route}) => {
 		);
 	}, []);
 
+	//프로필변경
 	const moveToChangeUserProfileImage = () => {
 		navigation.push('ChangeUserProfileImage');
 	};
+
+	//비밀번호 변경
 	const moveToChangePassword = () => {
 		navigation.push('ChangePassword');
 	};
-	// const moveTo = () => {
-	// 	navigation.navigate('');
-	// };
+
+	//상세 정보 변경
 	const moveToEditShelterInfo = () => {
-		navigation.push('EditShelterInfo');
+		navigation.push('EditShelterInfo', {data: data});
 	};
 
 	return (
@@ -55,44 +57,45 @@ export default ShelterInfoSetting = ({route}) => {
 						<AniButton btnTitle={'프로필 변경'} btnLayout={btn_w242} onPress={moveToChangeUserProfileImage} />
 					</View>
 				</View>
-
-				{/* MyInfo */}
 				<View style={[shelterInfoSetting.shelterInfoSetting_step2]}>
+					{/* 계정정보 */}
 					<View style={[temp_style.accountInfo_shelterInfoSetting_view]}>
 						<View style={shelterInfoSetting.accountInfo}>
-							<Text style={txt.noto30b}>계정정보</Text>
+							<Text style={[txt.noto30b, {color: GRAY10}]}>계정정보</Text>
 						</View>
 						<View style={[temp_style.accountInfo_email_shelterInfoSetting_view, shelterInfoSetting.email_view]}>
-							<Text>{data.user_nickname}</Text>
+							<Text style={[txt.roboto24]}>{data.user_nickname}</Text>
 							<TouchableOpacity onPress={moveToChangePassword}>
-								<Text style={txt.noto24}>비밀번호 변경하기</Text>
+								<Text style={[txt.noto24, {color: GRAY10}]}>비밀번호 변경하기</Text>
 							</TouchableOpacity>
 						</View>
 					</View>
+					{/* 보호소 소개 */}
 					<View style={[temp_style.vertical_border]}></View>
 					<View style={[temp_style.introduce_shelterInfoSetting_view]}>
 						<View style={[temp_style.title_shelterInfoSetting_view]}>
 							<View style={temp_style.title_shelterInfoSetting}>
-								<Text style={txt.noto30b}>보호소 소개</Text>
+								<Text style={[txt.noto30b, {color: GRAY10}]}>보호소 소개</Text>
 							</View>
-							<View style={shelterInfoSetting.btn_w114}>
-								<AniButton btnLayout={btn_w114} btnStyle={'border'} btnTheme={'shadow'} btnTitle={'수정'} onPress={() => alert('준비중입니다.')} />
+							<View style={[shelterInfoSetting.btn_w114]}>
+								<AniButton btnLayout={btn_w114} btnStyle={'border'} btnTitle={'수정'} onPress={() => alert('준비중입니다.')} />
 							</View>
 						</View>
 						<View style={[temp_style.introduceMent_shelterInfoSetting]}>
 							<Text style={txt.noto24} ellipsizeMode={'tail'} numberOfLines={3}>
-								{data.user_introduction}
+								{data.user_introduction || ''}
 							</Text>
 						</View>
 					</View>
+					{/* 보호소 정보 */}
 					<View style={[temp_style.vertical_border]}></View>
 					<View style={[temp_style.introduce_infoSetting_view]}>
 						<View style={temp_style.shlterInfo__shelterInfoSetting_view}>
 							<View style={temp_style.title_shelterInfoSetting}>
-								<Text style={txt.noto30b}>보호소 정보</Text>
+								<Text style={[txt.noto30b, {color: GRAY10}]}>보호소 정보</Text>
 							</View>
 							<View style={shelterInfoSetting.btn_w114}>
-								<AniButton btnLayout={btn_w114} btnStyle={'border'} btnTitle={'수정'} onPress={() => navigation.push('EditShelterInfo')} />
+								<AniButton btnLayout={btn_w114} btnStyle={'border'} btnTitle={'수정'} onPress={moveToEditShelterInfo} />
 							</View>
 						</View>
 						<View style={temp_style.title_type_shelterInfoSetting_view}>

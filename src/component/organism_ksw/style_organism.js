@@ -481,7 +481,6 @@ export const addressInput = StyleSheet.create({
 	},
 	upperContainer: {
 		width: 654 * DP,
-		height: 132 * DP,
 		flexDirection: 'row',
 	},
 	titleContainer: {
@@ -494,9 +493,6 @@ export const addressInput = StyleSheet.create({
 		alignSelf: 'flex-start',
 	},
 	btn_w226: {
-		position: 'absolute',
-		right: 0,
-		top: 50 * DP,
 		marginBottom: 10 * DP,
 		// marginTop: 60 * DP,
 	},

@@ -119,6 +119,7 @@ export default ApplyCompanionA = ({route}) => {
 				<View style={[temp_style.addressInput]}>
 					<AddressInput
 						title={'보호장소'}
+						titleMode={'star'}
 						address={data.protect_act_address}
 						onChangeDeatilAddress={onChangeDeatilAddress}
 						onPressSearchAddr={goToAddressSearch}

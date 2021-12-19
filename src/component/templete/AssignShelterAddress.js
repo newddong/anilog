@@ -119,6 +119,7 @@ export default AssignShelterAddress = props => {
 			<View style={[temp_style.addressInput, assignShelterAddress_style.addressInput]}>
 				<AddressInput
 					title={'보호소 주소'}
+					titleMode={'star'}
 					titleColor={APRI10}
 					onChangeAddress={onChangeAddress}
 					onChangeDeatilAddress={onChangeDeatilAddress}

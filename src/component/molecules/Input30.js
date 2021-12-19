@@ -25,7 +25,7 @@ const Input30 = React.forwardRef((props, ref) => {
 		},
 	}));
 	// const [input, setInput] = React.useState('');
-	const [confirmed, setConfirmed] = React.useState(false); //Confirm Msg 출력 Boolean
+	const [confirmed, setConfirmed] = React.useState(props.confirm || false); //Confirm Msg 출력 Boolean
 	const inputRef = React.useRef();
 
 	// Input 값 변동 콜백
