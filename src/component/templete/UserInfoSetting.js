@@ -30,7 +30,7 @@ export default UserInfoSetting = ({route}) => {
 				},
 				userObject => {
 					setData(userObject.msg);
-					console.log('userObject.msg.myPets?', userObject.msg.user_my_pets);
+					// console.log('userObject.msg.myPets?', userObject.msg.user_my_pets);
 				},
 				err => {
 					console.log('er', err);
@@ -40,7 +40,7 @@ export default UserInfoSetting = ({route}) => {
 	}, []);
 
 	React.useEffect(() => {
-		console.log(`data${JSON.stringify(data)}`);
+		// console.log(`data${JSON.stringify(data)}`);
 		setCompanions(data.user_my_pets);
 	}, [data]);
 
@@ -74,7 +74,7 @@ export default UserInfoSetting = ({route}) => {
 	//나의 반려동물 => 반려클릭
 	const onClickCompanionLabel = myPetData => {
 		console.log('myPetdata', myPetData);
-		navigation.push('PetInfoSetting', myPetData._id);
+		navigation.push('PetInfoSetting', {pet_id: myPetData._id});
 	};
 
 	//비밀번호 변경하기 클릭

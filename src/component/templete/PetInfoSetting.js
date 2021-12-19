@@ -14,7 +14,7 @@ import {_dummy_petInfo_from_user} from 'Root/config/dummy_data_hjs';
 import {dummy_userObject} from 'Root/config/dummyDate_json';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import Modal from '../modal/Modal';
-import {getUserInfoById} from 'Root/api/userapi';
+import {getUserInfoById, removeUserFromFamily} from 'Root/api/userapi';
 
 //이 화면에 들어오면서 특정 _id를 API 연동으로 데이터를 가져 옴.
 //이전 화면에서 모든 데이터를 가진 상태에서 들어오는 것이 아님.
@@ -27,6 +27,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 
 	//가족계정 추가에서 받아온 Account가 있을 경우 FamilyAccountList에 추가해서 적용
 	React.useEffect(() => {
+		console.log('route ', route.params.addedAccount);
 		if (route.params != undefined) {
 			if (route.params.addedAccount != undefined) {
 				let copy = [...familyAccountList];
@@ -42,9 +43,10 @@ export default PetInfoSetting = ({route, navigation}) => {
 
 	React.useEffect(() => {
 		getUserInfoById(
-			{userobject_id: route.params},
+			{userobject_id: route.params.pet_id},
 			result => {
-				// console.log('result / GetUserInfoById / PetInfoSetting', result.msg);
+				console.log('result / GetUserInfoById / PetInfoSetting', result.msg.pet_family.length);
+				setFamilyAccountList(result.msg.pet_family);
 				setPetData(result.msg);
 			},
 			err => {
@@ -77,14 +79,27 @@ export default PetInfoSetting = ({route, navigation}) => {
 	const goToAddFamilyAccount = () => {
 		familyAccountList.length > 2
 			? Modal.popOneBtn('가족계정은 최대 3인까지 등록가능합니다!', '확 인', () => Modal.close())
-			: navigation.push('AddFamilyAccount', route.name);
+			: navigation.push('AddFamilyAccount', {route_name: route.name, pet_id: petData._id});
 	};
 
 	//가족계정 삭제 버튼
 	const onDeleteFamilyAccount = index => {
-		let copy = [...familyAccountList];
-		copy.splice(index, 1);
-		setFamilyAccountList(copy);
+		console.log('삭제 예정 가족계정 정보', familyAccountList[index]);
+		removeUserFromFamily(
+			{
+				target_userobject_id: familyAccountList[index]._id,
+				pet_userobject_id: petData._id,
+			},
+			result => {
+				console.log('reuslt / removeUserFromFamily / PetInfoSetting   : ', result.msg);
+				let copy = [...familyAccountList];
+				copy.splice(index, 1);
+				setFamilyAccountList(copy);
+			},
+			err => {
+				console.log('err / removeUserFromFamily / PetInfoSetting   : ', err);
+			},
+		);
 	};
 
 	//계정 공개 여부 변경 Switch On

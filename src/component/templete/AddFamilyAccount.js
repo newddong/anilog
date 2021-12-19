@@ -7,10 +7,11 @@ import AccountList from '../organism_ksw/AccountList';
 import {login_style, btn_style, temp_style, addFamilyAccount_style} from './style_templete';
 import {CommonActions} from '@react-navigation/native';
 import Modal from '../modal/Modal';
-import {getUserListByNickname} from 'Root/api/userapi';
+import {addUserToFamily, getUserListByNickname} from 'Root/api/userapi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default AddFamilyAccount = ({route, navigation}) => {
-	// console.log('route', route.params);
+	console.log('route', route.params);
 	const [searched_accountList, setSearched_accountList] = React.useState([]);
 	const [selectedAccount, setSelectedAccount] = React.useState(null);
 
@@ -59,27 +60,40 @@ export default AddFamilyAccount = ({route, navigation}) => {
 	};
 
 	//초대하기 클릭
-	const onCheckFamilyMembers = () => {
-		console.log('리스트 인원 수 체크 후 3인이 넘어갈때 초대하면 3인까지만 가능하다는 메세지 필요 ~  3인이 안되면 API로 추가 후 goback');
+	const onCheckFamilyMembers = async () => {
+		// console.log('리스트 인원 수 체크 후 3인이 넘어갈때 초대하면 3인까지만 가능하다는 메세지 필요 ~  3인이 안되면 API로 추가 후 goback');
 		const finalize = () => {
-			Modal.close();
-			// navigation.navigate({
-			// 	name: route.params,
-			// 	params: {addedAccount: selectedAccount},
-			// 	// merge: true,
-			// });
-			navigation.dispatch(
-				CommonActions.reset({
-					index: 1,
-					routes: [
-						{name: 'UserMenu'},
-						{
-							name: route.params,
-							params: {addedAccount: selectedAccount},
-						},
-					],
-				}),
+			addUserToFamily(
+				{
+					userobject_id: route.params.pet_id,
+					family_userobject_id: selectedAccount,
+				},
+				result => {
+					console.log('result / addUserToFamily / AddFamilyAccount    :  ', result);
+				},
+				err => {
+					console.log('err / addUserToFamily / AddFamilyAccount   :  ', err);
+				},
 			);
+			Modal.close();
+			navigation.navigate({
+				name: route.params.route_name,
+				params: {addedAccount: selectedAccount},
+				merge: true,
+			});
+			// navigation.dispatch(
+			// 	CommonActions.navigate({
+			// 		merge: true,
+			// 		index: 1,
+			// 		routes: [
+			// 			{name: 'UserMenu'},
+			// 			{
+			// 				name: route.params,
+			// 				params: {addedAccount: selectedAccount},
+			// 			},
+			// 		],
+			// 	}),
+			// );
 		};
 		if (selectedAccount) {
 			Modal.popTwoBtn('이 계정을 가족으로 추가하시겠습니까?', '취소', '추가', () => Modal.close(), finalize);

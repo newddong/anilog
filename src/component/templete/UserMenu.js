@@ -43,19 +43,14 @@ export default UserMenu = props => {
 
 	//토큰에 로그인한 유저의 _id를 저장
 	React.useLayoutEffect(() => {
-		Modal.popNoBtn('로그인 중입니다.');
 		AsyncStorage.getItem('token', (err, res) => {
-			console.log('token id ', res);
 			getUserProfile(
 				{
 					userobject_id: res,
 				},
 				userObject => {
-					console.log('user', userObject.msg.user_my_pets);
+					// console.log('user', userObject.msg.user_my_pets);
 					setData(userObject.msg);
-					setTimeout(() => {
-						Modal.close();
-					}, 1000);
 				},
 
 				err => {
@@ -63,7 +58,7 @@ export default UserMenu = props => {
 				},
 			);
 		});
-	}, []);
+	}, [navigation]);
 
 	// 나의 반려동물 버튼 클릭
 	const onPressMyCompanion = () => {

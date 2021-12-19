@@ -5,21 +5,45 @@ import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
 import {WHITE, APRI10} from 'Root/config/color';
 import Modal from 'Root/component/modal/Modal';
+import {updateUserDetailInformation} from 'Root/api/userapi';
 
 export default SaveButtonHeader = ({navigation, route, options, back}) => {
-	React.useEffect(() => {
-		// console.log('route', route.params);
-	}, [route.params]);
-
 	const [data, setData] = React.useState(null);
 	const hasUnsavedChanges = Boolean(data);
 
 	const save = () => {
-		console.log('save button', data);
-		console.log('save button route', route.params);
-		setData(route.params);
-		navigation.setParams(data);
+		// console.log('save button', data);
+		// console.log('Save Pressed data received  :  ', route.params.data);
+		const received = route.params.data;
+		setData(received);
+		if (route.params.route_name == 'UserInfoDetailSetting') {
+			console.log('received Data _id', received._id);
+			console.log('received Data birthday', received.user_birthday);
+			console.log('received Data interest', received.user_interests);
+			console.log('received Data addr', received.user_address);
+			console.log('received Data gender', received.user_sex);
+			updateUserDetailInformation(
+				{
+					userobject_id: received._id,
+					user_birthday: received.user_birthday,
+					user_interests: received.user_interests,
+					user_address: received.user_address,
+					user_sex: received.user_sex,
+				},
+				result => {
+					console.log('result / updateUserDetailInformation / SaveButtonHeader   : ', result);
+				},
+				err => {
+					console.log('err / updateUserDetailInformation / SaveButtonHeader    :  ', err);
+				},
+			);
+		}
 	};
+
+	React.useEffect(() => {
+		// console.log('SaveButtonHeader Route Changed?   ', route.params);
+		// setData(route.params);
+	}, [route.params]);
 
 	React.useEffect(
 		() =>
@@ -38,6 +62,7 @@ export default SaveButtonHeader = ({navigation, route, options, back}) => {
 					() => {
 						Modal.close();
 						setData(route.params);
+						console.log('저장 후 나감 data', route.params);
 						navigation.dispatch(e.data.action, data);
 					},
 					() => {

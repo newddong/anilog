@@ -57,7 +57,7 @@ const AddressInput = props => {
 	// 	props.onPressSearchAddr();
 	// };
 	const onPressSearchAddr = () => {
-		navigation.push('ChangeUserAddress', detailAddr);
+		props.onPressSearchAddr();
 	};
 
 	return (

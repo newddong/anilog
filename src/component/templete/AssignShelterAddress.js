@@ -44,7 +44,7 @@ export default AssignShelterAddress = props => {
 	//주소찾기 클릭
 	const goToAddressSearch = () => {
 		console.log('onPressSearchAddr');
-		props.navigation.push('AddressSearch', {addr: ''});
+		props.navigation.push('AddressSearch', {addr: '', from: props.route.name});
 	};
 
 	//보호소 이름

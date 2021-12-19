@@ -101,7 +101,11 @@ export default AddressSearch = props => {
 	};
 
 	const complete = () => {
-		props.navigation.navigate(props.route.params.from, {addr: addr});
+		props.navigation.navigate({
+			name: props.route.params.from,
+			params: {addr: addr},
+			merge: true,
+		});
 	};
 
 	return (
