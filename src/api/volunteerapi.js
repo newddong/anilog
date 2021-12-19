@@ -54,3 +54,17 @@ export async function setVolunteerActivityStatus (params, callback, errcallback)
 	apiController('/volunteer/setVolunteerActivityStatus',arguments);
 };
 
+
+
+/**
+ * 보호소에 접수된 봉사활동 신청서 목록을 불러온다.(로그인 필요), 봉사활동 신청서의 상태별 필터링 가능
+ * @param {object} params
+ * @param {string} params.volunteer_activity_object_id - 커서 역할을 할 보호요청 오브잭트(페이징 처리)
+ * @param {'done'|'notaccept'|'accept'|'waiting'|'cancel'} params.volunteer_status - 조회하려고 하는 상태('done'|'notaccept'|'accept'|'waiting'|'cancel')
+ * @param {number} params.request_number - 봉사활동 신청서 요청 숫자
+ * @param {function} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export async function getShelterVolunteerActivityList (params, callback, errcallback){
+	apiController('/volunteer/getShelterVolunteerActivityList',arguments);
+};

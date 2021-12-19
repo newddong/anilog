@@ -75,7 +75,7 @@ export async function getShelterProtectAnimalList(params, callback, errcallback)
 
 
 /**
- * 보호소의 보호중인 동물 리스트 조회
+ * 대상 유저 오브젝트 아이디의 보호소가 올린 동물보호 요청 게시물 리스트를 불러온다.
  * @param {object} params - token아이디
  * @param {string} params.shelter_userobject_id - 동물보호 요청 리스트를 불러올 대상 
  * @param {string} params.protect_request_object_id - 커서 역할을 할 보호요청 오브잭트(페이징 처리)
