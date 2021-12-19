@@ -33,15 +33,29 @@ export default AnimalNeedHelp = props => {
 	// 불러오는 db 필드명이 다르기에 일치시키기 위한 함수
 	const checkthumbnailData = () => {
 		resultJSON = {};
-		resultJSON.img_uri = data.protect_animal_photo_uri_list ? data.protect_animal_photo_uri_list[0] : DEFAULT_PROFILE;
 		resultJSON._id = data._id;
-		// 보호 동물의 데이터 일 경우 (두 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
+
+		// 사진 필드는 변경 가능성 있음. 일단 썸네일 필드로 지정
+		if (data.hasOwnProperty('protect_request_photo_thumbnail')) {
+			//보호 요청 썸네일
+			resultJSON.img_uri = data.protect_request_photo_thumbnail;
+		} else if (data.hasOwnProperty('feed_thumbnail')) {
+			// 실종/제보 썸네일
+			resultJSON.img_uri = data.feed_thumbnail;
+		} else {
+			//기본 썸네일 적용
+			resultJSON.img_uri = DEFAULT_PROFILE;
+		}
+
+		// 보호 동물의 데이터 일 경우 (세 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
 		if (data.hasOwnProperty('protect_animal_sex') && data.hasOwnProperty('protect_animal_status')) {
+			resultJSON.img_uri = data.protect_request_photo_thumbnail ? data.protect_request_photo_thumbnail : DEFAULT_PROFILE;
 			resultJSON.gender = data.protect_animal_sex;
 			resultJSON.status = data.protect_animal_status;
 		}
-		//실종/제보 데이터 일 경우 (두 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
+		//실종/제보 데이터 일 경우 (세 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
 		else if (data.hasOwnProperty('missing_animal_sex') && data.hasOwnProperty('feed_type')) {
+			resultJSON.img_uri = data.feed_thumbnail ? data.feed_thumbnail : DEFAULT_PROFILE;
 			resultJSON.gender = data.missing_animal_sex;
 			resultJSON.status = data.feed_type;
 		} else {

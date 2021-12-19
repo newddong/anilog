@@ -9,38 +9,45 @@ import {txt} from 'Root/config/textstyle';
 import {dummy_ProtectRequestList} from 'Root/config/dummy_data_hjs';
 import {ONLY_CONTENT_FOR_ADOPTION, PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
 import FilterButton from '../molecules/FilterButton';
-import {getProtectRequestList} from 'Root/api/protect_request_api_hjs';
+import {getProtectRequestList} from 'Root/api/shelterapi.js';
 
 export default ProtectRequestList = ({navigation, route}) => {
-	const [data, setData] = React.useState({
-		protectArea: '',
-		kindFilter: '',
-	});
+	const [data, setData] = React.useState([]);
 
 	//보호 요청 데이터 불러오기 (아직 API 미작업 )
 	React.useEffect(() => {
-		console.log('ProtectRequestList:feedlist of Shelterprotect');
+		console.log(`ProtectRequestList:seding data -${data}`);
 		getProtectRequestList(
 			{
 				//필터 - 보호지역 (user_address.city 데이터)
-				city: data.city,
+				city: '',
 				//필터 - 동물종류
-				protect_animal_species: data.protect_animal_species,
+				protect_animal_species: '',
 				//입양 가능한 게시글만 보기
-				adoptable_posts: data.adoptable_posts,
+				adoptable_posts: false,
+				//커서 역할을 할 보호요청 오브잭트(페이징 처리)
+				protect_request_object_id: '',
+				//보호요청게시글 요청 숫자
+				request_number: 1,
 			},
 			data => {
 				console.log('data' + JSON.stringify(`data${data}`));
-				setData(data);
+				setData(data.msg);
+			},
+			errcallback => {
+				console.log(`errcallback:${JSON.stringify(errcallback)}`);
 			},
 		);
 	}, [route.params]);
 
+	React.useEffect(() => {
+		console.log(`ProtectRequestList data:${JSON.stringify(data)}`);
+	}, [data]);
+
 	// [hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
-	const [data1, setData1] = React.useState([]);
 
 	// //UserObject
-	// shelter_name: '', //보호소 이름
+	//  : '', //보호소 이름
 
 	// //protectRequestObject
 	// protect_request_photo_thumbnail: '', //보호요청 게시물 썸네일 uri
@@ -60,21 +67,23 @@ export default ProtectRequestList = ({navigation, route}) => {
 	const filterOn = () => {
 		// alert('입양 가능한 게시글만 보기');
 		console.log('입양 가능한 게시글만 보기');
+		setData({...data, adoptable_posts: true});
 	};
 	const filterOff = () => {
 		// alert('입양 가능한 게시글만 보기 끄기');
 		console.log('입양 가능한 게시글만 보기');
+		setData({...data, adoptable_posts: false});
 	};
+	//별도의 API 사용 예정.
 	const onOff_FavoriteTag = (value, index) => {
 		console.log('즐겨찾기=>' + value + ' ' + index);
 	};
-
 	const onSelectLocation = location => {
-		setData({...data, protectArea: location});
+		setData({...data, city: location});
 	};
 
 	const onSelectKind = kind => {
-		setData({...data, kindFilter: kind});
+		setData({...data, protect_animal_species: kind});
 	};
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
@@ -100,7 +109,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 					</View>
 				</View>
 				<View style={[searchProtectRequest.animalNeedHelpList]}>
-					<AnimalNeedHelpList data={dummy_ProtectRequestList} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
+					<AnimalNeedHelpList data={data} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
 				</View>
 			</ScrollView>
 		</View>
