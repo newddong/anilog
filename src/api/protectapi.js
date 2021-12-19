@@ -102,3 +102,41 @@ export async function getAppliesRecord(params, callback, errcallback){
 export async function getApplyDetailById(params, callback, errcallback){
 apiController( '/protect/getApplyDetailById', arguments);
 };
+
+
+/**
+ * 보호활동 신청서의 상태를 변경
+ * @param {object} params
+ * @param {string} params.protect_act_object_id - 변경할 신청서의 오브젝트 아이디
+ * @param {string} params.protect_act_status - 변경할 신청서의 상태('accept'|'denied'|'cancel'|'wait')
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export async function setProtectActivityStatus(params, callback, errcallback){
+	apiController( '/protect/setProtectActivityStatus', arguments);
+	};
+
+
+/**
+ * 동물보호요청 게시물의 상태를 변경
+ * @param {object} params
+ * @param {string} params.protect_request_object_id - 변경할 보호요청 게시물의 오브젝트 아이디
+ * @param {string} params.protect_request_status - 변경할 보호요청 게시물의 상태('rescue'|'discuss'|'nearrainbow'|'complete')
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export async function setProtectRequestStatus(params, callback, errcallback){
+	apiController( '/protect/setProtectRequestStatus', arguments);
+	};
+
+/**
+ * 대상 동물보호 게시물에 동물보호를 신청한 신청자의 리스트
+ * @param {object} params
+ * @param {string} params.protect_request_object_id - 신청자 리스트를 불러올 보호요청 게시물의 오브젝트 아이디
+ * @param {string} params.protect_request_status - 리스트의 보호요청 게시물의 상태('rescue'|'discuss'|'nearrainbow'|'complete')필터
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export async function getProtectApplicantList(params, callback, errcallback){
+	apiController( '/protect/getProtectApplicantList', arguments);
+	};
