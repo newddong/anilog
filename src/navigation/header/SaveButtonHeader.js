@@ -5,74 +5,86 @@ import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
 import {WHITE, APRI10} from 'Root/config/color';
 import Modal from 'Root/component/modal/Modal';
-import {updateUserDetailInformation} from 'Root/api/userapi';
+import {updatePetDetailInformation, updateUserDetailInformation} from 'Root/api/userapi';
 
 export default SaveButtonHeader = ({navigation, route, options, back}) => {
-	const [data, setData] = React.useState(null);
-	const hasUnsavedChanges = Boolean(data);
+	const [data, setData] = React.useState();
+	const [save, setSaved] = React.useState(false); // 저장 버튼 클릭 한 번이라도 했는지 여부
 
-	const save = () => {
-		// console.log('save button', data);
-		// console.log('Save Pressed data received  :  ', route.params.data);
-		const received = route.params.data;
-		setData(received);
-		if (route.params.route_name == 'UserInfoDetailSetting') {
-			console.log('received Data _id', received._id);
-			console.log('received Data birthday', received.user_birthday);
-			console.log('received Data interest', received.user_interests);
-			console.log('received Data addr', received.user_address);
-			console.log('received Data gender', received.user_sex);
-			updateUserDetailInformation(
-				{
-					userobject_id: received._id,
-					user_birthday: received.user_birthday,
-					user_interests: received.user_interests,
-					user_address: received.user_address,
-					user_sex: received.user_sex,
-				},
-				result => {
-					console.log('result / updateUserDetailInformation / SaveButtonHeader   : ', result);
-				},
-				err => {
-					console.log('err / updateUserDetailInformation / SaveButtonHeader    :  ', err);
-				},
-			);
-		}
-	};
-
+	//SaveButtonHeader를 가지는 모든 템플릿들에게서 params가 들어올 때마다 setData를 실시
 	React.useEffect(() => {
-		// console.log('SaveButtonHeader Route Changed?   ', route.params);
-		// setData(route.params);
+		setData(route.params.data);
 	}, [route.params]);
 
-	React.useEffect(
-		() =>
-			navigation.addListener('beforeRemove', e => {
-				if (hasUnsavedChanges) {
-					// If we don't have unsaved changes, then we don't need to do anything
-					return;
-				}
-
-				// Prevent default behavior of leaving the screen
-				e.preventDefault();
-				Modal.popTwoBtn(
-					'저장하지 않고 나가시겠습니까?',
-					'저장 후 나감',
-					'나가기',
-					() => {
-						Modal.close();
-						setData(route.params);
-						console.log('저장 후 나감 data', route.params);
-						navigation.dispatch(e.data.action, data);
+	React.useEffect(() => {
+		//저장이 한 번이라도 됐다면 API적용
+		if (save) {
+			console.log('Save Pressed data received  :  ', route.params.data);
+			const received = data;
+			setData(received);
+			//일반 유저의 상세정보 수정
+			if (route.params.route_name == 'UserInfoDetailSetting') {
+				updateUserDetailInformation(
+					{
+						userobject_id: received._id,
+						user_birthday: received.user_birthday,
+						user_interests: received.user_interests,
+						user_address: received.user_address,
+						user_sex: received.user_sex,
 					},
-					() => {
-						Modal.close();
-						navigation.dispatch(e.data.action, data);
+					result => {
+						console.log('result / updateUserDetailInformation / SaveButtonHeader   : ', result);
+					},
+					err => {
+						console.log('err / updateUserDetailInformation / SaveButtonHeader    :  ', err);
 					},
 				);
-			}),
-		[navigation, hasUnsavedChanges],
-	);
+			} else if (route.params.route_name == 'SetPetInformation') {
+				//펫 유저의 상세정보 수정
+				updatePetDetailInformation(
+					{
+						userobject_id: received._id,
+						pet_birthday: received.pet_birthday,
+						pet_neutralization: received.pet_neutralization,
+						pet_sex: received.pet_sex,
+						pet_weight: received.pet_weight,
+					},
+					result => {
+						console.log('result / updatePetDetailInfo / SaveButtonHeader   : ', result.msg);
+					},
+					err => {
+						console.log('err / updatePetDetailInfo / SaveButtonHeader   :  ', err);
+					},
+				);
+			}
+		}
+	}, [save]);
+
+	React.useEffect(() => {
+		navigation.addListener('beforeRemove', e => {
+			//저장 처리가 이미 되어있다면 바로 뒤로가기 진행
+			if (save) {
+				// If we don't have unsaved changes, then we don't need to do anything
+				return;
+			}
+			//저장버튼이 한 번도 눌러지지 않은 상태로 뒤로가기를 누를 경우 [저장 후 나감] 모달 출력
+			e.preventDefault();
+			Modal.popTwoBtn(
+				'저장하지 않고 나가시겠습니까?',
+				'저장 후 나감',
+				'나가기',
+				() => {
+					Modal.close();
+					setSaved(true); //save State true로 하여 상단의 useEffect가 수행되도록 설정
+					navigation.dispatch(e.data.action, data); // 뒤로가기 이제 실시
+				},
+				() => {
+					Modal.close();
+					navigation.dispatch(e.data.action, data);
+				},
+			);
+		});
+	}, []);
 
 	return (
 		<View style={[style.headerContainer, style.shadow]}>
@@ -84,7 +96,7 @@ export default SaveButtonHeader = ({navigation, route, options, back}) => {
 			<View style={style.titleContainer}>
 				<Text style={txt.noto40b}>{options.title}</Text>
 			</View>
-			<TouchableOpacity onPress={save}>
+			<TouchableOpacity onPress={() => setSaved(true)}>
 				<View style={style.buttonContainer}>
 					<Text style={[txt.noto36b, {color: APRI10, lineHeight: 56 * DP}]}>저장</Text>
 				</View>
