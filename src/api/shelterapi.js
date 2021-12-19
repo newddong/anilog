@@ -86,3 +86,14 @@ export async function getShelterProtectAnimalList(params, callback, errcallback)
  export async function getProtectRequestListByShelterId(params, callback, errcallback) {
 	apiController( '/shelter/getProtectRequestListByShelterId', arguments);
 }
+
+
+/**
+ * 보호소에 보호활동(입양,임시보호)신청이 접수된 동물 목록을 조회
+ * @param {object} params - token아이디
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export async function getAnimalListWithApplicant(params, callback, errcallback) {
+	apiController( '/shelter/getAnimalListWithApplicant', arguments);
+}
