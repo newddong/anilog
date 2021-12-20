@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {serveruri, cookieReset} from 'Root/config/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {apiController, apiFormController} from './apiController';
 
 /**
  * 댓글과 대댓글 작성
@@ -15,14 +16,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const createComment = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+ export async function createComment(params, callback, errcallback){
+	apiController('/comment/createComment',arguments);
 };
 
 
@@ -36,14 +31,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const getCommentListByFeedId = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+ export async function getCommentListByFeedId(params, callback, errcallback){
+	apiController('/comment/getCommentListByFeedId',arguments);
 };
 
 /**
@@ -56,12 +45,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export const getCommentListByProtectId = async (params, callback, errcallback) => {
-	try {
-		//서버와 통신
-		// throw new Error('확인되지 않은 코드');
-		setTimeout(callback, 1000, params);
-	} catch (err) {
-		setTimeout(errcallback, 1000, err + ''); //에러 처리 콜백
-	}
+ export async function getCommentListByProtectId(params, callback, errcallback){
+	apiController('/comment/getCommentListByProtectId',arguments);
 };
