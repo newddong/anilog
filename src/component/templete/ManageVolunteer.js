@@ -7,7 +7,7 @@ import VolunteerItemList from '../organism_ksw/VolunteerItemList';
 import {login_style, manageVolunteer} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
 import {_dummy_userObject_user, _dummy_VolunteerActivityApplicant} from 'Root/config/dummy_data_hjs';
-import {getUserVolunteerActivityList} from 'Root/api/volunteerapi';
+import {getShelterVolunteerActivityList, getUserVolunteerActivityList} from 'Root/api/volunteerapi';
 import {getUserInfoById} from 'Root/api/userapi';
 import moment from 'moment';
 import Modal from '../modal/Modal';
