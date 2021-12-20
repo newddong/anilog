@@ -12,6 +12,7 @@ import ProfileImageSmall from './ProfileImageSmall';
  */
 const ShelterInfo = props => {
 	const data = props.data;
+	// console.log('data', data);
 	const onPressPhoneNum = () => {
 		Linking.openURL(`tel:${data.shelter_delegate_contact_number}`);
 	};

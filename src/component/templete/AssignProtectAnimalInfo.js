@@ -75,52 +75,18 @@ export default AssignProtectAnimalInfo = ({route}) => {
 
 	const registerProtectPet = () => {
 		console.log('Before AssiginShelterAnimal Data? ', data);
-		const d = {
-			pet_neutralization: 'unknown',
-			pet_sex: 'female',
-			pet_species: '개',
-			pet_species_detail: '치와와',
-			protect_animal_estimate_age: '1개월',
-			protect_animal_neutralization: 'unknown',
-			protect_animal_photo_uri_list: [
-				'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/DF4BC943-9D90-4DC6-ACF2-18B4AD440006/tmp/B860B1E4-1851-432F-B754-5F9716E1C4DC.jpg',
-			],
-			protect_animal_rescue_date: '2021.12.08',
-			protect_animal_rescue_location: 'Eiudas city',
-			protect_animal_sex: 'female',
-			protect_animal_species: '개',
-			protect_animal_species_detail: '치와와',
-			protect_animal_weight: '2',
-			shelter_protect_animal_object_id: '',
-		};
+
 		assignShelterAnimal(
 			data,
 			data => {
 				console.log(`assignShelterAnimal callback:${data}`);
-			},
-			err => {
-				console.log('err / AssignProtectAnimalInfo', err);
-				const e = {
-					__v: 0,
-					_id: '61be0063244ae6ea37b64e2d',
-					protect_animal_belonged_shelter_id: '61b9eba4185a4f69d5981ad6',
-					protect_animal_estimate_age: '1개월',
-					protect_animal_neutralization: 'unknown',
-					protect_animal_photo_uri_list: [],
-					protect_animal_protector_discussion_id: [],
-					protect_animal_rescue_date: '2021-12-08T00:00:00.000Z',
-					protect_animal_rescue_location: 'Eiudas city',
-					protect_animal_sex: 'female',
-					protect_animal_species: '개',
-					protect_animal_species_detail: '치와와',
-					protect_animal_status: 'rescue',
-					protect_animal_weight: 2,
-				};
 
-				setData(err);
 				Modal.popTwoBtn('보호 동물이 등록되었습니다. \n바로 보호요청 글을 작성하시겠습니까?', '아니오', '새 글 작성', goToShelterMenu, () =>
 					goToWriteAidRequest(err),
 				);
+			},
+			err => {
+				console.log('err / AssignProtectAnimalInfo', err);
 			},
 		);
 	};
@@ -220,42 +186,4 @@ export default AssignProtectAnimalInfo = ({route}) => {
 			</View>
 		</View>
 	);
-};
-
-const before = {
-	pet_neutralization: 'unknown',
-	pet_sex: 'female',
-	pet_species: '고양이',
-	pet_species_detail: '메인쿤',
-	protect_animal_estimate_age: '3년 1개월',
-	protect_animal_neutralization: 'unknown',
-	protect_animal_photo_uri_list: [
-		'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/BB150CB5-956F-4D19-A0F6-BD580E5CAB02/tmp/57D33D50-2021-446A-8BEE-CE526D6BA2A7.jpg',
-		'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/BB150CB5-956F-4D19-A0F6-BD580E5CAB02/tmp/55908728-375D-4C3D-8E06-90D3DBEC8AFB.jpg',
-		'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/BB150CB5-956F-4D19-A0F6-BD580E5CAB02/tmp/08A677CD-A7B3-406B-905A-EC9F723AE0F7.jpg',
-	],
-	protect_animal_rescue_date: '',
-	protect_animal_rescue_location: 'Tustin',
-	protect_animal_sex: 'female',
-	protect_animal_species: '고양이',
-	protect_animal_species_detail: '메인쿤',
-	protect_animal_weight: '1',
-	shelter_protect_animal_object_id: '',
-};
-
-const after = {
-	__v: 0,
-	_id: '61bb59779c25946f89154d86',
-	protect_animal_belonged_shelter_id: '61b9eba4185a4f69d5981ad6',
-	protect_animal_estimate_age: '3년 1개월',
-	protect_animal_neutralization: 'unknown',
-	protect_animal_photo_uri_list: [],
-	protect_animal_protector_discussion_id: [],
-	protect_animal_rescue_date: null,
-	protect_animal_rescue_location: 'Tustin',
-	protect_animal_sex: 'female',
-	protect_animal_species: '고양이',
-	protect_animal_species_detail: '메인쿤',
-	protect_animal_status: 'rescue',
-	protect_animal_weight: 1,
 };

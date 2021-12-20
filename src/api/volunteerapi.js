@@ -13,11 +13,9 @@ import {apiController, apiFormController} from './apiController';
  * @param {function} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function assignVolunteerActivity (params, callback, errcallback){
-	apiController('/volunteer/assignVolunteerActivity',arguments);
-};
-
-
+export async function assignVolunteerActivity(params, callback, errcallback) {
+	apiController('/volunteer/assignVolunteerActivity', arguments);
+}
 
 /**
  * 봉사활동 신청서를 열람한다.
@@ -26,10 +24,9 @@ export async function assignVolunteerActivity (params, callback, errcallback){
  * @param {function} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function getVolunteerActivityById (params, callback, errcallback){
-	apiController('/volunteer/getVolunteerActivityById',arguments);
-};
-
+export async function getVolunteerActivityById(params, callback, errcallback) {
+	apiController('/volunteer/getVolunteerActivityById', arguments);
+}
 
 /**
  * 유저의 봉사활동 신청서 목록을 불러온다.
@@ -37,10 +34,10 @@ export async function getVolunteerActivityById (params, callback, errcallback){
  * @param {function} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function getUserVolunteerActivityList (params, callback, errcallback){
-	apiController('/volunteer/getUserVolunteerActivityList',arguments);
-};
-
+export async function getUserVolunteerActivityList(params, callback, errcallback) {
+	apiController('/volunteer/getUserVolunteerActivityList', arguments);
+	return 1;
+}
 
 /**
  * 봉사활동 신청서의 상태를 변경한다.
@@ -50,11 +47,9 @@ export async function getUserVolunteerActivityList (params, callback, errcallbac
  * @param {function} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function setVolunteerActivityStatus (params, callback, errcallback){
-	apiController('/volunteer/setVolunteerActivityStatus',arguments);
-};
-
-
+export async function setVolunteerActivityStatus(params, callback, errcallback) {
+	apiController('/volunteer/setVolunteerActivityStatus', arguments);
+}
 
 /**
  * 보호소에 접수된 봉사활동 신청서 목록을 불러온다.(로그인 필요), 봉사활동 신청서의 상태별 필터링 가능
@@ -65,6 +60,6 @@ export async function setVolunteerActivityStatus (params, callback, errcallback)
  * @param {function} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export async function getShelterVolunteerActivityList (params, callback, errcallback){
-	apiController('/volunteer/getShelterVolunteerActivityList',arguments);
-};
+export async function getShelterVolunteerActivityList(params, callback, errcallback) {
+	apiController('/volunteer/getShelterVolunteerActivityList', arguments);
+}

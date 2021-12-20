@@ -27,25 +27,34 @@ export default SendHeader = ({route, navigation, options}) => {
 						'확인',
 						() => Modal.close(),
 						() => {
-							console.log('SendHeader / Before Create AidRequest ', data);
-							const bd = {
-								protect_animal_id: '61be0063244ae6ea37b64e2d',
-								protect_request_content: 'Asdas',
+							// console.log('SendHeader / Before Create AidRequest ', data);
+							const da = {
+								protect_animal_id: '61c07f0c0b3fb5a4acae2c26',
+								protect_request_content: '낯도 가리지않습니다. 데려가시면 복받으실거애요.',
 								protect_request_photo_thumbnail: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
-								protect_request_photos: undefined,
+								protect_request_photos: [
+									'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/9B8EB1AE-755D-4A0A-8DBE-E027717A4AC5/tmp/C175A2D9-0E16-47EE-A0C7-F500B8F76E8B.jpg',
+								],
 								protect_request_status: 'rescue',
-								protect_request_title: 'Dd1',
-								shelter_protect_animal_object_id: '61be0063244ae6ea37b64e2d',
+								protect_request_title: '고르고스에서 냥줍했습니다. 엄마를 구해요',
+								shelter_protect_animal_object_id: '61c07f0c0b3fb5a4acae2c26',
 							};
+							console.log('data1', data.protect_request_content);
+							console.log('data1', data.shelter_protect_animal_object_id);
+							console.log('data1', data.protect_request_title);
+							console.log('data1', data.protect_request_photos);
 							createProtectRequest(
-								data,
+								{
+									protect_request_photos: data.protect_request_photos,
+									shelter_protect_animal_object_id: data.shelter_protect_animal_object_id,
+									protect_request_title: data.protect_request_title,
+									protect_request_content: data.protect_request_content,
+								},
 								successed => {
 									console.log('successed / createProtectRequest', successed);
 									Modal.popNoBtn('보호요청 게시글 \n 작성이 완료되었습니다!');
-									setTimeout(() => {
-										Modal.close();
-										navigation.push('ShelterMenu');
-									}, 1500);
+									Modal.close();
+									navigation.push('ShelterMenu');
 								},
 								err => {
 									console.log('err, createProtectRequest', err);

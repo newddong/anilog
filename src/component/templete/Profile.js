@@ -105,7 +105,7 @@ export default Profile = props => {
 		console.log('item', item);
 	};
 
-	//TabSelect 하단 AccountList => userType NORMAL일 경우
+	//TabSelect 하단 AccountList
 	const showTabContent = () => {
 		if (tabMenuSelected == 0) {
 			//피드
@@ -132,10 +132,7 @@ export default Profile = props => {
 				</View>
 			) : (
 				<View style={[profile.animalNeedHelpList]}>
-					<AnimalNeedHelpList
-						data={dummy_AnimalFromShelter_adopted}
-						onClickLabel={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)}
-					/>
+					<AnimalNeedHelpList data={dummy_AnimalFromShelter_adopted} onClickLabel={onClick_ProtectedThumbLabel} />
 				</View>
 			);
 		}
