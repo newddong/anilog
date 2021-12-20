@@ -2103,6 +2103,23 @@ export const shelterInfoSetting = StyleSheet.create({
 		height: 1060 * DP,
 		backgroundColor: '#FFF',
 	},
+	userIntroCont: {
+		marginTop: 15 * DP,
+	},
+	modificationTextInput: {
+		maxHeight: 200 * DP,
+		paddingVertical: 10 * DP,
+		color: GRAY10,
+		backgroundColor: WHITE,
+		shadowColor: '#000000',
+		shadowOpacity: 0.27,
+		shadowRadius: 4.65,
+		shadowOffset: {
+			width: 1 * DP,
+			height: 2 * DP,
+		},
+		elevation: 2,
+	},
 	btn_w114: {
 		position: 'absolute',
 		right: 0,

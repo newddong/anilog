@@ -29,10 +29,8 @@ export default VolunteerItem = props => {
 			</View>
 			{props.nvName != 'ProtectApplicant' && (
 				<View style={[volunteerItem.expected_activityDate]}>
-					{/* <Text style={[txt.roboto24, {color: GRAY20}]}>{data.volunteer_wish_date[0] || ''}</Text> */}
 					<Text style={[txt.roboto22, {color: GRAY20}]}>{parsing_wish_date()}</Text>
 					{/* [hjs] 다른 페이지에서 계속 이상하게 나와서 계속 틀을 누군가 수정 하는 것 같음. 일단 임시적으로 폰트 22로 수정 */}
-					{/* <Text style={[txt.roboto22, {color: GRAY20}]}>{data.volunteer_wish_date[0] || ''}</Text> */}
 
 					<Text style={[txt.roboto24, {color: GRAY20}]}>{props.type != 'done' ? '활동 예정' : '활동 완료'}</Text>
 				</View>

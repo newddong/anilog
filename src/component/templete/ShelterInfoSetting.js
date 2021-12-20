@@ -8,21 +8,25 @@ import ProfileImageLarge160 from '../molecules/ProfileImageLarge160';
 import {txt} from 'Root/screens/assign/style_assign';
 import AniButton from '../molecules/AniButton';
 import {GRAY10} from 'Root/config/color';
-import {getUserInfoById} from 'Root/api/userapi';
+import {getUserInfoById, updateUserIntroduction} from 'Root/api/userapi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {TextInput} from 'react-native';
 
 export default ShelterInfoSetting = ({route}) => {
 	// console.log('ShelterInfoSetting', route.params);
 	const navigation = useNavigation();
 
 	const [data, setData] = React.useState({});
+	const [modifyMode, setModifyMode] = React.useState(false);
+	const [intro_modified, setIntro_modified] = React.useState('');
+	const modifyRef = React.useRef();
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
 			getUserInfoById(
 				{userobject_id: res},
 				result => {
-					console.log('result / getUserInfoById / ShelterInfoSetting   : ', result.msg);
+					console.log('result / getUserInfoById / ShelterInfoSetting   : ', result.msg.user_introduction);
 					setData(result.msg);
 				},
 				err => {
@@ -34,7 +38,7 @@ export default ShelterInfoSetting = ({route}) => {
 
 	//프로필변경
 	const moveToChangeUserProfileImage = () => {
-		navigation.push('ChangeUserProfileImage');
+		navigation.push('ChangeUserProfileImage', data);
 	};
 
 	//비밀번호 변경
@@ -45,6 +49,32 @@ export default ShelterInfoSetting = ({route}) => {
 	//상세 정보 변경
 	const moveToEditShelterInfo = () => {
 		navigation.push('EditShelterInfo', {data: data});
+	};
+
+	//User_intro 수정 버튼 클릭
+	const modify_userIntro = () => {
+		setModifyMode(!modifyMode);
+	};
+
+	//수정 후 적용 버튼 클릭
+	const modify_finalize = () => {
+		setModifyMode(!modifyMode);
+		setData({...data, user_introduction: intro_modified});
+		console.log('intro', intro_modified, typeof intro_modified);
+		updateUserIntroduction(
+			{user_introduction: intro_modified},
+			success => {
+				console.log('suceess', success);
+			},
+			err => {
+				console.log('er', err);
+			},
+		);
+	};
+
+	//수정 TextInput 콜백 함수
+	const modifyIntroText = text => {
+		setIntro_modified(text);
 	};
 
 	return (
@@ -81,14 +111,36 @@ export default ShelterInfoSetting = ({route}) => {
 								<Text style={[txt.noto30b, {color: GRAY10}]}>보호소 소개</Text>
 							</View>
 							<View style={[shelterInfoSetting.btn_w114]}>
-								<AniButton btnLayout={btn_w114} btnStyle={'border'} btnTitle={'수정'} onPress={() => alert('준비중입니다.')} />
+								{modifyMode ? (
+									<AniButton onPress={modify_finalize} btnTitle={'적용'} btnLayout={btn_w114} />
+								) : (
+									<AniButton onPress={modify_userIntro} btnTitle={'수정'} btnStyle={'border'} btnLayout={btn_w114} />
+								)}
 							</View>
 						</View>
-						<View style={[temp_style.introduceMent_shelterInfoSetting]}>
+						<View style={[temp_style.userText_userInfoSetting, shelterInfoSetting.userIntroCont]}>
+							{/* 소개란의 수정버튼을 누를 시 TextInput으로 변경 */}
+							{modifyMode ? (
+								<TextInput
+									onChangeText={modifyIntroText}
+									style={[txt.noto24, shelterInfoSetting.modificationTextInput]}
+									defaultValue={data.user_introduction || '소개란이 비어있습니다.'}
+									multiline={true}
+									maxLength={500}
+									ref={modifyRef}
+									selectTextOnFocus
+								/>
+							) : (
+								<Text style={[txt.noto24, {color: GRAY10}]} numberOfLines={2} ellipsizeMode={'tail'}>
+									{data.user_introduction ? data.user_introduction : '소개란이 비어있습니다'}
+								</Text>
+							)}
+						</View>
+						{/* <View style={[temp_style.introduceMent_shelterInfoSetting]}>
 							<Text style={txt.noto24} ellipsizeMode={'tail'} numberOfLines={3}>
 								{data.user_introduction || ''}
 							</Text>
-						</View>
+						</View> */}
 					</View>
 					{/* 보호소 정보 */}
 					<View style={[temp_style.vertical_border]}></View>

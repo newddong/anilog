@@ -123,7 +123,7 @@ export default ChangeUserProfileImage = ({route}) => {
 	const validateNewNick = nick => {
 		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
 		// 영문자, 소문자, 숫자, "-","_" 로만 구성된 길이 2~10자리 사이의 문자열
-		let regExp = /^[a-zA-Z0-9_-]{2,15}$/;
+		let regExp = /^[가-힣a-zA-Z0-9_-]{2,15}$/;
 		return regExp.test(nick) && checkDuplicateNickname(nick);
 	};
 	return (
