@@ -16,6 +16,7 @@ export default SearchFeedTabNavigation = props => {
 
 	React.useEffect(() => {
 		//SearchHeader에서 작성한 검색어와 검색클릭이 행해지면 SearchInput에 값이 들어감
+		console.log('props.input / FeedTabNavi', props.input);
 		setSearchInput(props.input);
 	}, [props.input]);
 

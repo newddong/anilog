@@ -1,13 +1,21 @@
+import moment from 'moment';
 import React from 'react';
 import {Text, View} from 'react-native';
 import {GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import ShelterLabel from '../molecules/ShelterLabel';
+import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
 import {volunteerItem} from './style_organism';
 
 export default VolunteerItem = props => {
 	const data = props.data;
 	// console.log('props.data', data);
+
+	const parsing_wish_date = () => {
+		let date = data.volunteer_wish_date[0];
+		date = moment(date).format('YY.MM.DD');
+		return date;
+	};
 
 	return (
 		<View style={[volunteerItem.container]}>
@@ -21,8 +29,8 @@ export default VolunteerItem = props => {
 			</View>
 			{props.nvName != 'ProtectApplicant' && (
 				<View style={[volunteerItem.expected_activityDate]}>
-					<Text style={[txt.roboto24, {color: GRAY20}]}>{data.volunteer_wish_date[0] || ''}</Text>
-
+					{/* <Text style={[txt.roboto24, {color: GRAY20}]}>{data.volunteer_wish_date[0] || ''}</Text> */}
+					{/* <Text style={[txt.roboto24, {color: GRAY20}]}>{parsing_wish_date()}</Text> */}
 					<Text style={[txt.roboto24, {color: GRAY20}]}>{props.type != 'done' ? '활동 예정' : '활동 완료'}</Text>
 				</View>
 			)}

@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {getAppliesRecord} from 'Root/api/protectapi';
 import {dummy_manageUserVolunteer} from 'Root/config/dummyDate_json';
 import {dummy_AppliesRecord_protect} from 'Root/config/dummy_data_hjs';
 import {dummy_AppliesRecord_rescue} from 'Root/config/dummy_data_hjs';
@@ -9,7 +10,6 @@ import {NextMark} from '../atom/icon';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import ShelterList from '../organism_ksw/ShelterList';
 import {appliesRecord, login_style} from './style_templete';
-import {getAppliesRecord} from 'Root/api/appliesapi_hjs.js';
 
 export default AppliesRecord = ({route}) => {
 	//첫번째 값만 신청내역에 보여주기 위함. AnimalNeedHelpList가 배열 데이터를 다루기 때문에 반드시 객체가 배열이어야 함.
@@ -25,12 +25,13 @@ export default AppliesRecord = ({route}) => {
 	React.useEffect(() => {
 		console.log('- getAppliesRecord data -');
 		getAppliesRecord(
-			{
-				userobject_id: route.params.userobject_id,
+			{},
+			result => {
+				console.log('result / getAppliesRecord / ApplitesRecord  : ', result);
+				// setData(data);
 			},
-			data => {
-				console.log('data' + JSON.stringify(`data${data}`));
-				setData(data);
+			err => {
+				console.log('err / getAppliesRecord / AppliesRecord', err);
 			},
 		);
 	}, [route.params]);
@@ -59,14 +60,17 @@ export default AppliesRecord = ({route}) => {
 	// shelter_name : '', //보호소 이름
 	// city : '', //보호소 주소(시, 구 까지 표기)
 
+	//입양 신청 - 더보기 클릭
 	const showMoreAdoption = () => {
 		navigation.push('ApplyAdoptionList', dummy_AppliesRecord_rescue);
 	};
 
+	//임시보호 신청 - 더보기 클릭
 	const showMoreProtection = () => {
 		navigation.push('ApplyTempProtectList', dummy_AppliesRecord_protect);
 	};
 
+	//봉사활동 신청 - 더보기 클릭
 	const showMoreVolunteer = () => {
 		navigation.push('ManageUserVolunteer'); // 활동 예정중인 신청, 지난 신청 등 나의 신청 목록을 보내줘야 알 수 있는 부분
 	};

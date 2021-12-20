@@ -3,6 +3,7 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {View, TouchableWithoutFeedback} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {getUserInfoById, getUserProfile} from 'Root/api/userapi';
 import DP from 'Root/config/dp';
 import {
 	dummy_AnimalFromShelter_adopted,
@@ -25,19 +26,28 @@ import ProtectedPetList from '../organism_ksw/ProtectedPetList';
 import {login_style, profile, temp_style} from './style_templete';
 
 export default Profile = props => {
-	console.log('profile props', props.route.params);
-
+	// console.log('profile props', props.route.params);
 	const navigation = useNavigation();
-
-	const userData = dummy_userObject[0]; //로그인 유저의 userObject data
 	const [profile_data, setProfile_data] = React.useState(props.route.params || dummy_UserObject_shelter[0]); //라벨을 클릭한 유저의 userObject data
 	const [tabMenuSelected, setTabMenuSelected] = React.useState(0); //프로필 Tab의 선택상태
 	const [showOwnerState, setShowOwnerState] = React.useState(false); // 현재 로드되어 있는 profile의 userType이 Pet인 경우 반려인 계정 리스트의 출력 여부
 	const [showCompanion, setShowCompanion] = React.useState(false); // User계정이 반려동물버튼을 클릭
-	//현재 접속 중인 계정의 _id를 토큰에 저장
-	// React.useEffect(() => {
-	// 	AsyncStorage.setItem('token', JSON.stringify(userData._id));
-	// }, []);
+
+	React.useEffect(() => {
+		getUserProfile(
+			{
+				userobject_id: '61c023d9679aa5ae46128102', //상우보호소4 임시로
+				user_type: 'shelter',
+			},
+			result => {
+				console.log('result / getUserProfile / Profile  :  ', result.msg.user_nickname);
+				setProfile_data(result.msg);
+			},
+			err => {
+				console.log('err / getUserProfile / Profile  :  ', err);
+			},
+		);
+	}, []);
 
 	React.useEffect(() => {
 		// console.log('profileData userTYpe', profile_data.user_type);
@@ -65,7 +75,8 @@ export default Profile = props => {
 
 	//보호소프로필의 봉사활동 클릭
 	const onClick_Volunteer_ShelterProfile = () => {
-		navigation.push('ApplyVolunteer', {profile_data: profile_data});
+		console.log('profile', profile_data._id);
+		navigation.push('ApplyVolunteer', {token: profile_data._id});
 	};
 
 	//보호소프로필의 보호활동 탭의 피드 썸네일 클릭

@@ -79,7 +79,7 @@ export default ChangePetProfileImage = props => {
 	};
 
 	return (
-		<View style={login_style.wrp_main}>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<View style={[temp_style.profileImageSelect, changePetProfileImage_style.ProfileImageSelect]}>
 				<ProfileImageSelect onClick={selectPhoto} selectedImageUri={petData.user_profile_uri} />
 			</View>

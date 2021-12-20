@@ -23,7 +23,7 @@ const ShelterInfo = props => {
 			</View>
 			<View style={{width: 654 * DP, height: 72 * DP, marginTop: 10 * DP}}>
 				<Text style={[txt.noto24, {alignSelf: 'flex-end', color: GRAY10}]}>
-					{data ? data.shelter_address.city : ''} {data.shelter_address.district || ''} {data.shelter_address.neighbor || ''}
+					{data ? data.shelter_address.brief : ''} {data.shelter_address.detail || ''}
 				</Text>
 				<TouchableOpacity onPress={onPressPhoneNum}>
 					<Text style={[txt.noto24, {alignSelf: 'flex-end', color: BLUE20, textDecorationLine: 'underline'}]}>

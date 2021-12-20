@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Image} from 'react-native';
+import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import {
 	HashLabel46,
 	HashLabel60,
@@ -84,7 +85,7 @@ const ProfileImageSmall = props => {
 			) : (
 				<Image
 					source={{
-						uri: props.data.user_profile_uri,
+						uri: props.data.user_profile_uri || DEFAULT_PROFILE,
 					}}
 					style={getSize()}
 				/>

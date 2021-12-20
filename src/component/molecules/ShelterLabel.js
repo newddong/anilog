@@ -15,9 +15,7 @@ import {DEFAULT_PROFILE} from 'Root/i18n/msg';
  * @param {(data:object)=>void} props.onClickLabel - 보호소 UserObject
  */
 const ShelterLabel = props => {
-	// console.log('props / shelterLAbel', props.data);
 	const [validation, setValidation] = React.useState(false);
-	const data = props.data ? props.data : null;
 	//user_nickname Text 색깔 조건부적용을 위한 세션아이디 비교
 	React.useEffect(() => {
 		const getItem = async () => {
@@ -49,7 +47,7 @@ const ShelterLabel = props => {
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{uri: data ? data.user_profile_uri : DEFAULT_PROFILE}} style={styles.img_round_94} />
+				<Image source={{uri: props.data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_94} />
 			</TouchableOpacity>
 			<View style={{position: 'absolute', left: 66 * DP, top: 46 * DP}}>{getStatusMark()}</View>
 			<View style={{marginLeft: 50 * DP, paddingVertical: 4 * DP}}>
@@ -57,7 +55,7 @@ const ShelterLabel = props => {
 					{props.data.shelter_name || ''}
 				</Text>
 				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
-					{data.shelter_address.city || ''} {data.shelter_address.district || ''}
+					{props.data.shelter_address.brief || ''} {props.data.shelter_address.detail || ''}
 				</Text>
 			</View>
 		</View>

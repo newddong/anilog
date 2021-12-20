@@ -137,7 +137,7 @@ export default ProfileInfo = props => {
 					ellipsizeMode={'tail'}
 					numberOfLines={showMore ? null : 2}
 					style={[txt.noto24, showMore ? profileInfo_style.content_expanded : profileInfo_style.content]}>
-					{profile_data.user_introduction}
+					{profile_data.user_introduction != '' ? profile_data.user_introduction : '유저 인트로 소개글입니다. 현재는 비어있습니다.'}
 				</Text>
 				{into_height > 50 * DP ? (
 					<TouchableOpacity onPress={onPressShowMore} style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>

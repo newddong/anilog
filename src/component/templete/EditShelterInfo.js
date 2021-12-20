@@ -16,7 +16,7 @@ import {updateShelterDetailInformation} from 'Root/api/userapi';
 
 export default EditShelterInfo = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params.data);
-	// console.log('data', data);
+	console.log('data', data.shelter_name);
 	const [addrSearched, setAddrSearched] = React.useState(false);
 
 	React.useEffect(() => {
@@ -24,7 +24,16 @@ export default EditShelterInfo = ({route, navigation}) => {
 			if (route.params.addr && !addrSearched) {
 				console.log('route.params.Address Changed?   ', route.params.addr);
 				const addr = route.params.addr;
-				setData({...data, shelter_address: {brief: addr.siNm + ' ' + addr.sggNm + ' ' + addr.rn + ' ' + addr.buldMnnm, detail: ''}});
+				setData({
+					...data,
+					shelter_address: {
+						brief: addr.siNm + ' ' + addr.sggNm + ' ' + addr.rn + ' ' + addr.buldMnnm,
+						detail: '',
+						city: addr.siNm,
+						district: addr.sggNm + ' ' + addr.emdNm + ' ' + addr.lnbrMnnm + '-' + addr.lnbrSlno,
+						neighbor: '',
+					},
+				});
 				setAddrSearched(true);
 			}
 		}
@@ -101,11 +110,16 @@ export default EditShelterInfo = ({route, navigation}) => {
 			'예',
 			() => Modal.close(),
 			() => {
-				console.log('Test', data._id);
+				// console.log('Test', data);
 				updateShelterDetailInformation(
 					{
-						...data,
 						userobject_id: data._id,
+						shelter_name: data.shelter_name,
+						shelter_address: data.shelter_address,
+						shelter_delegate_contact_number: data.shelter_delegate_contact_number,
+						user_email: data.user_email,
+						shelter_homepage: data.shelter_homepage,
+						shelter_foundation_date: data.shelter_foundation_date,
 					},
 					result => {
 						console.log('result / updateShelterDetail / EditShelterInfo   :  ', result);
