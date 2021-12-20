@@ -9,11 +9,10 @@ import DatePicker from '../molecules/DatePicker';
 import {COMPLETE_MODIFY} from 'Root/i18n/msg';
 import {btn_w654} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
-import {useNavigation} from '@react-navigation/core';
-import {dummy_ShelterInfo} from 'Root/config/dummy_data_hjs';
 import {GRAY10} from 'Root/config/color';
-import InputWithSelect from '../molecules/InputWithSelect';
 import moment from 'moment';
+import Modal from '../modal/Modal';
+import {updateShelterDetailInformation} from 'Root/api/userapi';
 
 export default EditShelterInfo = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params.data);
@@ -25,30 +24,40 @@ export default EditShelterInfo = ({route, navigation}) => {
 			if (route.params.addr && !addrSearched) {
 				console.log('route.params.Address Changed?   ', route.params.addr);
 				const addr = route.params.addr;
-				setData({...data, shelter_address: {brief: addr.siNm + ' ' + addr.sggNm + ' ' + addr.rn + ' ' + addr.buldMnnm, detail: 'dd '}});
+				setData({...data, shelter_address: {brief: addr.siNm + ' ' + addr.sggNm + ' ' + addr.rn + ' ' + addr.buldMnnm, detail: ''}});
 				setAddrSearched(true);
 			}
 		}
 	}, [route.params]);
 
-	//주소찾기 클릭
-	const onPressSearchAddr = () => {
-		setAddrSearched(false);
-		navigation.push('AddressSearch', {addr: data.shelter_address.brief, from: route.name});
-	};
-
+	//보호소 이름 변경 콜백
 	const onChangeShelterName = name => {
 		setData({...data, shelter_name: name});
 	};
 
+	//주소찾기 클릭
+	const onPressSearchAddr = () => {
+		setAddrSearched(false);
+		navigation.push('AddressSearch', {addr: data.shelter_address ? data.shelter_address.brief : '', from: route.name});
+	};
+
+	const onChangeDeatilAddress = detail => {
+		let copy = {...data.shelter_address};
+		copy.detail = detail;
+		setData({...data, shelter_address: copy});
+	};
+
+	//전화번호 변경 콜백
 	const onChangeContact = num => {
 		setData({...data, shelter_delegate_contact_number: num});
 	};
 
-	const onShelter_homepage = e => {
-		setData({...data, shelter_homepage: e.nativeEvent.text});
+	//홈페이지 인풋 값 변경 콜백
+	const onChangeHomePage = hp => {
+		setData({...data, shelter_homepage: hp});
 	};
 
+	//설렙일 변경 콜백
 	const onChangeDate = date => {
 		setData({...data, shelter_foundation_date: date});
 	};
@@ -61,15 +70,19 @@ export default EditShelterInfo = ({route, navigation}) => {
 		return regExp2.test(data.shelter_name);
 	};
 
+	//이메일 도메인 드롭다운 설정 콜백
 	const onSelectDomain = (item, index) => {
 		console.log('item', item);
 		console.log('item', index);
 	};
 
+	//이메일 주소 변경 콜백
 	const onChangeEmail = email => {
 		console.log('email', email);
+		setData({...data, user_email: email});
 	};
 
+	// 설립일 Parsing(Date to String & String to Date) 함수
 	const getFoundationDate = () => {
 		let date = data.shelter_foundation_date;
 		if (date.length < 15) {
@@ -82,7 +95,30 @@ export default EditShelterInfo = ({route, navigation}) => {
 
 	//수정 완료 클릭
 	const finalized = () => {
-		navigation.push('ShelterInfoSetting');
+		Modal.popTwoBtn(
+			'정말 보호소 정보를 수정하시겠습니까?',
+			'아니오',
+			'예',
+			() => Modal.close(),
+			() => {
+				console.log('Test', data._id);
+				updateShelterDetailInformation(
+					{
+						...data,
+						userobject_id: data._id,
+					},
+					result => {
+						console.log('result / updateShelterDetail / EditShelterInfo   :  ', result);
+						Modal.close();
+					},
+					err => {
+						console.log('err / updateShelterInfo  EditShelterInfo  : ', err);
+						Modal.close();
+					},
+				);
+				navigation.reset({routes: [{name: 'ShelterInfoSetting'}]});
+			},
+		);
 	};
 
 	return (
@@ -114,10 +150,11 @@ export default EditShelterInfo = ({route, navigation}) => {
 					{/* 주소 찾기 */}
 					<View style={[editShelterInfo.addressInput]}>
 						<AddressInput
+							onChangeDeatilAddress={onChangeDeatilAddress}
 							width={654}
 							title={'나의 지역'}
-							address={data.shelter_address.brief || ''}
-							detailAddress={data.shelter_address.detail || ''}
+							address={data.shelter_address ? data.shelter_address.brief : ''}
+							detailAddress={data.shelter_address ? data.shelter_address.detail : ''}
 							onPressSearchAddr={onPressSearchAddr}
 						/>
 					</View>
@@ -168,13 +205,13 @@ export default EditShelterInfo = ({route, navigation}) => {
 						<View style={[editShelterInfo.input30]}>
 							<Input30
 								value={data.shelter_homepage || ''}
+								defaultValue={data.shelter_homepage || ''}
 								showTitle={false}
 								showmsg={false}
 								width={520}
 								placeholder={'http://'}
 								confirm={true}
-								defaultValue={data.shelter_homepage}
-								onchange={(e = () => onShelter_homepage(e))}
+								onChange={onChangeHomePage}
 							/>
 						</View>
 					</View>

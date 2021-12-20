@@ -6,6 +6,7 @@ import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52} from '../atom/icon';
 import {APRI10, GRAY30, RED10} from 'Root/config/color';
 import NormalDropDown from './NormalDropDown';
 import Input24 from './Input24';
+import {EMAIL_DOMAIN} from 'Root/i18n/msg';
 
 /**
  *
@@ -79,7 +80,7 @@ const InputWithEmail = props => {
 				<View style={{}}>
 					<Text style={[txt.roboto24b, {lineHeight: 36 * DP}]}>@</Text>
 				</View>
-				<NormalDropDown menu={props.dropdownItems} width={254} defaultIndex={index} onSelect={onSelectDropDown} />
+				<NormalDropDown menu={EMAIL_DOMAIN} width={254} defaultIndex={index} onSelect={onSelectDropDown} height={400} />
 			</View>
 		</View>
 	);

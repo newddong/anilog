@@ -13,6 +13,7 @@ import DropdownSelect from './DropdownSelect';
  * @param {object} props.menu - 드롭다운 목록
  * @param {number} props.defaultIndex - 드롭다운의 초기값 인덱스 defulat=0
  * @param {number} props.width - 드롭다운 길이
+ * @param {number} props.height - 드롭다운 높이
  * @param {number} props.titleFontStyle - 드롭다운 내부 글꼴 크기 default=24
  * @param {(item, index)=>void} props.onSelect - 드롭다운 선택했을 때 동작하는 콜백, 선택된 오브젝트와 인덱스를 반환
  */

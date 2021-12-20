@@ -9,24 +9,27 @@ import {txt} from 'Root/screens/assign/style_assign';
 import AniButton from '../molecules/AniButton';
 import {GRAY10} from 'Root/config/color';
 import {getUserInfoById} from 'Root/api/userapi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default ShelterInfoSetting = ({route}) => {
-	console.log('ShelterInfoSetting', route.params);
+	// console.log('ShelterInfoSetting', route.params);
 	const navigation = useNavigation();
 
 	const [data, setData] = React.useState({});
 
 	React.useEffect(() => {
-		getUserInfoById(
-			{userobject_id: route.params},
-			result => {
-				console.log('result / getUserInfoById / ShelterInfoSetting   : ', result);
-				setData(result.msg);
-			},
-			err => {
-				console.log('err / getUserInfoById', err);
-			},
-		);
+		AsyncStorage.getItem('token', (err, res) => {
+			getUserInfoById(
+				{userobject_id: res},
+				result => {
+					console.log('result / getUserInfoById / ShelterInfoSetting   : ', result.msg);
+					setData(result.msg);
+				},
+				err => {
+					console.log('err / getUserInfoById', err);
+				},
+			);
+		});
 	}, []);
 
 	//프로필변경
