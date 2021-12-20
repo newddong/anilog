@@ -169,35 +169,35 @@ export default AddressSearch = props => {
 					</View>
 				)}
 			</View>
-			{data.keyword.length > 0 && (
-				<View style={[lo.cntr_addr_result]}>
-					<FlatList
-						data={addrList.list}
-						refreshing
-						renderItem={({item, index}) => <AddrItem data={item} onSelect={selectAddr} index={index} selectedIndex={selectedIndex} />}
-						keyExtractor={item => Math.random()}
-						onEndReached={scrollReachedEnd}
-						onEndReachedThreshold={0.6}
-						extraData={selectedIndex}
-						ref={ref => (scroll.current = ref)}
-						onMomentumScrollBegin={() => {
-							setIsSelect(false);
-						}}
-					/>
-					<View style={lo.cntr_addr_result_stat}>
-						<Text style={txt.noto20}>{summary()}</Text>
-						<TouchableWithoutFeedback
-							onPress={() => {
-								scroll.current.scrollToIndex({index: 0});
-							}}>
-							<View style={btn.scrolltop}>
-								<Text style={[txt.noto24, txt.gray]}>맨위로</Text>
-								<SvgWrap style={{width: 40 * DP, height: 38 * DP, transform: [{rotate: '270deg'}]}} svg={<Bracket fill="#767676" />}></SvgWrap>
-							</View>
-						</TouchableWithoutFeedback>
-					</View>
+			{/* {data.keyword.length > 0 && ( */}
+			<View style={[lo.cntr_addr_result]}>
+				<FlatList
+					data={addrList.list}
+					refreshing
+					renderItem={({item, index}) => <AddrItem data={item} onSelect={selectAddr} index={index} selectedIndex={selectedIndex} />}
+					keyExtractor={(item,index)=> index}
+					onEndReached={scrollReachedEnd}
+					onEndReachedThreshold={0.2}
+					extraData={selectedIndex}
+					ref={ref => (scroll.current = ref)}
+					onMomentumScrollBegin={() => {
+						setIsSelect(false);
+					}}
+				/>
+				<View style={lo.cntr_addr_result_stat}>
+					<Text style={txt.noto20}>{summary()}</Text>
+					<TouchableWithoutFeedback
+						onPress={() => {
+							scroll.current.scrollToIndex({index: 0});
+						}}>
+						<View style={btn.scrolltop}>
+							<Text style={[txt.noto24, txt.gray]}>맨위로</Text>
+							<SvgWrap style={{width: 40 * DP, height: 38 * DP, transform: [{rotate: '270deg'}]}} svg={<Bracket fill="#767676" />}></SvgWrap>
+						</View>
+					</TouchableWithoutFeedback>
 				</View>
-			)}
+			</View>
+			{/* )} */}
 
 			{isSelect && (
 				<View style={lo.cntr_footer}>
@@ -233,10 +233,11 @@ export default AddressSearch = props => {
 	);
 };
 
-const AddrItem = props => {
+const AddrItem = React.memo(props => {
 	const isSelect = props.index === props.selectedIndex;
 	const select = () => {
 		props.onSelect(props.data, props.index);
+		console.log('touch');
 	};
 
 	return (
@@ -261,7 +262,7 @@ const AddrItem = props => {
 			</View>
 		</TouchableWithoutFeedback>
 	);
-};
+});
 
 AddrItem.defaultProps = {
 	onSelect: () => {},

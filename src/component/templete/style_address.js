@@ -113,7 +113,8 @@ export const item = StyleSheet.create({
 		borderBottomColor:GRAY_BRIGHT,
 		borderBottomWidth:2*DP,
 		flexDirection:'row',
-		alignItems:'center'
+		alignItems:'center',
+		backgroundColor:'yellow'
 	},
 	box_addr_result:{
 		marginRight:10*DP,

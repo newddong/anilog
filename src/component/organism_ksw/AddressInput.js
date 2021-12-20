@@ -27,22 +27,25 @@ import {addressInput} from './style_organism';
  */
 
 const AddressInput = props => {
-	// console.log('addressInpit', props.address);
+	console.log('addressInpit', props);
 	const [detailAddr, setDetailAddr] = React.useState(props.detailAddress || '');
+	React.useEffect(() => {
+		// console.log('addressinput Detail', detailAddr);
+	}, [detailAddr]);
 	const validator = (addr, detailAddr) => {
 		let isValid = props.validator(addr, detailAddr);
 		props.onValid && props.onValid(isValid);
 	};
 	//주소 값 변경 콜백
 	const onChangeAddress = addr => {
-		// console.log(addr);
+		// console.log('address', addr);
 		props.validator && validator(addr, props.detailAddress);
 		props.onChangeAddress(addr);
 	};
 
 	//세부 주소 값 변경 콜백
 	const onChangeDetailAddress = addr => {
-		// console.log(addr);
+		// console.log('detail address', addr);
 		props.validator && validator(props.address, addr);
 		props.onChangeDeatilAddress(addr);
 		setDetailAddr(addr);
@@ -73,7 +76,7 @@ const AddressInput = props => {
 					<Input24
 						// value={props.address.brief + ' ' + props.address.neighbor}
 						// value={props.address.district + ' ' + props.address.neighbor}
-						value={props.address}
+						value={props.addressDefault}
 						editable={false}
 						width={470}
 						placeholder={'주소 찾기를 눌러주세요'}
@@ -92,8 +95,8 @@ const AddressInput = props => {
 			<View style={[temp_style.inputNoTitle, addressInput.inputNoTitle]}>
 				<Input24
 					width={654}
-					value={props.detailAddress || ''}
-					defaultValue={props.detailAddress}
+					value={detailAddr}
+					defaultValue={props.detailAddressDefault}
 					placeholder={'세부 주소를 입력해 주세요.'}
 					onChange={onChangeDetailAddress}
 				/>

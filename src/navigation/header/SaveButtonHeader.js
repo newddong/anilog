@@ -6,39 +6,51 @@ import {txt} from 'Root/config/textstyle';
 import {WHITE, APRI10} from 'Root/config/color';
 import Modal from 'Root/component/modal/Modal';
 import {updatePetDetailInformation, updateUserDetailInformation} from 'Root/api/userapi';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default SaveButtonHeader = ({navigation, route, options, back}) => {
 	const [data, setData] = React.useState();
 	const [save, setSaved] = React.useState(false); // 저장 버튼 클릭 한 번이라도 했는지 여부
-
+	// console.log(route);
 	//SaveButtonHeader를 가지는 모든 템플릿들에게서 params가 들어올 때마다 setData를 실시
 	React.useEffect(() => {
-		setData(route.params.data);
+		setData(route.params);
+		console.log(route.params);
 	}, [route.params]);
 
 	React.useEffect(() => {
 		//저장이 한 번이라도 됐다면 API적용
 		if (save) {
 			console.log('Save Pressed data received  :  ', route.params.data);
-			const received = data;
+			// const received = data;
+			received = route.params.data;
 			setData(received);
 			//일반 유저의 상세정보 수정
+
 			if (route.params.route_name == 'UserInfoDetailSetting') {
-				updateUserDetailInformation(
-					{
-						userobject_id: received._id,
-						user_birthday: received.user_birthday,
-						user_interests: received.user_interests,
-						user_address: received.user_address,
-						user_sex: received.user_sex,
-					},
-					result => {
-						console.log('result / updateUserDetailInformation / SaveButtonHeader   : ', result);
-					},
-					err => {
-						console.log('err / updateUserDetailInformation / SaveButtonHeader    :  ', err);
-					},
-				);
+				console.log('data!!!', data.data);
+				console.log('저장 버튼 param', data.data._id, data.data.user_birthday, data.data.user_interests, data.data.user_address, data.data.user_sex),
+					updateUserDetailInformation(
+						{
+							// userobject_id: received._id,
+							// user_birthday: received.user_birthday,
+							// user_interests: received.user_interests,
+							// user_address: received.user_address,
+							// user_sex: received.user_sex,
+							userobject_id: data.data._id,
+							user_birthday: data.data.user_birthday,
+							// user_interests: data.data.user_interests,
+							user_interests: [],
+							user_address: data.data.user_address,
+							user_sex: data.data.user_sex,
+						},
+
+						result => {
+							console.log('result / updateUserDetailInformation / SaveButtonHeader   : ', result);
+						},
+						err => {
+							console.log('err / updateUserDetailInformation / SaveButtonHeader    :  ', err);
+						},
+					);
 			} else if (route.params.route_name == 'SetPetInformation') {
 				//펫 유저의 상세정보 수정
 				updatePetDetailInformation(

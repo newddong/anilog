@@ -14,7 +14,7 @@ import {getUserInfoById} from 'Root/api/userapi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from '../modal/Modal';
 export default UserInfoDetailSettting = ({route, navigation}) => {
-	// console.log('UserInfoDetailSetting route.params : ', route.params);
+	console.log('UserInfoDetailSetting route.params : ', route.params);
 
 	const [data, setData] = React.useState({}); //기존 유저의 데이터가 담겨있음
 	const [loaded, setLoaded] = React.useState(false);
@@ -23,7 +23,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	// 갱신되는 데이터는 Header에도 Json형태로 전해짐
 	React.useEffect(() => {
 		navigation.setParams({data: data, route_name: route.name});
-		// console.log('changing Data', data);
+		console.log('changing Data', data);
 	}, [data]);
 
 	React.useEffect(() => {
@@ -53,7 +53,8 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 				console.log('route.params.Address Changed?   ', route.params.addr);
 				const addr = route.params.addr;
 
-				setData({...data, user_address: {city: addr.siNm, district: addr.sggNm, neighbor: addr.rn + ' ' + addr.buldMnnm}});
+				// setData({...data, user_address: {city: addr.siNm, district: addr.sggNm, neighbor: addr.rn + ' ' + addr.buldMnnm}});
+				setData({...data, user_address: {brief: addr.roadAddr, detail: addr.detailAddr}});
 				setAddrSearched(true);
 			}
 		}
@@ -78,6 +79,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 
 	// 시, 구 단위 주소 값 변경 콜백
 	const onChangeAddress = addr => {
+		console.log('change Address', addr);
 		let copy = {...data}; //Json 부분 변경 방법
 		copy.user_address.city = addr;
 		copy.user_address.district = addr;
@@ -86,8 +88,10 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 
 	// 세부 주소 값 변경 콜백
 	const onChangeDeatilAddress = addr => {
+		// console.log('change Detail addr', addr);
 		let copy = {...data};
-		copy.user_address.neighbor = addr;
+		// copy.user_address.neighbor = addr;
+		copy.user_address.detail = addr;
 		setData(copy);
 	};
 
@@ -186,12 +190,16 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 						<View style={[temp_style.addressInput]}>
 							<AddressInput
 								title={'나의 지역'}
-								address={data.user_address.city + ' ' + data.user_address.district + ' ' + data.user_address.neighbor}
+								address={data.user_address.brief}
+								// address={data.user_address.city + ' ' + data.user_address.district + ' ' + data.user_address.neighbor}
 								onChangeAddress={onChangeAddress}
 								onChangeDeatilAddress={onChangeDeatilAddress}
 								onPressSearchAddr={onPressSearchAddress}
-								addressDefault={data ? data.user_address.city + '  ' + data.user_address.district : ''}
-								detailAddressDefault={data ? data.user_address.neighbor : ''}
+								// addressDefault={data ? data.user_address.city + '  ' + data.user_address.district : ''}
+								addressDefault={data.user_address.brief}
+								// detailAddressDefault={data ? data.user_address.neighbor : ''}
+								// detailAddressDefault={data.user_address.detail}
+								detailAddress={data.user_address.detail}
 							/>
 						</View>
 						{/* 관심지역 및 활동 */}
