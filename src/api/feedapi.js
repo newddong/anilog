@@ -125,3 +125,14 @@ export async function getFeedListByUserId(params, callback, errcallback){
 	apiController('/feed/getFeedDetailById',arguments);
 };
 
+
+
+/**
+ * 추천 피드 리스트를 불러온다(홈)
+ *
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export async function getSuggestFeedList(params, callback, errcallback){
+	apiController('/feed/getSuggestFeedList',arguments);
+};

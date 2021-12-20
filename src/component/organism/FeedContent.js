@@ -18,6 +18,12 @@ export default FeedContent = props => {
 	const navigation = useNavigation();
 	const dumy_data = props.data;
 	const location = '모델하우스 앞 공터';
+	const [btnStatus, setBtnStatus] = React.useState(false); //더보기 Arrow방향 false면 아래
+
+	const [isGotHeight, setIsGotHeight] = React.useState(false); //이미 한 번 받아온 최초 Height가 있다면 true
+
+	const [layout, setLayout] = React.useState({}); // 초기의 Layout
+
 
 	let temp_data = {
 		_id: 'user_99',
@@ -51,11 +57,7 @@ export default FeedContent = props => {
 		navigation.push('FeedListForHashTag', dummyHashData);
 	};
 
-	const [btnStatus, setBtnStatus] = React.useState(false); //더보기 Arrow방향 false면 아래
-
-	const [isGotHeight, setIsGotHeight] = React.useState(false); //이미 한 번 받아온 최초 Height가 있다면 true
-
-	const [layout, setLayout] = React.useState({}); // 초기의 Layout
+	
 
 	//FeedText가 담긴 View 의 onLayout
 	const onLayout = event => {
@@ -92,7 +94,7 @@ export default FeedContent = props => {
 				{/* UserLocationLabel */}
 				<View style={[organism_style.userLocationLabel_feedContent]}>
 					{debug && console.log(`\nFeedContent:view - dumy_data=>:${JSON.stringify(dumy_data)}`)}
-					<UserLocationLabel data={dumy_data} onLabelClick={() => navigation.push('UserProfile', {_id: dumy_data._id})} />
+					{/* <UserLocationLabel data={dumy_data} onLabelClick={() => navigation.push('UserProfile', {_id: dumy_data._id})} /> */}
 					{/* {dumy_data != undefined ? (
 						<UserLocationLabel data={dumy_data} onLabelClick={() => navigation.push('UserProfile')} />
 					) : (
