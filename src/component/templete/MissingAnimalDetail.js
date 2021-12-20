@@ -10,6 +10,7 @@ import {dummy_missing_user_info} from 'Root/config/dummyDate_json';
 import {_dummy_MissingDetail} from 'Root/config/dummy_data_hjs';
 import {dummy_CommentObject} from 'Root/config/dummyDate_json';
 import {getFeedDetailById} from 'Root/api/feedapi';
+import {getCommentListByFeedId} from 'Root/api/commentapi';
 
 export default MissingAnimalDetail = props => {
 	const navigation = useNavigation();
@@ -42,6 +43,9 @@ export default MissingAnimalDetail = props => {
 		comment_feed_id: '', //댓글이 작성된 피드 게시물
 	});
 
+	//api 실제 작업 후 하단에 있는 data로 변경 예정 (현재는 에러 방지 코드)
+	const [dataCommentData, setCommentData] = React.useState({});
+
 	// 실종 데이터 불러오기 (아직 API 미작업 )
 	React.useEffect(() => {
 		console.log(' - MissingAnimalDetail -');
@@ -55,6 +59,25 @@ export default MissingAnimalDetail = props => {
 			},
 			errcallback => {
 				console.log(`errcallback:${JSON.stringify(errcallback)}`);
+			},
+		);
+	}, []);
+
+	//댓글 불러오기 (상단의 useEffect와 합칠지는 추후 결정)
+	React.useEffect(() => {
+		console.log(' - MissingAnimalDetail -');
+		getCommentListByFeedId(
+			{
+				feedobject_id: '61bf3e315a6b08989f932b68',
+				commentobject_id: '61bfd7369d070b6bb69df0a8',
+				request_number: 10,
+			},
+			commentdata => {
+				console.log(`commentdata:${JSON.stringify(commentdata.msg)}`);
+				// setCommentData(data.msg);
+			},
+			errcallback => {
+				console.log(`Comment errcallback:${JSON.stringify(errcallback)}`);
 			},
 		);
 	}, []);

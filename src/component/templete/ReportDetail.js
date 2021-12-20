@@ -8,6 +8,7 @@ import {useNavigation} from '@react-navigation/core';
 import {_dummy_ReportDetail} from 'Root/config/dummy_data_hjs';
 import {dummy_CommentObject} from 'Root/config/dummyDate_json';
 import {getFeedDetailById} from 'Root/api/feedapi';
+import {getCommentListByFeedId} from 'Root/api/commentapi';
 
 export default ReportDetail = props => {
 	const navigation = useNavigation();
@@ -48,6 +49,25 @@ export default ReportDetail = props => {
 			},
 			errcallback => {
 				console.log(`errcallback:${JSON.stringify(errcallback)}`);
+			},
+		);
+	}, []);
+
+	//댓글 불러오기 (상단의 useEffect와 합칠지는 추후 결정)
+	React.useEffect(() => {
+		console.log(' - ReportDetail Comment -');
+		getCommentListByFeedId(
+			{
+				feedobject_id: '61b6f5979f3c17ec4676578c',
+				commentobject_id: '61bff5be95d6442789e48edc',
+				request_number: 10,
+			},
+			commentdata => {
+				console.log(`commentdata:${JSON.stringify(commentdata.msg)}`);
+				// setCommentData(data.msg);
+			},
+			errcallback => {
+				console.log(`Comment errcallback:${JSON.stringify(errcallback)}`);
 			},
 		);
 	}, []);
