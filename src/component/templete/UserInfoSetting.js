@@ -68,7 +68,7 @@ export default UserInfoSetting = ({route}) => {
 
 	// 나의 반려동물 -> 반려동물 등록
 	const onPressAddPet = () => {
-		navigation.push('AssignPetProfileImage');
+		navigation.push('AssignPetProfileImage', {userobject_id:data._id,previousRouteName:'UserInfoSetting'});
 	};
 
 	//나의 반려동물 => 반려클릭

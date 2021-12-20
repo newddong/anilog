@@ -74,7 +74,7 @@ export default AssignUserProfileImage = props => {
 						//네비게이션 초기화, 동물 등록으로 이동
 						props.navigation.reset({
 							index: 1,
-							routes: [{name: 'Login'}, {name: 'AssignPetProfileImage',params:{userobject_id:successmsg.msg._id}}],
+							routes: [{name: 'Login'}, {name: 'AssignPetProfileImage',params:{userobject_id:successmsg.msg._id,previousRouteName:'Login'}}],
 						});
 					},
 				);

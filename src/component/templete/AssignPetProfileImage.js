@@ -27,6 +27,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 		pet_status: 'companion', //입양, 임시보호중인 동물일때는 초기값을 다르게 표기하도록(여기서는 임시보호, 반려동물 상태밖에 없음,입양된 동물은 더이상 정보수정 불가)
 		pet_is_temp_protection: false,
 		userobject_id: route.params?.userobject_id,
+		previousRouteName: route.params?.previousRouteName,
 	});
 
 	const [confirmed, setConfirmed] = React.useState(false); // 닉네임 폼 Validator 통과 ?
