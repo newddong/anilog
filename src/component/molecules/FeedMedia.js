@@ -53,6 +53,7 @@ export default FeedMedia = props => {
 	const animal_species_detail = missing_animal_species_detail || report_animal_species_detail;
 	const emergency_location = missing_animal_lost_location || report_witness_location;
 	// console.log(props.data.medias);
+	
 	const onSelect = () => {
 		props.onSelect(props.data.feed_id);
 		// setSelected(!selected);
@@ -75,7 +76,6 @@ export default FeedMedia = props => {
 			);
 		} else return false;
 	};
-	console.log(feed_medias);
 	return (
 		<View style={style.img_square_750x750}>
 			{/* Select된 상태일 때 불투명도 40% 적용 및 배경색  Black */}
@@ -87,11 +87,11 @@ export default FeedMedia = props => {
 					autoplay={false}
 					loop={false}
 					horizontal={true}>
-					{feed_medias.map((data, idx) => (<>
+					{feed_medias.map((data, idx) => (
 						<Image source={{uri: data.media_uri}} style={styles.img_square_750x750} key={idx} />
+						
+						))}
 						{/* {getFeedIcon()} */}
-						</>
-					))}
 				</Swiper>
 
 				

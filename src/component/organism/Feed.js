@@ -58,7 +58,7 @@ export default Feed = React.memo(props => {
 
 	return (
 		<View style={[organism_style.feed]}>
-			<FeedContent />
+			<FeedContent data={props.data}/>
 			<View style={[organism_style.feedMedia_feed]}>
 				<FeedMedia data={props.data} />
 			</View>

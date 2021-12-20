@@ -11,9 +11,6 @@ import OneBtnModal from '../molecules/OneBtnModal';
 import DP from 'Root/config/dp';
 
 export default FeedList = ({route, navigation}) => {
-	const debug = false;
-	debug && console.log('FeedList:feed_id-', route.params);
-	debug && console.log('FeedList:dummy_FeedObject-', dummy_FeedObject);
 
 	const [feedList, setFeedList] = React.useState([]);
 
