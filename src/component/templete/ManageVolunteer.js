@@ -10,6 +10,7 @@ import {_dummy_userObject_user, _dummy_VolunteerActivityApplicant} from 'Root/co
 import {dummy_manageUserVolunteer} from 'Root/config/dummyDate_json';
 import {getUserVolunteerItemList} from 'Root/api/volunteer_api_ksw';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {getShelterVolunteerActivityList} from 'Root/api/volunteerapi';
 
 export default ManageVolunteer = ({route}) => {
 	// console.log(route.params);
@@ -40,6 +41,46 @@ export default ManageVolunteer = ({route}) => {
 			);
 		}
 		getVolunteerList();
+	}, []);
+
+	// 봉사활동 데이터 불러오기
+	React.useEffect(() => {
+		console.log(' - ManageVolunteer -');
+		const nowDate = new Date(); // 현재 날짜 및 시간
+		let setScheduled = [];
+		let doneduled = [];
+		getShelterVolunteerActivityList(
+			{
+				volunteer_activity_object_id: '',
+				volunteer_status: 'waiting',
+				request_number: 30,
+			},
+			data => {
+				// console.log(`getShelterVolunteerActivityList data:${JSON.stringify(data.msg)}`);
+				//volunteer_accompany 속성에 있는 데이터들을 1depth 올려준다.
+				data.msg.map((v, i) => {
+					data.msg[i].user_profile_uri = data.msg[i].volunteer_accompany[0].user_profile_uri;
+					data.msg[i].user_introduction = data.msg[i].volunteer_accompany[0].user_introduction;
+					data.msg[i].user_nickname = data.msg[i].volunteer_accompany[0].user_nickname;
+					//날짜포멧변경
+					data.msg[i].volunteer_wish_date[0] = data.msg[i].volunteer_wish_date[0].substring(0, 10).replace(/-/g, '.');
+					//오늘 날짜와 지난 날짜를 구분해서 최근 신청서와 지난 신청서를 구분.
+					const strArry = data.msg[i].volunteer_wish_date[0].split('.');
+					const dataData = new Date(strArry[0], strArry[1], strArry[1]);
+					if (nowDate <= dataData) {
+						setScheduled.push(data.msg[i]);
+					} else {
+						doneduled.push(data.msg[i]);
+					}
+				});
+
+				setScheduled_list(setScheduled);
+				setDone_list(doneduled);
+			},
+			errcallback => {
+				console.log(`getShelterVolunteerActivityList errcallback:${JSON.stringify(errcallback)}`);
+			},
+		);
 	}, []);
 
 	// 지난 신청 더보기 클릭

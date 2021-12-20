@@ -4,6 +4,7 @@ import {GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import ShelterLabel from '../molecules/ShelterLabel';
 import {volunteerItem} from './style_organism';
+import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
 
 export default VolunteerItem = props => {
 	const data = props.data;
