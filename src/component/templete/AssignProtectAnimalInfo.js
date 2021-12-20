@@ -24,7 +24,6 @@ export default AssignProtectAnimalInfo = ({route}) => {
 
 	const [data, setData] = React.useState({
 		...route.params,
-		shelter_protect_animal_object_id: '',
 		protect_animal_estimate_age: year + '년 ' + month + '개월',
 		// protect_animal_estimate_month: PET_MONTH[0],
 		protect_animal_weight: '',
@@ -51,7 +50,6 @@ export default AssignProtectAnimalInfo = ({route}) => {
 	//등록 버튼 => 모달에서 '새 글 작성' 클릭
 	const goToWriteAidRequest = animalData => {
 		Modal.close();
-		console.log('AssignProtectAnimalInfo Data_id', data._id);
 		navigation.dispatch(
 			CommonActions.reset({
 				index: 1,
@@ -77,16 +75,25 @@ export default AssignProtectAnimalInfo = ({route}) => {
 		console.log('Before AssiginShelterAnimal Data? ', data);
 
 		assignShelterAnimal(
-			data,
-			data => {
-				console.log(`assignShelterAnimal callback:${data}`);
-
+			{
+				protect_animal_photo_uri_list: data.protect_animal_photo_uri_list, // 보호중인 동물의 사진 로컬 경로 목록
+				protect_animal_rescue_date: data.protect_animal_rescue_date, // - 보호중인 동물의 구조날자
+				protect_animal_rescue_location: data.protect_animal_rescue_location, // - 보호중인 동물의 구조장소
+				protect_animal_species: data.pet_species, // 보호중인 동물의 종류(ex 개, 고양이, 토끼)
+				protect_animal_species_detail: data.pet_species_detail, //  보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+				protect_animal_neutralization: data.protect_animal_neutralization, //  - { 'yes'|'no'|'unknown'} 중성화 여부
+				protect_animal_sex: data.pet_sex, //  보호중인 동물의 성별
+				protect_animal_estimate_age: data.protect_animal_estimate_age, // - 보호중인 동물의 예상 연령
+				protect_animal_weight: data.protect_animal_weight, //- 보호중인 동물의 몸무게
+			},
+			result => {
+				console.log(`assignShelterAnimal result.ms:${JSON.stringify(result.msg)}`);
 				Modal.popTwoBtn('보호 동물이 등록되었습니다. \n바로 보호요청 글을 작성하시겠습니까?', '아니오', '새 글 작성', goToShelterMenu, () =>
-					goToWriteAidRequest(err),
+					goToWriteAidRequest(data),
 				);
 			},
 			err => {
-				console.log('err / AssignProtectAnimalInfo', err);
+				console.log('assignShelterAnimal / err', err);
 			},
 		);
 	};

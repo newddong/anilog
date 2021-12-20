@@ -24,17 +24,19 @@ export default AppliesRecord = ({route}) => {
 	//보호 요청 데이터 불러오기 (아직 API 미작업 )
 	React.useEffect(() => {
 		console.log('- getAppliesRecord data -');
+		//입양신청, 임시보호 신청, 봉사활동 신청 배열 형식으로 모두 가져오게 됨. 현재 리스트에서는 입양신청 1개, 임시보호 신청 1개, 봉사활동 신청 10개만 가져 올 예정
+		//API 구조 변경 후 재작업 진행 예정.
 		getAppliesRecord(
 			{},
 			result => {
-				console.log('result / getAppliesRecord / ApplitesRecord  : ', result);
-				// setData(data);
+				console.log('result / getAppliesRecord / ApplitesRecord  : ', JSON.stringify(result.msg));
+				// setAdopt_application_list(result.msg.adopt[0]);
 			},
 			err => {
 				console.log('err / getAppliesRecord / AppliesRecord', err);
 			},
 		);
-	}, [route.params]);
+	}, []);
 
 	const [data1, setData1] = React.useState([]);
 

@@ -49,16 +49,16 @@ export default AnimalNeedHelp = props => {
 
 		// 보호 동물의 데이터 일 경우 (세 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
 		if (data.hasOwnProperty('protect_animal_sex') && data.hasOwnProperty('protect_animal_status')) {
-			resultJSON.img_uri = data.protect_request_photo_thumbnail ? data.protect_request_photo_thumbnail : DEFAULT_PROFILE;
 			resultJSON.gender = data.protect_animal_sex;
 			resultJSON.status = data.protect_animal_status;
 		}
 		//실종/제보 데이터 일 경우 (세 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
 		else if (data.hasOwnProperty('missing_animal_sex') && data.hasOwnProperty('feed_type')) {
-			resultJSON.img_uri = data.feed_thumbnail ? data.feed_thumbnail : DEFAULT_PROFILE;
 			resultJSON.gender = data.missing_animal_sex;
 			resultJSON.status = data.feed_type;
 		} else {
+			resultJSON.gender = 'female';
+			resultJSON.status = 'rescue';
 			// 기타 다른 경우의 수가 있는지 추후 확인
 		}
 		return resultJSON;

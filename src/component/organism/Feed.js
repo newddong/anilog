@@ -3,13 +3,50 @@ import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {organism_style, feed_style} from './style_organism';
 import FeedContent from './FeedContent';
 import {Comment48_Border, Like48_Border} from '../atom/icon';
-import FeedMedia_temp from '../molecules/FeedMedia_temp';
+import FeedMedia from '../molecules/FeedMedia';
 import {useNavigation} from '@react-navigation/core';
 import {txt} from 'Root/config/textstyle';
 import {GRAY10} from 'Root/config/color';
+import Swiper from 'react-native-swiper';
 
-export default Feed = props => {
+export default Feed = React.memo(props => {
 	const navigation = useNavigation();
+	const {
+		feed_content,
+		feed_thumbnail,
+		feed_medias,
+		feed_location,
+		feed_date,
+		feed_update_date,
+		feed_type,
+		feed_is_protect_diary,
+		feed_recent_comment,
+		missing_animal_species,
+		missing_animal_species_detail,
+		missing_animal_sex,
+		missing_animal_age,
+		missing_animal_lost_location,
+		missing_animal_contact,
+		missing_animal_features,
+		missing_animal_date,
+		report_witness_date,
+		report_witness_location,
+		report_animal_species,
+		report_animal_species_detail,
+		report_animal_sex,
+		report_animal_age,
+		report_animal_contact,
+		report_animal_features,
+		feed_like_count,
+		feed_favorite_count,
+		feed_comment_count,
+		feed_writer_id,
+		feed_avatar_id,
+	} = props.data;
+	
+
+	
+
 	//FeedMedia 관련 정보
 	const _dummyData = {
 		feed_id: null,
@@ -19,19 +56,11 @@ export default Feed = props => {
 		alert_title: '실 종',
 	};
 
-	const onSelectFeedMedia = () => {
-		console.log('onSelectFeedMedia');
-	};
-
 	return (
 		<View style={[organism_style.feed]}>
-			<FeedContent />
+			<FeedContent data={props.data}/>
 			<View style={[organism_style.feedMedia_feed]}>
-				<FeedMedia_temp
-					data={_dummyData}
-					img_uri={'https://static-cdn.jtvnw.net/jtv_user_pictures/586d3387-d926-4f20-b207-12a4a600d237-profile_image-300x300.jpg'}
-					onSelect={onSelectFeedMedia}
-				/>
+				<FeedMedia data={props.data} />
 			</View>
 			<View style={organism_style.comment_feed_view}>
 				<View style={[organism_style.likeCommentButtons_view, feed_style.likeCommentButtons_view]}>
@@ -66,14 +95,14 @@ export default Feed = props => {
 				<View style={[organism_style.recentComment_view, feed_style.recentComment_view]}>
 					<View style={organism_style.writerID_feed_view}>
 						<View style={organism_style.writerID_feed}>
-							<Text style={[txt.roboto24, {color: GRAY10}]}>태리우스</Text>
+							<Text style={[txt.roboto24, {color: GRAY10}]}>{feed_recent_comment?.comment_user_nickname}</Text>
 						</View>
 					</View>
 					<View style={organism_style.commentText_view}>
-						<Text style={[txt.noto24]}>아아악 너무 귀요워용! 넘 평화로운게 느껴지는 순간이예요 진짜로 너무너무 같이 있고 싶어요!</Text>
+						<Text style={[txt.noto24]}>{feed_recent_comment?.comment_contents}</Text>
 					</View>
 				</View>
 			</View>
 		</View>
 	);
-};
+});

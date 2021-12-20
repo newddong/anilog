@@ -14,26 +14,47 @@ import {GRAY10} from 'Root/config/color';
 import {SHARE} from 'Root/i18n/msg';
 
 export default FeedContent = props => {
+	const {
+		_id,
+		feed_content,
+		feed_thumbnail,
+		feed_medias,
+		feed_location,
+		feed_date,
+		feed_update_date,
+		feed_type,
+		feed_is_protect_diary,
+		feed_recent_comment,
+		missing_animal_species,
+		missing_animal_species_detail,
+		missing_animal_sex,
+		missing_animal_age,
+		missing_animal_lost_location,
+		missing_animal_contact,
+		missing_animal_features,
+		missing_animal_date,
+		report_witness_date,
+		report_witness_location,
+		report_animal_species,
+		report_animal_species_detail,
+		report_animal_sex,
+		report_animal_age,
+		report_animal_contact,
+		report_animal_features,
+		feed_like_count,
+		feed_favorite_count,
+		feed_comment_count,
+		feed_writer_id,
+		feed_avatar_id,
+	} = props.data;
+
+
 	const debug = true;
 	const navigation = useNavigation();
-	const dumy_data = props.data;
-	const location = '모델하우스 앞 공터';
-
-	let temp_data = {
-		_id: 'user_99',
-		user_nickname: '웹툰작가99',
-		user_profile_uri: 'http://pds.joins.com/news/component/moneytoday/201507/23/2015072308581995198_1.jpg',
-		user_address: {
-			city: '서울시', //시,도
-			district: '강남구', //군,구
-			neighbor: '신사동', //동,읍,면
-		},
-		// text_intro: 'Text/Intro',
-		// feedText_contents:
-		// 	'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. That is not a propblem ' +
-		// 	'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. 다른 강아지들은 높은곳을 무서워한다는데 정말 알 수가 없네요ㅎㅎㅎ' +
-		// 	'우리 #둥이 는 언제나 #창가 에 앉아있기를 좋아하는거같다. 다른 강아지들은 높은곳을 무서워한다는데 정말 알 수가 없네요ㅎㅎㅎ',
-	};
+	
+	const [btnStatus, setBtnStatus] = React.useState(false); //더보기 Arrow방향 false면 아래
+	const [isGotHeight, setIsGotHeight] = React.useState(false); //이미 한 번 받아온 최초 Height가 있다면 true
+	const [layout, setLayout] = React.useState({}); // 초기의 Layout
 
 	//화면전환 시 isGotHeight는 초기값으로 가서 차후 호출 시, Height를 다시 받아오도록 함
 	React.useEffect(() => {
@@ -51,11 +72,7 @@ export default FeedContent = props => {
 		navigation.push('FeedListForHashTag', dummyHashData);
 	};
 
-	const [btnStatus, setBtnStatus] = React.useState(false); //더보기 Arrow방향 false면 아래
-
-	const [isGotHeight, setIsGotHeight] = React.useState(false); //이미 한 번 받아온 최초 Height가 있다면 true
-
-	const [layout, setLayout] = React.useState({}); // 초기의 Layout
+	
 
 	//FeedText가 담긴 View 의 onLayout
 	const onLayout = event => {
@@ -85,14 +102,17 @@ export default FeedContent = props => {
 		console.log('meatball');
 	};
 
+	console.log('feedwriter',feed_writer_id);
+	console.log('아바타',feed_avatar_id);
+
+
 	return (
 		<View style={[organism_style.feedContent, {}]}>
 			{/* line 1 */}
 			<View style={[organism_style.userLocationLabel_view_feedContent]}>
 				{/* UserLocationLabel */}
 				<View style={[organism_style.userLocationLabel_feedContent]}>
-					{debug && console.log(`\nFeedContent:view - dumy_data=>:${JSON.stringify(dumy_data)}`)}
-					<UserLocationLabel data={dumy_data} onLabelClick={() => navigation.push('UserProfile', {_id: dumy_data._id})} />
+					<UserLocationLabel data={feed_avatar_id||feed_writer_id||undefined} onLabelClick={(id) => navigation.push('UserProfile',{id:id})} location={feed_location}/>
 					{/* {dumy_data != undefined ? (
 						<UserLocationLabel data={dumy_data} onLabelClick={() => navigation.push('UserProfile')} />
 					) : (
@@ -125,7 +145,7 @@ export default FeedContent = props => {
 								<FavoriteTag48_Filled />
 							</View>
 							<View style={[organism_style.like_count_feedContent, feedContent_style.like_count]}>
-								<Text>29</Text>
+								<Text>{feed_favorite_count}</Text>
 							</View>
 						</View>
 						<View style={[organism_style.share48_view_feedContent]}>
@@ -141,10 +161,10 @@ export default FeedContent = props => {
 			</View>
 
 			{/* line 1-1 (제보관련 내용) */}
-			{props.data.feed_type == 'report' && (
+			{feed_type == 'report' && (
 				<View style={[organism_style.tipOff_feedContent, feedContent_style.tipOff]}>
-					<Text style={[txt.noto28]}>제보 날짜: {dumy_data.report_witness_date}</Text>
-					<Text style={[txt.noto28]}>제보 장소: {dumy_data.report_witness_location}</Text>
+					<Text style={[txt.noto28]}>제보 날짜: {report_witness_date}</Text>
+					<Text style={[txt.noto28]}>제보 장소: {report_witness_location}</Text>
 				</View>
 			)}
 
@@ -165,7 +185,7 @@ export default FeedContent = props => {
 				]}
 				onLayout={onLayout}>
 				{/* {dumy_data != undefined ? ( */}
-				<FeedText text={dumy_data.feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
+				<FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
 				{/* // <FeedText text={dumy_data.missing_data} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
 				// ) : ( // <FeedText text={temp_data.feedText_contents} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
 				// )} */}
@@ -173,7 +193,7 @@ export default FeedContent = props => {
 			{/* 피드 작성 날짜  3 */}
 			<View style={[organism_style.time_view_feedContent, {marginTop: btnStatus ? null : 10 * DP}]}>
 				<View style={[organism_style.time_feedContent]}>
-					<Text>{dumy_data.calcData}</Text>
+					<Text>{feed_date}</Text>
 				</View>
 
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}

@@ -5,11 +5,26 @@ import {dummy_FeedObject} from 'Root/config/dummyDate_json';
 import {Write94} from '../atom/icon';
 import Feed from '../organism/Feed';
 import {feedList, login_style, missingAnimalDetail, temp_style} from './style_templete';
+import {getSuggestFeedList} from 'Root/api/feedapi';
+import Modal from 'Component/modal/Modal';
+import OneBtnModal from '../molecules/OneBtnModal';
+import DP from 'Root/config/dp';
 
 export default FeedList = ({route, navigation}) => {
-	const debug = true;
-	debug && console.log('FeedList:feed_id-', route.params);
-	debug && console.log('FeedList:dummy_FeedObject-', dummy_FeedObject);
+
+	const [feedList, setFeedList] = React.useState([]);
+
+	React.useEffect(() => {
+		getSuggestFeedList(
+			{},
+			({msg}) => {
+				setFeedList(msg);
+			},
+			errormsg => {
+				Modal.popOneBtn(errormsg, '확인', () => Modal.close());
+			},
+		);
+	}, []);
 
 	const moveToFeedWrite = () => {
 		navigation.push('FeedWrite');
@@ -21,8 +36,8 @@ export default FeedList = ({route, navigation}) => {
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1, backgroundColor: WHITE}]}>
-			<FlatList data={dummy_FeedObject} renderItem={({item}) => renderItem(item)} nestedScrollEnabled />
-			<View style={[temp_style.floatingBtn, feedList.floatingBtn]}>
+			<FlatList data={feedList} renderItem={({item}) => renderItem(item)} keyExtractor={(item,index)=>index} />
+			<View style={{position:'absolute',bottom:10*DP,right:10*DP}}>
 				<Write94 onPress={moveToFeedWrite} />
 			</View>
 		</View>

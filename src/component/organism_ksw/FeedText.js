@@ -16,14 +16,8 @@ export default FeedText = props => {
 		char[i] = origin_text.charAt(i);
 	}
 	const num_of_char = 30
-
-	React.useEffect(() => {
-
-		const HEIGHT = Dimensions.get('screen').height;
-		const Width = Dimensions.get('screen').width;
-		console.log(Width)
-	})
-
+	const HEIGHT = Dimensions.get('screen').height;
+	const Width = Dimensions.get('screen').width;
 
 	const textLength = parseInt(props.text.length / num_of_char); //줄을 나누기 위한 길이 설정 => 현재 30글자마다 한줄
 
