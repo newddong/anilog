@@ -70,13 +70,11 @@ export default AssignPetInfoB = props => {
 	};
 	//등록 완료
 	const onRegister = async () => {
-		let token = await AsyncStorage.getItem('token');
-		console.log('token', token);
 
 		Modal.popNoBtn('반려동물 등록 중입니다.');
 		console.log('data before assiginPet', data);
 		assignPet(
-			{...data, userobject_id: token},
+			{...data, userobject_id: data.userobject_id},
 			success => {
 				console.log('success', success);
 				Modal.close();
@@ -84,7 +82,7 @@ export default AssignPetInfoB = props => {
 					Modal.close();
 					props.navigation.reset({
 						index: 0,
-						routes: [{name: 'UserMenu'}],
+						routes: [{name: data.previousRouteName}],
 					});
 				});
 			},
