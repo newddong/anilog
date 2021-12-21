@@ -54,7 +54,7 @@ export default ShelterMenu = ({route}) => {
 					userobject_id: res,
 				},
 				userObject => {
-					console.log('userObject/ ShelterMenu', userObject._id);
+					console.log('userObject/ ShelterMenu', userObject.msg);
 					setData(userObject.msg);
 					Modal.close();
 				},

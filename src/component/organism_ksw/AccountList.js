@@ -19,7 +19,7 @@ import {organism_style} from './style_organism';
  * }} props
  */
 export default AccountList = props => {
-	// console.log('AccountList', props.items.length);
+	console.log('AccountList', props.items.length);
 	const [selectedIndex, setSelectedIndex] = React.useState();
 	const [isFollowing, setIsFollowing] = React.useState([]);
 
