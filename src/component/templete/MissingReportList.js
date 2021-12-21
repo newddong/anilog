@@ -22,25 +22,34 @@ export default MissingReportList = props => {
 		kindFilter: '',
 	});
 
-	//실종 데이터 불러오기 (아직 API 미작업 )
-	// React.useEffect(() => {
-	// 	console.log('MissingReportList:feedlist of missing');
-	// 	getMissingReportList(
-	// 		{
-	// 			//필터 - 보호지역 (user_address.city 데이터)
-	// 			city: data.city,
-	// 			//필터 - 동물종류
-	// 			protect_animal_species: data.protect_animal_species,
-	// 		},
-	// 		data => {
-	// 			console.log('data' + JSON.stringify(`data${data}`));
-	// 			setData(data);
-	// 		},
-	// 	);
-	// }, [props.route.params]);
+	// 실종 데이터 불러오기 (아직 API 미작업 )
+	React.useEffect(
+		() => {
+			console.log('MissingReportList:feedlist of missing');
+			getMissingReportList(
+				{
+					//필터 - 보호지역 (user_address.city 데이터)
+					city: data.city,
+					//필터 - 동물종류
+					protect_animal_species: data.protect_animal_species,
+					request_number: 10,
+				},
+				data => {
+					console.log('getMissingReportList data', data.msg);
+					// console.log('data' + JSON.stringify(`data${data}`));
+					setData(data.msg);
+				},
+				err => {
+					console.log('getMissingReportList Error', err);
+				},
+			);
+		},
+		// [],
+		[props.route.params],
+	);
 
 	// [hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
-	const [data1, setData1] = React.useState([]);
+	// const [data1, setData1] = React.useState([]);
 
 	// //FeedObject
 	// feedobject_id: '', //피드 아이디
@@ -126,7 +135,8 @@ export default MissingReportList = props => {
 				<View style={[searchProtectRequest.animalNeedHelpList]}>
 					{/* 플랫리스트 부분 */}
 					<AnimalNeedHelpList
-						data={dummy_MissingReportList}
+						// data={dummy_MissingReportList}
+						data={data}
 						onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
 						onClickLabel={(status, id) => onClickLabel(status, id)}
 					/>
