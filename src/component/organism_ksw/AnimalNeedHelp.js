@@ -103,7 +103,7 @@ export default AnimalNeedHelp = props => {
 
 	const getParsedDate = () => {
 		let date = data.protect_request_date;
-		if (date.length > 15) {
+		if (date != undefined && date.length > 15) {
 			date = moment(date).format('YYYY-MM-DD');
 			return date;
 		}
