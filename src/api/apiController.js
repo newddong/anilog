@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export async function apiController(path, args) {
 	let existFileField = Object.keys(args[0]).some(v => v.includes('uri'));
 	if (existFileField) {
+		
 		apiFormController(path, args);
 		return;
 	}
@@ -41,13 +42,18 @@ export async function apiController(path, args) {
  */
 export async function apiFormController(path, args) {
 	try {
+		
 		let form = new FormData();
 		Object.entries(args[0]).forEach(v => {
 			if (v[0].includes('uri')) {
 				if (typeof v[1] == 'object') {
 					//필드에 여러 값을 받을 경우, typeof는 object임(array도 object가 됨)
-					v[1].forEach(v => {
-						form.append(v[0], v);
+					v[1].forEach(file => {
+						form.append(v[0], {
+							name:file,
+							type: 'multipart/form-data',
+							uri: file,
+						});
 					});
 				}
 				if (typeof v[1] == 'string') {

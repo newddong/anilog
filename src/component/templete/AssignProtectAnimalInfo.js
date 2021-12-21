@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, TouchableWithoutFeedback} from 'react-native';
 import {btn_w226} from '../atom/btn/btn_style';
 import {login_style, btn_style, temp_style, progressbar_style, assignProtectAnimal_style} from './style_templete';
 import {APRI10, GRAY10} from 'Root/config/color';
@@ -73,19 +73,20 @@ export default AssignProtectAnimalInfo = ({route}) => {
 
 	const registerProtectPet = () => {
 		console.log('Before AssiginShelterAnimal Data? ', data);
-
+		const s = {
+			protect_animal_photo_uri_list: data.protect_animal_photo_uri_list, // 보호중인 동물의 사진 로컬 경로 목록
+			protect_animal_rescue_date: data.protect_animal_rescue_date, // - 보호중인 동물의 구조날자
+			protect_animal_rescue_location: data.protect_animal_rescue_location, // - 보호중인 동물의 구조장소
+			protect_animal_species: data.pet_species, // 보호중인 동물의 종류(ex 개, 고양이, 토끼)
+			protect_animal_species_detail: data.pet_species_detail, //  보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
+			protect_animal_neutralization: data.protect_animal_neutralization, //  - { 'yes'|'no'|'unknown'} 중성화 여부
+			protect_animal_sex: data.pet_sex, //  보호중인 동물의 성별
+			protect_animal_estimate_age: data.protect_animal_estimate_age, // - 보호중인 동물의 예상 연령
+			protect_animal_weight: data.protect_animal_weight, //- 보호중인 동물의 몸무게
+		}
 		assignShelterAnimal(
-			{
-				protect_animal_photo_uri_list: data.protect_animal_photo_uri_list, // 보호중인 동물의 사진 로컬 경로 목록
-				protect_animal_rescue_date: data.protect_animal_rescue_date, // - 보호중인 동물의 구조날자
-				protect_animal_rescue_location: data.protect_animal_rescue_location, // - 보호중인 동물의 구조장소
-				protect_animal_species: data.pet_species, // 보호중인 동물의 종류(ex 개, 고양이, 토끼)
-				protect_animal_species_detail: data.pet_species_detail, //  보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
-				protect_animal_neutralization: data.protect_animal_neutralization, //  - { 'yes'|'no'|'unknown'} 중성화 여부
-				protect_animal_sex: data.pet_sex, //  보호중인 동물의 성별
-				protect_animal_estimate_age: data.protect_animal_estimate_age, // - 보호중인 동물의 예상 연령
-				protect_animal_weight: data.protect_animal_weight, //- 보호중인 동물의 몸무게
-			},
+			data
+			,
 			result => {
 				console.log(`assignShelterAnimal result.ms:${JSON.stringify(result.msg)}`);
 				Modal.popTwoBtn('보호 동물이 등록되었습니다. \n바로 보호요청 글을 작성하시겠습니까?', '아니오', '새 글 작성', goToShelterMenu, () =>
@@ -138,6 +139,19 @@ export default AssignProtectAnimalInfo = ({route}) => {
 					width={600 * DP} //bar의 너비
 				/>
 			</View>
+			<TouchableWithoutFeedback onPress={() => console.log(data)}>
+					<View
+						style={{
+							backgroundColor: 'red',
+							height: 30,
+							width: 30,
+							position: 'absolute',
+							borderWidth: 1,
+							borderColor: 'blue',
+							top: 0,
+							left: 0,
+						}}></View>
+				</TouchableWithoutFeedback>
 
 			<View style={[temp_style.textMsg_assignProtectAnimal, assignProtectAnimal_style.textMsg]}>
 				<Text style={[txt.noto24, {color: GRAY10}]}>해당 동물의 예상 연령과 체중, 중성화 여부를 적어주세요.</Text>

@@ -93,12 +93,13 @@ export default ChangePassword = ({route, navigation}) => {
 			{user_password: prevpwd, new_user_password: pwd},
 			success => {
 				console.log('success', success);
+				navigation.goBack();
 			},
 			err => {
+				alert('비밀번호를 다시 입력해주세요.');
 				console.log('er', err);
 			},
 		);
-		navigation.goBack();
 	};
 
 	return (

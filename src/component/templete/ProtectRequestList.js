@@ -31,7 +31,8 @@ export default ProtectRequestList = ({navigation, route}) => {
 				request_number: 1,
 			},
 			data => {
-				console.log('data' + JSON.stringify(`data${data}`));
+				// console.log('data' + JSON.stringify(`data${data}`));
+				// console.log('보호요청 ', data.msg);
 				setData(data.msg);
 			},
 			errcallback => {
@@ -41,7 +42,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 	}, [route.params]);
 
 	React.useEffect(() => {
-		console.log(`ProtectRequestList data:${JSON.stringify(data)}`);
+		// console.log(`ProtectRequestList data:${JSON.stringify(data)}`);
 	}, [data]);
 
 	// [hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
@@ -109,7 +110,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 					</View>
 				</View>
 				<View style={[searchProtectRequest.animalNeedHelpList]}>
-					<AnimalNeedHelpList data={data} onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)} />
+					<AnimalNeedHelpList data={data} onFavoriteTag={onOff_FavoriteTag} />
 				</View>
 			</ScrollView>
 		</View>
