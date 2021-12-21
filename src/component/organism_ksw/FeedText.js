@@ -56,6 +56,7 @@ export default FeedText = props => {
 					const isLast = idx === valueInfos.length - 1; //마지막 split의 마지막 글자여부 Boolean
 					return (
 						<Text
+							ellipsizeMode='tail'
 							key={idx}
 							// split된 값들의 isHT(hashTag로 시작하는가?)가 True일 경우 글자색은 blue이며
 							style={[txt.noto28, v.isHT ? { color: 'blue', height: 40 * DP, textDecorationLine: 'underline' } : { height: 40 * DP }]}

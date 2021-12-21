@@ -12,6 +12,7 @@ import FeedText from '../organism_ksw/FeedText';
 import DP from 'Root/config/dp';
 import {GRAY10} from 'Root/config/color';
 import {SHARE} from 'Root/i18n/msg';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
 export default FeedContent = props => {
 	const {
@@ -48,10 +49,8 @@ export default FeedContent = props => {
 		feed_avatar_id,
 	} = props.data;
 
-
-	const debug = true;
 	const navigation = useNavigation();
-	
+
 	const [btnStatus, setBtnStatus] = React.useState(false); //더보기 Arrow방향 false면 아래
 	const [isGotHeight, setIsGotHeight] = React.useState(false); //이미 한 번 받아온 최초 Height가 있다면 true
 	const [layout, setLayout] = React.useState({}); // 초기의 Layout
@@ -71,8 +70,6 @@ export default FeedContent = props => {
 		};
 		navigation.push('FeedListForHashTag', dummyHashData);
 	};
-
-	
 
 	//FeedText가 담긴 View 의 onLayout
 	const onLayout = event => {
@@ -102,31 +99,30 @@ export default FeedContent = props => {
 		console.log('meatball');
 	};
 
-	console.log('feedwriter',feed_writer_id);
-	console.log('아바타',feed_avatar_id);
-
-
+	const showMore = () => {
+		setBtnStatus(!btnStatus);
+	}
+	console.log(props)
 	return (
-		<View style={[organism_style.feedContent, {}]}>
+		<View style={organism_style.feedContent}>
 			{/* line 1 */}
 			<View style={[organism_style.userLocationLabel_view_feedContent]}>
 				{/* UserLocationLabel */}
 				<View style={[organism_style.userLocationLabel_feedContent]}>
-					<UserLocationLabel data={feed_avatar_id||feed_writer_id||undefined} onLabelClick={(id) => navigation.push('UserProfile',{id:id})} location={feed_location}/>
-					{/* {dumy_data != undefined ? (
-						<UserLocationLabel data={dumy_data} onLabelClick={() => navigation.push('UserProfile')} />
-					) : (
-						<UserLocationLabel data={temp_data} onLabelClick={() => navigation.push('UserProfile')} />
-					)} */}
+					<UserLocationLabel
+						data={feed_avatar_id || feed_writer_id || undefined}
+						onLabelClick={id => navigation.push('UserProfile', {id: id})}
+						location={feed_location}
+					/>
 				</View>
 
 				{/* type값이 status일 경우 status 버튼이 나오고 그렇지 않으면 다른 버튼 표기 */}
-				{props.data.type == 'status' ? (
+				{feed_type == 'feed' ? (
 					<>
 						<View style={[feedContent_style.status]}>
 							<AniButton
 								btnLayout={[btn_w130]}
-								btnTitle={'Status'}
+								btnTitle={'임보일기'}
 								btnTheme={'noShadow'}
 								btnStyle={'border'}
 								titleFontStyle={24}
@@ -162,20 +158,25 @@ export default FeedContent = props => {
 
 			{/* line 1-1 (제보관련 내용) */}
 			{feed_type == 'report' && (
-				<View style={[organism_style.tipOff_feedContent, feedContent_style.tipOff]}>
-					<Text style={[txt.noto28]}>제보 날짜: {report_witness_date}</Text>
-					<Text style={[txt.noto28]}>제보 장소: {report_witness_location}</Text>
+				<View style={[organism_style.tipOff_feedContent, feedContent_style.tipOff, {backgroundColor: 'red'}]}>
+					<Text style={[txt.noto28]}>
+						제보 날짜: <Text style={[txt.noto32b]}>{report_witness_date}</Text>
+					</Text>
+					<Text style={[txt.noto28]}>
+						제보 장소: <Text style={[txt.noto28b]}>{report_witness_location}</Text>
+					</Text>
 				</View>
 			)}
 
 			{/* FeedText */}
 			<View
 				style={[
+					/*{backgroundColor: 'blue'}*/,
 					organism_style.content_feedContent,
 					feedContent_style.content,
 					{
 						// FeedText의 높이가 120이상(3줄 이상)일 경우 maxheight가 지정되며, 아닐 경우 Maxheight는 없다
-						height: getMaxHeight(),
+						// height: getMaxHeight(),
 						// maxHeight: getMaxHeight()
 					},
 					{
@@ -184,33 +185,32 @@ export default FeedContent = props => {
 					},
 				]}
 				onLayout={onLayout}>
-				{/* {dumy_data != undefined ? ( */}
-				<FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
-				{/* // <FeedText text={dumy_data.missing_data} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
-				// ) : ( // <FeedText text={temp_data.feedText_contents} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
-				// )} */}
+				{/* <FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} /> */}
+				<Text style={txt.noto28} ellipsizeMode='tail'>{feed_content}</Text>
 			</View>
 			{/* 피드 작성 날짜  3 */}
-			<View style={[organism_style.time_view_feedContent, {marginTop: btnStatus ? null : 10 * DP}]}>
+			<View style={[organism_style.time_view_feedContent, {backgroundColor: 'yellow'}]}>
 				<View style={[organism_style.time_feedContent]}>
-					<Text>{feed_date}</Text>
+					<Text style={[txt.noto22]}>{feed_date}</Text>
 				</View>
 
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}
-				{layout.height > 120 * DP && (
-					<View style={[organism_style.addMore_view_feedContent]}>
-						<View style={[organism_style.addMore_feedContent]}>
-							<Text style={[txt.noto22, {color: GRAY10}]}>더보기</Text>
+				{
+					<TouchableWithoutFeedback onPress={showMore}>
+						<View style={[organism_style.addMore_view_feedContent]}>
+							<View style={[organism_style.addMore_feedContent]}>
+								<Text style={[txt.noto22, {color: GRAY10}]}>더보기</Text>
+							</View>
+							<View style={[organism_style.braket]}>
+								{btnStatus ? (
+									<Arrow_Up_GRAY20/>
+								) : (
+									<Arrow_Down_GRAY20/>
+								)}
+							</View>
 						</View>
-						<View style={[organism_style.braket]}>
-							{btnStatus ? (
-								<Arrow_Up_GRAY20 onPress={() => setBtnStatus(!btnStatus)} />
-							) : (
-								<Arrow_Down_GRAY20 onPress={() => setBtnStatus(!btnStatus)} />
-							)}
-						</View>
-					</View>
-				)}
+					</TouchableWithoutFeedback>
+				}
 			</View>
 		</View>
 	);
