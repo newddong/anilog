@@ -28,8 +28,8 @@ export default FeedWrite = props => {
 	const [showLostAnimalForm, setShowLostAnimalForm] = React.useState(false); //실종버툰
 	const [showReportForm, setShowRepotForm] = React.useState(false); //제보버튼
 	const [showActionButton, setShowActionButton] = React.useState(false); // 긴급게시(하얀버전) 클릭 시 - 실종/제보 버튼 출력 Boolean
-	const [selected]
 	const [feedText, setFeedText] = React.useState(''); //피드 TextInput Value
+	const [feedList, setFeedList] = React.useState([]);
 
 	//긴급 게시 버튼 관련 분기 처리
 	React.useEffect(() => {
@@ -67,6 +67,7 @@ export default FeedWrite = props => {
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);
+				
 				responseObject.didCancel ? console.log('선택취소') : setImgSelected(responseObject.assets[responseObject.assets.length - 1].uri);
 			},
 		);
