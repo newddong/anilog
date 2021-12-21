@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default SaveButtonHeader = ({navigation, route, options, back}) => {
 	const [data, setData] = React.useState();
 	const [save, setSaved] = React.useState(false); // 저장 버튼 클릭 한 번이라도 했는지 여부
+	console.log('saveButton Header', save);
 	// console.log(route);
 	//SaveButtonHeader를 가지는 모든 템플릿들에게서 params가 들어올 때마다 setData를 실시
 	React.useEffect(() => {
@@ -76,7 +77,7 @@ export default SaveButtonHeader = ({navigation, route, options, back}) => {
 		navigation.addListener('beforeRemove', e => {
 			//저장 처리가 이미 되어있다면 바로 뒤로가기 진행
 			if (save) {
-				// If we don't have unsaved changes, then we don't need to do anything
+				// 	// If we don't have unsaved changes, then we don't need to do anything
 				return;
 			}
 			//저장버튼이 한 번도 눌러지지 않은 상태로 뒤로가기를 누를 경우 [저장 후 나감] 모달 출력

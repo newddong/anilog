@@ -6,7 +6,8 @@ import {btn_w226} from '../atom/btn/btn_style';
 import {Cross46, Cross52} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import {interestTagList, myPetList} from './style_organism';
-
+import {useNavigation} from '@react-navigation/core';
+import {GENDER_TAB_SELECT, INPUT_PHONE_NUM, INTEREST_ACT, INTEREST_REGION, mobile_carrier} from 'Root/i18n/msg';
 /**
  *
  *@param {{
@@ -16,8 +17,14 @@ import {interestTagList, myPetList} from './style_organism';
  * }} props
  */
 export default InterestTagList = props => {
+	console.log('InterstTagList props', props);
+	const navigation = useNavigation();
 	const onDelete = index => {
 		props.onDelete(index);
+	};
+
+	const onPressButton = () => {
+		if (props.title == INTEREST_REGION) navigation.push('LocationPicker');
 	};
 
 	const renderItem = (item, index) => {

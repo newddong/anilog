@@ -95,8 +95,9 @@ const AddressInput = props => {
 			<View style={[temp_style.inputNoTitle, addressInput.inputNoTitle]}>
 				<Input24
 					width={654}
-					value={detailAddr}
-					defaultValue={props.detailAddressDefault}
+					// value={detailAddr}
+					value={props.detailAddressDefault}
+					// defaultValue={'123'}
 					placeholder={'세부 주소를 입력해 주세요.'}
 					onChange={onChangeDetailAddress}
 				/>

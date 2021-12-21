@@ -14,8 +14,8 @@ import {getUserInfoById} from 'Root/api/userapi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from '../modal/Modal';
 export default UserInfoDetailSettting = ({route, navigation}) => {
-	console.log('UserInfoDetailSetting route.params : ', route.params);
-
+	// console.log('UserInfoDetailSetting route.params : ', route.params);
+	// console.log('UserInfoDetailSetting route.params : ', route.params.data.user_interests);
 	const [data, setData] = React.useState({}); //기존 유저의 데이터가 담겨있음
 	const [loaded, setLoaded] = React.useState(false);
 	const [addrSearched, setAddrSearched] = React.useState(false);
@@ -23,7 +23,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	// 갱신되는 데이터는 Header에도 Json형태로 전해짐
 	React.useEffect(() => {
 		navigation.setParams({data: data, route_name: route.name});
-		console.log('changing Data', data);
+		// console.log('changing Data', data);
 	}, [data]);
 
 	React.useEffect(() => {
@@ -34,8 +34,9 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 					userobject_id: res,
 				},
 				userInfo => {
-					// console.log('userInfo', userInfo.msg);
-					setData({...userInfo.msg, user_birthday: '2021-01-01', user_sex: 'male', user_interests: {location: [], activity: []}});
+					// console.log('userInfo', userInfo.msg.user_interests);
+					setData({...userInfo.msg});
+					// setData({...userInfo.msg, user_birthday: '2021-01-01', user_sex: 'male', user_interests: {location: [], activity: []}});
 					navigation.setParams({data: userInfo.msg, route_name: route.name});
 					setLoaded(true);
 					Modal.close();
@@ -63,7 +64,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	const onPressSearchAddress = () => {
 		setAddrSearched(false);
 
-		navigation.push('AddressSearch', {addr: data.user_address.district, from: route.name});
+		navigation.push('AddressSearch', {addr: data.user_address.brief, from: route.name});
 	};
 
 	//생일 값 변경 콜백
@@ -198,8 +199,8 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 								// addressDefault={data ? data.user_address.city + '  ' + data.user_address.district : ''}
 								addressDefault={data.user_address.brief}
 								// detailAddressDefault={data ? data.user_address.neighbor : ''}
-								// detailAddressDefault={data.user_address.detail}
-								detailAddress={data.user_address.detail}
+								detailAddressDefault={data.user_address.detail}
+								detailAddress={data.user_address.detailAddr}
 							/>
 						</View>
 						{/* 관심지역 및 활동 */}

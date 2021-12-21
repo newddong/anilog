@@ -23,7 +23,7 @@ export default AddressSearch = props => {
 	useEffect(() => {
 		// console.log('refresh component');
 		// console.log(addr);
-		console.log(props);
+		console.log('props.address', props);
 		setAddrList({common: {}, list: []});
 		setSelectedIndex(-1);
 		search(data.keyword, 1);
@@ -175,7 +175,7 @@ export default AddressSearch = props => {
 					data={addrList.list}
 					refreshing
 					renderItem={({item, index}) => <AddrItem data={item} onSelect={selectAddr} index={index} selectedIndex={selectedIndex} />}
-					keyExtractor={(item,index)=> index}
+					keyExtractor={(item, index) => index}
 					onEndReached={scrollReachedEnd}
 					onEndReachedThreshold={0.2}
 					extraData={selectedIndex}
