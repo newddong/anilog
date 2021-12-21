@@ -186,6 +186,7 @@ export const PRIVATE = 'private';
 
 //DefaultImage uri
 export const DEFAULT_PROFILE = 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg';
+export const DEFAULT_ANIMAL_PROFILE = 'https://w7.pngwing.com/pngs/944/500/png-transparent-dog-computer-icons-puppy-puppy-cute-cdr-animals-pet.png';
 
 //잠시 임시저장 기능 관련 테스트용
 export let temp_inputLongText = '';

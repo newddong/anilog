@@ -18,8 +18,8 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 
 	React.useEffect(() => {
 		Modal.popNoBtn('잠시만 기다려주세요.');
-		console.log('route.params', route.params);
-		console.log('filter', filterStatus);
+		// console.log('route.params', route.params);
+		// console.log('filter', filterStatus);
 		getProtectRequestListByShelterId(
 			//현재 로그인한 보호소의 고유 _id를 파라미터로 보내고
 			//_id를 통해 얻어온 보호소의 보호 요청 게시글 리스트를 출력

@@ -1,27 +1,36 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import {login_style, animalFromShelter_style} from './style_templete';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import {useNavigation} from '@react-navigation/core';
-import {getShelterProtectAnimalList} from 'Root/api/shelterapi';
+import {getProtectRequestListByShelterId, getShelterProtectAnimalList} from 'Root/api/shelterapi';
+import {txt} from 'Root/config/textstyle';
 
 export default AnimalFromShelter = ({route}) => {
+	const token = route.params;
 	const navigation = useNavigation();
 	const [data, setData] = React.useState([]); //AnimalNeedHelpList에 보낼 리스트정보
 
 	React.useEffect(() => {
-		getShelterProtectAnimalList(
+		getProtectRequestListByShelterId(
+			//현재 로그인한 보호소의 고유 _id를 파라미터로 보내고
+			//_id를 통해 얻어온 보호소의 보호 요청 게시글 리스트를 출력
 			{
-				shelter_protect_animal_object_id: null,
-				request_number: 100,
+				shelter_userobject_id: token,
+				protect_request_status: 'complete',
+				protect_request_object_id: null,
+				request_number: 10,
 			},
-			successed => {
-				console.log('successed / getShelterProtectAnimalList', successed.msg);
-				// setData(successed.msg);
+			result => {
+				console.log('result / getProtectRequestList / ShelterProtectRequests', result.msg);
+				setProtectAnimalList(result.msg);
+				Modal.close();
+				// setProtectAnimalList(successed.msg);
+				// 받아온 protect_animal_protect_Request_id로 해당 게시글 좋아요 여부도 판별해야함
 			},
 			err => {
-				console.log('err / getShelterProtectAnimalList / AnimalFromShelter  :  ', err);
-				setData(err);
+				console.log('err / getProtectReqeustListByShelterId / ShelterProtectRequest', err);
+				Modal.close();
 			},
 		);
 	}, [route]);
@@ -43,16 +52,18 @@ export default AnimalFromShelter = ({route}) => {
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
-			{/* {console.log('props.route.params.listType=>' + props.route.params.listType)} */}
-			{/* {console.log('AnimalFromShelter:props.route.params.borderMode=>' + props.route.params.borderMode)} */}
 			<View style={[animalFromShelter_style.container]}>
-				<AnimalNeedHelpList
-					data={data}
-					borderMode={true}
-					onClickLabel={onClickLabel}
-					onPressAdoptorInfo={onPressAdoptorInfo}
-					onPressProtectRequest={onPressProtectRequest}
-				/>
+				{data.length == 0 ? (
+					<Text style={[txt.roboto32b, {marginTop: 200}]}>아직 입양 완료된 보호소 출신의 보호 동물이 없네요.</Text>
+				) : (
+					<AnimalNeedHelpList
+						data={data}
+						borderMode={true}
+						onClickLabel={onClickLabel}
+						onPressAdoptorInfo={onPressAdoptorInfo}
+						onPressProtectRequest={onPressProtectRequest}
+					/>
+				)}
 			</View>
 		</View>
 	);

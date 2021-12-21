@@ -9,7 +9,8 @@ import AniButton from '../molecules/AniButton';
 import {FavoriteTag48_Border, FavoriteTag48_Filled} from '../atom/icon';
 import {color} from 'react-native-reanimated';
 import {RED10} from 'Root/config/color';
-import {DEFAULT_PROFILE} from 'Root/i18n/msg';
+import {DEFAULT_ANIMAL_PROFILE, DEFAULT_PROFILE} from 'Root/i18n/msg';
+import moment from 'moment';
 
 /**
  *
@@ -25,7 +26,7 @@ import {DEFAULT_PROFILE} from 'Root/i18n/msg';
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
-	console.log('AnimalNeedHelp', data);
+	// console.log('AnimalNeedHelp / ', data);
 
 	// console.log(`AnimalNeedHelp:data=>${JSON.stringify(data)}`);
 	const [selected, setSelected] = React.useState(false);
@@ -38,14 +39,16 @@ export default AnimalNeedHelp = props => {
 
 		// 사진 필드는 변경 가능성 있음. 일단 썸네일 필드로 지정
 		if (data.hasOwnProperty('protect_request_photo_thumbnail')) {
-			//보호 요청 썸네일
 			resultJSON.img_uri = data.protect_request_photo_thumbnail;
+		} else if (data.hasOwnProperty('protect_request_photos_uri')) {
+			//보호 요청 썸네일
+			resultJSON.img_uri = data.protect_request_photos_uri[0] || DEFAULT_ANIMAL_PROFILE;
 		} else if (data.hasOwnProperty('feed_thumbnail')) {
 			// 실종/제보 썸네일
 			resultJSON.img_uri = data.feed_thumbnail;
 		} else {
 			//기본 썸네일 적용
-			resultJSON.img_uri = DEFAULT_PROFILE;
+			resultJSON.img_uri = DEFAULT_ANIMAL_PROFILE;
 		}
 
 		// 보호 동물의 데이터 일 경우 (세 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
@@ -96,6 +99,20 @@ export default AnimalNeedHelp = props => {
 		props.onPressProtectRequest();
 	};
 
+	const getParsedDate = () => {
+		let date = data.protect_request_date;
+		if (date.length > 15) {
+			date = moment(date).format('YYYY-MM-DD');
+			return date;
+		}
+		return date;
+	};
+
+	const getShelterName = () => {
+		let shelter_name = '';
+		// getUser;
+	};
+
 	const contents = () => {
 		return (
 			<View style={[animalNeedHelp.detailContainer]}>
@@ -133,9 +150,12 @@ export default AnimalNeedHelp = props => {
 							</View>
 							{/* 보호요청 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
-								<Text style={[txt.noto24]}>등록일 : {data.protect_request_date || ''}</Text>
-								<Text style={[txt.noto24]}>보호장소 : {data.shelter_name || ''}</Text>
-								<Text style={[txt.noto24]}>구조지역 : {data.protect_animal_rescue_location || ''}</Text>
+								<Text style={[txt.noto24]}>등록일 : {getParsedDate()}</Text>
+								<Text style={[txt.noto24]}>보호장소 : {data.protect_request_writer_id.shelter_name}</Text>
+								<Text style={[txt.noto24]}>
+									구조지역 :{' '}
+									{data.protect_animal_rescue_location ? data.protect_animal_rescue_location : data.protect_animal_id.protect_animal_rescue_location}
+								</Text>
 							</View>
 						</>
 					)}
@@ -231,3 +251,129 @@ const e = {
 	protect_request_update_date: '2021-12-19T00:00:00.000Z',
 	protect_request_writer_id: '61ba9dbc4772b1e1d3f2ed60',
 };
+const getProtectRequestListByShelterId = [
+	{
+		__v: 0,
+		_id: '61c175d0b83cbeb3c893db71',
+		protect_animal_id: {
+			__v: 0,
+			_id: '61c07f0c0b3fb5a4acae2c26',
+			protect_act_applicants: [Array],
+			protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
+			protect_animal_estimate_age: '4년 1개월',
+			protect_animal_neutralization: 'unknown',
+			protect_animal_photo_uri_list: [Array],
+			protect_animal_protect_request_id: '61c175d0b83cbeb3c893db71',
+			protect_animal_protector_discussion_id: [Array],
+			protect_animal_rescue_date: '2004-08-12T00:00:00.000Z',
+			protect_animal_rescue_location: '고르고스 언덕',
+			protect_animal_sex: 'female',
+			protect_animal_species: '기타',
+			protect_animal_species_detail: '치와와',
+			protect_animal_status: 'rescue',
+			protect_animal_weight: 12,
+		},
+		protect_animal_species: '기타',
+		protect_animal_species_detail: '치와와',
+		protect_request_comment_count: 0,
+		protect_request_content: '나이는 많아 보이지만 아주 정이 많아보입니다. 데려가기를 연락하세요.',
+		protect_request_date: '2021-12-21T06:36:00.739Z',
+		protect_request_favorite_count: 0,
+		protect_request_hit: 0,
+		protect_request_photos_uri: [],
+		protect_request_status: 'rescue',
+		protect_request_title: '새로운 엄마를 구해요',
+		protect_request_update_date: '2021-12-21T06:36:00.739Z',
+		protect_request_writer_id: {
+			__v: 0,
+			_id: '61c023d9679aa5ae46128102',
+			pet_family: [Array],
+			shelter_address: [Object],
+			shelter_delegate_contact_number: '01096450001',
+			shelter_foundation_date: '2011-12-04T00:00:00.000Z',
+			shelter_homepage: '',
+			shelter_name: '상우 보호소6',
+			user_agreement: [Object],
+			user_denied: false,
+			user_email: 'lanad01@naver.com',
+			user_follow_count: 0,
+			user_follower_count: 0,
+			user_interests: [Array],
+			user_introduction:
+				'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
+			user_is_verified_email: false,
+			user_is_verified_phone_number: false,
+			user_my_pets: [Array],
+			user_name: '상우 보호소5',
+			user_nickname: '가하즈보호소',
+			user_password: '121212',
+			user_phone_number: '01096450001',
+			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
+			user_register_date: '2021-12-20T06:34:01.773Z',
+			user_type: 'shelter',
+			user_upload_count: 0,
+		},
+	},
+	{
+		__v: 0,
+		_id: '61c188ba2aaa7e1134cef1e2',
+		protect_animal_id: {
+			__v: 0,
+			_id: '61c07f0c0b3fb5a4acae2c26',
+			protect_act_applicants: [Array],
+			protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
+			protect_animal_estimate_age: '4년 1개월',
+			protect_animal_neutralization: 'unknown',
+			protect_animal_photo_uri_list: [Array],
+			protect_animal_protect_request_id: '61c188ba2aaa7e1134cef1e2',
+			protect_animal_protector_discussion_id: [Array],
+			protect_animal_rescue_date: '2004-08-12T00:00:00.000Z',
+			protect_animal_rescue_location: '고르고스 언덕',
+			protect_animal_sex: 'female',
+			protect_animal_species: '기타',
+			protect_animal_species_detail: '치와와',
+			protect_animal_status: 'rescue',
+			protect_animal_weight: 12,
+		},
+		protect_animal_species: '기타',
+		protect_animal_species_detail: '치와와',
+		protect_request_comment_count: 0,
+		protect_request_content: '함께 상처를 치료할 동반자를 구합니다. ',
+		protect_request_date: '2021-12-21T07:56:42.286Z',
+		protect_request_favorite_count: 0,
+		protect_request_hit: 0,
+		protect_request_photos_uri: ['https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640073402165_8.jpg'],
+		protect_request_status: 'rescue',
+		protect_request_title: '아직 사람을 그리워하는 것 같습니다.',
+		protect_request_update_date: '2021-12-21T07:56:42.286Z',
+		protect_request_writer_id: {
+			__v: 0,
+			_id: '61c023d9679aa5ae46128102',
+			pet_family: [Array],
+			shelter_address: [Object],
+			shelter_delegate_contact_number: '01096450001',
+			shelter_foundation_date: '2011-12-04T00:00:00.000Z',
+			shelter_homepage: '',
+			shelter_name: '상우 보호소6',
+			user_agreement: [Object],
+			user_denied: false,
+			user_email: 'lanad01@naver.com',
+			user_follow_count: 0,
+			user_follower_count: 0,
+			user_interests: [Array],
+			user_introduction:
+				'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
+			user_is_verified_email: false,
+			user_is_verified_phone_number: false,
+			user_my_pets: [Array],
+			user_name: '상우 보호소5',
+			user_nickname: '가하즈보호소',
+			user_password: '121212',
+			user_phone_number: '01096450001',
+			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
+			user_register_date: '2021-12-20T06:34:01.773Z',
+			user_type: 'shelter',
+			user_upload_count: 0,
+		},
+	},
+];
