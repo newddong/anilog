@@ -20,6 +20,7 @@ import LocationButton from '../molecules/LocationButton';
 import PetAccountList from '../organism_ksw/PetAccountList';
 import {Button} from 'react-native';
 import {dummy_UserObject_pet, dummy_UserObject_pet_with_owner} from 'Root/config/dummyDate_json';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 export default FeedWrite = props => {
 	const [showPetAccountList, setShowPetAccountList] = React.useState(false); //PetAccount 계정
@@ -27,7 +28,7 @@ export default FeedWrite = props => {
 	const [showLostAnimalForm, setShowLostAnimalForm] = React.useState(false); //실종버툰
 	const [showReportForm, setShowRepotForm] = React.useState(false); //제보버튼
 	const [showActionButton, setShowActionButton] = React.useState(false); // 긴급게시(하얀버전) 클릭 시 - 실종/제보 버튼 출력 Boolean
-
+	const [selected]
 	const [feedText, setFeedText] = React.useState(''); //피드 TextInput Value
 
 	//긴급 게시 버튼 관련 분기 처리
@@ -59,7 +60,16 @@ export default FeedWrite = props => {
 
 	//사진 추가
 	const moveToMultiPhotoSelect = () => {
-		props.navigation.push('MultiPhotoSelect');
+		launchImageLibrary(
+			{
+				mediaType: 'photo',
+				selectionLimit: 5,
+			},
+			responseObject => {
+				console.log('선택됨', responseObject);
+				responseObject.didCancel ? console.log('선택취소') : setImgSelected(responseObject.assets[responseObject.assets.length - 1].uri);
+			},
+		);
 	};
 
 	//위치추가
@@ -253,7 +263,7 @@ export default FeedWrite = props => {
 						textAlignVertical={'top'}
 						multiline={true}
 						style={{flex: 1}}
-						placeholder="무엇을 할까요?"
+						placeholder="게시물을 작성하세요"
 						onChangeText={text => setFeedText(text)}></TextInput>
 				</View>
 

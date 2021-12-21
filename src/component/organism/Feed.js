@@ -70,7 +70,7 @@ export default Feed = React.memo(props => {
 						</View>
 						<View style={organism_style.like_count_view_feed}>
 							<View style={[organism_style.like_count_feed, feed_style.like_count]}>
-								<Text style={[txt.roboto24]}>109</Text>
+								<Text style={[txt.roboto24]}>{feed_like_count}</Text>
 							</View>
 						</View>
 						<View style={organism_style.like48}>
@@ -78,7 +78,7 @@ export default Feed = React.memo(props => {
 						</View>
 						<View style={organism_style.comment_count_view_feed}>
 							<View style={[organism_style.comment_count_feed, feed_style.comment_count]}>
-								<Text style={[txt.roboto24]}>60</Text>
+								<Text style={[txt.roboto24]}>{feed_comment_count}</Text>
 							</View>
 						</View>
 					</View>
@@ -86,7 +86,7 @@ export default Feed = React.memo(props => {
 					{/* 댓글 comment_count개 모두 보기 */}
 					<View style={[organism_style.allCommentCount]}>
 						<TouchableOpacity onPress={() => navigation.push('FeedCommentList')}>
-							<Text style={[txt.noto24]}>댓글 6개 모두 보기</Text>
+							<Text style={[txt.noto24]}>{feed_comment_count>0?`댓글 ${feed_comment_count}개 모두 보기`:'댓글 쓰기'}</Text>
 						</TouchableOpacity>
 					</View>
 				</View>
