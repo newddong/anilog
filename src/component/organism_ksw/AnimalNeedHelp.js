@@ -7,9 +7,10 @@ import {animalNeedHelp} from './style_organism';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import AniButton from '../molecules/AniButton';
 import {FavoriteTag48_Border, FavoriteTag48_Filled} from '../atom/icon';
-import {color} from 'react-native-reanimated';
+import {color, set} from 'react-native-reanimated';
 import {RED10} from 'Root/config/color';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
+import moment from 'moment';
 
 /**
  *
@@ -25,9 +26,11 @@ import {DEFAULT_PROFILE} from 'Root/i18n/msg';
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
+
 	console.log('AnimalNeedHelp', data);
 
 	// console.log(`AnimalNeedHelp:data=>${JSON.stringify(data)}`);
+	// const [data, setData] = React.useState(props.data);
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 
@@ -95,6 +98,21 @@ export default AnimalNeedHelp = props => {
 	const onPressProtectRequest = () => {
 		props.onPressProtectRequest();
 	};
+	// const shortenDate = date => {
+	// 	console.log('shooooooort', date);
+
+	// 	if (date == null) {
+	// 		return '';
+	// 	} else {
+	// 		console.log('!!!!!!!!', date.substring(0, 9));
+	// 		return date.substring(0.9);
+	// 	}
+	// };
+	const getParsedDate = () => {
+		let date = data.missing_animal_date;
+		date = moment(date).format('YYYY-MM-DD');
+		return date;
+	};
 
 	const contents = () => {
 		return (
@@ -148,8 +166,11 @@ export default AnimalNeedHelp = props => {
 							</View>
 							{/* 실종/제보 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
-								<Text style={[txt.noto24, {color: RED10}]}>실종일: {data.missing_animal_date || ''}</Text>
-								<Text style={[txt.noto24, {color: RED10}]}>나이:{data.missing_animal_age || ''} / 성별:</Text>
+								{/* <Text style={[txt.noto24, {color: RED10}]}>실종일: {data.missing_animal_date || ''}</Text> */}
+								<Text style={[txt.noto24, {color: RED10}]}>실종일: {getParsedDate()}</Text>
+								<Text style={[txt.noto24, {color: RED10}]}>
+									나이:{data.missing_animal_age || ''} / 성별: {data.missing_animal_sex}
+								</Text>
 								<Text style={[txt.noto24]}>실종위치: {data.missing_animal_lost_location || ''}</Text>
 								<Text style={[txt.noto24]} numberOfLines={1}>
 									특징: {data.missing_animal_features || ''}
