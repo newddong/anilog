@@ -111,7 +111,7 @@ AddressInput.defaultProps = {
 	titleColor: GRAY10,
 	titleMode: '',
 	addressDefault: '주소 찾기를 눌러주세요',
-	detailAddressDefault: null,
+	detailAddressDefault: '',
 	onChangeDeatilAddress: e => {},
 	onChangeAddress: e => {},
 	onPressSearchAddr: e => {},

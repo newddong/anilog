@@ -6,7 +6,7 @@ export const organism_style = StyleSheet.create({
 	feedContent: {
 		flexDirection: 'column',
 		width: 750 * DP,
-		// height: 330 * DP,
+		height: 270 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -22,7 +22,7 @@ export const organism_style = StyleSheet.create({
 		// flexDirection: 'column',
 		alignItems: 'center',
 		width: 750 * DP,
-		marginTop: 30 * DP,
+		// marginTop: 30 * DP,
 		// alignItems: 'center',
 		// justifyContent: 'center',
 		// backgroundColor: 'lightblue',
@@ -61,6 +61,7 @@ export const organism_style = StyleSheet.create({
 		height: 48 * DP,
 		alignItems: 'center',
 		justifyContent: 'space-between',
+		marginTop:10*DP,
 	},
 	time_feedContent: {
 		flexDirection: 'row',
@@ -143,7 +144,7 @@ export const organism_style = StyleSheet.create({
 	},
 	comment_feed_view: {
 		width: 750 * DP,
-		marginTop: 20 * DP,
+		height: 202*DP,
 		alignItems: 'center',
 	},
 	likeCommentButtons_view: {

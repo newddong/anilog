@@ -141,8 +141,8 @@ export default AssignShelterAddress = props => {
 					titleColor={APRI10}
 					onChangeAddress={onChangeAddress}
 					onChangeDeatilAddress={onChangeDeatilAddress}
-					address={data.shelter_address.brief}
-					detailAddress={data.shelter_address.detail}
+					addressDefault={data.shelter_address.brief}
+					detailAddressDefault={data.shelter_address.detail}
 					onPressSearchAddr={goToAddressSearch}
 					validator={addressValidator}
 					onValid={onValidAddress}

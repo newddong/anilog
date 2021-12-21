@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
 import {GRAY20, WHITE} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
-import {DEFAULT_PROFILE} from 'Root/i18n/msg';
+import {DEFAULT_ANIMAL_PROFILE, DEFAULT_PROFILE} from 'Root/i18n/msg';
 import {AddItem64, Female48, Male48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 import {aidRequest} from './style_organism';
@@ -17,30 +17,30 @@ import {useNavigation} from '@react-navigation/core';
  * }} props
  */
 export default AidRequest = props => {
-	const [data, setData] = React.useState(props.data);
+	const data = props.data;
+	// console.log('data / AidRequest  : ', data);
+
 	//해당 AidRequest박스 선택 시 부모컴포넌트 OnSelect 실행
 	const onSelect = () => {
 		props.onSelect();
-		// 이벤트 정의가 되어 있지 않아 주석처리
-		// setSelected(!selected);
-		// moveToProtectApplicant();
 	};
 
 	return (
 		<View style={[aidRequest.container]}>
-			{/* 선택되면 APRI10로 외곽선 변경, 미세 조정 필요 */}
 			<View
 				style={[
 					aidRequest.insideContainer,
 					props.selected && props.selectBorderMode ? aidRequest.borderColor_APRI10 : aidRequest.borderColor_GRAY10,
 				]}>
+				{/* 보호동물 프로필 이미지 및 성별 */}
 				<View style={[aidRequest.img_irregular_174]}>
 					<View style={[aidRequest.gender]}>{data.protect_animal_sex == 'male' ? <Male48 /> : <Female48 />}</View>
 					<Image
 						style={[props.selected ? aidRequest.img_irregular_174_border : styles.img_irregular_174]}
-						source={{uri: data.protect_animal_photo_uri_list ? data.protect_animal_photo_uri_list[0] : DEFAULT_PROFILE}}
+						source={{uri: data.protect_animal_photo_uri_list.length > 0 ? data.protect_animal_photo_uri_list[0] : DEFAULT_ANIMAL_PROFILE}}
 					/>
 				</View>
+				{/* 오른쪽 보호동물 상세 정보 */}
 				<View style={[aidRequest.rightContainer]}>
 					<TouchableOpacity onPress={onSelect}>
 						<View style={[aidRequest.right_insideContainer]}>

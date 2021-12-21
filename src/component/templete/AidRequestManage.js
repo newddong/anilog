@@ -19,9 +19,9 @@ export default AidRequestManage = ({route, navigation}) => {
 					shelter_protect_animal_object_id: null,
 					request_number: 10,
 				},
-				successed => {
-					console.log('successed / getShelterProtectAnimalList / ShelterProtectAnimalList', successed.msg);
-					setData(successed.msg);
+				result => {
+					// console.log('result / getShelterProtectAnimalList / ShelterProtectAnimalList', result.msg);
+					setData(result.msg);
 				},
 				err => {
 					console.log('err / getShelterProtectAnimalList', err);
