@@ -36,8 +36,8 @@ export default Profile = props => {
 	React.useEffect(() => {
 		getUserProfile(
 			{
-				userobject_id: '61c023d9679aa5ae46128102', //상우보호소4 임시로
-				user_type: 'shelter',
+				userobject_id: profile_data._id, //상우보호소4 임시로
+				user_type: profile_data.user_type,
 			},
 			result => {
 				console.log('result / getUserProfile / Profile  :  ', result.msg.user_nickname);

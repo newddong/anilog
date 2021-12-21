@@ -11,7 +11,7 @@ import AidRequest from '../organism_ksw/AidRequest';
 import {assignProtectAnimal_style, feedWrite, login_style, temp_style, writeAidRequest} from './style_templete';
 
 export default WriteAidRequest = ({route, navigation}) => {
-	console.log('WriteAidRequest', route.params);
+	// console.log('WriteAidRequest', route.params);
 	//이제 여기까지 Write해온 ShelterProtectAnimalObject 토대로
 
 	const [token, setToken] = React.useState();

@@ -7,9 +7,10 @@ import {animalNeedHelp} from './style_organism';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import AniButton from '../molecules/AniButton';
 import {FavoriteTag48_Border, FavoriteTag48_Filled} from '../atom/icon';
-import {color} from 'react-native-reanimated';
+import {color, set} from 'react-native-reanimated';
 import {RED10} from 'Root/config/color';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
+import moment from 'moment';
 
 /**
  *
@@ -25,8 +26,11 @@ import {DEFAULT_PROFILE} from 'Root/i18n/msg';
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
-	// console.log('AnimalNeedHelp', data);
+
+	console.log('AnimalNeedHelp', data);
+
 	// console.log(`AnimalNeedHelp:data=>${JSON.stringify(data)}`);
+	// const [data, setData] = React.useState(props.data);
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 
@@ -94,84 +98,65 @@ export default AnimalNeedHelp = props => {
 	const onPressProtectRequest = () => {
 		props.onPressProtectRequest();
 	};
+	// const shortenDate = date => {
+	// 	console.log('shooooooort', date);
+
+	// 	if (date == null) {
+	// 		return '';
+	// 	} else {
+	// 		console.log('!!!!!!!!', date.substring(0, 9));
+	// 		return date.substring(0.9);
+	// 	}
+	// };
+	const getParsedDate = () => {
+		let date = data.missing_animal_date;
+		date = moment(date).format('YYYY-MM-DD');
+		return date;
+	};
 
 	const contents = () => {
-		const e = {
-			__v: 0,
-			_id: '61bc7bc5c946746900218905',
-			pet_birthday: '2021-12-07T00:00:00.000Z',
-			pet_family: ['61b84ddb4a1b66f74b699b1e'],
-			pet_is_temp_protection: true,
-			pet_neutralization: 'no',
-			pet_sex: 'female',
-			pet_species: '기타',
-			pet_species_detail: '새',
-			pet_status: 'protect',
-			pet_weight: '11',
-			user_agreement: {
-				is_donation_info: false,
-				is_location_service_info: false,
-				is_marketting_info: false,
-				is_over_fourteen: false,
-				is_personal_info: false,
-				is_service: false,
-			},
-			user_denied: false,
-			user_follow_count: 0,
-			user_follower_count: 0,
-			user_interests: [],
-			user_introduction: '',
-			user_is_verified_email: false,
-			user_is_verified_phone_number: false,
-			user_my_pets: [],
-			user_nickname: '토라',
-			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639742405433_6040B5AC-48AF-44FA-A3D0-81FF80F8C09A.jpg',
-			user_register_date: '2021-12-17T12:00:05.624Z',
-			user_type: 'pet',
-			user_upload_count: 0,
-		};
 		return (
 			<View style={[animalNeedHelp.detailContainer]}>
-				<View style={[animalNeedHelp.detail_upperMenu]}>
-					{/* {data.feed_type == 'feed' && ( */}
-					{/* // 임보요청 출력 true, false */}
-					<View style={[animalNeedHelp.detail_upper_petStateContainer]}>
-						{data.protect_animal_protect_request ? (
-							<View style={[animalNeedHelp.detail_upper_petState]}>
-								<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>임보요청</Text>
-							</View>
-						) : null}
-						{/* 입양가능날짜 출력 T/F */}
-						{data.protect_animal_adoption_days_remain != null ? (
-							<View style={[animalNeedHelp.detail_upper_petState]}>
-								<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>
-									{data.protect_animal_adoption_days_remain || ''}일 후 입양가능
-								</Text>
-							</View>
-						) : null}
+				{data.feed_type != 'missing' && data.feed_type != 'report' && (
+					<View style={[animalNeedHelp.detail_upperMenu]}>
+						<View style={[animalNeedHelp.detail_upper_petStateContainer]}>
+							{data.protect_animal_protect_request ? (
+								<View style={[animalNeedHelp.detail_upper_petState]}>
+									<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>임보요청</Text>
+								</View>
+							) : null}
+							{/* 입양가능날짜 출력 T/F */}
+							{data.protect_animal_adoption_days_remain != null ? (
+								<View style={[animalNeedHelp.detail_upper_petState]}>
+									<Text style={[txt.noto24, animalNeedHelp.petStatusContainer_text]}>
+										{data.protect_animal_adoption_days_remain || ''}일 후 입양가능
+									</Text>
+								</View>
+							) : null}
+						</View>
+						{/* 좋아요 State Tag */}
+						<View style={[animalNeedHelp.detail_upper_tag]}>
+							{favorite ? <FavoriteTag48_Filled onPress={onPressFavoriteTag} /> : <FavoriteTag48_Border onPress={onPressFavoriteTag} />}
+						</View>
 					</View>
-					{/* )} */}
-					{/* 좋아요 State Tag */}
-					<View style={[animalNeedHelp.detail_upper_tag]}>
-						{favorite ? <FavoriteTag48_Filled onPress={onPressFavoriteTag} /> : <FavoriteTag48_Border onPress={onPressFavoriteTag} />}
-					</View>
-				</View>
+				)}
+
 				<View style={[animalNeedHelp.detail_lowerMenu]}>
-					{/* {data.feed_type == 'feed' && ( */}
-					<>
-						{/* 동물 종류 및 품종 */}
-						<View style={[animalNeedHelp.lowerMenu_kindAndBreed, animalNeedHelp.lowerMenu_kindAndBreed_marginTop]}>
-							<Text style={[txt.noto30b]}>{data.protect_animal_species || ''}</Text>
-							<Text style={[txt.noto28, animalNeedHelp.breedText]}>{data.protect_animal_species_detail || ''}</Text>
-						</View>
-						{/* 보호요청 관련 Details */}
-						<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
-							<Text style={[txt.noto24]}>등록일 : {data.protect_request_date || ''}</Text>
-							<Text style={[txt.noto24]}>보호장소 : {data.shelter_name || ''}</Text>
-							<Text style={[txt.noto24]}>구조지역 : {data.protect_animal_rescue_location || ''}</Text>
-						</View>
-					</>
-					{/* )} */}
+					{data.feed_type != 'missing' && data.feed_type != 'report' && (
+						<>
+							{/* 동물 종류 및 품종 */}
+							<View style={[animalNeedHelp.lowerMenu_kindAndBreed, animalNeedHelp.lowerMenu_kindAndBreed_marginTop]}>
+								<Text style={[txt.noto30b]}>{data.protect_animal_species || ''}</Text>
+								<Text style={[txt.noto28, animalNeedHelp.breedText]}>{data.protect_animal_species_detail || ''}</Text>
+							</View>
+							{/* 보호요청 관련 Details */}
+							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
+								<Text style={[txt.noto24]}>등록일 : {data.protect_request_date || ''}</Text>
+								<Text style={[txt.noto24]}>보호장소 : {data.shelter_name || ''}</Text>
+								<Text style={[txt.noto24]}>구조지역 : {data.protect_animal_rescue_location || ''}</Text>
+							</View>
+						</>
+					)}
 					{(data.feed_type == 'missing' || data.feed_type == 'report') && (
 						<>
 							{/* 동물 종류 및 품종 */}
@@ -181,8 +166,11 @@ export default AnimalNeedHelp = props => {
 							</View>
 							{/* 실종/제보 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
-								<Text style={[txt.noto24, {color: RED10}]}>실종일: {data.missing_animal_date || ''}</Text>
-								<Text style={[txt.noto24, {color: RED10}]}>나이:{data.missing_animal_age || ''} / 성별:</Text>
+								{/* <Text style={[txt.noto24, {color: RED10}]}>실종일: {data.missing_animal_date || ''}</Text> */}
+								<Text style={[txt.noto24, {color: RED10}]}>실종일: {getParsedDate()}</Text>
+								<Text style={[txt.noto24, {color: RED10}]}>
+									나이:{data.missing_animal_age || ''} / 성별: {data.missing_animal_sex}
+								</Text>
 								<Text style={[txt.noto24]}>실종위치: {data.missing_animal_lost_location || ''}</Text>
 								<Text style={[txt.noto24]} numberOfLines={1}>
 									특징: {data.missing_animal_features || ''}
@@ -244,4 +232,23 @@ AnimalNeedHelp.defaultProps = {
 	onFavoriteTag: e => console.log(e),
 	onPressAdoptorInfo: e => console.log('e'),
 	isChecked: false,
+};
+
+const e = {
+	_id: '61be29d475c72f85ab66285d',
+	protect_animal_id: '61be21dd244ae6ea37b6502a',
+	protect_animal_species: '개',
+	protect_animal_species_detail: '말티즈',
+	protect_request_comment_count: 0,
+	protect_request_content: '귀여워요',
+	protect_request_date: '2021-12-19T00:00:00.000Z',
+	protect_request_favorite_count: 0,
+	protect_request_hit: 1,
+	protect_request_photo_thumbnail: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639850461428_missing_test1.png',
+	protect_request_photos: ['https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639850461428_missing_test1.png'],
+	protect_request_photos_uri: [],
+	protect_request_status: 'rescue',
+	protect_request_title: '말티즈 보호요청',
+	protect_request_update_date: '2021-12-19T00:00:00.000Z',
+	protect_request_writer_id: '61ba9dbc4772b1e1d3f2ed60',
 };

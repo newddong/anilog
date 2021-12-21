@@ -22,11 +22,14 @@ export default ChangeUserProfileImage = ({route}) => {
 	const navigation = useNavigation();
 	const [confirmed, setConfirmed] = React.useState(false);
 	const [duplicated, setDuplicated] = React.useState(false);
+	const [validateted, setValidated] = React.useState(false);
 	const [changed, setChanged] = React.useState(false);
-	React.useEffect(() => {
-		// console.log('data useEffect', data);
-		setConfirmed(true); //사진 선택시 확인버튼 누르게
-	}, [data]);
+
+	// React.useEffect(() => {
+	// 	// console.log('data useEffect', data);
+	// 	setConfirmed(true); //사진 선택시 확인버튼 누르게
+	// }, [data.user_profile_uri]);
+	// React.useEffect(() => {}, [duplicated]);
 
 	React.useEffect(() => {
 		if (changed) {
@@ -47,24 +50,30 @@ export default ChangeUserProfileImage = ({route}) => {
 	}, [changed]);
 
 	const onConfirmed = () => {
-		Modal.popNoBtn('프로필을 바꾸는 중입니다.');
-		updateUserInformation(
-			{
-				userobject_id: data._id,
-				user_nickname: newNick == '' ? data.user_nickname : newNick,
-				// user_nickname: newNick,
-				user_profile_uri: data.user_profile_uri,
-			},
-			success => {
-				setChanged(true);
-				console.log('profileChange success', success);
-			},
-			// console.log('userObject', userObject);
-			err => {
-				setChanged(true);
-				console.log('err', err);
-			},
-		);
+		console.log('duplic', duplicated);
+		if (duplicated) {
+			Modal.popOneBtn('중복된 닉네임 입니다.', '확인', Modal.close);
+		}
+		if (!duplicated) {
+			Modal.popNoBtn('프로필을 바꾸는 중입니다.');
+			updateUserInformation(
+				{
+					userobject_id: data._id,
+					user_nickname: newNick == '' ? data.user_nickname : newNick,
+					// user_nickname: newNick,
+					user_profile_uri: data.user_profile_uri,
+				},
+				success => {
+					setChanged(true);
+					console.log('profileChange success', success);
+				},
+				// console.log('userObject', userObject);
+				err => {
+					setChanged(true);
+					console.log('err', err);
+				},
+			);
+		}
 		// navigation.dispatch(
 		// 	CommonActions.reset({
 		// 		index: 1,
@@ -87,6 +96,7 @@ export default ChangeUserProfileImage = ({route}) => {
 				selectionLimit: 1,
 			},
 			responseObject => {
+				setConfirmed(true);
 				console.log('선택됨!!', responseObject);
 				// setUri(responseObject.assets[responseObject.assets.length - 1].uri);
 
@@ -100,9 +110,23 @@ export default ChangeUserProfileImage = ({route}) => {
 
 	//중복 처리
 	const checkDuplicateNickname = nick => {
-		nicknameDuplicationCheck(nick, setDuplicated);
-		// console.log('duplicated', !duplicated);
-		return duplicated;
+		// nicknameDuplicationCheck({user_nickname:nick,},isDuplicated=> {setDuplicated(isDuplicated)},err=>{
+		// 	console.log("dulicated check",err);
+		// }),
+		nicknameDuplicationCheck(
+			{user_nickname: nick},
+			isDuplicated => {
+				// console.log('isDuplKicated', isDuplicated.msg);
+				// console.log('api return', isDuplicated.msg);
+				setDuplicated(isDuplicated.msg);
+			},
+
+			err => {
+				console.log('duplicated check', err);
+			},
+		);
+
+		// console.log('duplicated, nick', duplicated, nick);
 	};
 
 	//닉네임 Validation
@@ -123,9 +147,16 @@ export default ChangeUserProfileImage = ({route}) => {
 	const validateNewNick = nick => {
 		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
 		// 영문자, 소문자, 숫자, "-","_" 로만 구성된 길이 2~10자리 사이의 문자열
+		// checkDuplicateNickname(newNick);
+		console.log('Dup', duplicated);
 		let regExp = /^[가-힣a-zA-Z0-9_-]{2,15}$/;
-		return regExp.test(nick) && checkDuplicateNickname(nick);
+		setValidated(regExp.test(nick));
+		// checkDuplicateNickname(nick);
+		// console.log('is duplicated?', nick, regExp.test(newNick), duplicated);
+		return regExp.test(nick) && !checkDuplicateNickname(nick);
+		// return regExp.test(nick);
 	};
+
 	return (
 		<ScrollView>
 			<View style={[login_style.wrp_main, {flex: 1}]}>
@@ -147,7 +178,7 @@ export default ChangeUserProfileImage = ({route}) => {
 					{/* 새닉네임 */}
 					<View style={[temp_style.input24_changeUserProfileImage]}>
 						<Input24
-							onChange={text => nickName_validator(text)}
+							onChange={nickName_validator}
 							validator={validateNewNick}
 							onValid={onValidName}
 							value={newNick}
@@ -156,6 +187,7 @@ export default ChangeUserProfileImage = ({route}) => {
 							info={NICKNAME_FORM}
 							placeholder={NEW_NICK_REQUEST}
 							showMsg={true}
+							// showMsg={false}
 							alert_msg={UNAVAILABLE_NICK}
 							confirm_msg={AVAILABLE_NICK}
 							width={654}

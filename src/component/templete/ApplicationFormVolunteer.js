@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {BLUE20, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {Calendar48_Filled, Person48, Phone48} from '../atom/icon';
@@ -13,38 +13,37 @@ import {acceptVolunteer, cancelVolunteer, getVolunteerItemDetail} from 'Root/api
 import {Linking} from 'react-native';
 import moment from 'moment';
 import {getUserInfoById} from 'Root/api/userapi';
+import {setVolunteerActivityStatus} from 'Root/api/volunteerapi';
 
 //ApplicationFormVolunteer (봉사활동 신청서 폼) 호출 네비게이트
 // ==> ManageVolunteer에서 더보기 클릭, 혹은 AppliesRecord(신청내역)에서 보호소 라벨 클릭 <==
+
 export default ApplicationFormVolunteer = ({route, navigation}) => {
 	// console.log('route / ApplicationFormVolunteer', route.params);
-	const [data, setData] = React.useState(route.params);
-	const [loading, setLoading] = React.useState(true);
-	const [acc, setAcc] = React.useState([]);
-	const isShelterOwner = route.name == 'ShelterVolunteerForm';
-	// const isShelterOwner = false;
+	const [data, setData] = React.useState(route.params); // 봉사활동 Object
+	const [loading, setLoading] = React.useState(true); // 화면 출력 여부 결정
+	const [applicant, setApplicant] = React.useState([]); // 봉사활동 지원자 배열 (Object배열)
+	const isShelterOwner = route.name == 'ShelterVolunteerForm'; // 보호소 계정의 봉사활동 신청관리 루트로 들어왔는지 여부
 
-	//봉사활동 디테일 정보 얻어오기, 차후 Data에 담기
-	React.useEffect(() => {}, []);
-
+	//봉사활동 지원자 프로필 라벨 채우기 위한 API 접속(차후 한 번에 받아오는 방식으로 전환 필요)
 	React.useEffect(() => {
 		if (route.name == 'UserVolunteerForm') {
 			// console.log('BeforeSplice', data.volunteer_accompany);
-			const d = data.volunteer_accompany.findIndex(e => e == null);
-			data.volunteer_accompany.splice(d, 1);
-			const dup = new Set(data.volunteer_accompany);
-			let acc = [...dup];
-			console.log('중복제거 후 ', acc.length);
-			acc.map((v, i) => {
+			const isNull = data.volunteer_accompany.findIndex(e => e == null); //이유는 모르겠지만 volunteer_accompany 필드에 널값이 지속적으로 들어옴
+			isNull != null ? data.volunteer_accompany.splice(isNull, 1) : false; // 널 값은 배열에서 삭제
+			const dupRemoved = new Set(data.volunteer_accompany); // 중복값도 삭제
+			let accompanies = [...dupRemoved];
+			let copy = [...applicant];
+			//중복 및 널값이 삭제된 봉사활동 지원자들의 유저Object를 acc State에 담기
+			accompanies.map((v, i) => {
 				getUserInfoById(
 					{
 						userobject_id: v,
 					},
 					result => {
 						// console.log('result / getUserInfoById / UserVolunteerForm  ', i, result.msg);
-						let copy = [...acc];
-						copy[i] = result.msg;
-						setAcc(copy);
+						copy.push(result.msg);
+						setApplicant(copy);
 					},
 					err => {
 						console.log('err / getUserInfoById / USerVolunteerForm  ', err);
@@ -54,13 +53,16 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 			// console.log('[...dup]', acc);
 			setTimeout(() => {
 				setLoading(false);
-			}, 2500);
+			}, 500);
+		} else {
+			//ShelterVolunteerForm
+			console.log('ShelterVolunteerForm Recieved params', route.params.volunteer_accompany);
+			setApplicant(data.volunteer_accompany);
+			setTimeout(() => {
+				setLoading(false);
+			}, 1000);
 		}
 	}, []);
-
-	React.useEffect(() => {
-		console.log('acc', acc.length);
-	}, [acc]);
 
 	//일반 봉사활동 신청자 계정이 신청 취소 버튼을 눌렀을 때
 	const onPressCancel = () => {
@@ -73,10 +75,13 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 				Modal.close();
 				//봉사활동 신청 취소 - 대상 봉사활동의 고유 아이디를 보내고 해당 봉사활동의 봉사활동자 목록(volunteer_accompany)에서 현재 유저를 제외.
 				//만약 현재 봉사활동자 목록이 단 한명이 남은 상태(로그인 유저)라면 봉사활동 자체가 취소 상태로 되는 로직 구현 필요
-				cancelVolunteer(
-					data._id,
-					successed => {
-						console.log('successed / cancelVolunteer', successed);
+				setVolunteerActivityStatus(
+					{
+						volunteer_activity_object_id: data._id,
+						volunteer_status: 'cancel',
+					},
+					result => {
+						console.log('result / setVolunteerActivity / Cancel  : ', result);
 						Modal.popNoBtn('봉사활동이 취소되었습니다.');
 						setTimeout(() => {
 							Modal.close();
@@ -101,10 +106,10 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 			() => Modal.close(),
 			() => {
 				Modal.close();
-				acceptVolunteer(
-					data._id,
-					successed => {
-						console.log('successed / acceptVolunteer', successed);
+				setVolunteerActivityStatus(
+					{volunteer_activity_object_id: data._id, volunteer_status: 'accept'},
+					result => {
+						console.log('result / setVolunteerActivityStatus / 활동 승인', result);
 						Modal.popNoBtn('활동 승인이 완료되었습니다!');
 						setTimeout(() => {
 							Modal.close();
@@ -134,7 +139,11 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 	};
 
 	if (loading) {
-		return <></>;
+		return (
+			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
+				<ActivityIndicator size={'large'}></ActivityIndicator>
+			</View>
+		);
 	} else {
 		return (
 			<View style={[login_style.wrp_main, {flex: 1}]}>
@@ -186,12 +195,12 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 							<View style={[applicationFormVolunteer.title]}>
 								<Text style={[txt.noto24b, {color: GRAY10}]}>참여 인원</Text>
 
-								<Text style={[txt.roboto28, {marginLeft: 5, marginTop: 2}]}>{data.volunteer_accompany ? acc.length : '0'}</Text>
+								<Text style={[txt.roboto28, {marginLeft: 5, marginTop: 2}]}>{data.volunteer_accompany ? applicant.length : '0'}</Text>
 							</View>
 						</View>
 						{/* 참여 리스트 */}
 						<View style={[applicationFormVolunteer.participants_step2]}>
-							<AccountList items={acc} onClickLabel={onClickLabel} makeBorderMode={false} showCrossMark={false} />
+							<AccountList items={applicant} onClickLabel={onClickLabel} makeBorderMode={false} showCrossMark={false} />
 						</View>
 					</View>
 					{/* 봉사활동자 연락처 */}
@@ -225,4 +234,85 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 			</View>
 		);
 	}
+};
+
+const e = {
+	__v: 0,
+	_id: '61c041e9679aa5ae461283f8',
+	user_introduction: 'ㅇㅇㅇㅇㅇ',
+	user_nickname: 'Di1',
+	user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639666144077_B70FDBD2-53F4-4FAA-A6F1-13345B04FEE3.jpg',
+	volunteer_accompany: [
+		{
+			__v: 6,
+			_id: '61b84ddb4a1b66f74b699b1e',
+			pet_family: [Array],
+			user_address: [Object],
+			user_denied: false,
+			user_follow_count: 0,
+			user_follower_count: 0,
+			user_introduction: 'ㅇㅇㅇㅇㅇ',
+			user_is_verified_email: false,
+			user_is_verified_phone_number: true,
+			user_mobile_company: 'SKT텔레콤',
+			user_my_pets: [Array],
+			user_name: '권상우',
+			user_nickname: 'Di1',
+			user_password: 'tkddn123',
+			user_phone_number: '01096450422',
+			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639666144077_B70FDBD2-53F4-4FAA-A6F1-13345B04FEE3.jpg',
+			user_register_date: '2021-12-14T07:55:07.933Z',
+			user_type: 'user',
+			user_upload_count: 0,
+		},
+		{
+			__v: 0,
+			_id: '61bfff1395d6442789e48eea',
+			pet_family: [Array],
+			user_address: [Object],
+			user_denied: false,
+			user_follow_count: 0,
+			user_follower_count: 0,
+			user_introduction: '',
+			user_is_verified_email: false,
+			user_is_verified_phone_number: true,
+			user_mobile_company: 'LG U+',
+			user_my_pets: [Array],
+			user_name: '십이월이십일',
+			user_nickname: '십이월이십일',
+			user_password: '1111111g',
+			user_phone_number: '0105555',
+			user_profile_uri:
+				'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639972627670_rn_image_picker_lib_temp_891e66d5-d00f-49a0-a06c-8b6912e40405.jpg',
+			user_register_date: '2021-12-20T03:57:07.874Z',
+			user_type: 'user',
+			user_upload_count: 0,
+		},
+		{
+			__v: 6,
+			_id: '61b84ddb4a1b66f74b699b1e',
+			pet_family: [Array],
+			user_address: [Object],
+			user_denied: false,
+			user_follow_count: 0,
+			user_follower_count: 0,
+			user_introduction: 'ㅇㅇㅇㅇㅇ',
+			user_is_verified_email: false,
+			user_is_verified_phone_number: true,
+			user_mobile_company: 'SKT텔레콤',
+			user_my_pets: [Array],
+			user_name: '권상우',
+			user_nickname: 'Di1',
+			user_password: 'tkddn123',
+			user_phone_number: '01096450422',
+			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639666144077_B70FDBD2-53F4-4FAA-A6F1-13345B04FEE3.jpg',
+			user_register_date: '2021-12-14T07:55:07.933Z',
+			user_type: 'user',
+			user_upload_count: 0,
+		},
+	],
+	volunteer_delegate_contact: '008',
+	volunteer_status: 'waiting',
+	volunteer_target_shelter: '61c023d9679aa5ae46128102',
+	volunteer_wish_date: ['2021-12-08T00:00:00.000Z'],
 };
