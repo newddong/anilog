@@ -36,7 +36,7 @@ const UserDescriptionLabel = props => {
 		// <View style={{flexDirection: 'row', alignItems: 'center', width: props.width != null ? props.width : null}}>
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{uri: data.user_profile_uri || DEFAULT_PROFILE}} style={[styles.img_round_94, {backgroundColor: 'yellow'}]} />
+				<Image source={{uri: data.user_profile_uri || DEFAULT_PROFILE}} style={[styles.img_round_94]} />
 			</TouchableOpacity>
 			<View style={{marginLeft: 30 * DP}}>
 				<View style={{flexDirection: 'row'}}>
