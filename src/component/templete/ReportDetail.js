@@ -46,11 +46,9 @@ export default ReportDetail = props => {
 				feedobject_id: '61c288f97be07611b0094b43',
 			},
 			data => {
-				console.log(`ReportDetail data:${JSON.stringify(data.msg)}`);
+				// console.log(`ReportDetail data:${JSON.stringify(data.msg)}`);
 				let dateValue = data.msg.report_witness_date;
-				console.log(`dateValue----------------- data:${dateValue}`);
 				if (dateValue != undefined && dateValue.length > 10) {
-					console.log(`ReportDetail data:${dateValue}`);
 					data.msg.report_witness_date = JSON.stringify(data.msg.report_witness_date).split('T')[0].replace(/\"/, '');
 				}
 				setData(data.msg);
@@ -71,7 +69,6 @@ export default ReportDetail = props => {
 				request_number: 10,
 			},
 			commentdata => {
-				console.log(`commentdata:${JSON.stringify(commentdata.msg)}`);
 				commentdata.msg.map((v, i) => {
 					commentdata.msg[i].user_address = commentdata.msg[i].comment_writer_id.user_address;
 					commentdata.msg[i].user_profile_uri = commentdata.msg[i].comment_writer_id.user_profile_uri;
@@ -79,8 +76,25 @@ export default ReportDetail = props => {
 					commentdata.msg[i].comment_date = moment(JSON.stringify(commentdata.msg[i].comment_date).replace(/\"/g, '')).format('YYYY.MM.DD hh:mm:ss');
 					commentdata.msg[i].feed_type = 'report';
 				});
-
-				setCommentDataList(commentdata.msg);
+				let commentArray = [];
+				let tempComment = commentdata.msg;
+				tempComment.map((v, i) => {
+					// comment_parent가 없으면 일반 댓글
+					if (v.comment_parent == undefined) {
+						commentArray.push(v);
+						//push한 JSON에 대댓글이 달릴 수 있으므로 childArray 배열 속성을 추가.
+						commentArray[commentArray.length - 1].childArray = [];
+					} else if (v.comment_parent != undefined && v.comment_parent != '') {
+						//부모 댓글값이 존재할 경우 대댓글임, 원래 댓글의 childArray 배열에 push 함.
+						for (let j = 0; j < commentArray.length; j++) {
+							if (commentArray[j]._id == v.comment_parent) {
+								commentArray[j].childArray.push(v);
+								break;
+							}
+						}
+					}
+				});
+				setCommentDataList(commentArray);
 			},
 			errcallback => {
 				console.log(`Comment errcallback:${JSON.stringify(errcallback)}`);
