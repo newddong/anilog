@@ -22,18 +22,12 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import {organism_style, profileInfo_style} from '../organism/style_organism';
 import {Bracket48} from '../atom/icon';
 
-//AnimalProtectRequestDetail에서 접근해야하는 데이터 테이블
-//  ProtectRequestObject(보호요청 게시글에 대한 데이터)
-// 	ShelterProtectAnimalObject(보호요청된 동물에 대한 데이터 ex)중성화 여부, 성별 품종 등
-//  CommentObject(댓글쓰기 및 댓글 대댓글에 대한 데이터)
-//  FeedObject (댓글 Data Write할 시 comment_feed_id, comment_feed_writer_id가 필요)
-
 //AnimalProtectRequestDetail 호출 경로
 // - AnimalNeedHelp Item의 썸네일을 클릭할 경우 호출.
 // - AnimalNeedHelp Item의 BorderMode=true 에서 게시글보기를 클릭하였을 경우 호출
 
 export default AnimalProtectRequestDetail = ({route}) => {
-	// console.log('AnimalProtectRequestDetail', route.params);
+	console.log('AnimalProtectRequestDetail', route.params);
 	const navigation = useNavigation();
 	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
 	const [data, setData] = React.useState(route.params); // ProtectRequestObject, ShelterProtectAnimalObject 정보가 담겨 있는 상태

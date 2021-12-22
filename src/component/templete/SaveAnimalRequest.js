@@ -32,8 +32,8 @@ export default SaveAnimalRequest = ({route}) => {
 				protect_request_object_id: null,
 				request_number: 3,
 			},
-			successed => {
-				console.log('successed', successed);
+			result => {
+				console.log('result / getProtectRequestLIst / ShelterSaveAnimalRequest', result);
 				// setProtectAnimalList(successed.msg);
 				// 받아온 protect_animal_protect_Request_id로 해당 게시글 좋아요 여부도 판별해야함
 			},

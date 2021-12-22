@@ -38,7 +38,7 @@ export default AnimalNeedHelpList = props => {
 					isChecked={item.checkBoxState}
 					isCheckAll={props.isCheckAll}
 					borderMode={props.borderMode}
-					onClickLabel={onClickLabel}
+					onClickLabel={(status, id) => onClickLabel(status, id, item)}
 					onHashClick={() => props.onHashClick(item)}
 					onCheckBox={e => props.onCheckBox(e, index)}
 					onFavoriteTag={e => props.onFavoriteTag(e, index)}
