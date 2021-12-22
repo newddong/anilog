@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, View, TouchableOpacity} from 'react-native';
+import {ScrollView, Text, View, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
@@ -145,7 +145,11 @@ export default ManageVolunteer = ({route}) => {
 	};
 
 	if (loading) {
-		return <></>;
+		return (
+			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
+				<ActivityIndicator size={'large'}></ActivityIndicator>
+			</View>
+		);
 	} else {
 		return (
 			<View style={[login_style.wrp_main, {flex: 1}]}>

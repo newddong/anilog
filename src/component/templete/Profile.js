@@ -3,6 +3,7 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {View, TouchableWithoutFeedback} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {getProtectRequestListByShelterId, getShelterProtectAnimalList} from 'Root/api/shelterapi';
 import {getUserInfoById, getUserProfile} from 'Root/api/userapi';
 import DP from 'Root/config/dp';
 import {
@@ -25,19 +26,18 @@ import PetList from '../organism_ksw/PetList';
 import ProtectedPetList from '../organism_ksw/ProtectedPetList';
 import {login_style, profile, temp_style} from './style_templete';
 
-export default Profile = props => {
+export default Profile = ({route, navigation}) => {
 	// console.log('profile props', props.route.params);
-	const navigation = useNavigation();
-	const [profile_data, setProfile_data] = React.useState(props.route.params || dummy_UserObject_shelter[0]); //라벨을 클릭한 유저의 userObject data
+	const [profile_data, setProfile_data] = React.useState(route.params || dummy_UserObject_shelter[0]); //라벨을 클릭한 유저의 userObject data
 	const [tabMenuSelected, setTabMenuSelected] = React.useState(0); //프로필 Tab의 선택상태
 	const [showOwnerState, setShowOwnerState] = React.useState(false); // 현재 로드되어 있는 profile의 userType이 Pet인 경우 반려인 계정 리스트의 출력 여부
 	const [showCompanion, setShowCompanion] = React.useState(false); // User계정이 반려동물버튼을 클릭
-
+	const [protectActList, setProtectActList] = React.useState([]);
 	React.useEffect(() => {
 		getUserProfile(
 			{
-				userobject_id: profile_data._id, //상우보호소4 임시로
-				user_type: profile_data.user_type,
+				userobject_id: route.params ? route.params._id : '61c023d9679aa5ae46128102', //상우보호소4 임시로
+				user_type: route.params ? route.params.user_type : 'shelter',
 			},
 			result => {
 				console.log('result / getUserProfile / Profile  :  ', result.msg.user_nickname);
@@ -50,7 +50,21 @@ export default Profile = props => {
 	}, []);
 
 	React.useEffect(() => {
-		// console.log('profileData userTYpe', profile_data.user_type);
+		getProtectRequestListByShelterId(
+			{
+				shelter_userobject_id: profile_data._id,
+				request_number: 10,
+				protect_request_object_id: null,
+				protect_request_status: 'rescue',
+			},
+			result => {
+				console.log('result / getProtectRequestListByShelterId / Profile  : ', result.msg);
+				setProtectActList(result.msg);
+			},
+			err => {
+				console.log('err / getProtectRequestListByShelterId / Profile   :', err);
+			},
+		);
 	}, [profile_data]);
 
 	//프로필의 피드탭의 피드 썸네일 클릭
@@ -80,14 +94,14 @@ export default Profile = props => {
 	};
 
 	//보호소프로필의 보호활동 탭의 피드 썸네일 클릭
-	const onClick_ProtectedThumbLabel = (status, user_id, item) => {
-		// console.log('item', item);
-		navigation.push('AnimalProtectRequestDetail', item);
+	const onClickProtectAnimal = (status, user_id, item) => {
+		console.log('item', item);
+		navigation.push('AnimalProtectRequestDetail', {item: item, list: protectActList});
 	};
 
 	//피드글작성 버튼 클릭(액션버튼)
 	const moveToFeedWrite = () => {
-		props.navigation.push('FeedWrite');
+		navigation.push('FeedWrite');
 	};
 
 	//액션버튼 하단 탭 메뉴 클릭 콜백함수
@@ -131,8 +145,9 @@ export default Profile = props => {
 					</View>
 				</View>
 			) : (
+				//유저타입 - 보호소 => 보호소가 보호중인 동물들의 리스트 출력
 				<View style={[profile.animalNeedHelpList]}>
-					<AnimalNeedHelpList data={dummy_AnimalFromShelter_adopted} onClickLabel={onClick_ProtectedThumbLabel} />
+					<AnimalNeedHelpList data={protectActList} onClickLabel={onClickProtectAnimal} />
 				</View>
 			);
 		}

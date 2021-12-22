@@ -22,42 +22,7 @@ export default SaveAnimalRequest = ({route}) => {
 	const [acceptAllState, setAcceptAllState] = React.useState(false);
 	const [isDeleted, setIsDeleted] = React.useState(false);
 
-	React.useEffect(() => {
-		Modal.popNoBtn('잠시만 기다려주세요.');
-		route.name == 'UserSaveAnimalRequest'
-			? AsyncStorage.getItem('token', (err, res) => {
-					if (res) {
-						getUserProtectAnimalList(
-							{userobject_id: res},
-							result => {
-								console.log('result / getUserProtectAnimalList', result.msg);
-								setData(result.msg);
-								Modal.close();
-							},
-							err => {
-								console.log('err / getUserProtectAnimalList / saveAnimalRequest    :    ', err);
-								Modal.close();
-							},
-						);
-					}
-			  })
-			: getShelterProtectAnimalList(
-					{
-						shelter_protect_animal_object_id: null,
-						request_number: 10,
-					},
-					result => {
-						console.log('result / getShelterProtectAnimalList', result.msg);
-						setData(result.msg);
-						Modal.close();
-					},
-					err => {
-						console.log('err / getShelterProtectAnimalList / AidRequestAnimalList   :  ', err);
-						setData(err);
-						Modal.close();
-					},
-			  );
-	}, []);
+	React.useEffect(() => {}, []);
 
 	React.useEffect(() => {
 		getProtectRequestList(
@@ -67,8 +32,8 @@ export default SaveAnimalRequest = ({route}) => {
 				protect_request_object_id: null,
 				request_number: 3,
 			},
-			successed => {
-				console.log('successed', successed);
+			result => {
+				console.log('result / getProtectRequestLIst / ShelterSaveAnimalRequest', result);
 				// setProtectAnimalList(successed.msg);
 				// 받아온 protect_animal_protect_Request_id로 해당 게시글 좋아요 여부도 판별해야함
 			},

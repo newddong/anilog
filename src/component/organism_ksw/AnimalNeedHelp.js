@@ -26,11 +26,6 @@ import moment from 'moment';
 export default AnimalNeedHelp = props => {
 	const data = props.data;
 	// console.log('AnimalNeedHelp / ', data);
-
-	// console.log('AnimalNeedHelp', data);
-
-	// console.log(`AnimalNeedHelp:data=>${JSON.stringify(data)}`);
-	// const [data, setData] = React.useState(props.data);
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 
@@ -48,6 +43,8 @@ export default AnimalNeedHelp = props => {
 		} else if (data.hasOwnProperty('feed_thumbnail')) {
 			// 실종/제보 썸네일
 			resultJSON.img_uri = data.feed_thumbnail;
+		} else if (data.hasOwnProperty('protect_animal_photo_uri_list')) {
+			resultJSON.img_uri = data.protect_animal_photo_uri_list[0];
 		} else {
 			//기본 썸네일 적용
 			resultJSON.img_uri = DEFAULT_ANIMAL_PROFILE;
@@ -105,7 +102,7 @@ export default AnimalNeedHelp = props => {
 	};
 
 	const getParsedDate = () => {
-		let date;
+		let date = '';
 		if (data.feed_type == 'missing' || data.feed_type == 'report') {
 			date = data.missing_animal_date;
 		} else {
@@ -116,11 +113,6 @@ export default AnimalNeedHelp = props => {
 			return date;
 		}
 		return date;
-	};
-
-	const getShelterName = () => {
-		let shelter_name = '';
-		// getUser;
 	};
 
 	const contents = () => {
@@ -161,9 +153,11 @@ export default AnimalNeedHelp = props => {
 							{/* 보호요청 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
 								<Text style={[txt.noto24]}>등록일 : {getParsedDate()}</Text>
-								<Text style={[txt.noto24]}>보호장소 : {data.protect_request_writer_id.shelter_name}</Text>
 								<Text style={[txt.noto24]}>
-									구조지역 :{data.protect_animal_id.protect_animal_rescue_location}
+									보호장소 : {data.protect_request_writer_id != null ? data.protect_request_writer_id.shelter_name : data.shelter_name}
+								</Text>
+								<Text style={[txt.noto24]}>
+									구조지역 :
 									{data.protect_animal_rescue_location ? data.protect_animal_rescue_location : data.protect_animal_id.protect_animal_rescue_location}
 								</Text>
 							</View>

@@ -11,20 +11,78 @@ import {animalProtectList} from '../templete/style_templete';
 import AnimalNeedHelp from './AnimalNeedHelp';
 import {animalProtectDetail} from './style_organism';
 
-//AnimalProtectDetail에서 처리해야할 데이터는 크게 두가지 -
-//  1 - ApplyCompanion ABCDE 과정을 걸쳐 작성한 임보, 입양 신청 관련 Data
-//  2 - 페이지 최상단에 나오는 AnimalNeedHelpList Item과 관련된 임보 및 입양 대상 동물에 대한 Data [ 참조 : ShelterProtectAnimalObject ]
-// AnimalProtectDetail 호출하는 템플릿 - AdoptorInformation(data), ApplyDetails(data), (T)ProtectApplyForm
-// AnimalProtectDetail이 접근하는 테이블 : @UserObject, @ProtectRequestObject , @ShelterProtectAnimalObject, @ProtectionActivityApllicantObject
 export default AnimalProtectDetail = props => {
-	// console.log(' AnimalProtectDetail / props.data', props.data);
-
-	const [data, setData] = React.useState(props.data);
-
-	React.useEffect(() => {
-		setData(props.data);
-	}, [props.data]);
-
+	console.log(' AnimalProtectDetail / props.data', props.data);
+	const data = props.data;
+	const dd = {
+		__v: 0,
+		_id: '61c175d0b83cbeb3c893db71',
+		protect_animal_id: {
+			__v: 0,
+			_id: '61c07f0c0b3fb5a4acae2c26',
+			protect_act_applicants: [],
+			protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
+			protect_animal_estimate_age: '4년 1개월',
+			protect_animal_neutralization: 'unknown',
+			protect_animal_photo_uri_list: [],
+			protect_animal_protect_request_id: '61c175d0b83cbeb3c893db71',
+			protect_animal_protector_discussion_id: [],
+			protect_animal_rescue_date: '2004-08-12T00:00:00.000Z',
+			protect_animal_rescue_location: '고르고스 언덕',
+			protect_animal_sex: 'female',
+			protect_animal_species: '기타',
+			protect_animal_species_detail: '치와와',
+			protect_animal_status: 'rescue',
+			protect_animal_weight: 12,
+		},
+		protect_animal_species: '기타',
+		protect_animal_species_detail: '치와와',
+		protect_request_comment_count: 0,
+		protect_request_content: '나이는 많아 보이지만 아주 정이 많아보입니다. 데려가기를 연락하세요.',
+		protect_request_date: '2021-12-21T06:36:00.739Z',
+		protect_request_favorite_count: 0,
+		protect_request_hit: 0,
+		protect_request_photos_uri: [],
+		protect_request_status: 'complete',
+		protect_request_title: '새로운 엄마를 구해요',
+		protect_request_update_date: '2021-12-21T06:36:00.739Z',
+		protect_request_writer_id: {
+			__v: 0,
+			_id: '61c023d9679aa5ae46128102',
+			pet_family: [],
+			shelter_address: {brief: '마포구 신수동 89-77', detail: '203호'},
+			shelter_delegate_contact_number: '01096450001',
+			shelter_foundation_date: '2011-12-04T00:00:00.000Z',
+			shelter_homepage: '',
+			shelter_name: '상우 보호소6',
+			user_agreement: {
+				is_donation_info: false,
+				is_location_service_info: false,
+				is_marketting_info: false,
+				is_over_fourteen: false,
+				is_personal_info: false,
+				is_service: false,
+			},
+			user_denied: false,
+			user_email: 'lanad01@naver.com',
+			user_follow_count: 0,
+			user_follower_count: 0,
+			user_interests: [],
+			user_introduction:
+				'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
+			user_is_verified_email: false,
+			user_is_verified_phone_number: false,
+			user_my_pets: [],
+			user_name: '상우 보호소5',
+			user_nickname: '가하즈보호소',
+			user_password: '121212',
+			user_phone_number: '01096450001',
+			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
+			user_register_date: '2021-12-20T06:34:01.773Z',
+			user_type: 'shelter',
+			user_upload_count: 0,
+		},
+	};
 	const getStatusText = arg => {
 		switch (arg) {
 			case 'living':
@@ -42,9 +100,7 @@ export default AnimalProtectDetail = props => {
 	return (
 		<ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
 			<View style={[animalProtectDetail.container]}>
-				<View style={[animalProtectDetail.animalNeedHelp_container]}>
-					<AnimalNeedHelp data={data} />
-				</View>
+				<View style={[animalProtectDetail.animalNeedHelp_container]}>{/* <AnimalNeedHelp data={data} /> */}</View>
 				<View style={[animalProtectDetail.details_container]}>
 					{/* 보호장소 */}
 					{

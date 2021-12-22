@@ -57,7 +57,7 @@ export default AccountList = props => {
 				style={[organism_style.accountListItem, {borderColor: selectedIndex == index && props.makeBorderMode ? APRI10 : WHITE}]}
 				onPress={() => makeBorder(item, index)}>
 				<View style={[organism_style.userDescriptionLabelContainer]}>
-					<UserDescriptionLabel data={item} width={250} onClickLabel={onclickLabel} />
+					<UserDescriptionLabel data={item} width={310} onClickLabel={onclickLabel} />
 				</View>
 				{props.showCrossMark ? (
 					<View style={{position: 'absolute', right: 15 * DP}}>

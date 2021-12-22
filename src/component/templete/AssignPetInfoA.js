@@ -22,7 +22,7 @@ export default AssignPetInfoA = props => {
 	const pet_speciesArray = ['개', '고양이', '기타'];
 	const pet_speciesDog = ['말티즈', '치와와', '요크'];
 	const pet_speciesCat = ['페르시안', '벵골고양이', '메인쿤'];
-	const pet_speciesOthers = ['새', '햄스터', '토끼'];
+	const pet_speciesOthers = ['새', '햄스터', '토끼', '펭귄', '호랑이', '사자', '도마뱀', '원숭이'];
 
 	const [speciesDetail, setSpeciesDetail] = React.useState(pet_speciesDog);
 

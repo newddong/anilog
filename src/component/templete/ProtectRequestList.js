@@ -28,11 +28,15 @@ export default ProtectRequestList = ({navigation, route}) => {
 				//커서 역할을 할 보호요청 오브잭트(페이징 처리)
 				protect_request_object_id: '',
 				//보호요청게시글 요청 숫자
-				request_number: 1,
+				request_number: 10,
 			},
 			data => {
 				// console.log('data' + JSON.stringify(`data${data}`));
-				// console.log('보호요청 ', data.msg);
+				// data.msg.forEach(e => console.log('forEach', e.protect_animal_id.protect_animal_sex, e.protect_animal_id.protect_animal_status));
+				data.msg.forEach(each => {
+					each.protect_animal_sex = each.protect_animal_id.protect_animal_sex;
+					each.protect_animal_status = each.protect_animal_id.protect_animal_status;
+				});
 				setData(data.msg);
 			},
 			errcallback => {
@@ -42,7 +46,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 	}, [route.params]);
 
 	React.useEffect(() => {
-		// console.log(`ProtectRequestList data:${JSON.stringify(data)}`);
+		console.log(`ProtectRequestList data:${JSON.stringify(data)}`);
 	}, [data]);
 
 	// [hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
