@@ -175,7 +175,7 @@ const ScrollItem = props => {
 		console.log('Child onLayout', Platform.OS, e.nativeEvent);
 		scrollOffset.current = new Animated.Value(e.nativeEvent.layout.y);
 		offsetInLayout.current = Animated.subtract(scrollOffset.current,props.scrolloffset.current);
-		setItemOffset(e.nativeEvent.layout.y);
+		setItemOffset(e.nativeEvent.layout);
 	};
 
 	const rotateX = offsetInLayout.current==0?'90deg':offsetInLayout.current.interpolate({
@@ -189,7 +189,13 @@ const ScrollItem = props => {
 	});
 
 	React.useEffect(()=>{
-		console.log('z',props.currentY);
+		console.log('index'+props.index,props.currentY, itemOffset.y);
+		if((itemOffset.y-3*itemOffset.height)==props.currentY&&props.currentY!=0){
+			setSelect(true);
+			props.onItemSelection && props.onItemSelection(props.item);
+		}else{
+			setSelect(false);
+		}
 	},[props.currentY])
 
 
