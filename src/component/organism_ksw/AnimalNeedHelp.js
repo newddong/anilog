@@ -229,7 +229,7 @@ export default AnimalNeedHelp = props => {
 									보호장소 : {data.protect_request_writer_id != null ? data.protect_request_writer_id.shelter_name : data.shelter_name}
 								</Text>
 								<Text style={[txt.noto24]}>
-									구조지역 :{data.protect_animal_id.protect_animal_rescue_location}
+									구조지역 :
 									{data.protect_animal_rescue_location ? data.protect_animal_rescue_location : data.protect_animal_id.protect_animal_rescue_location}
 								</Text>
 							</View>
