@@ -190,7 +190,8 @@ const ScrollItem = props => {
 
 	React.useEffect(()=>{
 		console.log('index'+props.index,props.currentY, itemOffset.y);
-		if((itemOffset.y-3*itemOffset.height)==props.currentY&&props.currentY!=0){
+		let testOffset = itemOffset.y-3*itemOffset.height;
+		if(testOffset<=props.currentY+10&&testOffset>=props.currentY-10&&props.currentY!=0){
 			setSelect(true);
 			props.onItemSelection && props.onItemSelection(props.item);
 		}else{

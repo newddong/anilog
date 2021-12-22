@@ -1,6 +1,9 @@
 import axios from 'axios';
 import {serveruri, cookieReset} from 'Root/config/server';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import CookieManager from '@react-native-cookies/cookies';
+
+let sid = undefined;
 
 /**
  * axios와 api파일의 각 함수들의 공통 작업을 연결하기 위한 컨트롤러
@@ -8,6 +11,21 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @param {IArguments}} args - 함수의 arguments, MDN참조
  */
 export async function apiController(path, args) {
+	
+	if(!sid){
+		console.log('어싱크 스코리지에서 불러옴');
+		sid = await AsyncStorage.getItem('sid');
+	}
+	if(sid){
+		console.log(sid);
+		try {
+			await cookieReset(sid,path);
+		} catch (err) {
+			console.log('쿠키 에러',err);
+			args[2](err + ''); //에러 처리 콜백
+		}
+	}
+
 	let existFileField = Object.keys(args[0]).some(v => v.includes('uri'));
 	if (existFileField) {
 		
@@ -17,6 +35,18 @@ export async function apiController(path, args) {
 
 	try {
 		let result = await axios.post(serveruri + path, args[0]);
+		if(path.includes('userLogin')){
+			try {
+			let cookie = await CookieManager.get(serveruri);
+			sid = cookie['connect.sid'].value;
+			await AsyncStorage.setItem('sid', cookie['connect.sid'].value);
+			
+			console.log('유저로그인',cookie);
+			}catch(err){
+				console.log('로그인 에러',err);
+				args[2](err + ''); //에러 처리 콜백
+			}
+		}
 		if (result.data.status == 200) {
 			args[1](result.data);
 		} else {
@@ -25,13 +55,6 @@ export async function apiController(path, args) {
 	} catch (err) {
 		args[2](err + ''); //에러 처리 콜백
 	}
-
-	// try {
-	// 	//서버와 통신
-	// 	setTimeout(args[1], 1000, args[0]);
-	// } catch (err) {
-	// 	setTimeout(args[2], 1000, err + ''); //에러 처리 콜백
-	// }
 }
 
 /**
@@ -89,16 +112,9 @@ export async function apiFormController(path, args) {
 			args[2](result.data.msg);
 		}
 	} catch (err) {
-		// args[2](err + ''); //에러 처리 콜백
 		args[2](err + ''); //에러 처리 콜백
 	}
 
-	// try {
-	// 	//서버와 통신
-	// 	setTimeout(args[1], 1000, args[0]);
-	// } catch (err) {
-	// 	setTimeout(args[2], 1000, err + ''); //에러 처리 콜백
-	// }
 }
 
 //쿠키 리셋 코드

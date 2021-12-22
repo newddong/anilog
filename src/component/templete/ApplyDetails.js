@@ -2,7 +2,6 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, Image} from 'react-native';
 import {createProtectActivity} from 'Root/api/protectapi';
-import {assignProtectionActivity} from 'Root/api/userapi_ksw';
 import {CONFIRM_ADOPT_REQUEST, CONFIRM_FINALIZED, CONFIRM_PROTECT_REQUEST} from 'Root/i18n/msg';
 import {btn_w226} from '../atom/btn/btn_style';
 import Modal from '../modal/Modal';

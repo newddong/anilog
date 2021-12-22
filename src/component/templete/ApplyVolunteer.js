@@ -14,8 +14,6 @@ import DatePicker from '../molecules/DatePicker';
 import Input24 from '../molecules/Input24';
 import Modal from '../modal/Modal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {getUserLabel} from 'Root/api/userapi_ksw';
-import {assignVolunteer} from 'Root/api/volunteer_api_ksw';
 import {getUserInfoById} from 'Root/api/userapi';
 import {assignVolunteerActivity} from 'Root/api/volunteerapi';
 

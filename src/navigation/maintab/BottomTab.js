@@ -16,7 +16,6 @@ import {
 	MyTabBorder,
 	MyTabFilled,
 } from 'Atom/icon';
-import {logoutTemp} from 'Root/api/userapi_ksw';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function BottomTab({state, descriptors, navigation}) {

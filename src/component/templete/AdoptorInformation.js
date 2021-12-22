@@ -1,6 +1,5 @@
 import React from 'react';
 import {ScrollView, View} from 'react-native';
-import {getAdoptorInformation} from 'Root/api/protect_act_api_ksw';
 import {dummy_AdoptorInformation} from 'Root/config/dummyDate_json';
 import AnimalProtectDetail from '../organism_ksw/AnimalProtectDetail';
 import {login_style, btn_style, temp_style, baseInfo_style} from './style_templete';
