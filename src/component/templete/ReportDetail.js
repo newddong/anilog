@@ -9,6 +9,7 @@ import {_dummy_ReportDetail} from 'Root/config/dummy_data_hjs';
 import {dummy_CommentObject} from 'Root/config/dummyDate_json';
 import {getFeedDetailById} from 'Root/api/feedapi';
 import {getCommentListByFeedId} from 'Root/api/commentapi';
+import {createComment} from 'Root/api/commentapi';
 import moment from 'moment';
 
 export default ReportDetail = props => {
@@ -24,6 +25,7 @@ export default ReportDetail = props => {
 	const [replyText, setReplyText] = React.useState(); //댓글 텍스트 state
 	const [showMore, setShowMore] = React.useState(false); //더보기 클릭 State
 	const [commentDataList, setCommentDataList] = React.useState(); //더보기 클릭 State
+	const [writeCommentData, setWriteCommentData] = React.useState(); //더보기 클릭 State
 	const debug = false;
 	React.useEffect(() => {
 		setPhoto(props.route.params);
@@ -70,12 +72,17 @@ export default ReportDetail = props => {
 			},
 			commentdata => {
 				commentdata.msg.map((v, i) => {
+					//1depth를 올려준다.
 					commentdata.msg[i].user_address = commentdata.msg[i].comment_writer_id.user_address;
 					commentdata.msg[i].user_profile_uri = commentdata.msg[i].comment_writer_id.user_profile_uri;
 					commentdata.msg[i].user_nickname = commentdata.msg[i].comment_writer_id.user_nickname;
 					commentdata.msg[i].comment_date = moment(JSON.stringify(commentdata.msg[i].comment_date).replace(/\"/g, '')).format('YYYY.MM.DD hh:mm:ss');
+					//일반 피드글과 구분하기 위해 feed_type 속성 추가 (다른 템플릿들과 시간 표기가 달라서 실종/제보에만 feed_type을 추가하고 시간 표기시 해당 속성 존재 여부만 판단)
 					commentdata.msg[i].feed_type = 'report';
 				});
+
+				//댓글과 대댓글 작업 (부모 댓글과 자식 댓글 그룹 형성- 부모 댓글에서 부모의 childArray 속성에 자식 댓글 속성들을 추가)
+				//부모 댓글은 실제 삭제불가하며 필드로 삭제 여부 값 형성 필요. (네이버나 다음 까페에서도 대댓글 존재시 댓글은 삭제해도 댓글 자리는 존재하고 그 밑으로 대댓글 그대로 노출됨)
 				let commentArray = [];
 				let tempComment = commentdata.msg;
 				tempComment.map((v, i) => {
@@ -94,6 +101,7 @@ export default ReportDetail = props => {
 						}
 					}
 				});
+				// console.log(`commentArray -${JSON.stringify(commentArray)}`);
 				setCommentDataList(commentArray);
 			},
 			errcallback => {
@@ -102,50 +110,11 @@ export default ReportDetail = props => {
 		);
 	}, []);
 
-	// [hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
-	const [data1, setData1] = React.useState({
-		//user object (게시글 작성자의 db 고유 아이디를 통해 조회)
-		user_profile_uri: '',
-		user_nickname: '',
-		user_address: '',
-
-		//feed object
-		feed_object_id: '', //피드 아이디
-		feed_writer_id: '', //게시글 작성자의 db 고유 아이디
-		feed_medias: '', //피드 첨부된 미디어 매체
-		feed_location: '',
-		report_witness_date: '', //제보 게시날짜
-		report_witness_location: '', //제보 장소
-		feed_content: '', //컨텐츠 내용
-		feed_date: '', //피드 최초 작성일자
-		feed_update_date: '', //피드 최종 업로드 날자
-		feed_favorite_count: 0, //게시글을 즐겨찾기로 등록한 수
-		feed_comment_count: 0, //게시글에 달린 댓글의 수
-
-		//comment object (배열 형식으로 받음)  댓글 사용자 정보
-		comment: [
-			{
-				user_profile_uri: '',
-				user_nickname: '',
-				user_address: '',
-
-				comment_contents: '', //댓글 내용
-				comment_photo_uri: '', //댓글 첨부 이미지 uri
-				comment_is_secure: '', //true일때는 writer와 댓글이 달린 게시글 작성자만 볼수있음,
-				comment_date: '', //댓글 작성일시
-				comment_update_date: '', //댓글 최정 수정일시
-				comment_like_count: '', //댓글 좋아요 숫자
-				comment_parent: '', //대댓글이 달린 댓글의 ID
-				comment_parent_writer_id: '', //부모 댓글의 작성자 ID
-			},
-		],
-	});
-
 	//답글 쓰기 => Input 작성 후 보내기 클릭 콜백 함수
 	const onWrite = () => {
 		debug && console.log('onWrite', replyText);
-		debug && console.log('commentData=>' + commentData.comment_contentsdsf);
-		setCommentData({...commentData, comment_contents: replyText, comment_is_secure: privateComment, comment_feed_id: ''});
+		debug && console.log('writeCommentData=>' + writeCommentData.comment_contentsdsf);
+		setWriteCommentData({...writeCommentData, comment_contents: replyText, comment_is_secure: privateComment, comment_feed_id: ''});
 	};
 
 	// 답글 쓰기 -> 자물쇠버튼 클릭 콜백함수
