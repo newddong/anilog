@@ -27,7 +27,7 @@ export default AnimalNeedHelp = props => {
 	const data = props.data;
 	// console.log('AnimalNeedHelp / ', data);
 
-	console.log('AnimalNeedHelp', data);
+	// console.log('AnimalNeedHelp', data);
 
 	// console.log(`AnimalNeedHelp:data=>${JSON.stringify(data)}`);
 	// const [data, setData] = React.useState(props.data);
@@ -102,7 +102,12 @@ export default AnimalNeedHelp = props => {
 	};
 
 	const getParsedDate = () => {
-		let date = data.protect_request_date;
+		let date;
+		if (data.feed_type == 'missing' || data.feed_type == 'report') {
+			date = data.missing_animal_date;
+		} else {
+			date = data.protect_request_date;
+		}
 		if (date != undefined && date.length > 15) {
 			date = moment(date).format('YYYY-MM-DD');
 			return date;
@@ -155,7 +160,7 @@ export default AnimalNeedHelp = props => {
 								<Text style={[txt.noto24]}>등록일 : {getParsedDate()}</Text>
 								<Text style={[txt.noto24]}>보호장소 : {data.protect_request_writer_id.shelter_name}</Text>
 								<Text style={[txt.noto24]}>
-									구조지역 :{' '}
+									구조지역 :{data.protect_animal_id.protect_animal_rescue_location}
 									{data.protect_animal_rescue_location ? data.protect_animal_rescue_location : data.protect_animal_id.protect_animal_rescue_location}
 								</Text>
 							</View>

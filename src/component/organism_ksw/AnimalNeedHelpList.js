@@ -19,7 +19,7 @@ import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
  * }} props
  */
 export default AnimalNeedHelpList = props => {
-	console.log('props.data', props.data);
+	// console.log('props.data', props.data);
 	const debug = false;
 	const onClickLabel = (status, id, item) => {
 		// console.log(`status=>${status} id=>${id}`);
