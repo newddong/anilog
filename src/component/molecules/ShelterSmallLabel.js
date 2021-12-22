@@ -64,43 +64,6 @@ const ShelterSmallLabel = props => {
 	);
 };
 
-const e = {
-	__v: 0,
-	_id: '61c023d9679aa5ae46128102',
-	pet_family: [],
-	shelter_address: {brief: '마포구 신수동 89-77', detail: '203호'},
-	shelter_delegate_contact_number: '01096450001',
-	shelter_foundation_date: '2011-12-04T00:00:00.000Z',
-	shelter_homepage: '',
-	shelter_name: '상우 보호소6',
-	user_agreement: {
-		is_donation_info: false,
-		is_location_service_info: false,
-		is_marketting_info: false,
-		is_over_fourteen: false,
-		is_personal_info: false,
-		is_service: false,
-	},
-	user_denied: false,
-	user_email: 'lanad01@naver.com',
-	user_follow_count: 0,
-	user_follower_count: 0,
-	user_interests: [],
-	user_introduction:
-		'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
-	user_is_verified_email: false,
-	user_is_verified_phone_number: false,
-	user_my_pets: [],
-	user_name: '상우 보호소5',
-	user_nickname: '가하즈보호소',
-	user_password: '121212',
-	user_phone_number: '01096450001',
-	user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
-	user_register_date: '2021-12-20T06:34:01.773Z',
-	user_type: 'shelter',
-	user_upload_count: 0,
-};
-
 ShelterSmallLabel.defaultProps = {
 	data: {
 		user_type: 'shelter',

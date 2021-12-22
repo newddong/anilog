@@ -9,7 +9,6 @@ import ShelterInfo from '../molecules/ShelterInfo';
 import AccountList from '../organism_ksw/AccountList';
 import {login_style, applicationFormVolunteer, btn_style} from './style_templete';
 import {_dummy_ApplicationFormVolunteer_shelter} from 'Root/config/dummy_data_hjs';
-import {acceptVolunteer, cancelVolunteer, getVolunteerItemDetail} from 'Root/api/volunteer_api_ksw';
 import {Linking} from 'react-native';
 import moment from 'moment';
 import {getUserInfoById} from 'Root/api/userapi';
@@ -234,85 +233,4 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 			</View>
 		);
 	}
-};
-
-const e = {
-	__v: 0,
-	_id: '61c041e9679aa5ae461283f8',
-	user_introduction: 'ㅇㅇㅇㅇㅇ',
-	user_nickname: 'Di1',
-	user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639666144077_B70FDBD2-53F4-4FAA-A6F1-13345B04FEE3.jpg',
-	volunteer_accompany: [
-		{
-			__v: 6,
-			_id: '61b84ddb4a1b66f74b699b1e',
-			pet_family: [Array],
-			user_address: [Object],
-			user_denied: false,
-			user_follow_count: 0,
-			user_follower_count: 0,
-			user_introduction: 'ㅇㅇㅇㅇㅇ',
-			user_is_verified_email: false,
-			user_is_verified_phone_number: true,
-			user_mobile_company: 'SKT텔레콤',
-			user_my_pets: [Array],
-			user_name: '권상우',
-			user_nickname: 'Di1',
-			user_password: 'tkddn123',
-			user_phone_number: '01096450422',
-			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639666144077_B70FDBD2-53F4-4FAA-A6F1-13345B04FEE3.jpg',
-			user_register_date: '2021-12-14T07:55:07.933Z',
-			user_type: 'user',
-			user_upload_count: 0,
-		},
-		{
-			__v: 0,
-			_id: '61bfff1395d6442789e48eea',
-			pet_family: [Array],
-			user_address: [Object],
-			user_denied: false,
-			user_follow_count: 0,
-			user_follower_count: 0,
-			user_introduction: '',
-			user_is_verified_email: false,
-			user_is_verified_phone_number: true,
-			user_mobile_company: 'LG U+',
-			user_my_pets: [Array],
-			user_name: '십이월이십일',
-			user_nickname: '십이월이십일',
-			user_password: '1111111g',
-			user_phone_number: '0105555',
-			user_profile_uri:
-				'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639972627670_rn_image_picker_lib_temp_891e66d5-d00f-49a0-a06c-8b6912e40405.jpg',
-			user_register_date: '2021-12-20T03:57:07.874Z',
-			user_type: 'user',
-			user_upload_count: 0,
-		},
-		{
-			__v: 6,
-			_id: '61b84ddb4a1b66f74b699b1e',
-			pet_family: [Array],
-			user_address: [Object],
-			user_denied: false,
-			user_follow_count: 0,
-			user_follower_count: 0,
-			user_introduction: 'ㅇㅇㅇㅇㅇ',
-			user_is_verified_email: false,
-			user_is_verified_phone_number: true,
-			user_mobile_company: 'SKT텔레콤',
-			user_my_pets: [Array],
-			user_name: '권상우',
-			user_nickname: 'Di1',
-			user_password: 'tkddn123',
-			user_phone_number: '01096450422',
-			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639666144077_B70FDBD2-53F4-4FAA-A6F1-13345B04FEE3.jpg',
-			user_register_date: '2021-12-14T07:55:07.933Z',
-			user_type: 'user',
-			user_upload_count: 0,
-		},
-	],
-	volunteer_delegate_contact: '008',
-	volunteer_status: 'waiting',
-	volunteer_target_shelter: '61c023d9679aa5ae46128102',
-	volunteer_wish_date: ['2021-12-08T00:00:00.000Z'],
 };
