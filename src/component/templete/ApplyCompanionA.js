@@ -22,6 +22,7 @@ export default ApplyCompanionA = ({route}) => {
 	const navigation = useNavigation();
 	const isProtect = route.name == 'ApplyProtectActivityA'; //임시보호 신청여부 , false일 경우 자동으로 입양모드 전환
 	const [confirmed, setConfirmed] = React.useState(false);
+	const [addrSearched, setAddrSearched] = React.useState(false);
 
 	const [data, setData] = React.useState({
 		protect_act_type: isProtect ? 'protect' : 'adopt',
@@ -49,20 +50,21 @@ export default ApplyCompanionA = ({route}) => {
 	}, [data]);
 
 	React.useEffect(() => {
-		if (route.params.addr != undefined) {
-			const addr = route.params.addr;
-			setData({
-				...data,
-				protect_act_address: {
-					city: addr.siNm + ' ' + addr.sggNm,
-					district: addr.emdNm + ' ',
-					neighbor: addr.rn + ' ' + addr.buldMnnm,
-					brief: addr.siNm + ' ' + addr.sggNm + ' ' + addr.emdNm,
-					detail: null,
-				},
-			});
+		const addr = route.params.addr;
+
+		if (route.params != null) {
+			if (addr && !addrSearched) {
+				console.log('route.params.Address Changed?   ', addr);
+				// setData({...data, user_address: {city: addr.siNm, district: addr.sggNm, neighbor: addr.rn + ' ' + addr.buldMnnm}});
+				setData({...data, protect_act_address: {brief: addr.roadAddr, detail: addr.detailAddr}});
+				setAddrSearched(true);
+			}
 		}
 	}, [route.params.addr]);
+
+	React.useEffect(() => {
+		console.log('data Address ', data.protect_act_address);
+	}, [data]);
 
 	//주소찾기 버튼 클릭
 	const goToAddressSearch = () => {
@@ -80,19 +82,16 @@ export default ApplyCompanionA = ({route}) => {
 	//세부주소 입력
 	const onChangeDeatilAddress = addr => {
 		let addrData = {...data.protect_act_address};
-		addrData = {
-			...addrData,
-			detail: addr,
-		};
-		setData({
-			...data,
-			protect_act_address: addrData,
-		});
+		addrData.detail = addr;
+		// setData({
+		// 	...data,
+		// 	protect_act_address: addrData,
+		// });
 	};
 
 	//확인 버튼 클릭
 	const goToNextStep = () => {
-		console.log('data', data);
+		// console.log('data', data);
 		route.name == 'ApplyProtectActivityA' ? navigation.push('ApplyProtectActivityB', data) : navigation.push('ApplyAnimalAdoptionB', data);
 	};
 
@@ -120,18 +119,19 @@ export default ApplyCompanionA = ({route}) => {
 					<AddressInput
 						title={'보호장소'}
 						titleMode={'star'}
-						address={data.protect_act_address}
-						onChangeDeatilAddress={onChangeDeatilAddress}
+						address={data.protect_act_address.brief}
+						detailAddressDefault={data.protect_act_address.detail}
+						addressDefault={data.protect_act_address.brief}
 						onPressSearchAddr={goToAddressSearch}
+						detailAddress={data.protect_act_address.detail}
 					/>
 				</View>
 				<View style={[temp_style.input24A_applyCompanionA, applyCompanionA.input24A]}>
-					<View style={[addressInput.titleContainer]}>
-						<Text style={[txt.noto24, {color: APRI10}]}>연락처 </Text>
-					</View>
 					<InputWithSelect
-						onChange={num => onChangePhoneNum(num)}
+						onChange={onChangePhoneNum}
 						keyboardType={'number-pad'}
+						title={'연락처'}
+						title_star={true}
 						items={mobile_carrier}
 						width={360}
 						placeholder={'연락처를 입력해주세요.'}
@@ -144,4 +144,73 @@ export default ApplyCompanionA = ({route}) => {
 			</View>
 		</View>
 	);
+};
+
+const e = {
+	protect_request_pet_data: {
+		__v: 0,
+		_id: '61c2b82b7be07611b0094ed2',
+		protect_animal_id: {
+			__v: 0,
+			_id: '61c2b6007be07611b0094ec4',
+			protect_act_applicants: [Array],
+			protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
+			protect_animal_estimate_age: '2개월',
+			protect_animal_neutralization: 'no',
+			protect_animal_photo_uri_list: [Array],
+			protect_animal_protect_request_id: '61c2b82b7be07611b0094ed2',
+			protect_animal_protector_discussion_id: [Array],
+			protect_animal_rescue_date: '2021-12-08T00:00:00.000Z',
+			protect_animal_rescue_location: 'AK풀라자 포하',
+			protect_animal_sex: 'female',
+			protect_animal_species: '기타',
+			protect_animal_species_detail: '토끼',
+			protect_animal_status: 'rescue',
+			protect_animal_weight: 2,
+		},
+		protect_animal_species: '기타',
+		protect_animal_species_detail: '토끼',
+		protect_request_comment_count: 0,
+		protect_request_content:
+			'토끼 키우는 것은 생각보다 많은 각오가 필요한 일입니다.경력까지는 요구하지 않겠지만 어느정도 소양을 갖춘 분이 데려가주시면 좋겠습니다.',
+		protect_request_date: '2021-12-22T05:31:23.186Z',
+		protect_request_favorite_count: 0,
+		protect_request_hit: 0,
+		protect_request_photos_uri: [
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640150528231_E3043E03-4A96-4270-958B-CF38B89588C5.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640150528246_D9B16F08-812E-4BF1-B5DF-9DAB2E3E0BF2.jpg',
+		],
+		protect_request_status: 'rescue',
+		protect_request_title: '아이스크림 같이 녹을 것만 같은 아이입니다.',
+		protect_request_update_date: '2021-12-22T05:31:23.187Z',
+		protect_request_writer_id: {
+			__v: 0,
+			_id: '61c023d9679aa5ae46128102',
+			pet_family: [Array],
+			shelter_address: [Object],
+			shelter_delegate_contact_number: '01096450001',
+			shelter_foundation_date: '2011-12-04T00:00:00.000Z',
+			shelter_homepage: '',
+			shelter_name: '상우 보호소6',
+			user_agreement: [Object],
+			user_denied: false,
+			user_email: 'lanad01@naver.com',
+			user_follow_count: 0,
+			user_follower_count: 0,
+			user_interests: [Array],
+			user_introduction:
+				'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
+			user_is_verified_email: false,
+			user_is_verified_phone_number: false,
+			user_my_pets: [Array],
+			user_name: '상우 보호소5',
+			user_nickname: '가하즈보호소',
+			user_password: '121212',
+			user_phone_number: '01096450001',
+			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
+			user_register_date: '2021-12-20T06:34:01.773Z',
+			user_type: 'shelter',
+			user_upload_count: 0,
+		},
+	},
 };

@@ -35,7 +35,7 @@ export default MissingReportList = props => {
 					request_number: 10,
 				},
 				data => {
-					console.log('getMissingReportList data', data.msg);
+					// console.log('getMissingReportList data', data.msg);
 					// console.log('data' + JSON.stringify(`data${data}`));
 					setData(data.msg);
 				},

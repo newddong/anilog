@@ -27,7 +27,7 @@ export default ApplyVolunteer = ({route, navigation}) => {
 	const [shelter_data, setShelter_data] = React.useState(route.params); //선택한 보호소프로필의 userObject가 담겨있음
 
 	React.useEffect(() => {
-		Modal.popNoBtn('신청 정보를 얻어오고 있습니다.');
+		Modal.popNoBtn('신청 양식을 얻어오고 있습니다.');
 		getUserInfoById(
 			{
 				userobject_id: param.token,
