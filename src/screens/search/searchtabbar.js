@@ -1,13 +1,5 @@
 import React from 'react';
-import {View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback} from 'react-native';
-import Animated, {
-	useSharedValue,
-	useDerivedValue,
-	useAnimatedStyle,
-	useAnimatedProps,
-	withTiming,
-	withSpring,
-} from 'react-native-reanimated';
+import {View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback,Animated} from 'react-native';
 import DP from 'Screens/dp';
 
 export default SearchTabBar = ({state, descriptors, navigation, position}) => {

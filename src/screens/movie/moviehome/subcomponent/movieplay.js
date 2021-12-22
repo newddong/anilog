@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, SafeAreaView, ScrollView, StatusBar, View, Image, ImageBackground, Platform, Dimensions, Keyboard} from 'react-native';
+import {StyleSheet, Text, SafeAreaView, ScrollView, StatusBar, View, Image, ImageBackground, Platform, Dimensions,Animated, Keyboard} from 'react-native';
 import DP, {isNotch} from 'Screens/dp';
 import {LikeIcon, LikeUncheckedIcon, CommentIcon, SearchIcon, ShareIcon, BtnX, DownBracketGray, HeartBtnIcon, MeIcon, GliderIcon} from 'Asset/image';
 import MovieItem from './movieItem';
@@ -7,7 +7,6 @@ import Comments from './comments';
 import {TouchableWithoutFeedback} from 'react-native';
 import {TabContext} from 'tabContext';
 
-import Animated, {useSharedValue, useDerivedValue, useAnimatedStyle, useAnimatedProps, withTiming, withSpring} from 'react-native-reanimated';
 import {TextInput} from 'react-native';
 import {Shadow} from 'react-native-shadow-2';
 // import YoutubePlayer from 'react-native-youtube-iframe';
@@ -44,16 +43,7 @@ export default MoviePlay = props => {
 
 	const bottomTabHeight = 140 * DP;
 	const videoHeight = 422*DP;
-	const comment_location = useSharedValue(windowheight);
-	const comment_moving = useAnimatedStyle(() => {
-		return {
-			transform: [
-				{
-					translateY: comment_location.value,
-				},
-			],
-		};
-	});
+
 	
 	const openComment = () => {
 		if (android_shadow) {
@@ -61,14 +51,12 @@ export default MoviePlay = props => {
 			
 		}
 
-		comment_location.value = withTiming(0);
 		tab.tabVisible(false);
 	};
 	
 	const closeComment = () => {
 		setShadow(!android_shadow);
 		
-		comment_location.value = withTiming(windowheight);
 		tab.tabVisible(true);
 	};
 	return (
@@ -106,7 +94,7 @@ export default MoviePlay = props => {
 				</ScrollView>
 			</View>
 			
-				<Animated.View style={[{height: screenH.h + bottomTabHeight, ...movplay.pop_cntr_comment},comment_moving]}>
+				<Animated.View style={[{height: screenH.h + bottomTabHeight, ...movplay.pop_cntr_comment}]}>
 					<TouchableWithoutFeedback onPress={closeComment}>
 						<View style={movplay.pop_margin}></View>
 					</TouchableWithoutFeedback>

@@ -16,7 +16,6 @@ import {DownBracketBlack,DownBracket,BtnWriteFeed,Progressbar_3_of_5} from 'Asse
 import {txt, lo, btn, form, tab, tab_filled_color} from './style_assign';
 import FormTxtInput from 'Screens/common/formtxtinput';
 import {layout, text, button, float_btn} from '../feed/profile/style_profile';
-import Animated, {useSharedValue, useDerivedValue, useAnimatedStyle, useAnimatedProps, withTiming, withSpring} from 'react-native-reanimated';
 
 export default Assign_pet_step3 = props => {
 	const [description, setDescription] = React.useState(ASSIGN_USER_DESCRIPTION);
@@ -76,31 +75,8 @@ export default Assign_pet_step3 = props => {
 		setData({...data, userEmailCompany: e.nativeEvent.text});
 	}
 
-	const followBtnAnimationTelco = useSharedValue(0);
-	const followBtnAniStyleTelco = useAnimatedStyle(() => ({
-		height:(followBtnAnimationTelco.value * 280 + 60)*DP
-	}));
 
-	const followBtnBracketStyleTelco = useAnimatedStyle(()=>({
-		transform:[{rotate:`${followBtnAnimationTelco.value*180}deg`}]
-	}));
 
-	const followBtnItemListStyleTelco = useAnimatedStyle(()=>({
-		transform:[{scaleY:followBtnAnimationTelco.value}]
-	}));
-
-	const followBtnAnimationEmail = useSharedValue(0);
-	const followBtnAniStyleEmail = useAnimatedStyle(() => ({
-		height:(followBtnAnimationEmail.value * 420 + 60)*DP
-	}));
-
-	const followBtnBracketStyleEmail = useAnimatedStyle(()=>({
-		transform:[{rotate:`${followBtnAnimationEmail.value*180}deg`}]
-	}));
-
-	const followBtnItemListStyleEmail = useAnimatedStyle(()=>({
-		transform:[{scaleY:followBtnAnimationEmail.value}]
-	}));
 
 	const selectTelco = e => {
 		setTelco(e);
@@ -130,20 +106,18 @@ export default Assign_pet_step3 = props => {
 							<Dropdown 
 						
 							style={[btn.followButton,btn.shadow,!data.isFollowed&&{backgroundColor:'#fff', width: 50*DP,marginBottom:30*DP,marginRight:20*DP}]}
-							dropdownContainerStyle={[btn.followButtonDropDownWide,!data.isFollowed&&{backgroundColor:'#fff', width:400*DP},btn.shadow,{elevation:3},followBtnAniStyleEmail]}
+							dropdownContainerStyle={[btn.followButtonDropDownWide,!data.isFollowed&&{backgroundColor:'#fff', width:400*DP},btn.shadow,{elevation:3}]}
 							data={['유기 동물 입양','유기 동물 분양','온라인 신청 입양','지인 추천 입양', INPUT_DIRECT]}						
 							dropItemTxtStyle={[txt.regular28cjk,data.isFollowed?txt.white:{color:'black'}]}
-							listBackgroundStyle={[{height: 330 * DP,width:350* DP, marginTop:80*DP},followBtnItemListStyleEmail]}
+							listBackgroundStyle={[{height: 330 * DP,width:350* DP, marginTop:80*DP}]}
 							listContainerStyle={{height:330*DP,justifyContent:'space-between',alignItems:'center'}}
 							onSelect={(e)=>{selectEmailco(e)}} 
 							onSelectNotClose={false}
-							onOpen={()=>{followBtnAnimationEmail.value=withSpring(1,{duration:300})}}
-							onClose={()=>{followBtnAnimationEmail.value=withTiming(0,{duration:300})}}
 							animation
 							component={
 								<>								
 									<Text style={[txt.regular24cjk,data.isFollowed?txt.white:{color:'#000'}]}>{}</Text>
-									<SvgWrapper style={[btn.followButtonBracketsize,followBtnBracketStyleEmail]} svg={<DownBracket fill={data.isFollowed?'#ff0000':'#000'}/>} />
+									<SvgWrapper style={[btn.followButtonBracketsize]} svg={<DownBracket fill={data.isFollowed?'#ff0000':'#000'}/>} />
 								</>
 							}
 							/>

@@ -1,29 +1,19 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, StyleSheet,Animated, Dimensions} from 'react-native';
 import DP, {svg_size} from 'Root/screens/dp';
 import {DownBracketGray} from 'Asset/image';
-import Animated, {useSharedValue, useAnimatedStyle, withTiming} from 'react-native-reanimated';
 import {TouchableWithoutFeedback} from 'react-native';
 
 export default FlipSection = props => {
 	const [pageY, setPageY] = useState(116 * DP);
 	const defaultH = props.defaultH;
-	const flip = useSharedValue(props.children?defaultH:116*DP);
-	const flipAni = useAnimatedStyle(() => ({
-		height: flip.value,
-	}));
-	const overlap = useAnimatedStyle(() => ({
-		top: flip.value + 48 * DP,
-	}));
 	const [isOpen, setOpen] = useState(false);
 	const toggle = () => {
 		// console.log('클릭'+pageY+':'+defaultH);
 		if (props.children) {
 			if (!isOpen) {
-				flip.value = withTiming(pageY);
 				setOpen(true);
 			} else {
-				flip.value = withTiming(defaultH);
 				setOpen(false);
 			}
 		} else {
@@ -59,7 +49,7 @@ export default FlipSection = props => {
 				</View>
 			)}
 
-			<Animated.View style={[style.cntr_contens,props.children?{}:{position:'absolute'}, flipAni]}>
+			<Animated.View style={[style.cntr_contens,props.children?{}:{position:'absolute'}]}>
 				<View
 					style={{
 						flexDirection: 'row',
@@ -81,7 +71,7 @@ export default FlipSection = props => {
 						height: 40 * DP,
 						position: 'absolute',
 					},
-					overlap,
+					
 				]}></Animated.View>
 		</View>
 	);

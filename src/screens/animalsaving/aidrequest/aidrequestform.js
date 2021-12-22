@@ -19,7 +19,6 @@ import {
 	Bracket,
 	GliderIcon,
 } from 'Asset/image';
-import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated';
 import Comments from 'Screens/movie/moviehome/subcomponent/comments';
 import LostAnimal from './lostanimal';
 import DP, {svg_size} from 'Root/screens/dp';
