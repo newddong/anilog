@@ -25,7 +25,6 @@ import moment from 'moment';
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
-	console.log('AnimalNeedHelp / ', data);
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 

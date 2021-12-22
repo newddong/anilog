@@ -75,7 +75,7 @@ export default ParentComment = props => {
 				{/* Data - 좋아요 상태 t/f */}
 
 				<TouchableOpacity onPress={showChildComment} style={[parentComment.showChildComment]}>
-					<Text style={[txt.noto24, {color: GRAY10}]}> 답글 {dummy_ChildComment.length}개 보기 </Text>
+					<Text style={[txt.noto24, {color: GRAY10}]}> 답글 {data.childArray.length}개 보기 </Text>
 				</TouchableOpacity>
 				<View style={[parentComment.heart30]}>
 					{likeState ? <Heart30_Filled onPress={onCLickHeart} /> : <Heart30_Border onPress={onCLickHeart} />}
@@ -91,7 +91,7 @@ export default ParentComment = props => {
 			{/* Data - 대댓글List */}
 			{showChild ? (
 				<View style={[organism_style.childCommentList, parentComment.img_square_round_574]}>
-					<ChildCommentList items={dummy_ChildComment} onPressReplyBtn={comment => props.onPress_ChildComment_ReplyBtn(comment)} />
+					<ChildCommentList items={data.childArray} onPressReplyBtn={comment => props.onPress_ChildComment_ReplyBtn(comment)} />
 				</View>
 			) : (
 				<></>
