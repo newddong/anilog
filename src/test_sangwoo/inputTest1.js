@@ -10,7 +10,6 @@ import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {GRAY_BRIGHT} from 'Root/screens/color';
 import Formtxtinput from 'Root/screens/common/formtxtinput';
-import { cos } from 'react-native-reanimated';
 export default InputTest1 = props => {
 	const navigation = useNavigation();
 	return (

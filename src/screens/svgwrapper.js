@@ -1,8 +1,7 @@
 import React from 'react';
 
-import {View, TouchableWithoutFeedback} from 'react-native';
+import {View, TouchableWithoutFeedback,Animated} from 'react-native';
 import DP, {svg_size} from 'Screens/dp';
-import Animated, {useSharedValue, useDerivedValue, useAnimatedStyle, useAnimatedProps, withTiming, withSpring} from 'react-native-reanimated';
 
 export default SvgWrapper = props => {
 	return (

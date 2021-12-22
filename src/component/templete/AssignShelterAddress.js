@@ -26,23 +26,25 @@ export default AssignShelterAddress = props => {
 		},
 	});
 
-	React.useEffect(()=>{
-		if(props.route.params.addr){
-			console.log('주소를 받아온다.',props.route.params.addr);
+	React.useEffect(() => {
+		if (props.route.params.addr) {
+			console.log('주소를 받아온다.', props.route.params.addr);
 			let addr = props.route.params.addr;
-			setData({...data, shelter_address:{
-				brief: addr.jibunAddr,
-				detail: addr.detailAddr
-			}})
-
+			setData({
+				...data,
+				shelter_address: {
+					brief: addr.jibunAddr,
+					detail: addr.detailAddr,
+				},
+			});
 		}
-	},[props.route.params.addr])
+	}, [props.route.params.addr]);
 
-	React.useEffect(()=>{
-		if(data.shelter_address.brief.length>0&&data.shelter_address.detail.length>0&&data.shelter_name.length>0){
+	React.useEffect(() => {
+		if (data.shelter_address.brief.length > 0 && data.shelter_address.detail.length > 0 && data.shelter_name.length > 0) {
 			setConfirmed(true);
 		}
-	},[data]);
+	}, [data]);
 
 	//다음
 	const goToNextStep = () => {
@@ -79,7 +81,10 @@ export default AssignShelterAddress = props => {
 	};
 
 	const addressValidator = (addr, detailAddr) => {
+		console.log('addressValidator', addr, detailAddr);
+		// if (addr != undefined && detailAddr != undefined) {
 		return addr.length > 0 && detailAddr.length > 0;
+		// }
 	};
 
 	const onValidAddress = isValid => {

@@ -17,7 +17,6 @@ import {DownBracketBlack,DownBracket,BtnWriteFeed,Progressbar_4_of_5,CalendarIco
 import {txt, lo, btn, form, tab, tab_filled_color} from './style_assign';
 import FormTxtInput from 'Screens/common/formtxtinput';
 import {layout, text, button, float_btn} from '../feed/profile/style_profile';
-import Animated, {useSharedValue, useDerivedValue, useAnimatedStyle, useAnimatedProps, withTiming, withSpring} from 'react-native-reanimated';
 
 export default Assign_pet_step4 = props => {
 	const [description, setDescription] = React.useState(ASSIGN_USER_DESCRIPTION);
@@ -78,31 +77,8 @@ export default Assign_pet_step4 = props => {
 		setData({...data, userEmailCompany: e.nativeEvent.text});
 	}
 
-	const followBtnAnimationTelco = useSharedValue(0);
-	const followBtnAniStyleTelco = useAnimatedStyle(() => ({
-		height:(followBtnAnimationTelco.value * 280 + 60)*DP
-	}));
 
-	const followBtnBracketStyleTelco = useAnimatedStyle(()=>({
-		transform:[{rotate:`${followBtnAnimationTelco.value*180}deg`}]
-	}));
 
-	const followBtnItemListStyleTelco = useAnimatedStyle(()=>({
-		transform:[{scaleY:followBtnAnimationTelco.value}]
-	}));
-
-	const followBtnAnimationEmail = useSharedValue(0);
-	const followBtnAniStyleEmail = useAnimatedStyle(() => ({
-		height:(followBtnAnimationEmail.value * 420 + 60)*DP
-	}));
-
-	const followBtnBracketStyleEmail = useAnimatedStyle(()=>({
-		transform:[{rotate:`${followBtnAnimationEmail.value*180}deg`}]
-	}));
-
-	const followBtnItemListStyleEmail = useAnimatedStyle(()=>({
-		transform:[{scaleY:followBtnAnimationEmail.value}]
-	}));
 
 	const selectTelco = e => {
 		setTelco(e);

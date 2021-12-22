@@ -1,10 +1,9 @@
 import React from 'react';
-import {View, ScrollView, StyleSheet, Text, TextInput, Image, TouchableWithoutFeedback,Platform} from 'react-native';
+import {View, ScrollView, StyleSheet, Text, TextInput, Image, TouchableWithoutFeedback,Platform,Animated} from 'react-native';
 
 import {CameraIcon, LocationPinIcon, PawIcon, DownBracketGray} from 'Asset/image';
 import DP from 'Screens/dp';
 import SvgWrapper from 'Screens/svgwrapper';
-import Animated, {useSharedValue, useAnimatedStyle, withTiming, withSpring} from 'react-native-reanimated';
 import {TabContext} from 'tabContext';
 import {TextPropTypes} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
@@ -117,25 +116,14 @@ export default WriteFeed = ({navigation, route}) => {
 	};
 
 	//Animation Setting
-	const btnPublic = useSharedValue(60);
-	const btnPublicAni = useAnimatedStyle(() => {
-		return {
-			height: btnPublic.value * DP,
-		};
-	});
 	const clickbtnPublic = () => {
 		if (btnPublicClick) {
 			setBtnPublicClick(false);
-			btnPublic.value = withTiming(60);
 		} else {
 			setBtnPublicClick(true);
-			btnPublic.value = withSpring(312);
 		}
 		console.log(route.params?.images);
 	};
-	const rotate = useAnimatedStyle(() => {
-		return {transform: [{rotate: `${(180 * (btnPublic.value - 60)) / 252}deg`}]};
-	});
 	//end Animation Setting
 
 	return (
@@ -201,7 +189,7 @@ export default WriteFeed = ({navigation, route}) => {
 							</View>
 						</View>
 						<View style={btn.dropdown}>
-							<Animated.View style={[{...btn.size, ...btn.box_menu}, btn.shadow, btnPublicAni]}>
+							<Animated.View style={[{...btn.size, ...btn.box_menu}, btn.shadow]}>
 								{btnPublicClick && (
 									<>
 										<Text style={[txt.noto28r, txt.white, {marginTop: 60 * DP}]}>전체공개</Text>
@@ -213,7 +201,7 @@ export default WriteFeed = ({navigation, route}) => {
 							<TouchableWithoutFeedback onPress={clickbtnPublic}>
 								<View style={[btn.size, btn.btn_profile, btn.shadow, {position: 'absolute'}]}>
 									<Text style={[txt.noto24r, txt.gray]}>공개설정</Text>
-									<SvgWrapper style={[btn.profileButtonBracketsize, rotate]} svg={<DownBracketGray />} />
+									<SvgWrapper style={[btn.profileButtonBracketsize]} svg={<DownBracketGray />} />
 								</View>
 							</TouchableWithoutFeedback>
 						</View>

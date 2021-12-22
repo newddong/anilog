@@ -15,5 +15,5 @@ module.exports = {
 				"Templete":"./src/component/templete",
 			}
 		}
-	], 'react-native-reanimated/plugin'],
+	]],
 };
