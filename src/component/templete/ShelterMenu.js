@@ -58,6 +58,7 @@ export default ShelterMenu = ({route}) => {
 				},
 				err => {
 					console.log('err', err);
+					Modal.close();
 				},
 			);
 		});
