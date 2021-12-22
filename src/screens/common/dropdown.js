@@ -1,8 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import {TouchableWithoutFeedback, View, Modal,Text} from 'react-native';
+import {TouchableWithoutFeedback, View, Modal,Text,Animated} from 'react-native';
 import DP from 'Screens/dp';
-import Animated, {useSharedValue, useDerivedValue, useAnimatedStyle, useAnimatedProps, withTiming, withSpring} from 'react-native-reanimated';
 
 export default Dropdown = props => {
 	const component = React.useRef();

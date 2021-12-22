@@ -8,20 +8,12 @@ import {GRAY_MEATBALL,GRAY, MAINCOLOR} from 'Screens/color';
 import {txt} from 'Screens/textstyle';
 import DP from 'Screens/dp';
 import SvgWrapper from 'Screens/svgwrapper';
-import Animated, {useSharedValue, useDerivedValue, useAnimatedStyle, useAnimatedProps, withTiming, withSpring} from 'react-native-reanimated';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
 export default ProfileHeader = ({options, route, navigation}) => {
 
 	const [isMeatballOpen, setMeatballOpen] = React.useState(false);
 
-	const meatballAnimation = useSharedValue(0);
-	const meatballDropdownAni = useAnimatedStyle(() => ({
-		height: meatballAnimation.value * 180 * DP,
-	}));
-	const meatballListAni = useAnimatedStyle(() => ({
-		transform: [{scaleY: meatballAnimation.value}],
-	}));
 	return (
 		<View style={[style.headerContainer, style.shadow]}>
 			<TouchableWithoutFeedback onPress={navigation.goBack}>
@@ -33,12 +25,12 @@ export default ProfileHeader = ({options, route, navigation}) => {
 			<Dropdown
 				// style={{marginRight:70*DP}}
 				style={style.meatballContainer}
-				dropdownContainerStyle={[style.meatballDropdown, style.shadow, meatballDropdownAni]}
+				dropdownContainerStyle={[style.meatballDropdown, style.shadow]}
 				data={['링크복사', '공유하기']}
 				// onSelect={selectAreaCode}
 				// dropItemStyle={{marginVertical: 3 * DP, paddingHorizontal: 30 * DP}}
 				dropItemTxtStyle={style.noto28}
-				listBackgroundStyle={[style.meatballListBackGround, meatballListAni]}
+				listBackgroundStyle={[style.meatballListBackGround]}
 				listContainerStyle={style.meatballListContainer}
 				onSelect={e => {
 					alert(e);
@@ -46,11 +38,9 @@ export default ProfileHeader = ({options, route, navigation}) => {
 				onSelectNotClose={true}
 				onOpen={() => {
 					setMeatballOpen(true);
-					meatballAnimation.value = withTiming(1, {duration: 300});
 				}}
 				onClose={() => {
 					setMeatballOpen(false);
-					meatballAnimation.value = withTiming(0, {duration: 300});
 				}}
 				animation
 				// component={<SvgWrapper style={style.buttonMeatBall} svg={<MeatballIcon fill="#fff" />} />}

@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import {Text, View, Image, ScrollView, TouchableWithoutFeedback, SafeAreaView, StyleSheet} from 'react-native';
+import {Text, View, Image, ScrollView, TouchableWithoutFeedback, SafeAreaView, StyleSheet,Animated} from 'react-native';
 
 import {DownBracketBlack, DownBracket, BtnWriteFeed} from 'Asset/image';
 import {BracketDown, FloatBtnWrite} from 'Asset/image_v2';
@@ -10,7 +10,6 @@ import ProfileInfo from './subcomponent/profileInfo';
 import DP from 'Screens/dp';
 import SvgWrapper, {SvgWrap} from 'Screens/svgwrapper';
 
-import Animated, {useSharedValue, useDerivedValue, useAnimatedStyle, useAnimatedProps, withTiming, withSpring} from 'react-native-reanimated';
 import Dropdown from 'Screens/common/dropdown';
 import FeedList from './subcomponent/feedlist';
 import VolunteerList from './subcomponent/volunteerList';
@@ -69,8 +68,6 @@ export default Profile = ({navigation, route}) => {
 
 	const petListClose = () => {
 		setAnimal(!animal);
-		animallist.value = withTiming(0);
-		rotate.value = withTiming(0, {duration: 300});
 	};
 
 	const petListOpen = () => {
@@ -81,8 +78,6 @@ export default Profile = ({navigation, route}) => {
 			});
 		}
 		setAnimal(!animal);
-		animallist.value = withTiming(220);
-		rotate.value = withSpring(180);
 	};
 
 	const petBtnClick = () => {
@@ -95,64 +90,30 @@ export default Profile = ({navigation, route}) => {
 
 	const onTabFeed = () => {
 		if (FEED !== tab) setTab(FEED);
-		tabVal.value = withTiming(0, {duration: 300}); //보호활동 리스트 닫음
 		petListClose();
 	};
 
 	const onTabTag = () => {
 		if (TAG !== tab) setTab(TAG);
-		tabVal.value = withTiming(0, {duration: 300});
 		petListClose();
 	};
 
 	const onTabActivity = () => {
 		if (ACTIVITY !== tab) setTab(ACTIVITY);
-		tabVal.value = withTiming(402, {duration: 300}); //보호활동 리스트 열기
 		petListClose();
 	};
 
 	const onFeedScroll = () => {
 		if (animal) petListClose();
-		if (tabVal.value !== 0) tabVal.value = withTiming(0, {duration: 300});
 	};
 
 	const followUser = () => {
 		alert(route.params.user_nickname + '을 팔로우합니다.');
 	};
 	//animation setting
-	const followBtnAnimation = useSharedValue(0);
-	const followBtnAniStyle = useAnimatedStyle(() => ({
-		height: (followBtnAnimation.value * 300 + 120) * DP,
-	}));
-	const followBtnItemListStyle = useAnimatedStyle(() => ({
-		transform: [{scaleY: followBtnAnimation.value}],
-	}));
-	const followBtnBracketStyle = useAnimatedStyle(() => ({
-		transform: [{rotate: `${followBtnAnimation.value * 180}deg`}],
-	}));
 
 	const [animal, setAnimal] = useState(false);
-	const animallist = useSharedValue(0);
 
-	const animalAni = useAnimatedStyle(() => {
-		return {
-			height: animallist.value * DP,
-		};
-	});
-
-	const rotate = useSharedValue(0);
-	const rotateAni = useAnimatedStyle(() => {
-		return {
-			transform: [{rotate: `${rotate.value}deg`}],
-		};
-	});
-
-	const tabVal = useSharedValue(0);
-	const tabAni = useAnimatedStyle(() => {
-		return {
-			height: tabVal.value * DP,
-		};
-	});
 
 	return (
 		<View style={layout.container}>
@@ -174,28 +135,26 @@ export default Profile = ({navigation, route}) => {
 							button.followButtonDropDown,
 							// !data.isFollowed?button.shadow:{},
 							// !data.isFollowed?{elevation:3}:{},
-							followBtnAniStyle,
+							
 						]}
 						data={['즐겨찾기 추가', '소식받기', '차단', '팔로우 취소']}
 						dropItemStyle={{marginVertical: 3 * DP, paddingHorizontal: 30 * DP}}
 						dropItemTxtStyle={[txt.noto30, {lineHeight: 48 * DP}, txt.white]}
-						listBackgroundStyle={[{height: 240 * DP, marginTop: 60 * DP}, followBtnItemListStyle]}
+						listBackgroundStyle={[{height: 240 * DP, marginTop: 60 * DP}]}
 						listContainerStyle={{height: 240 * DP, justifyContent: 'space-between', alignItems: 'center'}}
 						onSelect={e => {
 							alert(e);
 						}}
 						onSelectNotClose={true}
 						onOpen={() => {
-							followBtnAnimation.value = withSpring(1, {duration: 300});
 						}}
 						onClose={() => {
-							followBtnAnimation.value = withTiming(0, {duration: 300});
 						}}
 						animation
 						component={
 							<>
 								<Text style={[txt.noto24, {lineHeight: 36 * DP}, txt.white]}>{'팔로우 중'}</Text>
-								<SvgWrapper style={[button.followButtonBracketsize, followBtnBracketStyle]} svg={<BracketDown fill={WHITE} />} />
+								<SvgWrapper style={[button.followButtonBracketsize]} svg={<BracketDown fill={WHITE} />} />
 							</>
 						}
 					/>
@@ -203,12 +162,12 @@ export default Profile = ({navigation, route}) => {
 				<TouchableWithoutFeedback onPress={petBtnClick}>
 					<View style={[button.profileButton, button.shadow]}>
 						<Text style={[txt.noto24,{color: MAINCOLOR, lineHeight: 36 * DP}]}>반려 동물</Text>
-						<SvgWrapper style={[button.profileButtonBracketsize, rotateAni]} svg={<BracketDown fill={MAINCOLOR} />} />
+						<SvgWrapper style={[button.profileButtonBracketsize]} svg={<BracketDown fill={MAINCOLOR} />} />
 					</View>
 				</TouchableWithoutFeedback>
 			</View>
 
-			<Animated.View style={[animalAni]}>
+			<Animated.View style={[]}>
 				<BelongedPetList data={petList} />
 			</Animated.View>
 
@@ -218,7 +177,7 @@ export default Profile = ({navigation, route}) => {
 				<TabMenu onPress={onTabActivity} label="보호활동" selected={tab === ACTIVITY} />
 			</View>
 
-			<Animated.View style={[layout.volunteeractivity, tabAni]}>
+			<Animated.View style={[layout.volunteeractivity]}>
 				<VolunteerList data={profiledata.profile.volunteeractivity} />
 			</Animated.View>
 

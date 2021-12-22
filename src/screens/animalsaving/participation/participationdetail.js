@@ -8,29 +8,21 @@ import {
 	Image,
 	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
+	Animated
 } from 'react-native';
 import {HeartBtnIcon, ShareFocusedIcon, Kakao, CopylinkIcon, MessageIcon} from 'Asset/image';
-import Animated,{useAnimatedStyle, useSharedValue,withTiming} from 'react-native-reanimated';
 
 
 import DP, {svg_size} from 'Root/screens/dp';
 
 export default ParticipationDetail = props => {
 	const [location, setlocation] = useState(0);
-	const pop = useSharedValue(0);
-	const popAni = useAnimatedStyle(()=>({
-		transform:[{scale:pop.value},{translateX:(pop.value-1)*184*DP},{translateY:(pop.value-1)*83*DP}],
-	}));
-	const popBackgroundAni = useAnimatedStyle(()=>({
-		transform:[{translateX:(1-pop.value)*703*DP}]
-		// transform:[{scale:pop.value}]
-	}));
+
 	const [isPop, setPop] = useState(false);
 	const iP=useRef(false);
 	const onShareBtn = () => {
 		
 		if(!iP.current){
-			pop.value = withTiming(1);
 			// setPop(true);
 			iP.current = true;
 		}
@@ -38,7 +30,6 @@ export default ParticipationDetail = props => {
 	}
 	const closePop = () =>{
 		// setPop(false);
-		pop.value = withTiming(0);
 		iP.current = false;
 		console.log('closePop : '+iP.current);
 	}
@@ -79,13 +70,13 @@ export default ParticipationDetail = props => {
 					</Text>
 				</View>
 			</View>
-			<Animated.View style={[detail.wrp_pop,popBackgroundAni]}
+			<Animated.View style={[detail.wrp_pop]}
 				onStartShouldSetResponder={()=>true}
 				onMoveShouldSetResponder={()=>false}
 				onMoveShouldSetResponderCapture={()=>false}
 				onResponderGrant={closePop}
 			>
-				<Animated.View style={[detail.pop_sns, detail.shadow, {top: location},popAni]}
+				<Animated.View style={[detail.pop_sns, detail.shadow, {top: location}]}
 					onStartShouldSetResponder={()=>true}
 					onMoveShouldSetResponder={()=>false}
 					onMoveShouldSetResponderCapture={()=>false}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Image, TouchableWithoutFeedback} from 'react-native';
+import {Text, View, Image, TouchableWithoutFeedback, Animated} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import Swiper from 'react-native-swiper';
 import {DropdownMeatball, BracketDown} from 'Asset/image_v2';
@@ -9,15 +9,6 @@ import SvgWrapper, {SvgWrap} from 'Screens/svgwrapper';
 import {lo, userinfo, btn} from './style_post';
 import {txt} from 'Screens/textstyle';
 import PostComment from './postcomment';
-import Animated, {
-	useSharedValue,
-	useDerivedValue,
-	useAnimatedStyle,
-	useAnimatedProps,
-	withTiming,
-	withSpring,
-	withDelay,
-} from 'react-native-reanimated';
 import FastImage from 'react-native-fast-image';
 import {loginInfo} from 'Screens/login/login';
 import Dropdown from 'Screens/common/dropdown';
@@ -38,20 +29,6 @@ export default PostContents = props => {
 		nav.push('Profile', {user_id: props.data.user, user_nickname: props.data.user_nickname});
 	};
 
-	const meatBallAnimation = useSharedValue(0);
-	const meatBallListAnimation = useSharedValue(0);
-
-	const meatBallDropListAni = useAnimatedStyle(() => ({
-		transform: [{scaleY: meatBallAnimation.value}],
-		// height: meatBallAnimation.value * (isMe ? 300 : 110) * DP,
-	}));
-
-	const meatBallDropAni = useAnimatedStyle(() => ({
-		height: meatBallAnimation.value * (isMe ? 360 : 160) * DP,
-		// transform: [{scaleY: meatBallAnimation.value},{translateY:180*DP}],
-		// height: (isMe ? 360 : 160) * DP,
-		// transform: [{scaleY: meatBallAnimation.value},{translateY:(1-meatBallAnimation.value)*(-400)*DP}],
-	}));
 
 	const selectMeatBall = e => {
 		switch (e) {
@@ -96,7 +73,6 @@ export default PostContents = props => {
 				<Dropdown
 					style={userinfo.meatBallMenu}
 					dropdownContainerStyle={[
-						meatBallDropAni,
 						{height: (isMe ? 360 : 160) * DP},
 						userinfo.shadow,
 						userinfo.meatballDropdown,
@@ -108,19 +84,15 @@ export default PostContents = props => {
 							<Animated.Text style={[txt.noto30, {lineHeight: 48 * DP}, item === '삭제' && txt.red]}>{item}</Animated.Text>
 						</Animated.View>
 					)}
-					listBackgroundStyle={[{height: isMe ? 300 * DP : 110 * DP}, userinfo.meatballListBackGround, meatBallDropListAni]}
+					listBackgroundStyle={[{height: isMe ? 300 * DP : 110 * DP}, userinfo.meatballListBackGround]}
 					listContainerStyle={[{height: isMe ? 300 * DP : 110 * DP}, userinfo.meatballListContainer]}
 					onSelect={selectMeatBall}
 					onSelectNotClose={true}
 					onOpen={() => {
 						setMeatballOpen(true);
-						meatBallAnimation.value = withTiming(1, {duration: 300});
-						// meatBallListAnimation.value = withTiming(1, {duration: 200});
 					}}
 					onClose={() => {
 						setMeatballOpen(false);
-						meatBallAnimation.value = withTiming(0, {duration: 300});
-						// meatBallListAnimation.value = withTiming(0, {duration: 200});
 					}}
 					animation
 					component={
