@@ -139,4 +139,16 @@ apiController( '/protect/getApplyDetailById', arguments);
  */
  export async function getProtectApplicantList(params, callback, errcallback){
 	apiController( '/protect/getProtectApplicantList', arguments);
+};
+
+
+/**
+ * 동물보호 요청 게시글 상세조회
+ * @param {object} params
+ * @param {string} params.protect_request_object_id - 동물보호 요청 게시물 오브젝트 아이디
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export async function getProtectRequestByProtectRequestId(params, callback, errcallback){
+	apiController( '/protect/getProtectRequestByProtectRequestId', arguments);
 	};
