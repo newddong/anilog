@@ -34,8 +34,8 @@ export default ParentComment = props => {
 		AsyncStorage.getItem('token', (err, res) => {
 			res == data.comment_writer_id ? setIsMyComment(true) : setIsMyComment(false);
 			//data에 존재하는 좋아요를 클릭한 UserObejct _id들 중 로그인한 유저의 _id가 포함되어 있다면 좋아요 상태는 true, or false
-			const like = data.like_comment_user_id.includes(parseInt(res));
-			like ? setLikeState(true) : setLikeState(false);
+			// const like = data.like_comment_user_id.includes(parseInt(res));
+			// like ? setLikeState(true) : setLikeState(false);
 		});
 	}, [props.parentComment]);
 
@@ -52,6 +52,7 @@ export default ParentComment = props => {
 			{/* 유저프로필 라벨 및 Meatball  */}
 			<View style={organism_style.UserLocationTimeLabel_view_parentComment}>
 				<View style={organism_style.userLocationTimeLabel}>
+					{console.log(`UserLocationTimeLabel data:${JSON.stringify(data)}`)}
 					<UserLocationTimeLabel data={data} />
 				</View>
 				<View style={[organism_style.meatball_50_vertical, parentComment.meatball_50_vertical]}>

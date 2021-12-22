@@ -32,7 +32,7 @@ const UserLocationTimeLabel = props => {
 		let split = commented_date.split('-');
 		let commented_date_time = new Date(split[0], split[1] - 1, split[2]);
 		let date = new Date().getDate() - commented_date_time.getDate();
-		return date;
+		return <>date 일 전</>;
 	};
 
 	return (
@@ -45,7 +45,9 @@ const UserLocationTimeLabel = props => {
 					{props.data.user_nickname || ''}
 				</Text>
 				<Text style={[txt.noto24, {lineHeight: 36 * DP, color: GRAY20}]} numberOfLines={1}>
-					{props.data.user_address.city || ''} {props.data.user_address.district || ''} · {getCommentedTime()}일 전
+					{props.data.user_address.city != undefined ? '' : props.data.user_address.city} {props.data.user_address.district || ''} ·{' '}
+					{props.data.feed_type == undefined ? getCommentedTime() : props.data.comment_date}
+					{/* {getCommentedTime()}일 전 */}
 				</Text>
 			</View>
 		</View>
