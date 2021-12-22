@@ -83,14 +83,13 @@ export default AssignProtectAnimalInfo = ({route}) => {
 			protect_animal_sex: data.pet_sex, //  보호중인 동물의 성별
 			protect_animal_estimate_age: data.protect_animal_estimate_age, // - 보호중인 동물의 예상 연령
 			protect_animal_weight: data.protect_animal_weight, //- 보호중인 동물의 몸무게
-		}
+		};
 		assignShelterAnimal(
-			data
-			,
+			data,
 			result => {
 				console.log(`assignShelterAnimal result.ms:${JSON.stringify(result.msg)}`);
 				Modal.popTwoBtn('보호 동물이 등록되었습니다. \n바로 보호요청 글을 작성하시겠습니까?', '아니오', '새 글 작성', goToShelterMenu, () =>
-					goToWriteAidRequest(data),
+					goToWriteAidRequest(result.msg),
 				);
 			},
 			err => {
@@ -140,18 +139,18 @@ export default AssignProtectAnimalInfo = ({route}) => {
 				/>
 			</View>
 			<TouchableWithoutFeedback onPress={() => console.log(data)}>
-					<View
-						style={{
-							backgroundColor: 'red',
-							height: 30,
-							width: 30,
-							position: 'absolute',
-							borderWidth: 1,
-							borderColor: 'blue',
-							top: 0,
-							left: 0,
-						}}></View>
-				</TouchableWithoutFeedback>
+				<View
+					style={{
+						backgroundColor: 'red',
+						height: 30,
+						width: 30,
+						position: 'absolute',
+						borderWidth: 1,
+						borderColor: 'blue',
+						top: 0,
+						left: 0,
+					}}></View>
+			</TouchableWithoutFeedback>
 
 			<View style={[temp_style.textMsg_assignProtectAnimal, assignProtectAnimal_style.textMsg]}>
 				<Text style={[txt.noto24, {color: GRAY10}]}>해당 동물의 예상 연령과 체중, 중성화 여부를 적어주세요.</Text>

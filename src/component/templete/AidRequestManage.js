@@ -20,7 +20,7 @@ export default AidRequestManage = ({route, navigation}) => {
 					request_number: 10,
 				},
 				result => {
-					// console.log('result / getShelterProtectAnimalList / ShelterProtectAnimalList', result.msg);
+					console.log('result / getShelterProtectAnimalList / ShelterProtectAnimalList', result.msg);
 					setData(result.msg);
 				},
 				err => {
@@ -33,9 +33,10 @@ export default AidRequestManage = ({route, navigation}) => {
 			console.log('ProtectApplyList');
 			getAnimalListWithApplicant(
 				{},
-				successed => {
-					console.log('successed / getAnimalListWithApplicant / ProtectApplyList', successed.msg);
-					// setData(successed.msg);
+				result => {
+					console.log('result / getAnimalListWithApplicant / ProtectApplyList', result.msg);
+
+					setData(result.msg);
 				},
 				err => {
 					console.log('err / getAnimalListWithApplicant', err);
@@ -44,6 +45,7 @@ export default AidRequestManage = ({route, navigation}) => {
 			);
 		}
 	}, []);
+
 	//선택 시 이동
 	const onSelect = index => {
 		// console.log('dummy Index', dummy_AidRequestAnimalList[index]);
@@ -75,3 +77,24 @@ export default AidRequestManage = ({route, navigation}) => {
 		</View>
 	);
 };
+
+const withApplica = [
+	{
+		__v: 1,
+		_id: '61c07f0c0b3fb5a4acae2c26',
+		protect_act_applicants: [[Object]],
+		protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
+		protect_animal_estimate_age: '4년 1개월',
+		protect_animal_neutralization: 'unknown',
+		protect_animal_photo_uri_list: [],
+		protect_animal_protect_request_id: '61c188ba2aaa7e1134cef1e2',
+		protect_animal_protector_discussion_id: [],
+		protect_animal_rescue_date: '2004-08-12T00:00:00.000Z',
+		protect_animal_rescue_location: '고르고스 언덕',
+		protect_animal_sex: 'female',
+		protect_animal_species: '기타',
+		protect_animal_species_detail: '치와와',
+		protect_animal_status: 'rescue',
+		protect_animal_weight: 12,
+	},
+];

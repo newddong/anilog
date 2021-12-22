@@ -26,11 +26,6 @@ import moment from 'moment';
 export default AnimalNeedHelp = props => {
 	const data = props.data;
 	// console.log('AnimalNeedHelp / ', data);
-
-	console.log('AnimalNeedHelp', data);
-
-	// console.log(`AnimalNeedHelp:data=>${JSON.stringify(data)}`);
-	// const [data, setData] = React.useState(props.data);
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 
@@ -48,6 +43,8 @@ export default AnimalNeedHelp = props => {
 		} else if (data.hasOwnProperty('feed_thumbnail')) {
 			// 실종/제보 썸네일
 			resultJSON.img_uri = data.feed_thumbnail;
+		} else if (data.hasOwnProperty('protect_animal_photo_uri_list')) {
+			resultJSON.img_uri = data.protect_animal_photo_uri_list[0];
 		} else {
 			//기본 썸네일 적용
 			resultJSON.img_uri = DEFAULT_ANIMAL_PROFILE;
@@ -68,6 +65,78 @@ export default AnimalNeedHelp = props => {
 			// 기타 다른 경우의 수가 있는지 추후 확인
 		}
 		return resultJSON;
+	};
+
+	const sh = {
+		__v: 0,
+		_id: '61c023d9679aa5ae46128102',
+		pet_family: [],
+		protect_act_address: {brief: 'string', city: '서울특별시', detail: 'string', district: '마포구 신수동', neighbor: '89-77 203호'},
+		protect_act_applicant_id: '61c023d9679aa5ae46128102',
+		protect_act_checklist: {
+			is_adult: true,
+			is_agreed_housemate: true,
+			is_experience_defecate: true,
+			is_knowledge_sanitation: true,
+			is_near_veterinary: true,
+		},
+		protect_act_companion_history: [
+			{
+				_id: '61c1e55a7be07611b009470b',
+				companion_pet_age: '1개월',
+				companion_pet_current_status: 'adopt',
+				companion_pet_period: '1년',
+				companion_pet_species: '개',
+			},
+		],
+		protect_act_motivation: '우리 달리의 친구를 만들어주고 싶습니다.',
+		protect_act_phone_number: '01096450422',
+		protect_act_protect_animal_id: '61c07f0c0b3fb5a4acae2c26',
+		protect_act_request_article_id: '61c188ba2aaa7e1134cef1e2',
+		protect_act_request_shelter_id: '61c023d9679aa5ae46128102',
+		protect_act_status: 'wait',
+		protect_act_type: 'adopt',
+		protect_animal_estimate_age: '4년 1개월',
+		protect_animal_neutralization: 'unknown',
+		protect_animal_photo_uri_list: [],
+		protect_animal_protect_request_id: '61c188ba2aaa7e1134cef1e2',
+		protect_animal_rescue_date: '2004-08-12T00:00:00.000Z',
+		protect_animal_rescue_location: '고르고스 언덕',
+		protect_animal_sex: 'female',
+		protect_animal_species: '기타',
+		protect_animal_status: 'rescue',
+		protect_animal_weight: 12,
+		shelter_address: {brief: '마포구 신수동 89-77', detail: '203호'},
+		shelter_delegate_contact_number: '01096450001',
+		shelter_foundation_date: '2011-12-04T00:00:00.000Z',
+		shelter_homepage: '',
+		shelter_name: '상우 보호소6',
+		user_agreement: {
+			is_donation_info: false,
+			is_location_service_info: false,
+			is_marketting_info: false,
+			is_over_fourteen: false,
+			is_personal_info: false,
+			is_service: false,
+		},
+		user_denied: false,
+		user_email: 'lanad01@naver.com',
+		user_follow_count: 0,
+		user_follower_count: 0,
+		user_interests: [],
+		user_introduction:
+			'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
+		user_is_verified_email: false,
+		user_is_verified_phone_number: false,
+		user_my_pets: [],
+		user_name: '상우 보호소5',
+		user_nickname: '가하즈보호소',
+		user_password: '121212',
+		user_phone_number: '01096450001',
+		user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
+		user_register_date: '2021-12-20T06:34:01.773Z',
+		user_type: 'shelter',
+		user_upload_count: 0,
 	};
 
 	const [thumbnailData, setThumbnailData] = React.useState(
@@ -102,17 +171,13 @@ export default AnimalNeedHelp = props => {
 	};
 
 	const getParsedDate = () => {
-		let date = data.protect_request_date;
-		if (date.length > 15) {
+		let date = data.protect_request_date || data.missing_animal_date;
+
+		if (date != null && date.length > 15) {
 			date = moment(date).format('YYYY-MM-DD');
 			return date;
 		}
 		return date;
-	};
-
-	const getShelterName = () => {
-		let shelter_name = '';
-		// getUser;
 	};
 
 	const contents = () => {
@@ -153,7 +218,9 @@ export default AnimalNeedHelp = props => {
 							{/* 보호요청 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
 								<Text style={[txt.noto24]}>등록일 : {getParsedDate()}</Text>
-								<Text style={[txt.noto24]}>보호장소 : {data.protect_request_writer_id.shelter_name}</Text>
+								<Text style={[txt.noto24]}>
+									보호장소 : {data.protect_request_writer_id != null ? data.protect_request_writer_id.shelter_name : data.shelter_name}
+								</Text>
 								<Text style={[txt.noto24]}>
 									구조지역 :{' '}
 									{data.protect_animal_rescue_location ? data.protect_animal_rescue_location : data.protect_animal_id.protect_animal_rescue_location}

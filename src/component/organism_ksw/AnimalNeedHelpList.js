@@ -19,7 +19,7 @@ import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
  * }} props
  */
 export default AnimalNeedHelpList = props => {
-	console.log('props.data', props.data);
+	// console.log('props.data', props.data);
 	const debug = false;
 	const onClickLabel = (status, id, item) => {
 		// console.log(`status=>${status} id=>${id}`);
@@ -38,7 +38,7 @@ export default AnimalNeedHelpList = props => {
 					isChecked={item.checkBoxState}
 					isCheckAll={props.isCheckAll}
 					borderMode={props.borderMode}
-					onClickLabel={(status, id) => onClickLabel(status, id, item)}
+					onClickLabel={onClickLabel}
 					onHashClick={() => props.onHashClick(item)}
 					onCheckBox={e => props.onCheckBox(e, index)}
 					onFavoriteTag={e => props.onFavoriteTag(e, index)}

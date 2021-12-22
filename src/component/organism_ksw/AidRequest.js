@@ -2,11 +2,10 @@ import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
 import {GRAY20, WHITE} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
-import {DEFAULT_ANIMAL_PROFILE, DEFAULT_PROFILE} from 'Root/i18n/msg';
+import {DEFAULT_ANIMAL_PROFILE} from 'Root/i18n/msg';
 import {AddItem64, Female48, Male48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 import {aidRequest} from './style_organism';
-import {useNavigation} from '@react-navigation/core';
 
 /**
  *
@@ -18,8 +17,6 @@ import {useNavigation} from '@react-navigation/core';
  */
 export default AidRequest = props => {
 	const data = props.data;
-	// console.log('data / AidRequest  : ', data);
-
 	//해당 AidRequest박스 선택 시 부모컴포넌트 OnSelect 실행
 	const onSelect = () => {
 		props.onSelect();
@@ -37,7 +34,9 @@ export default AidRequest = props => {
 					<View style={[aidRequest.gender]}>{data.protect_animal_sex == 'male' ? <Male48 /> : <Female48 />}</View>
 					<Image
 						style={[props.selected ? aidRequest.img_irregular_174_border : styles.img_irregular_174]}
-						source={{uri: data.protect_animal_photo_uri_list.length > 0 ? data.protect_animal_photo_uri_list[0] : DEFAULT_ANIMAL_PROFILE}}
+						source={{
+							uri: data.protect_animal_photo_uri_list[0] != undefined ? data.protect_animal_photo_uri_list[0] : DEFAULT_ANIMAL_PROFILE,
+						}}
 					/>
 				</View>
 				{/* 오른쪽 보호동물 상세 정보 */}
@@ -87,9 +86,9 @@ export default AidRequest = props => {
 				</View>
 			</View>
 			{/* 해당 동물의 보호요청 및 입양 신청한 유저의 숫자, 현재는 억지로 배열형태로 더미데이터로 만들어서 하는 중  */}
-			{data.protect_animal_protector_discussion_id && data.protect_animal_protector_discussion_id.length > 0 ? (
+			{data.protect_act_applicants && data.protect_act_applicants.length > 0 ? (
 				<View style={[aidRequest.numberContainer]}>
-					<Text style={{color: WHITE}}>{data.protect_animal_protector_discussion_id.length} </Text>
+					<Text style={{color: WHITE}}>{data.protect_act_applicants.length} </Text>
 				</View>
 			) : (
 				<></>
