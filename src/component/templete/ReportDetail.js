@@ -9,6 +9,7 @@ import {_dummy_ReportDetail} from 'Root/config/dummy_data_hjs';
 import {dummy_CommentObject} from 'Root/config/dummyDate_json';
 import {getFeedDetailById} from 'Root/api/feedapi';
 import {getCommentListByFeedId} from 'Root/api/commentapi';
+import moment from 'moment';
 
 export default ReportDetail = props => {
 	const navigation = useNavigation();
@@ -22,6 +23,7 @@ export default ReportDetail = props => {
 	const [privateComment, setPrivateComment] = React.useState(false); // 공개 설정 클릭 state
 	const [replyText, setReplyText] = React.useState(); //댓글 텍스트 state
 	const [showMore, setShowMore] = React.useState(false); //더보기 클릭 State
+	const [commentDataList, setCommentDataList] = React.useState(); //더보기 클릭 State
 	const debug = false;
 	React.useEffect(() => {
 		setPhoto(props.route.params);
@@ -41,10 +43,16 @@ export default ReportDetail = props => {
 		console.log(' - ReportDetail -');
 		getFeedDetailById(
 			{
-				feedobject_id: '61b6f5979f3c17ec4676578c',
+				feedobject_id: '61c288f97be07611b0094b43',
 			},
 			data => {
 				console.log(`ReportDetail data:${JSON.stringify(data.msg)}`);
+				let dateValue = data.msg.report_witness_date;
+				console.log(`dateValue----------------- data:${dateValue}`);
+				if (dateValue != undefined && dateValue.length > 10) {
+					console.log(`ReportDetail data:${dateValue}`);
+					data.msg.report_witness_date = JSON.stringify(data.msg.report_witness_date).split('T')[0].replace(/\"/, '');
+				}
 				setData(data.msg);
 			},
 			errcallback => {
@@ -58,13 +66,21 @@ export default ReportDetail = props => {
 		console.log(' - ReportDetail Comment -');
 		getCommentListByFeedId(
 			{
-				feedobject_id: '61b6f5979f3c17ec4676578c',
-				commentobject_id: '61bff5be95d6442789e48edc',
+				feedobject_id: '61c288f97be07611b0094b43',
+				commentobject_id: '61c2c0de7be07611b0094ffd',
 				request_number: 10,
 			},
 			commentdata => {
 				console.log(`commentdata:${JSON.stringify(commentdata.msg)}`);
-				// setCommentData(data.msg);
+				commentdata.msg.map((v, i) => {
+					commentdata.msg[i].user_address = commentdata.msg[i].comment_writer_id.user_address;
+					commentdata.msg[i].user_profile_uri = commentdata.msg[i].comment_writer_id.user_profile_uri;
+					commentdata.msg[i].user_nickname = commentdata.msg[i].comment_writer_id.user_nickname;
+					commentdata.msg[i].comment_date = moment(JSON.stringify(commentdata.msg[i].comment_date).replace(/\"/g, '')).format('YYYY.MM.DD hh:mm:ss');
+					commentdata.msg[i].feed_type = 'report';
+				});
+
+				setCommentDataList(commentdata.msg);
 			},
 			errcallback => {
 				console.log(`Comment errcallback:${JSON.stringify(errcallback)}`);
@@ -155,15 +171,15 @@ export default ReportDetail = props => {
 	};
 
 	//댓글 리스트 표출 개수 제어
-	const checkDataLength = () => {
-		let tempList = [];
-		if (!showMore) {
-			if (dummy_CommentObject.length > 2) {
-				tempList = [...dummy_CommentObject.slice(0, 2)];
-				return tempList;
-			} else return dummy_CommentObject;
-		} else return dummy_CommentObject;
-	};
+	// const checkDataLength = () => {
+	// 	let tempList = [];
+	// 	if (!showMore) {
+	// 		if (dummy_CommentObject.length > 2) {
+	// 			tempList = [...dummy_CommentObject.slice(0, 2)];
+	// 			return tempList;
+	// 		} else return dummy_CommentObject;
+	// 	} else return dummy_CommentObject;
+	// };
 
 	return (
 		<View style={[login_style.wrp_main]}>
@@ -173,20 +189,20 @@ export default ReportDetail = props => {
 					{/* 제보사진 */}
 					<Image
 						source={{
-							uri: 'https://d3n24gmmpz5ort.cloudfront.net/2021/06/e795f2c38f3a23449d39d1c7a545c392/2-2.jpg',
+							uri: data.feed_thumbnail,
 						}}
 						style={[temp_style.img_square_750]}
 					/>
 				</View>
 				<View style={[temp_style.feedContent, reportDetail.feedContent]}>
 					{/* DB에서 가져오는 제보 피드글 데이터를 FeedContent에 넘겨준다. */}
-					<FeedContent data={_dummy_ReportDetail} />
+					<FeedContent data={data} />
 				</View>
 				{/* [hjs] 이 화면 댓글도 AnimalProtectRequestDetail 같이 더보기 버튼이 있는것인지..아니면 쭉 늘어놓을 것인지 결정 필요. */}
 				{/* 댓글에 관한 내용 - API에서 넘겨주는 값 확인 후 재수정 필요*/}
 				<View style={[temp_style.commentList, reportDetail.commentList]}>
 					<CommentList
-						items={checkDataLength()}
+						items={commentDataList}
 						onPressReplyBtn={onReplyBtnClick}
 						onPress_ChildComment_ReplyBtn={comment => onChildReplyBtnClick(comment)}
 					/>

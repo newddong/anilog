@@ -9,6 +9,7 @@ export const organism_style = StyleSheet.create({
 		height: 270 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
+		marginTop: 40 * DP,
 	},
 	userLocationLabel_view_feedContent: {
 		flexDirection: 'row',
@@ -61,7 +62,7 @@ export const organism_style = StyleSheet.create({
 		height: 48 * DP,
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		marginTop:10*DP,
+		marginTop: 10 * DP,
 	},
 	time_feedContent: {
 		flexDirection: 'row',
@@ -144,7 +145,7 @@ export const organism_style = StyleSheet.create({
 	},
 	comment_feed_view: {
 		width: 750 * DP,
-		height: 202*DP,
+		height: 202 * DP,
 		alignItems: 'center',
 	},
 	likeCommentButtons_view: {
