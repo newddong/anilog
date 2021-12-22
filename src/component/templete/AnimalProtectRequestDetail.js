@@ -28,7 +28,7 @@ import {ActivityIndicator} from 'react-native';
 // - AnimalNeedHelp Item의 BorderMode=true 에서 게시글보기를 클릭하였을 경우 호출
 
 export default AnimalProtectRequestDetail = ({route}) => {
-	// console.log('AnimalProtectRequestDetail', route.params);
+	console.log('AnimalProtectRequestDetail', route.params);
 	const navigation = useNavigation();
 	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
 	const data = route.params ? route.params.item : dummy_AnimalNeedHelpList_various_status; // ProtectRequestObject, ShelterProtectAnimalObject 정보가 담겨 있는 상태
@@ -136,7 +136,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 
 	//보호요청 더보기의 Thumnail클릭
 	const onClick_ProtectedThumbLabel = (status, user_id, item) => {
-		navigation.push('AnimalProtectRequestDetail', item);
+		navigation.push('AnimalProtectRequestDetail', {item: item, list: route.params.list});
 	};
 
 	//좋아요 숫자 출력 함수
@@ -184,7 +184,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 			<ScrollView contentContainerStyle={[animalProtectRequestDetail_style.container]}>
 				{/* 임시보호 후보자 협의 중 사진 */}
 				<View style={[temp_style.rescueImage]}>
-					<RescueImage status={data.protect_request_status || 'adopt'} img_uri={data.protect_request_photos_uri[0] || DEFAULT_PROFILE} />
+					<RescueImage status={data.protect_request_status || 'adopt'} img_uri={data.protect_request_photos_uri || DEFAULT_PROFILE} />
 				</View>
 				<View style={[temp_style.requestProtect_view]}>
 					<Text style={[txt.noto24, temp_style.requestProtect, {color: GRAY10}]}>보호요청</Text>
@@ -312,3 +312,105 @@ export default AnimalProtectRequestDetail = ({route}) => {
 };
 
 AnimalProtectRequestDetail.defaultProps = {};
+
+const e = {
+	item: {
+		__v: 0,
+		_id: '61c188ba2aaa7e1134cef1e2',
+		protect_animal_id: {
+			__v: 0,
+			_id: '61c07f0c0b3fb5a4acae2c26',
+			protect_act_applicants: [Array],
+			protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
+			protect_animal_estimate_age: '4년 1개월',
+			protect_animal_neutralization: 'unknown',
+			protect_animal_photo_uri_list: [Array],
+			protect_animal_protect_request_id: '61c188ba2aaa7e1134cef1e2',
+			protect_animal_protector_discussion_id: [Array],
+			protect_animal_rescue_date: '2004-08-12T00:00:00.000Z',
+			protect_animal_rescue_location: '고르고스 언덕',
+			protect_animal_sex: 'female',
+			protect_animal_species: '기타',
+			protect_animal_species_detail: '치와와',
+			protect_animal_status: 'rescue',
+			protect_animal_weight: 12,
+		},
+		protect_animal_species: '기타',
+		protect_animal_species_detail: '치와와',
+		protect_request_comment_count: 0,
+		protect_request_content: '함께 상처를 치료할 동반자를 구합니다. ',
+		protect_request_date: '2021-12-21T07:56:42.286Z',
+		protect_request_favorite_count: 0,
+		protect_request_hit: 0,
+		protect_request_photos_uri: ['https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640073402165_8.jpg'],
+		protect_request_status: 'rescue',
+		protect_request_title: '아직 사람을 그리워하는 것 같습니다.',
+		protect_request_update_date: '2021-12-21T07:56:42.286Z',
+		protect_request_writer_id: {
+			__v: 0,
+			_id: '61c023d9679aa5ae46128102',
+			pet_family: [Array],
+			shelter_address: [Object],
+			shelter_delegate_contact_number: '01096450001',
+			shelter_foundation_date: '2011-12-04T00:00:00.000Z',
+			shelter_homepage: '',
+			shelter_name: '상우 보호소6',
+			user_agreement: [Object],
+			user_denied: false,
+			user_email: 'lanad01@naver.com',
+			user_follow_count: 0,
+			user_follower_count: 0,
+			user_interests: [Array],
+			user_introduction:
+				'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
+			user_is_verified_email: false,
+			user_is_verified_phone_number: false,
+			user_my_pets: [Array],
+			user_name: '상우 보호소5',
+			user_nickname: '가하즈보호소',
+			user_password: '121212',
+			user_phone_number: '01096450001',
+			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
+			user_register_date: '2021-12-20T06:34:01.773Z',
+			user_type: 'shelter',
+			user_upload_count: 0,
+		},
+	},
+	list: [
+		{
+			__v: 0,
+			_id: '61c188ba2aaa7e1134cef1e2',
+			protect_animal_id: [Object],
+			protect_animal_species: '기타',
+			protect_animal_species_detail: '치와와',
+			protect_request_comment_count: 0,
+			protect_request_content: '함께 상처를 치료할 동반자를 구합니다. ',
+			protect_request_date: '2021-12-21T07:56:42.286Z',
+			protect_request_favorite_count: 0,
+			protect_request_hit: 0,
+			protect_request_photos_uri: [Array],
+			protect_request_status: 'rescue',
+			protect_request_title: '아직 사람을 그리워하는 것 같습니다.',
+			protect_request_update_date: '2021-12-21T07:56:42.286Z',
+			protect_request_writer_id: [Object],
+		},
+		{
+			__v: 0,
+			_id: '61c2b82b7be07611b0094ed2',
+			protect_animal_id: [Object],
+			protect_animal_species: '기타',
+			protect_animal_species_detail: '토끼',
+			protect_request_comment_count: 0,
+			protect_request_content:
+				'토끼 키우는 것은 생각보다 많은 각오가 필요한 일입니다.경력까지는 요구하지 않겠지만 어느정도 소양을 갖춘 분이 데려가주시면 좋겠습니다.',
+			protect_request_date: '2021-12-22T05:31:23.186Z',
+			protect_request_favorite_count: 0,
+			protect_request_hit: 0,
+			protect_request_photos_uri: [Array],
+			protect_request_status: 'rescue',
+			protect_request_title: '아이스크림 같이 녹을 것만 같은 아이입니다.',
+			protect_request_update_date: '2021-12-22T05:31:23.187Z',
+			protect_request_writer_id: [Object],
+		},
+	],
+};
