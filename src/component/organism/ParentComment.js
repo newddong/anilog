@@ -52,7 +52,7 @@ export default ParentComment = props => {
 			{/* 유저프로필 라벨 및 Meatball  */}
 			<View style={organism_style.UserLocationTimeLabel_view_parentComment}>
 				<View style={organism_style.userLocationTimeLabel}>
-					{console.log(`UserLocationTimeLabel data:${JSON.stringify(data)}`)}
+					{/* {console.log(`UserLocationTimeLabel data:${JSON.stringify(data)}`)} */}
 					<UserLocationTimeLabel data={data} />
 				</View>
 				<View style={[organism_style.meatball_50_vertical, parentComment.meatball_50_vertical]}>

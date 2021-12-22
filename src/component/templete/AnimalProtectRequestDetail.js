@@ -24,17 +24,14 @@ import {Bracket48} from '../atom/icon';
 import {ActivityIndicator} from 'react-native';
 
 //AnimalProtectRequestDetail 호출 경로
-// - AnimalNeedHelp Item의 썸네일을 클릭할 경우 호출.
-// - AnimalNeedHelp Item의 BorderMode=true 에서 게시글보기를 클릭하였을 경우 호출
+// - ProtectRequestList(보호활동탭) , AnimalFromShelter(게시글보기) , Profile(보호활동)
 
 export default AnimalProtectRequestDetail = ({route}) => {
-	console.log('AnimalProtectRequestDetail', route.params);
+	// console.log('AnimalProtectRequestDetail', route.params);
 	const navigation = useNavigation();
 	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
 	const data = route.params ? route.params.item : dummy_AnimalNeedHelpList_various_status; // ProtectRequestObject, ShelterProtectAnimalObject 정보가 담겨 있는 상태
-	const [writersAnotherRequests, setWritersAnotherRequests] = React.useState(
-		route.params ? route.params.list : dummy_AnimalNeedHelpList_various_status,
-	);
+	const [writersAnotherRequests, setWritersAnotherRequests] = React.useState(route.params.list ? route.params.list : []);
 	const [loading, setLoading] = React.useState(true); //로딩상태
 	const [editComment, setEditComment] = React.useState(false); // 댓글 쓰기 클릭
 	const [privateComment, setPrivateComment] = React.useState(false); // 팝업된 댓글창에서 비밀글 상태
@@ -50,6 +47,8 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	}, []);
 
 	React.useEffect(() => {
+		//현재 보고 있는 보호요청게시글의 작성자(보호소)의 모든 보호요청게시글이 담겨 있는 writersAnotherRequests
+		//그러나 현재 보고 있는 보호요청게시글은 해당 리스트에 출력이 되어서는 안됨 => Filter처리
 		const filteredList = writersAnotherRequests.filter(e => e._id != data._id);
 		setWritersAnotherRequests(filteredList);
 		setTimeout(() => {
@@ -89,16 +88,6 @@ export default AnimalProtectRequestDetail = ({route}) => {
 		console.log('답글쓰기를 클릭한 댓글의 고유 _id', comment);
 		setReplyData({...replyData, comment_parent: comment.comment_parent, comment_parent_writer_id: comment.comment_parent_writer_id});
 		setEditComment(!editComment);
-	};
-
-	//임시보호 버튼 클릭
-	const onPressProtectRequest = () => {
-		navigation.push('ApplyProtectActivityA', {protect_request_pet_data: data});
-	};
-
-	//입양하기 버튼 클릭
-	const onPressAdoptionRequest = () => {
-		navigation.push('ApplyAnimalAdoptionA', {protect_request_pet_data: data});
 	};
 
 	// 답글 쓰기 -> 자물쇠버튼 클릭 콜백함수
@@ -152,6 +141,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 		}
 	};
 
+	//보호요청 더보기의 리스트 중 한 아이템의 좋아요 태그 클릭
 	const onPressFavoriteTag = (item, index) => {
 		console.log('FavoriteTag', index, item);
 	};
@@ -170,6 +160,16 @@ export default AnimalProtectRequestDetail = ({route}) => {
 				return tempList;
 			} else return dummy_CommentObject;
 		} else return dummy_CommentObject;
+	};
+
+	//임시보호 버튼 클릭
+	const onPressProtectRequest = () => {
+		navigation.push('ApplyProtectActivityA', {protect_request_pet_data: data});
+	};
+
+	//입양하기 버튼 클릭
+	const onPressAdoptionRequest = () => {
+		navigation.push('ApplyAnimalAdoptionA', {protect_request_pet_data: data});
 	};
 
 	if (loading) {
@@ -289,8 +289,8 @@ export default AnimalProtectRequestDetail = ({route}) => {
 					<></>
 				) : (
 					<View style={[animalProtectRequestDetail_style.btnContainer]}>
-						<AniButton btnStyle={'border'} btnTitle={'임시보호 신청'} titleFontStyle={30} onPress={onPressProtectRequest} />
-						<AniButton btnTitle={'입양 신청'} titleFontStyle={30} onPress={onPressAdoptionRequest} />
+						<AniButton onPress={onPressProtectRequest} btnTitle={'임시보호 신청'} tnStyle={'border'} titleFontStyle={30} />
+						<AniButton onPress={onPressAdoptionRequest} btnTitle={'입양 신청'} titleFontStyle={30} />
 					</View>
 				)}
 			</ScrollView>
@@ -313,10 +313,10 @@ export default AnimalProtectRequestDetail = ({route}) => {
 
 AnimalProtectRequestDetail.defaultProps = {};
 
-const e = {
+const animalFromShelt = {
 	item: {
 		__v: 0,
-		_id: '61c188ba2aaa7e1134cef1e2',
+		_id: '61c175d0b83cbeb3c893db71',
 		protect_animal_id: {
 			__v: 0,
 			_id: '61c07f0c0b3fb5a4acae2c26',
@@ -325,27 +325,27 @@ const e = {
 			protect_animal_estimate_age: '4년 1개월',
 			protect_animal_neutralization: 'unknown',
 			protect_animal_photo_uri_list: [Array],
-			protect_animal_protect_request_id: '61c188ba2aaa7e1134cef1e2',
+			protect_animal_protect_request_id: '61c175d0b83cbeb3c893db71',
 			protect_animal_protector_discussion_id: [Array],
 			protect_animal_rescue_date: '2004-08-12T00:00:00.000Z',
 			protect_animal_rescue_location: '고르고스 언덕',
-			protect_animal_sex: 'female',
+			protect_animal_sex: 'male',
 			protect_animal_species: '기타',
 			protect_animal_species_detail: '치와와',
-			protect_animal_status: 'rescue',
+			protect_animal_status: 'protect',
 			protect_animal_weight: 12,
 		},
 		protect_animal_species: '기타',
 		protect_animal_species_detail: '치와와',
 		protect_request_comment_count: 0,
-		protect_request_content: '함께 상처를 치료할 동반자를 구합니다. ',
-		protect_request_date: '2021-12-21T07:56:42.286Z',
+		protect_request_content: '나이는 많아 보이지만 아주 정이 많아보입니다. 데려가기를 연락하세요.',
+		protect_request_date: '2021-12-21T06:36:00.739Z',
 		protect_request_favorite_count: 0,
 		protect_request_hit: 0,
-		protect_request_photos_uri: ['https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640073402165_8.jpg'],
-		protect_request_status: 'rescue',
-		protect_request_title: '아직 사람을 그리워하는 것 같습니다.',
-		protect_request_update_date: '2021-12-21T07:56:42.286Z',
+		protect_request_photos_uri: [],
+		protect_request_status: 'complete',
+		protect_request_title: '새로운 엄마를 구해요',
+		protect_request_update_date: '2021-12-21T06:36:00.739Z',
 		protect_request_writer_id: {
 			__v: 0,
 			_id: '61c023d9679aa5ae46128102',
@@ -379,6 +379,111 @@ const e = {
 	list: [
 		{
 			__v: 0,
+			_id: '61c175d0b83cbeb3c893db71',
+			protect_animal_id: [Object],
+			protect_animal_species: '기타',
+			protect_animal_species_detail: '치와와',
+			protect_request_comment_count: 0,
+			protect_request_content: '나이는 많아 보이지만 아주 정이 많아보입니다. 데려가기를 연락하세요.',
+			protect_request_date: '2021-12-21T06:36:00.739Z',
+			protect_request_favorite_count: 0,
+			protect_request_hit: 0,
+			protect_request_photos_uri: [Array],
+			protect_request_status: 'complete',
+			protect_request_title: '새로운 엄마를 구해요',
+			protect_request_update_date: '2021-12-21T06:36:00.739Z',
+			protect_request_writer_id: [Object],
+		},
+	],
+};
+
+const fromProtectionTab = {
+	item: {
+		__v: 0,
+		_id: '61c086baa9dce34eff2813bc',
+		protect_animal_id: '61b852bcc02491f75d05851f',
+		protect_animal_species: '드래곤',
+		protect_animal_species_detail: '레드',
+		protect_request_comment_count: 0,
+		protect_request_content: '테스트입니다...',
+		protect_request_date: '2021-12-20T13:35:54.338Z',
+		protect_request_favorite_count: 0,
+		protect_request_hit: 0,
+		protect_request_photos_uri: [
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640007354097_wVyP7Qtnkko.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640007354107_YQkT1zNMSWw.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639469755996_GQduCe7EI_0.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639469756009_P5v-dOEsmdw.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639469756038_Uhky0oIkFCE.jpg',
+		],
+		protect_request_status: 'rescue',
+		protect_request_title: 'wpxhasㅆ테스트',
+		protect_request_update_date: '2021-12-20T13:35:54.338Z',
+		protect_request_writer_id: {
+			__v: 1,
+			_id: '61b585861d58f109766f5f0f',
+			pet_family: [Array],
+			shelter_address: [Object],
+			shelter_delegate_contact_number: '',
+			shelter_foundation_date: null,
+			shelter_homepage: '',
+			shelter_name: '백설기 보호소',
+			user_agreement: [Object],
+			user_denied: false,
+			user_email: '',
+			user_follow_count: 0,
+			user_follower_count: 0,
+			user_interests: [Array],
+			user_introduction: '',
+			user_is_verified_email: false,
+			user_is_verified_phone_number: false,
+			user_my_pets: [Array],
+			user_name: '백설 보호소',
+			user_nickname: '백설 보호소',
+			user_password: '1234',
+			user_phone_number: '12345',
+			user_register_date: '2021-12-12T05:15:50.515Z',
+			user_type: 'shelter',
+			user_upload_count: 0,
+		},
+	},
+	list: [
+		{
+			__v: 0,
+			_id: '61c086baa9dce34eff2813bc',
+			protect_animal_id: '61b852bcc02491f75d05851f',
+			protect_animal_species: '드래곤',
+			protect_animal_species_detail: '레드',
+			protect_request_comment_count: 0,
+			protect_request_content: '테스트입니다...',
+			protect_request_date: '2021-12-20T13:35:54.338Z',
+			protect_request_favorite_count: 0,
+			protect_request_hit: 0,
+			protect_request_photos_uri: [Array],
+			protect_request_status: 'rescue',
+			protect_request_title: 'wpxhasㅆ테스트',
+			protect_request_update_date: '2021-12-20T13:35:54.338Z',
+			protect_request_writer_id: [Object],
+		},
+		{
+			__v: 0,
+			_id: '61c175d0b83cbeb3c893db71',
+			protect_animal_id: [Object],
+			protect_animal_species: '기타',
+			protect_animal_species_detail: '치와와',
+			protect_request_comment_count: 0,
+			protect_request_content: '나이는 많아 보이지만 아주 정이 많아보입니다. 데려가기를 연락하세요.',
+			protect_request_date: '2021-12-21T06:36:00.739Z',
+			protect_request_favorite_count: 0,
+			protect_request_hit: 0,
+			protect_request_photos_uri: [Array],
+			protect_request_status: 'complete',
+			protect_request_title: '새로운 엄마를 구해요',
+			protect_request_update_date: '2021-12-21T06:36:00.739Z',
+			protect_request_writer_id: [Object],
+		},
+		{
+			__v: 0,
 			_id: '61c188ba2aaa7e1134cef1e2',
 			protect_animal_id: [Object],
 			protect_animal_species: '기타',
@@ -392,6 +497,59 @@ const e = {
 			protect_request_status: 'rescue',
 			protect_request_title: '아직 사람을 그리워하는 것 같습니다.',
 			protect_request_update_date: '2021-12-21T07:56:42.286Z',
+			protect_request_writer_id: [Object],
+		},
+		{
+			__v: 0,
+			_id: '61c18f052aaa7e1134cef32e',
+			protect_animal_id: [Object],
+			protect_animal_species: '개',
+			protect_animal_species_detail: '웰시코기',
+			protect_request_comment_count: 0,
+			protect_request_content:
+				'점프력이 굉장히 높아서 자녀들과 공놀이 하기 좋은 녀석입니다.  음식도 가리지 않고 먹어서 사료 걱정도 크게 하지 않으셔도 됩니다. 암컷이라서 나중에  분양하기도 편하고 오리지널 종이라서 우대 받으실 수 있습니다. 보호소에서 종은 보장해 드립니다. 당연히 무료로 입양 가능합니다.',
+			protect_request_date: '2021-12-21T08:23:33.092Z',
+			protect_request_favorite_count: 0,
+			protect_request_hit: 0,
+			protect_request_photos_uri: [Array],
+			protect_request_status: 'rescue',
+			protect_request_title: '웰시코기 몰고 가세요 ~',
+			protect_request_update_date: '2021-12-21T08:23:33.092Z',
+			protect_request_writer_id: [Object],
+		},
+		{
+			__v: 0,
+			_id: '61c1a48c0d5d4eede496b687',
+			protect_animal_id: [Object],
+			protect_animal_species: '개',
+			protect_animal_species_detail: '몽벨',
+			protect_request_comment_count: 0,
+			protect_request_content:
+				'대소변을 알아서 잘 커버하는 아주 똑똑한 아이에요. 워낙 목욕도 좋아해서 매일 하지 않으면 투정을 부릴 정도에요. 보호 요청 하실분 계시나요??',
+			protect_request_date: '2021-12-21T09:55:24.546Z',
+			protect_request_favorite_count: 0,
+			protect_request_hit: 0,
+			protect_request_photos_uri: [Array],
+			protect_request_status: 'rescue',
+			protect_request_title: '몽벨 보호요청 합니다.',
+			protect_request_update_date: '2021-12-21T09:55:24.546Z',
+			protect_request_writer_id: [Object],
+		},
+		{
+			__v: 0,
+			_id: '61c1acb20d5d4eede496b6be',
+			protect_animal_id: [Object],
+			protect_animal_species: '개',
+			protect_animal_species_detail: '푸들리스트',
+			protect_request_comment_count: 0,
+			protect_request_content: '텐션 높은 아이이며, 유쾌한 성격입니다.',
+			protect_request_date: '2021-12-21T10:30:10.607Z',
+			protect_request_favorite_count: 0,
+			protect_request_hit: 0,
+			protect_request_photos_uri: [Array],
+			protect_request_status: 'rescue',
+			protect_request_title: '매력적인 까망이',
+			protect_request_update_date: '2021-12-21T10:30:10.607Z',
 			protect_request_writer_id: [Object],
 		},
 		{

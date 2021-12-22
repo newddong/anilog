@@ -46,6 +46,7 @@ export async function getUserProtectAnimalList(params, callback, errcallback) {
  *
  * @param {object} params
  * @param {'protect'|'adopt'} params.protect_act_type - 신청한 보호 활동의 종류, 임시보호(protect), 입양(adopt)
+ * @param {String} params.protect_request_object_id - 대상 보호신청 게시글
  * @param {Array.<CompanionHistory>} params.protect_act_companion_history - 보호 신청자의 반려생활 이력
  * @param {ProtectActAddress} params.protect_act_address - 보호 신청자의 주소
  * @param {String} params.protect_act_phone_number - 보호 신청자의 전화번호
@@ -55,10 +56,9 @@ export async function getUserProtectAnimalList(params, callback, errcallback) {
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  *
  */
-export async function createProtectActivity(params, callback, errcallback){
-	apiController( '/protect/createProtectActivity', arguments);
-};
-
+export async function createProtectActivity(params, callback, errcallback) {
+	apiController('/protect/createProtectActivity', arguments);
+}
 
 /**
  * 유저의 동물보호 신청내역 가져오기
@@ -67,15 +67,11 @@ export async function createProtectActivity(params, callback, errcallback){
  * @param {string} params.userobject_id - 사용자 계정 id
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
- * 
+ *
  */
-export async function getAppliesRecord(params, callback, errcallback){
-	apiController( '/protect/getAppliesRecord', arguments);
-};
-
-
-
-
+export async function getAppliesRecord(params, callback, errcallback) {
+	apiController('/protect/getAppliesRecord', arguments);
+}
 
 /**
  * 유저의 보호활동(입양,임시보호) 신청 내역을 가져오기
@@ -86,11 +82,9 @@ export async function getAppliesRecord(params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export async function getUserAdoptProtectionList(params, callback, errcallback){
-	apiController( '/protect/getUserAdoptProtectionList', arguments);
-};
-
-
+export async function getUserAdoptProtectionList(params, callback, errcallback) {
+	apiController('/protect/getUserAdoptProtectionList', arguments);
+}
 
 /**
  * 유저의 보호활동(입양,임시보호) 신청서 자세히 보기
@@ -99,10 +93,9 @@ export async function getAppliesRecord(params, callback, errcallback){
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
-export async function getApplyDetailById(params, callback, errcallback){
-apiController( '/protect/getApplyDetailById', arguments);
-};
-
+export async function getApplyDetailById(params, callback, errcallback) {
+	apiController('/protect/getApplyDetailById', arguments);
+}
 
 /**
  * 보호활동 신청서의 상태를 변경
@@ -112,10 +105,9 @@ apiController( '/protect/getApplyDetailById', arguments);
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export async function setProtectActivityStatus(params, callback, errcallback){
-	apiController( '/protect/setProtectActivityStatus', arguments);
-	};
-
+export async function setProtectActivityStatus(params, callback, errcallback) {
+	apiController('/protect/setProtectActivityStatus', arguments);
+}
 
 /**
  * 동물보호요청 게시물의 상태를 변경
@@ -125,9 +117,9 @@ apiController( '/protect/getApplyDetailById', arguments);
  * @param {({}:object)=>void} callback - API응답처리 콜백
  * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
  */
- export async function setProtectRequestStatus(params, callback, errcallback){
-	apiController( '/protect/setProtectRequestStatus', arguments);
-	};
+export async function setProtectRequestStatus(params, callback, errcallback) {
+	apiController('/protect/setProtectRequestStatus', arguments);
+}
 
 /**
  * 대상 동물보호 게시물에 동물보호를 신청한 신청자의 리스트

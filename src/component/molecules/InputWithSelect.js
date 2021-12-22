@@ -16,6 +16,7 @@ import Input24 from 'Molecules/Input24';
  * @param {string} props.title - 인풋 상단의 제목
  * @param {string} props.alert_msg - 인풋 값의 Validator 미통과 결과 출력
  * @param {'default' | 'email-address' | 'numeric' | 'phone-pad' | 'number-pad' | 'decimal-pad'} props.keyboardType - 버튼 테마 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'number-pad' | 'decimal-pad'
+ * @param {'star' | 'info' | 'none' } props.descriptionType - 인풋의 DescriptionType 테마 'star' | 'info' | 'none'  / Default = 'none'
  * @param {boolean} props.title_star - 제목 부분의 별표(강조용) 출력 여부 Default=false
  * @param {number} props.defaultIndex - 드롭 다운의 초기값 인덱스
  * @param {number} props.width - 인풋 너비(드롭다운은 제외) , default=200

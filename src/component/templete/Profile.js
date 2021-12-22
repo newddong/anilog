@@ -40,7 +40,7 @@ export default Profile = ({route, navigation}) => {
 				user_type: route.params ? route.params.user_type : 'shelter',
 			},
 			result => {
-				console.log('result / getUserProfile / Profile  :  ', result.msg.user_nickname);
+				// console.log('result / getUserProfile / Profile  :  ', result.msg.user_nickname);
 				setProfile_data(result.msg);
 			},
 			err => {

@@ -27,7 +27,7 @@ import {addressInput} from './style_organism';
  */
 
 const AddressInput = props => {
-	console.log('addressInpit', props);
+	// console.log('addressInpit', props);
 	const [detailAddr, setDetailAddr] = React.useState(props.detailAddress || '');
 	React.useEffect(() => {
 		// console.log('addressinput Detail', detailAddr);

@@ -25,7 +25,7 @@ import moment from 'moment';
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
-	// console.log('AnimalNeedHelp / ', data);
+	// console.log('AnimalNeedHelp / ', data.protect_animal_photo_uri_list);
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 
@@ -44,7 +44,7 @@ export default AnimalNeedHelp = props => {
 			// 실종/제보 썸네일
 			resultJSON.img_uri = data.feed_thumbnail;
 		} else if (data.hasOwnProperty('protect_animal_photo_uri_list')) {
-			resultJSON.img_uri = data.protect_animal_photo_uri_list[0];
+			resultJSON.img_uri = data.protect_animal_photo_uri_list[0] == undefined ? DEFAULT_ANIMAL_PROFILE : data.protect_animal_photo_uri_list[0];
 		} else {
 			//기본 썸네일 적용
 			resultJSON.img_uri = DEFAULT_ANIMAL_PROFILE;

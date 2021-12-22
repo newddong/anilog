@@ -9,14 +9,14 @@ import {txt} from 'Root/config/textstyle';
 import {dummy_ProtectRequestList} from 'Root/config/dummy_data_hjs';
 import {ONLY_CONTENT_FOR_ADOPTION, PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
 import FilterButton from '../molecules/FilterButton';
-import {getProtectRequestList} from 'Root/api/shelterapi.js';
+import {getProtectRequestList, getProtectRequestListByShelterId} from 'Root/api/shelterapi.js';
 
 export default ProtectRequestList = ({navigation, route}) => {
 	const [data, setData] = React.useState([]);
 
 	//보호 요청 데이터 불러오기 (아직 API 미작업 )
 	React.useEffect(() => {
-		console.log(`ProtectRequestList:seding data -${data}`);
+		// console.log(`ProtectRequestList:seding data -${data}`);
 		getProtectRequestList(
 			{
 				//필터 - 보호지역 (user_address.city 데이터)
@@ -32,6 +32,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 			},
 			data => {
 				// console.log('data' + JSON.stringify(`data${data}`));
+				console.log('보호요청 ', data.msg[0]);
 				// data.msg.forEach(e => console.log('forEach', e.protect_animal_id.protect_animal_sex, e.protect_animal_id.protect_animal_status));
 				data.msg.forEach(each => {
 					each.protect_animal_sex = each.protect_animal_id.protect_animal_sex;
@@ -45,29 +46,26 @@ export default ProtectRequestList = ({navigation, route}) => {
 		);
 	}, [route.params]);
 
-	React.useEffect(() => {
-		console.log(`ProtectRequestList data:${JSON.stringify(data)}`);
-	}, [data]);
-
-	// [hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
-
-	// //UserObject
-	//  : '', //보호소 이름
-
-	// //protectRequestObject
-	// protect_request_photo_thumbnail: '', //보호요청 게시물 썸네일 uri
-	// protect_request_status: '', //	보호요청 상태
-	// protect_animal_id: '', //보호요청할 동물
-	// protect_request_date: '', //보호요청 게시글 작성일시
-
-	// //ShelterProtectAnimalObject
-	// protect_animal_species: '', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
-	// protect_animal_species_detail: '', //보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
-	// protect_animal_sex: '', //보호중인 동물의 성별
-	// protect_animal_rescue_location: '', //보호중인 동물의 구조장소
-
-	// //BookmarkProtectRequestObject
-	// bookmark: false, //유저-보호요청 북마크
+	const onClickLabel = (status, id, item) => {
+		//data에는 getProtectRequestList(어떠한 필터도 없이 모든 보호요청게시글을 출력)의 결과값이 담겨있음
+		//따라서 출력할 것을 해당 게시글의 작성자(보호소)가 작성한 보호요청게시글로 좁혀야함
+		console.log('item', item.protect_request_writer_id._id);
+		getProtectRequestListByShelterId(
+			{
+				shelter_userobject_id: item.protect_request_writer_id._id,
+				protect_request_status: 'rescue',
+				protect_request_object_id: null,
+				request_number: 10,
+			},
+			result => {
+				console.log('result / getPRotectRequestListByShelterId / ProtectRequestList  : ', result.msg);
+				navigation.navigate('AnimalProtectRequestDetail', {item: item, list: result.msg});
+			},
+			err => {
+				console.log('err / getProtectRequestListByShelterId / ProtectRequestList   : ', err);
+			},
+		);
+	};
 
 	const filterOn = () => {
 		// alert('입양 가능한 게시글만 보기');
@@ -114,7 +112,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 					</View>
 				</View>
 				<View style={[searchProtectRequest.animalNeedHelpList]}>
-					<AnimalNeedHelpList data={data} onFavoriteTag={onOff_FavoriteTag} />
+					<AnimalNeedHelpList data={data} onClickLabel={onClickLabel} onFavoriteTag={onOff_FavoriteTag} />
 				</View>
 			</ScrollView>
 		</View>
