@@ -25,7 +25,7 @@ import moment from 'moment';
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
-	// console.log('AnimalNeedHelp / ', data.protect_animal_photo_uri_list);
+	console.log('AnimalNeedHelp / ', data);
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 
@@ -158,7 +158,11 @@ export default AnimalNeedHelp = props => {
 								</Text>
 								<Text style={[txt.noto24]}>
 									구조지역 :
-									{data.protect_animal_rescue_location ? data.protect_animal_rescue_location : data.protect_animal_id.protect_animal_rescue_location}
+									{data.protect_animal_rescue_location
+										? data.protect_animal_rescue_location
+										: data.protect_animal_id
+										? data.protect_animal_id.protect_animal_rescue_location
+										: '작성되지 않았습니다.'}
 								</Text>
 							</View>
 						</>

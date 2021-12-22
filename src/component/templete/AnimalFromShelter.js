@@ -46,8 +46,8 @@ export default AnimalFromShelter = ({route}) => {
 
 	//테두리 모드 On 상태에서 입양처 보기 클릭
 	const onPressAdoptorInfo = data => {
-		// console.log('item', item);
-		navigation.push('AdoptorInformation', data);
+		console.log('item', data);
+		// navigation.push('AdoptorInformation', data);
 	};
 
 	// 테두리 모드 On 상태에서 게시글보기 클릭 => AnimapProtectRequestDetail == ProtectRequestManage

@@ -34,8 +34,7 @@ export default AidRequestManage = ({route, navigation}) => {
 			getAnimalListWithApplicant(
 				{},
 				result => {
-					console.log('result / getAnimalListWithApplicant / ProtectApplyList', result.msg);
-
+					console.log('result / getAnimalListWithApplicant / ProtectApplyList', result.msg[0].protect_act_applicants);
 					setData(result.msg);
 				},
 				err => {
@@ -96,5 +95,69 @@ const withApplica = [
 		protect_animal_species_detail: '치와와',
 		protect_animal_status: 'rescue',
 		protect_animal_weight: 12,
+	},
+];
+[
+	{
+		__v: 0,
+		_id: '61c1cc107be07611b00945f9',
+		protect_act_address: {brief: 'string', city: '서울특별시', detail: 'string', district: '마포구 신수동', neighbor: '89-77 203호'},
+		protect_act_applicant_id: '61c023d9679aa5ae46128102',
+		protect_act_checklist: {
+			is_adult: true,
+			is_agreed_housemate: true,
+			is_experience_defecate: true,
+			is_knowledge_sanitation: true,
+			is_near_veterinary: true,
+		},
+		protect_act_companion_history: [[Object]],
+		protect_act_motivation: '우리 달리의 친구를 만들어주고 싶습니다.',
+		protect_act_phone_number: '01096450422',
+		protect_act_protect_animal_id: '61c07f0c0b3fb5a4acae2c26',
+		protect_act_request_article_id: '61c188ba2aaa7e1134cef1e2',
+		protect_act_request_shelter_id: '61c023d9679aa5ae46128102',
+		protect_act_status: 'wait',
+		protect_act_type: 'protect',
+	},
+	{
+		__v: 0,
+		_id: '61c1e55a7be07611b009470a',
+		protect_act_address: {brief: 'string', city: '서울특별시', detail: 'string', district: '마포구 신수동', neighbor: '89-77 203호'},
+		protect_act_applicant_id: '61c023d9679aa5ae46128102',
+		protect_act_checklist: {
+			is_adult: true,
+			is_agreed_housemate: true,
+			is_experience_defecate: true,
+			is_knowledge_sanitation: true,
+			is_near_veterinary: true,
+		},
+		protect_act_companion_history: [[Object]],
+		protect_act_motivation: '우리 달리의 친구를 만들어주고 싶습니다.',
+		protect_act_phone_number: '01096450422',
+		protect_act_protect_animal_id: '61c07f0c0b3fb5a4acae2c26',
+		protect_act_request_article_id: '61c188ba2aaa7e1134cef1e2',
+		protect_act_request_shelter_id: '61c023d9679aa5ae46128102',
+		protect_act_status: 'wait',
+		protect_act_type: 'adopt',
+	},
+	{
+		__v: 0,
+		_id: '61c2fc527be07611b00955e6',
+		protect_act_address: {brief: '경기도 화성시 장안면 석포로 107', detail: '311'},
+		protect_act_applicant_id: '61c023d9679aa5ae46128102',
+		protect_act_checklist: {
+			is_adult: true,
+			is_agreed_housemate: true,
+			is_experience_defecate: true,
+			is_knowledge_sanitation: true,
+			is_near_veterinary: true,
+		},
+		protect_act_companion_history: [[Object]],
+		protect_act_phone_number: '01096450422',
+		protect_act_protect_animal_id: '61c07f0c0b3fb5a4acae2c26',
+		protect_act_request_article_id: '61c188ba2aaa7e1134cef1e2',
+		protect_act_request_shelter_id: '61c023d9679aa5ae46128102',
+		protect_act_status: 'wait',
+		protect_act_type: 'adopt',
 	},
 ];
