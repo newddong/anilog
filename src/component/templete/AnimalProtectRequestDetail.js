@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {btn_w226} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import {login_style, temp_style, animalProtectRequestDetail_style, feedCommentList, accountPicker} from './style_templete';
@@ -21,17 +21,21 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {organism_style, profileInfo_style} from '../organism/style_organism';
 import {Bracket48} from '../atom/icon';
+import {ActivityIndicator} from 'react-native';
 
 //AnimalProtectRequestDetail 호출 경로
 // - AnimalNeedHelp Item의 썸네일을 클릭할 경우 호출.
 // - AnimalNeedHelp Item의 BorderMode=true 에서 게시글보기를 클릭하였을 경우 호출
 
 export default AnimalProtectRequestDetail = ({route}) => {
-	console.log('AnimalProtectRequestDetail', route.params);
+	// console.log('AnimalProtectRequestDetail', route.params);
 	const navigation = useNavigation();
 	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
-	const [data, setData] = React.useState(route.params); // ProtectRequestObject, ShelterProtectAnimalObject 정보가 담겨 있는 상태
-
+	const data = route.params ? route.params.item : dummy_AnimalNeedHelpList_various_status; // ProtectRequestObject, ShelterProtectAnimalObject 정보가 담겨 있는 상태
+	const [writersAnotherRequests, setWritersAnotherRequests] = React.useState(
+		route.params ? route.params.list : dummy_AnimalNeedHelpList_various_status,
+	);
+	const [loading, setLoading] = React.useState(true); //로딩상태
 	const [editComment, setEditComment] = React.useState(false); // 댓글 쓰기 클릭
 	const [privateComment, setPrivateComment] = React.useState(false); // 팝업된 댓글창에서 비밀글 상태
 	const [photo, setPhoto] = React.useState(); // PhotoSelect에서 가져온 Photo uri
@@ -43,6 +47,14 @@ export default AnimalProtectRequestDetail = ({route}) => {
 		AsyncStorage.getItem('token', (err, res) => {
 			res ? setToken(res) : setToken(null);
 		});
+	}, []);
+
+	React.useEffect(() => {
+		const filteredList = writersAnotherRequests.filter(e => e._id != data._id);
+		setWritersAnotherRequests(filteredList);
+		setTimeout(() => {
+			setLoading(false);
+		}, 1500);
 	}, []);
 
 	//답글 최종 확인(SendIcon 클릭)
@@ -160,30 +172,109 @@ export default AnimalProtectRequestDetail = ({route}) => {
 		} else return dummy_CommentObject;
 	};
 
+	const t = {
+		__v: 0,
+		_id: '61c188ba2aaa7e1134cef1e2',
+		protect_animal_id: {
+			__v: 0,
+			_id: '61c07f0c0b3fb5a4acae2c26',
+			protect_act_applicants: [],
+			protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
+			protect_animal_estimate_age: '4년 1개월',
+			protect_animal_neutralization: 'unknown',
+			protect_animal_photo_uri_list: [],
+			protect_animal_protect_request_id: '61c188ba2aaa7e1134cef1e2',
+			protect_animal_protector_discussion_id: [],
+			protect_animal_rescue_date: '2004-08-12T00:00:00.000Z',
+			protect_animal_rescue_location: '고르고스 언덕',
+			protect_animal_sex: 'female',
+			protect_animal_species: '기타',
+			protect_animal_species_detail: '치와와',
+			protect_animal_status: 'rescue',
+			protect_animal_weight: 12,
+		},
+		protect_animal_species: '기타',
+		protect_animal_species_detail: '치와와',
+		protect_request_comment_count: 0,
+		protect_request_content: '함께 상처를 치료할 동반자를 구합니다. ',
+		protect_request_date: '2021-12-21T07:56:42.286Z',
+		protect_request_favorite_count: 0,
+		protect_request_hit: 0,
+		protect_request_photos_uri: ['https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640073402165_8.jpg'],
+		protect_request_status: 'rescue',
+		protect_request_title: '아직 사람을 그리워하는 것 같습니다.',
+		protect_request_update_date: '2021-12-21T07:56:42.286Z',
+		protect_request_writer_id: {
+			__v: 0,
+			_id: '61c023d9679aa5ae46128102',
+			pet_family: [],
+			shelter_address: {brief: '마포구 신수동 89-77', detail: '203호'},
+			shelter_delegate_contact_number: '01096450001',
+			shelter_foundation_date: '2011-12-04T00:00:00.000Z',
+			shelter_homepage: '',
+			shelter_name: '상우 보호소6',
+			user_agreement: {
+				is_donation_info: false,
+				is_location_service_info: false,
+				is_marketting_info: false,
+				is_over_fourteen: false,
+				is_personal_info: false,
+				is_service: false,
+			},
+			user_denied: false,
+			user_email: 'lanad01@naver.com',
+			user_follow_count: 0,
+			user_follower_count: 0,
+			user_interests: [],
+			user_introduction:
+				'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
+			user_is_verified_email: false,
+			user_is_verified_phone_number: false,
+			user_my_pets: [],
+			user_name: '상우 보호소5',
+			user_nickname: '가하즈보호소',
+			user_password: '121212',
+			user_phone_number: '01096450001',
+			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
+			user_register_date: '2021-12-20T06:34:01.773Z',
+			user_type: 'shelter',
+			user_upload_count: 0,
+		},
+	};
+
+	if (loading) {
+		return (
+			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
+				<ActivityIndicator size={'large'}></ActivityIndicator>
+			</View>
+		);
+	}
 	return (
 		<View style={[login_style.wrp_main]}>
 			<ScrollView contentContainerStyle={[animalProtectRequestDetail_style.container]}>
 				{/* 임시보호 후보자 협의 중 사진 */}
 				<View style={[temp_style.rescueImage]}>
-					<RescueImage status={data.protect_request_status || 'adopt'} img_uri={data.protect_animal_photos[0] || DEFAULT_PROFILE} />
+					<RescueImage status={data.protect_request_status || 'adopt'} img_uri={data.protect_request_photos_uri[0] || DEFAULT_PROFILE} />
 				</View>
 				<View style={[temp_style.requestProtect_view]}>
 					<Text style={[txt.noto24, temp_style.requestProtect, {color: GRAY10}]}>보호요청</Text>
 				</View>
 				{/* RescueContentTitle */}
 				<View style={[temp_style.rescueContentTitle]}>
-					<Text style={[txt.noto28b]}>{data.protect_request_content ? data.protect_request_content : ''}</Text>
+					<Text style={[txt.noto28b]}>{data.protect_request_title || ''}</Text>
 				</View>
 				{/* ShelterSmallLabel */}
 				<View style={[temp_style.shelterSmallLabel_view_animalProtectRequestDetail]}>
 					<View style={[temp_style.shelterSmallLabel_animalProtectRequestDetail]}>
-						<ShelterSmallLabel data={data} />
+						<ShelterSmallLabel data={data.protect_request_writer_id} />
 					</View>
 					{/* Buttons */}
 					<View style={[temp_style.button_animalProtectRequestDetail]}>
 						<View>
 							<FavoriteTag48_Filled />
-							<Text style={[txt.roboto24, {color: APRI10}]}>{data ? count_to_K(data.user_follow_count) : ''}</Text>
+							<Text style={[txt.roboto24, {color: APRI10, alignSelf: 'center'}]}>
+								{data ? count_to_K(data.protect_request_writer_id.user_follow_count) : ''}
+							</Text>
 						</View>
 						<View style={{marginLeft: 30 * DP}}>
 							<Share48_Filled />
@@ -198,11 +289,11 @@ export default AnimalProtectRequestDetail = ({route}) => {
 						<View style={[animalProtectRequestDetail_style.rescueSummary_insideItem]}>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>분류</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-								{data.protect_animal_species ? data.protect_animal_species : ''}
+								{data.protect_animal_id ? data.protect_animal_id.protect_animal_species : ''}
 							</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>품종</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-								{data.protect_animal_species_detail ? data.protect_animal_species_detail : ''}
+								{data.protect_animal_id ? data.protect_animal_id.protect_animal_species_detail : ''}
 							</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>성별</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
@@ -212,46 +303,44 @@ export default AnimalProtectRequestDetail = ({route}) => {
 						<View style={[animalProtectRequestDetail_style.rescueSummary_insideItem]}>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>예상연령</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-								{data.protect_animal_estimate_age ? data.protect_animal_estimate_age : ''}
+								{data.protect_animal_id ? data.protect_animal_id.protect_animal_estimate_age : ''}
 							</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>체중</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-								{data.protect_animal_weight ? data.protect_animal_weight : ''}
+								{data.protect_animal_id ? data.protect_animal_id.protect_animal_weight : ''} kg
 							</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>중성화</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-								{data.protect_animal_neutralization && data.protect_animal_neutralization == 'yes' ? 'O' : 'X'}
+								{data.protect_animal_id ? (data.protect_animal_id.protect_animal_neutralization == 'yes' ? 'O' : 'X') : ''}
 							</Text>
 						</View>
 						<View style={[animalProtectRequestDetail_style.rescueSummary_insideItem]}>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>발견장소</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-								{data.protect_animal_rescue_location ? data.protect_animal_rescue_location : ''}
+								{data.protect_animal_id ? data.protect_animal_id.protect_animal_rescue_location : ''}
 							</Text>
 						</View>
 					</View>
 				</View>
 
 				{/* RescueText */}
-				<View style={[temp_style.rescueText, animalProtectRequestDetail_style.rescueText]}>
-					<Text style={[txt.noto24]}>{data.protect_request_content ? data.protect_request_content : ''}</Text>
+				<View style={[animalProtectRequestDetail_style.rescueText]}>
+					<Text style={[txt.noto24]}>{data.protect_request_content || ''}</Text>
 				</View>
 
-				<>
-					<View style={[temp_style.commentList]}>
-						{/* CommentList에 필요한 데이터 - CommentObject, WriterObejct(UserObject), FeedObject(FeedObject), LikeCommentObject */}
-						{/* 위의 모든 데이터가 CommentList items에 담겨져 있어야 함 */}
-						<CommentList items={checkDataLength()} onPressReplyBtn={onReplyBtnClick} onPress_ChildComment_ReplyBtn={onChildReplyBtnClick} />
-					</View>
+				<View style={[temp_style.commentList]}>
+					{/* CommentList에 필요한 데이터 - CommentObject, WriterObejct(UserObject), FeedObject(FeedObject), LikeCommentObject */}
+					{/* 위의 모든 데이터가 CommentList items에 담겨져 있어야 함 */}
+					<CommentList items={checkDataLength()} onPressReplyBtn={onReplyBtnClick} onPress_ChildComment_ReplyBtn={onChildReplyBtnClick} />
+				</View>
 
-					{/* 더보기 버튼 - 기본 2개 표출되며, 더보기 누르면 모두 보이도록 함. (hjs - 추후에 5개씩 더 보이게 한다거나 등등의 개수 제어 필요) */}
-					<TouchableOpacity onPress={onPressShowMore} style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
-						<Text style={[txt.noto24, {color: GRAY10}]}>더보기 </Text>
-						<View style={showMore ? {transform: [{rotate: '180deg'}]} : null}>
-							<Bracket48 />
-						</View>
-					</TouchableOpacity>
-				</>
+				{/* 더보기 버튼 - 기본 2개 표출되며, 더보기 누르면 모두 보이도록 함. (hjs - 추후에 5개씩 더 보이게 한다거나 등등의 개수 제어 필요) */}
+				<TouchableOpacity onPress={onPressShowMore} style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
+					<Text style={[txt.noto24, {color: GRAY10}]}>더보기 </Text>
+					<View style={showMore ? {transform: [{rotate: '180deg'}]} : null}>
+						<Bracket48 />
+					</View>
+				</TouchableOpacity>
 				{/* 보호요청 더 보기addMoreRequest */}
 				<View style={[temp_style.addMoreRequest_view]}>
 					<Text style={[txt.noto24, temp_style.addMoreRequest, {color: GRAY20}]}>보호요청 더보기</Text>
@@ -260,7 +349,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 				{/* AnimalNeedHelpList */}
 				<View style={[accountPicker.accountList]}>
 					<AnimalNeedHelpList
-						data={dummy_AnimalNeedHelpList_various_status}
+						data={writersAnotherRequests}
 						onClickLabel={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)}
 						onFavoriteTag={onPressFavoriteTag}
 					/>

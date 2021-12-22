@@ -891,7 +891,6 @@ export const temp_style = StyleSheet.create({
 	},
 	rescueContentTitle: {
 		width: 654 * DP,
-		height: 82 * DP,
 		marginBottom: 40 * DP,
 	},
 	shelterSmallLabel_view_animalProtectRequestDetail: {
@@ -3703,7 +3702,8 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 		marginTop: 28 * DP,
 	},
 	rescueText: {
-		marginTop: 40 * DP,
+		width: 654 * DP,
+		marginVertical: 40 * DP,
 	},
 	floatingBtnAapply: {
 		position: 'absolute',

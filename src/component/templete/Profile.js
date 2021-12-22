@@ -96,7 +96,7 @@ export default Profile = ({route, navigation}) => {
 	//보호소프로필의 보호활동 탭의 피드 썸네일 클릭
 	const onClickProtectAnimal = (status, user_id, item) => {
 		console.log('item', item);
-		navigation.push('AnimalProtectRequestDetail', item);
+		navigation.push('AnimalProtectRequestDetail', {item: item, list: protectActList});
 	};
 
 	//피드글작성 버튼 클릭(액션버튼)
