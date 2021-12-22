@@ -9,7 +9,6 @@ import {SearchIcon, Bracket} from 'Asset/image';
 import {ScrollView, FlatList} from 'react-native';
 import axios from 'axios';
 import qs from 'qs';
-
 export default AddressSearch = props => {
 	// const [data, setData] = React.useState({keyword:'',...props.route.params?.data,input:{}});
 	const [data, setData] = React.useState({keyword: props.route.params.addr ? props.route.params.addr : ''});
@@ -101,6 +100,11 @@ export default AddressSearch = props => {
 	};
 
 	const complete = () => {
+		console.log('onpress', addr);
+		if (addr.detailAddr == undefined || addr.roadAddr == undefined) {
+			alert('상세 주소까지 주소를 꼭 입력해주세요.');
+			return;
+		}
 		props.navigation.navigate({
 			name: props.route.params.from,
 			params: {addr: addr},
