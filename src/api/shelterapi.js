@@ -97,3 +97,16 @@ export async function getShelterProtectAnimalList(params, callback, errcallback)
  export async function getAnimalListWithApplicant(params, callback, errcallback) {
 	apiController( '/shelter/getAnimalListWithApplicant', arguments);
 }
+
+
+
+/**
+ * 보호소에 등록된 동물의 상세 정보를 조회
+ * @param {object} params - token아이디
+ * @param {string} params.shelter_protect_animal_object_id - 보호소의 등록된 동물의 오브젝트 아이디. 
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export async function getProtectAnimalByProtectAnimalId(params, callback, errcallback) {
+	apiController( '/shelter/getProtectAnimalByProtectAnimalId', arguments);
+}

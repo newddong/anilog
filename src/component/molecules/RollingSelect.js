@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, Text, FlatList, TouchableWithoutFeedback, ScrollView, Platform,Dimensions} from 'react-native';
+import {View, Text, FlatList, TouchableWithoutFeedback, ScrollView, Platform, Dimensions, Animated} from 'react-native';
 import {txt} from 'Root/config/textstyle';
-// import Animated, {useSharedValue, useAnimatedStyle, useAnimatedScrollHandler, runOnJS, ceil} from 'react-native-reanimated';
 import DP from 'Root/config/dp';
 import Modal from 'Component/modal/Modal';
 import {APRI10} from 'Root/config/color';
@@ -17,129 +16,126 @@ import {APRI10} from 'Root/config/color';
  *
  */
 const RollingSelect = props => {
-	// const scrollRef = React.useRef();
-	// const scrollOffsetY = useSharedValue(0);
-	// // const [itemCountInWindow, setItemCountInWindow] = React.useState(0);
-	// const selectedItem = React.useRef();
-	// const [scrollOffset, setScrollOffset] = React.useState({x: 0, y: 0});
+	const scrollRef = React.useRef();
+	const selectedItem = React.useRef();
+	const [scrollOffset, setScrollOffset] = React.useState({x: 0, y: 0});
 
-	// const items = props.items;
-	// const itemheight = Math.ceil(50 * DP);
-	// const layoutHeight = Math.ceil(370 * DP);
+	const items = props.items;
+	const itemheight = Math.ceil(50 * DP);
+	const layoutHeight = Math.ceil(370 * DP);
 
-	// const [scrollList, setScrollList] = React.useState([]);
+	const [scrollList, setScrollList] = React.useState([]);
+	const [currentY, setCurrentY] = React.useState(0);
+	const onScrollEnd = e => {
+		// console.log('onscrollend  ', e.nativeEvent);
+		let index = Math.round(e.nativeEvent.contentOffset.y / itemheight);
 
-	// const scrollHandler = useAnimatedScrollHandler(event => {
-	// 	// console.log('scrollhandler ',event);
-	// 	scrollOffsetY.value = event.contentOffset.y;
-	// });
-	// // const scrollHandler = event => {
-	// // 	console.log('scrollhandler', event);
+		if (index < items.length - 1) {
+			index = index + items.length;
+			scrollRef.current.scrollTo({x: 0, y: itemheight * index, animated: false});
+			// setScrollOffset({x:0,y:itemheight*index});
+		}
 
-	// // }
+		if (index > items.length * 2 - 1) {
+			index = index - items.length;
+			scrollRef.current.scrollTo({x: 0, y: itemheight * index, animated: false});
+			// setScrollOffset({x:0,y:itemheight*index});
+		}
 
-	// const onScrollEnd = e => {
-	// 	// console.log('onscrollend  ', e.nativeEvent);
-	// 	let index = Math.round(e.nativeEvent.contentOffset.y / itemheight);
+		// setScrollOffset({x:0,y:itemheight*index});
+		scrollRef.current.scrollTo({x: 0, y: itemheight * index, animated: true});
+		setCurrentY(itemheight * index);
+	};
 
-	// 	if (index < items.length - 1) {
-	// 		index = index + items.length;
-	// 		scrollRef.current.scrollTo({x: 0, y: itemheight * index, animated: false});
-	// 		// setScrollOffset({x:0,y:itemheight*index});
-	// 	}
+	const onItemSelection = e => {
+		selectedItem.current = e;
+	};
+	const onSelect = () => {
+		props.onSelect(selectedItem.current);
+		Modal.close();
+	};
 
-	// 	if (index > items.length * 2 - 1) {
-	// 		index = index - items.length;
-	// 		scrollRef.current.scrollTo({x: 0, y: itemheight * index, animated: false});
-	// 		// setScrollOffset({x:0,y:itemheight*index});
-	// 	}
+	const onCancel = () => {
+		props.onCancel();
+		Modal.close();
+	};
 
-	// 	// setScrollOffset({x:0,y:itemheight*index});
-	// 	scrollRef.current.scrollTo({x: 0, y: itemheight * index, animated: true});
-	// };
-	// const onItemSelection = e => {
-	// 	selectedItem.current = e;
-	// };
-	// const onSelect = () => {
-	// 	props.onSelect(selectedItem.current);
-	// 	Modal.close();
-	// };
+	const scrollY = React.useRef(new Animated.Value(0));
+	const onScroll = Animated.event([{nativeEvent:{
+		contentOffset:{
+			y: scrollY.current
+		},
+	}}],{listener:(e)=>{/*console.log('이벤트',scrollY.current)*/},useNativeDriver:false});
 
-	// const onCancel = () => {
-	// 	props.onCancel();
-	// 	Modal.close();
-	// };
+	const onLayout = e => {
+		// console.log('Parent onLayout',Platform.OS,e.nativeEvent);
+		const showItemNumber = Math.floor(e.nativeEvent.layout.height / itemheight);
 
-	// const onLayout = e => {
-	// 	// console.log('Parent onLayout',Platform.OS,e.nativeEvent);
-	// 	const showItemNumber = Math.floor(e.nativeEvent.layout.height / itemheight);
+		let list = items;
+		if (showItemNumber > items.length) {
+			let length = 0;
+			let count = Math.floor(1 + showItemNumber / items.length);
+			// console.log('count',count);
+			for (let i = 0; i < Math.floor(1 + showItemNumber / items.length) * 3; i++) {
+				// console.log('d',i);
+				list = list.concat(items);
+			}
+			// console.log(list.length);
+			// setItemCountInWindow(length);
+			setScrollList(list);
+		} else {
+			// setItemCountInWindow(items.length);
+			setScrollList(items.concat(items).concat(items));
+		}
+		setScrollOffset({x: 0, y: itemheight * Math.floor(items.length + showItemNumber / 2)});
+	};
 
-	// 	let list = items;
-	// 	if (showItemNumber > items.length) {
-	// 		let length = 0;
-	// 		let count = Math.floor(1 + showItemNumber / items.length);
-	// 		// console.log('count',count);
-	// 		for (let i = 0; i < Math.floor(1 + showItemNumber / items.length) * 3; i++) {
-	// 			// console.log('d',i);
-	// 			list = list.concat(items);
-	// 		}
-	// 		// console.log(list.length);
-	// 		// setItemCountInWindow(length);
-	// 		setScrollList(list);
-	// 	} else {
-	// 		// setItemCountInWindow(items.length);
-	// 		setScrollList(items.concat(items).concat(items));
-	// 	}
-	// 	setScrollOffset({x: 0, y: itemheight * Math.floor(items.length + showItemNumber / 2)});
-	// };
-
-	// return (
-	// 	<View
-	// 		style={{
-	// 			height: Platform.OS == 'ios' ? Dimensions.get('window').height : '100%',
-	// 			width: Platform.OS == 'ios' ? Dimensions.get('window').width : '100%',
-	// 			backgroundColor: '#0009',
-	// 			justifyContent: 'flex-end',
-	// 		}}>
-	// 		<View style={{height: 470 * DP, backgroundColor: '#fff', justifyContent: 'flex-end'}}>
-	// 			<View style={{width: '100%', flex: 1, justifyContent: 'space-around', flexDirection: 'row', alignItems: 'center'}}>
-	// 				<TouchableWithoutFeedback onPress={onCancel}>
-	// 					<Text style={[txt.noto26b, {color: APRI10}]}>취소</Text>
-	// 				</TouchableWithoutFeedback>
-	// 				<Text style={txt.noto32b}>{props.title}</Text>
-	// 				<TouchableWithoutFeedback onPress={onSelect}>
-	// 					<Text style={[txt.noto26b, {color: APRI10}]}>선택</Text>
-	// 				</TouchableWithoutFeedback>
-	// 			</View>
-	// 			<View style={{height: layoutHeight, backgroundColor: '#fff', alignItems: 'center'}} onLayout={onLayout}>
-	// 				<Animated.ScrollView
-	// 					showsVerticalScrollIndicator={false}
-	// 					ref={scrollRef}
-	// 					contentOffset={scrollOffset}
-	// 					scrollEventThrottle={5}
-	// 					onMomentumScrollEnd={onScrollEnd}
-	// 					onScroll={scrollHandler}
-	// 					style={{height: layoutHeight, width: '100%'}}>
-	// 					{scrollList.map((item, index) => (
-	// 						<ScrollItem
-	// 							index={index}
-	// 							key={index}
-	// 							scrolloffset={scrollOffsetY}
-	// 							layoutheight={layoutHeight}
-	// 							itemheight={itemheight}
-	// 							item={item}
-	// 							onItemSelection={onItemSelection}
-	// 						/>
-	// 					))}
-	// 				</Animated.ScrollView>
-
-	// 				{/* <View style={{height: 60*DP, width: '100%', borderColor:'black',borderTopWidth:2*DP,borderBottomWidth:2*DP, position: 'absolute', top: 143*DP,left:0}} /> */}
-	// 				<View style={{height: 2 * DP, width: '100%', backgroundColor: '#999999', position: 'absolute', top: 143 * DP, left: 0}} />
-	// 				<View style={{height: 2 * DP, width: '100%', backgroundColor: '#999999', position: 'absolute', top: 203 * DP, left: 0}} />
-	// 			</View>
-	// 		</View>
-	// 	</View>
-	// );
+	return (
+		<View
+			style={{
+				height: Platform.OS == 'ios' ? Dimensions.get('window').height : '100%',
+				width: Platform.OS == 'ios' ? Dimensions.get('window').width : '100%',
+				backgroundColor: '#0009',
+				justifyContent: 'flex-end',
+			}}>
+			<View style={{height: 470 * DP, backgroundColor: '#fff', justifyContent: 'flex-end'}}>
+				<View style={{width: '100%', flex: 1, justifyContent: 'space-around', flexDirection: 'row', alignItems: 'center'}}>
+					<TouchableWithoutFeedback onPress={onCancel}>
+						<Text style={[txt.noto26b, {color: APRI10}]}>취소</Text>
+					</TouchableWithoutFeedback>
+					<Text style={txt.noto32b}>{props.title}</Text>
+					<TouchableWithoutFeedback onPress={onSelect}>
+						<Text style={[txt.noto26b, {color: APRI10}]}>선택</Text>
+					</TouchableWithoutFeedback>
+				</View>
+				<View style={{height: layoutHeight, backgroundColor: '#fff', alignItems: 'center'}} onLayout={onLayout}>
+					<ScrollView
+						showsVerticalScrollIndicator={false}
+						ref={scrollRef}
+						contentOffset={scrollOffset}
+						scrollEventThrottle={50}
+						onMomentumScrollEnd={onScrollEnd}
+						onScroll={onScroll}
+						style={{height: layoutHeight, width: '100%'}}>
+						{scrollList.map((item, index) => (
+							<ScrollItem
+								index={index}
+								key={index}
+								scrolloffset={scrollY}
+								layoutheight={layoutHeight}
+								itemheight={itemheight}
+								item={item}
+								onItemSelection={onItemSelection}
+								currentY={currentY}
+							/>
+						))}
+					</ScrollView>
+					<View style={{height: 2 * DP, width: '100%', backgroundColor: '#999999', position: 'absolute', top: 143 * DP, left: 0}} />
+					<View style={{height: 2 * DP, width: '100%', backgroundColor: '#999999', position: 'absolute', top: 203 * DP, left: 0}} />
+				</View>
+			</View>
+		</View>
+	);
 };
 
 RollingSelect.defaultProps = {
@@ -172,11 +168,30 @@ const ScrollItem = props => {
 	const [isSelect, setSelect] = React.useState(false);
 	const selectItem = React.useRef('기본값');
 	const [itemOffset, setItemOffset] = React.useState(0);
+	const scrollOffset = React.useRef(0);
+	const offsetInLayout = React.useRef(0);
 
 	const onLayout = e => {
 		console.log('Child onLayout', Platform.OS, e.nativeEvent);
+		scrollOffset.current = new Animated.Value(e.nativeEvent.layout.y);
+		offsetInLayout.current = Animated.subtract(scrollOffset.current,props.scrolloffset.current);
 		setItemOffset(e.nativeEvent.layout.y);
 	};
+
+	const rotateX = offsetInLayout.current==0?'90deg':offsetInLayout.current.interpolate({
+		inputRange:[-10,props.layoutheight/2,props.layoutheight+10],
+		outputRange:['90deg','0deg','90deg']
+	});
+
+	const translateY = offsetInLayout.current==0?90/4:offsetInLayout.current.interpolate({
+		inputRange:[-10,props.layoutheight/2,props.layoutheight+10],
+		outputRange:[-90/4,0,-90/4]
+	});
+
+	React.useEffect(()=>{
+		console.log('z',props.currentY);
+	},[props.currentY])
+
 
 	const itemSelection = value => {
 		if (value < 15 && value > -15) {
@@ -187,21 +202,8 @@ const ScrollItem = props => {
 		}
 	};
 
-	const itemStyle = useAnimatedStyle(() => {
-		/** 스크롤 창(보여지는부분) 맨 위에서부터 항목까지의 거리 */
-		let offsetInLayout = itemOffset - props.scrolloffset.value;
-		/** 항목이 회전할 정도 */
-		let degCalc = 80 - (180 / props.layoutheight) * offsetInLayout;
-		if (degCalc < 15 && degCalc > -15) {
-			selectItem.current = props.item;
-		}
-		runOnJS(itemSelection)(degCalc);
-		return {
-			transform: [{rotateX: `${(degCalc >= 90 ? 89.9 : degCalc <= -90 ? -89.9 : degCalc) * 1}deg`}, {translateY: (-degCalc / 4) * 1}],
-		};
-	});
 	return (
-		<Animated.View style={[itemStyle, {justifyContent: 'center', height: props.itemheight, width: '100%', alignItems: 'center'}]} onLayout={onLayout}>
+		<Animated.View style={[{justifyContent: 'center', height: props.itemheight, width: '100%', alignItems: 'center',transform:[{rotateX:rotateX},{translateY:translateY} ]}]} onLayout={onLayout}>
 			<Animated.Text style={[txt.noto28b, {color: isSelect ? 'red' : 'black', includeFontPadding: false}]}>{props.item}</Animated.Text>
 		</Animated.View>
 	);

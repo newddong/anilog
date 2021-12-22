@@ -107,8 +107,8 @@ export default RootStackNavigation = () => {
 	};
 
 	Modal.rollingSelect = (title, items = [''], onSelect, onCancel = Modal.close) => {
-		// popIn(<RollingSelect title={title} items={items} onSelect={onSelect} onCancel={onCancel} />);
-		// !isPop && setPop(true);
+		popIn(<RollingSelect title={title} items={items} onSelect={onSelect} onCancel={onCancel} />);
+		!isPop && setPop(true);
 	};
 
 	Modal.popSelect = (primaryItems, secondaryItems, onOk, okButtonnMsg) => {
@@ -125,7 +125,7 @@ export default RootStackNavigation = () => {
 	return (
 		<SafeAreaView style={{flex: 1}}>
 			<NavigationContainer>
-				<RootStack.Navigator initialRouteName="Login">
+				<RootStack.Navigator initialRouteName="AssignUserHabitation">
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} options={{header: props => <LogoutView {...props} />}} />
 					<RootStack.Screen name="Login" component={LoginTemplete} options={{headerShown: false}} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} options={{header: props => <InputAndSearchHeader {...props} />}} />
