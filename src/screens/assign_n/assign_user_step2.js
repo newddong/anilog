@@ -13,7 +13,6 @@ import {DownBracketBlack,DownBracket,BtnWriteFeed,ProgressbarAssign_2, CancelInp
 import {txt, lo, btn, form, tab} from './style_assign';
 import FormTxtInput from 'Screens/common/formtxtinput';
 import {layout, text, button, float_btn} from '../feed/profile/style_profile';
-import Animated, {useSharedValue, useDerivedValue, useAnimatedStyle, useAnimatedProps, withTiming, withSpring} from 'react-native-reanimated';
 
 export default Assign_user_step2 = props => {
 	const [description, setDescription] = React.useState(ASSIGN_USER_DESCRIPTION);

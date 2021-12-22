@@ -8,6 +8,7 @@ import {
 	Image,
 	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
+	Animated
 } from 'react-native';
 import {
 	HeartBtnIcon,
@@ -19,7 +20,6 @@ import {
 	Bracket,
 	GliderIcon,
 } from 'Asset/image';
-import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated';
 import LostAnimal from './lostanimal';
 import DP, {svg_size} from 'Root/screens/dp';
 import {Shadow} from 'react-native-shadow-2';
@@ -35,23 +35,10 @@ export default AidRequestDetail = props => {
 	const nav = useNavigation();
 	const [location, setlocation] = useState(0);
 	const [isApply, setApply] = useState(false);
-	const pop = useSharedValue(0);
-	const popAni = useAnimatedStyle(() => ({
-		transform: [
-			{scale: pop.value},
-			{translateX: (pop.value - 1) * 184 * DP},
-			{translateY: (pop.value - 1) * 83 * DP},
-		],
-	}));
-	const popBackgroundAni = useAnimatedStyle(() => ({
-		transform: [{translateX: (1 - pop.value) * 703 * DP}],
-		// transform:[{scale:pop.value}]
-	}));
 	const [isPop, setPop] = useState(false);
 	const iP = useRef(false);
 	const onShareBtn = () => {
 		if (!iP.current) {
-			pop.value = withTiming(1);
 			// setPop(true);
 			iP.current = true;
 		}
@@ -59,7 +46,6 @@ export default AidRequestDetail = props => {
 	};
 	const closePop = () => {
 		// setPop(false);
-		pop.value = withTiming(0);
 		iP.current = false;
 		console.log('closePop : ' + iP.current);
 	};
@@ -220,13 +206,13 @@ export default AidRequestDetail = props => {
 				</Shadow>
 			</View>
 			<Animated.View
-				style={[detail.wrp_pop, popBackgroundAni]}
+				style={[detail.wrp_pop]}
 				onStartShouldSetResponder={() => true}
 				onMoveShouldSetResponder={() => false}
 				onMoveShouldSetResponderCapture={() => false}
 				onResponderGrant={closePop}>
 				<Animated.View
-					style={[detail.pop_sns, detail.shadow, {top: location}, popAni]}
+					style={[detail.pop_sns, detail.shadow, {top: location}]}
 					onStartShouldSetResponder={() => true}
 					onMoveShouldSetResponder={() => false}
 					onMoveShouldSetResponderCapture={() => false}>

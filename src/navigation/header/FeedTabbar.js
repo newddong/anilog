@@ -1,14 +1,5 @@
 import React from 'react';
-import {View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback,Dimensions} from 'react-native';
-import Animated, {
-	useSharedValue,
-	useDerivedValue,
-	useAnimatedStyle,
-	useAnimatedProps,
-	withTiming,
-	withSpring,
-   AnimatedValue
-} from 'react-native-reanimated';
+import {View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback,Dimensions,Animated} from 'react-native';
 import DP from 'Screens/dp';
 
 export default FeedTabBar = ({state, descriptors, navigation, position}) => {

@@ -16,7 +16,6 @@ import {
 import {DownBracket} from 'Asset/image';
 import {txt, lo, btn, form, tab, tab_filled_color, assign_profile, petTypeSelect} from './style_assign';
 import FormTxtInput from 'Screens/common/formtxtinput';
-import Animated, {useSharedValue, useAnimatedStyle, withTiming, withSpring} from 'react-native-reanimated';
 import Stagebar from 'Screens/common/stagebar';
 import {addPet} from 'Root/api/userapi';
 
@@ -53,18 +52,7 @@ export default Assign_pet_step3 = props => {
 	};
 
 	//animation setting
-	const petKindBtnAni = useSharedValue(0);
-	const petKindBtnAniStyle = useAnimatedStyle(() => ({
-		height: petKindBtnAni.value * 400 * DP,
-	}));
 
-	const petKindBtnBracketAniStyle = useAnimatedStyle(() => ({
-		transform: [{rotate: `${petKindBtnAni.value * 180}deg`}],
-	}));
-
-	const petKindBtnListAniStyle = useAnimatedStyle(() => ({
-		transform: [{scaleY: petKindBtnAni.value}],
-	}));
 
 	return (
 		<View style={lo.wrp_main}>
@@ -86,7 +74,7 @@ export default Assign_pet_step3 = props => {
 					<View style={[petTypeSelect.cntr_dropdown, {width: 464 * DP}]}>
 						<Dropdown
 							style={[petTypeSelect.select_animal_kind, {width: 464 * DP}]}
-							dropdownContainerStyle={[petTypeSelect.select_animal_kind_dropdown_container, {width: 464 * DP}, petKindBtnAniStyle]}
+							dropdownContainerStyle={[petTypeSelect.select_animal_kind_dropdown_container, {width: 464 * DP}]}
 							data={adoptionType}
 							dropItemStyle={[petTypeSelect.select_animal_kind_item, {width: 464 * DP}]}
 							dropItemTxtStyle={txt.noto28}
@@ -99,16 +87,14 @@ export default Assign_pet_step3 = props => {
 							onSelect={selectAdoptionType}
 							onSelectNotClose={false}
 							onOpen={() => {
-								petKindBtnAni.value = withSpring(1, {duration: 300});
 							}}
 							onClose={() => {
-								petKindBtnAni.value = withTiming(0, {duration: 300});
 							}}
 							animation
 							component={
 								<View style={[petTypeSelect.select_animal_kind, {width: 464 * DP}]}>
 									<Text style={[txt.noto28, petTypeSelect.select_animal_kind_text, {width: 392 * DP}]}>{data.adoptionType}</Text>
-									<SvgWrapper style={[petTypeSelect.select_animal_kind_bracket, petKindBtnBracketAniStyle]} svg={<DownBracket fill={'#999999'} />} />
+									<SvgWrapper style={[petTypeSelect.select_animal_kind_bracket]} svg={<DownBracket fill={'#999999'} />} />
 								</View>
 							}
 						/>

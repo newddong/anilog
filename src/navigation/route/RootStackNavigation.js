@@ -107,8 +107,8 @@ export default RootStackNavigation = () => {
 	};
 
 	Modal.rollingSelect = (title, items = [''], onSelect, onCancel = Modal.close) => {
-		popIn(<RollingSelect title={title} items={items} onSelect={onSelect} onCancel={onCancel} />);
-		!isPop && setPop(true);
+		// popIn(<RollingSelect title={title} items={items} onSelect={onSelect} onCancel={onCancel} />);
+		// !isPop && setPop(true);
 	};
 
 	Modal.popSelect = (primaryItems, secondaryItems, onOk, okButtonnMsg) => {

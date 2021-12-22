@@ -9,7 +9,6 @@ import {
 import DP from 'Screens/dp';
 import {BLACK, MAINCOLOR, WHITE} from 'Screens/color';
 import {Circle} from 'Asset/image';
-import { set } from 'react-native-reanimated';
 
 export default RangeSlider = React.forwardRef((props, ref) => {
 	const windowWidth = props.width;

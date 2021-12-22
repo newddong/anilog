@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
-import {View, StyleSheet, Text, TouchableWithoutFeedback, Image} from 'react-native';
-import Animated, {useSharedValue, useAnimatedStyle, useAnimatedGestureHandler, runOnJS, runOnUI} from 'react-native-reanimated';
+import {View, StyleSheet, Text, TouchableWithoutFeedback,Animated, Image} from 'react-native';
+// import Animated, {useSharedValue, useAnimatedStyle, useAnimatedGestureHandler, runOnJS, runOnUI} from 'react-native-reanimated';
 import {PanGestureHandler} from 'react-native-gesture-handler';
 
 import {DeleteImage} from 'Asset/image';
@@ -53,44 +53,44 @@ export default Tag = ({pos, user, content, onDelete, onEnd, viewmode, background
 	};
 
 	//animation setting
-	const tagX = useSharedValue(position.x);
-	const tagY = useSharedValue(position.y);
+	// const tagX = useSharedValue(position.x);
+	// const tagY = useSharedValue(position.y);
 
 	React.useEffect(() => {
 		// tagX.value = 0;
 		// tagY.value = 0;
 	}, [position]);
 
-	const gestureHandler = useAnimatedGestureHandler({
-		onStart: (event, ctx) => {
-			ctx.startX = tagX.value;
-			ctx.startY = tagY.value;
-			// console.log('onstart' + JSON.stringify(event));
-		},
-		onActive: (event, ctx) => {
-			tagX.value = ctx.startX + event.translationX;
-			tagY.value = ctx.startY + event.translationY;
-			// tagX.value = event.translationX;
-			// tagY.value = event.translationY;
-			// console.log('onActive' + JSON.stringify(event));
-		},
-		onEnd: (event, ctx) => {
-			onEnd && runOnJS(onEnd)({user: user, x: tagX.value, y: tagY.value});
-			// tagX.value = 0;
-			// tagY.value = 0;
-			// onEnd&&runOnJS(setPosition)({x:tagX.value+position.x,y:tagY.value+position.y,opacity:1});
-			// tagX.value = ctx.startX + event.translationX;
-			// tagY.value = ctx.startY + event.translationY;
-			// runOnJS(setPosition)({x:position.x+event.translationX,y:position.y+event.translationY});
-			// setPosition({x:0,y:0});
-			// console.log('onEnd' + JSON.stringify(event));
-		},
-	});
+	// const gestureHandler = useAnimatedGestureHandler({
+	// 	onStart: (event, ctx) => {
+	// 		ctx.startX = tagX.value;
+	// 		ctx.startY = tagY.value;
+	// 		// console.log('onstart' + JSON.stringify(event));
+	// 	},
+	// 	onActive: (event, ctx) => {
+	// 		tagX.value = ctx.startX + event.translationX;
+	// 		tagY.value = ctx.startY + event.translationY;
+	// 		// tagX.value = event.translationX;
+	// 		// tagY.value = event.translationY;
+	// 		// console.log('onActive' + JSON.stringify(event));
+	// 	},
+	// 	onEnd: (event, ctx) => {
+	// 		onEnd && runOnJS(onEnd)({user: user, x: tagX.value, y: tagY.value});
+	// 		// tagX.value = 0;
+	// 		// tagY.value = 0;
+	// 		// onEnd&&runOnJS(setPosition)({x:tagX.value+position.x,y:tagY.value+position.y,opacity:1});
+	// 		// tagX.value = ctx.startX + event.translationX;
+	// 		// tagY.value = ctx.startY + event.translationY;
+	// 		// runOnJS(setPosition)({x:position.x+event.translationX,y:position.y+event.translationY});
+	// 		// setPosition({x:0,y:0});
+	// 		// console.log('onEnd' + JSON.stringify(event));
+	// 	},
+	// });
 
-	const moveTag = useAnimatedStyle(() => {
-		// return {transform: [{translateX: tagX.value}, {translateY: tagY.value}]};
-		return {top: tagY.value, left: tagX.value};
-	});
+	// const moveTag = useAnimatedStyle(() => {
+	// 	// return {transform: [{translateX: tagX.value}, {translateY: tagY.value}]};
+	// 	return {top: tagY.value, left: tagX.value};
+	// });
 
 	const moveToTaggedProfile = () => {
 		tagnav.push('Profile', {user_nickname: user.nickname, user_id: user._id});
@@ -108,12 +108,12 @@ export default Tag = ({pos, user, content, onDelete, onEnd, viewmode, background
 			);
 		} else {
 			return (
-				<PanGestureHandler onGestureEvent={gestureHandler}>
-					<Animated.View style={[tag.background, {opacity: position.opacity}, moveTag]} onLayout={onLayout}>
+				// <PanGestureHandler onGestureEvent={gestureHandler}>
+					<Animated.View style={[tag.background, {opacity: position.opacity}/*, moveTag*/]} onLayout={onLayout}>
 						<Text style={[txt.roboto28, txt.white]}>{user.nickname}</Text>
 						{!viewmode && <SvgWrap style={tag.delete} svg={<DeleteImage />} onPress={deleteTag} />}
 					</Animated.View>
-				</PanGestureHandler>
+				// </PanGestureHandler>
 			);
 		}
 	});

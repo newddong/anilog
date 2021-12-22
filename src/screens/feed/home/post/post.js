@@ -10,7 +10,6 @@ import {lo, userinfo, btn, comment} from './style_post';
 import {txt} from 'Screens/textstyle';
 import PostComment from './postcomment';
 import PostContents from './postcontents';
-import Animated, {useSharedValue, useDerivedValue, useAnimatedStyle, useAnimatedProps, withTiming, withSpring} from 'react-native-reanimated';
 import {likePost, dislikePost} from 'Root/api/feedapi';
 import FastImage from 'react-native-fast-image';
 import {updatePostData, removeLike, addLike} from '../feeddata';
@@ -30,13 +29,7 @@ export default React.memo(
 			nav.push('Profile', {user_id: props.data.user_id, user: props.data.user});
 		};
 
-		const meatBallAnimation = useSharedValue(0);
-		const meatBallDropAni = useAnimatedStyle(() => ({
-			height: meatBallAnimation.value * 360 * DP,
-		}));
-		const meatBallDropListAni = useAnimatedStyle(() => ({
-			transform: [{scaleY: meatBallAnimation.value}],
-		}));
+	
 
 		const moveToCommentList = () => {
 			nav.push('CommentList', {data: props.data}); //댓글 리스트로 이동
