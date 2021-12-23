@@ -8,9 +8,10 @@ import {useNavigation} from '@react-navigation/core';
 import {_dummy_ReportDetail} from 'Root/config/dummy_data_hjs';
 import {dummy_CommentObject} from 'Root/config/dummyDate_json';
 import {getFeedDetailById} from 'Root/api/feedapi';
-import {getCommentListByFeedId} from 'Root/api/commentapi';
-import {createComment} from 'Root/api/commentapi';
+import {getCommentListByFeedId, createComment} from 'Root/api/commentapi';
 import moment from 'moment';
+import {create} from 'react-test-renderer';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 export default ReportDetail = props => {
 	const navigation = useNavigation();
@@ -26,6 +27,7 @@ export default ReportDetail = props => {
 	const [showMore, setShowMore] = React.useState(false); //더보기 클릭 State
 	const [commentDataList, setCommentDataList] = React.useState(); //더보기 클릭 State
 	const [writeCommentData, setWriteCommentData] = React.useState(); //더보기 클릭 State
+	const [replyPressed, setReplyPressed] = React.useState(false);
 	const debug = false;
 	React.useEffect(() => {
 		setPhoto(props.route.params);
@@ -103,18 +105,89 @@ export default ReportDetail = props => {
 				});
 				// console.log(`commentArray -${JSON.stringify(commentArray)}`);
 				setCommentDataList(commentArray);
+				console.log('commentArray', commentArray);
 			},
 			errcallback => {
 				console.log(`Comment errcallback:${JSON.stringify(errcallback)}`);
 			},
 		);
 	}, []);
+	// React.useEffect(() => {
+	// 	console.log('WriteCommnetData changed', writeCommentData);
+	// }, [writeCommentData]);
+	React.useEffect(() => {
+		if (replyPressed == true) {
+			createComment(
+				{...writeCommentData},
+
+				callback => {
+					console.log('write commnet success', callback);
+					getCommentListByFeedId(
+						{
+							feedobject_id: '61c288f97be07611b0094b43',
+							commentobject_id: '61c2c0de7be07611b0094ffd',
+							request_number: 10,
+						},
+						commentdata => {
+							commentdata.msg.map((v, i) => {
+								//1depth를 올려준다.
+								commentdata.msg[i].user_address = commentdata.msg[i].comment_writer_id.user_address;
+								commentdata.msg[i].user_profile_uri = commentdata.msg[i].comment_writer_id.user_profile_uri;
+								commentdata.msg[i].user_nickname = commentdata.msg[i].comment_writer_id.user_nickname;
+								commentdata.msg[i].comment_date = moment(JSON.stringify(commentdata.msg[i].comment_date).replace(/\"/g, '')).format(
+									'YYYY.MM.DD hh:mm:ss',
+								);
+								//일반 피드글과 구분하기 위해 feed_type 속성 추가 (다른 템플릿들과 시간 표기가 달라서 실종/제보에만 feed_type을 추가하고 시간 표기시 해당 속성 존재 여부만 판단)
+								commentdata.msg[i].feed_type = 'report';
+							});
+
+							//댓글과 대댓글 작업 (부모 댓글과 자식 댓글 그룹 형성- 부모 댓글에서 부모의 childArray 속성에 자식 댓글 속성들을 추가)
+							//부모 댓글은 실제 삭제불가하며 필드로 삭제 여부 값 형성 필요. (네이버나 다음 까페에서도 대댓글 존재시 댓글은 삭제해도 댓글 자리는 존재하고 그 밑으로 대댓글 그대로 노출됨)
+							let commentArray = [];
+							let tempComment = commentdata.msg;
+							tempComment.map((v, i) => {
+								// comment_parent가 없으면 일반 댓글
+								if (v.comment_parent == undefined) {
+									commentArray.push(v);
+									//push한 JSON에 대댓글이 달릴 수 있으므로 childArray 배열 속성을 추가.
+									commentArray[commentArray.length - 1].childArray = [];
+								} else if (v.comment_parent != undefined && v.comment_parent != '') {
+									//부모 댓글값이 존재할 경우 대댓글임, 원래 댓글의 childArray 배열에 push 함.
+									for (let j = 0; j < commentArray.length; j++) {
+										if (commentArray[j]._id == v.comment_parent) {
+											commentArray[j].childArray.push(v);
+											break;
+										}
+									}
+								}
+							});
+							// console.log(`commentArray -${JSON.stringify(commentArray)}`);
+							setCommentDataList(commentArray);
+							console.log('commentArray refresh', commentArray);
+						},
+						errcallback => {
+							console.log(`Comment errcallback:${JSON.stringify(errcallback)}`);
+						},
+					);
+				},
+				err => {
+					console.log('write comment error', err);
+				},
+			);
+			setWriteCommentData();
+			onDeleteImage();
+			setReplyPressed(false);
+		}
+	}, [replyPressed]);
 
 	//답글 쓰기 => Input 작성 후 보내기 클릭 콜백 함수
 	const onWrite = () => {
 		debug && console.log('onWrite', replyText);
 		debug && console.log('writeCommentData=>' + writeCommentData.comment_contentsdsf);
-		setWriteCommentData({...writeCommentData, comment_contents: replyText, comment_is_secure: privateComment, comment_feed_id: ''});
+		// setWriteCommentData({...writeCommentData, comment_contents: replyText, comment_is_secure: privateComment, comment_feed_id: ''});
+		setWriteCommentData({...writeCommentData, comment_contents: replyText, comment_is_secure: privateComment});
+		console.log('wirteCommentData', writeCommentData);
+		setReplyPressed(true);
 	};
 
 	// 답글 쓰기 -> 자물쇠버튼 클릭 콜백함수
@@ -125,17 +198,31 @@ export default ReportDetail = props => {
 
 	// 답글 쓰기 -> 이미지버튼 클릭 콜백함수
 	const onAddPhoto = () => {
-		navigation.push('SinglePhotoSelect', props.route.name);
+		// navigation.push('SinglePhotoSelect', props.route.name);
+		launchImageLibrary(
+			{
+				mediaType: 'photo',
+				selectionLimit: 1,
+			},
+			responseObject => {
+				console.log('선택됨', responseObject);
+				setPhoto(responseObject.assets[responseObject.assets.length - 1].uri);
+				setWriteCommentData({...writeCommentData, comment_photo_uri: responseObject.assets[responseObject.assets.length - 1].uri});
+			},
+		);
 	};
 
 	// 답글 쓰기 -> Input value 변경 콜백함수
 	const onChangeReplyInput = text => {
 		setReplyText(text);
+		console.log(replyText);
 	};
 
 	// 답글 쓰기 버튼 클릭 콜백함수
-	const onReplyBtnClick = () => {
+	const onReplyBtnClick = parent_id => {
 		setEditComment(!editComment);
+		console.log('onReplayBtnClick', parent_id);
+		setWriteCommentData({...writeCommentData, commentobject_id: parent_id._id, feedobject_id: parent_id.comment_feed_id});
 	};
 
 	// 자식 답글에서 답글쓰기 버튼 클릭 콜백함수

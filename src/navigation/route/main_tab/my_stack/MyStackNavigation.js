@@ -56,8 +56,8 @@ const MyStack = createStackNavigator();
 export default MyStackNavigation = props => {
 	// console.log('MyStack', props.user_type);
 	return (
-		// <MyStack.Navigator initialRouteName={props.user_type == 'shelter' ? 'ShelterMenu' : 'UserMenu'}>
-		<MyStack.Navigator initialRouteName={'ShelterMenu'}>
+		<MyStack.Navigator initialRouteName={props.user_type == 'shelter' ? 'ShelterMenu' : 'UserMenu'}>
+			{/* // <MyStack.Navigator initialRouteName={'ShelterMenu'}> */}
 			<MyStack.Screen name="UserFeedList" component={FeedList} />
 			<MyStack.Screen name="UserFeeds" component={FavoriteFeeds} />
 			<MyStack.Screen name="HashFeedList" component={FeedList} />
