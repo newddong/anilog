@@ -53,11 +53,12 @@ export default ApplyCompanionA = ({route}) => {
 		const addr = route.params.addr;
 
 		if (route.params != null) {
+			//한번 주소 검색이 된적이 있는가?
 			if (addr && !addrSearched) {
 				console.log('route.params.Address Changed?   ', addr);
 				// setData({...data, user_address: {city: addr.siNm, district: addr.sggNm, neighbor: addr.rn + ' ' + addr.buldMnnm}});
 				setData({...data, protect_act_address: {brief: addr.roadAddr, detail: addr.detailAddr}});
-				setAddrSearched(true);
+				setAddrSearched(true); // 다시 검색할 수 있도록 state 원상복귀
 			}
 		}
 	}, [route.params.addr]);

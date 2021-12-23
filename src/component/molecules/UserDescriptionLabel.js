@@ -28,7 +28,7 @@ const UserDescriptionLabel = props => {
 	}, [props.data]);
 
 	const onClickLabel = () => {
-		console.log(`UserDescriptionLabel:onClickLabel()-props.data:${JSON.stringify(props.data)}`);
+		// console.log(`UserDescriptionLabel:onClickLabel()-props.data:${JSON.stringify(props.data)}`);
 		props.onClickLabel(props.data);
 	};
 

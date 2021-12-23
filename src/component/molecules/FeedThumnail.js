@@ -5,6 +5,7 @@ import DP from 'Root/config/dp';
 import {Check50, ImageList48, VideoPlay48} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 import {BLACK, RED10, WHITE} from 'Root/config/color';
+import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 
 /**
  * 피드썸네일
@@ -13,7 +14,7 @@ import {BLACK, RED10, WHITE} from 'Root/config/color';
  * @param {object} props.data - 피드 썸네일 데이터( @FeedObject)
  */
 const FeedThumbnail = props => {
-	// console.log('FeedThumbnail', props.data.feed_medias);
+	// console.log('FeedThumbnail', props.data);
 	const [selected, setSelected] = React.useState(false);
 
 	React.useEffect(() => {
@@ -51,14 +52,13 @@ const FeedThumbnail = props => {
 		if ((props.selectMode && selected) || (props.selectMode && props.data.checkBoxState)) {
 			return (
 				<View style={[{opacity: 0.4, backgroundColor: BLACK}]}>
-					<Image source={{uri: props.data.feed_thumbnail}} style={styles.img_square_246} />
+					<Image source={{uri: props.data.feed_thumbnail || DEFAULT_PROFILE}} style={styles.img_square_246} />
 				</View>
 			);
 		} else if (!props.data.checkBoxState || !selected) {
-			return <Image source={{uri: props.data.feed_thumbnail}} style={styles.img_square_246} />;
+			return <Image source={{uri: props.data.feed_thumbnail || DEFAULT_PROFILE}} style={styles.img_square_246} />;
 		}
 	};
-
 	return (
 		<TouchableOpacity onPress={onSelect}>
 			{/* Select된 상태일 때 불투명도 40% 적용 및 배경색  Black */}

@@ -34,38 +34,38 @@ export default Profile = ({route, navigation}) => {
 	const [showCompanion, setShowCompanion] = React.useState(false); // User계정이 반려동물버튼을 클릭
 	const [protectActList, setProtectActList] = React.useState([]);
 	React.useEffect(() => {
-		getUserProfile(
-			{
-				userobject_id: route.params ? route.params._id : '61c023d9679aa5ae46128102', //상우보호소4 임시로
-				user_type: route.params ? route.params.user_type : 'shelter',
-			},
-			result => {
-				// console.log('result / getUserProfile / Profile  :  ', result.msg.user_nickname);
-				setProfile_data(result.msg);
-			},
-			err => {
-				console.log('err / getUserProfile / Profile  :  ', err);
-			},
-		);
-	}, []);
-
-	React.useEffect(() => {
-		getProtectRequestListByShelterId(
-			{
-				shelter_userobject_id: profile_data._id,
-				request_number: 10,
-				protect_request_object_id: null,
-				protect_request_status: 'rescue',
-			},
-			result => {
-				console.log('result / getProtectRequestListByShelterId / Profile  : ', result.msg);
-				setProtectActList(result.msg);
-			},
-			err => {
-				console.log('err / getProtectRequestListByShelterId / Profile   :', err);
-			},
-		);
-	}, [profile_data]);
+		const unsubscribe = navigation.addListener('focus', () => {
+			getUserProfile(
+				{
+					userobject_id: route.params ? route.params._id : '61c023d9679aa5ae46128102', //상우보호소4 임시로
+					user_type: route.params ? route.params.user_type : 'shelter',
+				},
+				result => {
+					// console.log('result / getUserProfile / Profile  :  ', result.msg.user_nickname);
+					setProfile_data(result.msg);
+				},
+				err => {
+					console.log('err / getUserProfile / Profile  :  ', err);
+				},
+			);
+			getProtectRequestListByShelterId(
+				{
+					shelter_userobject_id: profile_data._id,
+					request_number: 10,
+					protect_request_object_id: null,
+					protect_request_status: 'rescue',
+				},
+				result => {
+					console.log('result / getProtectRequestListByShelterId / Profile  : ', result.msg);
+					setProtectActList(result.msg);
+				},
+				err => {
+					console.log('err / getProtectRequestListByShelterId / Profile   :', err);
+				},
+			);
+		});
+		return unsubscribe;
+	}, [navigation]);
 
 	//프로필의 피드탭의 피드 썸네일 클릭
 	const onClick_Thumbnail_FeedTab = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, ScrollView, Text, View} from 'react-native';
 import {accountHashList} from './style_organism';
 import UserAccount from './UserAccount';
 
@@ -20,7 +20,7 @@ export default AccountHashList = props => {
 
 	return (
 		<View style={[accountHashList.container]}>
-			<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} />
+			<FlatList data={props.data} renderItem={({item, index}) => renderItem(item, index)} showsVerticalScrollIndicator={false} />
 		</View>
 	);
 };
