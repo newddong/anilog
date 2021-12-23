@@ -7,7 +7,7 @@ import {animalNeedHelp} from './style_organism';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import AniButton from '../molecules/AniButton';
 import {FavoriteTag48_Border, FavoriteTag48_Filled} from '../atom/icon';
-import {RED10} from 'Root/config/color';
+import {BLUE10, BLUE20, RED10} from 'Root/config/color';
 import {DEFAULT_ANIMAL_PROFILE, DEFAULT_PROFILE} from 'Root/i18n/msg';
 import moment from 'moment';
 
@@ -20,11 +20,14 @@ import moment from 'moment';
  *borderMode : 'boolean / 테두리 및 입양처보기, 게시글보기 모드 ',
  *onCheckBox : 'boolean / CheckBox 보이기',
  *onPressAdoptorInfo : 'boolean / HashClick Callback',
- *onPressProtectRequest : 'void / 테두리 모드 게시글보기 클릭'
+ *onPressProtectRequest : 'void / 테두리 모드 게시글보기 클릭',
+ *onPressReporter : 'void / 제보 게시글의 제보자 닉네임 클릭',
  * }} props
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
+	console.log('Anmal', data);
+
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 
@@ -100,6 +103,10 @@ export default AnimalNeedHelp = props => {
 		props.onPressProtectRequest();
 	};
 
+	const onPressReporter = () => {
+		props.onPressReporter();
+	};
+
 	const getParsedDate = () => {
 		let date = '';
 		if (data.feed_type == 'missing' || data.feed_type == 'report') {
@@ -167,7 +174,7 @@ export default AnimalNeedHelp = props => {
 							</View>
 						</>
 					)}
-					{(data.feed_type == 'missing' || data.feed_type == 'report') && (
+					{data.feed_type == 'missing' && (
 						<>
 							{/* 동물 종류 및 품종 */}
 							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
@@ -184,6 +191,30 @@ export default AnimalNeedHelp = props => {
 								<Text style={[txt.noto24]}>실종위치: {data.missing_animal_lost_location || ''}</Text>
 								<Text style={[txt.noto24]} numberOfLines={1}>
 									특징: {data.missing_animal_features || ''}
+								</Text>
+							</View>
+						</>
+					)}
+					{data.feed_type == 'report' && (
+						<>
+							{/* 제보 / 제보위치 / 특징 */}
+							{/* 동물 종류 및 품종 */}
+							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
+								<Text style={[txt.noto30b, {color: RED10}]}>{data.missing_animal_species || ''}</Text>
+							</View>
+							{/* 실종/제보 관련 Details */}
+							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
+								<Text style={[txt.noto24, {color: RED10}]}>제보일: {getParsedDate()}</Text>
+
+								<Text style={[txt.noto24]}>제보위치: {data.missing_animal_lost_location || ''}</Text>
+								<Text style={[txt.noto24]} numberOfLines={1}>
+									특징: {data.missing_animal_features || ''}
+								</Text>
+								<Text style={[txt.noto24]} numberOfLines={1}>
+									제보자: {'  '}
+									<Text onPress={onPressReporter} style={{textDecorationLine: 'underline', color: BLUE20}}>
+										{data.feed_writer_id.user_nickname || ''}{' '}
+									</Text>
 								</Text>
 							</View>
 						</>

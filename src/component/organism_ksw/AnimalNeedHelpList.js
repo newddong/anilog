@@ -14,7 +14,8 @@ import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
  *onCheckBox : 'boolean / CheckBox 보이기',
  *onHashClick : 'boolean / HashClick Callback',
  *onPressAdoptorInfo : 'void / 테두리 모드 입양처 보기 클릭'
- *onPressProtectRequest : 'void / 테두리 모드 게시글보기 클릭'
+ *onPressProtectRequest : 'void / 테두리 모드 게시글보기 클릭',
+ *onPressReporter : 'void / 제보 게시글의 제보자 닉네임 클릭',
  *onLayout : void,
  * }} props
  */
@@ -44,6 +45,7 @@ export default AnimalNeedHelpList = props => {
 					onFavoriteTag={e => props.onFavoriteTag(e, index)}
 					onPressAdoptorInfo={() => props.onPressAdoptorInfo(item)}
 					onPressProtectRequest={() => props.onPressProtectRequest(item)}
+					onPressReporter={() => props.onPressReporter(item)}
 				/>
 			</View>
 		);

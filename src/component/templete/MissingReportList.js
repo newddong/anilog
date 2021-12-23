@@ -108,6 +108,11 @@ export default MissingReportList = props => {
 				break;
 		}
 	};
+	//제보게시글의 제보자 닉네임 클릭
+	const onPressReporter = item => {
+		console.log('item', item.feed_writer_id);
+		navigation.push('UserProfile', item.feed_writer_id);
+	};
 
 	const onSelectLocation = location => {
 		setData({...data, protectArea: location});
@@ -137,6 +142,7 @@ export default MissingReportList = props => {
 					<AnimalNeedHelpList
 						// data={dummy_MissingReportList}
 						data={data}
+						onPressReporter={onPressReporter}
 						onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
 						onClickLabel={(status, id) => onClickLabel(status, id)}
 					/>
