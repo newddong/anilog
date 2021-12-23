@@ -264,7 +264,7 @@ export default FeedWrite = props => {
 						multiline={true}
 						style={{flex: 1}}
 						placeholder="게시물을 작성하세요"
-						onChangeText={text => setFeedText(text)}></TextInput>
+						onChangeText={setFeedText}></TextInput>
 				</View>
 
 				{/* Input Text 하단 언더라인 */}

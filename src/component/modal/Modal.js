@@ -2,10 +2,9 @@
  * 모달 모듈
  */
 export default Modal = {
-
 	/**
 	 * 모달창 종료 함수
-	 * 
+	 *
 	 * 모달은 스택으로 쌓이므로 가장 나중에 호출된 모달창이 사라짐
 	 * ```js
 	 * Modal.close()
@@ -69,24 +68,21 @@ export default Modal = {
 	 * @param {Array.<string>} secondaryItems - 두번째 항목 배열
 	 * @param {(primaryItem:string,secondaryItem:string)=>void} onOk - 선택항목들을 반환하는 매개변수가 2개인 콜백
 	 * @param {string} okButtonnMsg - 확인버튼에 표시할 텍스트
-	 * 
+	 *
 	 * @example
 	 * Modal.popSelect(['개','고양이','기타'],['리트리버','말티즈','푸들','치와와'],(val1,val2)=>alert(val1+':'+val2),'동물선택');
 	 */
-	popSelect: (primaryItems,secondaryItems,onOk,okButtonnMsg) => {},
-
+	popSelect: (primaryItems, secondaryItems, onOk, okButtonnMsg) => {},
 
 	/**
-	 * 선택 모달창을 띄우는 함수(첫번째 선택에 따라 두번째 선택의 항목이 변하는 부분은 구현되지 않음)
-	 * @param {Array.<string>} primaryItems - 첫번째 항목 배열
-	 * @param {Array.<string>} secondaryItems - 두번째 항목 배열
-	 * @param {(primaryItem:string,secondaryItem:string)=>void} onOk - 선택항목들을 반환하는 매개변수가 2개인 콜백
-	 * @param {string} okButtonnMsg - 확인버튼에 표시할 텍스트
-	 * 
+	 * 아바타 동물을 선택하는 모달창
+	 *
+	 * @param {string} okButtonnMsg - 확인 버튼 메시지
+	 * @param {()=>void} onOk - 확인 버튼 콜백
+	 * @param {(petObject:string)=>void} onSelectPet - 반려동물 라벨을 클릭했을때 콜백
+	 *
 	 * @example
 	 * Modal.popSelect(['개','고양이','기타'],['리트리버','말티즈','푸들','치와와'],(val1,val2)=>alert(val1+':'+val2),'동물선택');
 	 */
-	feedAvartarSelect:(primaryItems,secondaryItems,onOk,okButtonnMsg) => {},
+	feedAvartarSelect: (onSelectPet, onOk, okButtonnMsg) => {},
 };
-
-
