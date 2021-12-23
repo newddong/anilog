@@ -10,14 +10,14 @@ export default ProtectApplyForm = ({route, navigation}) => {
 	// console.log('ProtectApplyForm props', route.params);
 	const [data, setData] = React.useState(route.params);
 	const [loading, setLoading] = React.useState(true); // 화면 출력 여부 결정
-
+	console.log('status', data.protect_act_type);
 	React.useEffect(() => {
 		getProtectRequestByProtectRequestId(
 			{
 				protect_request_object_id: data.protect_act_request_article_id,
 			},
 			result => {
-				console.log('result / getProtectRequestByProtectRequestId / ProtectApplyForm ', result.msg);
+				// console.log('result / getProtectRequestByProtectRequestId / ProtectApplyForm ', result.msg);
 				const addedData = {...data};
 				addedData.protect_animal_species = result.msg.protect_animal_species;
 				addedData.protect_animal_species_detail = result.msg.protect_animal_species_detail;
@@ -37,11 +37,20 @@ export default ProtectApplyForm = ({route, navigation}) => {
 	}, []);
 
 	const onPressConfirm = () => {
-		console.log('data', data.protect_act_request_article_id);
+		console.log('data', data);
 		//보호요청게시글의 상태뿐만 아니라 입양 및 보호신청 상태도 Accept로 바꾸어야한다
-		setProtectActivityStatus({
-			protect_act_object_id: data.protect_act_protect_animal_id,
-		});
+		setProtectActivityStatus(
+			{
+				protect_act_object_id: data._id,
+				protect_act_status: 'accept',
+			},
+			result => {
+				console.log('result / setProtectActivityStatus / ProtectApplyForm  : ', result.msg);
+			},
+			err => {
+				console.log('err / setProtectActivityStatus / ProtectApplyForm  : ', err);
+			},
+		);
 		setProtectRequestStatus(
 			{
 				protect_request_object_id: data.protect_act_request_article_id,
@@ -73,7 +82,7 @@ export default ProtectApplyForm = ({route, navigation}) => {
 				<AnimalProtectDetail data={data} />
 			</View>
 			<View style={[protectApplyForm.confirmButton]}>
-				<AniButton onPress={onPressConfirm} btnTitle={'확정'} btnLayout={btn_w226} />
+				<AniButton onPress={onPressConfirm} btnTitle={data.protect_act_status == 'adopt' ? '입양 확정' : '임시보호 확정'} btnLayout={btn_w226} />
 			</View>
 		</View>
 	);

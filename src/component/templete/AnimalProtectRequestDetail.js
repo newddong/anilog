@@ -37,8 +37,9 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const [privateComment, setPrivateComment] = React.useState(false); // 팝업된 댓글창에서 비밀글 상태
 	const [photo, setPhoto] = React.useState(); // PhotoSelect에서 가져온 Photo uri
 	const [replyData, setReplyData] = React.useState();
-	const [token, setToken] = React.useState();
 	const [showMore, setShowMore] = React.useState(false); //더보기 클릭 State
+
+	const [token, setToken] = React.useState();
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
@@ -125,7 +126,11 @@ export default AnimalProtectRequestDetail = ({route}) => {
 
 	//보호요청 더보기의 Thumnail클릭
 	const onClick_ProtectedThumbLabel = (status, user_id, item) => {
-		navigation.push('AnimalProtectRequestDetail', {item: item, list: route.params.list});
+		if (route.name == 'ProtectRequestManage') {
+			navigation.push('ProtectRequestManage', {item: item, list: route.params.list});
+		} else {
+			navigation.push('AnimalProtectRequestDetail', {item: item, list: route.params.list});
+		}
 	};
 
 	//좋아요 숫자 출력 함수
@@ -312,3 +317,106 @@ export default AnimalProtectRequestDetail = ({route}) => {
 };
 
 AnimalProtectRequestDetail.defaultProps = {};
+
+const e = {
+	item: {
+		__v: 0,
+		_id: '61c4b4ff9e313cfaf3ebd25f',
+		protect_animal_id: {
+			__v: 0,
+			_id: '61c2b5537be07611b0094ebf',
+			protect_act_applicants: [Array],
+			protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
+			protect_animal_estimate_age: '2개월',
+			protect_animal_neutralization: 'no',
+			protect_animal_photo_uri_list: [Array],
+			protect_animal_protect_request_id: '61c4b4ff9e313cfaf3ebd25f',
+			protect_animal_protector_discussion_id: [Array],
+			protect_animal_rescue_date: '2021-12-08T00:00:00.000Z',
+			protect_animal_rescue_location: '하남시 검단산 형유포라 인근',
+			protect_animal_sex: 'male',
+			protect_animal_species: '기타',
+			protect_animal_species_detail: '도마뱀',
+			protect_animal_status: 'rescue',
+			protect_animal_weight: 1,
+		},
+		protect_animal_species: '기타',
+		protect_animal_species_detail: '도마뱀',
+		protect_request_comment_count: 0,
+		protect_request_content:
+			'도마뱀은 키우기 굉장히 쉬운편에 속합니다. 냄새도 생각보다 안나는 편이고 먹는 것도 잡식성이라 여러모로 호환성이랍니다 ㅎㅎ',
+		protect_request_date: '2021-12-23T17:42:23.462Z',
+		protect_request_favorite_count: 0,
+		protect_request_hit: 0,
+		protect_request_photos_uri: ['https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640150355540_FF507DC1-8B34-429A-941C-0C4913305857.jpg'],
+		protect_request_status: 'rescue',
+		protect_request_title: '도마뱀 키워볼까 분 있으실까요',
+		protect_request_update_date: '2021-12-23T17:42:23.462Z',
+		protect_request_writer_id: {
+			__v: 0,
+			_id: '61c023d9679aa5ae46128102',
+			pet_family: [Array],
+			shelter_address: [Object],
+			shelter_delegate_contact_number: '01096450001',
+			shelter_foundation_date: '2011-12-04T00:00:00.000Z',
+			shelter_homepage: '',
+			shelter_name: '상우 보호소6',
+			user_agreement: [Object],
+			user_denied: false,
+			user_email: 'lanad01@naver.com',
+			user_follow_count: 0,
+			user_follower_count: 0,
+			user_interests: [Array],
+			user_introduction:
+				'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
+			user_is_verified_email: false,
+			user_is_verified_phone_number: false,
+			user_my_pets: [Array],
+			user_name: '상우 보호소5',
+			user_nickname: '가하즈보호소',
+			user_password: '121212',
+			user_phone_number: '01096450001',
+			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
+			user_register_date: '2021-12-20T06:34:01.773Z',
+			user_type: 'shelter',
+			user_upload_count: 0,
+		},
+	},
+	list: [
+		{
+			__v: 0,
+			_id: '61c188ba2aaa7e1134cef1e2',
+			protect_animal_id: [Object],
+			protect_animal_species: '기타',
+			protect_animal_species_detail: '치와와',
+			protect_request_comment_count: 0,
+			protect_request_content: '함께 상처를 치료할 동반자를 구합니다. ',
+			protect_request_date: '2021-12-21T07:56:42.286Z',
+			protect_request_favorite_count: 0,
+			protect_request_hit: 0,
+			protect_request_photos_uri: [Array],
+			protect_request_status: 'rescue',
+			protect_request_title: '아직 사람을 그리워하는 것 같습니다.',
+			protect_request_update_date: '2021-12-21T07:56:42.286Z',
+			protect_request_writer_id: [Object],
+		},
+		{
+			__v: 0,
+			_id: '61c4b4ff9e313cfaf3ebd25f',
+			protect_animal_id: [Object],
+			protect_animal_species: '기타',
+			protect_animal_species_detail: '도마뱀',
+			protect_request_comment_count: 0,
+			protect_request_content:
+				'도마뱀은 키우기 굉장히 쉬운편에 속합니다. 냄새도 생각보다 안나는 편이고 먹는 것도 잡식성이라 여러모로 호환성이랍니다 ㅎㅎ',
+			protect_request_date: '2021-12-23T17:42:23.462Z',
+			protect_request_favorite_count: 0,
+			protect_request_hit: 0,
+			protect_request_photos_uri: [Array],
+			protect_request_status: 'rescue',
+			protect_request_title: '도마뱀 키워볼까 분 있으실까요',
+			protect_request_update_date: '2021-12-23T17:42:23.462Z',
+			protect_request_writer_id: [Object],
+		},
+	],
+};

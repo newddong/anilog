@@ -18,27 +18,6 @@ import {companionForm} from './style_organism';
  * }} props
  */
 export default CompanionForm = props => {
-	// console.log('props.item최종', props.data)
-	// const getIndex_species = element => element == props.data.companion_pet_species
-	// const getIndex_age = element => element == props.data.companion_pet_age
-	// const getIndex_period = element => element == props.data.companion_pet_period
-	// const getIndex_status = element => element == props.data.companion_pet_current_status
-	// const species_index = PET_KIND.findIndex(getIndex_species)
-	// const age_index = PET_AGE.findIndex(getIndex_age)
-	// const period_index = COMPANION_DURATION.findIndex(getIndex_period)
-	// const status_index = COMPANION_STATUS.findIndex(getIndex_status)
-	// console.log(species_index)
-	// console.log(age_index)
-	// console.log(period_index)
-	// console.log(status_index)
-
-	// const [isTempData, setIsTempData] = React.useState(false)
-
-	// React.useEffect(() => {
-	// 	props.data.temp ? setIsTempData(true) : setIsTempData(false)
-	// 	console.log('isTempData', isTempData)
-	// }, [props.data.temp])
-
 	//종 선택 콜백
 	const onSelectSpecies = (v, i) => {
 		props.onSelectSpecies(v, i);

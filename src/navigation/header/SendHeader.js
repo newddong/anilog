@@ -17,7 +17,7 @@ export default SendHeader = ({route, navigation, options}) => {
 			const data = route.params.data;
 			switch (route.params.nav) {
 				case 'AidRequestAnimalList': {
-					console.log('route, SendHeader / AidRequestAnimalList', data);
+					// console.log('route, SendHeader / AidRequestAnimalList', data);
 					navigation.push('WriteAidRequest', {data: data});
 					break;
 				}

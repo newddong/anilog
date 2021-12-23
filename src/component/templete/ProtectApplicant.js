@@ -8,7 +8,7 @@ import {dummy_userObject} from 'Root/config/dummyDate_json';
 import {getUserInfoById, getUserProfile} from 'Root/api/userapi';
 
 export default ProtectApplicant = ({route, navigation}) => {
-	console.log('ProtectApplicant route', route.params);
+	// console.log('ProtectApplicant route', route.params);
 	const data = route.params;
 	const protect_animal_data = {
 		protect_animal_photo_uri_list: data.protect_animal_photo_uri_list,
@@ -52,7 +52,7 @@ export default ProtectApplicant = ({route, navigation}) => {
 					merged.user_profile_uri = result.msg.user_profile_uri;
 					merged.user_nickname = result.msg.user_nickname;
 					merged.shelter_name = route.params.shelter_name;
-					console.log('merged', merged);
+					// console.log('merged', merged);
 					copyAdopt.push(merged);
 					setAdoptorList(copyAdopt);
 				},
@@ -73,6 +73,7 @@ export default ProtectApplicant = ({route, navigation}) => {
 					merged.user_introduction = result.msg.user_introduction;
 					merged.user_profile_uri = result.msg.user_profile_uri;
 					merged.user_nickname = result.msg.user_nickname;
+					merged.shelter_name = route.params.shelter_name;
 					copyProtect.push(merged);
 					setProtectorList(copyProtect);
 				},

@@ -668,6 +668,7 @@ export const temp_style = StyleSheet.create({
 	feedTextEdit: {
 		width: 654 * DP,
 		minHeight: 248 * DP,
+		marginTop: 40 * DP,
 		backgroundColor: 'white',
 	},
 	selectedMediaList: {
@@ -818,6 +819,7 @@ export const temp_style = StyleSheet.create({
 	},
 	FeedThumbnailList: {
 		width: 750 * DP,
+		marginTop: 10 * DP,
 		marginLeft: 12 * DP,
 		// height: 1324 * DP,
 	},
@@ -3781,7 +3783,7 @@ export const animalProtectList = StyleSheet.create({
 
 export const saveFavorite = StyleSheet.create({
 	accountHashList: {
-		width: 750 * DP,
+		width: 654 * DP,
 		// height: 1324 * DP,
 		marginTop: 30 * DP,
 		alignItems: 'center',

@@ -22,7 +22,7 @@ export default SaveButtonHeader = ({navigation, route, options, back}) => {
 	React.useEffect(() => {
 		//저장이 한 번이라도 됐다면 API적용
 		if (save) {
-			console.log('Save Pressed data received  :  ', route.params.data);
+			// console.log('Save Pressed data received  :  ', route.params.data);
 			// const received = data;
 			received = route.params.data;
 			setData(received);
@@ -74,19 +74,17 @@ export default SaveButtonHeader = ({navigation, route, options, back}) => {
 		}
 	}, [save]);
 
-	React.useEffect(() => {
-		if (Saved) {
-		} else {
+	React.useEffect(
+		() =>
 			navigation.addListener('beforeRemove', e => {
-				//저장 처리가 이미 되어있다면 바로 뒤로가기 진행
-				console.log('Saved', Saved);
-				if (Saved) {
-					// 	// If we don't have unsaved changes, then we don't need to do anything
+				if (save) {
+					// If we don't have unsaved changes, then we don't need to do anything
 					return;
 				}
 
-				//저장버튼이 한 번도 눌러지지 않은 상태로 뒤로가기를 누를 경우 [저장 후 나감] 모달 출력
+				// Prevent default behavior of leaving the screen
 				e.preventDefault();
+
 				Modal.popTwoBtn(
 					'저장하지 않고 나가시겠습니까?',
 					'저장 후 나감',
@@ -101,10 +99,9 @@ export default SaveButtonHeader = ({navigation, route, options, back}) => {
 						navigation.dispatch(e.data.action, data);
 					},
 				);
-			});
-		}
-	}, []);
-
+			}),
+		[navigation, save],
+	);
 	return (
 		<View style={[style.headerContainer, style.shadow]}>
 			<TouchableOpacity onPress={navigation.goBack}>

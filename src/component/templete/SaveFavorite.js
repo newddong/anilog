@@ -96,11 +96,8 @@ export default SaveFavorite = props => {
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
-			{/* SelectStat	 */}
 			<View style={[temp_style.selectstat_view]}>
-				{/* 취소, 전체선택, 선택삭제 */}
 				<View style={[temp_style.selectstat, selectstat_view_style.selectstat]}>
-					{/*  */}
 					<SelectStat
 						onSelectMode={e => showCheckBox(e)}
 						onCancelSelectMode={e => hideCheckBox(e)}
@@ -109,8 +106,6 @@ export default SaveFavorite = props => {
 					/>
 				</View>
 			</View>
-
-			{/* <FlatList> */}
 			<View style={[saveFavorite.accountHashList]}>
 				<AccountHashList
 					data={_dummyData}
