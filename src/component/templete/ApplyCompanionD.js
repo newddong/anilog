@@ -55,7 +55,7 @@ export default ApplyCompanionD = props => {
 
 	//다음버튼
 	const goToNextStep = () => {
-		// console.log('data Before Next', data);
+		console.log('data Before Next', data.protect_act_motivation);
 		props.route.name == 'ApplyProtectActivityD' ? navigation.push('ApplyProtectActivityE', data) : navigation.push('ApplyAnimalAdoptionE', data);
 	};
 
@@ -76,7 +76,7 @@ export default ApplyCompanionD = props => {
 				<Text style={[txt.noto24, {color: GRAY10}]}>임시보호의 이유나 동기를 500자 이내로 작성해주세요.</Text>
 			</View>
 			<View style={[temp_style.inputLongText, applyCompanionD.InputLongText]}>
-				<InputLongText placeholder={'내용 입력...'} onChange={text => onChangeText(text)} value={temp == '' ? null : temp} />
+				<InputLongText placeholder={'내용 입력...'} onChange={onChangeText} value={temp == '' ? null : temp} />
 			</View>
 			<View style={[applyCompanionD.btnContainer]}>
 				<View style={[btn_style.btn_w176, applyCompanionD.btn_w176]}>

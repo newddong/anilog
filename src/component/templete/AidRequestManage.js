@@ -20,7 +20,7 @@ export default AidRequestManage = ({route, navigation}) => {
 					request_number: 10,
 				},
 				result => {
-					console.log('result / getShelterProtectAnimalList / ShelterProtectAnimalList', result.msg);
+					// console.log('result / getShelterProtectAnimalList / ShelterProtectAnimalList', result.msg);
 					setData(result.msg);
 				},
 				err => {
@@ -34,8 +34,12 @@ export default AidRequestManage = ({route, navigation}) => {
 			getAnimalListWithApplicant(
 				{},
 				result => {
-					console.log('result / getAnimalListWithApplicant / ProtectApplyList', result.msg[0].protect_act_applicants);
-					setData(result.msg);
+					// console.log('result / getAnimalListWithApplicant / ProtectApplyList', result.msg[0]);
+					let merged = result.msg;
+					merged.map((v, i) => {
+						v.shelter_name = route.params.shelter_name;
+					});
+					setData(merged);
 				},
 				err => {
 					console.log('err / getAnimalListWithApplicant', err);
@@ -76,88 +80,4 @@ export default AidRequestManage = ({route, navigation}) => {
 		</View>
 	);
 };
-
-const withApplica = [
-	{
-		__v: 1,
-		_id: '61c07f0c0b3fb5a4acae2c26',
-		protect_act_applicants: [[Object]],
-		protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
-		protect_animal_estimate_age: '4년 1개월',
-		protect_animal_neutralization: 'unknown',
-		protect_animal_photo_uri_list: [],
-		protect_animal_protect_request_id: '61c188ba2aaa7e1134cef1e2',
-		protect_animal_protector_discussion_id: [],
-		protect_animal_rescue_date: '2004-08-12T00:00:00.000Z',
-		protect_animal_rescue_location: '고르고스 언덕',
-		protect_animal_sex: 'female',
-		protect_animal_species: '기타',
-		protect_animal_species_detail: '치와와',
-		protect_animal_status: 'rescue',
-		protect_animal_weight: 12,
-	},
-];
-[
-	{
-		__v: 0,
-		_id: '61c1cc107be07611b00945f9',
-		protect_act_address: {brief: 'string', city: '서울특별시', detail: 'string', district: '마포구 신수동', neighbor: '89-77 203호'},
-		protect_act_applicant_id: '61c023d9679aa5ae46128102',
-		protect_act_checklist: {
-			is_adult: true,
-			is_agreed_housemate: true,
-			is_experience_defecate: true,
-			is_knowledge_sanitation: true,
-			is_near_veterinary: true,
-		},
-		protect_act_companion_history: [[Object]],
-		protect_act_motivation: '우리 달리의 친구를 만들어주고 싶습니다.',
-		protect_act_phone_number: '01096450422',
-		protect_act_protect_animal_id: '61c07f0c0b3fb5a4acae2c26',
-		protect_act_request_article_id: '61c188ba2aaa7e1134cef1e2',
-		protect_act_request_shelter_id: '61c023d9679aa5ae46128102',
-		protect_act_status: 'wait',
-		protect_act_type: 'protect',
-	},
-	{
-		__v: 0,
-		_id: '61c1e55a7be07611b009470a',
-		protect_act_address: {brief: 'string', city: '서울특별시', detail: 'string', district: '마포구 신수동', neighbor: '89-77 203호'},
-		protect_act_applicant_id: '61c023d9679aa5ae46128102',
-		protect_act_checklist: {
-			is_adult: true,
-			is_agreed_housemate: true,
-			is_experience_defecate: true,
-			is_knowledge_sanitation: true,
-			is_near_veterinary: true,
-		},
-		protect_act_companion_history: [[Object]],
-		protect_act_motivation: '우리 달리의 친구를 만들어주고 싶습니다.',
-		protect_act_phone_number: '01096450422',
-		protect_act_protect_animal_id: '61c07f0c0b3fb5a4acae2c26',
-		protect_act_request_article_id: '61c188ba2aaa7e1134cef1e2',
-		protect_act_request_shelter_id: '61c023d9679aa5ae46128102',
-		protect_act_status: 'wait',
-		protect_act_type: 'adopt',
-	},
-	{
-		__v: 0,
-		_id: '61c2fc527be07611b00955e6',
-		protect_act_address: {brief: '경기도 화성시 장안면 석포로 107', detail: '311'},
-		protect_act_applicant_id: '61c023d9679aa5ae46128102',
-		protect_act_checklist: {
-			is_adult: true,
-			is_agreed_housemate: true,
-			is_experience_defecate: true,
-			is_knowledge_sanitation: true,
-			is_near_veterinary: true,
-		},
-		protect_act_companion_history: [[Object]],
-		protect_act_phone_number: '01096450422',
-		protect_act_protect_animal_id: '61c07f0c0b3fb5a4acae2c26',
-		protect_act_request_article_id: '61c188ba2aaa7e1134cef1e2',
-		protect_act_request_shelter_id: '61c023d9679aa5ae46128102',
-		protect_act_status: 'wait',
-		protect_act_type: 'adopt',
-	},
-];
+// 61c1cc107be07611b00945f9

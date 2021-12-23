@@ -4,7 +4,7 @@ import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {APRI10, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w242} from '../atom/btn/btn_style';
-import {NextMark} from '../atom/icon';
+import {Cross52, NextMark} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import OnOffSwitch from '../molecules/OnOffSwitch';
 import PetImageLabel from '../molecules/PetImageLabel';
@@ -15,37 +15,29 @@ import {dummy_userObject} from 'Root/config/dummyDate_json';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import Modal from '../modal/Modal';
 import {getUserInfoById, removeUserFromFamily} from 'Root/api/userapi';
+import {familyAccountList_style} from '../organism_ksw/style_organism';
+import ProfileImageSmall from '../molecules/ProfileImageSmall';
 
 //이 화면에 들어오면서 특정 _id를 API 연동으로 데이터를 가져 옴.
 //이전 화면에서 모든 데이터를 가진 상태에서 들어오는 것이 아님.
 //변수들은 모두 db 변수로 스네이크 형식으로 추후에 변경 필요.
 
-export default PetInfoSetting = ({route, navigation}) => {
-	// console.log('PetInfoSetting / route.params', route.params);
+export default PetInfoSetting = ({route}) => {
+	const navigation = useNavigation();
+	console.log('PetInfoSetting / route.params', route.params);
 	const [petData, setPetData] = React.useState({}); // 현재 반려동물 프로필 데이터
 	const [familyAccountList, setFamilyAccountList] = React.useState([]); //가족 계정 목록 데이터
 
-	//가족계정 추가에서 받아온 Account가 있을 경우 FamilyAccountList에 추가해서 적용
 	React.useEffect(() => {
-		console.log('route ', route.params.addedAccount);
-		if (route.params != undefined) {
-			if (route.params.addedAccount != undefined) {
-				let copy = [...familyAccountList];
-				copy.push(route.params.addedAccount);
-				setFamilyAccountList(copy);
-			}
-		}
-	}, [route.params]);
+		const unsubscribe = navigation.addListener('focus', () => setFamily());
+		return unsubscribe;
+	}, []);
 
-	React.useEffect(() => {
-		// console.log('FamilAcc', familyAccountList.length);
-	}, [familyAccountList]);
-
-	React.useEffect(() => {
+	const setFamily = () => {
 		getUserInfoById(
 			{userobject_id: route.params.pet_id},
 			result => {
-				console.log('result / GetUserInfoById / PetInfoSetting', result.msg);
+				console.log('result / GetUserInfoById / PetInfoSetting', result.msg.pet_family);
 				setFamilyAccountList(result.msg.pet_family);
 				setPetData(result.msg);
 			},
@@ -53,7 +45,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 				console.log('err / GetUserInfoById / PetInfosetting', err);
 			},
 		);
-	}, []);
+	};
 
 	//계정정보 - '종' 변경하기 버튼 클릭
 	const changePetInfo = () => {
@@ -77,7 +69,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 
 	//가족계정 추가 버튼
 	const goToAddFamilyAccount = () => {
-		familyAccountList.length > 2
+		familyAccountList.length == 3
 			? Modal.popOneBtn('가족계정은 최대 3인까지 등록가능합니다!', '확 인', () => Modal.close())
 			: navigation.push('AddFamilyAccount', {route_name: route.name, pet_id: petData._id});
 	};
@@ -91,7 +83,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 				pet_userobject_id: petData._id,
 			},
 			result => {
-				console.log('reuslt / removeUserFromFamily / PetInfoSetting   : ', result.msg);
+				// console.log('reuslt / removeUserFromFamily / PetInfoSetting   : ', result.msg);
 				let copy = [...familyAccountList];
 				copy.splice(index, 1);
 				setFamilyAccountList(copy);
@@ -186,7 +178,20 @@ export default PetInfoSetting = ({route, navigation}) => {
 						</View>
 						{/* 가족계정 리스트 */}
 						<View style={[petInfoSetting.familyAccountSetting.familyAccounts]}>
-							<FamilyAccountList items={familyAccountList} onDeleteAccount={onDeleteFamilyAccount} />
+							{/* <FamilyAccountList items={familyAccountList} onDeleteAccount={onDeleteFamilyAccount} /> */}
+							{familyAccountList.map((v, i) => {
+								return (
+									<View style={[familyAccountList_style.itemContainer]} key={i}>
+										<View style={[familyAccountList_style.profileImageSmall]}>
+											<ProfileImageSmall data={v} />
+										</View>
+										<View style={[familyAccountList_style.userIDContainer]}>
+											<Text style={[txt.roboto28b]}>{v.user_nickname}</Text>
+										</View>
+										<Cross52 onPress={() => onDeleteFamilyAccount(i)} style={[familyAccountList_style.cross52]} />
+									</View>
+								);
+							})}
 						</View>
 					</View>
 				</View>

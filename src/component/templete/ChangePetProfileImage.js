@@ -59,9 +59,10 @@ export default ChangePetProfileImage = props => {
 	};
 
 	const validateNewNick = nick => {
+		console.log('nic', nick);
 		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
 		// 영문자, 소문자, 숫자, "-","_" 로만 구성된 길이 2~10자리 사이의 문자열
-		let regExp = /^[a-zA-Z0-9_-]{2,15}$/;
+		let regExp = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_-]{2,15}$/;
 		return regExp.test(nick) && checkDuplicateNickname(nick);
 	};
 

@@ -1223,6 +1223,30 @@ export const familyAccountList = StyleSheet.create({
 	},
 });
 
+export const familyAccountList_style = StyleSheet.create({
+	itemContainer: {
+		width: 654 * DP,
+		height: 94 * DP,
+		marginBottom: 30 * DP,
+		flexDirection: 'row',
+	},
+	profileImageSmall: {
+		width: 94 * DP,
+		height: 94 * DP,
+	},
+	userIDContainer: {
+		width: 456 * DP,
+		height: 42 * DP,
+		marginLeft: 30 * DP,
+		alignSelf: 'center',
+	},
+	cross52: {
+		marginLeft: 24 * DP,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+});
+
 export const userAccount = StyleSheet.create({
 	container: {
 		width: 654 * DP,
