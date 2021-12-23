@@ -31,7 +31,7 @@ export default AddFamilyAccount = ({route, navigation}) => {
 			result => {
 				console.log('result / getUserListByNick / AddFamilyccount', result.msg);
 				result.msg.map((v, i) => {
-					console.log('v', i, v.user_intro);
+					// console.log('v', i, v.user_intro);
 				});
 				setSearched_accountList(result.msg);
 				Modal.close();
@@ -76,24 +76,7 @@ export default AddFamilyAccount = ({route, navigation}) => {
 				},
 			);
 			Modal.close();
-			navigation.navigate({
-				name: route.params.route_name,
-				params: {addedAccount: selectedAccount},
-				merge: true,
-			});
-			// navigation.dispatch(
-			// 	CommonActions.navigate({
-			// 		merge: true,
-			// 		index: 1,
-			// 		routes: [
-			// 			{name: 'UserMenu'},
-			// 			{
-			// 				name: route.params,
-			// 				params: {addedAccount: selectedAccount},
-			// 			},
-			// 		],
-			// 	}),
-			// );
+			navigation.goBack();
 		};
 		if (selectedAccount) {
 			Modal.popTwoBtn('이 계정을 가족으로 추가하시겠습니까?', '취소', '추가', () => Modal.close(), finalize);

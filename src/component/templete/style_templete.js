@@ -2525,7 +2525,6 @@ export const petInfoSetting = StyleSheet.create({
 		familyAccounts: {
 			// width: 654 * DP,
 			marginTop: 16 * DP,
-			flexDirection: 'row',
 		},
 	},
 	exposureSetting: {
@@ -3854,6 +3853,9 @@ export const followerList = StyleSheet.create({
 export const protectApplyForm = StyleSheet.create({
 	detailContainer: {
 		marginVertical: 40 * DP,
+	},
+	confirmButton: {
+		marginBottom: 40 * DP,
 	},
 });
 

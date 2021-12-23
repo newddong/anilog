@@ -12,6 +12,7 @@ import {applyDetails, btn_style, login_style, temp_style} from './style_templete
 
 export default ApplyDetails = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params);
+	// console.log('', data.protect_act_motivation);
 	//모달창에서 최종 확인을 클릭
 	const onFinalize = () => {
 		Modal.close();
@@ -23,12 +24,12 @@ export default ApplyDetails = ({route, navigation}) => {
 				protect_act_address: data.protect_act_address,
 				protect_act_phone_number: data.protect_act_phone_number,
 				protect_act_checklist: data.protect_act_checklist,
-				protect_act_motivation: data.protect,
+				protect_act_motivation: data.protect_act_motivation,
 			},
 			result => {
-				console.log('result / createProtectActivity / ApplyDetails  : ', result.status);
-				// navigation.reset({index: 0, routes: [{name: 'UserProfile', params: data.protect_request_writer_id}]});
-				// navigation.reset({routes: [{name: 'UserProfile', params: data.protect_request_writer_id}]});
+				console.log('result / createProtectActivity / ApplyDetails  : ', result);
+				navigation.reset({index: 0, routes: [{name: 'UserProfile', params: data.protect_request_writer_id}]});
+				navigation.reset({routes: [{name: 'UserProfile', params: data.protect_request_writer_id}]});
 				navigation.reset({
 					index: 0,
 					routes: [{name: 'MainTab'}],
