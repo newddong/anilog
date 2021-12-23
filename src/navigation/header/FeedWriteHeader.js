@@ -8,7 +8,7 @@ import Modal from 'Root/component/modal/Modal';
 import {createProtectRequest} from 'Root/api/shelterapi';
 import {RED} from 'Root/screens/color';
 
-export default SendHeader = ({route, navigation, options}) => {
+export default FeedWriteHeader = ({route, navigation, options}) => {
 	// console.log('props SendHeader', route.params);
 
 	const onSend = () => {
@@ -60,6 +60,13 @@ export default SendHeader = ({route, navigation, options}) => {
 
 	const titleStyle = [{textAlign: 'center'}, txt.noto40b, route.params?.type ? {color: RED} : {}];
 
+	const avartarSelect = () => {
+		Modal.feedAvartarSelect((petObject)=>{
+			console.log(petObject);
+			navigation.setOptions({title:petObject.user_nickname});
+		});
+	};
+
 	return (
 		<View style={[style.headerContainer, style.shadow]}>
 			<TouchableOpacity onPress={navigation.goBack}>
@@ -67,11 +74,18 @@ export default SendHeader = ({route, navigation, options}) => {
 					<BackArrow32 onPress={navigation.goBack} />
 				</View>
 			</TouchableOpacity>
-
-			<View style={style.titleContainer}>
-				<Text style={titleStyle}>{options.title}</Text>
-			</View>
-
+			{route.params?.type ? (
+				<View style={style.titleContainer}>
+					<Text style={titleStyle}>{options.title}</Text>
+				</View>
+			) : (
+				<TouchableWithoutFeedback onPress={avartarSelect}>
+					<View style={style.titleContainer}>
+						<Text style={titleStyle}>{options.title}</Text>
+						<Bracket48 />
+					</View>
+				</TouchableWithoutFeedback>
+			)}
 			<Send60_Big onPress={onSend} />
 		</View>
 	);
@@ -107,9 +121,7 @@ const style = StyleSheet.create({
 		justifyContent: 'center',
 		padding: 10 * DP,
 	},
-	titleContainer: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
+	titleContainer:{
+		flexDirection: 'row',alignItems: 'center', justifyContent: 'center'
+	}
 });

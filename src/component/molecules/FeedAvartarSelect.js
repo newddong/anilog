@@ -1,113 +1,52 @@
 import React from 'react';
-import {View, Text, TouchableWithoutFeedback,StyleSheet, Dimensions, Platform,ScrollView} from 'react-native';
-import DropdownSelect from 'Molecules/DropdownSelect';
-
+import {View, Text, TouchableWithoutFeedback, StyleSheet, Dimensions, Platform, ScrollView} from 'react-native';
 import AniButton from 'Molecules/AniButton';
 import {btn_w226} from 'Atom/btn/btn_style';
 import {WHITE, GRAY10} from 'Root/config/color';
-import {txt} from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
 import Modal from 'Component/modal/Modal';
-import Input24 from './Input24';
 import {getUserInfoById} from 'Root/api/userapi';
 import userGlobalObj from 'Root/config/userGlobalObject';
 import PetAccountList from 'Component/organism_ksw/PetAccountList';
 
-
 /**
- * 선택창과 직접 입력창을 띄우는 모달 컴포넌트
+ * 아바타 동물을 선택하는 모달창
  *
  * @param {Object} props - props object
  * @param {string} props.okButtonnMsg - 확인 버튼 메시지
- * @param {(primaryValue:string,secondaryValue:string)=>void} props.onOk - 확인 버튼 콜백
- * @param {Array.<string>} props.primaryItems - 첫번째 선택창에 들어갈 항목들의 배열
- * @param {Array.<string>} props.secondaryItems - 두번째 선택창에 들어갈 항목들의 배열
+ * @param {()=>void} props.onOk - 확인 버튼 콜백
+ * @param {(petObject:string)=>void} props.onSelectPet - 반려동물 라벨을 클릭했을때 콜백
  *
  */
 const FeedAvartarSelect = props => {
-	const initPrimaryValue = props.primaryItems ? props.primaryItems[0] : '멍멍이';
-	const initSecondaryValue = props.secondaryItems ? props.secondaryItems[0] : '직접입력';
 
-	const [primaryValue, setPrimaryValue] = React.useState(initPrimaryValue);
-	const [secondaryValue, setSecondaryValue] = React.useState(initSecondaryValue);
-	const [isDirectInput, setDirectInput] = React.useState(false);
-    const [items,setItems] = React.useState([]);
-	const Primary = React.useRef();
-	const Secondary = React.useRef();
+	const [items, setItems] = React.useState([]);
 
 	const pressOk = () => {
-		props.onOk(primaryValue, secondaryValue);
-		console.log(primaryValue, secondaryValue);
+		props.onOk();
 		Modal.close();
 	};
 
 	React.useEffect(() => {
-		if (secondaryValue === '직접입력') {
-			setDirectInput(true);
-		}
-	}, [secondaryValue]);
-
-	React.useEffect(() => {
-		getUserInfoById({userobject_id: userGlobalObj.userInfo._id},(user)=>{
-            setItems(user.msg?.user_my_pets);
-        },(err)=>{
-            Modal.popOneBtn(err,'확인',()=>Modal.close());
-        });
-	},[]);
-
-	const selectPrimary = () => {
-		Modal.rollingSelect(
-			'반려동물의 종류',
-			props.primaryItems,
-			type => {
-				setPrimaryValue(type);
-				Primary.current.press();
+		getUserInfoById(
+			{userobject_id: userGlobalObj.userInfo._id},
+			user => {
+				setItems(user.msg?.user_my_pets);
 			},
-			() => {
-				Primary.current.press();
+			err => {
+				Modal.popOneBtn(err, '확인', () => Modal.close());
 			},
 		);
-	};
+	}, []);
 
-	const selectSecondary = () => {
-		Modal.rollingSelect(
-			'반려동물의 종류',
-			props.secondaryItems.concat('직접입력'),
-			type => {
-				setSecondaryValue(type);
-				Secondary.current.press();
-			},
-			() => {
-				Secondary.current.press();
-			},
-		);
-	};
-
-	const onDirectInput = input => {
-		setSecondaryValue(input);
+	const selectPet = petobject => {
+		props.onSelectPet&&props.onSelectPet(petobject);
 	};
 
 	return (
 		<View style={style.background}>
 			<View style={[style.popUpWindow, style.shadow]}>
-                <PetAccountList items={items} />
-				<View style={style.buttonContainer}>
-					<AniButton btnLayout={btn_w226} btnStyle={'filled'} btnTitle={props.okButtonnMsg} onPress={pressOk} />
-				</View>
-			</View>
-		</View>
-	);
-    return (
-		<View style={style.background}>
-			<View style={[style.popUpWindow, style.shadow]}>
-				<View style={{flexDirection: 'row', justifyContent: 'space-between', marginBottom: 40 * DP}}>
-					<DropdownSelect width={204} value={primaryValue} onOpen={selectPrimary} ref={Primary} />
-					{isDirectInput ? (
-						<Input24 width={250} placeholder={'직접입력'} onChange={onDirectInput} value={secondaryValue}></Input24>
-					) : (
-						<DropdownSelect width={262} value={secondaryValue} onOpen={selectSecondary} ref={Secondary} />
-					)}
-				</View>
+				<PetAccountList items={items} onLabelClick={selectPet} />
 				<View style={style.buttonContainer}>
 					<AniButton btnLayout={btn_w226} btnStyle={'filled'} btnTitle={props.okButtonnMsg} onPress={pressOk} />
 				</View>
@@ -118,11 +57,10 @@ const FeedAvartarSelect = props => {
 
 FeedAvartarSelect.defaultProps = {
 	okButtonnMsg: '확인',
-	onOk: (primaryValue, secondaryValue) => {
+	onOk: () => {
 		console.log('YES');
 	},
-	primaryItems: ['Item1', 'Item2', 'Item3', 'Item4'],
-	secondaryItems: ['Item1', 'Item2', 'Item3', 'Item4'],
+	onSelectPet:(e)=>{}
 };
 
 const style = StyleSheet.create({

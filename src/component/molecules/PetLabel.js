@@ -26,7 +26,7 @@ const PetLabel = props => {
 	};
 
 	const onClickLabel = e => {
-		props.onLabelClick && props.onLabelClick(props.data._id);
+		props.onLabelClick && props.onLabelClick(props.data);
 	};
 
 	return (
@@ -45,9 +45,9 @@ const PetLabel = props => {
 					<Text style={txt.roboto28b} numberOfLines={1} ellipsizeMode="tail">
 						{props.data.user_nickname || ''}
 					</Text>
-					<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
-						/ {props.data.owner_nickname || ''}
-					</Text>
+					{props.data.owner_nickname&&<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
+						/  {props.data.owner_nickname}
+					</Text>}
 					{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
 				</View>
 			</View>

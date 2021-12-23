@@ -4,10 +4,14 @@ import {organism_style} from './style_organism';
 import PetLabel from '../molecules/PetLabel';
 
 export default PetAccountList = props => {
+	const onLabelClick = (pet)=>{
+		props.onLabelClick&&props.onLabelClick(pet);
+	}
+
 	const renderItem = item => {
 		return (
 			<View style={[organism_style.petAccountList]}>
-				<PetLabel data={item} />
+				<PetLabel data={item} onLabelClick={onLabelClick}/>
 			</View>
 		);
 	};
@@ -16,4 +20,5 @@ export default PetAccountList = props => {
 };
 PetAccountList.defaultProps = {
 	items: [],
+	onLabelClick:(item)=>{console.log('petId',item)},
 };

@@ -117,8 +117,8 @@ export default RootStackNavigation = () => {
 		!isPop && setPop(true);
 	};
 
-	Modal.feedAvartarSelect = (primaryItems, secondaryItems, onOk, okButtonnMsg) => {
-		popIn(<FeedAvartarSelect/>);
+	Modal.feedAvartarSelect = (onSelectPet, onOk, okButtonnMsg) => {
+		popIn(<FeedAvartarSelect onSelectPet={onSelectPet} onOk={onOk} okButtonnMsg={okButtonnMsg} />);
 		!isPop && setPop(true);
 	};
 
