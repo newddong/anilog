@@ -30,13 +30,14 @@ export default ParentComment = props => {
 
 	React.useEffect(() => {
 		setData(props.parentComment);
+		//API 에서 해당 데이터가 들어온 후 재작업 예정.
 		//댓글의 Writer와 로그인유저가 일치하는 경우 내 댓글 처리
-		AsyncStorage.getItem('token', (err, res) => {
-			res == data.comment_writer_id ? setIsMyComment(true) : setIsMyComment(false);
-			//data에 존재하는 좋아요를 클릭한 UserObejct _id들 중 로그인한 유저의 _id가 포함되어 있다면 좋아요 상태는 true, or false
-			// const like = data.like_comment_user_id.includes(parseInt(res));
-			// like ? setLikeState(true) : setLikeState(false);
-		});
+		// AsyncStorage.getItem('token', (err, res) => {
+		// 	res == data.comment_writer_id ? setIsMyComment(true) : setIsMyComment(false);
+		// 	// data에 존재하는 좋아요를 클릭한 UserObejct _id들 중 로그인한 유저의 _id가 포함되어 있다면 좋아요 상태는 true, or false
+		// 	const like = data.like_comment_user_id.includes(parseInt(res));
+		// 	like ? setLikeState(true) : setLikeState(false);
+		// });
 	}, [props.parentComment]);
 
 	const onCLickHeart = () => {
@@ -75,7 +76,7 @@ export default ParentComment = props => {
 				{/* Data - 좋아요 상태 t/f */}
 
 				<TouchableOpacity onPress={showChildComment} style={[parentComment.showChildComment]}>
-					<Text style={[txt.noto24, {color: GRAY10}]}> 답글 {dummy_ChildComment.length}개 보기 </Text>
+					<Text style={[txt.noto24, {color: GRAY10}]}> 답글 {data.childArray.length}개 보기 </Text>
 				</TouchableOpacity>
 				<View style={[parentComment.heart30]}>
 					{likeState ? <Heart30_Filled onPress={onCLickHeart} /> : <Heart30_Border onPress={onCLickHeart} />}
@@ -91,7 +92,7 @@ export default ParentComment = props => {
 			{/* Data - 대댓글List */}
 			{showChild ? (
 				<View style={[organism_style.childCommentList, parentComment.img_square_round_574]}>
-					<ChildCommentList items={dummy_ChildComment} onPressReplyBtn={comment => props.onPress_ChildComment_ReplyBtn(comment)} />
+					<ChildCommentList items={data.childArray} onPressReplyBtn={comment => props.onPress_ChildComment_ReplyBtn(comment)} />
 				</View>
 			) : (
 				<></>

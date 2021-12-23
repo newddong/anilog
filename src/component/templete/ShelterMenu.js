@@ -46,7 +46,7 @@ export default ShelterMenu = ({route}) => {
 	const [data, setData] = React.useState({}); //우선 userObject_Shelter 0번 추가
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', async (err, res) => {
-			Modal.popNoBtn('Loading');
+			// Modal.popNoBtn('Loading');
 			getUserProfile(
 				{
 					userobject_id: res,
@@ -54,11 +54,11 @@ export default ShelterMenu = ({route}) => {
 				userObject => {
 					// console.log('userObject/ ShelterMenu', userObject.msg);
 					setData(userObject.msg);
-					Modal.close();
+					// Modal.close();
 				},
 				err => {
 					console.log('err', err);
-					Modal.close();
+					// Modal.close();
 				},
 			);
 		});

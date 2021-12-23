@@ -28,7 +28,7 @@ const UserTimeLabel = props => {
 		let split = commented_date.split('-');
 		let commented_date_time = new Date(split[0], split[1] - 1, split[2]);
 		let date = new Date().getDate() - commented_date_time.getDate();
-		return date;
+		return <>{date} 일 전</>;
 	};
 
 	const onClickLabel = e => {
@@ -45,7 +45,7 @@ const UserTimeLabel = props => {
 					{props.data.user_nickname || ''}
 				</Text>
 				<Text style={[txt.noto24, {lineHeight: 30 * DP, color: GRAY20, paddingLeft: 16 * DP}]} numberOfLines={1} ellipsizeMode="tail">
-					· {getCommentedTime()}일 전
+					{props.data.feed_type == undefined ? getCommentedTime() : props.data.comment_date} {/* {getCommentedTime()}일 전 */}
 				</Text>
 			</View>
 		</View>
