@@ -26,35 +26,37 @@ const PetLabel = props => {
 	};
 
 	const onClickLabel = e => {
-		props.onLabelClick(props.data._id);
+		props.onLabelClick && props.onLabelClick(props.data._id);
 	};
 
 	return (
-		<View style={{flexDirection: 'row', alignItems: 'center'}}>
-			<TouchableOpacity onPress={onClickLabel}>
+		<TouchableOpacity onPress={onClickLabel}>
+			<View style={{flexDirection: 'row', alignItems: 'center'}}>
 				<Image source={{uri: props.data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_94} />
-				<View style={{position: 'absolute'}}>
+				<View style={{position: 'absolute',top:0}}>
 					{/* 팻의 상태 여부에 따른 분기 - protected, adopted, normal  */}
 					{getStatusMark()}
 				</View>
-			</TouchableOpacity>
-			<View style={{marginLeft: 30 * DP, width: 300 * DP, paddingVertical: 4 * DP}}>
-				{/* Text Box 2개의 Height 총합 86 - profileImage height는 94 = -8 이므로 textBox쪽에 PaddingVertical 4를 줍니다 */}
-				{/* Text부분과 프로필이미지 사이의 거리 30 */}
 
-				<Text style={txt.roboto28b} numberOfLines={1} ellipsizeMode="tail">
-					{props.data.user_nickname || ''}
-				</Text>
-				<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
-					/ {props.data.owner_nickname || ''}
-				</Text>
-				{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
+				<View style={{marginLeft: 30 * DP, width: 300 * DP, paddingVertical: 4 * DP}}>
+					{/* Text Box 2개의 Height 총합 86 - profileImage height는 94 = -8 이므로 textBox쪽에 PaddingVertical 4를 줍니다 */}
+					{/* Text부분과 프로필이미지 사이의 거리 30 */}
+
+					<Text style={txt.roboto28b} numberOfLines={1} ellipsizeMode="tail">
+						{props.data.user_nickname || ''}
+					</Text>
+					<Text style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
+						/ {props.data.owner_nickname || ''}
+					</Text>
+					{/* linheight가 망가지는경우 molecules레벨에서 lignHeight 설정을 맞춰서 지정*/}
+				</View>
 			</View>
-		</View>
+		</TouchableOpacity>
 	);
 };
 
 PetLabel.defaultProps = {
 	onClickLabel: e => console.log(e),
+	onLabelClick: e => console.log(e),
 };
 export default PetLabel;

@@ -14,6 +14,8 @@ import Swiper from 'react-native-swiper';
  * }} props
  */
 export default FeedMedia = props => {
+	const [contentLayout, setContentLayout] = React.useState({height: 214 * DP, width: 0});
+
 	const {
 		feed_content,
 		feed_thumbnail,
@@ -53,7 +55,7 @@ export default FeedMedia = props => {
 	const animal_species_detail = missing_animal_species_detail || report_animal_species_detail;
 	const emergency_location = missing_animal_lost_location || report_witness_location;
 	// console.log(props.data.medias);
-	
+
 	const onSelect = () => {
 		props.onSelect(props.data.feed_id);
 		// setSelected(!selected);
@@ -61,21 +63,30 @@ export default FeedMedia = props => {
 
 	const getFeedIcon = () => {
 		//data.medias의 값들 중 video형식의 media가 하나 이상 존재하는 경우
-		if (feed_medias.some(v=>v.isVideo=='video')) {
+		if (feed_medias.some(v => v.isVideo == 'video')) {
 			return (
-				<View style={{ position: 'absolute', top: 290 * DP, left: 328 * DP }}>
+				<View style={{position: 'absolute', top: 290 * DP, left: 328 * DP}}>
 					<VideoPlay_Feed />
 				</View>
 			);
 			//data.medias 배열의 길이가 1개 이상인 경우
 		} else if (feed_medias.length > 1) {
 			return (
-				<View style={{ position: 'absolute', top: 20 * DP, left: 20 * DP }}>
+				<View style={{position: 'absolute', top: 20 * DP, left: 20 * DP}}>
 					<ImageList48 />
 				</View>
 			);
 		} else return false;
 	};
+
+	const onLayout = event => {
+		const {width, height} = event.nativeEvent.layout;
+		const offset = height - 214 * DP;
+		if(offset>=0){
+			setContentLayout({width, height:height+30*DP});
+		}
+	};
+
 	return (
 		<View style={style.img_square_750x750}>
 			{/* Select된 상태일 때 불투명도 40% 적용 및 배경색  Black */}
@@ -89,12 +100,9 @@ export default FeedMedia = props => {
 					horizontal={true}>
 					{feed_medias.map((data, idx) => (
 						<Image source={{uri: data.media_uri}} style={styles.img_square_750x750} key={idx} />
-						
-						))}
-						{/* {getFeedIcon()} */}
+					))}
+					{/* {getFeedIcon()} */}
 				</Swiper>
-
-				
 			</View>
 			{feed_type == 'missing' || feed_type == 'report' ? (
 				<View style={style.emergency_title}>
@@ -105,15 +113,15 @@ export default FeedMedia = props => {
 			)}
 			{isEmergency ? (
 				<View>
-					<View style={style.emergency_background} />
-					<View style={style.emergency_info_container}>
+					<View style={[style.emergency_background,{height:contentLayout.height}]}>
+					<View style={style.emergency_info_container} onLayout={onLayout}>
 						<View style={{flexDirection: 'row'}}>
 							<Text style={[txt.roboto34b, {color: 'white'}]}>{animal_species + '/' + animal_species_detail}</Text>
 							<Text style={[txt.roboto34b, style.emergency_info_txt]}>{emergency_location}</Text>
 						</View>
 						<Text style={[txt.roboto24, {color: 'white', marginTop: 15 * DP, width: 700 * DP}]}>{feed_content}</Text>
 					</View>
-					
+					</View>
 				</View>
 			) : (
 				false
@@ -151,9 +159,9 @@ const style = StyleSheet.create({
 	},
 	emergency_background: {
 		width: 750 * DP,
-		height: 214 * DP,
-		backgroundColor: BLACK,
-		opacity: 0.5,
+		// height: 214 * DP,
+		backgroundColor: '#0009',
+		justifyContent:'center',
 		position: 'absolute',
 		bottom: 0,
 		zIndex: 0,
@@ -166,8 +174,8 @@ const style = StyleSheet.create({
 	},
 	emergency_info_container: {
 		width: 750 * DP,
-		height: 214 * DP,
-		position: 'absolute',
+		// height: 214 * DP,
+		// position: 'absolute',
 		justifyContent: 'center',
 		bottom: 0,
 		// zIndex: 1,

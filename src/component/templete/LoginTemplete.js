@@ -12,6 +12,7 @@ import {login_style, btn_style, loginTemplete_style} from './style_templete';
 import Modal from 'Component/modal/Modal';
 import {useLogin, userLogin} from 'Root/api/userapi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import userGlobalObj from 'Root/config/userGlobalObject';
 
 export default LoginTemplete = props => {
 	const [id, setId] = React.useState('');
@@ -30,11 +31,19 @@ export default LoginTemplete = props => {
 				Modal.popNoBtn(userObject.msg.user_nickname + '님 \n로그인이 성공하였습니다.');
 				AsyncStorage.setItem('token', userObject.msg._id||'');
 				AsyncStorage.setItem('type', userObject.msg.user_type||'');
+				
+				if(!userObject.msg._id){
+					AsyncStorage.getItem('userInfo').then((user)=>{
+						userGlobalObj.userInfo = JSON.parse(user);
+					})
+				}else{
+					AsyncStorage.setItem('userInfo',JSON.stringify(userObject.msg));
+					userGlobalObj.userInfo = userObject.msg;
+				}
 				setTimeout(() => {
 					Modal.close();
-					// alert('홈으로 이동');
 					props.navigation.navigate('MainTab', userObject.msg.user_type);
-				}, 1000);
+				}, 100);
 			},
 			error => {
 				Modal.close();
@@ -46,7 +55,15 @@ export default LoginTemplete = props => {
 	};
 
 	const moveToMainTab = async () => {
-		let type = await AsyncStorage.getItem('type');
+		let type = undefined;
+		try{
+		 type = await AsyncStorage.getItem('type');
+		}
+		catch(error){
+			Modal.popOneBtn(error, '확인', () => {
+				Modal.close();
+			});
+		}
 		props.navigation.push('MainTab', type);
 	};
 	const moveToAssign = () => {

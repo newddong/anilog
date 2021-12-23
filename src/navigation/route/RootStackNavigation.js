@@ -53,6 +53,7 @@ import OneBtnModal from 'Molecules/OneBtnModal';
 import NoBtnModal from 'Molecules/NoBtnModal';
 import RollingSelect from 'Molecules/RollingSelect';
 import SelectModal from 'Molecules/SelectModal';
+import FeedAvartarSelect from 'Molecules/FeedAvartarSelect';
 
 import Modal from 'Component/modal/Modal';
 import Calendar from 'Root/test_sangwoo/calendar';
@@ -113,6 +114,11 @@ export default RootStackNavigation = () => {
 
 	Modal.popSelect = (primaryItems, secondaryItems, onOk, okButtonnMsg) => {
 		popIn(<SelectModal primaryItems={primaryItems} secondaryItems={secondaryItems} onOk={onOk} okButtonnMsg={okButtonnMsg} popUpMsg={'선택 모달'} />);
+		!isPop && setPop(true);
+	};
+
+	Modal.feedAvartarSelect = (primaryItems, secondaryItems, onOk, okButtonnMsg) => {
+		popIn(<FeedAvartarSelect/>);
 		!isPop && setPop(true);
 	};
 

@@ -21,16 +21,23 @@ import PetAccountList from '../organism_ksw/PetAccountList';
 import {Button} from 'react-native';
 import {dummy_UserObject_pet, dummy_UserObject_pet_with_owner} from 'Root/config/dummyDate_json';
 import {launchImageLibrary} from 'react-native-image-picker';
+import Modal from 'Component/modal/Modal';
+import userGlobalObj from 'Root/config/userGlobalObject';
 
 export default FeedWrite = props => {
 	const [showPetAccountList, setShowPetAccountList] = React.useState(false); //PetAccount 계정
 	const [showUrgentBtns, setShowUrgentBtns] = React.useState(true); //긴급버튼목록
-	const [showLostAnimalForm, setShowLostAnimalForm] = React.useState(false); //실종버툰
+	const [showLostAnimalForm, setShowLostAnimalForm] = React.useState(false); //실종버튼
 	const [showReportForm, setShowRepotForm] = React.useState(false); //제보버튼
 	const [showActionButton, setShowActionButton] = React.useState(false); // 긴급게시(하얀버전) 클릭 시 - 실종/제보 버튼 출력 Boolean
 	// const [selected]
 	const [feedText, setFeedText] = React.useState(''); //피드 TextInput Value
 	const [feedList, setFeedList] = React.useState([]);
+	const [selectedImg, setSelectedImg] = React.useState([]);//사진 uri리스트
+
+	React.useEffect(()=>{
+		props.navigation.setOptions({title:userGlobalObj.userInfo?.user_nickname})
+	},[]);
 
 	//긴급 게시 버튼 관련 분기 처리
 	React.useEffect(() => {
@@ -41,11 +48,15 @@ export default FeedWrite = props => {
 	//긴급버튼 중 - 실종 클릭
 	const onPressMissingWrite = () => {
 		setShowLostAnimalForm(true);
+		props.navigation.setParams({...props.route.params, type: 'Missing'});
+		props.navigation.setOptions({title:'실종 게시물'})
 	};
 
 	//긴급버튼 중 - 제보 클릭
 	const onPressReportWrite = () => {
 		setShowRepotForm(true);
+		props.navigation.setParams({...props.route.params, type: 'Report'});
+		props.navigation.setOptions({title:'제보 게시물'})
 	};
 
 	//Text 안에 있는 HashTag된 텍스트 클릭 시 FeedListForHashTag 로 이동
@@ -68,11 +79,17 @@ export default FeedWrite = props => {
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);
-
-				responseObject.didCancel ? console.log('선택취소') : setImgSelected(responseObject.assets[responseObject.assets.length - 1].uri);
+				if(responseObject.assets.length>5){
+					Modal.popOneBtn('사진은 5개까지 선택가능합니다.','확인',()=>Modal.close());
+				}
+				responseObject.didCancel ? console.log('선택취소') : setSelectedImg(responseObject.assets.map(v=>v.uri).slice(0,5));
 			},
 		);
 	};
+	//사진 삭제
+	const deletePhoto = (index) => {
+		setSelectedImg(selectedImg.filter((v,i)=>i!=index));
+	}
 
 	//위치추가
 	const moveToLocationPicker = () => {
@@ -227,9 +244,9 @@ export default FeedWrite = props => {
 						</View>
 					</View>
 					{/* SelectMediaList */}
-					<View style={[temp_style.selectedMediaList, feedWrite.selectedMediaList]}>
-						<SelectedMediaList />
-					</View>
+					{selectedImg.length>0&&<View style={[temp_style.selectedMediaList, feedWrite.selectedMediaList]}>
+						<SelectedMediaList items={selectedImg} onDelete={deletePhoto}/>
+					</View>}
 					{/* 긴급 게시 관련 버튼 클릭 시 출력되는 View */}
 					{setUrgBtnsClickedView()}
 				</View>
@@ -239,26 +256,7 @@ export default FeedWrite = props => {
 
 	return (
 		<View style={[login_style.wrp_main, feedWrite.container]}>
-			{/* 테스트용 */}
 			<ScrollView contentContainerStyle={{width: 750 * DP, alignItems: 'center'}}>
-				{/* <View style={{flexDirection: 'row'}}>
-					<TouchableOpacity
-						onPress={() => setShowLostAnimalForm(!showLostAnimalForm)}
-						style={{width: 100, height: 20, backgroundColor: 'black', marginLeft: 7}}>
-						<Text style={{color: 'white'}}>LostAnimal {showLostAnimalForm ? 'On' : 'off'}</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						onPress={() => setShowPetAccountList(!showPetAccountList)}
-						style={{width: 100, height: 20, backgroundColor: 'purple', marginLeft: 7}}>
-						<Text style={{color: 'white'}}>PetAccount {showPetAccountList ? 'On' : 'off'}</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						onPress={() => setShowRepotForm(!showReportForm)}
-						style={{width: 100, height: 20, backgroundColor: 'blue', marginLeft: 7}}>
-						<Text style={{color: 'white'}}>RepotForm {showReportForm ? 'On' : 'off'}</Text>
-					</TouchableOpacity>
-				</View> */}
-				{/* 테스트용 종료 */}
 				<View style={[temp_style.feedTextEdit, feedWrite.feedTextEdit]}>
 					{/* 피드 글 작성 */}
 					<TextInput

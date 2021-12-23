@@ -6,9 +6,8 @@ export const organism_style = StyleSheet.create({
 	feedContent: {
 		flexDirection: 'column',
 		width: 750 * DP,
-		height: 270 * DP,
+		// height: 270 * DP,
 		alignItems: 'center',
-		justifyContent: 'center',
 		marginTop: 40 * DP,
 	},
 	userLocationLabel_view_feedContent: {
@@ -55,6 +54,7 @@ export const organism_style = StyleSheet.create({
 	content_feedContent: {
 		//	flexDirection: 'row',
 		width: 654 * DP,
+		// height: 100*DP,
 	},
 	time_view_feedContent: {
 		flexDirection: 'row',
@@ -62,7 +62,9 @@ export const organism_style = StyleSheet.create({
 		height: 48 * DP,
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		marginTop: 10 * DP,
+		position:'absolute',
+		backgroundColor:'#fff',
+		bottom:0,
 	},
 	time_feedContent: {
 		flexDirection: 'row',

@@ -37,7 +37,7 @@ export default FeedList = ({route, navigation}) => {
 	return (
 		<View style={[login_style.wrp_main, {flex: 1, backgroundColor: WHITE}]}>
 			<FlatList data={feedList} renderItem={({item}) => renderItem(item)} keyExtractor={(item,index)=>index} />
-			<View style={{position:'absolute',bottom:10*DP,right:10*DP}}>
+			<View style={{position:'absolute',bottom:40*DP,right:30*DP}}>
 				<Write94 onPress={moveToFeedWrite} />
 			</View>
 		</View>

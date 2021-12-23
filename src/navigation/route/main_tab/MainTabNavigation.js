@@ -11,7 +11,7 @@ const MainTabNav = createBottomTabNavigator();
 
 export default MainTabNavigation = ({route}) => {
 	return (
-		<MainTabNav.Navigator initialRouteName={'MY'} tabBar={props => <BottomTab {...props} />}>
+		<MainTabNav.Navigator initialRouteName={'FEED'} tabBar={props => <BottomTab {...props} />}>
 			<MainTabNav.Screen name="FEED" component={FeedStackNavigation} options={{tabBarLabel: '피드', header: props => false}} />
 			<MainTabNav.Screen name="PROTECTION" component={ProtectionStackNavigation} options={{tabBarLabel: '동물보호'}} />
 			<MainTabNav.Screen name="COMMUNITY" component={Temp} options={{tabBarLabel: '커뮤니티'}} />
