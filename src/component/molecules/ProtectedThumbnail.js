@@ -33,6 +33,20 @@ const ProtectedThumbnail = props => {
 		);
 	};
 
+	const getGenderMark = () => {
+		switch (props.data.gender) {
+			case 'male':
+				return <Male48 />;
+				break;
+			case 'female':
+				return <Female48 />;
+				break;
+
+			default:
+				break;
+		}
+	};
+
 	const getStatusContainerStyle = () => {
 		if (props.data.status == 'missing') {
 			return {backgroundColor: RED10};
@@ -74,7 +88,7 @@ const ProtectedThumbnail = props => {
 			<TouchableOpacity onPress={onClickLabel}>
 				<Image source={{uri: props.data.img_uri}} style={[styles.img_square_round_214, borderByStatus()]} />
 				{/* 펫 성별마크 */}
-				<View style={{position: 'absolute', right: 10 * DP, top: 10 * DP}}>{props.data.gender == 'male' ? <Male48 /> : <Female48 />}</View>
+				<View style={{position: 'absolute', right: 10 * DP, top: 10 * DP}}>{getGenderMark()}</View>
 				{/* 펫 보호상태 */}
 				<View
 					style={[

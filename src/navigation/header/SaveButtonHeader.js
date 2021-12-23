@@ -11,12 +11,12 @@ export default SaveButtonHeader = ({navigation, route, options, back}) => {
 	const [data, setData] = React.useState();
 	const [save, setSaved] = React.useState(false); // 저장 버튼 클릭 한 번이라도 했는지 여부
 	const Saved = Boolean(data);
-	console.log('saveButton Header', save);
+	// console.log('saveButton Header', save);
 	// console.log(route);
 	//SaveButtonHeader를 가지는 모든 템플릿들에게서 params가 들어올 때마다 setData를 실시
 	React.useEffect(() => {
 		setData(route.params);
-		console.log(route.params);
+		// console.log(route.params);
 	}, [route.params]);
 
 	React.useEffect(() => {
@@ -75,32 +75,34 @@ export default SaveButtonHeader = ({navigation, route, options, back}) => {
 	}, [save]);
 
 	React.useEffect(() => {
-		navigation.addListener('beforeRemove', e => {
-			//저장 처리가 이미 되어있다면 바로 뒤로가기 진행
-			console.log('data / Before REmove', data);
-			console.log('Saved', Saved);
-			if (Saved) {
-				// 	// If we don't have unsaved changes, then we don't need to do anything
-				return;
-			}
+		if (Saved) {
+		} else {
+			navigation.addListener('beforeRemove', e => {
+				//저장 처리가 이미 되어있다면 바로 뒤로가기 진행
+				console.log('Saved', Saved);
+				if (Saved) {
+					// 	// If we don't have unsaved changes, then we don't need to do anything
+					return;
+				}
 
-			//저장버튼이 한 번도 눌러지지 않은 상태로 뒤로가기를 누를 경우 [저장 후 나감] 모달 출력
-			e.preventDefault();
-			Modal.popTwoBtn(
-				'저장하지 않고 나가시겠습니까?',
-				'저장 후 나감',
-				'나가기',
-				() => {
-					Modal.close();
-					setSaved(true); //save State true로 하여 상단의 useEffect가 수행되도록 설정
-					navigation.dispatch(e.data.action, data); // 뒤로가기 이제 실시
-				},
-				() => {
-					Modal.close();
-					navigation.dispatch(e.data.action, data);
-				},
-			);
-		});
+				//저장버튼이 한 번도 눌러지지 않은 상태로 뒤로가기를 누를 경우 [저장 후 나감] 모달 출력
+				e.preventDefault();
+				Modal.popTwoBtn(
+					'저장하지 않고 나가시겠습니까?',
+					'저장 후 나감',
+					'나가기',
+					() => {
+						Modal.close();
+						setSaved(true); //save State true로 하여 상단의 useEffect가 수행되도록 설정
+						navigation.dispatch(e.data.action, data); // 뒤로가기 이제 실시
+					},
+					() => {
+						Modal.close();
+						navigation.dispatch(e.data.action, data);
+					},
+				);
+			});
+		}
 	}, []);
 
 	return (

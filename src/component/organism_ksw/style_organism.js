@@ -635,7 +635,6 @@ export const childComment = StyleSheet.create({
 		width: 222 * DP,
 		height: 34 * DP,
 		flexDirection: 'row',
-		alignItems: 'center',
 		alignSelf: 'flex-end',
 	},
 	heart30: {

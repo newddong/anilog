@@ -31,48 +31,16 @@ export default ManageVolunteer = ({route}) => {
 					// console.log('success / getUserVolunterItemList / ManageVolunteer', result.msg);
 					let doneList = []; //지난 내역을 담을 컨테이너
 					let notDoneList = []; //활동 예정 중인 신청을 담을 컨테이너
-					//현재는 조인이 안되는 상황이므로 클라이언트에서 timeValue로 분류
 					result.msg.map((v, i) => {
 						let wishdate = moment(v.volunteer_wish_date[0]).toDate(); //봉사활동 희망날짜 배열에서 첫번째 값을 받아와 Date타입으로 치환
 						let thisTime = new Date().getTime(); // 현재 시간
-						wishdate.getTime() < thisTime ? doneList.push(v) : notDoneList.push(v); // 비교 후 '지난 내역' / '활동 예정' 각 배열에 푸쉬
-					});
-					//봉사활동 정보는 있어도 보호소 이미지라벨 데이터(프로필 uri, 보호소 이름 , 소개글) 은 없기 때문에 우선 임시로 API접근
-					doneList.map((v, i) => {
-						getUserInfoById(
-							{
-								userobject_id: v.volunteer_target_shelter,
-							},
-							result => {
-								// console.log('result / getUserProfile /ManageVolunteer   : ', result.msg.user_profile_uri);
-								doneList[i].user_profile_uri = result.msg.user_profile_uri;
-								doneList[i].shelter_address = result.msg.shelter_address;
-								doneList[i].shelter_name = result.msg.shelter_name;
-								doneList[i].user_type = result.msg.user_type;
-								doneList[i].shelter_delegate_contact_number = result.msg.shelter_delegate_contact_number;
-							},
-							err => {
-								console.log('err / getUserProfile / ManageVolunteer / doneList', err);
-							},
-						);
-					});
-					notDoneList.map((v, i) => {
-						getUserInfoById(
-							{
-								userobject_id: v.volunteer_target_shelter,
-							},
-							result => {
-								// console.log('result / getUserProfile /ManageVolunteer   : ', result);
-								notDoneList[i].user_profile_uri = result.msg.user_profile_uri;
-								notDoneList[i].shelter_address = result.msg.shelter_address;
-								notDoneList[i].shelter_name = result.msg.shelter_name;
-								notDoneList[i].user_type = result.msg.user_type;
-								notDoneList[i].shelter_delegate_contact_number = result.msg.shelter_delegate_contact_number;
-							},
-							err => {
-								console.log('err / getUserProfile / ManageVolunteer / notDoneList', err);
-							},
-						);
+						//ShelterLabel을 채우기 위한 필드명 1depth 올리기 작업
+						v.shelter_address = v.volunteer_target_shelter.shelter_address;
+						v.shelter_name = v.volunteer_target_shelter.shelter_name;
+						v.user_type = v.volunteer_target_shelter.user_type;
+						v.user_profile_uri = v.volunteer_target_shelter.user_profile_uri;
+						// 비교 후 '지난 내역' / '활동 예정' 각 배열에 푸쉬
+						wishdate.getTime() < thisTime ? doneList.push(v) : notDoneList.push(v);
 					});
 					setDoneList(doneList); //API로 받아온 지난 내역 값 setState
 					setNotDoneList(notDoneList); //이하동문
@@ -128,10 +96,6 @@ export default ManageVolunteer = ({route}) => {
 			);
 		}
 	}, []);
-
-	React.useEffect(() => {
-		// loading ? Modal.popNoBtn('봉사활동 정보를 \n 받아오고 있습니다.') : Modal.close();
-	}, [loading]);
 
 	// 지난 신청 더보기 클릭
 	const showMore = () => {

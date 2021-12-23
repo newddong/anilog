@@ -9,7 +9,6 @@ import {volunteerItem} from './style_organism';
 
 export default VolunteerItem = props => {
 	const data = props.data;
-	// console.log('props.data', data);
 
 	const parsing_wish_date = () => {
 		let date = data.volunteer_wish_date[0];

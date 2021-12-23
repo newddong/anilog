@@ -28,7 +28,7 @@ import {login_style, profile, temp_style} from './style_templete';
 
 export default Profile = ({route, navigation}) => {
 	// console.log('profile props', props.route.params);
-	const [profile_data, setProfile_data] = React.useState(route.params || dummy_UserObject_shelter[0]); //라벨을 클릭한 유저의 userObject data
+	const [profile_data, setProfile_data] = React.useState(route.params || dummy_userObject[0]); //라벨을 클릭한 유저의 userObject data
 	const [tabMenuSelected, setTabMenuSelected] = React.useState(0); //프로필 Tab의 선택상태
 	const [showOwnerState, setShowOwnerState] = React.useState(false); // 현재 로드되어 있는 profile의 userType이 Pet인 경우 반려인 계정 리스트의 출력 여부
 	const [showCompanion, setShowCompanion] = React.useState(false); // User계정이 반려동물버튼을 클릭

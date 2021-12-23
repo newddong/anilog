@@ -7,7 +7,7 @@ import {animalNeedHelp} from './style_organism';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import AniButton from '../molecules/AniButton';
 import {FavoriteTag48_Border, FavoriteTag48_Filled} from '../atom/icon';
-import {RED10} from 'Root/config/color';
+import {BLUE10, BLUE20, RED10} from 'Root/config/color';
 import {DEFAULT_ANIMAL_PROFILE, DEFAULT_PROFILE} from 'Root/i18n/msg';
 import moment from 'moment';
 
@@ -20,11 +20,73 @@ import moment from 'moment';
  *borderMode : 'boolean / 테두리 및 입양처보기, 게시글보기 모드 ',
  *onCheckBox : 'boolean / CheckBox 보이기',
  *onPressAdoptorInfo : 'boolean / HashClick Callback',
- *onPressProtectRequest : 'void / 테두리 모드 게시글보기 클릭'
+ *onPressProtectRequest : 'void / 테두리 모드 게시글보기 클릭',
+ *onPressReporter : 'void / 제보 게시글의 제보자 닉네임 클릭',
  * }} props
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
+	console.log('Anmal', data);
+	const t = {
+		__v: 0,
+		_id: '61c288f97be07611b0094b43',
+		feed_comment_count: 0,
+		feed_content:
+			'주인을 애타게 찾는 고양이로 보여요. 줄도 달려 있어서 무슨 일인가 싶네요. 너무 고양이 상태가 깨끗해요. 주인과 헤어진지 몇시간 안된거 같아요.',
+		feed_date: '2021-12-22T02:10:01.819Z',
+		feed_favorite_count: 0,
+		feed_is_protect_diary: false,
+		feed_like_count: 0,
+		feed_location: '경기도 광역시',
+		feed_medias: [
+			{
+				_id: '61c288f97be07611b0094b44',
+				duration: 0,
+				is_video: false,
+				media_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640139001659_5-4-%EC%8D%B8%EB%84%A4%EC%9D%BC.jpg',
+				tags: [Array],
+			},
+		],
+		feed_recent_comment: {comment_contents: '31535', comment_id: '61c42f7e5e5d034decb5006e', comment_user_nickname: 'Jeff2'},
+		feed_thumbnail: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640139001659_5-4-%EC%8D%B8%EB%84%A4%EC%9D%BC.jpg',
+		feed_type: 'report',
+		feed_update_date: '2021-12-22T02:10:01.819Z',
+		feed_writer_id: {
+			__v: 1,
+			_id: '61b6e82f3271772d17ad649e',
+			pet_family: [],
+			user_address: {city: 'string', district: 'string', neighbor: 'string'},
+			user_agreement: {
+				is_donation_info: true,
+				is_location_service_info: true,
+				is_marketting_info: true,
+				is_over_fourteen: true,
+				is_personal_info: true,
+				is_service: true,
+			},
+			user_denied: false,
+			user_follow_count: 0,
+			user_follower_count: 0,
+			user_interests: [],
+			user_introduction: '네이버 웹툰 작가',
+			user_is_verified_email: false,
+			user_is_verified_phone_number: true,
+			user_mobile_company: 'SK',
+			user_my_pets: ['61b6e8ad3271772d17ad64a0'],
+			user_name: '황준상',
+			user_nickname: 'hjs',
+			user_password: '1234',
+			user_phone_number: '01022442738',
+			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639376943503_roun.jpg',
+			user_register_date: '2021-12-13T06:29:03.688Z',
+			user_type: 'user',
+			user_upload_count: 0,
+		},
+		missing_animal_date: '2021-12-22T02:10:01.819Z',
+		report_witness_date: '2021-12-10T00:00:00.000Z',
+		report_witness_location: '경기도',
+	};
+
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 
@@ -100,10 +162,16 @@ export default AnimalNeedHelp = props => {
 		props.onPressProtectRequest();
 	};
 
+	const onPressReporter = () => {
+		props.onPressReporter();
+	};
+
 	const getParsedDate = () => {
 		let date = '';
-		if (data.feed_type == 'missing' || data.feed_type == 'report') {
+		if (data.feed_type == 'missing') {
 			date = data.missing_animal_date;
+		} else if (data.feed_type == 'report') {
+			date = data.report_witness_date;
 		} else {
 			date = data.protect_request_date;
 		}
@@ -167,7 +235,7 @@ export default AnimalNeedHelp = props => {
 							</View>
 						</>
 					)}
-					{(data.feed_type == 'missing' || data.feed_type == 'report') && (
+					{data.feed_type == 'missing' && (
 						<>
 							{/* 동물 종류 및 품종 */}
 							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
@@ -184,6 +252,30 @@ export default AnimalNeedHelp = props => {
 								<Text style={[txt.noto24]}>실종위치: {data.missing_animal_lost_location || ''}</Text>
 								<Text style={[txt.noto24]} numberOfLines={1}>
 									특징: {data.missing_animal_features || ''}
+								</Text>
+							</View>
+						</>
+					)}
+					{data.feed_type == 'report' && (
+						<>
+							{/* 제보 / 제보위치 / 특징 */}
+							{/* 동물 종류 및 품종 */}
+							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
+								<Text style={[txt.noto30b, {color: RED10}]}>{data.missing_animal_species || ''}</Text>
+							</View>
+							{/* 실종/제보 관련 Details */}
+							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
+								<Text style={[txt.noto24, {color: RED10}]}>제보일: {getParsedDate()}</Text>
+
+								<Text style={[txt.noto24]}>제보위치: {data.report_witness_location || ''}</Text>
+								<Text style={[txt.noto24]} numberOfLines={1}>
+									특징: {data.missing_animal_features || ''}
+								</Text>
+								<Text style={[txt.noto24]} numberOfLines={1}>
+									제보자: {'  '}
+									<Text onPress={onPressReporter} style={{textDecorationLine: 'underline', color: BLUE20}}>
+										{data.feed_writer_id.user_nickname || ''}{' '}
+									</Text>
 								</Text>
 							</View>
 						</>

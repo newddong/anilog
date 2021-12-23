@@ -72,11 +72,11 @@ export default ChildComment = props => {
 				<View style={[childComment.likeCount]}>
 					<Text style={(txt.roboto24, childComment.likeCountText)}>{data ? data.comment_like_count : ''}</Text>
 				</View>
-				<TouchableOpacity style={[childComment.writeComment]} onPress={onPressReplyBtn}>
+				{/* <TouchableOpacity style={[childComment.writeComment]} onPress={onPressReplyBtn}>
 					<Text style={(txt.noto22, childComment.writeCommentText)} numberOfLines={1}>
 						· 답글 쓰기
 					</Text>
-				</TouchableOpacity>
+				</TouchableOpacity> */}
 			</View>
 		</View>
 	);
