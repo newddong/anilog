@@ -47,6 +47,7 @@ import FeedListForHashTag from 'Root/component/templete/FeedListForHashTag';
 import SimpleHeader from 'Navigation/header/SimpleHeader';
 import SendHeader from '../header/SendHeader';
 import UserVerification from 'Root/component/templete/UserVerification';
+import FeedWriteHeader from 'Navigation/header/FeedWriteHeader';
 
 import TwoBtnModal from 'Molecules/TwoBtnModal';
 import OneBtnModal from 'Molecules/OneBtnModal';
@@ -208,17 +209,17 @@ export default RootStackNavigation = () => {
 
 					<RootStack.Screen name="ApplyVolunteer" component={ApplyVolunteer} />
 					<RootStack.Screen name="FeedMediaTagEdit" component={FeedMediaTagEdit} />
-					<RootStack.Screen name="FeedWrite" component={FeedWrite} options={{header: props => <SendHeader {...props} />, title: '게시물 작성'}} />
+					<RootStack.Screen name="FeedWrite" component={FeedWrite} options={{header: props => <FeedWriteHeader {...props} />, title: '게시물 작성'}} />
 
 					<RootStack.Screen
 						name="FeedMissingWrite"
 						component={FeedWrite}
-						options={{header: props => <SendHeader {...props} />, title: '실종 게시물'}}
+						options={{header: props => <FeedWriteHeader {...props} />, title: '실종 게시물'}}
 					/>
 					<RootStack.Screen
 						name="FeedReportWrite"
 						component={FeedWrite}
-						options={{header: props => <SendHeader {...props} />, title: '제보 게시물'}}
+						options={{header: props => <FeedWriteHeader {...props} />, title: '제보 게시물'}}
 					/>
 					<RootStack.Screen name="LocationPicker" component={LocationPicker} />
 

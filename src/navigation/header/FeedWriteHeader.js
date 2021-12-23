@@ -5,65 +5,49 @@ import DP from 'Root/config/dp';
 import {WHITE, APRI10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import Modal from 'Root/component/modal/Modal';
-import {createProtectRequest} from 'Root/api/shelterapi';
 import {RED} from 'Root/screens/color';
+import {createFeed, createMissing, createReport} from 'Root/api/feedapi';
 
 export default FeedWriteHeader = ({route, navigation, options}) => {
 	// console.log('props SendHeader', route.params);
+	const complete = result => {
+		Modal.close();
+		Modal.popNoBtn('게시물 등록이 완료되었습니다.');
+		setTimeout(() => {
+			Modal.close();
+		}, 200);
+		navigation.goBack();
+	};
+	const handleError = err => {
+		Modal.close();
+		Modal.popOneBtn(err, '확인', () => Modal.close());
+	};
 
 	const onSend = () => {
-		if (route.params.data) {
-			console.log('OnSend', route.params.data);
-			const data = route.params.data;
-			switch (route.params.nav) {
-				case 'AidRequestAnimalList': {
-					console.log('route, SendHeader / AidRequestAnimalList', data);
-					navigation.push('WriteAidRequest', {data: data});
-					break;
-				}
-				case 'WriteAidRequest': {
-					Modal.popTwoBtn(
-						'해당 내용으로 보호요청 \n 게시글을 작성하시겠습니까?',
-						'취소',
-						'확인',
-						() => Modal.close(),
-						() => {
-							console.log('SendHeader / Before Create AidRequest ', data);
-							createProtectRequest(
-								{
-									protect_request_photos: data.protect_request_photos,
-									shelter_protect_animal_object_id: data.shelter_protect_animal_object_id,
-									protect_request_title: data.protect_request_title,
-									protect_request_content: data.protect_request_content,
-								},
-								successed => {
-									console.log('successed / createProtectRequest / SendHeader', successed);
-									Modal.popNoBtn('보호요청 게시글 \n 작성이 완료되었습니다!');
-									Modal.close();
-									navigation.push('ShelterMenu');
-								},
-								err => {
-									console.log('err, createProtectRequest / SendHeader', err);
-								},
-							);
-							Modal.close();
-						},
-					);
-				}
-				default:
-					break;
-			}
-		} else {
-			Modal.popOneBtn('선택하신 보호요청 게시글이 없습니다!', '선택완료', () => Modal.close());
+		console.log(route.params);
+		Modal.popNoBtn('게시물을 등록중입니다.');
+		switch (route.params?.type) {
+			case 'Feed':
+				createFeed(route.params,complete,handleError);
+				break;
+			case 'Missing':
+				createMissing(route.params,complete,handleError);
+				break;
+			case 'Report':
+				createReport(route.params, complete,handleError);
+				break;
+            default:
+                break;
 		}
 	};
 
-	const titleStyle = [{textAlign: 'center'}, txt.noto40b, route.params?.type ? {color: RED} : {}];
+	const titleStyle = [{textAlign: 'center'}, txt.noto40b, route.params?.type != 'Feed' ? {color: RED} : {}];
 
 	const avartarSelect = () => {
-		Modal.feedAvartarSelect((petObject)=>{
+		Modal.feedAvartarSelect(petObject => {
 			console.log(petObject);
-			navigation.setOptions({title:petObject.user_nickname});
+			navigation.setOptions({title: petObject.user_nickname});
+			navigation.setParams({...route.params, feed_avatar_id: petObject._id});
 		});
 	};
 
@@ -74,7 +58,7 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 					<BackArrow32 onPress={navigation.goBack} />
 				</View>
 			</TouchableOpacity>
-			{route.params?.type ? (
+			{route.params?.type != 'Feed' ? (
 				<View style={style.titleContainer}>
 					<Text style={titleStyle}>{options.title}</Text>
 				</View>
@@ -121,7 +105,9 @@ const style = StyleSheet.create({
 		justifyContent: 'center',
 		padding: 10 * DP,
 	},
-	titleContainer:{
-		flexDirection: 'row',alignItems: 'center', justifyContent: 'center'
-	}
+	titleContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 });

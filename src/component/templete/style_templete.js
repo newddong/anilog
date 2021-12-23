@@ -3621,16 +3621,16 @@ export const feedWrite = StyleSheet.create({
 		marginBottom: 50 * DP,
 	},
 	reportForm_container: {
-		height: 585 * DP,
+		// height: 585 * DP,
 	},
 	reportForm: {
 		width: 654 * DP,
-		height: 456 * DP,
+		// height: 456 * DP,
 		marginTop: 40 * DP,
 	},
 	reportForm_form: {
 		width: 654 * DP,
-		height: 126 * DP,
+		// height: 126 * DP,
 		marginBottom: 40 * DP,
 	},
 	reportLocation_form: {
@@ -3660,6 +3660,7 @@ export const feedWrite = StyleSheet.create({
 		width: 654 * DP,
 		height: 82 * DP,
 		marginTop: 24 * DP,
+		marginBottom: 50*DP,
 	},
 });
 

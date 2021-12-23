@@ -37,6 +37,7 @@ export default AddressSearch = props => {
 
 	const search = (keyword, page) => {
 		console.log('search using addr api');
+		if(keyword.length<2)return;
 		axios
 			.post(
 				'https://www.juso.go.kr/addrlink/addrLinkApi.do',
@@ -49,9 +50,10 @@ export default AddressSearch = props => {
 				}),
 			)
 			.then(result => {
+				console.log(result);
 				setAddrList({
 					common: JSON.parse(result.request._response).results.common,
-					list: [...addrList.list, ...JSON.parse(result.request._response).results.juso],
+					list: [...addrList.list, ...JSON.parse(result.request._response)?.results.juso],
 				});
 			})
 			.catch(err => {
@@ -107,6 +109,7 @@ export default AddressSearch = props => {
 		}
 		props.navigation.navigate({
 			name: props.route.params.from,
+			key: props.route.params.fromkey,
 			params: {addr: addr},
 			merge: true,
 		});
