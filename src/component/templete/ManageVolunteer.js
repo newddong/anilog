@@ -31,62 +31,17 @@ export default ManageVolunteer = ({route}) => {
 					// console.log('success / getUserVolunterItemList / ManageVolunteer', result.msg);
 					let doneList = []; //지난 내역을 담을 컨테이너
 					let notDoneList = []; //활동 예정 중인 신청을 담을 컨테이너
-					//현재는 조인이 안되는 상황이므로 클라이언트에서 timeValue로 분류
 					result.msg.map((v, i) => {
 						let wishdate = moment(v.volunteer_wish_date[0]).toDate(); //봉사활동 희망날짜 배열에서 첫번째 값을 받아와 Date타입으로 치환
 						let thisTime = new Date().getTime(); // 현재 시간
+						//ShelterLabel을 채우기 위한 필드명 1depth 올리기 작업
 						v.shelter_address = v.volunteer_target_shelter.shelter_address;
 						v.shelter_name = v.volunteer_target_shelter.shelter_name;
 						v.user_type = v.volunteer_target_shelter.user_type;
 						v.user_profile_uri = v.volunteer_target_shelter.user_profile_uri;
-						wishdate.getTime() < thisTime ? doneList.push(v) : notDoneList.push(v); // 비교 후 '지난 내역' / '활동 예정' 각 배열에 푸쉬
+						// 비교 후 '지난 내역' / '활동 예정' 각 배열에 푸쉬
+						wishdate.getTime() < thisTime ? doneList.push(v) : notDoneList.push(v);
 					});
-					console.log('done', doneList[0]);
-					const d = {
-						__v: 0,
-						_id: '61c04191679aa5ae461283eb',
-						volunteer_accompany: ['61b84ddb4a1b66f74b699b1e', '61b6a6263271772d17ad6498', '61b84ddb4a1b66f74b699b1e', null],
-						volunteer_delegate_contact: '0109640521',
-						volunteer_status: 'accept',
-						volunteer_target_shelter: {
-							__v: 0,
-							_id: '61c023d9679aa5ae46128102',
-							pet_family: [],
-							shelter_address: {brief: '마포구 신수동 89-77', detail: '203호'},
-							shelter_delegate_contact_number: '01096450001',
-							shelter_foundation_date: '2011-12-04T00:00:00.000Z',
-							shelter_homepage: '',
-							shelter_name: '상우 보호소6',
-							user_agreement: {
-								is_donation_info: false,
-								is_location_service_info: false,
-								is_marketting_info: false,
-								is_over_fourteen: false,
-								is_personal_info: false,
-								is_service: false,
-							},
-							user_denied: false,
-							user_email: 'lanad01@naver.com',
-							user_follow_count: 0,
-							user_follower_count: 0,
-							user_interests: [],
-							user_introduction:
-								'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
-							user_is_verified_email: false,
-							user_is_verified_phone_number: false,
-							user_my_pets: [],
-							user_name: '상우 보호소5',
-							user_nickname: '가하즈보호소',
-							user_password: '121212',
-							user_phone_number: '01096450001',
-							user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
-							user_register_date: '2021-12-20T06:34:01.773Z',
-							user_type: 'shelter',
-							user_upload_count: 0,
-						},
-						volunteer_wish_date: ['2021-12-23T00:00:00.000Z'],
-					};
-
 					setDoneList(doneList); //API로 받아온 지난 내역 값 setState
 					setNotDoneList(notDoneList); //이하동문
 					// setLoading(false);
@@ -141,10 +96,6 @@ export default ManageVolunteer = ({route}) => {
 			);
 		}
 	}, []);
-
-	React.useEffect(() => {
-		// loading ? Modal.popNoBtn('봉사활동 정보를 \n 받아오고 있습니다.') : Modal.close();
-	}, [loading]);
 
 	// 지난 신청 더보기 클릭
 	const showMore = () => {

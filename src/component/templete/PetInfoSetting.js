@@ -37,7 +37,7 @@ export default PetInfoSetting = ({route}) => {
 		getUserInfoById(
 			{userobject_id: route.params.pet_id},
 			result => {
-				console.log('result / GetUserInfoById / PetInfoSetting', result.msg.pet_family);
+				// console.log('result / GetUserInfoById / PetInfoSetting', result.msg.pet_family);
 				setFamilyAccountList(result.msg.pet_family);
 				setPetData(result.msg);
 			},
