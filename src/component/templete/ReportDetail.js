@@ -8,9 +8,10 @@ import {useNavigation} from '@react-navigation/core';
 import {_dummy_ReportDetail} from 'Root/config/dummy_data_hjs';
 import {dummy_CommentObject} from 'Root/config/dummyDate_json';
 import {getFeedDetailById} from 'Root/api/feedapi';
-import {getCommentListByFeedId} from 'Root/api/commentapi';
-import {createComment} from 'Root/api/commentapi';
+import {getCommentListByFeedId, createComment} from 'Root/api/commentapi';
 import moment from 'moment';
+import {create} from 'react-test-renderer';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 export default ReportDetail = props => {
 	const navigation = useNavigation();
@@ -26,6 +27,7 @@ export default ReportDetail = props => {
 	const [showMore, setShowMore] = React.useState(false); //더보기 클릭 State
 	const [commentDataList, setCommentDataList] = React.useState(); //더보기 클릭 State
 	const [writeCommentData, setWriteCommentData] = React.useState(); //더보기 클릭 State
+	const [replyPressed, setReplyPressed] = React.useState(false);
 	const debug = false;
 	React.useEffect(() => {
 		setPhoto(props.route.params);
@@ -64,6 +66,31 @@ export default ReportDetail = props => {
 	//댓글 불러오기 (상단의 useEffect와 합칠지는 추후 결정)
 	React.useEffect(() => {
 		console.log(' - ReportDetail Comment -');
+		getCommnetList();
+	}, []);
+	// React.useEffect(() => {
+	// 	console.log('WriteCommnetData changed', writeCommentData);
+	// }, [writeCommentData]);
+	React.useEffect(() => {
+		if (replyPressed == true) {
+			createComment(
+				{...writeCommentData},
+
+				callback => {
+					console.log('write commnet success', callback);
+					getCommnetList();
+				},
+				err => {
+					console.log('write comment error', err);
+				},
+			);
+			// setWriteCommentData();
+			delete writeCommentData.comment_photo_uri;
+			onDeleteImage();
+			setReplyPressed(false);
+		}
+	}, [replyPressed]);
+	const getCommnetList = () => {
 		getCommentListByFeedId(
 			{
 				feedobject_id: '61c288f97be07611b0094b43',
@@ -103,18 +130,22 @@ export default ReportDetail = props => {
 				});
 				// console.log(`commentArray -${JSON.stringify(commentArray)}`);
 				setCommentDataList(commentArray);
+				console.log('commentArray refresh', commentArray);
 			},
 			errcallback => {
 				console.log(`Comment errcallback:${JSON.stringify(errcallback)}`);
 			},
 		);
-	}, []);
+	};
 
 	//답글 쓰기 => Input 작성 후 보내기 클릭 콜백 함수
 	const onWrite = () => {
 		debug && console.log('onWrite', replyText);
 		debug && console.log('writeCommentData=>' + writeCommentData.comment_contentsdsf);
-		setWriteCommentData({...writeCommentData, comment_contents: replyText, comment_is_secure: privateComment, comment_feed_id: ''});
+		// setWriteCommentData({...writeCommentData, comment_contents: replyText, comment_is_secure: privateComment, comment_feed_id: ''});
+		setWriteCommentData({...writeCommentData, comment_contents: replyText, comment_is_secure: privateComment});
+		console.log('wirteCommentData', writeCommentData);
+		setReplyPressed(true);
 	};
 
 	// 답글 쓰기 -> 자물쇠버튼 클릭 콜백함수
@@ -125,17 +156,31 @@ export default ReportDetail = props => {
 
 	// 답글 쓰기 -> 이미지버튼 클릭 콜백함수
 	const onAddPhoto = () => {
-		navigation.push('SinglePhotoSelect', props.route.name);
+		// navigation.push('SinglePhotoSelect', props.route.name);
+		launchImageLibrary(
+			{
+				mediaType: 'photo',
+				selectionLimit: 1,
+			},
+			responseObject => {
+				console.log('선택됨', responseObject);
+				setPhoto(responseObject.assets[responseObject.assets.length - 1].uri);
+				setWriteCommentData({...writeCommentData, comment_photo_uri: responseObject.assets[responseObject.assets.length - 1].uri});
+			},
+		);
 	};
 
 	// 답글 쓰기 -> Input value 변경 콜백함수
 	const onChangeReplyInput = text => {
 		setReplyText(text);
+		console.log(replyText);
 	};
 
 	// 답글 쓰기 버튼 클릭 콜백함수
-	const onReplyBtnClick = () => {
+	const onReplyBtnClick = parent_id => {
 		setEditComment(!editComment);
+		console.log('onReplayBtnClick', parent_id);
+		setWriteCommentData({...writeCommentData, commentobject_id: parent_id._id, feedobject_id: parent_id.comment_feed_id});
 	};
 
 	// 자식 답글에서 답글쓰기 버튼 클릭 콜백함수

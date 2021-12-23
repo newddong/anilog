@@ -30,6 +30,8 @@ export default ParentComment = props => {
 
 	React.useEffect(() => {
 		setData(props.parentComment);
+		console.log('parentComment', props.parentComment);
+		// console.log('parantCommnet data', data);
 		//API 에서 해당 데이터가 들어온 후 재작업 예정.
 		//댓글의 Writer와 로그인유저가 일치하는 경우 내 댓글 처리
 		// AsyncStorage.getItem('token', (err, res) => {
@@ -85,7 +87,7 @@ export default ParentComment = props => {
 					{/* Data - 좋아요 숫자 */}
 					<Text style={(txt.roboto24, parentComment.likeCountText)}>{data ? data.comment_like_count : ''}</Text>
 				</View>
-				<TouchableOpacity style={[parentComment.writeComment]} onPress={() => props.onPressReplyBtn()}>
+				<TouchableOpacity style={[parentComment.writeComment]} onPress={() => props.onPressReplyBtn(props.parentComment._id)}>
 					<Text style={(txt.noto22, parentComment.writeCommentText)}>· 답글 쓰기</Text>
 				</TouchableOpacity>
 			</View>

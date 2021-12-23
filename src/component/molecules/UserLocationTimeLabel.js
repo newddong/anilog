@@ -32,7 +32,8 @@ const UserLocationTimeLabel = props => {
 		let split = commented_date.split('-');
 		let commented_date_time = new Date(split[0], split[1] - 1, split[2]);
 		let date = new Date().getDate() - commented_date_time.getDate();
-		return <>{date} 일 전</>;
+		return <>{date}일 전</>;
+		// return '23';
 	};
 
 	return (
