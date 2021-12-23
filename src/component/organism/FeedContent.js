@@ -101,8 +101,8 @@ export default FeedContent = props => {
 
 	const showMore = () => {
 		setBtnStatus(!btnStatus);
-	}
-	console.log(props)
+	};
+	console.log(props);
 	return (
 		<View style={organism_style.feedContent}>
 			{/* line 1 */}
@@ -158,7 +158,7 @@ export default FeedContent = props => {
 
 			{/* line 1-1 (제보관련 내용) */}
 			{feed_type == 'report' && (
-				<View style={[organism_style.tipOff_feedContent, feedContent_style.tipOff, {backgroundColor: 'red'}]}>
+				<View style={[organism_style.tipOff_feedContent, feedContent_style.tipOff]}>
 					<Text style={[txt.noto28]}>
 						제보 날짜: <Text style={[txt.noto32b]}>{report_witness_date}</Text>
 					</Text>
@@ -171,8 +171,8 @@ export default FeedContent = props => {
 			{/* FeedText */}
 			<View
 				style={[
-					/*{backgroundColor: 'blue'}*/,
-					organism_style.content_feedContent,
+					,
+					/*{backgroundColor: 'blue'}*/ organism_style.content_feedContent,
 					feedContent_style.content,
 					{
 						// FeedText의 높이가 120이상(3줄 이상)일 경우 maxheight가 지정되며, 아닐 경우 Maxheight는 없다
@@ -186,10 +186,12 @@ export default FeedContent = props => {
 				]}
 				onLayout={onLayout}>
 				{/* <FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} /> */}
-				<Text style={txt.noto28} ellipsizeMode='tail'>{feed_content}</Text>
+				<Text style={txt.noto28} ellipsizeMode="tail">
+					{feed_content}
+				</Text>
 			</View>
 			{/* 피드 작성 날짜  3 */}
-			<View style={[organism_style.time_view_feedContent, {backgroundColor: 'yellow'}]}>
+			<View style={[organism_style.time_view_feedContent]}>
 				<View style={[organism_style.time_feedContent]}>
 					<Text style={[txt.noto22]}>{feed_date}</Text>
 				</View>
@@ -201,13 +203,7 @@ export default FeedContent = props => {
 							<View style={[organism_style.addMore_feedContent]}>
 								<Text style={[txt.noto22, {color: GRAY10}]}>더보기</Text>
 							</View>
-							<View style={[organism_style.braket]}>
-								{btnStatus ? (
-									<Arrow_Up_GRAY20/>
-								) : (
-									<Arrow_Down_GRAY20/>
-								)}
-							</View>
+							<View style={[organism_style.braket]}>{btnStatus ? <Arrow_Up_GRAY20 /> : <Arrow_Down_GRAY20 />}</View>
 						</View>
 					</TouchableWithoutFeedback>
 				}
