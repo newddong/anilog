@@ -3,6 +3,8 @@ import {ActivityIndicator, ScrollView, Text, View} from 'react-native';
 import {login_style, temp_style, baseInfo_style} from './style_templete';
 import AidRequestList from '../organism_ksw/AidRequestList';
 import {getAnimalListWithApplicant, getShelterProtectAnimalList} from 'Root/api/shelterapi';
+import {txt} from 'Root/config/textstyle';
+import {GRAY10} from 'Root/config/color';
 
 //ShelterMenu => 신청서 조회 [Nav명 - ProtectApplyList]
 //ShelterMenu => 보호중인 동물 [Nav명 - ShelterProtectAnimalList]
@@ -30,6 +32,9 @@ export default AidRequestManage = ({route, navigation}) => {
 				},
 				err => {
 					console.log('err / getShelterProtectAnimalList', err);
+					setTimeout(() => {
+						setLoading(false);
+					}, 1500);
 					// setData(err);
 				},
 			);
@@ -51,6 +56,9 @@ export default AidRequestManage = ({route, navigation}) => {
 				},
 				err => {
 					console.log('err / getAnimalListWithApplicant', err);
+					setTimeout(() => {
+						setLoading(false);
+					}, 1500);
 					// setData(err);
 				},
 			);
@@ -80,7 +88,7 @@ export default AidRequestManage = ({route, navigation}) => {
 				<ScrollView style={{flex: 1}}>
 					<View style={[temp_style.aidRequestList_aidRequestManage, baseInfo_style.list]}>
 						{data.length == 0 ? (
-							<Text style={{}}>지원이 들어온 신청 내역이 없습니다.</Text>
+							<Text style={[txt.noto30, {alignSelf: 'center', marginTop: 130, color: GRAY10}]}>지원 신청이 들어온 게시글이 없네요.</Text>
 						) : (
 							<AidRequestList
 								items={data}

@@ -31,7 +31,7 @@ export default ApplyVolunteer = ({route, navigation}) => {
 				userobject_id: param.token,
 			},
 			result => {
-				// console.log('result / getUserInfoById / ApplyVolunteer   :  ', result.msg);
+				console.log('result / getUserInfoById / ApplyVolunteer   :  ', result.msg);
 				setShelter_data(result.msg);
 				setLoading(false);
 				Modal.close();
@@ -45,7 +45,6 @@ export default ApplyVolunteer = ({route, navigation}) => {
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
-			console.log('res', res);
 			getUserInfoById(
 				{userobject_id: res},
 				result => {
@@ -105,6 +104,11 @@ export default ApplyVolunteer = ({route, navigation}) => {
 					},
 					result => {
 						console.log('result / assignVolunteerAct / ApplyVolunteer   :  ', result);
+						Modal.popNoBtn('봉사활동 신청이 완료되었습니다.');
+						setTimeout(() => {
+							Modal.close();
+							navigation.goBack();
+						}, 1000);
 					},
 					err => {
 						console.log('err / assignVolunteerAct  / ApplyVolunteer  :  ', err);

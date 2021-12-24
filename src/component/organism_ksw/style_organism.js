@@ -766,6 +766,14 @@ export const protectedPetList = StyleSheet.create({
 		height: 84 * DP,
 		alignItems: 'center',
 	},
+	nicknameCont: {
+		width: 150 * DP,
+	},
+	addressCont: {
+		width: 150 * DP,
+		color: GRAY10,
+		textAlign: 'center',
+	},
 });
 
 export const petList = StyleSheet.create({

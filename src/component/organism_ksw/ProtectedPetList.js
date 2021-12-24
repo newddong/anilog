@@ -1,13 +1,34 @@
 import React from 'react';
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {getUserInfoById} from 'Root/api/userapi';
 import {GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import ProfileImageMedium120 from '../molecules/ProfileImageMedium120';
 import {protectedPetList} from './style_organism';
 
 export default ProtectedPetList = props => {
+	const user_id = props.data;
+	const [userPet, setUserPet] = React.useState([]);
+	React.useEffect(() => {
+		getUserInfoById(
+			{
+				userobject_id: user_id,
+			},
+			result => {
+				// console.log('result / getUserInfoById / ProtectPet  ', result.msg);
+				let user_protect_pet = result.msg.user_my_pets.filter(e => e.pet_status != 'companion');
+				user_protect_pet.map((v, i) => {
+					user_protect_pet[i].protect_act_address = result.msg.user_address;
+				});
+				setUserPet(user_protect_pet);
+			},
+			err => {
+				console.log('err  / getUserInfoById / ProtectPet  ', err);
+			},
+		);
+	}, []);
+
 	const renderItem = (item, index) => {
-		// console.log('item', item);
 		return (
 			<View style={[protectedPetList.itemContainer]}>
 				<View style={[protectedPetList.petProfileImageMedium]}>
@@ -17,18 +38,15 @@ export default ProtectedPetList = props => {
 				</View>
 
 				<View style={[protectedPetList.petProfileInfo]}>
-					<Text style={[txt.noto30]}> {item.user_nickname}</Text>
-					<Text style={[txt.noto24, {color: GRAY20}]}>
-						{item.protect_act_address.district}
-						{item.protect_act_address.neighbor}
-					</Text>
+					<Text style={[txt.noto30, protectedPetList.nicknameCont]}> {item.user_nickname}</Text>
+					<Text style={[txt.noto24, protectedPetList.addressCont]}>{item.protect_act_address.brief}</Text>
 				</View>
 			</View>
 		);
 	};
 	return (
 		<View style={[protectedPetList.container]}>
-			<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} showsHorizontalScrollIndicator={false} />
+			<FlatList data={userPet} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} showsHorizontalScrollIndicator={false} />
 		</View>
 	);
 };

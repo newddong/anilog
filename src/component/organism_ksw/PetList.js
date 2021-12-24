@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import {dummy_petList} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';

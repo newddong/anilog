@@ -22,8 +22,6 @@ export default SaveAnimalRequest = ({route}) => {
 	const [acceptAllState, setAcceptAllState] = React.useState(false);
 	const [isDeleted, setIsDeleted] = React.useState(false);
 
-	React.useEffect(() => {}, []);
-
 	React.useEffect(() => {
 		getProtectRequestList(
 			//현재 로그인한 보호소의 고유 _id를 파라미터로 보내고
@@ -38,10 +36,10 @@ export default SaveAnimalRequest = ({route}) => {
 				// 받아온 protect_animal_protect_Request_id로 해당 게시글 좋아요 여부도 판별해야함
 			},
 			err => {
-				// console.log('err / getProtectRequestList', err);
-				err.filter(e => {
-					// console.log('e._protect_animal', e.protect_animal_id);
-				});
+				console.log('err / getProtectRequestList', err);
+				// err.filter(e => {
+				// 	// console.log('e._protect_animal', e.protect_animal_id);
+				// });
 			},
 		);
 	}, [data]);

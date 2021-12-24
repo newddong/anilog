@@ -92,6 +92,9 @@ export default ManageVolunteer = ({route}) => {
 				},
 				errcallback => {
 					console.log(`getShelterVolunteerActivityList errcallback:${JSON.stringify(errcallback)}`);
+					setTimeout(() => {
+						setLoading(false);
+					}, 500);
 				},
 			);
 		}
@@ -117,33 +120,37 @@ export default ManageVolunteer = ({route}) => {
 	} else {
 		return (
 			<View style={[login_style.wrp_main, {flex: 1}]}>
-				<ScrollView contentContainerStyle={manageVolunteer.container}>
-					{/* 활동 예정 중인 신청 */}
-					<View style={[manageVolunteer.title]}>
-						<Text style={[txt.noto24, {color: GRAY20}]}>{isShelterUser ? '최근 신청서' : '활동 예정중인 신청'} </Text>
-					</View>
-					<View style={[manageVolunteer.volunteerList]}>
-						<VolunteerItemList items={notDoneList} type={'notDone'} onClickItem={goToAssignVolunteer} />
-					</View>
+				{notDoneList.length == 0 && doneList.length == 0 ? (
+					<Text style={[txt.roboto28b, {marginTop: 200}]}>아직 입양 완료된 보호소 출신의 보호 동물이 없네요.</Text>
+				) : (
+					<ScrollView contentContainerStyle={manageVolunteer.container}>
+						{/* 활동 예정 중인 신청 */}
+						<View style={[manageVolunteer.title]}>
+							<Text style={[txt.noto24, {color: GRAY20}]}>{isShelterUser ? '최근 신청서' : '활동 예정중인 신청'} </Text>
+						</View>
+						<View style={[manageVolunteer.volunteerList]}>
+							<VolunteerItemList items={notDoneList} type={'notDone'} onClickItem={goToAssignVolunteer} />
+						</View>
 
-					<View style={[manageVolunteer.separator]}></View>
+						<View style={[manageVolunteer.separator]}></View>
 
-					{/* 지난 신청 */}
-					<View style={[manageVolunteer.title]}>
-						<Text style={[txt.noto24, {color: GRAY20}]}>{isShelterUser ? '지난 신청서' : '지난 신청'}</Text>
-					</View>
-					<View style={[showMoreHistory ? manageVolunteer.previous_volunteerList_expanded : manageVolunteer.previous_volunteerList]}>
-						<VolunteerItemList items={doneList} type={'done'} onClickItem={goToAssignVolunteer} />
-					</View>
+						{/* 지난 신청 */}
+						<View style={[manageVolunteer.title]}>
+							<Text style={[txt.noto24, {color: GRAY20}]}>{isShelterUser ? '지난 신청서' : '지난 신청'}</Text>
+						</View>
+						<View style={[showMoreHistory ? manageVolunteer.previous_volunteerList_expanded : manageVolunteer.previous_volunteerList]}>
+							<VolunteerItemList items={doneList} type={'done'} onClickItem={goToAssignVolunteer} />
+						</View>
 
-					{/* 지난 내역 더보기 --> [클릭] => 지난 내역 더보기 Container는 사라짐 */}
-					{doneList.length > 4 ? (
-						<TouchableOpacity style={[manageVolunteer.showMoreContainer]} onPress={showMore}>
-							<Text style={[txt.noto22, manageVolunteer.showMoreContainer_text]}>지난 내역 더보기</Text>
-							{showMoreHistory ? <Arrow_Up_GRAY20 /> : <Arrow_Down_GRAY20 />}
-						</TouchableOpacity>
-					) : null}
-				</ScrollView>
+						{/* 지난 내역 더보기 --> [클릭] => 지난 내역 더보기 Container는 사라짐 */}
+						{doneList.length > 4 ? (
+							<TouchableOpacity style={[manageVolunteer.showMoreContainer]} onPress={showMore}>
+								<Text style={[txt.noto22, manageVolunteer.showMoreContainer_text]}>지난 내역 더보기</Text>
+								{showMoreHistory ? <Arrow_Up_GRAY20 /> : <Arrow_Down_GRAY20 />}
+							</TouchableOpacity>
+						) : null}
+					</ScrollView>
+				)}
 			</View>
 		);
 	}

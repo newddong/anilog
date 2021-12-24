@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import ProfileImageMedium120 from '../molecules/ProfileImageMedium120';
@@ -29,7 +29,11 @@ export default OwnerList = props => {
 	return (
 		<View style={[ownerList.container]}>
 			<View style={[ownerList.insideContainer]}>
-				<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
+				<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
+					<ScrollView horizontal={true} contentContainerStyle={{flex: 1}} scrollEnabled={false}>
+						<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} />
+					</ScrollView>
+				</ScrollView>
 			</View>
 		</View>
 	);

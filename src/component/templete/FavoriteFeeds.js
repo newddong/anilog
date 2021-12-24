@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 
 import FeedThumbnailList from '../organism_ksw/FeedThumbnailList';
 import SelectStat from '../organism_ksw/SelectStat';
@@ -8,14 +8,17 @@ import {login_style, temp_style, selectstat_view_style} from './style_templete';
 import Modal from '../modal/Modal';
 import {CONFIRM_DELETE_FAVORITE_FEED, CONFIRM_DELETE_MY_FEED, CONFIRM_DELETE_TAG_ME_FEED} from 'Root/i18n/msg';
 import {getFeedListByUserId} from 'Root/api/feedapi';
+import {txt} from 'Root/config/textstyle';
+import {GRAY10} from 'Root/config/color';
 
 //즐겨찾기한 피드목록을 조회
 export default FavoriteFeeds = ({route, navigation}) => {
 	const token = route.params.token;
 	const [selectMode, setSelectMode] = React.useState(false);
-	const [data, setData] = React.useState(route.params);
+	const [data, setData] = React.useState([]);
 	const [selectCNT, setSelectCNT] = React.useState(0);
 
+	console.log('token', token);
 	React.useEffect(() => {
 		switch (route.name) {
 			case 'UserFeeds': //내 게시글
@@ -165,7 +168,11 @@ export default FavoriteFeeds = ({route, navigation}) => {
 
 			{/* 즐겨찾기한 FeedList출력하는 FeedThumbnailList */}
 			<View style={[temp_style.FeedThumbnailList, {flex: 1}]}>
-				<FeedThumbnailList items={data} selectMode={selectMode} onClickThumnail={onClickThumnail} />
+				{data.length == 0 ? (
+					<Text style={[txt.noto30, {alignSelf: 'center', marginTop: 130, color: GRAY10}]}>목록이 없네요.</Text>
+				) : (
+					<FeedThumbnailList items={data} selectMode={selectMode} onClickThumnail={onClickThumnail} />
+				)}
 			</View>
 		</View>
 	);

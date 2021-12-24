@@ -12,7 +12,7 @@ import MyPetList from '../organism_ksw/MyPetList';
 import {login_style, btn_style, temp_style, userInfoSetting_style} from './style_templete';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import {getUserProfile} from 'Root/api/usermenuapi';
-import {getUserProfile, updateUserIntroduction} from 'Root/api/userapi';
+import {getUserInfoById, getUserProfile, updateUserIntroduction} from 'Root/api/userapi';
 // 필요한 데이터 - 로그인 유저 제반 데이터, 나의 반려동물 관련 데이터(CompanionObject 참조)
 export default UserInfoSetting = ({route}) => {
 	const navigation = useNavigation();
@@ -24,13 +24,13 @@ export default UserInfoSetting = ({route}) => {
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
-			getUserProfile(
+			getUserInfoById(
 				{
 					userobject_id: res,
 				},
 				userObject => {
 					setData(userObject.msg);
-					console.log('userObject.msg.myPets?', userObject.msg.user_my_pets);
+					console.log('result / getUserProfile / UserInfoSetting', userObject.msg.user_my_pets);
 				},
 				err => {
 					console.log('er', err);
@@ -46,7 +46,7 @@ export default UserInfoSetting = ({route}) => {
 
 	//상세 정보 클릭
 	const onPressDetail = () => {
-		navigation.push('UserInfoDetailSetting');
+		navigation.push('UserInfoDetailSetting', data);
 	};
 
 	//프로필 변경을 통한 사진변경이 발생했을 경우 params로 해당 포토 uri를 받아오고 data에 적용
@@ -68,7 +68,7 @@ export default UserInfoSetting = ({route}) => {
 
 	// 나의 반려동물 -> 반려동물 등록
 	const onPressAddPet = () => {
-		navigation.push('AssignPetProfileImage', {userobject_id:data._id,previousRouteName:'UserInfoSetting'});
+		navigation.push('AssignPetProfileImage', {userobject_id: data._id, previousRouteName: 'UserInfoSetting'});
 	};
 
 	//나의 반려동물 => 반려클릭

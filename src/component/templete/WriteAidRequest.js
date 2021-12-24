@@ -83,8 +83,14 @@ export default WriteAidRequest = ({route, navigation}) => {
 					<AidRequest data={data} selected={true} />
 				</View>
 				<View style={[temp_style.feedTextEdit, writeAidRequest.feedTextEdit]}>
+					<Text style={[txt.roboto30b, {color: APRI10}]}> 제 목</Text>
 					<View style={[writeAidRequest.titleContainer]}>
-						<TextInput onChangeText={onChangeTitle} placeholder={'제목 입력'} style={[txt.noto30, writeAidRequest.titleInput]} />
+						<TextInput
+							onChangeText={onChangeTitle}
+							placeholder={'제목 입력'}
+							// numberOfLines={1}
+							style={[txt.noto30, writeAidRequest.titleInput]}
+						/>
 					</View>
 					<View style={[temp_style.feedTextEdit]}>
 						{/* 피드 글 작성 */}

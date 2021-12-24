@@ -22,7 +22,7 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import Modal from 'Component/modal/Modal';
 import userGlobalObj from 'Root/config/userGlobalObject';
 import NormalDropDown from 'Molecules/NormalDropDown';
-import { useNavigation,useRoute } from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 export default FeedWrite = props => {
 	const [showPetAccountList, setShowPetAccountList] = React.useState(false); //PetAccount 계정
@@ -34,23 +34,23 @@ export default FeedWrite = props => {
 	const [feedText, setFeedText] = React.useState(''); //피드 TextInput Value
 	const [selectedImg, setSelectedImg] = React.useState([]); //사진 uri리스트
 
-
 	React.useEffect(() => {
-		props.navigation.setParams({...props.route.params, 
-			media_uri: selectedImg, 
-			feed_medias:selectedImg.map(v=>({is_video:false,duration:0,tags:[{position_x:0,position_y:0}]}))
+		props.navigation.setParams({
+			...props.route.params,
+			media_uri: selectedImg,
+			feed_medias: selectedImg.map(v => ({is_video: false, duration: 0, tags: [{position_x: 0, position_y: 0}]})),
 		});
 	}, [selectedImg]); //네비게이션 파라메터에 이미지 리스트를 넣음(헤더에서 처리하도록)
 
 	React.useEffect(() => {
-		if(props.route.params?.type=='Feed'){
+		if (props.route.params?.type == 'Feed') {
 			props.navigation.setOptions({title: userGlobalObj.userInfo?.user_nickname});
 			props.navigation.setParams({...props.route.params, type: 'Feed'});
 		}
-		if(props.route.params?.type=='Missing'){
+		if (props.route.params?.type == 'Missing') {
 			onPressMissingWrite();
 		}
-		if(props.route.params?.type=='Report'){
+		if (props.route.params?.type == 'Report') {
 			onPressReportWrite();
 		}
 	}, []); //처음 로딩시 유저 닉네임 표시
@@ -99,10 +99,13 @@ export default FeedWrite = props => {
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);
-				if (responseObject.assets.length > 5) {
-					Modal.popOneBtn('사진은 5개까지 선택가능합니다.', '확인', () => Modal.close());
+
+				if (!responseObject.didCancel) {
+					if (responseObject.assets.length > 5) {
+						Modal.popOneBtn('사진은 5개까지 선택가능합니다.', '확인', () => Modal.close());
+					}
+					responseObject.didCancel ? console.log('선택취소') : setSelectedImg(responseObject.assets.map(v => v.uri).slice(0, 5));
 				}
-				responseObject.didCancel ? console.log('선택취소') : setSelectedImg(responseObject.assets.map(v => v.uri).slice(0, 5));
 			},
 		);
 	};
@@ -113,24 +116,23 @@ export default FeedWrite = props => {
 
 	const onMissingForm = missing => {
 		props.navigation.setParams({...props.route.params, ...missing});
-	}
+	};
 
 	const onReportForm = report => {
 		props.navigation.setParams({...props.route.params, ...report});
-	}
+	};
 
-	const onSetDiary = ()=>{
+	const onSetDiary = () => {
 		let diary = false;
-		if(isDiary){
+		if (isDiary) {
 			setDiary(false);
 			diary = false;
-		}else{
+		} else {
 			setDiary(true);
 			diary = true;
 		}
-		props.navigation.setParams({...props.route.params, feed_is_protect_diary:diary});
-
-	}
+		props.navigation.setParams({...props.route.params, feed_is_protect_diary: diary});
+	};
 	//위치추가
 	const moveToLocationPicker = () => {
 		// props.navigation.push('LocationPicker');
@@ -145,12 +147,11 @@ export default FeedWrite = props => {
 		setFeedText(feedInput);
 	};
 
-
 	//긴급 버튼 - '제보' '실종' 중 하나 클릭 시 변동되는 View 분기 처리
 	const setUrgBtnsClickedView = () => {
 		//긴급 버튼 중 '제보' 클릭한 경우
 		if (showReportForm) {
-			return <ReportForm  onDataChange={onReportForm}/>;
+			return <ReportForm onDataChange={onReportForm} />;
 		} // 긴급 게시 버튼 중 '실종' 클릭한 경우
 		else return showLostAnimalForm ? <MissingForm onDataChange={onMissingForm} /> : false;
 	};
@@ -189,16 +190,26 @@ export default FeedWrite = props => {
 							</View>
 						</TouchableWithoutFeedback>
 					</View>
-					{!showReportForm&&!showLostAnimalForm&&<View style={[feedWrite.btn_w194_container]}>
-						{/* 임보일기 */}
-						{<View style={[btn_style.btn_w194, feedWrite.btn_w194]}>
-							<AniButton btnTitle={'임보일기'} btnStyle={isDiary?'filled':'border'} titleFontStyle={24} btnLayout={btn_w194} onPress={onSetDiary} />
-						</View>}
-						{/* 전체공개 */}
-						<View style={[btn_style.btn_w194]}>
-							<ActionButton btnTitle={'전체 공개'} btnStyle={'border'} titleFontStyle={24} btnLayout={btn_w194} />
+					{!showReportForm && !showLostAnimalForm && (
+						<View style={[feedWrite.btn_w194_container]}>
+							{/* 임보일기 */}
+							{
+								<View style={[btn_style.btn_w194, feedWrite.btn_w194]}>
+									<AniButton
+										btnTitle={'임보일기'}
+										btnStyle={isDiary ? 'filled' : 'border'}
+										titleFontStyle={24}
+										btnLayout={btn_w194}
+										onPress={onSetDiary}
+									/>
+								</View>
+							}
+							{/* 전체공개 */}
+							<View style={[btn_style.btn_w194]}>
+								<ActionButton btnTitle={'전체 공개'} btnStyle={'border'} titleFontStyle={24} btnLayout={btn_w194} />
+							</View>
 						</View>
-					</View>}
+					)}
 					{/* SelectMediaList */}
 					{selectedImg.length > 0 && (
 						<View style={[temp_style.selectedMediaList, feedWrite.selectedMediaList]}>
@@ -410,8 +421,8 @@ const MissingForm = props => {
 const ReportForm = props => {
 	const navigation = useNavigation();
 	const route = useRoute();
-	const [addr,setAddr] = React.useState('');
-	const [detailAddr,setDetailAddr] = React.useState('');
+	const [addr, setAddr] = React.useState('');
+	const [detailAddr, setDetailAddr] = React.useState('');
 	const pet_speciesArray = ['개', '고양이', '기타'];
 	const pet = new Map();
 	pet.set(pet_speciesArray[0], ['말티즈', '치와와', '요크']);
@@ -423,33 +434,31 @@ const ReportForm = props => {
 		report_witness_location: '',
 		report_animal_features: '',
 		report_animal_species: pet_speciesArray[0],
-		report_animal_species_detail:pet.get(pet_speciesArray[0])[0],
+		report_animal_species_detail: pet.get(pet_speciesArray[0])[0],
 	});
 
 	React.useEffect(() => {
 		props.onDataChange && props.onDataChange(data);
 	}, [data]);
-	
-	React.useEffect(()=>{
-		if(route.params.addr){
+
+	React.useEffect(() => {
+		if (route.params.addr) {
 			setAddr(route.params.addr.jibunAddr);
 			setDetailAddr(route.params.addr.detailAddr);
 		}
-		
-	},[route.params]);
+	}, [route.params]);
 
-	React.useEffect(()=>{
-		setData({...data,report_witness_location:addr+' '+detailAddr});
-	},[addr,detailAddr])
+	React.useEffect(() => {
+		setData({...data, report_witness_location: addr + ' ' + detailAddr});
+	}, [addr, detailAddr]);
 
-	
-	const onChangeAddr = (addr)=>{
+	const onChangeAddr = addr => {
 		setAddr(addr);
-	}
-	
-	const onChangeDetailAddr = (addr)=>{
+	};
+
+	const onChangeDetailAddr = addr => {
 		setDetailAddr(addr);
-	}
+	};
 	const onDateChange = date => {
 		setData({...data, report_witness_date: date});
 	};
@@ -464,9 +473,9 @@ const ReportForm = props => {
 	const onSelectSpeciesDetail = (v, i) => {
 		setData({...data, report_animal_species_detail: pet.get(data.report_animal_species)[i]});
 	};
-	const searchAddress = ()=>{
-		navigation.navigate('AddressSearch',{from:route.name,fromkey:route.key});
-	}
+	const searchAddress = () => {
+		navigation.navigate('AddressSearch', {from: route.name, fromkey: route.key});
+	};
 	return (
 		<View style={[feedWrite.reportForm_container]}>
 			<View style={[feedWrite.reportForm]}>
@@ -496,7 +505,7 @@ const ReportForm = props => {
 								<Text style={[txt.noto24, {color: APRI10}]}>제보 장소</Text>
 							</View>
 							<View style={[temp_style.inputNoTitle, feedWrite.reportLocation_form_left_inputNoTitle]}>
-								<Input24 width={438} placeholder={'동주소 까지 적어주세요'} onChange={onChangeAddr} value={addr}/>
+								<Input24 width={438} placeholder={'동주소 까지 적어주세요'} onChange={onChangeAddr} value={addr} />
 							</View>
 						</View>
 						<View style={[feedWrite.reportLocation_form_right]}>
@@ -504,12 +513,12 @@ const ReportForm = props => {
 								<LocationButton btnTitle={'현위치'} />
 							</View>
 							<View style={[btn_style.btn_w176, feedWrite.btn_w176]}>
-								<AniButton btnTitle={'주소 검색'} btnLayout={btn_w176} btnStyle={'border'} titleFontStyle={24} onPress={searchAddress}/>
+								<AniButton btnTitle={'주소 검색'} btnLayout={btn_w176} btnStyle={'border'} titleFontStyle={24} onPress={searchAddress} />
 							</View>
 						</View>
 					</View>
 					<View style={[temp_style.inputNoTitle, feedWrite.locationDetail]}>
-						<Input24 width={654} placeholder={'장소의 세부적인 정보를 적어주세요'} onChange={onChangeDetailAddr} value={detailAddr}/>
+						<Input24 width={654} placeholder={'장소의 세부적인 정보를 적어주세요'} onChange={onChangeDetailAddr} value={detailAddr} />
 					</View>
 					<View style={[temp_style.inputBalloon, feedWrite.inputBalloon]}>
 						<InputBalloon

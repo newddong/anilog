@@ -3478,9 +3478,10 @@ export const writeAidRequest = StyleSheet.create({
 		borderBottomWidth: 4 * DP,
 	},
 	titleInput: {
-		paddingLeft: 15 * DP,
+		paddingHorizontal: 15 * DP,
+		marginTop: 10 * DP,
 		lineHeight: 40 * DP,
-		height: 80 * DP,
+		maxHeight: 80 * DP,
 	},
 	feedTextEdit: {
 		marginTop: 80 * DP,
@@ -3662,7 +3663,7 @@ export const feedWrite = StyleSheet.create({
 		width: 654 * DP,
 		height: 82 * DP,
 		marginTop: 24 * DP,
-		marginBottom: 50*DP,
+		marginBottom: 50 * DP,
 	},
 });
 
@@ -3675,7 +3676,7 @@ export const profile = StyleSheet.create({
 	},
 	feedListContainer: {
 		marginLeft: -2 * DP,
-		flex:1,
+		flex: 1,
 	},
 	floatingBtn: {
 		position: 'absolute',

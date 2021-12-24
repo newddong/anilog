@@ -21,7 +21,7 @@ export default ProtectApplyForm = ({route, navigation}) => {
 				const addedData = {...data};
 				addedData.protect_animal_species = result.msg.protect_animal_species;
 				addedData.protect_animal_species_detail = result.msg.protect_animal_species_detail;
-				addedData.protect_animal_rescue_location = result.msg.protect_animal_rescue_location;
+				addedData.protect_animal_rescue_location = result.msg.protect_animal_id.protect_animal_rescue_location;
 				addedData.protect_request_date = result.msg.protect_request_date;
 				addedData.protect_request_photos_uri = result.msg.protect_request_photos_uri;
 				// const merged = Object.assign(data, result.msg);
@@ -87,5 +87,3 @@ export default ProtectApplyForm = ({route, navigation}) => {
 		</View>
 	);
 };
-// 61c34f5a17f59a595cc42211
-// 61c1cc107be07611b00945f9

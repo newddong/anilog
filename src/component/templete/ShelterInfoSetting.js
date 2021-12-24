@@ -11,6 +11,7 @@ import {GRAY10} from 'Root/config/color';
 import {getUserInfoById, updateUserIntroduction} from 'Root/api/userapi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TextInput} from 'react-native';
+import moment from 'moment';
 
 export default ShelterInfoSetting = ({route}) => {
 	// console.log('ShelterInfoSetting', route.params);
@@ -72,6 +73,12 @@ export default ShelterInfoSetting = ({route}) => {
 		);
 	};
 
+	const getParsedFoundationDate = () => {
+		let date = data.shelter_foundation_date;
+		date = moment(date).format('YYYY-MM-DD');
+		return date;
+	};
+
 	//수정 TextInput 콜백 함수
 	const modifyIntroText = text => {
 		setIntro_modified(text);
@@ -118,6 +125,7 @@ export default ShelterInfoSetting = ({route}) => {
 								)}
 							</View>
 						</View>
+						{/* 소개란 */}
 						<View style={[temp_style.userText_userInfoSetting, shelterInfoSetting.userIntroCont]}>
 							{/* 소개란의 수정버튼을 누를 시 TextInput으로 변경 */}
 							{modifyMode ? (
@@ -136,11 +144,6 @@ export default ShelterInfoSetting = ({route}) => {
 								</Text>
 							)}
 						</View>
-						{/* <View style={[temp_style.introduceMent_shelterInfoSetting]}>
-							<Text style={txt.noto24} ellipsizeMode={'tail'} numberOfLines={3}>
-								{data.user_introduction || ''}
-							</Text>
-						</View> */}
 					</View>
 					{/* 보호소 정보 */}
 					<View style={[temp_style.vertical_border]}></View>
@@ -198,7 +201,7 @@ export default ShelterInfoSetting = ({route}) => {
 								<Text style={[txt.noto30, {color: GRAY10}]}>설립일</Text>
 							</View>
 							<View style={temp_style.littleContents}>
-								<Text style={[txt.noto28]}>{data.shelter_foundation_date}</Text>
+								<Text style={[txt.noto28]}>{getParsedFoundationDate()}</Text>
 							</View>
 						</View>
 					</View>

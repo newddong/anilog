@@ -209,7 +209,11 @@ export default RootStackNavigation = () => {
 
 					<RootStack.Screen name="ApplyVolunteer" component={ApplyVolunteer} />
 					<RootStack.Screen name="FeedMediaTagEdit" component={FeedMediaTagEdit} />
-					<RootStack.Screen name="FeedWrite" component={FeedWrite} options={{header: props => <FeedWriteHeader {...props} />, title: '게시물 작성'}} />
+					<RootStack.Screen
+						name="FeedWrite"
+						component={FeedWrite}
+						options={{header: props => <FeedWriteHeader {...props} />, title: '게시물 작성'}}
+					/>
 
 					<RootStack.Screen
 						name="FeedMissingWrite"

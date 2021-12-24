@@ -16,7 +16,7 @@ import Modal from '../modal/Modal';
 export default UserInfoDetailSettting = ({route, navigation}) => {
 	// console.log('UserInfoDetailSetting route.params : ', route.params);
 	// console.log('UserInfoDetailSetting route.params : ', route.params.data.user_interests);
-	const [data, setData] = React.useState({}); //기존 유저의 데이터가 담겨있음
+	const [data, setData] = React.useState(route.params); //기존 유저의 데이터가 담겨있음
 	const [loaded, setLoaded] = React.useState(false);
 	const [addrSearched, setAddrSearched] = React.useState(false);
 
@@ -27,25 +27,28 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	}, [data]);
 
 	React.useEffect(() => {
-		AsyncStorage.getItem('token', (err, res) => {
-			Modal.popNoBtn('Loading');
-			getUserInfoById(
-				{
-					userobject_id: res,
-				},
-				userInfo => {
-					// console.log('userInfo', userInfo.msg.user_interests);
-					setData({...userInfo.msg});
-					// setData({...userInfo.msg, user_birthday: '2021-01-01', user_sex: 'male', user_interests: {location: [], activity: []}});
-					navigation.setParams({data: userInfo.msg, route_name: route.name});
-					setLoaded(true);
-					Modal.close();
-				},
-				err => {
-					console.log('er', err);
-				},
-			);
-		});
+		navigation.setParams({data: route.params, route_name: route.name});
+		setLoaded(true);
+
+		// AsyncStorage.getItem('token', (err, res) => {
+		// 	Modal.popNoBtn('Loading');
+		// 	getUserInfoById(
+		// 		{
+		// 			userobject_id: res,
+		// 		},
+		// 		userInfo => {
+		// 			// console.log('userInfo', userInfo.msg.user_interests);
+		// 			setData({...userInfo.msg});
+		// 			// setData({...userInfo.msg, user_birthday: '2021-01-01', user_sex: 'male', user_interests: {location: [], activity: []}});
+		// 			navigation.setParams({data: userInfo.msg, route_name: route.name});
+		// 			setLoaded(true);
+		// 			Modal.close();
+		// 		},
+		// 		err => {
+		// 			console.log('er', err);
+		// 		},
+		// 	);
+		// });
 	}, []);
 
 	React.useEffect(() => {

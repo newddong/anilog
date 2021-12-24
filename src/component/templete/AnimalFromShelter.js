@@ -34,6 +34,9 @@ export default AnimalFromShelter = ({route}) => {
 			},
 			err => {
 				console.log('err / getProtectRequestListByShelterId / AnimalFromShelter', err);
+				setTimeout(() => {
+					setLoading(false);
+				}, 500);
 				Modal.close();
 			},
 		);
@@ -67,7 +70,7 @@ export default AnimalFromShelter = ({route}) => {
 			<View style={[login_style.wrp_main, {flex: 1}]}>
 				<View style={[animalFromShelter_style.container]}>
 					{data.length == 0 ? (
-						<Text style={[txt.roboto32b, {marginTop: 200}]}>아직 입양 완료된 보호소 출신의 보호 동물이 없네요.</Text>
+						<Text style={[txt.roboto28b, {marginTop: 200}]}>아직 입양 완료된 보호소 출신의 보호 동물이 없네요.</Text>
 					) : (
 						<AnimalNeedHelpList
 							data={data}
@@ -85,81 +88,4 @@ export default AnimalFromShelter = ({route}) => {
 
 AnimalFromShelter.defaultProps = {
 	data: [],
-};
-
-const aoptDeta = {
-	__v: 0,
-	_id: '61c2b82b7be07611b0094ed2',
-	protect_animal_id: {
-		__v: 0,
-		_id: '61c2b6007be07611b0094ec4',
-		protect_act_applicants: [],
-		protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
-		protect_animal_estimate_age: '2개월',
-		protect_animal_neutralization: 'no',
-		protect_animal_photo_uri_list: [
-			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640150528231_E3043E03-4A96-4270-958B-CF38B89588C5.jpg',
-			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640150528246_D9B16F08-812E-4BF1-B5DF-9DAB2E3E0BF2.jpg',
-		],
-		protect_animal_protect_request_id: '61c2b82b7be07611b0094ed2',
-		protect_animal_protector_discussion_id: [],
-		protect_animal_rescue_date: '2021-12-08T00:00:00.000Z',
-		protect_animal_rescue_location: 'AK풀라자 포하',
-		protect_animal_sex: 'female',
-		protect_animal_species: '기타',
-		protect_animal_species_detail: '토끼',
-		protect_animal_status: 'rescue',
-		protect_animal_weight: 2,
-	},
-	protect_animal_species: '기타',
-	protect_animal_species_detail: '토끼',
-	protect_request_comment_count: 0,
-	protect_request_content:
-		'토끼 키우는 것은 생각보다 많은 각오가 필요한 일입니다.경력까지는 요구하지 않겠지만 어느정도 소양을 갖춘 분이 데려가주시면 좋겠습니다.',
-	protect_request_date: '2021-12-22T05:31:23.186Z',
-	protect_request_favorite_count: 0,
-	protect_request_hit: 0,
-	protect_request_photos_uri: [
-		'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640150528231_E3043E03-4A96-4270-958B-CF38B89588C5.jpg',
-		'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640150528246_D9B16F08-812E-4BF1-B5DF-9DAB2E3E0BF2.jpg',
-	],
-	protect_request_status: 'complete',
-	protect_request_title: '아이스크림 같이 녹을 것만 같은 아이입니다.',
-	protect_request_update_date: '2021-12-22T05:31:23.187Z',
-	protect_request_writer_id: {
-		__v: 0,
-		_id: '61c023d9679aa5ae46128102',
-		pet_family: [],
-		shelter_address: {brief: '마포구 신수동 89-77', detail: '203호'},
-		shelter_delegate_contact_number: '01096450001',
-		shelter_foundation_date: '2011-12-04T00:00:00.000Z',
-		shelter_homepage: '',
-		shelter_name: '상우 보호소6',
-		user_agreement: {
-			is_donation_info: false,
-			is_location_service_info: false,
-			is_marketting_info: false,
-			is_over_fourteen: false,
-			is_personal_info: false,
-			is_service: false,
-		},
-		user_denied: false,
-		user_email: 'lanad01@naver.com',
-		user_follow_count: 0,
-		user_follower_count: 0,
-		user_interests: [],
-		user_introduction:
-			'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
-		user_is_verified_email: false,
-		user_is_verified_phone_number: false,
-		user_my_pets: [],
-		user_name: '상우 보호소5',
-		user_nickname: '가하즈보호소',
-		user_password: '121212',
-		user_phone_number: '01096450001',
-		user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
-		user_register_date: '2021-12-20T06:34:01.773Z',
-		user_type: 'shelter',
-		user_upload_count: 0,
-	},
 };

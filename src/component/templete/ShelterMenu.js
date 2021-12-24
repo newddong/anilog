@@ -107,7 +107,7 @@ export default ShelterMenu = ({route}) => {
 				break;
 			//피드 게시글
 			case PEED_CONTENTS:
-				navigation.push('FavoriteFeeds');
+				navigation.push('FavoriteFeeds', {token: data._id});
 				break;
 			//보호요청(저장)
 			case REQ_PROTECTION_SAVE:
@@ -121,11 +121,11 @@ export default ShelterMenu = ({route}) => {
 			//-------------나의 활동
 			//내 게시물
 			case MY_CONTENTS:
-				navigation.push('UserFeeds');
+				navigation.push('UserFeeds', {token: data._id});
 				break;
 			// 나를 태그한 글
 			case TAGED_CONTENTS_FOR_ME:
-				navigation.push('TagMeFeeds');
+				navigation.push('TagMeFeeds', {token: data._id});
 				break;
 			//신청내역
 			case APPLICATION_HISTORY:
