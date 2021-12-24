@@ -25,6 +25,8 @@ export default UserVerification = props => {
 	const [tabState, setTabState] = React.useState(0);
 	const [verified, setVerified] = React.useState(false);
 	const [verified_num, setVerified_num] = React.useState();
+	const [time, setTime] = React.useState(0);
+	const [async, setAsync] = React.useState({isConfirm:false});
 
 	const goToNextStep = () => {
 		console.log(user_data);
@@ -55,13 +57,33 @@ export default UserVerification = props => {
 	};
 
 	const verificationRequest = () => {
-		console.log(verified_num);
-		setVerified(true);
-		console.log('requestVerification');
+		console.log('인증요청')
+		setTime(300);
+		setTimeout(()=>{
+			setAsync({isConfirm:true});
+		},500);
+		//번호 인증 요청(비동기)
 	};
+
 	const reVerificationRequest = () => {
-		console.log('requestReVerification');
+		console.log('인증요청재설정')
+		setTime(300);
+		//인증번호 재설정
 	};
+
+	const mobileNumValidator = (text) => {
+		return text.length>6;
+		//휴대폰 인증함수
+	}
+
+	const verifyNumValidator = (verifyNum) => {
+		return verifyNum.length>5;
+		//인증번호 입력 인증함수(여기서는 true를 반환해도 번호인증요청에서 false가 되면 통과하지 못하므로 return true를 해도 상관없음)
+	}
+
+	const onVaild = isValid => {
+		setVerified(isValid);
+	}
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* <TouchableWithoutFeedback onPress={() => console.log(user_data)}>
@@ -81,12 +103,12 @@ export default UserVerification = props => {
 				</View>
 
 				{/* (M)TabSelectBorder_Type1 */}
-				<View style={[temp_style.tabSelectBorder_Type1, userAssign.tabSelectBorder_Type1]}>
+				{/* <View style={[temp_style.tabSelectBorder_Type1, userAssign.tabSelectBorder_Type1]}>
 					<TabSelectBorder_Type1 items={['휴대폰 인증', '이메일 인증']} width={650} onSelect={state => changeTabState(state)} />
-				</View>
+				</View> */}
 
 				<View style={temp_style.textMassage}>
-					<Text style={[userAssign.textMessageInside]}>휴대폰 번호나 이메일 주소로 </Text>
+					<Text style={[userAssign.textMessageInside]}>휴대폰 번호로 </Text>
 					<Text style={[userAssign.textMessageInside]}>가입이 가능합니다.</Text>
 				</View>
 
@@ -99,6 +121,11 @@ export default UserVerification = props => {
 							onNameInputChange={onNameInputChange}
 							onPhoneNumberInputChange={onPhoneNumberInputChange}
 							onMobileCompanyInputChange={onMobileCompanyInputChange}
+							mobileNumValidator={mobileNumValidator}
+							verifyNumValidator={verifyNumValidator}
+							onValid={onVaild}
+							verifyTimeLimit={time}
+							asyncConfirm={async}
 						/>
 					</View>
 				) : (

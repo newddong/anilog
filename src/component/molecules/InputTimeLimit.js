@@ -22,16 +22,17 @@ const InputTimeLimit = props => {
 	const [input, setInput] = React.useState('');
 	const [confirm, setConfirm] = React.useState();
 	const inputRef = React.useRef();
-	const interval = 1000; //1 sec
+	const interval = 1500; //1 sec
 
-	let min = Math.floor((props.timelimit / 60) % 60); //184 나누기 60의 몫
-	let sec = Math.floor(props.timelimit % 60); // 184 나누기 60의 나머지
+	let min = Math.floor((props.timelimit.limit / 60) % 60); //184 나누기 60의 몫
+	let sec = Math.floor(props.timelimit.limit % 60); // 184 나누기 60의 나머지
 	const [minutes, setMinutes] = React.useState(min);
 	const [seconds, setSeconds] = React.useState(sec);
 	const [timeOut, setTimeout] = React.useState(false);
 
 	React.useEffect(() => {
 		//onStartTimer
+		if(props.timelimit.limit==0)return;
 		if (minutes == min && seconds == sec) {
 			console.log('처음');
 			props.onStartTimer();
@@ -55,22 +56,24 @@ const InputTimeLimit = props => {
 		return () => clearInterval(countdown);
 	}, [minutes, seconds]);
 
+	React.useEffect(()=>{
+		setMinutes(Math.floor((props.timelimit.limit / 60) % 60));
+		setSeconds(Math.floor(props.timelimit.limit % 60));
+		setTimeout(false);
+	},[props.timelimit])
+	
+
+
 	const validator = text => {
 		//Validation 조건 아직 불분명하기에 length<10일 경우 false로 설정
-		text.length > 10 ? setConfirm(true) : setConfirm(false);
-	};
+		if(props.validator&&props.validator(text)){
+			props.onValid(true);
+			setConfirm(true);
 
-	const blur = () => {
-		inputRef.current.blur();
-	};
-
-	const focus = () => {
-		inputRef.current.focus();
-	};
-
-	const onClear = () => {
-		inputRef.current.clear();
-		props.onClear();
+		}else{
+			props.onValid(false);
+			setConfirm(false);
+		}
 	};
 
 	const onChange = text => {
@@ -81,7 +84,7 @@ const InputTimeLimit = props => {
 
 	const getMsg = () => {
 		if (input.length == 0 && !timeOut) {
-			return false;
+			return '인증번호를 입력하세요';
 		} else if (!confirm && !timeOut) {
 			return props.alert_msg;
 		} else if (timeOut) {
@@ -110,7 +113,7 @@ const InputTimeLimit = props => {
 					}}>
 					<TextInput
 						ref={inputRef}
-						onChangeText={text => onChange(text)}
+						onChangeText={onChange}
 						placeholder={props.placeholder}
 						placeholderTextColor={GRAY10}
 						keyboardType={'number-pad'}
@@ -123,6 +126,7 @@ const InputTimeLimit = props => {
 								color: confirm ? BLACK : RED10,
 							},
 						]}
+						value={input}
 					/>
 					<View style={{position: 'absolute', alignSelf: 'center', right: 0}}>
 						<Text
