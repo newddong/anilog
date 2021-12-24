@@ -123,6 +123,19 @@ export default AnimalNeedHelp = props => {
 		return date;
 	};
 
+	const getParsedSex = () => {
+		let sexData = data.missing_animal_sex;
+		switch (sexData) {
+			case 'female':
+				return '여';
+			case 'male':
+				return '남';
+			default:
+				return '모름';
+		}
+		// return '남';
+	};
+
 	const contents = () => {
 		return (
 			<View style={[animalNeedHelp.detailContainer]}>
@@ -188,7 +201,8 @@ export default AnimalNeedHelp = props => {
 								{/* <Text style={[txt.noto24, {color: RED10}]}>실종일: {data.missing_animal_date || ''}</Text> */}
 								<Text style={[txt.noto24, {color: RED10}]}>실종일: {getParsedDate()}</Text>
 								<Text style={[txt.noto24, {color: RED10}]}>
-									나이:{data.missing_animal_age || ''} / 성별: {data.missing_animal_sex}
+									나이:{data.missing_animal_age || ''} / 성별: {getParsedSex()}
+									{/* {data.missing_animal_sex} */}
 								</Text>
 								<Text style={[txt.noto24]}>실종위치: {data.missing_animal_lost_location || ''}</Text>
 								<Text style={[txt.noto24]} numberOfLines={1}>
@@ -202,7 +216,7 @@ export default AnimalNeedHelp = props => {
 							{/* 제보 / 제보위치 / 특징 */}
 							{/* 동물 종류 및 품종 */}
 							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
-								<Text style={[txt.noto30b, {color: RED10}]}>{data.missing_animal_species || ''}</Text>
+								<Text style={[txt.noto30b, {color: RED10}]}>{data.report_animal_species || ''}</Text>
 							</View>
 							{/* 실종/제보 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
@@ -210,7 +224,7 @@ export default AnimalNeedHelp = props => {
 
 								<Text style={[txt.noto24]}>제보위치: {data.report_witness_location || ''}</Text>
 								<Text style={[txt.noto24]} numberOfLines={1}>
-									특징: {data.missing_animal_features || ''}
+									특징: {data.report_animal_features || ''}
 								</Text>
 								<Text style={[txt.noto24]} numberOfLines={1}>
 									제보자: {'  '}
