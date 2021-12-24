@@ -27,8 +27,8 @@ export default ApplyDetails = ({route, navigation}) => {
 			},
 			result => {
 				console.log('result / createProtectActivity / ApplyDetails  : ', result);
-				navigation.reset({index: 0, routes: [{name: 'UserProfile', params: data.protect_request_writer_id}]});
-				navigation.reset({routes: [{name: 'UserProfile', params: data.protect_request_writer_id}]});
+				// navigation.reset({index: 0, routes: [{name: 'UserProfile', params: data.protect_request_writer_id}]});
+				// navigation.reset({routes: [{name: 'UserProfile', params: data.protect_request_writer_id}]});
 				navigation.reset({
 					index: 0,
 					routes: [{name: 'MainTab'}],
@@ -48,7 +48,7 @@ export default ApplyDetails = ({route, navigation}) => {
 
 	return (
 		<View style={[login_style.wrp_main, applyDetails.container]}>
-			<ScrollView>
+			<ScrollView showsVerticalScrollIndicator={false}>
 				<View style={[temp_style.animalProtectDetails, applyDetails.animalProtectDetails]}>
 					<AnimalProtectDetail data={data} />
 				</View>

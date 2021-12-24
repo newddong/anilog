@@ -7,6 +7,12 @@ import ShelterLabel from '../molecules/ShelterLabel';
 import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
 import {volunteerItem} from './style_organism';
 
+/**
+ * 보호소 Object 정보 박스
+ * @param {object} props - Props Object
+ * @param {object} props.data - 보호소 UserObject
+ * @param {(data:object)=>void} props.onClickLabel - 프로필 라벨 클릭
+ */
 export default VolunteerItem = props => {
 	const data = props.data;
 
@@ -21,9 +27,9 @@ export default VolunteerItem = props => {
 			<View style={[volunteerItem.labelContainer]}>
 				{/* user_type이 shelter일 경우 ShelterLabel. 아닐 경우 UserDescriptionLabel */}
 				{props.data.user_type === 'shelter' ? (
-					<ShelterLabel data={data} onClickLabel={e => props.onClickLabel(e)} />
+					<ShelterLabel data={data} onClickLabel={() => props.onClickLabel()} />
 				) : (
-					<UserDescriptionLabel data={data} onClickLabel={e => props.onClickLabel(e)} />
+					<UserDescriptionLabel data={data} onClickLabel={() => props.onClickLabel(e)} />
 				)}
 			</View>
 			{props.nvName != 'ProtectApplicant' && (

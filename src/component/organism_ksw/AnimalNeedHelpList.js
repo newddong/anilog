@@ -63,6 +63,7 @@ export default AnimalNeedHelpList = props => {
 						renderItem={({item, index}) => renderItem(item, index)}
 						scrollEnabled={false}
 						showsVerticalScrollIndicator={false}
+						keyExtractor={item => item._id}
 					/>
 				</View>
 			</ScrollView>
@@ -70,11 +71,11 @@ export default AnimalNeedHelpList = props => {
 	);
 };
 
-// AnimalNeedHelpList.defaultProps = {
-// 	data: dummy_AnimalNeedHelpList,
-// 	onClickLabel: e => console.log(e),
-// 	onFavoriteTag: e => console.log('FavoriteTag ', e),
-// 	onHashClick: e => console.log('HashClick AnimalNeedHelpList', e),
-// 	checkBoxState: false,
-// 	borderMode: false,
-// };
+AnimalNeedHelpList.defaultProps = {
+	data: dummy_AnimalNeedHelpList,
+	onClickLabel: e => console.log(e),
+	onFavoriteTag: e => console.log('FavoriteTag ', e),
+	onHashClick: e => console.log('HashClick AnimalNeedHelpList', e),
+	checkBoxState: false,
+	borderMode: false,
+};

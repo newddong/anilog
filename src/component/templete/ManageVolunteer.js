@@ -28,7 +28,7 @@ export default ManageVolunteer = ({route}) => {
 			getUserVolunteerActivityList(
 				{},
 				result => {
-					// console.log('success / getUserVolunterItemList / ManageVolunteer', result.msg);
+					console.log('success / getUserVolunterItemList / ManageVolunteer', result.msg);
 					let doneList = []; //지난 내역을 담을 컨테이너
 					let notDoneList = []; //활동 예정 중인 신청을 담을 컨테이너
 					result.msg.map((v, i) => {
@@ -111,6 +111,10 @@ export default ManageVolunteer = ({route}) => {
 		isShelterUser ? navigation.push('ShelterVolunteerForm', shelterData) : navigation.push('UserVolunteerForm', shelterData);
 	};
 
+	const onClickLabel = data => {
+		navigation.push('UserProfile', {userobject: data.volunteer_target_shelter});
+	};
+
 	if (loading) {
 		return (
 			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
@@ -129,7 +133,7 @@ export default ManageVolunteer = ({route}) => {
 							<Text style={[txt.noto24, {color: GRAY20}]}>{isShelterUser ? '최근 신청서' : '활동 예정중인 신청'} </Text>
 						</View>
 						<View style={[manageVolunteer.volunteerList]}>
-							<VolunteerItemList items={notDoneList} type={'notDone'} onClickItem={goToAssignVolunteer} />
+							<VolunteerItemList items={notDoneList} type={'notDone'} onClickItem={goToAssignVolunteer} onClickLabel={onClickLabel} />
 						</View>
 
 						<View style={[manageVolunteer.separator]}></View>

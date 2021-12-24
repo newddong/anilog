@@ -66,6 +66,15 @@ export default AssignShelterInformation = props => {
 		setPhoneConfirmed(isValid);
 	};
 
+	const phoneValidate = num => {
+		console.log('num', num);
+		var regPhone = /^-?([0-9]{3,4})-?([0-9]{4})$/;
+		if (regPhone.test(num) === true) {
+			console.log('입력된 값은 휴대전화번호입니다.');
+		}
+		return regPhone.test(num);
+	};
+
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
@@ -89,6 +98,7 @@ export default AssignShelterInformation = props => {
 						alert_msg={'등록한 전화번호로 로그인이 가능합니다.'}
 						items={initial_number}
 						keyboardType={'number-pad'}
+						validator={phoneValidate}
 						onChange={onChangePhoneNumber}
 						onValid={onValidPhoneNumber}
 					/>

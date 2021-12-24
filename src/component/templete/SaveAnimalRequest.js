@@ -2,13 +2,9 @@ import React from 'react';
 import {View} from 'react-native';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import SelectStat from '../organism_ksw/SelectStat';
-import {login_style, btn_style, temp_style} from './style_templete';
-import {dummy_AppliesRecord_protect} from 'Root/config/dummy_data_hjs';
+import {login_style, temp_style} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
-import {getProtectRequestList, getShelterProtectAnimalList} from 'Root/api/shelterapi';
-import Modal from '../modal/Modal';
-import {getUserProtectAnimalList} from 'Root/api/protectapi';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {getProtectRequestList} from 'Root/api/shelterapi';
 
 export default SaveAnimalRequest = ({route}) => {
 	const navigation = useNavigation();
@@ -28,11 +24,11 @@ export default SaveAnimalRequest = ({route}) => {
 			//_id를 통해 얻어온 보호소의 보호 요청 게시글 리스트를 출력
 			{
 				protect_request_object_id: null,
-				request_number: 3,
+				request_number: 2,
 			},
 			result => {
 				console.log('result / getProtectRequestLIst / ShelterSaveAnimalRequest', result);
-				// setProtectAnimalList(successed.msg);
+				setData(result.msg);
 				// 받아온 protect_animal_protect_Request_id로 해당 게시글 좋아요 여부도 판별해야함
 			},
 			err => {
@@ -42,7 +38,7 @@ export default SaveAnimalRequest = ({route}) => {
 				// });
 			},
 		);
-	}, [data]);
+	}, []);
 
 	//선택하기 클릭
 	const showCheckBox = e => {
@@ -149,73 +145,3 @@ export default SaveAnimalRequest = ({route}) => {
 		</View>
 	);
 };
-const e = [
-	{
-		__v: 0,
-		_id: '61bb6e499c25946f89154dca',
-		pet_birthday: '2021-05-05T00:00:00.000Z',
-		pet_family: ['61b84ddb4a1b66f74b699b1e'],
-		pet_is_temp_protection: true,
-		pet_neutralization: 'no',
-		pet_sex: 'male',
-		pet_species: '개',
-		pet_species_detail: '도사견',
-		pet_status: 'protect',
-		pet_weight: '1.2',
-		user_agreement: {
-			is_donation_info: false,
-			is_location_service_info: false,
-			is_marketting_info: false,
-			is_over_fourteen: false,
-			is_personal_info: false,
-			is_service: false,
-		},
-		user_denied: false,
-		user_follow_count: 0,
-		user_follower_count: 0,
-		user_interests: [],
-		user_introduction: '',
-		user_is_verified_email: false,
-		user_is_verified_phone_number: false,
-		user_my_pets: [],
-		user_nickname: '상우아들',
-		user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639673417309_11.jpg',
-		user_register_date: '2021-12-16T16:50:17.408Z',
-		user_type: 'pet',
-		user_upload_count: 0,
-	},
-	{
-		__v: 0,
-		_id: '61bc7bc5c946746900218905',
-		pet_birthday: '2021-12-07T00:00:00.000Z',
-		pet_family: ['61b84ddb4a1b66f74b699b1e'],
-		pet_is_temp_protection: true,
-		pet_neutralization: 'no',
-		pet_sex: 'female',
-		pet_species: '기타',
-		pet_species_detail: '새',
-		pet_status: 'protect',
-		pet_weight: '11',
-		user_agreement: {
-			is_donation_info: false,
-			is_location_service_info: false,
-			is_marketting_info: false,
-			is_over_fourteen: false,
-			is_personal_info: false,
-			is_service: false,
-		},
-		user_denied: false,
-		user_follow_count: 0,
-		user_follower_count: 0,
-		user_interests: [],
-		user_introduction: '',
-		user_is_verified_email: false,
-		user_is_verified_phone_number: false,
-		user_my_pets: [],
-		user_nickname: '토라',
-		user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639742405433_6040B5AC-48AF-44FA-A3D0-81FF80F8C09A.jpg',
-		user_register_date: '2021-12-17T12:00:05.624Z',
-		user_type: 'pet',
-		user_upload_count: 0,
-	},
-];

@@ -16,8 +16,8 @@ export default ShelterVerticalLabel = props => {
 			</TouchableOpacity>
 			<View style={[shelterLabel.shelterInfo]}>
 				<Text style={[txt.noto28, {color: BLACK, textAlign: 'center'}]}>{data.shelter_name}</Text>
-				<Text style={[txt.noto24, {color: GRAY10}]}>
-					{data.shelter_address.city} {data.shelter_address.district}{' '}
+				<Text style={[txt.noto24, {color: GRAY10, width: 160 * DP, textAlign: 'center'}]} numberOfLines={1}>
+					{data.shelter_address.brief}
 				</Text>
 			</View>
 		</View>

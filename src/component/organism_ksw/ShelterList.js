@@ -4,7 +4,7 @@ import ShelterVerticalLabel from './ShelterVerticalLabel';
 import {shelterList} from './style_organism';
 
 export default ShelterList = props => {
-	// console.log('props.items', props.items);
+	// console.log('props.items', props.items[0]);
 
 	const renderItem = (item, index) => {
 		// console.log('item', item);

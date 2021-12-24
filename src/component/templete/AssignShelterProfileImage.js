@@ -12,7 +12,7 @@ import {assignShelter} from 'Root/api/userapi';
 export default AssignShelterProfileImage = props => {
 	const [data, setData] = React.useState({
 		...props.route.params,
-		user_profile_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+		user_profile_uri: '',
 	});
 
 	const assginShelter = () => {

@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {ActivityIndicator, Text, View} from 'react-native';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import {login_style, temp_style, baseInfo_style} from './style_templete';
 import {getUserAdoptProtectionList} from 'Root/api/protectapi';
@@ -11,6 +11,7 @@ import {getUserAdoptProtectionList} from 'Root/api/protectapi';
 export default ApplyAdoptionList = props => {
 	const navigation = useNavigation();
 	const [data, setData] = React.useState();
+	const [loading, setLoading] = React.useState(true); // 화면 출력 여부 결정
 
 	const onOff_FavoriteTag = (value, index) => {
 		// console.log('즐겨찾기=>' + value + ' ' + index);
@@ -51,6 +52,9 @@ export default ApplyAdoptionList = props => {
 					result.msg[index].protect_animal_status = result.msg[index].protect_act_request_article_id.protect_animal_id.protect_animal_status;
 				}
 				setData(result.msg);
+				setTimeout(() => {
+					setLoading(false);
+				}, 1000);
 			},
 			err => {
 				console.log('err / getAppliesRecord / AppliesRecord', err);
@@ -58,21 +62,29 @@ export default ApplyAdoptionList = props => {
 		);
 	}, []);
 
-	console.log(props.route.name);
-	return (
-		<View style={login_style.wrp_main}>
-			<View style={[temp_style.baseFlatList, baseInfo_style.list]}>
-				<AnimalNeedHelpList
-					data={data}
-					onItemClick={
-						props.route.name == 'ApplyTempProtectList'
-							? () => navigation.push('ApplyTempProtectDetails', props.route.params)
-							: () => navigation.push('ApplyAdoptionDetails', props.route.params)
-					}
-					onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
-					onClickLabel={(status, id, item) => onLabelClick(item)}
-				/>
+	// console.log(props.route.name);
+	if (loading) {
+		return (
+			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
+				<ActivityIndicator size={'large'}></ActivityIndicator>
 			</View>
-		</View>
-	);
+		);
+	} else {
+		return (
+			<View style={[login_style.wrp_main, {flex: 1}]}>
+				<View style={[temp_style.baseFlatList, baseInfo_style.list]}>
+					<AnimalNeedHelpList
+						data={data}
+						onItemClick={
+							props.route.name == 'ApplyTempProtectList'
+								? () => navigation.push('ApplyTempProtectDetails', props.route.params)
+								: () => navigation.push('ApplyAdoptionDetails', props.route.params)
+						}
+						onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
+						onClickLabel={(status, id, item) => onLabelClick(item)}
+					/>
+				</View>
+			</View>
+		);
+	}
 };

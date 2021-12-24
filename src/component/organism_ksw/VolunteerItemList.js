@@ -3,11 +3,18 @@ import {FlatList, View, ScrollView, TouchableOpacity} from 'react-native';
 import {volunteerItemList} from './style_organism';
 import VolunteerItem from './VolunteerItem';
 
+/**
+ * 보호소 Object 정보 박스
+ * @param {object} props - Props Object
+ * @param {object} props.data - 봉사활동 Object
+ * @param {(data:object)=>void} props.onClickLabel - 프로필 라벨 클릭
+ * @param {(data:object)=>void} props.onClickItem - 아이템 클릭 클릭
+ */
 export default VolunteerItemList = props => {
 	const renderItem = (item, index) => {
 		return (
 			<TouchableOpacity onPress={() => props.onClickItem(item)} style={[volunteerItemList.itemContainer]}>
-				<VolunteerItem data={item} type={props.type} />
+				<VolunteerItem data={item} type={props.type} onClickLabel={() => props.onClickLabel(item)} />
 			</TouchableOpacity>
 		);
 	};

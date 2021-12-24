@@ -3417,7 +3417,7 @@ export const manageVolunteer = StyleSheet.create({
 	},
 	volunteerList: {
 		width: 750 * DP,
-		marginBottom: 50 * DP,
+		marginBottom: 30 * DP,
 	},
 	previous_volunteerList: {
 		width: 750 * DP,

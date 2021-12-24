@@ -80,6 +80,15 @@ export default ApplyCompanionA = ({route}) => {
 		setData({...data, protect_act_phone_number: result});
 	};
 
+	const phoneValidate = num => {
+		console.log('num', num);
+		var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+		if (regPhone.test(num) === true) {
+			console.log('입력된 값은 휴대전화번호입니다.');
+		}
+		return regPhone.test(num);
+	};
+
 	//세부주소 입력
 	const onChangeDeatilAddress = addr => {
 		let addrData = {...data.protect_act_address};
@@ -130,6 +139,7 @@ export default ApplyCompanionA = ({route}) => {
 				<View style={[temp_style.input24A_applyCompanionA, applyCompanionA.input24A]}>
 					<InputWithSelect
 						onChange={onChangePhoneNum}
+						validator={phoneValidate}
 						keyboardType={'number-pad'}
 						title={'연락처'}
 						title_star={true}
