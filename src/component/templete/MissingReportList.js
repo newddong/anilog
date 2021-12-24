@@ -29,9 +29,9 @@ export default MissingReportList = props => {
 			getMissingReportList(
 				{
 					//필터 - 보호지역 (user_address.city 데이터)
-					city: data.city,
-					//필터 - 동물종류
-					protect_animal_species: data.protect_animal_species,
+					city: '',
+					protect_animal_species: '',
+					feedobject_id: '',
 					request_number: 10,
 				},
 				data => {
@@ -87,10 +87,10 @@ export default MissingReportList = props => {
 		alert('동물 종류 필터 버튼 온');
 	};
 	const moveToReportForm = () => {
-		navigation.push('FeedWrite',{type:'Report'});
+		navigation.push('FeedWrite', {type: 'Report'});
 	};
 	const moveToMissingForm = () => {
-		navigation.push('FeedWrite',{type:'Missing'});
+		navigation.push('FeedWrite', {type: 'Missing'});
 	};
 	const onOff_FavoriteTag = (value, index) => {
 		console.log('즐겨찾기=>' + value + ' ' + index);
