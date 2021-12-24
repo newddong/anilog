@@ -34,7 +34,7 @@ const ProfileImageSelect = props => {
 	return (
 		<TouchableOpacity onPress={onClick} style={styles.img_round_294}>
 			{/* ProfileImage uri가 null일 경우와 아닌 경우의 분기 */}
-			{props.selectedImageUri && props.selectedImageUri > 0 ? (
+			{props.selectedImageUri.length ? (
 				<Image style={styles.img_round_294} source={{uri: props.selectedImageUri}} />
 			) : (
 				randomdefault()
