@@ -29,7 +29,7 @@ export default MissingAnimalDetail = props => {
 	const [commentDataList, setCommentDataList] = React.useState();
 	const [writeCommentData, setWriteCommentData] = React.useState(); //더보기 클릭 State
 	const [replyPressed, setReplyPressed] = React.useState(false);
-
+	console.log('missingAnimal', props.route.params);
 	//api 실제 작업 후 하단에 있는 data로 변경 예정 (현재는 에러 방지 코드)
 	const [data, setData] = React.useState({
 		comment_photo_uri: '', //댓글 첨부 이미지 uri
@@ -62,7 +62,8 @@ export default MissingAnimalDetail = props => {
 		console.log(' - MissingAnimalDetail -');
 		getFeedDetailById(
 			{
-				feedobject_id: '61bf3e315a6b08989f932b68',
+				feedobject_id: '61c567d938c5f6dee5a8b7af',
+				// feedobject_id: data._id,
 			},
 			data => {
 				console.log(`data:${JSON.stringify(data.msg)}`);
@@ -141,7 +142,7 @@ export default MissingAnimalDetail = props => {
 	const getCommnetList = () => {
 		getCommentListByFeedId(
 			{
-				feedobject_id: '61bf3e315a6b08989f932b68',
+				// feedobject_id: data._id,
 				commentobject_id: '61bfd7369d070b6bb69df0a8',
 				request_number: 10,
 			},
