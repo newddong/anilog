@@ -20,6 +20,7 @@ export default ChildCommentList = props => {
 			</View>
 		);
 	};
+	console.log('rendered item length', props.items.length);
 	return <FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled={false} />;
 };
 
