@@ -3,6 +3,7 @@ import {View, Image, TouchableOpacity} from 'react-native';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import {AddItem92} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
+import {ProfileDefaultImg1, ProfileDefaultImg2, ProfileDefaultImg3} from 'Atom/icon';
 
 /**
  * 프로필 이미지 컨테이너
@@ -15,10 +16,29 @@ const ProfileImageSelect = props => {
 		props.onClick();
 	};
 
+
+	function getRandomInt(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+	  }
+
+	const randomdefault = () => {
+		const rand = [<ProfileDefaultImg1/>,<ProfileDefaultImg2/>,<ProfileDefaultImg3/>];
+
+		return (
+				rand[getRandomInt(0,3)]
+		);
+	};
+
 	return (
 		<TouchableOpacity onPress={onClick} style={styles.img_round_294}>
 			{/* ProfileImage uri가 null일 경우와 아닌 경우의 분기 */}
-			<Image style={styles.img_round_294} source={{uri: props.selectedImageUri || DEFAULT_PROFILE}} />
+			{props.selectedImageUri && props.selectedImageUri > 0 ? (
+				<Image style={styles.img_round_294} source={{uri: props.selectedImageUri}} />
+			) : (
+				randomdefault()
+			)}
 			<View style={{position: 'absolute', right: 0, bottom: 0}}>
 				<AddItem92 />
 			</View>
@@ -27,7 +47,7 @@ const ProfileImageSelect = props => {
 };
 
 ProfileImageSelect.defaultProps = {
-	selectedImageUri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+	selectedImageUri: '',
 	onClick: e => console.log(e),
 };
 export default ProfileImageSelect;

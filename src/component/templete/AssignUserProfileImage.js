@@ -10,10 +10,15 @@ import Modal from 'Component/modal/Modal';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {assignUser, nicknameDuplicationCheck} from 'Root/api/userapi';
 
+
+
 export default AssignUserProfileImage = props => {
-	const [imgSelected, setImgSelected] = React.useState('https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg');
+	const [imgSelected, setImgSelected] = React.useState();
 	const [nickname, setNickname] = React.useState('');
 	const [confirmed, setConfirmed] = React.useState(false);
+
+
+
 
 	const selectPhoto = () => {
 		// props.navigation.push('SinglePhotoSelect');

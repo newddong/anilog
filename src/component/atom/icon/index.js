@@ -118,6 +118,9 @@ import instagramIcon from './instagramIcon';
 import facebookIcon from './facebookIcon';
 import crossMark_filled from './crossMark_filled';
 import childCommentLinker from './childCommentLinker';
+import profiledefault1 from './profiledefault1';
+import profiledefault2 from './profiledefault2';
+import profiledefault3 from './profiledefault3';
 
 import DP from 'Screens/dp';
 import {APRI10, YELL20, GRAY20, GRAY30, GRAY10, BLACK} from 'Root/config/color';
@@ -142,6 +145,7 @@ const size92 = {width: 92 * DP, height: 92 * DP};
 const size94 = {width: 94 * DP, height: 94 * DP};
 const size110 = {width: 110 * DP, height: 110 * DP};
 const size126x92 = {width: 126 * DP, height: 92 * DP};
+const defaultProfileImg = {width:294*DP,height:294*DP};
 
 const makeSvg = (component, style, color) => {
 	return props =>
@@ -150,6 +154,10 @@ const makeSvg = (component, style, color) => {
 			: React.createElement(component, {...style, fill: color});
 	//return props => React.createElement(component, {...style, ...props, fill: color});
 };
+
+export const ProfileDefaultImg1 = makeSvg(profiledefault1, defaultProfileImg, '');
+export const ProfileDefaultImg2 = makeSvg(profiledefault2, defaultProfileImg, '');
+export const ProfileDefaultImg3 = makeSvg(profiledefault3, defaultProfileImg, '');
 
 export const Heart30_Filled = makeSvg(heartFilled, size30, APRI10);
 export const Heart30_Border = makeSvg(heartBorder, size30, APRI10);
