@@ -27,7 +27,7 @@ export default FeedList = ({route, navigation}) => {
 	}, []);
 
 	const moveToFeedWrite = () => {
-		navigation.push('FeedWrite');
+		navigation.push('FeedWrite',{type:'Feed'});
 	};
 
 	const renderItem = item => {
