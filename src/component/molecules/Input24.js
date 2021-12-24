@@ -1,9 +1,9 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
 import PropsTypes, {any, bool, func, number, object, oneOf, oneOfType, string} from 'prop-types';
-import {Text, View, TextInput} from 'react-native';
+import {Text, View, TextInput, Platform} from 'react-native';
 import DP from 'Root/config/dp';
-import {APRI10, GRAY20, GRAY30, GREEN, RED10} from 'Root/config/color';
+import {APRI10, GRAY10, GRAY20, GRAY30, GRAY40, GREEN, RED10} from 'Root/config/color';
 import {Cross46} from '../atom/icon';
 
 /**
@@ -66,7 +66,7 @@ const Input24 = React.forwardRef((props, ref) => {
 
 	const getDescription = () => {
 		if (props.descriptionType == 'info') {
-			return <Text style={[txt.noto22, {color: GRAY20, marginLeft: 20 * DP}]}> *{props.info} </Text>;
+			return <Text style={[txt.noto22, {color: GRAY10, marginLeft: 20 * DP}]}> *{props.info} </Text>;
 		} else if (props.descriptionType == 'star') {
 			return <Text style={[txt.noto28, {color: RED10, marginLeft: 60 * DP}]}>*</Text>;
 		} else if (props.descriptionType == 'none') {
@@ -113,6 +113,7 @@ const Input24 = React.forwardRef((props, ref) => {
 					onBlur={onBlur}
 					value={props.value}
 					placeholder={props.placeholder}
+					placeholderTextColor={GRAY10}
 					defaultValue={props.defaultValue}
 					editable={props.editable}
 					keyboardType={props.keyboardType}

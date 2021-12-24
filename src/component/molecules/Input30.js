@@ -2,7 +2,7 @@ import React from 'react';
 import {txt} from 'Root/config/textstyle';
 import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
-import {BLACK, APRI10, GRAY20, GRAY30, RED10, GREEN} from 'Root/config/color';
+import {BLACK, APRI10, GRAY10,GRAY20, GRAY30, RED10, GREEN} from 'Root/config/color';
 import PropsTypes, {any, bool, func, number, object, oneOf, oneOfType, string} from 'prop-types';
 import {Cross52} from '../atom/icon';
 import {TouchableOpacity} from 'react-native';
@@ -97,6 +97,7 @@ const Input30 = React.forwardRef((props, ref) => {
 						// value={input}
 						value={props.value}
 						editable={props.editable}
+						placeholderTextColor={GRAY10}
 						defaultValue={props.defaultValue}
 						keyboardType={props.keyboardType}
 						style={[

@@ -44,6 +44,12 @@ export default PhoneNumVerification = props => {
 	const onVerificationNumberChange = verified_num => {
 		props.onVerificationNumberChange(verified_num);
 	};
+
+	const validator = text => {
+
+		props.validator&&props.validator(text);
+	}
+
 	return (
 		<View style={[phoneNumVerification.container]}>
 			<View style={[temp_style.input30, phoneNumVerification.input30]}>

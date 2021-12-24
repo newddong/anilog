@@ -2,7 +2,7 @@ import React from 'react';
 import {txt} from 'Root/config/textstyle';
 import {Text, View, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
-import {GRAY20, GRAY30, BLACK, RED10} from 'Root/config/color';
+import {GRAY10, GRAY20, GRAY30, BLACK, RED10} from 'Root/config/color';
 
 /**
  * 타임아웃이 추가된 인풋 컴포넌트
@@ -112,6 +112,7 @@ const InputTimeLimit = props => {
 						ref={inputRef}
 						onChangeText={text => onChange(text)}
 						placeholder={props.placeholder}
+						placeholderTextColor={GRAY10}
 						keyboardType={'number-pad'}
 						style={[
 							txt.roboto28,
