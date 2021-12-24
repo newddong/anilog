@@ -3674,7 +3674,8 @@ export const profile = StyleSheet.create({
 		// height: 416 * DP,
 	},
 	feedListContainer: {
-		marginLeft: 6 * DP,
+		marginLeft: -2 * DP,
+		flex:1,
 	},
 	floatingBtn: {
 		position: 'absolute',

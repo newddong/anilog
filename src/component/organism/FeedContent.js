@@ -115,7 +115,7 @@ export default FeedContent = props => {
 				<View style={[organism_style.userLocationLabel_feedContent]}>
 					<UserLocationLabel
 						data={feed_avatar_id || feed_writer_id || undefined}
-						onLabelClick={id => navigation.push('UserProfile', {id: id})}
+						onLabelClick={userobject => navigation.push('UserProfile', {userobject: userobject})}
 						location={feed_location}
 					/>
 				</View>

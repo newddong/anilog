@@ -43,7 +43,7 @@ export default LoginTemplete = props => {
 				setTimeout(() => {
 					Modal.close();
 					props.navigation.navigate('MainTab', userObject.msg.user_type);
-				}, 100);
+				}, 1000);
 			},
 			error => {
 				Modal.close();

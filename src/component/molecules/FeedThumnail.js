@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
+import {Text, View, Image, TouchableOpacity,TouchableWithoutFeedback} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/config/dp';
 import {Check50, ImageList48, VideoPlay48} from '../atom/icon';
@@ -12,11 +12,17 @@ import {DEFAULT_PROFILE} from 'Root/i18n/msg';
  * @param {object} props - Props Object
  * @param {boolean} props.selectMode - Feed 클릭시 테두리 혹은 투명도 스타일 적용 여부
  * @param {object} props.data - 피드 썸네일 데이터( @FeedObject)
+ * @param {boolean} props.data.checkBoxState - 
+ * @param {string} props.data._id -
+ * @param {string} props.data.feed_thumbnail -
+ * @param {string} props.data.feed_type -
+ * @param {Array.<object>} props.data.feed_medias - 
+ * 
  */
 const FeedThumbnail = props => {
 	// console.log('FeedThumbnail', props.data);
 	const [selected, setSelected] = React.useState(false);
-
+	console.log(props.data);
 	React.useEffect(() => {
 		setSelected(props.data.checkBoxState);
 	}, [props.data.checkBoxState]);
@@ -28,9 +34,14 @@ const FeedThumbnail = props => {
 	};
 
 	const getFeedIcon = () => {
-		const find = props.data.feed_medias.findIndex(e => e.is_video == true); //feed_media의 값 중 is_video값이 true인 경우가 있다면 1 없다면 -1
+		const find = props.data.feed_medias.some(v=>{
+			if(v.is_video){
+				return v.is_video == true
+			}
+			return false;
+		}); //feed_media의 값 중 is_video값이 true인 경우 true
 		//data.medias의 값들 중 video형식의 media가 하나 이상 존재하는 경우
-		if (find != -1) {
+		if (find) {
 			return <VideoPlay48 />;
 			//data.medias 배열의 길이가 1개 이상인 경우
 		} else if (props.data.feed_medias.length > 1) {
@@ -60,9 +71,10 @@ const FeedThumbnail = props => {
 		}
 	};
 	return (
-		<TouchableOpacity onPress={onSelect}>
+		<TouchableWithoutFeedback onPress={onSelect}>
 			{/* Select된 상태일 때 불투명도 40% 적용 및 배경색  Black */}
 			{/* 그림인지 영상인지 표기(무조건 표기) */}
+			<View style={{margin:2.5*DP}}>
 			<View style={{position: 'absolute', top: 20 * DP, left: 20 * DP, zIndex: 1}}>{getFeedIcon()}</View>
 			{checkSelect()}
 			{props.data.feed_type == 'missing' || props.data.feed_type == 'report' ? (
@@ -88,7 +100,8 @@ const FeedThumbnail = props => {
 
 			{/* 클릭하거나 전체 선택시 체크 표기 - 모드는 선택하기 모드여야 함. */}
 			{checkDisplay()}
-		</TouchableOpacity>
+			</View>
+		</TouchableWithoutFeedback>
 	);
 };
 FeedThumbnail.defaultProps = {};

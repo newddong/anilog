@@ -11,12 +11,7 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import {assignUser, nicknameDuplicationCheck} from 'Root/api/userapi';
 
 export default AssignUserProfileImage = props => {
-	// React.useEffect(() => {
-	// 	props.route.params == null
-	// 		? setImgSelected('https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg')
-	// 		: setImgSelected(props.route.params[0]);
-	// }, []);
-	const [imgSelected, setImgSelected] = React.useState();
+	const [imgSelected, setImgSelected] = React.useState('https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg');
 	const [nickname, setNickname] = React.useState('');
 	const [confirmed, setConfirmed] = React.useState(false);
 
