@@ -22,10 +22,16 @@ export default ApplyAdoptionList = props => {
 
 	// 입양신청 및 임시보호 신청 리스트 데이터 불러오기
 	React.useEffect(() => {
+		let actType = '';
 		console.log('- ApplyAdoptionList - ');
+
+		//입양 및 임시보호 구분
+		if (props.route.name == 'ApplyAdoptionList') actType = 'adopt';
+		else actType = 'protect';
+
 		getUserAdoptProtectionList(
 			{
-				protect_act_type: 'adopt',
+				protect_act_type: actType,
 				request_number: 100,
 				protect_act_object_id: '', //페이징을 위한 오브젝트 객체 아이디
 			},
@@ -41,6 +47,8 @@ export default ApplyAdoptionList = props => {
 					result.msg[index].protect_animal_species = result.msg[index].protect_act_request_article_id.protect_animal_species;
 					result.msg[index].protect_animal_species_detail = result.msg[index].protect_act_request_article_id.protect_animal_species_detail;
 					result.msg[index].shelter_name = result.msg[index].protect_act_request_article_id.protect_request_writer_id.shelter_name;
+					result.msg[index].protect_animal_sex = result.msg[index].protect_act_request_article_id.protect_animal_id.protect_animal_sex;
+					result.msg[index].protect_animal_status = result.msg[index].protect_act_request_article_id.protect_animal_id.protect_animal_status;
 				}
 				setData(result.msg);
 			},
