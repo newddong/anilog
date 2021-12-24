@@ -53,7 +53,7 @@ export default ParentComment = props => {
 	return (
 		<View style={organism_style.parentComment}>
 			{/* 유저프로필 라벨 및 Meatball  */}
-			<View style={organism_style.UserLocationTimeLabel_view_parentComment}>
+			<View style={(organism_style.UserLocationTimeLabel_view_parentComment, {backgroundColor: 'yellow'})}>
 				<View style={organism_style.userLocationTimeLabel}>
 					{/* {console.log(`UserLocationTimeLabel data:${JSON.stringify(data)}`)} */}
 					<UserLocationTimeLabel data={data} />
@@ -94,7 +94,11 @@ export default ParentComment = props => {
 			{/* Data - 대댓글List */}
 			{showChild ? (
 				<View style={[organism_style.childCommentList, parentComment.img_square_round_574]}>
-					<ChildCommentList items={data.childArray} onPressReplyBtn={comment => props.onPress_ChildComment_ReplyBtn(comment)} />
+					<ChildCommentList
+						items={data.childArray}
+						showChildComment={showChildComment}
+						onPressReplyBtn={comment => props.onPress_ChildComment_ReplyBtn(comment)}
+					/>
 				</View>
 			) : (
 				<></>

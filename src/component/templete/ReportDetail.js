@@ -87,6 +87,7 @@ export default ReportDetail = props => {
 			// setWriteCommentData();
 			delete writeCommentData.comment_photo_uri;
 			onDeleteImage();
+			setEditComment(!editComment);
 			setReplyPressed(false);
 		}
 	}, [replyPressed]);
@@ -98,6 +99,7 @@ export default ReportDetail = props => {
 				request_number: 10,
 			},
 			commentdata => {
+				console.log('commentdata', commentdata.msg);
 				commentdata.msg.map((v, i) => {
 					//1depth를 올려준다.
 					commentdata.msg[i].user_address = commentdata.msg[i].comment_writer_id.user_address;
