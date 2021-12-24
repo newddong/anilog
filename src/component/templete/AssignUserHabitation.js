@@ -8,7 +8,7 @@ import Stagebar from '../molecules/Stagebar';
 import {login_style, btn_style, temp_style, progressbar_style, assignUserHabitation_style} from './style_templete';
 import Modal from 'Component/modal/Modal';
 import {stagebar_style} from '../organism_ksw/style_organism';
-
+import {getAddressList} from 'Root/api/address'
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
@@ -26,6 +26,16 @@ const AssignUserHabitation = props => {
 			neighbor: '동을 선택해 주세요', //동,읍,면
 		},
 	});
+	const [city,setCity] = React.useState(['']);
+	const [district,setDistrict] = React.useState(['']);
+	const [neighbor,setNeighbor] = React.useState(['']);
+	const handleError = error => {
+		Modal.popOneBtn(error,'확인',()=>Modal.close())
+	};
+
+	React.useEffect(()=>{
+		getAddressList({},cities=>setCity(cities.msg),handleError)
+	},[]);
 
 	const goToNextStep = () => {
 		props.navigation.push('AssignUserProfileImage', data);
@@ -34,9 +44,10 @@ const AssignUserHabitation = props => {
 	const onSelectCity = () => {
 		Modal.rollingSelect(
 			'시를 선택해 주세요',
-			['서울시', '부산시', '광주광역시'],
-			e => {
-				setData({...data, user_address: {...data.user_address, city: e}});
+			city,
+			city => {
+				setData({...data, user_address: {...data.user_address, city: city}});
+				getAddressList({city: city},(districts)=>{setDistrict(districts.msg)},handleError)
 				cityDrop.current.press();
 			},
 			() => {
@@ -47,12 +58,14 @@ const AssignUserHabitation = props => {
 	const onSelectDistrict = selectedItem => {
 		Modal.rollingSelect(
 			'구를 선택해 주세요',
-			['북구', '서구', '중구'],
-			e => {
-				setData({...data, user_address: {...data.user_address, district: e}});
+			district,
+			district => {
+				setData({...data, user_address: {...data.user_address, district: district}});
+				getAddressList({city: data.user_address.city,district: district},(neighbors)=>{setNeighbor(neighbors.msg)},handleError)
 				districDrop.current.press();
 			},
-			() => {
+			(district) => {
+				
 				districDrop.current.press();
 			},
 		);
@@ -60,7 +73,7 @@ const AssignUserHabitation = props => {
 	const onSelectNeighbor = selectedItem => {
 		Modal.rollingSelect(
 			'동을 선택해 주세요',
-			['신당동', '사당동', '신림동', '행신동'],
+			neighbor,
 			e => {
 				setData({...data, user_address: {...data.user_address, neighbor: e}});
 				neighborDrop.current.press();
