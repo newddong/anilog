@@ -8,6 +8,7 @@ import Modal from 'Component/modal/Modal';
 import {getUserInfoById} from 'Root/api/userapi';
 import userGlobalObj from 'Root/config/userGlobalObject';
 import PetAccountList from 'Component/organism_ksw/PetAccountList';
+import { txt } from 'Root/screens/assign/style_assign';
 
 /**
  * 아바타 동물을 선택하는 모달창
@@ -47,6 +48,7 @@ const FeedAvartarSelect = props => {
 		<View style={style.background}>
 			<View style={[style.popUpWindow, style.shadow]}>
 				<PetAccountList items={items} onLabelClick={selectPet} />
+				{items.length<1&&<Text style={[{textAlign:'center',marginBottom:30*DP},txt.noto28b]}>{'등록된 반려동물이 없습니다.\n 반려동물을 등록해주세요'}</Text>}
 				<View style={style.buttonContainer}>
 					<AniButton btnLayout={btn_w226} btnStyle={'filled'} btnTitle={props.okButtonnMsg} onPress={pressOk} />
 				</View>

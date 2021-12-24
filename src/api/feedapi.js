@@ -25,6 +25,7 @@ import {apiController, apiFormController} from './apiController';
  * @param {string} params.feed_content - 피드 텍스트 내용
  * @param {string} params.feed_location - 피드 작성 지역
  * @param {string} params.feed_avatar_id - 피드의 작성자로 지정하고 싶은 반려동물 ID
+ * @param {boolean} params.feed_is_protect_diary - 피드가 임보일기인지 정함 T/F
  * @param {Array.<string>} params.media_uri - 피드 첨부파일 uri리스트
  * @param {Array.<FeedMedias>} params.feed_medias - 첨부 객체정보 리스트
  * @param {({}:object)=>void} callback - API응답처리 콜백

@@ -56,10 +56,6 @@ export default AssignShelterProfileImage = props => {
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* Text Msg */}
-			<TouchableWithoutFeedback onPress={() => console.log(data)}>
-				<View
-					style={{backgroundColor: 'red', height: 30, width: 30, position: 'absolute', borderWidth: 1, borderColor: 'blue', top: 0, left: 0}}></View>
-			</TouchableWithoutFeedback>
 			<View style={[temp_style.textMsg_AssignUserProfileImage, assignShelterProfileImage_style.txt_msg]}>
 				<Text style={[txt.noto24]}>프로필 사진은 나중에도 변경 할 수 있어요.</Text>
 			</View>

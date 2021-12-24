@@ -122,10 +122,6 @@ export default AssignUserProfileImage = props => {
 	return (
 		<KeyboardAvoidingView style={[login_style.wrp_main, {flex: 1}]} behavior={'position'} contentContainerStyle={{alignItems: 'center'}}>
 			{/* contentContainerStyle​ : The style of the content container (View) when behavior is 'position'. */}
-			<TouchableWithoutFeedback onPress={() => console.log(imgSelected)}>
-				<View
-					style={{backgroundColor: 'red', height: 30, width: 30, position: 'absolute', borderWidth: 1, borderColor: 'blue', top: 0, left: 0}}></View>
-			</TouchableWithoutFeedback>
 			{/* Text Msg */}
 			<View style={[temp_style.textMsg_AssignUserProfileImage, assignUserProfileImage_style.txt_msg]}>
 				<Text style={[txt.noto24]}>프로필 사진과 닉네임은 나중에도 변경 할 수 있어요.</Text>

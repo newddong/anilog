@@ -47,7 +47,7 @@ export default PhoneNumVerification = props => {
 	return (
 		<View style={[phoneNumVerification.container]}>
 			<View style={[temp_style.input30, phoneNumVerification.input30]}>
-				<Input30 showTitle={false} width={654} placeholder={'이름 입력'} onChange={onNameInputChange} value={userName} />
+				<Input30 showTitle={false} width={654} placeholder={'이름 입력'} onChange={onNameInputChange} value={userName} confirm/>
 			</View>
 			<View style={[temp_style.inputWithSelect, phoneNumVerification.inputWithSelect]}>
 				<InputWithSelect

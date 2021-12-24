@@ -123,8 +123,8 @@ export default FeedContent = props => {
 				{/* type값이 status일 경우 status 버튼이 나오고 그렇지 않으면 다른 버튼 표기 */}
 				{feed_type == 'feed' ? (
 					<>
-						<View style={[feedContent_style.status]}>
-							<View
+						<View style={[feedContent_style.status,{width:130*DP,height:38*DP}]}>
+							{feed_is_protect_diary&&<View
 								style={{
 									width: 130 * DP,
 									height: 38 * DP,
@@ -135,7 +135,7 @@ export default FeedContent = props => {
 									borderWidth: 2 * DP,
 								}}>
 								<Text style={[txt.roboto24, txt.maincolor]}>임보일기</Text>
-							</View>
+							</View>}
 						</View>
 
 						<View style={[organism_style.meatball, feedContent_style.meatball]}>

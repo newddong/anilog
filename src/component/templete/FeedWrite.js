@@ -30,9 +30,10 @@ export default FeedWrite = props => {
 	const [showLostAnimalForm, setShowLostAnimalForm] = React.useState(false); //실종버튼
 	const [showReportForm, setShowRepotForm] = React.useState(false); //제보버튼
 	const [showActionButton, setShowActionButton] = React.useState(false); // 긴급게시(하얀버전) 클릭 시 - 실종/제보 버튼 출력 Boolean
-	// const [selected]
+	const [isDiary, setDiary] = React.useState(false); //임보일기여부
 	const [feedText, setFeedText] = React.useState(''); //피드 TextInput Value
 	const [selectedImg, setSelectedImg] = React.useState([]); //사진 uri리스트
+
 
 	React.useEffect(() => {
 		props.navigation.setParams({...props.route.params, 
@@ -42,8 +43,16 @@ export default FeedWrite = props => {
 	}, [selectedImg]); //네비게이션 파라메터에 이미지 리스트를 넣음(헤더에서 처리하도록)
 
 	React.useEffect(() => {
-		props.navigation.setOptions({title: userGlobalObj.userInfo?.user_nickname});
-		props.navigation.setParams({...props.route.params, type: 'Feed'});
+		if(props.route.params?.type=='Feed'){
+			props.navigation.setOptions({title: userGlobalObj.userInfo?.user_nickname});
+			props.navigation.setParams({...props.route.params, type: 'Feed'});
+		}
+		if(props.route.params?.type=='Missing'){
+			onPressMissingWrite();
+		}
+		if(props.route.params?.type=='Report'){
+			onPressReportWrite();
+		}
 	}, []); //처음 로딩시 유저 닉네임 표시
 
 	//긴급 게시 버튼 관련 분기 처리
@@ -110,6 +119,18 @@ export default FeedWrite = props => {
 		props.navigation.setParams({...props.route.params, ...report});
 	}
 
+	const onSetDiary = ()=>{
+		let diary = false;
+		if(isDiary){
+			setDiary(false);
+			diary = false;
+		}else{
+			setDiary(true);
+			diary = true;
+		}
+		props.navigation.setParams({...props.route.params, feed_is_protect_diary:diary});
+
+	}
 	//위치추가
 	const moveToLocationPicker = () => {
 		// props.navigation.push('LocationPicker');
@@ -171,7 +192,7 @@ export default FeedWrite = props => {
 					{!showReportForm&&!showLostAnimalForm&&<View style={[feedWrite.btn_w194_container]}>
 						{/* 임보일기 */}
 						{<View style={[btn_style.btn_w194, feedWrite.btn_w194]}>
-							<AniButton btnTitle={'임보일기'} btnStyle={'filled'} titleFontStyle={24} btnLayout={btn_w194} />
+							<AniButton btnTitle={'임보일기'} btnStyle={isDiary?'filled':'border'} titleFontStyle={24} btnLayout={btn_w194} onPress={onSetDiary} />
 						</View>}
 						{/* 전체공개 */}
 						<View style={[btn_style.btn_w194]}>

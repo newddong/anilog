@@ -91,27 +91,9 @@ export default AssignShelterAddress = props => {
 		console.log('onvalid', isValid);
 		setConfirmed(isValid);
 	};
-	const test = () => {
-		axios.post('http://10.0.2.2:3000/user/test', {nickname: {nest: 'dasdf'}}).then(r => {
-			console.log(r);
-		});
-	};
 	return (
 		<KeyboardAvoidingView style={[login_style.wrp_main, {flex: 1}]} behavior={'padding'}>
 			{/* (M)StageBar	 */}
-			<TouchableWithoutFeedback onPress={test}>
-				<View
-					style={{
-						backgroundColor: 'red',
-						height: 30,
-						width: 30,
-						position: 'absolute',
-						borderWidth: 1,
-						borderColor: 'blue',
-						top: 0,
-						left: 0,
-					}}></View>
-			</TouchableWithoutFeedback>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
 					backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨

@@ -78,19 +78,6 @@ export default AssignShelterInformation = props => {
 					width={600 * DP} //bar의 너비
 				/>
 			</View>
-			<TouchableWithoutFeedback onPress={() => console.log(data)}>
-				<View
-					style={{
-						backgroundColor: 'red',
-						height: 30,
-						width: 30,
-						position: 'absolute',
-						borderWidth: 1,
-						borderColor: 'blue',
-						top: 0,
-						left: 0,
-					}}></View>
-			</TouchableWithoutFeedback>
 			{/* InputForm */}
 			<View>
 				{/* (M)InputWithSelect */}

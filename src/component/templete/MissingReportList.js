@@ -87,10 +87,10 @@ export default MissingReportList = props => {
 		alert('동물 종류 필터 버튼 온');
 	};
 	const moveToReportForm = () => {
-		navigation.push('FeedWrite');
+		navigation.push('FeedWrite',{type:'Report'});
 	};
 	const moveToMissingForm = () => {
-		navigation.push('FeedWrite');
+		navigation.push('FeedWrite',{type:'Missing'});
 	};
 	const onOff_FavoriteTag = (value, index) => {
 		console.log('즐겨찾기=>' + value + ' ' + index);

@@ -48,9 +48,6 @@ export default UserPasswordCheck = props => {
 	return (
 		<KeyboardAvoidingView style={[login_style.wrp_main, {flex: 1}]} behavior={'padding'}>
 			{/* (M)StageBar	 */}
-			<TouchableWithoutFeedback onPress={() => console.log(user_data)}>
-				<View style={{backgroundColor: 'red', height: 30, width: 30, position: 'absolute', top: 0, left: 0}}></View>
-			</TouchableWithoutFeedback>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
 					backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨

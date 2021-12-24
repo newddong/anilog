@@ -88,19 +88,6 @@ export default AssignPetInfoB = props => {
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* (M)StageBar	 */}
-			<TouchableWithoutFeedback onPress={() => console.log(data)}>
-				<View
-					style={{
-						backgroundColor: 'red',
-						height: 30,
-						width: 30,
-						position: 'absolute',
-						borderWidth: 1,
-						borderColor: 'blue',
-						top: 0,
-						left: 0,
-					}}></View>
-			</TouchableWithoutFeedback>
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
 					backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨
