@@ -85,7 +85,7 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 						setTimeout(() => {
 							Modal.close();
 							navigation.goBack();
-						}, 1500);
+						}, 500);
 					},
 					err => {
 						console.log('err', err);
