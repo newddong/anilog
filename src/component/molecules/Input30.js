@@ -65,6 +65,10 @@ const Input30 = React.forwardRef((props, ref) => {
 		props.onClear();
 	};
 
+	const onFocus = ()=>{
+		Modal.closeKeboard();
+		props.onFocus&&props.onFocus();
+	}
 	const showTitle = () => {
 		return props.showTitle ? (
 			<View>
@@ -95,6 +99,7 @@ const Input30 = React.forwardRef((props, ref) => {
 						onChangeText={onChange}
 						placeholder={props.placeholder}
 						// value={input}
+						onFocus={onFocus}
 						value={props.value}
 						editable={props.editable}
 						placeholderTextColor={GRAY10}

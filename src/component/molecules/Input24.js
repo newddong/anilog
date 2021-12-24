@@ -5,7 +5,7 @@ import {Text, View, TextInput, Platform} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY10, GRAY20, GRAY30, GRAY40, GREEN, RED10} from 'Root/config/color';
 import {Cross46} from '../atom/icon';
-
+import Modal from 'Component/modal/Modal';
 /**
  * 인풋 크기 24
  * @type {React.ForwardRefRenderFunction<?,Input24Props>}
@@ -49,6 +49,7 @@ const Input24 = React.forwardRef((props, ref) => {
 	};
 
 	const onFocus = () => {
+		Modal.closeKeboard();
 		props.onFocus();
 	};
 
