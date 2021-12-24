@@ -21,11 +21,18 @@ import {phoneNumVerification} from './style_organism';
  */
 export default PhoneNumVerification = props => {
 	const [timeOut, setTimeOut] = React.useState(false);
+	const [timeLimit, setTimeLimit] = React.useState({limit:props.verifyTimeLimit});
 	const [userName, setUserName] = React.useState('');
+	// const [validMobile, setValidMobile] = React.useState(false);
+	const validMobile =React.useRef(false);
+	const validVerifyNum = React.useRef(false);
+	const [validName,setValidName] = React.useState(false);
+	// const [validVerifyNum, setValidVerifyNum] = React.useState(false);
 	const onEndTimer = () => {
 		setTimeOut(true);
 	};
 	const requestReVerification = () => {
+		setTimeOut(false);
 		props.requestReVerification();
 	};
 	const requestVerification = () => {
@@ -44,10 +51,47 @@ export default PhoneNumVerification = props => {
 	const onVerificationNumberChange = verified_num => {
 		props.onVerificationNumberChange(verified_num);
 	};
+
+	const onValidMobileNum = isValid => {
+		validMobile.current = isValid;
+		props.onValid&&props.onValid(isValid&&validVerifyNum.current&&props.asyncConfirm.isConfirm&&validName);
+	}
+	const mobileValidator = mobileNum => {
+		let isValid = props.mobileNumValidator&&props.mobileNumValidator(mobileNum); //휴대폰 번호 검증
+		return isValid;
+	}
+
+	const onValidVerifyNum = isValid=>{
+		validVerifyNum.current = isValid;
+		props.onValid&&props.onValid(isValid&&validMobile.current&&props.asyncConfirm.isConfirm&&validName);
+	}
+	const verifyNumValidator = verifyNum => {
+		let isValid = props.verifyNumValidator&&props.verifyNumValidator(verifyNum); //인증 번호 검증
+		return isValid;
+	}
+
+	const nameValidator = name =>{
+		return name.length>0;
+	}
+
+	const onValidName = isValid => {
+		setValidName(isValid);
+	}
+
+	React.useEffect(()=>{
+		let isValid =validVerifyNum.current&&validMobile.current&&props.asyncConfirm.isConfirm&&validName;
+		props.onValid&&props.onValid(isValid);
+	},[props.asyncConfirm])
+
+	React.useEffect(()=>{
+		setTimeLimit({...timeLimit,limit:props.verifyTimeLimit})
+		console.log('시간 재설정')
+	},[props.verifyTimeLimit])
+
 	return (
 		<View style={[phoneNumVerification.container]}>
 			<View style={[temp_style.input30, phoneNumVerification.input30]}>
-				<Input30 showTitle={false} width={654} placeholder={'이름 입력'} onChange={onNameInputChange} value={userName} confirm/>
+				<Input30 showTitle={false} width={654} placeholder={'이름 입력'} onChange={onNameInputChange} onValid={onValidName} validator={nameValidator} value={userName} confirm showmsg={false}/>
 			</View>
 			<View style={[temp_style.inputWithSelect, phoneNumVerification.inputWithSelect]}>
 				<InputWithSelect
@@ -57,18 +101,22 @@ export default PhoneNumVerification = props => {
 					placeholder={'휴대폰 번호 입력(-제외)'}
 					onChange={onPhoneNumberInputChange}
 					onSelectDropDown={onMobileCompanyInputChange}
+					onValid={onValidMobileNum}
+					validator={mobileValidator}
 				/>
 			</View>
 			<View style={{flexDirection: 'row'}}>
 				<View style={[phoneNumVerification.inputTimeLimit]}>
 					<InputTimeLimit
 						width={400}
-						timelimit={5}
+						timelimit={timeLimit}
 						onEndTimer={onEndTimer}
 						onChange={onVerificationNumberChange}
 						placeholder={'인증번호 입력'}
 						timeout_msg={'인증 가능한 시간이 초과되었습니다.'}
 						alert_msg={'인증번호가 일치하지 않습니다.'}
+						validator={verifyNumValidator}
+						onValid={onValidVerifyNum}
 					/>
 				</View>
 				<View style={[btn_style.btn_w226, phoneNumVerification.btn_w226]}>
@@ -90,4 +138,5 @@ PhoneNumVerification.defaultProps = {
 	onPhoneNumberInputChange: e => console.log(e),
 	onVerificationNumberChange: e => console.log(e),
 	onMobileCompanyInputChange: e => console.log(e),
+	asyncConfirm: true,
 };

@@ -26,7 +26,7 @@ import moment from 'moment';
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
-	// console.log('Anmal', data);
+	// console.log('AnimalNeedHelp: -------------- ', JSON.stringify(data));
 
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
@@ -163,7 +163,7 @@ export default AnimalNeedHelp = props => {
 								<Text style={[txt.noto24]}>등록일 : {getParsedDate()}</Text>
 								<Text style={[txt.noto24]}>
 									{/* 보호장소 : {data.protect_request_writer_id != null ? data.protect_request_writer_id.shelter_name : data.shelter_name} */}
-									보호장소 : {data.shelter_name != null ? data.shelter_name : data.protect_request_writer_id.shelter_name}
+									보호장소 : {data.shelter_name != undefined ? data.shelter_name : data.protect_request_writer_id.shelter_name}
 								</Text>
 								<Text style={[txt.noto24]}>
 									구조지역 :

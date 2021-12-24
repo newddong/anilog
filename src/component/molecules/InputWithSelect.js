@@ -25,6 +25,8 @@ import Input24 from 'Molecules/Input24';
  * @param {()=>void} props.onClear - 지우기 버튼 클릭 시 동작하는 콜백, 제목 반환환
  * @param {(item)=>void} props.onSelectDropDown - 드롭다운 항목이 선택되었을 때 동작하는 콜백, 선택된 Object 반환
  * @param {(boolean)=>void} props.onValid - 인풋의 Validator 통과 여부 / boolean 반환
+ * @param {()=>boolean} props.validator -
+ * 
  */
 const InputWithSelect = props => {
 	const [dropdownVal, setDropdownVal] = React.useState(props.items ? props.items[props.defaultIndex] : '');
@@ -43,7 +45,7 @@ const InputWithSelect = props => {
 	};
 
 	const validator = text => {
-		return text.length > 0;
+		return props.validator(text);
 	};
 
 	const onValid = isValid => {

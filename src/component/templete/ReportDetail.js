@@ -15,7 +15,6 @@ import {launchImageLibrary} from 'react-native-image-picker';
 
 export default ReportDetail = props => {
 	const navigation = useNavigation();
-
 	React.useEffect(() => {
 		LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 	}, []);
@@ -47,7 +46,7 @@ export default ReportDetail = props => {
 		console.log(' - ReportDetail -');
 		getFeedDetailById(
 			{
-				feedobject_id: '61c288f97be07611b0094b43',
+				feedobject_id: '61c569c238c5f6dee5a8b7d8',
 			},
 			data => {
 				// console.log(`ReportDetail data:${JSON.stringify(data.msg)}`);
@@ -94,8 +93,8 @@ export default ReportDetail = props => {
 	const getCommnetList = () => {
 		getCommentListByFeedId(
 			{
-				feedobject_id: '61c288f97be07611b0094b43',
-				commentobject_id: '61c2c0de7be07611b0094ffd',
+				feedobject_id: '61c569c238c5f6dee5a8b7d8',
+				// commentobject_id: '61c2c0de7be07611b0094ffd',
 				request_number: 10,
 			},
 			commentdata => {

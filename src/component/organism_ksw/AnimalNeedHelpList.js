@@ -20,7 +20,6 @@ import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
  * }} props
  */
 export default AnimalNeedHelpList = props => {
-	// console.log('props.data', props.data);
 	const debug = false;
 	const onClickLabel = (status, id, item) => {
 		// console.log(`status=>${status} id=>${id}`);
@@ -71,11 +70,11 @@ export default AnimalNeedHelpList = props => {
 	);
 };
 
-AnimalNeedHelpList.defaultProps = {
-	data: dummy_AnimalNeedHelpList,
-	onClickLabel: e => console.log(e),
-	onFavoriteTag: e => console.log('FavoriteTag ', e),
-	onHashClick: e => console.log('HashClick AnimalNeedHelpList', e),
-	checkBoxState: false,
-	borderMode: false,
-};
+// AnimalNeedHelpList.defaultProps = {
+// 	data: dummy_AnimalNeedHelpList,
+// 	onClickLabel: e => console.log(e),
+// 	onFavoriteTag: e => console.log('FavoriteTag ', e),
+// 	onHashClick: e => console.log('HashClick AnimalNeedHelpList', e),
+// 	checkBoxState: false,
+// 	borderMode: false,
+// };

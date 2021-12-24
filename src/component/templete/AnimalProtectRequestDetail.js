@@ -22,12 +22,15 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import {organism_style, profileInfo_style} from '../organism/style_organism';
 import {Bracket48} from '../atom/icon';
 import {ActivityIndicator} from 'react-native';
-
+import moment from 'moment';
+import {getCommentListByProtectId} from 'Root/api/commentapi';
+import {createComment} from 'Root/api/commentapi';
 //AnimalProtectRequestDetail 호출 경로
 // - ProtectRequestList(보호활동탭) , AnimalFromShelter(게시글보기) , Profile(보호활동)
 
 export default AnimalProtectRequestDetail = ({route}) => {
-	console.log('AnimalProtectRequestDetail', route.params);
+	// console.log('AnimalProtectRequestDetail', route.params);
+
 	const navigation = useNavigation();
 	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
 	const data = route.params ? route.params.item : dummy_AnimalNeedHelpList_various_status; // ProtectRequestObject, ShelterProtectAnimalObject 정보가 담겨 있는 상태
@@ -38,9 +41,12 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const [photo, setPhoto] = React.useState(); // PhotoSelect에서 가져온 Photo uri
 	const [replyData, setReplyData] = React.useState();
 	const [showMore, setShowMore] = React.useState(false); //더보기 클릭 State
+	const [commentDataList, setCommentDataList] = React.useState(); //comment list 정보
+	const [writeCommentData, setWriteCommentData] = React.useState(); //입력한 댓글 정보
+	const [replyPressed, setReplyPressed] = React.useState(false);
 
 	const [token, setToken] = React.useState();
-
+	console.log('AnimalPortection data', data);
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
 			res ? setToken(res) : setToken(null);
@@ -57,37 +63,111 @@ export default AnimalProtectRequestDetail = ({route}) => {
 		}, 1500);
 	}, []);
 
+	//대댓글 달기 버튼 누르면 대댓글 작성
+	React.useEffect(() => {
+		if (replyPressed == true) {
+			createComment(
+				{...writeCommentData},
+
+				callback => {
+					console.log('write commnet success', callback);
+					getCommnetList();
+				},
+				err => {
+					console.log('write comment error', err);
+				},
+			);
+			// setWriteCommentData();
+			delete writeCommentData.comment_photo_uri;
+			onDeleteImage();
+			setEditComment(!editComment);
+			setReplyPressed(false);
+		}
+	}, [replyPressed]);
+
+	//댓글 목록 불러오기
+	const getCommnetList = () => {
+		getCommentListByProtectId(
+			{
+				feedobject_id: '61c288f97be07611b0094b43',
+				commentobject_id: '61c2c0de7be07611b0094ffd',
+				request_number: 10,
+			},
+			commentdata => {
+				console.log('commentdata', commentdata.msg);
+				commentdata.msg.map((v, i) => {
+					//1depth를 올려준다.
+					commentdata.msg[i].user_address = commentdata.msg[i].comment_writer_id.user_address;
+					commentdata.msg[i].user_profile_uri = commentdata.msg[i].comment_writer_id.user_profile_uri;
+					commentdata.msg[i].user_nickname = commentdata.msg[i].comment_writer_id.user_nickname;
+					commentdata.msg[i].comment_date = moment(JSON.stringify(commentdata.msg[i].comment_date).replace(/\"/g, '')).format('YYYY.MM.DD hh:mm:ss');
+					//일반 피드글과 구분하기 위해 feed_type 속성 추가 (다른 템플릿들과 시간 표기가 달라서 실종/제보에만 feed_type을 추가하고 시간 표기시 해당 속성 존재 여부만 판단)
+					commentdata.msg[i].feed_type = 'report';
+				});
+
+				//댓글과 대댓글 작업 (부모 댓글과 자식 댓글 그룹 형성- 부모 댓글에서 부모의 childArray 속성에 자식 댓글 속성들을 추가)
+				//부모 댓글은 실제 삭제불가하며 필드로 삭제 여부 값 형성 필요. (네이버나 다음 까페에서도 대댓글 존재시 댓글은 삭제해도 댓글 자리는 존재하고 그 밑으로 대댓글 그대로 노출됨)
+				let commentArray = [];
+				let tempComment = commentdata.msg;
+				tempComment.map((v, i) => {
+					// comment_parent가 없으면 일반 댓글
+					if (v.comment_parent == undefined) {
+						commentArray.push(v);
+						//push한 JSON에 대댓글이 달릴 수 있으므로 childArray 배열 속성을 추가.
+						commentArray[commentArray.length - 1].childArray = [];
+					} else if (v.comment_parent != undefined && v.comment_parent != '') {
+						//부모 댓글값이 존재할 경우 대댓글임, 원래 댓글의 childArray 배열에 push 함.
+						for (let j = 0; j < commentArray.length; j++) {
+							if (commentArray[j]._id == v.comment_parent) {
+								commentArray[j].childArray.push(v);
+								break;
+							}
+						}
+					}
+				});
+				// console.log(`commentArray -${JSON.stringify(commentArray)}`);
+				setCommentDataList(commentArray);
+				console.log('commentArray refresh', commentArray);
+			},
+			errcallback => {
+				console.log(`Comment errcallback:${JSON.stringify(errcallback)}`);
+			},
+		);
+	};
 	//답글 최종 확인(SendIcon 클릭)
 	const onWrite = () => {
-		setReplyData({
-			...replyData,
-			comment_photo_uri: photo ? photo : null,
-			comment_like_count: 0,
-			comment_dislike_count: 0,
-			comment_report_count: 0,
-			comment_report_block: false,
-			comment_date: new Date(),
-			comment_update_date: new Date(),
-			comment_writer_id: token,
-			comment_protect_request_id: data.protect_request_id,
-			comment_protect_request_writer_id: data.protect_animal_writer_id,
-			comment_is_secure: privateComment,
-			comment_is_delete: false,
-		});
-		setPhoto();
+		// setReplyData({
+		// 	...replyData,
+		// 	comment_photo_uri: photo ? photo : null,
+		// 	comment_like_count: 0,
+		// 	comment_dislike_count: 0,
+		// 	comment_report_count: 0,
+		// 	comment_report_block: false,
+		// 	comment_date: new Date(),
+		// 	comment_update_date: new Date(),
+		// 	comment_writer_id: token,
+		// 	comment_protect_request_id: data.protect_request_id,
+		// 	comment_protect_request_writer_id: data.protect_animal_writer_id,
+		// 	comment_is_secure: privateComment,
+		// 	comment_is_delete: false,
+		// });
+		// setPhoto();
+		setWriteCommentData({...writeCommentData, comment_contents: replyText, comment_is_secure: privateComment});
+		setReplyPressed(true);
 		setPrivateComment(false);
 	};
 
 	// 부모 댓글에서 답글 쓰기 버튼 클릭 콜백함수
-	const onReplyBtnClick = comment => {
-		console.log('답글쓰기를 클릭한 댓글의 고유 _id', comment.comment_contents);
+	const onReplyBtnClick = parent => {
+		console.log('답글쓰기를 클릭한 댓글의 고유 _id', parent.comment_contents);
 		setEditComment(!editComment);
+		setWriteCommentData({...writeCommentData, commentobject_id: parent._id, feedobject_id: parent.comment_feed_id});
 	};
 
 	// 자식 답글에서 답글쓰기 버튼 클릭 콜백함수
 	const onChildReplyBtnClick = comment => {
 		console.log('답글쓰기를 클릭한 댓글의 고유 _id', comment);
-		setReplyData({...replyData, comment_parent: comment.comment_parent, comment_parent_writer_id: comment.comment_parent_writer_id});
+		// setReplyData({...replyData, comment_parent: comment.comment_parent, comment_parent_writer_id: comment.comment_parent_writer_id});
 		setEditComment(!editComment);
 	};
 
@@ -115,13 +195,14 @@ export default AnimalProtectRequestDetail = ({route}) => {
 
 	// 답글 쓰기 -> 이미지버튼 클릭 -> 이미지 가져오기 -> X마크 클릭
 	const onDeleteImage = () => {
-		setPhoto();
+		setPhoto([]);
 	};
 
 	// 답글 쓰기 -> Input value 변경 콜백함수
 	const onChangeReplyInput = text => {
 		console.log('답글쓰기 ', text);
-		setReplyData({...replyData, comment_contents: text});
+		// setReplyData({...replyData, comment_contents: text});
+		setReplyData(text);
 	};
 
 	//보호요청 더보기의 Thumnail클릭
@@ -266,7 +347,11 @@ export default AnimalProtectRequestDetail = ({route}) => {
 				<View style={[temp_style.commentList]}>
 					{/* CommentList에 필요한 데이터 - CommentObject, WriterObejct(UserObject), FeedObject(FeedObject), LikeCommentObject */}
 					{/* 위의 모든 데이터가 CommentList items에 담겨져 있어야 함 */}
-					<CommentList items={checkDataLength()} onPressReplyBtn={onReplyBtnClick} onPress_ChildComment_ReplyBtn={onChildReplyBtnClick} />
+					<CommentList
+						items={commentDataList}
+						onPressReplyBtn={onReplyBtnClick}
+						onPress_ChildComment_ReplyBtn={comment => onChildReplyBtnClick(comment)}
+					/>
 				</View>
 
 				{/* 더보기 버튼 - 기본 2개 표출되며, 더보기 누르면 모두 보이도록 함. (hjs - 추후에 5개씩 더 보이게 한다거나 등등의 개수 제어 필요) */}
@@ -318,105 +403,105 @@ export default AnimalProtectRequestDetail = ({route}) => {
 
 AnimalProtectRequestDetail.defaultProps = {};
 
-const e = {
-	item: {
-		__v: 0,
-		_id: '61c4b4ff9e313cfaf3ebd25f',
-		protect_animal_id: {
-			__v: 0,
-			_id: '61c2b5537be07611b0094ebf',
-			protect_act_applicants: [Array],
-			protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
-			protect_animal_estimate_age: '2개월',
-			protect_animal_neutralization: 'no',
-			protect_animal_photo_uri_list: [Array],
-			protect_animal_protect_request_id: '61c4b4ff9e313cfaf3ebd25f',
-			protect_animal_protector_discussion_id: [Array],
-			protect_animal_rescue_date: '2021-12-08T00:00:00.000Z',
-			protect_animal_rescue_location: '하남시 검단산 형유포라 인근',
-			protect_animal_sex: 'male',
-			protect_animal_species: '기타',
-			protect_animal_species_detail: '도마뱀',
-			protect_animal_status: 'rescue',
-			protect_animal_weight: 1,
-		},
-		protect_animal_species: '기타',
-		protect_animal_species_detail: '도마뱀',
-		protect_request_comment_count: 0,
-		protect_request_content:
-			'도마뱀은 키우기 굉장히 쉬운편에 속합니다. 냄새도 생각보다 안나는 편이고 먹는 것도 잡식성이라 여러모로 호환성이랍니다 ㅎㅎ',
-		protect_request_date: '2021-12-23T17:42:23.462Z',
-		protect_request_favorite_count: 0,
-		protect_request_hit: 0,
-		protect_request_photos_uri: ['https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640150355540_FF507DC1-8B34-429A-941C-0C4913305857.jpg'],
-		protect_request_status: 'rescue',
-		protect_request_title: '도마뱀 키워볼까 분 있으실까요',
-		protect_request_update_date: '2021-12-23T17:42:23.462Z',
-		protect_request_writer_id: {
-			__v: 0,
-			_id: '61c023d9679aa5ae46128102',
-			pet_family: [Array],
-			shelter_address: [Object],
-			shelter_delegate_contact_number: '01096450001',
-			shelter_foundation_date: '2011-12-04T00:00:00.000Z',
-			shelter_homepage: '',
-			shelter_name: '상우 보호소6',
-			user_agreement: [Object],
-			user_denied: false,
-			user_email: 'lanad01@naver.com',
-			user_follow_count: 0,
-			user_follower_count: 0,
-			user_interests: [Array],
-			user_introduction:
-				'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
-			user_is_verified_email: false,
-			user_is_verified_phone_number: false,
-			user_my_pets: [Array],
-			user_name: '상우 보호소5',
-			user_nickname: '가하즈보호소',
-			user_password: '121212',
-			user_phone_number: '01096450001',
-			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
-			user_register_date: '2021-12-20T06:34:01.773Z',
-			user_type: 'shelter',
-			user_upload_count: 0,
-		},
-	},
-	list: [
-		{
-			__v: 0,
-			_id: '61c188ba2aaa7e1134cef1e2',
-			protect_animal_id: [Object],
-			protect_animal_species: '기타',
-			protect_animal_species_detail: '치와와',
-			protect_request_comment_count: 0,
-			protect_request_content: '함께 상처를 치료할 동반자를 구합니다. ',
-			protect_request_date: '2021-12-21T07:56:42.286Z',
-			protect_request_favorite_count: 0,
-			protect_request_hit: 0,
-			protect_request_photos_uri: [Array],
-			protect_request_status: 'rescue',
-			protect_request_title: '아직 사람을 그리워하는 것 같습니다.',
-			protect_request_update_date: '2021-12-21T07:56:42.286Z',
-			protect_request_writer_id: [Object],
-		},
-		{
-			__v: 0,
-			_id: '61c4b4ff9e313cfaf3ebd25f',
-			protect_animal_id: [Object],
-			protect_animal_species: '기타',
-			protect_animal_species_detail: '도마뱀',
-			protect_request_comment_count: 0,
-			protect_request_content:
-				'도마뱀은 키우기 굉장히 쉬운편에 속합니다. 냄새도 생각보다 안나는 편이고 먹는 것도 잡식성이라 여러모로 호환성이랍니다 ㅎㅎ',
-			protect_request_date: '2021-12-23T17:42:23.462Z',
-			protect_request_favorite_count: 0,
-			protect_request_hit: 0,
-			protect_request_photos_uri: [Array],
-			protect_request_status: 'rescue',
-			protect_request_title: '도마뱀 키워볼까 분 있으실까요',
-			protect_request_update_date: '2021-12-23T17:42:23.462Z',
-			protect_request_writer_id: [Object],
-		},
-	],
-};
+// const e = {
+// 	item: {
+// 		__v: 0,
+// 		_id: '61c4b4ff9e313cfaf3ebd25f',
+// 		protect_animal_id: {
+// 			__v: 0,
+// 			_id: '61c2b5537be07611b0094ebf',
+// 			protect_act_applicants: [Array],
+// 			protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
+// 			protect_animal_estimate_age: '2개월',
+// 			protect_animal_neutralization: 'no',
+// 			protect_animal_photo_uri_list: [Array],
+// 			protect_animal_protect_request_id: '61c4b4ff9e313cfaf3ebd25f',
+// 			protect_animal_protector_discussion_id: [Array],
+// 			protect_animal_rescue_date: '2021-12-08T00:00:00.000Z',
+// 			protect_animal_rescue_location: '하남시 검단산 형유포라 인근',
+// 			protect_animal_sex: 'male',
+// 			protect_animal_species: '기타',
+// 			protect_animal_species_detail: '도마뱀',
+// 			protect_animal_status: 'rescue',
+// 			protect_animal_weight: 1,
+// 		},
+// 		protect_animal_species: '기타',
+// 		protect_animal_species_detail: '도마뱀',
+// 		protect_request_comment_count: 0,
+// 		protect_request_content:
+// 			'도마뱀은 키우기 굉장히 쉬운편에 속합니다. 냄새도 생각보다 안나는 편이고 먹는 것도 잡식성이라 여러모로 호환성이랍니다 ㅎㅎ',
+// 		protect_request_date: '2021-12-23T17:42:23.462Z',
+// 		protect_request_favorite_count: 0,
+// 		protect_request_hit: 0,
+// 		protect_request_photos_uri: ['https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640150355540_FF507DC1-8B34-429A-941C-0C4913305857.jpg'],
+// 		protect_request_status: 'rescue',
+// 		protect_request_title: '도마뱀 키워볼까 분 있으실까요',
+// 		protect_request_update_date: '2021-12-23T17:42:23.462Z',
+// 		protect_request_writer_id: {
+// 			__v: 0,
+// 			_id: '61c023d9679aa5ae46128102',
+// 			pet_family: [Array],
+// 			shelter_address: [Object],
+// 			shelter_delegate_contact_number: '01096450001',
+// 			shelter_foundation_date: '2011-12-04T00:00:00.000Z',
+// 			shelter_homepage: '',
+// 			shelter_name: '상우 보호소6',
+// 			user_agreement: [Object],
+// 			user_denied: false,
+// 			user_email: 'lanad01@naver.com',
+// 			user_follow_count: 0,
+// 			user_follower_count: 0,
+// 			user_interests: [Array],
+// 			user_introduction:
+// 				'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
+// 			user_is_verified_email: false,
+// 			user_is_verified_phone_number: false,
+// 			user_my_pets: [Array],
+// 			user_name: '상우 보호소5',
+// 			user_nickname: '가하즈보호소',
+// 			user_password: '121212',
+// 			user_phone_number: '01096450001',
+// 			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
+// 			user_register_date: '2021-12-20T06:34:01.773Z',
+// 			user_type: 'shelter',
+// 			user_upload_count: 0,
+// 		},
+// 	},
+// 	list: [
+// 		{
+// 			__v: 0,
+// 			_id: '61c188ba2aaa7e1134cef1e2',
+// 			protect_animal_id: [Object],
+// 			protect_animal_species: '기타',
+// 			protect_animal_species_detail: '치와와',
+// 			protect_request_comment_count: 0,
+// 			protect_request_content: '함께 상처를 치료할 동반자를 구합니다. ',
+// 			protect_request_date: '2021-12-21T07:56:42.286Z',
+// 			protect_request_favorite_count: 0,
+// 			protect_request_hit: 0,
+// 			protect_request_photos_uri: [Array],
+// 			protect_request_status: 'rescue',
+// 			protect_request_title: '아직 사람을 그리워하는 것 같습니다.',
+// 			protect_request_update_date: '2021-12-21T07:56:42.286Z',
+// 			protect_request_writer_id: [Object],
+// 		},
+// 		{
+// 			__v: 0,
+// 			_id: '61c4b4ff9e313cfaf3ebd25f',
+// 			protect_animal_id: [Object],
+// 			protect_animal_species: '기타',
+// 			protect_animal_species_detail: '도마뱀',
+// 			protect_request_comment_count: 0,
+// 			protect_request_content:
+// 				'도마뱀은 키우기 굉장히 쉬운편에 속합니다. 냄새도 생각보다 안나는 편이고 먹는 것도 잡식성이라 여러모로 호환성이랍니다 ㅎㅎ',
+// 			protect_request_date: '2021-12-23T17:42:23.462Z',
+// 			protect_request_favorite_count: 0,
+// 			protect_request_hit: 0,
+// 			protect_request_photos_uri: [Array],
+// 			protect_request_status: 'rescue',
+// 			protect_request_title: '도마뱀 키워볼까 분 있으실까요',
+// 			protect_request_update_date: '2021-12-23T17:42:23.462Z',
+// 			protect_request_writer_id: [Object],
+// 		},
+// 	],
+// };

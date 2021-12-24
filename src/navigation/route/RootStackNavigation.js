@@ -55,6 +55,7 @@ import NoBtnModal from 'Molecules/NoBtnModal';
 import RollingSelect from 'Molecules/RollingSelect';
 import SelectModal from 'Molecules/SelectModal';
 import FeedAvartarSelect from 'Molecules/FeedAvartarSelect';
+import KeyBoardInputBackGround from 'Molecules/KeyboardInputBackGround';
 
 import Modal from 'Component/modal/Modal';
 import Calendar from 'Root/test_sangwoo/calendar';
@@ -122,6 +123,11 @@ export default RootStackNavigation = () => {
 		popIn(<FeedAvartarSelect onSelectPet={onSelectPet} onOk={onOk} okButtonnMsg={okButtonnMsg} />);
 		!isPop && setPop(true);
 	};
+
+	Modal.closeKeboard = ()=>{
+		popIn(<KeyBoardInputBackGround />)
+		!isPop && setPop(true);
+	}
 
 	// const openCalendar = () => {
 	// 	console.log('openCale')

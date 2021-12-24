@@ -48,6 +48,7 @@ export default CheckBox = props => {
 						// 사용불가 boolean에 따른 style 적용
 						color: props.disable ? GRAY20 : GRAY10,
 						paddingLeft: 12 * DP,
+						marginTop:5*DP,
 					},
 				]}>
 				{props.value}

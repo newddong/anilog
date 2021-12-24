@@ -74,6 +74,14 @@ export default LoginTemplete = props => {
 	const moveToShelterCodeCheck = () => {
 		props.navigation.push('ShelterCodeCheck');
 	};
+
+	const findMyId = () => {
+
+	}
+	const changePassword = () => {
+
+	}
+
 	//자동로그인 박스 클릭
 	const onCheckAutoLogin = state => {
 		// console.log('자동로그인', state);
@@ -163,11 +171,11 @@ export default LoginTemplete = props => {
 					<Text style={[txt.noto24, {color: GRAY20}]}>보호소 등록</Text>
 				</TouchableOpacity>
 				<Text> | </Text>
-				<TouchableOpacity onPress={moveToShelterCodeCheck}>
+				<TouchableOpacity onPress={findMyId}>
 					<Text style={[txt.noto24, {color: GRAY20}]}> 내 계정 찾기 </Text>
 				</TouchableOpacity>
 				<Text> | </Text>
-				<TouchableOpacity onPress={moveToShelterCodeCheck}>
+				<TouchableOpacity onPress={changePassword}>
 					<Text style={[txt.noto24, {color: GRAY20}]}>비밀번호 재설정</Text>
 				</TouchableOpacity>
 			</View>
