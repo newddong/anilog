@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {GRAY10, GRAY20} from 'Root/config/color';
 import DP from 'Root/config/dp';
-import { WHITE } from 'Root/config/color';
+import {WHITE} from 'Root/config/color';
 
 export const organism_style = StyleSheet.create({
 	feedContent: {
@@ -63,13 +63,13 @@ export const organism_style = StyleSheet.create({
 		height: 48 * DP,
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		position:'absolute',
-		backgroundColor:'#fff',
-		bottom:0,
+		position: 'absolute',
+		backgroundColor: '#fff',
+		bottom: 0,
 	},
 	time_feedContent: {
 		flexDirection: 'row',
-		width: 110 * DP,
+		width: 326 * DP,
 		height: 36 * DP,
 	},
 	addMore_view_feedContent: {
@@ -241,7 +241,7 @@ export const organism_style = StyleSheet.create({
 	profileInfo_main: {
 		width: 654 * DP,
 		alignSelf: 'center',
-		backgroundColor:WHITE
+		backgroundColor: WHITE,
 		// height: 416 * DP,
 	},
 	profileImageLarge_view_profileInfo: {

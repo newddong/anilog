@@ -2,6 +2,7 @@ import React from 'react';
 import {FlatList, ScrollView, Text, View} from 'react-native';
 import ParentComment from '../organism/ParentComment';
 import DP from 'Root/config/dp';
+import {txt} from 'Root/config/textstyle';
 
 /**
  *
@@ -28,7 +29,7 @@ export default CommentList = props => {
 	};
 	return (
 		<View>
-			<Text style={{marginBottom: 10 * DP}}>댓글 {props.items.length}개 </Text>
+			<Text style={[txt.noto28, {marginBottom: 10 * DP}]}>댓글 {props.items.length}개 </Text>
 			<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
 				<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
 					<FlatList data={props.items} renderItem={({item}) => renderItem(item)} scrollEnabled={false} />

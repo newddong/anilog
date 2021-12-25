@@ -101,10 +101,10 @@ export default MissingReportList = props => {
 
 		switch (status) {
 			case 'missing':
-				navigation.push('MissingAnimalDetail');
+				navigation.push('MissingAnimalDetail', {_id: id});
 				break;
 			case 'report':
-				navigation.push('ReportDetail');
+				navigation.push('ReportDetail', {_id: id});
 				break;
 		}
 	};
