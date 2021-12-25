@@ -14,38 +14,48 @@ import {getProtectRequestList, getProtectRequestListByShelterId} from 'Root/api/
 export default ProtectRequestList = ({navigation, route}) => {
 	const [data, setData] = React.useState([]);
 	const [showAdoptable, setShowAdoptable] = React.useState(false);
+	const [refreshing, setRefreshing] = React.useState(false);
 
 	React.useEffect(() => {
-		// console.log(`ProtectRequestList:seding data -${data}`);
-		getProtectRequestList(
-			{
-				//필터 - 보호지역 (user_address.city 데이터)
-				city: '',
-				//필터 - 동물종류
-				protect_animal_species: '',
-				//입양 가능한 게시글만 보기
-				adoptable_posts: false,
-				//커서 역할을 할 보호요청 오브잭트(페이징 처리)
-				protect_request_object_id: '',
-				//보호요청게시글 요청 숫자
-				request_number: 10,
-			},
-			data => {
-				// console.log('data' + JSON.stringify(`data${data}`));
-				console.log('length', data.msg.length);
-				// console.log('보호요청 ', data.msg[0]);
-				// data.msg.forEach(e => console.log('forEach', e.protect_animal_id.protect_animal_sex, e.protect_animal_id.protect_animal_status));
-				data.msg.forEach(each => {
-					each.protect_animal_sex = each.protect_animal_id.protect_animal_sex;
-					each.protect_animal_status = each.protect_animal_id.protect_animal_status;
-				});
-				setData(data.msg);
-			},
-			errcallback => {
-				console.log(`errcallback:${JSON.stringify(errcallback)}`);
-			},
-		);
-	}, [route.params]);
+		const getList = () => {
+			console.log('getProtectRequestList:feedlist of protectRequest');
+			getProtectRequestList(
+				{
+					//필터 - 보호지역 (user_address.city 데이터)
+					city: '',
+					//필터 - 동물종류
+					protect_animal_species: '',
+					//입양 가능한 게시글만 보기
+					adoptable_posts: false,
+					//커서 역할을 할 보호요청 오브잭트(페이징 처리)
+					protect_request_object_id: '',
+					//보호요청게시글 요청 숫자
+					request_number: 10,
+				},
+				data => {
+					// console.log('data' + JSON.stringify(`data${data}`));
+					console.log('length', data.msg.length);
+					// console.log('보호요청 ', data.msg[0]);
+					// data.msg.forEach(e => console.log('forEach', e.protect_animal_id.protect_animal_sex, e.protect_animal_id.protect_animal_status));
+					data.msg.forEach(each => {
+						each.protect_animal_sex = each.protect_animal_id.protect_animal_sex;
+						each.protect_animal_status = each.protect_animal_id.protect_animal_status;
+					});
+					setData(data.msg);
+				},
+				errcallback => {
+					console.log(`errcallback:${JSON.stringify(errcallback)}`);
+				},
+			);
+		};
+		//스크린 이동시 리스트 갱신
+		const unsubscribe = navigation.addListener('focus', () => {
+			getList();
+		});
+		//Refreshing 요청시 리스트 다시 조회
+		refreshing ? getList() : false;
+		return unsubscribe;
+	}, [refreshing]);
 
 	const onClickLabel = (status, id, item) => {
 		//data에는 getProtectRequestList(어떠한 필터도 없이 모든 보호요청게시글을 출력)의 결과값이 담겨있음
