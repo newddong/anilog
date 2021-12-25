@@ -37,7 +37,7 @@ export default UserInfoSetting = ({route}) => {
 				},
 			);
 		});
-	}, []);
+	}, [route.params?.token]);
 
 	React.useEffect(() => {
 		// console.log(`data${JSON.stringify(data)}`);
@@ -54,7 +54,7 @@ export default UserInfoSetting = ({route}) => {
 		if (route.params != undefined) {
 			route.params.changedPhoto ? setData({...data, user_profile_uri: route.params.changedPhoto}) : null;
 		}
-	}, [route.params]);
+	}, [route.params?.changedPhoto]);
 
 	//소개란 수정모드
 	React.useEffect(() => {
@@ -63,7 +63,7 @@ export default UserInfoSetting = ({route}) => {
 
 	//프로필 변경 클릭
 	const onPressModofyProfile = () => {
-		navigation.push('ChangeUserProfileImage', data);
+		navigation.push('ChangeUserProfileImage', {data: data, routeInfo: route});
 	};
 
 	// 나의 반려동물 -> 반려동물 등록

@@ -17,7 +17,7 @@ import Modal from '../modal/Modal';
 export default ChangeUserProfileImage = ({route}) => {
 	// console.log('route / Profile', route.params);1
 
-	const [data, setData] = React.useState(route.params);
+	const [data, setData] = React.useState(route.params.data);
 	const [newNick, setNewNick] = React.useState('');
 	const navigation = useNavigation();
 	const [confirmed, setConfirmed] = React.useState(false);
@@ -30,22 +30,16 @@ export default ChangeUserProfileImage = ({route}) => {
 	// 	setConfirmed(true); //사진 선택시 확인버튼 누르게
 	// }, [data.user_profile_uri]);
 	// React.useEffect(() => {}, [duplicated]);
-
+	console.log('rot', route.params);
 	React.useEffect(() => {
 		if (changed) {
 			Modal.close();
-			navigation.dispatch(
-				CommonActions.reset({
-					index: 1,
-					routes: [
-						// {name: 'UserMenu'},
-						{
-							name: 'UserInfoSetting',
-							params: {changedPhoto: data.user_profile_uri},
-						},
-					],
-				}),
-			);
+			navigation.navigate({
+				name: 'UserInfoSetting',
+				key: route.params.routeInfo.key,
+				params: {changedPhoto: data.user_profile_uri},
+				merge: true,
+			});
 		}
 	}, [changed]);
 

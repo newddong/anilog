@@ -16,7 +16,6 @@ import NormalDropDown from 'Molecules/NormalDropDown';
 import {getPettypes} from 'Root/api/userapi';
 import Modal from '../modal/Modal';
 
-
 export default AssignPetInfoA = props => {
 	const navigation = useNavigation();
 	const isProtectAnimalRoute = props.route.name == 'AssignProtectAnimalType';
@@ -24,10 +23,12 @@ export default AssignPetInfoA = props => {
 
 	// const [pet_speciesArray, setSpecies] = React.useState();
 	// const [pet_speciesDog, setDosType] = React.useState();
-	const [types, setTypes] = React.useState([{
-		pet_species:'개',
-		pet_species_detail:[]
-	}]);
+	const [types, setTypes] = React.useState([
+		{
+			pet_species: '개',
+			pet_species_detail: ['믹스견', '치와와', '말티즈', '미니어처 핀셔', '파피용', '포메라니안', '푸들', '시추'],
+		},
+	]);
 
 	const [data, setData] = React.useState({
 		...props.route.params.data,
@@ -37,15 +38,15 @@ export default AssignPetInfoA = props => {
 		pet_sex: 'male',
 		pet_neutralization: 'unknown',
 	});
-	React.useEffect(()=>{
-		getPettypes({},(types)=>{
-			setTypes(types.msg);
-		},(err)=>Modal.alert(err))
-	},[])
-
 	React.useEffect(() => {
-		console.log('data / AssignPetInfoA :', data);
-	}, [data]);
+		getPettypes(
+			{},
+			types => {
+				setTypes(types.msg);
+			},
+			err => Modal.alert(err),
+		);
+	}, []);
 
 	//성별 선택
 	const onSelectGender = item => {
@@ -78,7 +79,6 @@ export default AssignPetInfoA = props => {
 		setData({...data, pet_species_detail: data.type.pet_species_detail[i]});
 	};
 
-
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* (M)StageBar	 */}
@@ -103,10 +103,10 @@ export default AssignPetInfoA = props => {
 				<View style={[temp_style.inputForm_assignPetInfo_line1]}>
 					<Text style={[temp_style.text_assignPetInfo, txt.noto28, {color: GRAY10}]}>분류</Text>
 					<View style={[temp_style.dropdownSelect_assignPetInfo_depth1, assignPetInfo_style.dropdownSelect_depth1]}>
-						<NormalDropDown menu={types.map(v=>v.pet_species)} width={204}  onSelect={onSelectSpecies} defaultIndex={0} />
+						<NormalDropDown menu={types.map(v => v.pet_species)} width={204} onSelect={onSelectSpecies} defaultIndex={0} />
 					</View>
 					<View style={[temp_style.dropdownSelect_assignPetInfo_depth2, assignPetInfo_style.dropdownSelect_depth2]}>
-						<NormalDropDown menu={data.type.pet_species_detail} width={292} height={500} onSelect={onSelectSpeciesDetail}/>
+						<NormalDropDown menu={data.type.pet_species_detail} width={292} height={500} onSelect={onSelectSpeciesDetail} />
 					</View>
 				</View>
 
