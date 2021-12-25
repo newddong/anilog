@@ -25,7 +25,6 @@ export default Profile = ({route, navigation}) => {
 	const [showOwnerState, setShowOwnerState] = React.useState(false); // 현재 로드되어 있는 profile의 userType이 Pet인 경우 반려인 계정 리스트의 출력 여부
 	const [showCompanion, setShowCompanion] = React.useState(false); // User계정이 반려동물버튼을 클릭
 	const [protectActList, setProtectActList] = React.useState([]);
-	console.log(data);
 	React.useEffect(() => {
 		if (route.params && route.params.userobject) {
 			getUserProfile(
