@@ -3691,6 +3691,8 @@ export const profile = StyleSheet.create({
 		width: 750 * DP,
 		alignItems: 'center',
 		marginTop: 20 * DP,
+		flex:1,
+		height:400*DP,
 	},
 });
 
