@@ -16,6 +16,7 @@ import PetList from '../organism_ksw/PetList';
 import ProtectedPetList from '../organism_ksw/ProtectedPetList';
 import {login_style, profile, temp_style} from './style_templete';
 import Modal from 'Component/modal/Modal';
+import userGlobalObject from 'Root/config/userGlobalObject';
 
 export default Profile = ({route, navigation}) => {
 	// console.log('profile props', props.route.params);
@@ -33,6 +34,7 @@ export default Profile = ({route, navigation}) => {
 				},
 				result => {
 					// console.log('result ', result.msg);
+					navigation.setOptions({title:result.msg.user_nickname})
 					setData(result.msg);
 				},
 				err => {
@@ -155,20 +157,20 @@ export default Profile = ({route, navigation}) => {
 	//TabSelect 하단 AccountList
 	const showTabContent = () => {
 		//테스트데이터 지워도 됨
-		let test;
-		if (data.feedList?.length > 0) {
-			console.log('th');
-			test = Array.from({length: 50}, (v, i) => data?.feedList[i % data.feedList?.length]);
-		} else {
-			console.log('tt');
-			test = Array.from({length: 50}, (v, i) => ({
-				_id: i,
-				checkBoxState: false,
-				feed_thumbnail: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640337348438_9C72445F-0B25-47C0-8D5F-BC7BD1545EFF.jpg',
-				feed_type: 'feed',
-				feed_medias: [],
-			}));
-		}
+		// let test;
+		// if (data.feedList?.length > 0) {
+		// 	console.log('th');
+		// 	test = Array.from({length: 50}, (v, i) => data?.feedList[i % data.feedList?.length]);
+		// } else {
+		// 	console.log('tt');
+		// 	test = Array.from({length: 50}, (v, i) => ({
+		// 		_id: i,
+		// 		checkBoxState: false,
+		// 		feed_thumbnail: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640337348438_9C72445F-0B25-47C0-8D5F-BC7BD1545EFF.jpg',
+		// 		feed_type: 'feed',
+		// 		feed_medias: [],
+		// 	}));
+		// }
 		const renderItem = (item, index) => {
 			if (index == 0) {
 				return (
@@ -194,7 +196,7 @@ export default Profile = ({route, navigation}) => {
 		return (
 			<View style={[profile.feedListContainer]}>
 				<FlatList
-					data={[{}, test]}//테스트 나중에 data.feedList로 변경해야함
+					data={[{}, data.feedList]}//테스트 나중에 data.feedList로 변경해야함
 					renderItem={({item, index}) => renderItem(item, index)}
 					keyExtractor={(item, index) => index + ''}
 					ListHeaderComponent={userProfileInfo()}
@@ -238,11 +240,11 @@ export default Profile = ({route, navigation}) => {
 	return (
 		<View style={[login_style.wrp_main, profile.container]}>
 			{showTabContent()}
-			<TouchableWithoutFeedback onPress={moveToFeedWrite}>
+			{userGlobalObject.userInfo&&<TouchableWithoutFeedback onPress={moveToFeedWrite}>
 				<View style={[temp_style.floatingBtn, profile.floatingBtn]}>
 					<Write94 />
 				</View>
-			</TouchableWithoutFeedback>
+			</TouchableWithoutFeedback>}
 		</View>
 	);
 };

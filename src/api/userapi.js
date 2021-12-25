@@ -312,3 +312,13 @@ export async function getUserListByNickname(params, callback, errcallback) {
 export async function removeUserFromFamily(params, callback, errcallback) {
 	apiController( '/user/removeUserFromFamily', arguments);
 }
+
+
+
+/** 펫 타입들을 불러온다.
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+*/
+export async function getPettypes(params, callback, errcallback) {
+	apiController( '/user/getPettypes', arguments);
+}

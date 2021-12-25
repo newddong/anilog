@@ -23,6 +23,7 @@ import Modal from 'Component/modal/Modal';
 import userGlobalObj from 'Root/config/userGlobalObject';
 import NormalDropDown from 'Molecules/NormalDropDown';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import {getPettypes} from 'Root/api/userapi';
 
 export default FeedWrite = props => {
 	const [showPetAccountList, setShowPetAccountList] = React.useState(false); //PetAccount 계정
@@ -274,37 +275,44 @@ export default FeedWrite = props => {
 };
 
 const MissingForm = props => {
-	const pet_speciesArray = ['개', '고양이', '기타'];
-	const pet = new Map();
-	pet.set(pet_speciesArray[0], ['말티즈', '치와와', '요크']);
-	pet.set(pet_speciesArray[1], ['페르시안', '벵골고양이', '메인쿤']);
-	pet.set(pet_speciesArray[2], ['새', '햄스터', '토끼', '펭귄', '호랑이', '사자', '도마뱀', '원숭이']);
+
+	const [types, setTypes] = React.useState([{
+		pet_species:'개',
+		pet_species_detail:[]
+	}]);
 
 	const [data, setData] = React.useState({
-		missing_animal_species: pet_speciesArray[0],
-		missing_animal_species_detail: pet.get(pet_speciesArray[0])[0],
+		missing_animal_species: types[0].pet_species,
+		missing_animal_species_detail: types[0].pet_species_detail[0],
 		missing_animal_sex: 'male',
 		missing_animal_age: '0',
 		missing_animal_lost_location: '',
 		missing_animal_features: '',
 		missing_animal_date: '',
 		missing_animal_contact: '',
+		type: types[0],
 	});
 
 	React.useEffect(() => {
 		props.onDataChange && props.onDataChange(data);
 	}, [data]);
 
+	React.useEffect(()=>{
+		getPettypes({},(types)=>{
+			setTypes(types.msg);
+		},(err)=>Modal.alert(err))
+	},[])
+
 	const onDateChange = date => {
 		setData({...data, missing_animal_date: date});
 	};
 
 	const onSelectSpecies = (v, i) => {
-		setData({...data, missing_animal_species: pet_speciesArray[i]});
+		setData({...data, missing_animal_species: types[i].pet_species, type: types[i]});
 	};
 
 	const onSelectSpeciesDetail = (v, i) => {
-		setData({...data, missing_animal_species_detail: pet.get(data.missing_animal_species)[i]});
+		setData({...data, missing_animal_species_detail: data.type.pet_species_detail[i]});
 	};
 
 	const selectSex = i => {
@@ -346,10 +354,10 @@ const MissingForm = props => {
 				</View>
 				<View style={[feedWrite.formContentContainer]}>
 					<View style={[temp_style.dropdownSelect, feedWrite.dropdownSelect]}>
-						<NormalDropDown items={pet_kind} menu={pet_speciesArray} width={292} onSelect={onSelectSpecies} defaultIndex={0} />
+						<NormalDropDown items={pet_kind} menu={types.map(v=>v.pet_species)} width={292} onSelect={onSelectSpecies} defaultIndex={0} />
 					</View>
 					<View style={[temp_style.dropdownSelect, feedWrite.dropdownSelect]}>
-						<NormalDropDown items={pet_kind} menu={pet.get(data.missing_animal_species)} width={292} onSelect={onSelectSpeciesDetail} />
+						<NormalDropDown items={pet_kind} menu={data.type.pet_species_detail} width={292} height={500} onSelect={onSelectSpeciesDetail}/>
 					</View>
 				</View>
 			</View>
@@ -423,18 +431,19 @@ const ReportForm = props => {
 	const route = useRoute();
 	const [addr, setAddr] = React.useState('');
 	const [detailAddr, setDetailAddr] = React.useState('');
-	const pet_speciesArray = ['개', '고양이', '기타'];
-	const pet = new Map();
-	pet.set(pet_speciesArray[0], ['말티즈', '치와와', '요크']);
-	pet.set(pet_speciesArray[1], ['페르시안', '벵골고양이', '메인쿤']);
-	pet.set(pet_speciesArray[2], ['새', '햄스터', '토끼', '펭귄', '호랑이', '사자', '도마뱀', '원숭이']);
+	const [types, setTypes] = React.useState([{
+		pet_species:'개',
+		pet_species_detail:[]
+	}]);
+
 
 	const [data, setData] = React.useState({
 		report_witness_date: '2021.01.01',
 		report_witness_location: '',
 		report_animal_features: '',
-		report_animal_species: pet_speciesArray[0],
-		report_animal_species_detail: pet.get(pet_speciesArray[0])[0],
+		report_animal_species: types[0].pet_species,
+		report_animal_species_detail: types[0].pet_species_detail[0],
+		type: types[0],
 	});
 
 	React.useEffect(() => {
@@ -452,6 +461,11 @@ const ReportForm = props => {
 		setData({...data, report_witness_location: addr + ' ' + detailAddr});
 	}, [addr, detailAddr]);
 
+	React.useEffect(()=>{
+		getPettypes({},(types)=>{
+			setTypes(types.msg);
+		},(err)=>Modal.alert(err))
+	},[])
 	const onChangeAddr = addr => {
 		setAddr(addr);
 	};
@@ -467,11 +481,11 @@ const ReportForm = props => {
 	};
 
 	const onSelectSpecies = (v, i) => {
-		setData({...data, report_animal_species: pet_speciesArray[i]});
+		setData({...data, report_animal_species: types[i].pet_species, type: types[i]});
 	};
 
 	const onSelectSpeciesDetail = (v, i) => {
-		setData({...data, report_animal_species_detail: pet.get(data.report_animal_species)[i]});
+		setData({...data, report_animal_species_detail: data.type.pet_species_detail[i]});
 	};
 	const searchAddress = () => {
 		navigation.navigate('AddressSearch', {from: route.name, fromkey: route.key});
@@ -486,10 +500,10 @@ const ReportForm = props => {
 						</View>
 						<View style={[feedWrite.formContentContainer]}>
 							<View style={[temp_style.dropdownSelect, feedWrite.dropdownSelect]}>
-								<NormalDropDown items={pet_kind} menu={pet_speciesArray} width={292} onSelect={onSelectSpecies} defaultIndex={0} />
+								<NormalDropDown items={pet_kind} menu={types.map(v=>v.pet_species)} width={292} onSelect={onSelectSpecies} defaultIndex={0} />
 							</View>
 							<View style={[temp_style.dropdownSelect, feedWrite.dropdownSelect]}>
-								<NormalDropDown items={pet_kind} menu={pet.get(data.report_animal_species)} width={292} onSelect={onSelectSpeciesDetail} />
+								<NormalDropDown items={pet_kind} menu={data.type.pet_species_detail} width={292} height={500} onSelect={onSelectSpeciesDetail} />
 							</View>
 						</View>
 					</View>
