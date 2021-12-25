@@ -194,7 +194,7 @@ export default Profile = ({route, navigation}) => {
 		return (
 			<View style={[profile.feedListContainer]}>
 				<FlatList
-					data={[{}, test]}//테스트 나중에 data.feedList로 변경해야함
+					data={[{}, data.feedList]}//테스트 나중에 data.feedList로 변경해야함
 					renderItem={({item, index}) => renderItem(item, index)}
 					keyExtractor={(item, index) => index + ''}
 					ListHeaderComponent={userProfileInfo()}
