@@ -4,7 +4,6 @@ import ParentComment from '../organism/ParentComment';
 import DP from 'Root/config/dp';
 import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
-import {GRAY10} from 'Root/config/color';
 
 /**
  *
@@ -20,8 +19,7 @@ export default CommentList = props => {
 		props.onPress_ChildComment_ReplyBtn(comment);
 	};
 
-	const renderItem = ({item,index}) => {
-		
+	const renderItem = ({item, index}) => {
 		return (
 			<ParentComment
 				parentComment={item}

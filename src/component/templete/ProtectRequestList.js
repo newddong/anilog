@@ -25,17 +25,20 @@ export default ProtectRequestList = ({navigation, route}) => {
 	});
 
 	React.useEffect(() => {
-		// const getList = () => {
 		console.log('getProtectRequestList:feedlist of protectRequest');
 		getProtectRequestList(
 			filterData,
 			data => {
+				// console.log('data' + JSON.stringify(`data${data}`));
 				console.log('length', data.msg.length);
+				// console.log('보호요청 ', data.msg[0]);
+				// data.msg.forEach(e => console.log('forEach', e.protect_animal_id.protect_animal_sex, e.protect_animal_id.protect_animal_status));
 				let filtered = [...data.msg];
 				data.msg.forEach(each => {
 					each.protect_animal_sex = each.protect_animal_id.protect_animal_sex;
 					each.protect_animal_status = each.protect_animal_id.protect_animal_status;
 				});
+				// setData(data.msg);
 				//아직 입양 완료된 목록을 제외하고 조회하는 API가 없음. 수동 처리
 				if (filterData.adoptable_posts) {
 					filtered = data.msg.filter(e => e.protect_request_status != 'complete');
