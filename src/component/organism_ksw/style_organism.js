@@ -750,6 +750,7 @@ export const protectedPetList = StyleSheet.create({
 	container: {
 		marginTop: 20 * DP,
 		justifyContent: 'center',
+		height:252*DP,
 	},
 	itemContainer: {
 		width: 184 * DP,

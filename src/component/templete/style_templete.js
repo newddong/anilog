@@ -334,7 +334,7 @@ export const temp_style = StyleSheet.create({
 	},
 	tabSelectFilled_Type2: {
 		width: 750 * DP,
-		height: 78 * DP,
+		// height: 78 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#88BA88',

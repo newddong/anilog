@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {View, TouchableWithoutFeedback, ScrollView, Text} from 'react-native';
+import {View, TouchableWithoutFeedback, ScrollView, Text, FlatList} from 'react-native';
 import {getProtectRequestListByShelterId, getShelterProtectAnimalList} from 'Root/api/shelterapi';
 import {getUserInfoById, getUserProfile} from 'Root/api/userapi';
 import DP from 'Root/config/dp';
@@ -153,17 +153,69 @@ export default Profile = ({route, navigation}) => {
 
 	//TabSelect 하단 AccountList
 	const showTabContent = () => {
-		if (tabMenuSelected == 0) {
-			let test
-			if(data.feedList?.length>0){
-				console.log('th')
-				test = Array.from({length: 50}, (v, i) => data?.feedList[i % (data.feedList?.length)]);
-			}else{
-				console.log('tt')
-				test = Array.from({length:50},(v,i)=>({_id:i, checkBoxState: false,feed_thumbnail:'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640337348438_9C72445F-0B25-47C0-8D5F-BC7BD1545EFF.jpg',feed_type:'feed',feed_medias:[]}))
+		if (data.user_type == NORMAL||true) {
+			let test;
+			if (data.feedList?.length > 0) {
+				console.log('th');
+				test = Array.from({length: 50}, (v, i) => data?.feedList[i % data.feedList?.length]);
+			} else {
+				console.log('tt');
+				test = Array.from({length: 50}, (v, i) => ({
+					_id: i,
+					checkBoxState: false,
+					feed_thumbnail: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640337348438_9C72445F-0B25-47C0-8D5F-BC7BD1545EFF.jpg',
+					feed_type: 'feed',
+					feed_medias: [],
+				}));
 			}
+			const renderItem = (item, index) => {
+				// console.log('item index', index);
+				// FavoriteFeeds에서 SelectStat로부터 받은 받은 선택모드 값을 selectMode 변수로 넘겨줌. FeedThumail에서 투명도 조절과 체크 사항을 표기하기 위함
+				if (index == 0) {
+					return (
+						<View style={[temp_style.tabSelectFilled_Type2]}>
+							{getTabSelectList()}
+							{tabMenuSelected == 2 && <ProtectedPetList data={data._id} onClickLabel={item => navigation.push('UserProfile', item)} />}
+						</View>
+					);
+				}
+				return (
+					<FeedThumbnailList items={item} onClickThumnail={onClick_Thumbnail_FeedTab} />
+				);
+			};
 
-		} 
+			return (
+				<View style={[profile.feedListContainer]}>
+					<FlatList
+						data={[{}, test]}
+						renderItem={({item, index}) => renderItem(item, index)}
+						keyExtractor={(item, index) => index + ''}
+						ListHeaderComponent={userProfileInfo()}
+						stickyHeaderIndices={[1]}
+						nestedScrollEnabled
+						showsVerticalScrollIndicator={false}
+					/>
+
+					{/* <FeedThumbnailList
+						items={test}
+						onClickThumnail={onClick_Thumbnail_FeedTab}
+						ListHeaderComponent={userProfileInfo()}
+						tabMenu={
+							<View style={[temp_style.tabSelectFilled_Type2]}>
+								{getTabSelectList()}
+								{tabMenuSelected == 2 && <ProtectedPetList data={data._id} onClickLabel={item => navigation.push('UserProfile', item)} />}
+							</View>
+						}
+					/> */}
+				</View>
+			);
+		} else if (data.user_type == SHELTER) {
+			return (
+				<View style={[profile.animalNeedHelpList]}>
+					<AnimalNeedHelpList data={protectActList} onClickLabel={onClickProtectAnimal} />
+				</View>
+			);
+		}
 		// else if (tabMenuSelected == 1) {
 		// 	//태그
 		// 	return (
@@ -171,7 +223,7 @@ export default Profile = ({route, navigation}) => {
 		// 			<FeedThumbnailList items={data.feedList} onClickThumnail={onClick_Thumbnail_FeedTab} />
 		// 		</View>
 		// 	);
-		// } 
+		// }
 		// else if (tabMenuSelected == 2) {
 		// 	//보호활동
 		// 	if (data.user_type == NORMAL) {
@@ -190,18 +242,6 @@ export default Profile = ({route, navigation}) => {
 		// 		);
 		// 	}
 		// }
-		return (
-			<View style={[profile.feedListContainer]}>
-				<FeedThumbnailList
-					items={data.feedList}
-					onClickThumnail={onClick_Thumbnail_FeedTab}
-					ListHeaderComponent={
-						userProfileInfo()
-					}
-					tabMenu={<View style={[temp_style.tabSelectFilled_Type2]}>{getTabSelectList()}</View>}
-				/>
-			</View>
-		);
 	};
 
 	//userType이 PET이며 Tab의 반려인계정이 Open으로 설정이 되어 있는 경우
@@ -234,21 +274,7 @@ export default Profile = ({route, navigation}) => {
 
 	return (
 		<View style={[login_style.wrp_main, profile.container]}>
-			{/* <ScrollView style={{flex: 1}} stickyHeaderIndices={0}> */}
-			{/* {userProfileInfo()} */}
-			{/* FlatList안에 마우스가 갇히는 현상 해결 */}
-			{/* <View style={{flex: 1, width: '100%'}}>{showTabContent()}</View> */}
-			<View style={[profile.feedListContainer]}>
-				<FeedThumbnailList
-					items={data.feedList}
-					onClickThumnail={onClick_Thumbnail_FeedTab}
-					ListHeaderComponent={
-						userProfileInfo()
-					}
-					tabMenu={<View style={[temp_style.tabSelectFilled_Type2]}>{getTabSelectList()}</View>}
-				/>
-			</View>
-			{/* </ScrollView> */}
+			{showTabContent()}
 			<TouchableWithoutFeedback onPress={moveToFeedWrite}>
 				<View style={[temp_style.floatingBtn, profile.floatingBtn]}>
 					<Write94 />
