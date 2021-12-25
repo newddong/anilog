@@ -12,7 +12,8 @@ import Modal from '../modal/Modal';
  * @param {string} props.defaultDate - ex) 2021.05.01  처음 설정되어 있는 날짜
  * @param {string} props.title - 제목
  * @param {boolean} props.disable - 버튼 활성화 여부
- * @param {number} props.width - 전체 DatePicker의 너비
+ * @param {number} props.width - 전체 DatePicker의 너비 (default = 520 *DP )
+ * @param {boolean} props.past - 이전날짜 선택 불가 모드 (default = true)
  * @param {(title:string)=>void} props.onDateChange - 달력에서 날짜가 선택되었을 때 실행되는 콜백. 날짜정보를 반환함
  */
 const DatePicker = props => {

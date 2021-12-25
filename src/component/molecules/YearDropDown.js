@@ -25,11 +25,9 @@ const YearDropDown = props => {
 		dropdown.current.button.current.press();
 	};
 	React.useEffect(() => {
-		console.log('props', props.index);
-		console.log('달력 선택 년도 - 최초 년도 ', props.index - props.menu[props.menu.length - 1]);
-		// props.index > props.menu[props.menu.length - 1] ?
 		setValue(props.menu[props.menu.length - 1 - (props.index - props.menu[props.menu.length - 1])]);
 	}, [props.index]);
+
 	const dropdown = React.useRef();
 
 	return (
