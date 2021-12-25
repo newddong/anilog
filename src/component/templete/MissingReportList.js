@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, View, TouchableWithoutFeedback} from 'react-native';
+import {ScrollView, Text, View, TouchableWithoutFeedback, ActivityIndicator} from 'react-native';
 import {feedWrite, login_style, missingReportList, searchProtectRequest, temp_style, temp_txt} from './style_templete';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import {WHITE} from 'Root/config/color';
@@ -16,6 +16,7 @@ export default MissingReportList = props => {
 	const [showUrgentBtns, setShowUrgentBtns] = React.useState(true); //긴급버튼목록
 	const [showActionButton, setShowActionButton] = React.useState(false); // 긴급게시(하얀버전) 클릭 시 - 실종/제보 버튼 출력 Boolean
 	const [refreshing, setRefreshing] = React.useState(false);
+	const [loading, setLoading] = React.useState(true); //로딩상태
 
 	const [data, setData] = React.useState({
 		filterValue: '',
@@ -48,6 +49,9 @@ export default MissingReportList = props => {
 		//스크린 이동시 리스트 갱신
 		const unsubscribe = navigation.addListener('focus', () => {
 			getList();
+			setTimeout(() => {
+				setLoading(false);
+			}, 800);
 		});
 		//Refreshing 요청시 리스트 다시 조회
 		refreshing ? getList() : false;
@@ -107,6 +111,14 @@ export default MissingReportList = props => {
 	const onSelectKind = kind => {
 		setData({...data, kindFilter: kind});
 	};
+
+	if (loading) {
+		return (
+			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
+				<ActivityIndicator size={'large'}></ActivityIndicator>
+			</View>
+		);
+	}
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>

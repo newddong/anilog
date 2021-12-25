@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, Text, View, ActivityIndicator} from 'react-native';
 import {login_style, protectRequestList, searchProtectRequest, temp_style} from './style_templete';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import {btn_w306} from '../atom/btn/btn_style';
@@ -16,6 +16,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 	const [showAdoptable, setShowAdoptable] = React.useState(false);
 	const [filterData, setFilterData] = React.useState({});
 	const [refreshing, setRefreshing] = React.useState(false);
+	const [loading, setLoading] = React.useState(true); //로딩상태
 
 	React.useEffect(() => {
 		const getList = () => {
@@ -52,6 +53,9 @@ export default ProtectRequestList = ({navigation, route}) => {
 		//스크린 이동시 리스트 갱신
 		const unsubscribe = navigation.addListener('focus', () => {
 			getList();
+			setTimeout(() => {
+				setLoading(false);
+			}, 800);
 		});
 		//Refreshing 요청시 리스트 다시 조회
 		refreshing ? getList() : false;
@@ -100,6 +104,15 @@ export default ProtectRequestList = ({navigation, route}) => {
 	const onSelectKind = kind => {
 		setData({...data, protect_animal_species: kind});
 	};
+
+	if (loading) {
+		return (
+			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
+				<ActivityIndicator size={'large'}></ActivityIndicator>
+			</View>
+		);
+	}
+
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<ScrollView style={{flex: 1}}>
