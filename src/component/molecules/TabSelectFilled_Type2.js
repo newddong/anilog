@@ -44,7 +44,7 @@ const TabSelectFilled_Type2 = props => {
 		);
 	};
 
-	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />;
+	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} inndica showsHorizontalScrollIndicator={false}/>;
 };
 
 TabSelectFilled_Type2.defaultProps = {

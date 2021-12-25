@@ -334,7 +334,7 @@ export const temp_style = StyleSheet.create({
 	},
 	tabSelectFilled_Type2: {
 		width: 750 * DP,
-		height: 78 * DP,
+		// height: 78 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#88BA88',
@@ -3670,8 +3670,9 @@ export const feedWrite = StyleSheet.create({
 export const profile = StyleSheet.create({
 	container: {flex: 1},
 	profileInfo: {
-		width: 750 * DP,
-		marginVertical: 30 * DP,
+		width: '100%',
+		backgroundColor:WHITE,
+		// marginVertical: 30 * DP,
 		// height: 416 * DP,
 	},
 	feedListContainer: {
@@ -3690,6 +3691,8 @@ export const profile = StyleSheet.create({
 		width: 750 * DP,
 		alignItems: 'center',
 		marginTop: 20 * DP,
+		flex:1,
+		height:400*DP,
 	},
 });
 
