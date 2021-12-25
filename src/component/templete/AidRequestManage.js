@@ -45,10 +45,23 @@ export default AidRequestManage = ({route, navigation}) => {
 				{},
 				result => {
 					// console.log('result / getAnimalListWithApplicant / ProtectApplyList', result.msg[0]);
-					let merged = result.msg;
-					merged.map((v, i) => {
-						v.shelter_name = route.params.shelter_name;
+					let merged = [];
+					result.msg.map((data, i) => {
+						console.log('v', i, data.protect_act_applicants);
+						data.protect_act_applicants.map((v, i) => {
+							console.log('v', i, v.protect_act_status);
+							if (v.protect_act_status == 'wait') {
+								merged.push(data);
+								data.shelter_name = route.params.shelter_name;
+							}
+						});
+						// if (v.protect_act_applicants.protect_act_status == 'wait') {
+						// 	v.shelter_name = route.params.shelter_name;
+						// 	merged.push(v);
+						// }
 					});
+
+					// console.log('merged', JSON.stringify(merged));
 					setData(merged);
 					setTimeout(() => {
 						setLoading(false);
