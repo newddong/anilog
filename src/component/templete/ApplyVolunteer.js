@@ -181,7 +181,7 @@ export default ApplyVolunteer = ({route, navigation}) => {
 								<Text style={[txt.noto24b, {color: GRAY10}]}>봉사활동 희망 날짜</Text>
 							</View>
 						</View>
-						<DatePicker width={654} onDateChange={onDateChange} />
+						<DatePicker width={654} onDateChange={onDateChange} past={false} />
 						{/* 봉사활동 희망날짜 FlatList */}
 						<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
 							<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
@@ -204,7 +204,7 @@ export default ApplyVolunteer = ({route, navigation}) => {
 						{/* 봉활참여인원 FlatList 여기 */}
 						<View style={[applyVolunteer.participants_step2]}>
 							<View style={[applyVolunteer.accountList]}>
-								<AccountList items={data.volunteer_accompany} width={446} onDelete={onDeleteAccount} />
+								<AccountList items={data.volunteer_accompany} width={446} onDelete={onDeleteAccount} makeBorderMode={false} />
 							</View>
 							<View style={[applyVolunteer.addParticipantBtn]}>
 								<Add_Volunteer onPress={addVolunteer} />
@@ -231,7 +231,11 @@ export default ApplyVolunteer = ({route, navigation}) => {
 						<AniButton
 							onPress={onRegister}
 							btnTitle={'신청'}
-							disable={data.volunteer_accompany.length > 0 && data.volunteer_delegate_contact.length > 0 ? false : true}
+							disable={
+								data.volunteer_accompany.length > 0 && data.volunteer_delegate_contact.length > 0 && data.volunteer_wish_date_list.length > 0
+									? false
+									: true
+							}
 						/>
 					</View>
 				</ScrollView>
@@ -241,39 +245,3 @@ export default ApplyVolunteer = ({route, navigation}) => {
 };
 
 ApplyVolunteer.defaultProps = {};
-
-const te = {
-	addedVolunteer: {
-		__v: 0,
-		_id: '61bfff1395d6442789e48eea',
-		pet_family: [],
-		user_address: {city: '서울시', district: '중구', neighbor: '신림동'},
-		user_agreement: {
-			is_donation_info: true,
-			is_location_service_info: true,
-			is_marketting_info: true,
-			is_over_fourteen: true,
-			is_personal_info: true,
-			is_service: true,
-		},
-		user_denied: false,
-		user_follow_count: 0,
-		user_follower_count: 0,
-		user_interests: [],
-		user_introduction: '',
-		user_is_verified_email: false,
-		user_is_verified_phone_number: true,
-		user_mobile_company: 'LG U+',
-		user_my_pets: [],
-		user_name: '십이월이십일',
-		user_nickname: '십이월이십일',
-		user_password: '1111111g',
-		user_phone_number: '0105555',
-		user_profile_uri:
-			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639972627670_rn_image_picker_lib_temp_891e66d5-d00f-49a0-a06c-8b6912e40405.jpg',
-		user_register_date: '2021-12-20T03:57:07.874Z',
-		user_type: 'user',
-		user_upload_count: 0,
-	},
-	token: '61c023d9679aa5ae46128102',
-};

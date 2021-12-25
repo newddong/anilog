@@ -76,7 +76,7 @@ const YearDropDownSelect = React.forwardRef(
 				<View
 					style={{
 						height: 80 * DP, //border가 있으므로 80DP로 수정
-						width: 120 * DP,
+						width: 200 * DP,
 						bottom: 0,
 						marginLeft: 30 * DP,
 						flexDirection: 'row',

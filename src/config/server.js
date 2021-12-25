@@ -7,9 +7,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // export const serveruri = 'http://59.6.205.186:3000';
 export const serveruri = 'https://api.zoodoongi.net';
 
-export const cookieReset = async (token,path) => {
-	console.log('토큰',token,)
-	console.log('경로',path)
+export const cookieReset = async (token, path) => {
+	// console.log('토큰',token,)
+	// console.log('경로',path)
 	await CookieManager.clearAll();
 	await CookieManager.set(serveruri, {
 		name: 'connect.sid',

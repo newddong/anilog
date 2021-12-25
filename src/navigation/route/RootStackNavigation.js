@@ -104,8 +104,8 @@ export default RootStackNavigation = () => {
 		!isPop && setPop(true);
 	};
 
-	Modal.popCalendar = (visible, onOff, date) => {
-		popIn(<Calendar modalOn={visible} modalOff={onOff} selectDate={date} />);
+	Modal.popCalendar = (visible, onOff, date, past) => {
+		popIn(<Calendar modalOn={visible} modalOff={onOff} selectDate={date} past={past} />);
 		!isPop && setPop(true);
 	};
 
@@ -124,10 +124,10 @@ export default RootStackNavigation = () => {
 		!isPop && setPop(true);
 	};
 
-	Modal.closeKeboard = ()=>{
-		popIn(<KeyBoardInputBackGround />)
+	Modal.closeKeboard = () => {
+		popIn(<KeyBoardInputBackGround />);
 		!isPop && setPop(true);
-	}
+	};
 
 	// const openCalendar = () => {
 	// 	console.log('openCale')
