@@ -3,6 +3,7 @@ import {FlatList, ScrollView, Text, View} from 'react-native';
 import ParentComment from '../organism/ParentComment';
 import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
+import {GRAY10} from 'Root/config/color';
 
 /**
  *
