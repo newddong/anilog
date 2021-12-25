@@ -170,10 +170,10 @@ export const mobile_carrier = ['SKT텔레콤', 'LG U+', 'KT', '알뜰'];
 export const EMAIL_DOMAIN = ['naver.com', 'daum.net', 'gmail.com', 'hanmail.net', 'kakao.com', 'nate.com', 'outlook.com', 'paran.com', 'yahoo.com'];
 
 //반려동물 종류
-export const PET_KIND = ['동물종류', '개', '고양이', '새', '여우', '거북이', '햄스터'];
+export const PET_KIND = ['동물종류', '개', '고양이', '새', '여우', '거북이', '햄스터', '기타'];
 
 //보호 지역
-export const PET_PROTECT_LOCATION = ['서울', '부산', '인천', '대구', '대전', '광주', '수원', '울산', '고양'];
+export const PET_PROTECT_LOCATION = ['지역', '서울', '부산', '인천', '대구', '대전', '광주', '수원', '울산', '고양', '강원'];
 
 //반려동물 상태( 임보, 반려, 입양)
 export const PET_STATUS_PROTECT = 'protect';

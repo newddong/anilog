@@ -26,9 +26,10 @@ import moment from 'moment';
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
-	// console.log('AnimalNeedHelp: -------------- ', JSON.stringify(data.protect_request_photo_thumbnail));
+	// console.log('AnimalNeedHelp: -------------- ', JSON.stringify(data.protect_request_status));
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
+	const [thumbnailData, setThumbnailData] = React.useState({});
 
 	// 불러오는 db 필드명이 다르기에 일치시키기 위한 함수
 	const checkthumbnailData = () => {
@@ -54,7 +55,7 @@ export default AnimalNeedHelp = props => {
 		// 보호 동물의 데이터 일 경우 (세 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
 		if (data.hasOwnProperty('protect_animal_sex') && data.hasOwnProperty('protect_animal_status')) {
 			resultJSON.gender = data.protect_animal_sex;
-			resultJSON.status = data.protect_animal_status;
+			resultJSON.status = data.protect_request_status;
 		} else if (data.hasOwnProperty('feed_type')) {
 			// 실종/제보는 feed_type에서 동물 상태 얻어옴
 			resultJSON.status = data.feed_type;
@@ -65,22 +66,16 @@ export default AnimalNeedHelp = props => {
 			}
 		} else {
 			resultJSON.gender = 'female';
-			resultJSON.status = 'rescue';
+			resultJSON.status = data.protect_request_status;
 			// 기타 다른 경우의 수가 있는지 추후 확인
 		}
-		return resultJSON;
+		// console.log('data.props.protect', data.protect_act_status);
+		// resultJSON.status = data.protect_act_status;
+		setThumbnailData(resultJSON);
 	};
 
-	const [thumbnailData, setThumbnailData] = React.useState(
-		checkthumbnailData,
-		// img_uri: data.protect_animal_photos[0],
-		// gender: data.protect_animal_sex,
-		// status: data.protect_animal_status,
-	);
-
 	React.useEffect(() => {
-		// setThumbnailData({...thumbnailData, img_uri: data.protect_animal_photos[0]}); //이 부분이 있어야 사진 받아오는 곳에서 비동기처리가 가능해짐.
-		setThumbnailData({...thumbnailData, checkthumbnailData}); //이 부분이 있어야 사진 받아오는 곳에서 비동기처리가 가능해짐.
+		checkthumbnailData();
 	}, [props.data]);
 
 	const checkSelected = () => {
