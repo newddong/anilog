@@ -129,6 +129,10 @@ export default RootStackNavigation = () => {
 		!isPop && setPop(true);
 	};
 
+	Modal.alert = (msg)=>{
+		popIn(<OneBtnModal popUpMsg={msg} onOk={Modal.close} okMsg={'확인'} />);
+		!isPop && setPop(true);
+	}
 	// const openCalendar = () => {
 	// 	console.log('openCale')
 	// 	Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date))

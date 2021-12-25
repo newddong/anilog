@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text, View, TouchableWithoutFeedback, FlatList, ScrollView, RefreshControl} from 'react-native';
 import {WHITE} from 'Root/config/color';
-import {dummy_FeedObject} from 'Root/config/dummyDate_json';
 import {Write94} from '../atom/icon';
 import Feed from '../organism/Feed';
 import {feedList, login_style, missingAnimalDetail, temp_style} from './style_templete';
@@ -9,6 +8,7 @@ import {getSuggestFeedList} from 'Root/api/feedapi';
 import Modal from 'Component/modal/Modal';
 import OneBtnModal from '../molecules/OneBtnModal';
 import DP from 'Root/config/dp';
+import userGlobalObject from 'Root/config/userGlobalObject';
 
 export default FeedList = ({route, navigation}) => {
 	const [feedList, setFeedList] = React.useState([]);
@@ -37,7 +37,7 @@ export default FeedList = ({route, navigation}) => {
 	}, [refreshing]);
 
 	const moveToFeedWrite = () => {
-		navigation.push('FeedWrite', {type: 'Feed'});
+		userGlobalObject.userInfo&&navigation.push('FeedWrite',{type:'Feed'});
 	};
 
 	const renderItem = item => {
@@ -62,9 +62,9 @@ export default FeedList = ({route, navigation}) => {
 				keyExtractor={(item, index) => index}
 				refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
 			/>
-			<View style={{position: 'absolute', bottom: 40 * DP, right: 30 * DP}}>
+			{userGlobalObject.userInfo&&<View style={{position:'absolute',bottom:40*DP,right:30*DP}}>
 				<Write94 onPress={moveToFeedWrite} />
-			</View>
+			</View>}
 		</View>
 	);
 };

@@ -13,26 +13,35 @@ import TabSelectFilled_Type1 from '../molecules/TabSelectFilled_Type1';
 import {FEMALE, MALE, NO, UNAWARENESS, YES} from 'Root/i18n/msg';
 import {stagebar_style} from '../organism_ksw/style_organism';
 import NormalDropDown from 'Molecules/NormalDropDown';
+import {getPettypes} from 'Root/api/userapi';
+import Modal from '../modal/Modal';
+
 
 export default AssignPetInfoA = props => {
 	const navigation = useNavigation();
 	const isProtectAnimalRoute = props.route.name == 'AssignProtectAnimalType';
 	// console.log(isProtectAnimalRoute)
 
-	const pet_speciesArray = ['개', '고양이', '기타'];
-	const pet_speciesDog = ['말티즈', '치와와', '요크'];
-	const pet_speciesCat = ['페르시안', '벵골고양이', '메인쿤'];
-	const pet_speciesOthers = ['새', '햄스터', '토끼', '펭귄', '호랑이', '사자', '도마뱀', '원숭이'];
-
-	const [speciesDetail, setSpeciesDetail] = React.useState(pet_speciesDog);
+	// const [pet_speciesArray, setSpecies] = React.useState();
+	// const [pet_speciesDog, setDosType] = React.useState();
+	const [types, setTypes] = React.useState([{
+		pet_species:'개',
+		pet_species_detail:[]
+	}]);
 
 	const [data, setData] = React.useState({
 		...props.route.params.data,
-		pet_species: pet_speciesArray[0],
-		pet_species_detail: pet_speciesDog[0],
+		pet_species: types[0].pet_species,
+		pet_species_detail: types[0].pet_species_detail[0],
+		type: types[0],
 		pet_sex: 'male',
 		pet_neutralization: 'unknown',
 	});
+	React.useEffect(()=>{
+		getPettypes({},(types)=>{
+			setTypes(types.msg);
+		},(err)=>Modal.alert(err))
+	},[])
 
 	React.useEffect(() => {
 		console.log('data / AssignPetInfoA :', data);
@@ -61,31 +70,14 @@ export default AssignPetInfoA = props => {
 
 	const onSelectSpecies = (v, i) => {
 		console.log('v=>' + v + ' i=>' + i);
-		setData({...data, pet_species: v});
-		switch (i) {
-			//개
-			case 0:
-				setSpeciesDetail(pet_speciesDog);
-				break;
-			//개
-			case 1:
-				setSpeciesDetail(pet_speciesCat);
-				break;
-			//개
-			case 2:
-				setSpeciesDetail(pet_speciesOthers);
-				break;
-		}
+		setData({...data, pet_species: types[i].pet_species, type: types[i]});
 	};
 
 	const onSelectSpeciesDetail = (v, i) => {
 		console.log('v=>' + v + ' i=>' + i);
-		setData({...data, pet_species_detail: v});
+		setData({...data, pet_species_detail: data.type.pet_species_detail[i]});
 	};
 
-	React.useEffect(() => {
-		console.log('data=>>>', speciesDetail);
-	}, [speciesDetail]);
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
@@ -111,10 +103,10 @@ export default AssignPetInfoA = props => {
 				<View style={[temp_style.inputForm_assignPetInfo_line1]}>
 					<Text style={[temp_style.text_assignPetInfo, txt.noto28, {color: GRAY10}]}>분류</Text>
 					<View style={[temp_style.dropdownSelect_assignPetInfo_depth1, assignPetInfo_style.dropdownSelect_depth1]}>
-						<NormalDropDown menu={pet_speciesArray} width={204} onSelect={onSelectSpecies} defaultIndex={0} />
+						<NormalDropDown menu={types.map(v=>v.pet_species)} width={204}  onSelect={onSelectSpecies} defaultIndex={0} />
 					</View>
 					<View style={[temp_style.dropdownSelect_assignPetInfo_depth2, assignPetInfo_style.dropdownSelect_depth2]}>
-						<NormalDropDown menu={speciesDetail} width={292} onSelect={onSelectSpeciesDetail} />
+						<NormalDropDown menu={data.type.pet_species_detail} width={292} height={500} onSelect={onSelectSpeciesDetail}/>
 					</View>
 				</View>
 
