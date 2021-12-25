@@ -28,6 +28,7 @@ export default MissingAnimalDetail = props => {
 	const [writeCommentData, setWriteCommentData] = React.useState(); //더보기 클릭 State
 	const [replyPressed, setReplyPressed] = React.useState(false);
 	const debug = false;
+
 	React.useEffect(() => {
 		setPhoto(props.route.params);
 	}, [props.route.params]);
@@ -49,7 +50,7 @@ export default MissingAnimalDetail = props => {
 				feedobject_id: props.route.params._id,
 			},
 			data => {
-				console.log(`MissingAnimalDetail data:${JSON.stringify(data.msg)}`);
+				debug && console.log(`MissingAnimalDetail data:${JSON.stringify(data.msg)}`);
 				let dateValue = data.msg.feed_date;
 				if (dateValue != undefined && dateValue.length > 10) {
 					data.msg.feed_date = moment(dateValue).format('YYYY.MM.DD hh:mm:ss');
@@ -67,6 +68,7 @@ export default MissingAnimalDetail = props => {
 		console.log(' - MissingAnimalDetail Comment -');
 		getCommnetList();
 	}, []);
+
 	// React.useEffect(() => {
 	// 	console.log('WriteCommnetData changed', writeCommentData);
 	// }, [writeCommentData]);
@@ -90,6 +92,7 @@ export default MissingAnimalDetail = props => {
 			setReplyPressed(false);
 		}
 	}, [replyPressed]);
+
 	const getCommnetList = () => {
 		getCommentListByFeedId(
 			{
@@ -129,9 +132,7 @@ export default MissingAnimalDetail = props => {
 						}
 					}
 				});
-				// console.log(`commentArray -${JSON.stringify(commentArray)}`);
 				setCommentDataList(commentArray);
-				// console.log('commentArray refresh', commentArray);
 			},
 			errcallback => {
 				console.log(`Comment errcallback:${JSON.stringify(errcallback)}`);

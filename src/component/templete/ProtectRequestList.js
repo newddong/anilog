@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, Text, View, ActivityIndicator} from 'react-native';
 import {login_style, protectRequestList, searchProtectRequest, temp_style} from './style_templete';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import {btn_w306} from '../atom/btn/btn_style';
@@ -14,39 +14,44 @@ import {getProtectRequestList, getProtectRequestListByShelterId} from 'Root/api/
 export default ProtectRequestList = ({navigation, route}) => {
 	const [data, setData] = React.useState([]);
 	const [showAdoptable, setShowAdoptable] = React.useState(false);
-	const [filterData, setFilterData] = React.useState({});
-	React.useEffect(() => {
-		// console.log(`ProtectRequestList:seding data -${data}`);
-		getProtectRequestList(
-			{
-				//필터 - 보호지역 (user_address.city 데이터)
-				city: '',
-				//필터 - 동물종류
-				protect_animal_species: '',
+	const [refreshing, setRefreshing] = React.useState(false);
+	const [loading, setLoading] = React.useState(true); //로딩상태
+	const [filterData, setFilterData] = React.useState({
+		city: '',
+		protect_animal_species: '',
+		adoptable_posts: false,
+		protect_request_object_id: '',
+		request_number: 10,
+	});
 
-				//입양 가능한 게시글만 보기
-				adoptable_posts: false,
-				//커서 역할을 할 보호요청 오브잭트(페이징 처리)
-				protect_request_object_id: '',
-				//보호요청게시글 요청 숫자
-				request_number: 10,
-			},
+	React.useEffect(() => {
+		// const getList = () => {
+		console.log('getProtectRequestList:feedlist of protectRequest');
+		getProtectRequestList(
+			filterData,
 			data => {
-				// console.log('data' + JSON.stringify(`data${data}`));
 				console.log('length', data.msg.length);
-				// console.log('보호요청 ', data.msg[0]);
-				// data.msg.forEach(e => console.log('forEach', e.protect_animal_id.protect_animal_sex, e.protect_animal_id.protect_animal_status));
+				let filtered = [...data.msg];
 				data.msg.forEach(each => {
 					each.protect_animal_sex = each.protect_animal_id.protect_animal_sex;
 					each.protect_animal_status = each.protect_animal_id.protect_animal_status;
 				});
-				setData(data.msg);
+				//아직 입양 완료된 목록을 제외하고 조회하는 API가 없음. 수동 처리
+				if (filterData.adoptable_posts) {
+					filtered = data.msg.filter(e => e.protect_request_status != 'complete');
+					setData(filtered);
+				} else {
+					setData(data.msg);
+				}
 			},
-			errcallback => {
-				console.log(`errcallback:${JSON.stringify(errcallback)}`);
+			err => {
+				console.log(`errcallback:${JSON.stringify(err)}`);
+				if (err == '검색 결과가 없습니다.') {
+					setData([]);
+				}
 			},
 		);
-	}, []);
+	}, [filterData]);
 
 	const onClickLabel = (status, id, item) => {
 		//data에는 getProtectRequestList(어떠한 필터도 없이 모든 보호요청게시글을 출력)의 결과값이 담겨있음
@@ -55,7 +60,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 		getProtectRequestListByShelterId(
 			{
 				shelter_userobject_id: item.protect_request_writer_id._id,
-				protect_request_status: 'rescue',
+				protect_request_status: 'all',
 				protect_request_object_id: null,
 				request_number: 10,
 			},
@@ -72,24 +77,34 @@ export default ProtectRequestList = ({navigation, route}) => {
 	const filterOn = () => {
 		// alert('입양 가능한 게시글만 보기');
 		console.log('입양 가능한 게시글만 보기');
-		setShowAdoptable(true);
+		setFilterData({...filterData, adoptable_posts: true});
 	};
 	const filterOff = () => {
 		// alert('입양 가능한 게시글만 보기 끄기');
 		console.log('입양 가능한 게시글만 OFF');
-		setShowAdoptable(false);
+		setFilterData({...filterData, adoptable_posts: false});
 	};
 	//별도의 API 사용 예정.
 	const onOff_FavoriteTag = (value, index) => {
 		console.log('즐겨찾기=>' + value + ' ' + index);
 	};
+	//지역 필터
 	const onSelectLocation = location => {
-		setData({...data, city: location});
+		location == '지역' ? setFilterData({...filterData, city: ''}) : setFilterData({...filterData, city: location});
+	};
+	//동물종류 필터
+	const onSelectKind = kind => {
+		kind == '동물종류' ? setFilterData({...filterData, protect_animal_species: ''}) : setFilterData({...filterData, protect_animal_species: kind});
+	};
+	//검색결과가 없을 경우
+	const whenEmpty = () => {
+		return (
+			<View style={[{height: 100 * DP, marginVertical: 30 * DP, alignItems: 'center', justifyContent: 'center'}]}>
+				<Text style={[txt.roboto30b, {color: GRAY10}]}> 검색결과가 없습니다.</Text>
+			</View>
+		);
 	};
 
-	const onSelectKind = kind => {
-		setData({...data, protect_animal_species: kind});
-	};
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<ScrollView style={{flex: 1}}>
@@ -115,7 +130,9 @@ export default ProtectRequestList = ({navigation, route}) => {
 					</View>
 				</View>
 				<View style={[searchProtectRequest.animalNeedHelpList]}>
-					<AnimalNeedHelpList data={data} onClickLabel={onClickLabel} onFavoriteTag={onOff_FavoriteTag} />
+					{/* <AnimalNeedHelpList data={data} onClickLabel={onClickLabel} onFavoriteTag={onOff_FavoriteTag} /> */}
+					{/* <ActivityIndicator  */}
+					<AnimalNeedHelpList data={data} onClickLabel={onClickLabel} onFavoriteTag={onOff_FavoriteTag} whenEmpty={whenEmpty()} />
 				</View>
 			</ScrollView>
 		</View>
