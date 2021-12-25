@@ -27,10 +27,6 @@ const Calendar = props => {
 	const modalOff = () => {
 		props.modalOff();
 	};
-	//연도가 바뀔 때마다 년도 드롭다운에도 영향을 줘야한다
-	React.useEffect(() => {
-		console.log('getMoment', getMoment.year());
-	}, [getMoment.year()]);
 
 	const onSelectDate = date => {
 		if (!props.past) {
@@ -79,7 +75,7 @@ const Calendar = props => {
 			result = result.concat(
 				//날짜 정보를 하나씩 추가해간다.
 				<TouchableWithoutFeedback key={week} onPress={() => {}}>
-					{props.past ? (
+					{props.past ? ( //이전 날짜 선택 가능 모드
 						<View style={styles.dateContainer}>
 							{Array(7) //today를 기준으로 조회한 이번 달의 첫째 주부터 마지막 주까지 Array
 								.fill(0)
@@ -120,6 +116,7 @@ const Calendar = props => {
 								})}
 						</View>
 					) : (
+						// 이전날짜 선택 불가 모드
 						<View style={styles.dateContainer}>
 							{Array(7) //today를 기준으로 조회한 이번 달의 첫째 주부터 마지막 주까지 Array
 								.fill(0)

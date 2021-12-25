@@ -15,7 +15,7 @@ export default FeedList = ({route, navigation}) => {
 	const [refreshing, setRefreshing] = React.useState(false);
 
 	React.useEffect(() => {
-		const unsubscribe = navigation.addListener('focus', () => {
+		const getList = () => {
 			getSuggestFeedList(
 				{},
 				({msg}) => {
@@ -26,9 +26,15 @@ export default FeedList = ({route, navigation}) => {
 					Modal.popOneBtn(errormsg, '확인', () => Modal.close());
 				},
 			);
+		};
+		//FeedList 스크린 이동시 피드리스트 갱신
+		const unsubscribe = navigation.addListener('focus', () => {
+			getList();
 		});
+		//Refreshing 요청시 피드리스트 다시 조회
+		refreshing ? getList() : false;
 		return unsubscribe;
-	}, []);
+	}, [refreshing]);
 
 	const moveToFeedWrite = () => {
 		userGlobalObject.userInfo&&navigation.push('FeedWrite',{type:'Feed'});
@@ -42,10 +48,11 @@ export default FeedList = ({route, navigation}) => {
 		return new Promise(resolve => setTimeout(resolve, timeout));
 	};
 
-	const onRefresh = React.useCallback(() => {
+	const onRefresh = () => {
 		setRefreshing(true);
+
 		wait(2000).then(() => setRefreshing(false));
-	}, []);
+	};
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1, backgroundColor: WHITE}]}>

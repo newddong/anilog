@@ -79,7 +79,7 @@ const ProtectedThumbnail = props => {
 	};
 
 	const onClickLabel = () => {
-		console.log(`--onClickLabel-- props.data=>${JSON.stringify(props.data)}`);
+		// console.log(`--onClickLabel-- props.data=>${JSON.stringify(props.data)}`);
 		props.onLabelClick(props.data.status, props.data._id);
 	};
 
