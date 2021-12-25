@@ -15,6 +15,7 @@ export default MissingReportList = props => {
 	const navigation = useNavigation();
 	const [showUrgentBtns, setShowUrgentBtns] = React.useState(true); //긴급버튼목록
 	const [showActionButton, setShowActionButton] = React.useState(false); // 긴급게시(하얀버전) 클릭 시 - 실종/제보 버튼 출력 Boolean
+	const [refreshing, setRefreshing] = React.useState(false);
 
 	const [data, setData] = React.useState({
 		filterValue: '',
@@ -23,8 +24,8 @@ export default MissingReportList = props => {
 	});
 
 	// 실종 데이터 불러오기 (아직 API 미작업 )
-	React.useEffect(
-		() => {
+	React.useEffect(() => {
+		const getList = () => {
 			console.log('MissingReportList:feedlist of missing');
 			getMissingReportList(
 				{
@@ -43,30 +44,15 @@ export default MissingReportList = props => {
 					console.log('getMissingReportList Error', err);
 				},
 			);
-		},
-		// [],
-		[props.route.params],
-	);
-
-	// [hjs] 실제로 데이터가 API로부터 넘어오는 부분 확인 후 재작성 필요
-	// const [data1, setData1] = React.useState([]);
-
-	// //FeedObject
-	// feedobject_id: '', //피드 아이디
-	// feed_thumbnail: '', //보호요청 게시물 썸네일 uri
-	// feed_type: '', //게시글의 타입, ‘일반게시물(feed)’,’실종게시물(missing)’,’제보게시물(report)’로 나뉨
-	// missing_animal_species: '', //보호중인 동물의 종류(ex 개, 고양이, 토끼)
-	// missing_animal_species_detail: '', //실종 동물의 세부 종류(ex 리트리버, 불독, 진돗개 등)
-	// missing_animal_sex: '', //보호중인 동물의 성별
-	//missing_animal_age: '', //실종 동물의 나이
-	// missing_animal_lost_location: '',  //실종 동물의 실종 지역 혹은 장소
-	// missing_animal_features: '', //실종 동물의 특징
-	// missing_animal_date: '', //실종일
-	// report_witness_date:'', //제보일자(해당 동물의 목격일)
-	// report_witness_location: '',//제보장소(목격장소)
-
-	// //BookmarkProtectRequestObject
-	// bookmark: false, //유저-보호요청 북마크
+		};
+		//스크린 이동시 리스트 갱신
+		const unsubscribe = navigation.addListener('focus', () => {
+			getList();
+		});
+		//Refreshing 요청시 리스트 다시 조회
+		refreshing ? getList() : false;
+		return unsubscribe;
+	}, [refreshing]);
 
 	const filterOn = () => {
 		alert('입양 가능한 게시글만 보기');
