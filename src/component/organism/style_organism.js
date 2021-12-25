@@ -327,6 +327,9 @@ export const feedContent_style = StyleSheet.create({
 	content: {
 		marginTop: 20 * DP,
 	},
+	content_Top10: {
+		marginTop: 10 * DP,
+	},
 	tipOff: {
 		marginTop: 16 * DP,
 	},

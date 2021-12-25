@@ -168,7 +168,7 @@ export default FeedContent = props => {
 			{feed_type == 'report' && (
 				<View style={[organism_style.tipOff_feedContent, feedContent_style.tipOff]} onLayout={onLayoutReport}>
 					<Text style={[txt.noto28]}>
-						제보 날짜: <Text style={[txt.noto32b]}>{report_witness_date}</Text>
+						제보 날짜: <Text style={[txt.noto34b]}>{report_witness_date}</Text>
 					</Text>
 					<Text style={[txt.noto28]}>
 						제보 장소: <Text style={[txt.noto28b]}>{report_witness_location}</Text>
@@ -180,7 +180,7 @@ export default FeedContent = props => {
 			<View
 				style={[
 					organism_style.content_feedContent,
-					feedContent_style.content,
+					feed_type == 'missing' ? feedContent_style.content : feedContent_style.content_Top10,
 					{
 						// FeedText의 높이가 120이상(3줄 이상)일 경우 maxheight가 지정되며, 아닐 경우 Maxheight는 없다
 						// height: getMaxHeight(),

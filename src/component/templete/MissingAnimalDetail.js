@@ -52,9 +52,7 @@ export default MissingAnimalDetail = props => {
 				console.log(`MissingAnimalDetail data:${JSON.stringify(data.msg)}`);
 				let dateValue = data.msg.feed_date;
 				if (dateValue != undefined && dateValue.length > 10) {
-					console.log(` - MissingAnimalDetail -------------------${dateValue}`);
 					data.msg.feed_date = moment(dateValue).format('YYYY.MM.DD hh:mm:ss');
-					console.log('------------------>>>' + data.msg.feed_date);
 				}
 				setData(data.msg);
 			},
@@ -66,7 +64,7 @@ export default MissingAnimalDetail = props => {
 
 	//댓글 불러오기 (상단의 useEffect와 합칠지는 추후 결정)
 	React.useEffect(() => {
-		console.log(' - ReportDetail Comment -');
+		console.log(' - MissingAnimalDetail Comment -');
 		getCommnetList();
 	}, []);
 	// React.useEffect(() => {
@@ -108,7 +106,7 @@ export default MissingAnimalDetail = props => {
 					commentdata.msg[i].user_nickname = commentdata.msg[i].comment_writer_id.user_nickname;
 					commentdata.msg[i].comment_date = moment(JSON.stringify(commentdata.msg[i].comment_date).replace(/\"/g, '')).format('YYYY.MM.DD hh:mm:ss');
 					//일반 피드글과 구분하기 위해 feed_type 속성 추가 (다른 템플릿들과 시간 표기가 달라서 실종/제보에만 feed_type을 추가하고 시간 표기시 해당 속성 존재 여부만 판단)
-					commentdata.msg[i].feed_type = 'report';
+					commentdata.msg[i].feed_type = 'missing';
 				});
 
 				//댓글과 대댓글 작업 (부모 댓글과 자식 댓글 그룹 형성- 부모 댓글에서 부모의 childArray 속성에 자식 댓글 속성들을 추가)
@@ -211,11 +209,6 @@ export default MissingAnimalDetail = props => {
 	// 		} else return dummy_CommentObject;
 	// 	} else return dummy_CommentObject;
 	// };
-
-	React.useEffect(() => {
-		console.log(` - ----------------------- data : ${JSON.stringify(data)}`);
-		console.log(` - ----------------------- data.feed_thumbnail : ${JSON.stringify(data.feed_thumbnail)}`);
-	}, [data]);
 
 	return (
 		<View style={[login_style.wrp_main]}>

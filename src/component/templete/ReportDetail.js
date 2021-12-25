@@ -46,14 +46,17 @@ export default ReportDetail = props => {
 		console.log(' - ReportDetail -');
 		getFeedDetailById(
 			{
-				feedobject_id: '61c569c238c5f6dee5a8b7d8',
+				feedobject_id: props.route.params._id,
 			},
 			data => {
-				// console.log(`ReportDetail data:${JSON.stringify(data.msg)}`);
-				let dateValue = data.msg.report_witness_date;
+				console.log(`ReportDetail data:${JSON.stringify(data.msg)}`);
+				//피드 작성일 형식 변경
+				let dateValue = data.msg.feed_date;
 				if (dateValue != undefined && dateValue.length > 10) {
-					data.msg.report_witness_date = JSON.stringify(data.msg.report_witness_date).split('T')[0].replace(/\"/, '');
+					data.msg.feed_date = moment(dateValue).format('YYYY.MM.DD hh:mm:ss');
 				}
+				//제보날짜 형식 변경
+				data.msg.report_witness_date = moment(data.msg.report_witness_date).format('YYYY.MM.DD');
 				setData(data.msg);
 			},
 			errcallback => {
@@ -67,16 +70,14 @@ export default ReportDetail = props => {
 		console.log(' - ReportDetail Comment -');
 		getCommnetList();
 	}, []);
-	// React.useEffect(() => {
-	// 	console.log('WriteCommnetData changed', writeCommentData);
-	// }, [writeCommentData]);
+
 	React.useEffect(() => {
 		if (replyPressed == true) {
 			createComment(
 				{...writeCommentData},
 
 				callback => {
-					console.log('write commnet success', callback);
+					// console.log('write commnet success', callback);
 					getCommnetList();
 				},
 				err => {
@@ -93,12 +94,12 @@ export default ReportDetail = props => {
 	const getCommnetList = () => {
 		getCommentListByFeedId(
 			{
-				feedobject_id: '61c569c238c5f6dee5a8b7d8',
+				feedobject_id: props.route.params._id,
 				// commentobject_id: '61c2c0de7be07611b0094ffd',
 				request_number: 10,
 			},
 			commentdata => {
-				console.log('commentdata', commentdata.msg);
+				// console.log('commentdata', commentdata.msg);
 				commentdata.msg.map((v, i) => {
 					//1depth를 올려준다.
 					commentdata.msg[i].user_address = commentdata.msg[i].comment_writer_id.user_address;
@@ -106,7 +107,7 @@ export default ReportDetail = props => {
 					commentdata.msg[i].user_nickname = commentdata.msg[i].comment_writer_id.user_nickname;
 					commentdata.msg[i].comment_date = moment(JSON.stringify(commentdata.msg[i].comment_date).replace(/\"/g, '')).format('YYYY.MM.DD hh:mm:ss');
 					//일반 피드글과 구분하기 위해 feed_type 속성 추가 (다른 템플릿들과 시간 표기가 달라서 실종/제보에만 feed_type을 추가하고 시간 표기시 해당 속성 존재 여부만 판단)
-					commentdata.msg[i].feed_type = 'report';
+					commentdata.msg[i].feed_type = 'missing';
 				});
 
 				//댓글과 대댓글 작업 (부모 댓글과 자식 댓글 그룹 형성- 부모 댓글에서 부모의 childArray 속성에 자식 댓글 속성들을 추가)
@@ -129,9 +130,7 @@ export default ReportDetail = props => {
 						}
 					}
 				});
-				// console.log(`commentArray -${JSON.stringify(commentArray)}`);
 				setCommentDataList(commentArray);
-				console.log('commentArray refresh', commentArray);
 			},
 			errcallback => {
 				console.log(`Comment errcallback:${JSON.stringify(errcallback)}`);
@@ -229,6 +228,9 @@ export default ReportDetail = props => {
 				</View>
 				{/* [hjs] 이 화면 댓글도 AnimalProtectRequestDetail 같이 더보기 버튼이 있는것인지..아니면 쭉 늘어놓을 것인지 결정 필요. */}
 				{/* 댓글에 관한 내용 - API에서 넘겨주는 값 확인 후 재수정 필요*/}
+				<View style={[reportDetail.basic_separator]}>
+					<View style={[reportDetail.separator]}></View>
+				</View>
 				<View style={[temp_style.commentList, reportDetail.commentList]}>
 					<CommentList
 						items={commentDataList}
@@ -237,6 +239,7 @@ export default ReportDetail = props => {
 					/>
 				</View>
 			</ScrollView>
+
 			{editComment ? (
 				<ReplyWriteBox
 					onAddPhoto={onAddPhoto}
