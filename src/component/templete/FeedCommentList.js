@@ -60,7 +60,7 @@ export default FeedCommentList = props => {
 		<View style={[login_style.wrp_main, feedCommentList.container]}>
 			<ScrollView>
 				<View style={[feedCommentList.feedContent]}>
-					<FeedContent />
+					<FeedContent data={props.data}/>
 				</View>
 				<View style={[feedCommentList.commentList]}>
 					{/* CommentList 안에는 ParentComent와 ChildComments 데이터가 필요 */}
