@@ -55,7 +55,7 @@ export default ParentComment = props => {
 			{/* 유저프로필 라벨 및 Meatball  */}
 			<View style={[organism_style.UserLocationTimeLabel_view_parentComment]}>
 				<View style={organism_style.userLocationTimeLabel}>
-					<UserLocationTimeLabel data={data} />
+					<UserLocationTimeLabel data={data.comment_writer_id} />
 				</View>
 				<View style={[organism_style.meatball_50_vertical]}>
 					<MeatBallDropdown menu={isMyComment ? SETTING_OWN_COMMENT : SETTING_COMMENT} horizontal={false} />

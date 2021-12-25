@@ -9,7 +9,8 @@ export const organism_style = StyleSheet.create({
 		width: 750 * DP,
 		// height: 270 * DP,
 		alignItems: 'center',
-		marginTop: 40 * DP,
+		paddingTop: 40 * DP,
+		backgroundColor:WHITE
 	},
 	userLocationLabel_view_feedContent: {
 		flexDirection: 'row',

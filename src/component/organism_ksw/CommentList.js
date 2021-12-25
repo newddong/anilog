@@ -2,6 +2,7 @@ import React from 'react';
 import {FlatList, ScrollView, Text, View} from 'react-native';
 import ParentComment from '../organism/ParentComment';
 import DP from 'Root/config/dp';
+import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 
 /**
@@ -18,7 +19,8 @@ export default CommentList = props => {
 		props.onPress_ChildComment_ReplyBtn(comment);
 	};
 
-	const renderItem = item => {
+	const renderItem = ({item,index}) => {
+		
 		return (
 			<ParentComment
 				parentComment={item}
@@ -30,20 +32,21 @@ export default CommentList = props => {
 
 	const whenEmpty = () => {
 		return (
-			<View style={[{height: 100 * DP, marginVertical: 30 * DP, alignItems: 'center', justifyContent: 'center'}]}>
+			<View style={[{height: 100 * DP, width: '100%', marginVertical: 30 * DP, alignItems: 'center', justifyContent: 'center'}]}>
 				<Text style={[txt.roboto30b, {color: GRAY10}]}> 댓글이 없습니다.</Text>
 			</View>
 		);
 	};
 
 	return (
-		<View>
-			<Text style={[txt.noto28, {marginBottom: 10 * DP}]}>댓글 {props.items.length}개 </Text>
-			<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
-				<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
-					<FlatList data={props.items} renderItem={({item}) => renderItem(item)} scrollEnabled={false} ListEmptyComponent={whenEmpty} />
-				</ScrollView>
-			</ScrollView>
+		<View style={{backgroundColor: '#fff', flex: 1, paddingHorizontal: 48 * DP}}>
+			<FlatList
+				data={props.items}
+				renderItem={renderItem}
+				ListEmptyComponent={whenEmpty}
+				// ListHeaderComponent={<Text style={[txt.noto28, {marginBottom: 10 * DP,height:60*DP,textAlignVertical:'bottom'}]}>댓글 {props.items.length}개 </Text>}
+				stickyHeaderIndices={[0]}
+			/>
 		</View>
 	);
 };

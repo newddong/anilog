@@ -43,7 +43,7 @@ export default Feed = React.memo(props => {
 		feed_writer_id,
 		feed_avatar_id,
 	} = props.data;
-	console.log(props.data);
+	// console.log(props.data);
 	const moveToCommentList = () => {
 		navigation.push('FeedCommentList',{feedobject:props.data});
 	}

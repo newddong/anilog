@@ -9,7 +9,7 @@ import {login_style, btn_style, temp_style, progressbar_style, assignUserProfile
 import Modal from 'Component/modal/Modal';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {assignUser, nicknameDuplicationCheck} from 'Root/api/userapi';
-
+import ImagePicker from 'react-native-image-crop-picker';
 
 
 export default AssignUserProfileImage = props => {
@@ -22,16 +22,24 @@ export default AssignUserProfileImage = props => {
 
 	const selectPhoto = () => {
 		// props.navigation.push('SinglePhotoSelect');
-		launchImageLibrary(
-			{
-				mediaType: 'photo',
-				selectionLimit: 1,
-			},
-			responseObject => {
-				console.log('선택됨', responseObject);
-				responseObject.didCancel ? console.log('선택취소') : setImgSelected(responseObject.assets[responseObject.assets.length - 1].uri);
-			},
-		);
+		// launchImageLibrary(
+		// 	{
+		// 		mediaType: 'photo',
+		// 		selectionLimit: 1,
+		// 	},
+		// 	responseObject => {
+		// 		console.log('선택됨', responseObject);
+		// 		responseObject.didCancel ? console.log('선택취소') : setImgSelected(responseObject.assets[responseObject.assets.length - 1].uri);
+		// 	},
+		// );
+		ImagePicker.openPicker({
+			compressImageQuality:0.8,
+			cropping: true,
+			cropperCircleOverlay:true,
+		  }).then(images => {
+			setImgSelected(images.path);
+			Modal.close();
+		  }).catch(err=>Modal.alert(err+''));Modal.close();
 	};
 
 	//확인버튼

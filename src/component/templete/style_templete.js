@@ -3266,7 +3266,8 @@ export const feedCommentList = StyleSheet.create({
 		width: 750 * DP,
 		// height: 330 * DP,
 		borderBottomWidth: 2 * DP,
-		borderBottomColor: GRAY40,
+		borderBottomColor: GRAY30,
+		backgroundColor:WHITE
 		// backgroundColor: 'powderblue',
 	},
 	commentList: {

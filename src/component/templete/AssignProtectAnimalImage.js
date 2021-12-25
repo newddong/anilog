@@ -41,6 +41,9 @@ export default AssignProtectAnimalImage = props => {
 			{
 				mediaType: 'photo',
 				selectionLimit: 5,
+				maxHeight:1500,
+				maxWidth:1500,
+				quality:0.8
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);
