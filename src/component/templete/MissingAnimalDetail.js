@@ -95,7 +95,7 @@ export default MissingAnimalDetail = props => {
 	const getCommnetList = () => {
 		getCommentListByFeedId(
 			{
-				feedobject_id: '61c569c238c5f6dee5a8b7d8',
+				feedobject_id: props.route.params._id,
 				// commentobject_id: '61c2c0de7be07611b0094ffd',
 				request_number: 10,
 			},
