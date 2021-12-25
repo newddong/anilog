@@ -87,6 +87,7 @@ export default Modal = {
 	feedAvartarSelect: (onSelectPet, onOk, okButtonnMsg) => {},
 
 
+	alert:()=>{},
 
 	closeKeboard: ()=>{}
 };

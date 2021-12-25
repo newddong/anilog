@@ -45,17 +45,6 @@ export default Feed = React.memo(props => {
 	} = props.data;
 	
 
-	
-
-	//FeedMedia 관련 정보
-	const _dummyData = {
-		feed_id: null,
-		isVideo: true,
-		medias: [1, 2, 3, 'video'],
-		emergency: true,
-		alert_title: '실 종',
-	};
-
 	return (
 		<View style={[organism_style.feed]}>
 			<FeedContent data={props.data}/>{/* 270DP */}

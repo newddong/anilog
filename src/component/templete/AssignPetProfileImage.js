@@ -22,7 +22,7 @@ import {checkProtectPet, nicknameDuplicationCheck} from 'Root/api/userapi';
 
 export default AssignPetProfileImage = ({navigation, route}) => {
 	const [data, setData] = React.useState({
-		user_profile_uri: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+		user_profile_uri: '',
 		user_nickname: '',
 		pet_status: 'companion', //입양, 임시보호중인 동물일때는 초기값을 다르게 표기하도록(여기서는 임시보호, 반려동물 상태밖에 없음,입양된 동물은 더이상 정보수정 불가)
 		pet_is_temp_protection: false,
@@ -38,19 +38,19 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 	// }, [route.params]);
 
 	React.useEffect(() => {
-		checkProtectPet(
-			{userobject_id: data.userobject_id},
-			cbObj => {
-				Modal.popTwoBtn(
-					'새로 임시보호, 입양을 하는 동물이 있습니다.\n 해당 동물을 등록하시겠습니까?',
-					'아니오',
-					'네',
-					() => Modal.close(),
-					() => Modal.close(),
-				);
-			},
-			e => Modal.popOneBtn(e + 'CheckProtectPet', '확인', () => Modal.close()),
-		);
+		// checkProtectPet(
+		// 	{userobject_id: data.userobject_id},
+		// 	cbObj => {
+		// 		Modal.popTwoBtn(
+		// 			'새로 임시보호, 입양을 하는 동물이 있습니다.\n 해당 동물을 등록하시겠습니까?',
+		// 			'아니오',
+		// 			'네',
+		// 			() => Modal.close(),
+		// 			() => Modal.close(),
+		// 		);
+		// 	},
+		// 	e => Modal.popOneBtn(e + 'CheckProtectPet', '확인', () => Modal.close()),
+		// );
 	}, []);
 
 	const nicknameInput = React.useRef();

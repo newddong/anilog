@@ -46,7 +46,7 @@ const TabSelectFilled_Type1 = props => {
 		);
 	};
 
-	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />;
+	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} showsHorizontalScrollIndicator={false}/>;
 };
 TabSelectFilled_Type1.defaultProps = {
 	items: [1, 2, 3, 4], //FlatList에 담길 배열 정보
