@@ -32,7 +32,7 @@ const DatePicker = props => {
 
 	const openCalendar = () => {
 		console.log('openCale');
-		Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date));
+		Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date), props.past);
 		setShowCalendar(true);
 	};
 
@@ -76,6 +76,7 @@ DatePicker.defaultProps = {
 	width: 520, //전체 DatePicker의 너비
 	title: 'title',
 	onDateChange: e => console.log(e),
+	past: true,
 };
 
 export default DatePicker;

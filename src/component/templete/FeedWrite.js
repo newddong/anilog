@@ -100,11 +100,7 @@ export default FeedWrite = props => {
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);
-
 				if (!responseObject.didCancel) {
-					if (responseObject.assets.length > 5) {
-						Modal.popOneBtn('사진은 5개까지 선택가능합니다.', '확인', () => Modal.close());
-					}
 					responseObject.didCancel ? console.log('선택취소') : setSelectedImg(responseObject.assets.map(v => v.uri).slice(0, 5));
 				}
 			},
