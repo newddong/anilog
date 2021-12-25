@@ -96,8 +96,7 @@ export default MissingReportList = props => {
 	};
 	//제보게시글의 제보자 닉네임 클릭
 	const onPressReporter = item => {
-		console.log('item', item.feed_writer_id);
-		navigation.push('UserProfile', item.feed_writer_id);
+		navigation.push('UserProfile', {userobject: item.feed_writer_id});
 	};
 
 	const onSelectLocation = location => {
