@@ -3670,8 +3670,9 @@ export const feedWrite = StyleSheet.create({
 export const profile = StyleSheet.create({
 	container: {flex: 1},
 	profileInfo: {
-		width: 750 * DP,
-		marginVertical: 30 * DP,
+		width: '100%',
+		backgroundColor:WHITE,
+		// marginVertical: 30 * DP,
 		// height: 416 * DP,
 	},
 	feedListContainer: {

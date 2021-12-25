@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {GRAY10, GRAY20} from 'Root/config/color';
 import DP from 'Root/config/dp';
+import { WHITE } from 'Root/config/color';
 
 export const organism_style = StyleSheet.create({
 	feedContent: {
@@ -240,6 +241,7 @@ export const organism_style = StyleSheet.create({
 	profileInfo_main: {
 		width: 654 * DP,
 		alignSelf: 'center',
+		backgroundColor:WHITE
 		// height: 416 * DP,
 	},
 	profileImageLarge_view_profileInfo: {
@@ -267,7 +269,7 @@ export const organism_style = StyleSheet.create({
 	btn_w280_view_profileInfo: {
 		flexDirection: 'row',
 		width: 654 * DP,
-		height: 60 * DP,
+		height: 100 * DP,
 		justifyContent: 'space-between',
 	},
 	btn_w280_profileInfo: {

@@ -19,7 +19,8 @@ import {DEFAULT_PROFILE} from 'Root/i18n/msg';
  * @param {Array.<object>} props.data.feed_medias -
  *
  */
-const FeedThumbnail = props => {
+
+const FeedThumbnail = React.memo(props => {
 	// console.log('FeedThumbnail', props.data);
 	const [selected, setSelected] = React.useState(false);
 	React.useEffect(() => {
@@ -102,6 +103,6 @@ const FeedThumbnail = props => {
 			</View>
 		</TouchableWithoutFeedback>
 	);
-};
+});
 FeedThumbnail.defaultProps = {};
 export default FeedThumbnail;

@@ -218,8 +218,8 @@ export default AddPhoto = props => {
 				renderItem={renderList}
 				extraData={selectedPhoto}
 				// columnWrapperStyle={{backgroundColor:'green',borderColor:'red',borderWidth:3*DP}}
-				// keyExtractor={item => item.node?.image.uri}
-				keyExtractor={item => item.node.timestamp}
+				keyExtractor={item => item.node?.image.uri}
+				// keyExtractor={item => item.node.timestamp}
 				horizontal={false}
 				numColumns={4}
 				onEndReachedThreshold={0.1}
