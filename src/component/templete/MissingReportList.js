@@ -32,8 +32,6 @@ export default MissingReportList = props => {
 			filterData,
 			data => {
 				// console.log('getMissingReportList data', data.msg);
-				// console.log('data' + JSON.stringify(`data${data}`));
-				// console.log('length', data.msg.length);
 				setData(data.msg);
 			},
 			err => {
@@ -47,12 +45,12 @@ export default MissingReportList = props => {
 
 	//제보 게시글 쓰기 클릭
 	const moveToReportForm = () => {
-		navigation.push('FeedWrite', {type: 'Report'});
+		navigation.push('FeedWrite', {feedType: 'Report'});
 	};
 
 	//실종 게시글 쓰기 클릭
 	const moveToMissingForm = () => {
-		navigation.push('FeedWrite', {type: 'Missing'});
+		navigation.push('FeedWrite', {feedType: 'Missing'});
 	};
 
 	//실종제보 게시글의 좋아요 태그 클릭

@@ -4,7 +4,6 @@ import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 
 import {GRAY10} from 'Root/config/color';
-import {dummy_userObject, dummy_UserObject_shelter} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
 import {
 	ACCOUNT,
@@ -36,6 +35,7 @@ import {login_style, temp_style, userMenu_style} from './style_templete';
 // import {getUserProfile} from 'Root/api/usermenuapi';
 import {getUserProfile} from 'Root/api/userapi';
 import Modal from '../modal/Modal';
+
 export default UserMenu = props => {
 	const navigation = useNavigation();
 	//-test for commit -

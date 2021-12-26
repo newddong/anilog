@@ -19,25 +19,27 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 		navigation.goBack();
 	};
 	const handleError = err => {
+		console.log('err', err);
 		Modal.close();
 		Modal.popOneBtn(err, '확인', () => Modal.close());
 	};
 
 	const onSend = () => {
-		console.log(route.params);
+		// console.log('onSend PAram', route.params.type);
 		Modal.popNoBtn('게시물을 등록중입니다.');
-		switch (route.params?.type) {
+
+		switch (route.params?.feedType) {
 			case 'Feed':
-				createFeed(route.params,complete,handleError);
+				createFeed(route.params, complete, handleError);
 				break;
 			case 'Missing':
-				createMissing(route.params,complete,handleError);
+				createMissing(route.params, complete, handleError);
 				break;
 			case 'Report':
-				createReport(route.params, complete,handleError);
+				createReport(route.params, complete, handleError);
 				break;
-            default:
-                break;
+			default:
+				break;
 		}
 	};
 

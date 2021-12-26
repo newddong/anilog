@@ -94,38 +94,49 @@ export default FeedWrite = props => {
 
 	//사진 추가
 	const moveToMultiPhotoSelect = () => {
-		if(selectedImg.length>4){
+		if (selectedImg.length > 4) {
 			Modal.alert('첨부파일은 5개까지만 가능합니다');
 			return;
 		}
-		Modal.popTwoBtn('사진 선택 모드를 선택하세요','하나씩선택','여러개선택',()=>{
-			ImagePicker.openPicker({
-				// multiple: true,
-				compressImageQuality:0.8,
-				cropping: true,
-			  }).then(images => {
-				console.log(images);
-				setSelectedImg(selectedImg.concat(images.path));
-				Modal.close();
-			  }).catch(err=>Modal.alert(err+''));Modal.close();
-		},()=>{
-			launchImageLibrary(
-				{
-					mediaType: 'photo',
-					selectionLimit: 5,
-					maxHeight:1500,
-					maxWidth:1500,
-					quality:0.8
-				},
-				responseObject => {
-					console.log('선택됨', responseObject);
-					if (!responseObject.didCancel) {
-						responseObject.didCancel ? console.log('선택취소') : setSelectedImg(responseObject.assets.map(v => v.uri).slice(0, 5-selectedImg.length));
+		Modal.popTwoBtn(
+			'사진 선택 모드를 선택하세요',
+			'하나씩선택',
+			'여러개선택',
+			() => {
+				ImagePicker.openPicker({
+					// multiple: true,
+					compressImageQuality: 0.8,
+					cropping: true,
+				})
+					.then(images => {
+						console.log(images);
+						setSelectedImg(selectedImg.concat(images.path));
 						Modal.close();
-					}
-				},
-			);
-		})
+					})
+					.catch(err => Modal.alert(err + ''));
+				Modal.close();
+			},
+			() => {
+				launchImageLibrary(
+					{
+						mediaType: 'photo',
+						selectionLimit: 5,
+						maxHeight: 1500,
+						maxWidth: 1500,
+						quality: 0.8,
+					},
+					responseObject => {
+						console.log('선택됨', responseObject);
+						if (!responseObject.didCancel) {
+							responseObject.didCancel
+								? console.log('선택취소')
+								: setSelectedImg(responseObject.assets.map(v => v.uri).slice(0, 5 - selectedImg.length));
+							Modal.close();
+						}
+					},
+				);
+			},
+		);
 	};
 	//사진 삭제
 	const deletePhoto = index => {
@@ -292,11 +303,12 @@ export default FeedWrite = props => {
 };
 
 const MissingForm = props => {
-
-	const [types, setTypes] = React.useState([{
-		pet_species:'개',
-		pet_species_detail:[]
-	}]);
+	const [types, setTypes] = React.useState([
+		{
+			pet_species: '개',
+			pet_species_detail: [],
+		},
+	]);
 
 	const [data, setData] = React.useState({
 		missing_animal_species: types[0].pet_species,
@@ -314,11 +326,15 @@ const MissingForm = props => {
 		props.onDataChange && props.onDataChange(data);
 	}, [data]);
 
-	React.useEffect(()=>{
-		getPettypes({},(types)=>{
-			setTypes(types.msg);
-		},(err)=>Modal.alert(err))
-	},[])
+	React.useEffect(() => {
+		getPettypes(
+			{},
+			types => {
+				setTypes(types.msg);
+			},
+			err => Modal.alert(err),
+		);
+	}, []);
 
 	const onDateChange = date => {
 		setData({...data, missing_animal_date: date});
@@ -371,10 +387,10 @@ const MissingForm = props => {
 				</View>
 				<View style={[feedWrite.formContentContainer]}>
 					<View style={[temp_style.dropdownSelect, feedWrite.dropdownSelect]}>
-						<NormalDropDown items={pet_kind} menu={types.map(v=>v.pet_species)} width={292} onSelect={onSelectSpecies} defaultIndex={0} />
+						<NormalDropDown items={pet_kind} menu={types.map(v => v.pet_species)} width={292} onSelect={onSelectSpecies} defaultIndex={0} />
 					</View>
 					<View style={[temp_style.dropdownSelect, feedWrite.dropdownSelect]}>
-						<NormalDropDown items={pet_kind} menu={data.type.pet_species_detail} width={292} height={500} onSelect={onSelectSpeciesDetail}/>
+						<NormalDropDown items={pet_kind} menu={data.type.pet_species_detail} width={292} height={500} onSelect={onSelectSpeciesDetail} />
 					</View>
 				</View>
 			</View>
@@ -448,11 +464,12 @@ const ReportForm = props => {
 	const route = useRoute();
 	const [addr, setAddr] = React.useState('');
 	const [detailAddr, setDetailAddr] = React.useState('');
-	const [types, setTypes] = React.useState([{
-		pet_species:'개',
-		pet_species_detail:[]
-	}]);
-
+	const [types, setTypes] = React.useState([
+		{
+			pet_species: '개',
+			pet_species_detail: [],
+		},
+	]);
 
 	const [data, setData] = React.useState({
 		report_witness_date: '2021.01.01',
@@ -478,11 +495,15 @@ const ReportForm = props => {
 		setData({...data, report_witness_location: addr + ' ' + detailAddr});
 	}, [addr, detailAddr]);
 
-	React.useEffect(()=>{
-		getPettypes({},(types)=>{
-			setTypes(types.msg);
-		},(err)=>Modal.alert(err))
-	},[])
+	React.useEffect(() => {
+		getPettypes(
+			{},
+			types => {
+				setTypes(types.msg);
+			},
+			err => Modal.alert(err),
+		);
+	}, []);
 	const onChangeAddr = addr => {
 		setAddr(addr);
 	};
@@ -517,7 +538,7 @@ const ReportForm = props => {
 						</View>
 						<View style={[feedWrite.formContentContainer]}>
 							<View style={[temp_style.dropdownSelect, feedWrite.dropdownSelect]}>
-								<NormalDropDown items={pet_kind} menu={types.map(v=>v.pet_species)} width={292} onSelect={onSelectSpecies} defaultIndex={0} />
+								<NormalDropDown items={pet_kind} menu={types.map(v => v.pet_species)} width={292} onSelect={onSelectSpecies} defaultIndex={0} />
 							</View>
 							<View style={[temp_style.dropdownSelect, feedWrite.dropdownSelect]}>
 								<NormalDropDown items={pet_kind} menu={data.type.pet_species_detail} width={292} height={500} onSelect={onSelectSpeciesDetail} />
