@@ -3225,6 +3225,7 @@ export const reportDetail = StyleSheet.create({
 		marginTop: 40 * DP,
 	},
 	commentList: {
+		flex: 1,
 		// marginTop: 62 * DP,
 	},
 	basic_separator: {
@@ -3243,6 +3244,12 @@ export const reportDetail = StyleSheet.create({
 		height: 44 * DP,
 		alignItems: 'flex-end',
 		// backgroundColor: '#F8DDDD',
+	},
+	wrp_main: {
+		flex: 1,
+		alignItems: 'center',
+		// justifyContent: 'center',
+		backgroundColor: '#FFF',
 	},
 });
 

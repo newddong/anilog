@@ -1,10 +1,9 @@
 import React from 'react';
-import {LogBox, ScrollView, Image, ActivityIndicator} from 'react-native';
+import {LogBox, ScrollView, Image, ActivityIndicator, TouchableOpacity} from 'react-native';
 import {Text, View} from 'react-native';
 import {login_style, reportDetail, temp_style} from './style_templete';
 import FeedContent from '../organism/FeedContent';
 import {useNavigation} from '@react-navigation/core';
-// import {_dummy_MissingReportDetail} from 'Root/config/dummy_data_hjs';
 import {_dummy_ReportDetail} from 'Root/config/dummy_data_hjs';
 import {dummy_CommentObject} from 'Root/config/dummyDate_json';
 import {getFeedDetailById} from 'Root/api/feedapi';
@@ -12,6 +11,7 @@ import {getCommentListByFeedId, createComment} from 'Root/api/commentapi';
 import moment from 'moment';
 import {create} from 'react-test-renderer';
 import {launchImageLibrary} from 'react-native-image-picker';
+import {txt} from 'Root/config/textstyle';
 
 export default ReportDetail = props => {
 	const navigation = useNavigation();
@@ -27,7 +27,7 @@ export default ReportDetail = props => {
 	const [commentDataList, setCommentDataList] = React.useState(); //더보기 클릭 State
 	const [writeCommentData, setWriteCommentData] = React.useState(); //더보기 클릭 State
 	const [replyPressed, setReplyPressed] = React.useState(false);
-	const debug = false;
+	const debug = true;
 	const [loading, setLoading] = React.useState(true); //로딩상태
 
 	React.useEffect(() => {
@@ -51,14 +51,7 @@ export default ReportDetail = props => {
 				feedobject_id: props.route.params._id,
 			},
 			data => {
-				console.log(`ReportDetail data:${JSON.stringify(data.msg)}`);
-				//피드 작성일 형식 변경
-				let dateValue = data.msg.feed_date;
-				if (dateValue != undefined && dateValue.length > 10) {
-					data.msg.feed_date = moment(dateValue).format('YYYY.MM.DD hh:mm:ss');
-				}
-				//제보날짜 형식 변경
-				data.msg.report_witness_date = moment(data.msg.report_witness_date).format('YYYY.MM.DD');
+				debug && console.log(`ReportDetail data:${JSON.stringify(data.msg)}`);
 				setData(data.msg);
 			},
 			errcallback => {
@@ -75,6 +68,10 @@ export default ReportDetail = props => {
 			setLoading(false);
 		}, 500);
 	}, []);
+
+	// React.useEffect(() => {
+	// 	console.log('WriteCommnetData changed', writeCommentData);
+	// }, [writeCommentData]);
 
 	React.useEffect(() => {
 		if (replyPressed == true) {
@@ -96,6 +93,7 @@ export default ReportDetail = props => {
 			setReplyPressed(false);
 		}
 	}, [replyPressed]);
+
 	const getCommnetList = () => {
 		getCommentListByFeedId(
 			{
@@ -112,7 +110,7 @@ export default ReportDetail = props => {
 					commentdata.msg[i].user_nickname = commentdata.msg[i].comment_writer_id.user_nickname;
 					commentdata.msg[i].comment_date = moment(JSON.stringify(commentdata.msg[i].comment_date).replace(/\"/g, '')).format('YYYY.MM.DD hh:mm:ss');
 					//일반 피드글과 구분하기 위해 feed_type 속성 추가 (다른 템플릿들과 시간 표기가 달라서 실종/제보에만 feed_type을 추가하고 시간 표기시 해당 속성 존재 여부만 판단)
-					commentdata.msg[i].feed_type = 'missing';
+					commentdata.msg[i].feed_type = 'report';
 				});
 
 				//댓글과 대댓글 작업 (부모 댓글과 자식 댓글 그룹 형성- 부모 댓글에서 부모의 childArray 속성에 자식 댓글 속성들을 추가)
@@ -181,11 +179,11 @@ export default ReportDetail = props => {
 		console.log(replyText);
 	};
 
-	// 답글 쓰기 버튼 클릭 콜백함수
+	// 답글 쓰기 텍스트 버튼 클릭 콜백함수
 	const onReplyBtnClick = parent_id => {
 		setEditComment(!editComment);
 		console.log('onReplayBtnClick', parent_id);
-		setWriteCommentData({...writeCommentData, commentobject_id: parent_id._id, feedobject_id: parent_id.comment_feed_id});
+		setWriteCommentData({...writeCommentData, commentobject_id: parent_id, feedobject_id: props.route.params._id});
 	};
 
 	// 자식 답글에서 답글쓰기 버튼 클릭 콜백함수
@@ -203,17 +201,6 @@ export default ReportDetail = props => {
 		setShowMore(!showMore);
 	};
 
-	//댓글 리스트 표출 개수 제어
-	// const checkDataLength = () => {
-	// 	let tempList = [];
-	// 	if (!showMore) {
-	// 		if (dummy_CommentObject.length > 2) {
-	// 			tempList = [...dummy_CommentObject.slice(0, 2)];
-	// 			return tempList;
-	// 		} else return dummy_CommentObject;
-	// 	} else return dummy_CommentObject;
-	// };
-
 	if (loading) {
 		return (
 			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
@@ -222,8 +209,14 @@ export default ReportDetail = props => {
 		);
 	}
 
+	const moveToCommentList = () => {
+		let feedobject = {};
+		feedobject._id = props.route.params._id;
+		navigation.push('FeedCommentList', {feedobject: data});
+	};
+
 	return (
-		<View style={[login_style.wrp_main]}>
+		<View style={[reportDetail.wrp_main]}>
 			<ScrollView contentContainerStyle={[reportDetail.container]}>
 				{/* Img_square_750 */}
 				<View style={[temp_style.img_square_750, reportDetail.img_square_750]}>
@@ -239,12 +232,15 @@ export default ReportDetail = props => {
 					{/* DB에서 가져오는 제보 피드글 데이터를 FeedContent에 넘겨준다. */}
 					<FeedContent data={data} />
 				</View>
-				{/* [hjs] 이 화면 댓글도 AnimalProtectRequestDetail 같이 더보기 버튼이 있는것인지..아니면 쭉 늘어놓을 것인지 결정 필요. */}
-				{/* 댓글에 관한 내용 - API에서 넘겨주는 값 확인 후 재수정 필요*/}
+				<View style={[reportDetail.allCommentCount]}>
+					<TouchableOpacity onPress={moveToCommentList}>
+						<Text style={[txt.noto24]}>댓글 쓰기</Text>
+					</TouchableOpacity>
+				</View>
 				<View style={[reportDetail.basic_separator]}>
 					<View style={[reportDetail.separator]}></View>
 				</View>
-				<View style={[temp_style.commentList, reportDetail.commentList]}>
+				<View style={[reportDetail.commentList]}>
 					<CommentList
 						items={commentDataList}
 						onPressReplyBtn={onReplyBtnClick}
@@ -252,19 +248,20 @@ export default ReportDetail = props => {
 					/>
 				</View>
 			</ScrollView>
-
-			{editComment ? (
-				<ReplyWriteBox
-					onAddPhoto={onAddPhoto}
-					onChangeReplyInput={text => onChangeReplyInput(text)}
-					onLockBtnClick={onLockBtnClick}
-					onWrite={onWrite}
-					privateComment={privateComment}
-					// isPhotoAdded={isPhotoAdded}
-					photo={photo}
-					onDeleteImage={onDeleteImage}
-				/>
-			) : null}
+			<View>
+				{editComment ? (
+					<ReplyWriteBox
+						onAddPhoto={onAddPhoto}
+						onChangeReplyInput={text => onChangeReplyInput(text)}
+						onLockBtnClick={onLockBtnClick}
+						onWrite={onWrite}
+						privateComment={privateComment}
+						// isPhotoAdded={isPhotoAdded}
+						photo={photo}
+						onDeleteImage={onDeleteImage}
+					/>
+				) : null}
+			</View>
 		</View>
 	);
 };

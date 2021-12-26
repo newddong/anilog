@@ -28,7 +28,7 @@ export default MissingAnimalDetail = props => {
 	const [commentDataList, setCommentDataList] = React.useState(); //더보기 클릭 State
 	const [writeCommentData, setWriteCommentData] = React.useState(); //더보기 클릭 State
 	const [replyPressed, setReplyPressed] = React.useState(false);
-	const debug = false;
+	const debug = true;
 	const [loading, setLoading] = React.useState(true); //로딩상태
 
 	React.useEffect(() => {
@@ -53,10 +53,6 @@ export default MissingAnimalDetail = props => {
 			},
 			data => {
 				debug && console.log(`MissingAnimalDetail data:${JSON.stringify(data.msg)}`);
-				let dateValue = data.msg.feed_date;
-				if (dateValue != undefined && dateValue.length > 10) {
-					data.msg.feed_date = moment(dateValue).format('YYYY.MM.DD hh:mm:ss');
-				}
 				setData(data.msg);
 			},
 			errcallback => {
@@ -77,6 +73,7 @@ export default MissingAnimalDetail = props => {
 	// React.useEffect(() => {
 	// 	console.log('WriteCommnetData changed', writeCommentData);
 	// }, [writeCommentData]);
+
 	React.useEffect(() => {
 		if (replyPressed == true) {
 			createComment(
@@ -183,11 +180,11 @@ export default MissingAnimalDetail = props => {
 		console.log(replyText);
 	};
 
-	// 답글 쓰기 버튼 클릭 콜백함수
+	// 답글 쓰기 텍스트 버튼 클릭 콜백함수
 	const onReplyBtnClick = parent_id => {
 		setEditComment(!editComment);
 		console.log('onReplayBtnClick', parent_id);
-		setWriteCommentData({...writeCommentData, commentobject_id: parent_id._id, feedobject_id: parent_id.comment_feed_id});
+		setWriteCommentData({...writeCommentData, commentobject_id: parent_id, feedobject_id: props.route.params._id});
 	};
 
 	// 자식 답글에서 답글쓰기 버튼 클릭 콜백함수
@@ -205,17 +202,6 @@ export default MissingAnimalDetail = props => {
 		setShowMore(!showMore);
 	};
 
-	//댓글 리스트 표출 개수 제어
-	// const checkDataLength = () => {
-	// 	let tempList = [];
-	// 	if (!showMore) {
-	// 		if (dummy_CommentObject.length > 2) {
-	// 			tempList = [...dummy_CommentObject.slice(0, 2)];
-	// 			return tempList;
-	// 		} else return dummy_CommentObject;
-	// 	} else return dummy_CommentObject;
-	// };
-
 	if (loading) {
 		return (
 			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
@@ -225,11 +211,13 @@ export default MissingAnimalDetail = props => {
 	}
 
 	const moveToCommentList = () => {
-		navigation.push('FeedCommentList', {feedobject: props.data});
+		let feedobject = {};
+		feedobject._id = props.route.params._id;
+		navigation.push('FeedCommentList', {feedobject: data});
 	};
 
 	return (
-		<View style={[login_style.wrp_main]}>
+		<View style={[reportDetail.wrp_main]}>
 			<ScrollView contentContainerStyle={[reportDetail.container]}>
 				{/* Img_square_750 */}
 				<View style={[temp_style.img_square_750, reportDetail.img_square_750]}>
@@ -250,13 +238,10 @@ export default MissingAnimalDetail = props => {
 						<Text style={[txt.noto24]}>댓글 쓰기</Text>
 					</TouchableOpacity>
 				</View>
-				{/* [hjs] 이 화면 댓글도 AnimalProtectRequestDetail 같이 더보기 버튼이 있는것인지..아니면 쭉 늘어놓을 것인지 결정 필요. */}
-				{/* 댓글에 관한 내용 - API에서 넘겨주는 값 확인 후 재수정 필요*/}
 				<View style={[reportDetail.basic_separator]}>
 					<View style={[reportDetail.separator]}></View>
 				</View>
-
-				<View style={[temp_style.commentList, reportDetail.commentList]}>
+				<View style={[reportDetail.commentList]}>
 					<CommentList
 						items={commentDataList}
 						onPressReplyBtn={onReplyBtnClick}
@@ -264,19 +249,20 @@ export default MissingAnimalDetail = props => {
 					/>
 				</View>
 			</ScrollView>
-
-			{editComment ? (
-				<ReplyWriteBox
-					onAddPhoto={onAddPhoto}
-					onChangeReplyInput={text => onChangeReplyInput(text)}
-					onLockBtnClick={onLockBtnClick}
-					onWrite={onWrite}
-					privateComment={privateComment}
-					// isPhotoAdded={isPhotoAdded}
-					photo={photo}
-					onDeleteImage={onDeleteImage}
-				/>
-			) : null}
+			<View>
+				{editComment ? (
+					<ReplyWriteBox
+						onAddPhoto={onAddPhoto}
+						onChangeReplyInput={text => onChangeReplyInput(text)}
+						onLockBtnClick={onLockBtnClick}
+						onWrite={onWrite}
+						privateComment={privateComment}
+						// isPhotoAdded={isPhotoAdded}
+						photo={photo}
+						onDeleteImage={onDeleteImage}
+					/>
+				) : null}
+			</View>
 		</View>
 	);
 };
