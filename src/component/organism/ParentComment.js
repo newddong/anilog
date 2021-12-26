@@ -42,6 +42,13 @@ export default ParentComment = props => {
 		// });
 	}, [props.parentComment]);
 
+	const onPressReplyBtn = () => {
+		props.onPressReplyBtn(props.parentComment._id);
+	}
+	const onPress_ChildComment_ReplyBtn = (comment) => {
+		props.onPress_ChildComment_ReplyBtn(comment);
+	}
+
 	const onCLickHeart = () => {
 		setLikeState(!likeState);
 	};
@@ -86,7 +93,7 @@ export default ParentComment = props => {
 					{/* Data - 좋아요 숫자 */}
 					<Text style={(txt.roboto24, parentComment.likeCountText)}>{data ? data.comment_like_count : ''}</Text>
 				</View>
-				<TouchableOpacity style={[parentComment.writeComment]} onPress={() => props.onPressReplyBtn(props.parentComment._id)}>
+				<TouchableOpacity style={[parentComment.writeComment]} onPress={onPressReplyBtn}>
 					<Text style={(txt.noto22, parentComment.writeCommentText)}>· 답글 쓰기</Text>
 				</TouchableOpacity>
 			</View>
@@ -96,7 +103,7 @@ export default ParentComment = props => {
 					<ChildCommentList
 						items={data.childArray}
 						showChildComment={showChildComment}
-						onPressReplyBtn={comment => props.onPress_ChildComment_ReplyBtn(comment)}
+						onPressReplyBtn={onPress_ChildComment_ReplyBtn}
 					/>
 				</View>
 			) : (
