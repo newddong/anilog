@@ -25,14 +25,7 @@ const UserTimeLabel = props => {
 
 	const getCommentedTime = () => {
 		let date = props.data.comment_date.match(/(\d{4})-(\d{1,2})-(\d{1,2}).*?$/);
-		console.log(date);
 		let timelapsed = Date.now() - new Date(date[1],date[2]-1,date[3]);
-		console.log(timelapsed);
-		
-		// let split = commented_date.split('-');
-		// console.log(split);
-		// let commented_date_time = new Date(split[0], split[1] - 1, split[2]);
-		// let date = parseInt(new Date().getDay()) - parseInt(commented_date_time.getDay());
 		return <>{Math.ceil(timelapsed/1000/60/60/24)-1} 일 전</>;
 	};
 

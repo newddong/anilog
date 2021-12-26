@@ -58,9 +58,9 @@ export default MyStackNavigation = props => {
 	return (
 		<MyStack.Navigator initialRouteName={props.user_type == 'shelter' ? 'ShelterMenu' : 'UserMenu'}>
 			{/* // <MyStack.Navigator initialRouteName={'ShelterMenu'}> */}
-			<MyStack.Screen name="UserFeedList" component={FeedList} />
-			<MyStack.Screen name="UserFeeds" component={FavoriteFeeds} />
-			<MyStack.Screen name="HashFeedList" component={FeedList} />
+			<MyStack.Screen name="UserFeedList" component={FeedList} options={{header: props => <SimpleHeader {...props} />}} />
+			<MyStack.Screen name="UserFeeds" component={FavoriteFeeds} options={{header: props => <SimpleHeader {...props} />, title: '내 게시글'}} />
+			<MyStack.Screen name="HashFeedList" component={FeedList} options={{header: props => <SimpleHeader {...props} />, title: '#반려동물'}} />
 			<MyStack.Screen name="ProtectAnimalFeedList" component={FeedList} />
 			<MyStack.Screen name="UserTagFeedList" component={FeedList} />
 			<MyStack.Screen
@@ -69,17 +69,28 @@ export default MyStackNavigation = props => {
 				options={{header: props => <MeatBallHeader {...props} menu={['신고하기', '신고']} />, title: 'UserProfile'}}
 			/>
 			<MyStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} />
-			<MyStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
-			<MyStack.Screen name="FeedCommentList" component={FeedCommentList} />
+			<MyStack.Screen
+				name="FeedListForHashTag"
+				component={FeedListForHashTag}
+				options={{header: props => <SimpleHeader {...props} />, title: '#반려동물'}}
+			/>
 			<MyStack.Screen name="SocialRelation" component={SocialRelationTopTabNavigation} />
 
 			<MyStack.Screen name="UserMenu" component={UserMenu} options={{header: props => <SimpleHeader {...props} />, title: 'MY'}} />
 			<MyStack.Screen name="UserInfoSetting" component={UserInfoSetting} />
 
-			<MyStack.Screen name="ChangeUserProfileImage" component={ChangeUserProfileImage} />
+			<MyStack.Screen
+				name="ChangeUserProfileImage"
+				component={ChangeUserProfileImage}
+				options={{header: props => <SimpleHeader {...props} />, title: '프로필 변경'}}
+			/>
 			<MyStack.Screen name="PhotoSelect" component={PhotoSelect} />
 
-			<MyStack.Screen name="ChangePassword" component={ChangePassword} />
+			<MyStack.Screen
+				name="ChangePassword"
+				component={ChangePassword}
+				options={{header: props => <SimpleHeader {...props} />, title: '비밀번호 변경'}}
+			/>
 			<MyStack.Screen
 				name="UserInfoDetailSetting"
 				component={UserInfoDetailSettting}
@@ -88,7 +99,11 @@ export default MyStackNavigation = props => {
 
 			<MyStack.Screen name="PetInfoSetting" component={PetInfoSetting} />
 
-			<MyStack.Screen name="ChangePetProfileImage" component={ChangePetProfileImage} />
+			<MyStack.Screen
+				name="ChangePetProfileImage"
+				component={ChangePetProfileImage}
+				options={{header: props => <SimpleHeader {...props} />, title: '프로필 변경'}}
+			/>
 			<MyStack.Screen
 				name="SetPetInformation"
 				component={SetPetInformation}
@@ -99,32 +114,88 @@ export default MyStackNavigation = props => {
 				component={VaccinationRecord}
 				options={{header: props => <SaveButtonHeader {...props} />, title: '접종 내역'}}
 			/>
-			<MyStack.Screen name="AddFamilyAccount" component={AddFamilyAccount} />
-			<MyStack.Screen name="AnimalAdoption" component={AnimalAdoption} />
+			<MyStack.Screen
+				name="AddFamilyAccount"
+				component={AddFamilyAccount}
+				options={{header: props => <SimpleHeader {...props} />, title: '가족 계정 추가'}}
+			/>
+			<MyStack.Screen name="AnimalAdoption" component={AnimalAdoption} options={{header: props => <SimpleHeader {...props} />, title: '상태 변경'}} />
 			<MyStack.Screen name="SelectAccount" component={SelectAccount} options={{header: props => <ConfirmInputHeader {...props} />}} />
 
-			<MyStack.Screen name="AssignPetProfileImage" component={AssignPetProfileImage} />
-			<MyStack.Screen name="AssignPetInfoA" component={AssignPetInfoA} />
-			<MyStack.Screen name="AssignPetInfoB" component={AssignPetInfoB} />
+			<MyStack.Screen
+				name="AssignPetProfileImage"
+				component={AssignPetProfileImage}
+				options={{header: props => <SimpleHeader {...props} />, title: '반려동물 등록'}}
+			/>
+			<MyStack.Screen
+				name="AssignPetInfoA"
+				component={AssignPetInfoA}
+				options={{header: props => <SimpleHeader {...props} />, title: '반려동물 등록'}}
+			/>
+			<MyStack.Screen
+				name="AssignPetInfoB"
+				component={AssignPetInfoB}
+				options={{header: props => <SimpleHeader {...props} />, title: '반려동물 등록'}}
+			/>
 
-			<MyStack.Screen name="SaveFavorite" component={SaveFavorite} />
-			<MyStack.Screen name="UserSaveAnimalRequest" component={SaveAnimalRequest} />
-			<MyStack.Screen name="ShelterSaveAnimalRequest" component={SaveAnimalRequest} />
-			<MyStack.Screen name="FavoriteFeeds" component={FavoriteFeeds} />
-			<MyStack.Screen name="FavoriteFeedList" component={FeedList} />
-			<MyStack.Screen name="TagMeFeedList" component={FeedList} />
-			<MyStack.Screen name="TagMeFeeds" component={FavoriteFeeds} />
+			<MyStack.Screen name="SaveFavorite" component={SaveFavorite} options={{header: props => <SimpleHeader {...props} />, title: '친구 즐겨찾기'}} />
+			<MyStack.Screen
+				name="UserSaveAnimalRequest"
+				component={SaveAnimalRequest}
+				options={{header: props => <SimpleHeader {...props} />, title: '보호요청 저장'}}
+			/>
+			<MyStack.Screen
+				name="ShelterSaveAnimalRequest"
+				component={SaveAnimalRequest}
+				options={{header: props => <SimpleHeader {...props} />, title: '보호요청 저장'}}
+			/>
+			<MyStack.Screen
+				name="FavoriteFeeds"
+				component={FavoriteFeeds}
+				options={{header: props => <SimpleHeader {...props} />, title: '피드 즐겨찾기'}}
+			/>
+			<MyStack.Screen name="FavoriteFeedList" component={FeedList} options={{header: props => <SimpleHeader {...props} />, title: '즐겨찾기'}} />
+			<MyStack.Screen name="TagMeFeedList" component={FeedList} options={{header: props => <SimpleHeader {...props} />}} />
+			<MyStack.Screen name="TagMeFeeds" component={FavoriteFeeds} options={{header: props => <SimpleHeader {...props} />, title: '나를 태그한 글'}} />
 
-			<MyStack.Screen name="AnimalProtectList" component={AnimalProtectList} />
+			<MyStack.Screen
+				name="AnimalProtectList"
+				component={AnimalProtectList}
+				options={{header: props => <SimpleHeader {...props} />, title: '동물 보호 현황'}}
+			/>
 
 			<MyStack.Screen name="ShelterMenu" component={ShelterMenu} options={{header: props => <SimpleHeader {...props} />, title: 'MY'}} />
-			<MyStack.Screen name="ShelterInfoSetting" component={ShelterInfoSetting} />
-			<MyStack.Screen name="EditShelterInfo" component={EditShelterInfo} />
+			<MyStack.Screen
+				name="ShelterInfoSetting"
+				component={ShelterInfoSetting}
+				options={{header: props => <SimpleHeader {...props} />, title: '보호소 프로필'}}
+			/>
+			<MyStack.Screen
+				name="EditShelterInfo"
+				component={EditShelterInfo}
+				options={{header: props => <SimpleHeader {...props} />, title: '보호소 정보 수정'}}
+			/>
 
-			<MyStack.Screen name="AssignProtectAnimalImage" component={AssignProtectAnimalImage} />
-			<MyStack.Screen name="AssignProtectAnimalDate" component={AssignProtectAnimalDate} />
-			<MyStack.Screen name="AssignProtectAnimalType" component={AssignPetInfoA} />
-			<MyStack.Screen name="AssignProtectAnimalAge" component={AssignProtectAnimalInfo} />
+			<MyStack.Screen
+				name="AssignProtectAnimalImage"
+				component={AssignProtectAnimalImage}
+				options={{header: props => <SimpleHeader {...props} />, title: '보호 동물 등록'}}
+			/>
+			<MyStack.Screen
+				name="AssignProtectAnimalDate"
+				component={AssignProtectAnimalDate}
+				options={{header: props => <SimpleHeader {...props} />, title: '보호 동물 등록'}}
+			/>
+			<MyStack.Screen
+				name="AssignProtectAnimalType"
+				component={AssignPetInfoA}
+				options={{header: props => <SimpleHeader {...props} />, title: '보호 동물 등록'}}
+			/>
+			<MyStack.Screen
+				name="AssignProtectAnimalAge"
+				component={AssignProtectAnimalInfo}
+				options={{header: props => <SimpleHeader {...props} />, title: '보호 동물 등록'}}
+			/>
 
 			<MyStack.Screen
 				name="AidRequestAnimalList"
@@ -137,26 +208,86 @@ export default MyStackNavigation = props => {
 				options={{header: props => <SendHeader {...props} />, title: '동물 보호 요청'}}
 			/>
 
-			<MyStack.Screen name="ShelterProtectAnimalList" component={AidRequestManage} />
+			<MyStack.Screen
+				name="ShelterProtectAnimalList"
+				component={AidRequestManage}
+				options={{header: props => <SimpleHeader {...props} />, title: '보호 동물 목록'}}
+			/>
 
-			<MyStack.Screen name="ProtectApplyList" component={AidRequestManage} />
-			<MyStack.Screen name="ProtectApplicant" component={ProtectApplicant} />
-			<MyStack.Screen name="ProtectApplyForm" component={ProtectApplyForm} />
+			<MyStack.Screen
+				name="ProtectApplyList"
+				component={AidRequestManage}
+				options={{header: props => <SimpleHeader {...props} />, title: '신청서 조회'}}
+			/>
+			<MyStack.Screen
+				name="ProtectApplicant"
+				component={ProtectApplicant}
+				options={{header: props => <SimpleHeader {...props} />, title: '보호 활동 신청자'}}
+			/>
+			<MyStack.Screen
+				name="ProtectApplyForm"
+				component={ProtectApplyForm}
+				options={{header: props => <SimpleHeader {...props} />, title: '보호 활동 신청자'}}
+			/>
 
-			<MyStack.Screen name="AnimalFromShelter" component={AnimalFromShelter} />
+			<MyStack.Screen
+				name="AnimalFromShelter"
+				component={AnimalFromShelter}
+				options={{header: props => <SimpleHeader {...props} />, title: '우리 보호소 출신 동물'}}
+			/>
 			<MyStack.Screen name="AdoptorInformation" component={AdoptorInformation} />
-			<MyStack.Screen name="ManageShelterVolunteer" component={ManageVolunteer} />
-			<MyStack.Screen name="ShelterVolunteerForm" component={ApplicationFormVolunteer} />
-			<MyStack.Screen name="ShelterProtectRequests" component={ShelterProtectRequests} />
-			<MyStack.Screen name="ProtectRequestManage" component={AnimalProtectRequestDetail} />
+			<MyStack.Screen
+				name="ManageShelterVolunteer"
+				component={ManageVolunteer}
+				options={{header: props => <SimpleHeader {...props} />, title: '봉사활동 신청서 관리'}}
+			/>
+			<MyStack.Screen
+				name="ShelterVolunteerForm"
+				component={ApplicationFormVolunteer}
+				options={{header: props => <SimpleHeader {...props} />, title: '봉사활동 신청서'}}
+			/>
+			<MyStack.Screen
+				name="ShelterProtectRequests"
+				component={ShelterProtectRequests}
+				options={{header: props => <SimpleHeader {...props} />, title: '보호요청 게시글'}}
+			/>
+			<MyStack.Screen
+				name="ProtectRequestManage"
+				component={AnimalProtectRequestDetail}
+				options={{header: props => <SimpleHeader {...props} />, title: '보호소 보호중인 동물 정보'}}
+			/>
 
-			<MyStack.Screen name="AppliesRecord" component={AppliesRecord} />
-			<MyStack.Screen name="ApplyAdoptionList" component={ApplyAdoptionList} />
-			<MyStack.Screen name="ApplyAdoptionDetails" component={ApplyDetails} />
-			<MyStack.Screen name="ApplyTempProtectList" component={ApplyAdoptionList} />
-			<MyStack.Screen name="ApplyTempProtectDetails" component={ApplyDetails} />
-			<MyStack.Screen name="ManageUserVolunteer" component={ManageVolunteer} />
-			<MyStack.Screen name="UserVolunteerForm" component={ApplicationFormVolunteer} />
+			<MyStack.Screen name="AppliesRecord" component={AppliesRecord} options={{header: props => <SimpleHeader {...props} />, title: '신청 내역'}} />
+			<MyStack.Screen
+				name="ApplyAdoptionList"
+				component={ApplyAdoptionList}
+				options={{header: props => <SimpleHeader {...props} />, title: '입양 신청 내역'}}
+			/>
+			<MyStack.Screen
+				name="ApplyAdoptionDetails"
+				component={ApplyDetails}
+				options={{header: props => <SimpleHeader {...props} />, title: '입양 신청 내역'}}
+			/>
+			<MyStack.Screen
+				name="ApplyTempProtectList"
+				component={ApplyAdoptionList}
+				options={{header: props => <SimpleHeader {...props} />, title: '임시보호 신청 내역'}}
+			/>
+			<MyStack.Screen
+				name="ApplyTempProtectDetails"
+				component={ApplyDetails}
+				options={{header: props => <SimpleHeader {...props} />, title: '임시보호 신청 내역'}}
+			/>
+			<MyStack.Screen
+				name="ManageUserVolunteer"
+				component={ManageVolunteer}
+				options={{header: props => <SimpleHeader {...props} />, title: '봉사활동 신청'}}
+			/>
+			<MyStack.Screen
+				name="UserVolunteerForm"
+				component={ApplicationFormVolunteer}
+				options={{header: props => <SimpleHeader {...props} />, title: '봉사활동 신청서'}}
+			/>
 		</MyStack.Navigator>
 	);
 };

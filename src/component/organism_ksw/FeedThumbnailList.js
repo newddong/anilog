@@ -22,7 +22,7 @@ export default FeedThumbnailList = props => {
 		<FlatList
 			data={props.items}
 			renderItem={({item, index}) => (
-				<FeedThumnail data={item} onSelect={feed_id => props.onClickThumnail(index, feed_id)} selectMode={props.selectMode} />
+				<FeedThumnail data={item} onSelect={feed_id => props.onClickThumnail(index, feed_id, item)} selectMode={props.selectMode} />
 			)}
 			keyExtractor={(item, index) => index + ''}
 			numColumns={NUMCOLUMNS}

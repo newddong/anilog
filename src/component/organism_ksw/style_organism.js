@@ -388,7 +388,7 @@ export const profileMenu = StyleSheet.create({
 		alignSelf: 'center',
 	},
 	item_text: {
-		width: 210 * DP,
+		width: 220 * DP,
 		height: 36 * DP,
 		marginRight: 52 * DP,
 		alignSelf: 'center',
