@@ -23,8 +23,8 @@ export default CommentList = props => {
 		return (
 			<ParentComment
 				parentComment={item}
-				onPressReplyBtn={() => props.onPressReplyBtn(item)} // 부모 댓글의 답글쓰기 클릭 이벤트
-				onPress_ChildComment_ReplyBtn={() => onPress_ChildComment_ReplyBtn(item)} // 자식 댓글의 답글쓰기 클릭 이벤트
+				onPressReplyBtn={props.onPressReplyBtn} // 부모 댓글의 답글쓰기 클릭 이벤트
+				onPress_ChildComment_ReplyBtn={onPress_ChildComment_ReplyBtn} // 자식 댓글의 답글쓰기 클릭 이벤트
 			/>
 		);
 	};

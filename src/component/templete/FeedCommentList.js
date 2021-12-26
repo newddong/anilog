@@ -83,13 +83,14 @@ export default FeedCommentList = props => {
 	};
 
 	// 답글 쓰기 버튼 클릭 콜백함수
-	const onReplyBtnClick = () => {
-		setEditComment(!editComment);
+	const onReplyBtnClick = (parentCommentId) => {
+		console.log(parentCommentId)
+		// setEditComment(!editComment);
 	};
 
-	// 자식 답글에서 답글쓰기 버튼 클릭 콜백함수
+	// 자식 답글에서 답글쓰기 버튼 클릭 콜백함수(자식 답글에답글다는건 안함)
 	const onChildReplyBtnClick = comment => {
-		setEditComment(!editComment);
+		// setEditComment(!editComment);
 	};
 
 	const render = ({item, index}) => {

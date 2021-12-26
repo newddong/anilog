@@ -195,12 +195,12 @@ export default FeedWrite = props => {
 								<Text style={[txt.noto24, {color: APRI10, marginLeft: 10 * DP}]}>사진추가</Text>
 							</View>
 						</TouchableWithoutFeedback>
-						<TouchableWithoutFeedback onPress={moveToLocationPicker}>
+						{/* <TouchableWithoutFeedback onPress={moveToLocationPicker}>
 							<View style={[feedWrite.btnItemContainer]}>
 								<Location54_APRI10 />
 								<Text style={[txt.noto24, {color: APRI10, alignSelf: 'center', marginLeft: 10 * DP}]}>위치추가</Text>
 							</View>
-						</TouchableWithoutFeedback>
+						</TouchableWithoutFeedback> */}
 						<TouchableWithoutFeedback onPress={moveToFeedMediaTagEdit}>
 							<View style={[feedWrite.btnItemContainer]}>
 								<Paw54_Border />
