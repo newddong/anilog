@@ -16,7 +16,6 @@ export default MissingReportList = props => {
 	const [showUrgentBtns, setShowUrgentBtns] = React.useState(true); //긴급버튼목록
 	const [showActionButton, setShowActionButton] = React.useState(false); // 긴급게시(하얀버전) 클릭 시 - 실종/제보 버튼 출력 Boolean
 	const [refreshing, setRefreshing] = React.useState(false);
-	const [loading, setLoading] = React.useState(true); //로딩상태
 
 	const [data, setData] = React.useState({
 		filterValue: '',
@@ -26,36 +25,24 @@ export default MissingReportList = props => {
 
 	// 실종 데이터 불러오기 (아직 API 미작업 )
 	React.useEffect(() => {
-		const getList = () => {
-			console.log('MissingReportList:feedlist of missing');
-			getMissingReportList(
-				{
-					//필터 - 보호지역 (user_address.city 데이터)
-					city: '',
-					protect_animal_species: '',
-					feedobject_id: '',
-					request_number: 10,
-				},
-				data => {
-					// console.log('getMissingReportList data', data.msg);
-					// console.log('data' + JSON.stringify(`data${data}`));
-					setData(data.msg);
-				},
-				err => {
-					console.log('getMissingReportList Error', err);
-				},
-			);
-		};
-		//스크린 이동시 리스트 갱신
-		const unsubscribe = navigation.addListener('focus', () => {
-			getList();
-			setTimeout(() => {
-				setLoading(false);
-			}, 800);
-		});
-		//Refreshing 요청시 리스트 다시 조회
-		refreshing ? getList() : false;
-		return unsubscribe;
+		console.log('MissingReportList:feedlist of missing');
+		getMissingReportList(
+			{
+				//필터 - 보호지역 (user_address.city 데이터)
+				city: '',
+				protect_animal_species: '',
+				feedobject_id: '',
+				request_number: 10,
+			},
+			data => {
+				// console.log('getMissingReportList data', data.msg);
+				// console.log('data' + JSON.stringify(`data${data}`));
+				setData(data.msg);
+			},
+			err => {
+				console.log('getMissingReportList Error', err);
+			},
+		);
 	}, [refreshing]);
 
 	const filterOn = () => {
@@ -111,14 +98,6 @@ export default MissingReportList = props => {
 	const onSelectKind = kind => {
 		setData({...data, kindFilter: kind});
 	};
-
-	if (loading) {
-		return (
-			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
-				<ActivityIndicator size={'large'}></ActivityIndicator>
-			</View>
-		);
-	}
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>

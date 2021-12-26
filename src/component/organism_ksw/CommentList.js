@@ -19,8 +19,7 @@ export default CommentList = props => {
 		props.onPress_ChildComment_ReplyBtn(comment);
 	};
 
-	const renderItem = ({item,index}) => {
-		
+	const renderItem = ({item, index}) => {
 		return (
 			<ParentComment
 				parentComment={item}
