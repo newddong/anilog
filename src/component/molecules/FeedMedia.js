@@ -79,13 +79,7 @@ export default FeedMedia = props => {
 		} else return false;
 	};
 
-	const onLayout = event => {
-		const {width, height} = event.nativeEvent.layout;
-		const offset = height - 214 * DP;
-		if(offset>=0){
-			setContentLayout({width, height:height+30*DP});
-		}
-	};
+
 
 	return (
 		<View style={style.img_square_750x750}>
@@ -112,15 +106,17 @@ export default FeedMedia = props => {
 				false
 			)}
 			{isEmergency ? (
-				<View>
-					<View style={[style.emergency_background,{height:contentLayout.height}]}>
-					<View style={style.emergency_info_container} onLayout={onLayout}>
+				<View style={[style.emergency_background, {paddingVertical: 20 * DP, paddingHorizontal: 48 * DP, height:null}]}>
+					<View style={style.emergency_info_container}>
 						<View style={{flexDirection: 'row'}}>
-							<Text style={[txt.roboto34b, {color: 'white'}]}>{animal_species + '/' + animal_species_detail}</Text>
-							<Text style={[txt.roboto34b, style.emergency_info_txt]}>{emergency_location}</Text>
+							<Text style={[txt.roboto34b, {color: 'white'}]}>{animal_species + (animal_species_detail ? ' / ' + animal_species_detail : '')}</Text>
 						</View>
-						<Text style={[txt.roboto24, {color: 'white', marginTop: 15 * DP, width: 700 * DP}]}>{feed_content}</Text>
+						<View style={{marginLeft: 20 * DP,flex:1}}>
+							<Text style={[txt.roboto34b, {color: 'white'}]}>{emergency_location}</Text>
+						</View>
 					</View>
+					<View style={{flex:1}}>
+						<Text style={[txt.roboto24, {color: 'white', marginTop: 20 * DP}]} ellipsizeMode='tail'>{report_animal_features}</Text>
 					</View>
 				</View>
 			) : (
@@ -161,7 +157,7 @@ const style = StyleSheet.create({
 		width: 750 * DP,
 		// height: 214 * DP,
 		backgroundColor: '#0009',
-		justifyContent:'center',
+		justifyContent: 'center',
 		position: 'absolute',
 		bottom: 0,
 		zIndex: 0,
@@ -173,12 +169,6 @@ const style = StyleSheet.create({
 		height: 80 * DP,
 	},
 	emergency_info_container: {
-		width: 750 * DP,
-		// height: 214 * DP,
-		// position: 'absolute',
-		justifyContent: 'center',
-		bottom: 0,
-		// zIndex: 1,
-		marginLeft: 26 * DP,
+		flexDirection: 'row',
 	},
 });

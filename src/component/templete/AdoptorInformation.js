@@ -29,9 +29,7 @@ export default AdoptorInformation = ({route, navigation}) => {
 			},
 			result => {
 				console.log('result / getProtectAnimalByProtectAnimalId  / AdoptorInformation  : ', result.msg.protect_act_applicants);
-				// ["61c34aed17f59a595cc4219a", "61c34be517f59a595cc421a0", "61c34f5a17f59a595cc42211", "61c487b567b952173d67d9c8"]
-				//61c48bda67b952173d67daad
-				// console.log('merged', merged);
+				// 로그 결과  : ["61c34aed17f59a595cc4219a", "61c34be517f59a595cc421a0", "61c34f5a17f59a595cc42211", "61c487b567b952173d67d9c8"]
 				getApplyDetailById(
 					{
 						protect_act_object_id: result.msg.protect_act_applicants[0], //[0]번이면 안될텐데?

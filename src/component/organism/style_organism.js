@@ -7,18 +7,22 @@ export const organism_style = StyleSheet.create({
 	feedContent: {
 		flexDirection: 'column',
 		width: 750 * DP,
-		// height: 270 * DP,
+		height: 270 * DP,
 		alignItems: 'center',
 		paddingTop: 40 * DP,
-		backgroundColor:WHITE
+		paddingBottom:50*DP,
+		backgroundColor:WHITE,
+		paddingHorizontal:48*DP,
 	},
 	userLocationLabel_view_feedContent: {
 		flexDirection: 'row',
-		width: 654 * DP,
+		justifyContent:'space-between',
+		width:'100%',
+		alignItems:'center'
 	},
 	userLocationLabel_feedContent: {
 		flexDirection: 'row',
-		width: 448 * DP,
+		// width: 448 * DP,
 	},
 	feed: {
 		// flexDirection: 'column',
@@ -54,18 +58,16 @@ export const organism_style = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	content_feedContent: {
-		//	flexDirection: 'row',
-		width: 654 * DP,
-		// height: 100*DP,
+		width:'100%',
 	},
 	time_view_feedContent: {
 		flexDirection: 'row',
-		width: 654 * DP,
+		width: '100%',
 		height: 48 * DP,
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		position: 'absolute',
-		backgroundColor: '#fff',
+		backgroundColor: '#fffd',
+		position:'absolute',
 		bottom: 0,
 	},
 	time_feedContent: {
@@ -93,13 +95,12 @@ export const organism_style = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	tipOff_feedContent: {
-		width: 654 * DP,
+		width:'100%',
 		justifyContent: 'center',
 	},
 	button_view_feedContent: {
 		flexDirection: 'row',
 		width: 126 * DP,
-		position: 'absolute',
 		right: 0,
 		alignSelf: 'center',
 		justifyContent: 'space-between',
@@ -416,7 +417,7 @@ export const parentComment = StyleSheet.create({
 		marginTop: 20 * DP,
 		flexDirection: 'row',
 		alignItems: 'center',
-		alignSelf: 'flex-end',
+		// alignSelf: 'flex-end',
 		justifyContent: 'flex-end',
 	},
 	comment_contents: {
@@ -433,7 +434,6 @@ export const parentComment = StyleSheet.create({
 	heart30: {
 		width: 30 * DP,
 		height: 30 * DP,
-		backgroundColor: 'lightgray',
 	},
 	likeCount: {
 		width: 50 * DP,
@@ -452,6 +452,6 @@ export const parentComment = StyleSheet.create({
 	},
 	writeCommentText: {
 		color: GRAY20,
-		// includeFontPadding: false,
+		includeFontPadding: false,
 	},
 });

@@ -29,7 +29,7 @@ export default VolunteerItem = props => {
 				{props.data.user_type === 'shelter' ? (
 					<ShelterLabel data={data} onClickLabel={() => props.onClickLabel()} />
 				) : (
-					<UserDescriptionLabel data={data} onClickLabel={() => props.onClickLabel(e)} />
+					<UserDescriptionLabel data={data} onClickLabel={() => props.onClickLabel()} />
 				)}
 			</View>
 			{props.nvName != 'ProtectApplicant' && (

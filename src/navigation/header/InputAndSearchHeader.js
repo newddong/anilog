@@ -8,7 +8,7 @@ import {WHITE, APRI10} from 'Root/config/color';
 import InputWithSearchIcon from 'Molecules/InputWithSearchIcon';
 
 export default ConfirmInputHeader = ({navigation, route, options, back}) => {
-	const [searchInput, setSearchInput] = React.useState(false);
+	const [searchInput, setSearchInput] = React.useState('');
 	const confirm = () => {
 		// navigation.navigate('Search');
 		navigation.setParams({searchInput: searchInput});

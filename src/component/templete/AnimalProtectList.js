@@ -29,7 +29,7 @@ export default AnimalProtectList = ({route}) => {
 
 	const onPressLabel = (item, index) => {
 		console.log('index', item);
-		navigation.push('UserProfile', item);
+		navigation.push('UserProfile', {userobject: item});
 	};
 
 	return (

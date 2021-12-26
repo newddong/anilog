@@ -27,6 +27,7 @@
 		A72774053C0A480B90682CC4 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C12F8D39E3F46AA9ADA1233 /* Roboto-LightItalic.ttf */; };
 		B3C88654360E43C29548F8C8 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F8D1B05DA044339A2953BF /* Roboto-Regular.ttf */; };
 		BADD4E1093BD4F9096A80D38 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F41EF1252CC4F08B3BAF374 /* NotoSansKR-Regular.otf */; };
+		DB2617A827784C8500B99059 /* Geo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2617A727784C8500B99059 /* Geo.swift */; };
 		E6C58BF1C3784743B899A910 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC408770C16F4B2F8C6E5B3C /* Roboto-Thin.ttf */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,8 @@
 		B7CC3F2370A94A2B8E77E173 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-MediumItalic.ttf"; path = "../asset/fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
 		B87C71DE3BE292E7035DD777 /* libPods-anilog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-anilog.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD10A8244A6A41CDAC458879 /* Roboto-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Black.ttf"; path = "../asset/fonts/Roboto-Black.ttf"; sourceTree = "<group>"; };
+		DB2617A627784C8500B99059 /* anilog-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "anilog-Bridging-Header.h"; sourceTree = "<group>"; };
+		DB2617A727784C8500B99059 /* Geo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geo.swift; sourceTree = "<group>"; };
 		EC9C1B8ED74746BFAAF40EDB /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BlackItalic.ttf"; path = "../asset/fonts/Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F293CACCE00B0A0642E3641D /* Pods-anilog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anilog.debug.xcconfig"; path = "Target Support Files/Pods-anilog/Pods-anilog.debug.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +123,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				DB2617A727784C8500B99059 /* Geo.swift */,
+				DB2617A627784C8500B99059 /* anilog-Bridging-Header.h */,
 			);
 			name = anilog;
 			sourceTree = "<group>";
@@ -257,7 +262,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1310;
 					};
 				};
 			};
@@ -476,6 +481,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				DB2617A827784C8500B99059 /* Geo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +500,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FCA46C6C31F4EE672DFF4E35 /* Pods-anilog-anilogTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -521,6 +528,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7658A3B8CBBB19334EF297F9 /* Pods-anilog-anilogTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = anilogTests/Info.plist;
@@ -565,6 +573,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = anilog;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "anilog-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -594,6 +603,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = anilog;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "anilog-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

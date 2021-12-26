@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, ScrollView, Text, View} from 'react-native';
+import {FlatList, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import AnimalInfo from './AnimalInfo';
 import {animalInfoList} from './style_organism';
@@ -14,9 +14,9 @@ export default AnimalInfoList = props => {
 
 	const renderItem = (item, index) => {
 		return (
-			<View style={[animalInfoList.itemContainer]}>
-				<AnimalInfo data={item} onPressLabel={() => props.onPressLabel(item, index)} />
-			</View>
+			<TouchableOpacity onPress={() => props.onPressLabel(item, index)} style={[animalInfoList.itemContainer]}>
+				<AnimalInfo data={item} />
+			</TouchableOpacity>
 		);
 	};
 

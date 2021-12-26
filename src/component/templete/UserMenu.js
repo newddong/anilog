@@ -4,7 +4,6 @@ import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 
 import {GRAY10} from 'Root/config/color';
-import {dummy_userObject, dummy_UserObject_shelter} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
 import {
 	ACCOUNT,
@@ -36,6 +35,7 @@ import {login_style, temp_style, userMenu_style} from './style_templete';
 // import {getUserProfile} from 'Root/api/usermenuapi';
 import {getUserProfile} from 'Root/api/userapi';
 import Modal from '../modal/Modal';
+
 export default UserMenu = props => {
 	const navigation = useNavigation();
 	//-test for commit -
@@ -62,7 +62,21 @@ export default UserMenu = props => {
 
 	// 나의 반려동물 버튼 클릭
 	const onPressMyCompanion = () => {
-		navigation.push('PetInfoSetting', {pet_id: data.user_my_pets[0]._id}); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
+		// console.log('data my pet', data.user_my_pets);
+		if (data.user_my_pets.length == 0) {
+			Modal.popTwoBtn(
+				'아직 등록하신 반려동물이 없습니다. \n 등록하러 가시겠습니까?',
+				'아니오',
+				'네',
+				() => Modal.close(),
+				() => {
+					navigation.push('AssignPetProfileImage', {userobject_id: data._id, previousRouteName: 'UserInfoSetting'});
+					Modal.close();
+				},
+			);
+		} else {
+			navigation.push('PetInfoSetting', {pet_id: data.user_my_pets[0]._id}); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
+		}
 	};
 
 	// 내 정보 수정 클릭

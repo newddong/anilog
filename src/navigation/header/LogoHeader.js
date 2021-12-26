@@ -4,16 +4,16 @@ import {Text, TextInput, View, Image, ScrollView, Dimensions, SafeAreaView, Styl
 import {Logo} from 'Asset/image';
 import {AlarmBadger48, Search48} from 'Atom/icon';
 import DP from 'Root/config/dp';
-import {WHITE,APRI10} from 'Root/config/color';
+import {WHITE, APRI10} from 'Root/config/color';
 import SvgWrapper, {SvgWrap} from 'Screens/svgwrapper';
 
-export default LogoHeader = ({navigation,route,options,back}) => {
+export default LogoHeader = ({navigation, route, options, back}) => {
 	const clickLogo = () => {
 		alert('Logo!');
 	};
 	const clickSearch = () => {
-		// navigation.navigate('Search');
-		alert('Search')
+		navigation.push('Search', {mother: 0, child: 0, prevNav: route.name});
+		// alert('Search')
 	};
 	const clickAlarm = () => {
 		alert('Alarm!');
@@ -22,9 +22,9 @@ export default LogoHeader = ({navigation,route,options,back}) => {
 		<View style={[style.headerContainer, style.shadow]}>
 			<SvgWrap style={style.logoContainer} onPress={clickLogo} svg={<Logo fill={APRI10} />} />
 			<View style={style.buttonContainer}>
-				<Search48 onPress={clickSearch}/>
+				<Search48 onPress={clickSearch} />
 
-				<AlarmBadger48 onPress={clickAlarm}/>
+				<AlarmBadger48 onPress={clickAlarm} />
 			</View>
 		</View>
 	);
@@ -33,11 +33,11 @@ export default LogoHeader = ({navigation,route,options,back}) => {
 const style = StyleSheet.create({
 	headerContainer: {
 		alignItems: 'flex-end',
-        justifyContent:'space-between',
+		justifyContent: 'space-between',
 		height: 135 * DP,
 		flexDirection: 'row',
 		backgroundColor: WHITE,
-        paddingHorizontal:48*DP,
+		paddingHorizontal: 48 * DP,
 	},
 	logoContainer: {
 		marginBottom: 26 * DP,
@@ -46,8 +46,8 @@ const style = StyleSheet.create({
 	},
 	buttonContainer: {
 		flexDirection: 'row',
-        justifyContent: 'space-between',
-        width:126*DP,
+		justifyContent: 'space-between',
+		width: 126 * DP,
 		marginBottom: 26 * DP,
 	},
 	shadow: {

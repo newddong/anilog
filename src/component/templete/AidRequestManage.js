@@ -16,15 +16,59 @@ export default AidRequestManage = ({route, navigation}) => {
 
 	React.useEffect(() => {
 		if (isShelterProtect) {
-			//token(id)를 토대로 보호소 계정이 등록한 보호동물 리스트 조회
-			// console.log('ShelterProtectAnimalList Nav');
+			// 보호중인 동물이므로 입양 및 임시보호가 완료된 보호동물들은 출력이 되어서는 안됨
+			//protect_animal_status !='adopt' or 'protect'일 경우 제외되어야 함
+			//차후 API 다듬는 과정에서 추가 필요
 			getShelterProtectAnimalList(
 				{
 					shelter_protect_animal_object_id: null,
 					request_number: 10,
 				},
 				result => {
-					// console.log('result / getShelterProtectAnimalList / ShelterProtectAnimalList', result.msg);
+					console.log('result / getShelterProtectAnimalList / ShelterProtectAnimalList', result.msg);
+					const mt = [
+						{
+							__v: 1,
+							_id: '61c5734438c5f6dee5a8b96e',
+							protect_act_applicants: ['61c5820238c5f6dee5a8bbdd'],
+							protect_animal_belonged_shelter_id: '61c5724c38c5f6dee5a8b95c',
+							protect_animal_estimate_age: '2년 2개월',
+							protect_animal_neutralization: 'no',
+							protect_animal_photo_uri_list: [
+								'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640330052596_797A0127-E891-4286-8F6D-856C0F09003D.jpg',
+							],
+							protect_animal_protect_request_id: '61c575b538c5f6dee5a8b9d1',
+							protect_animal_protector_discussion_id: [],
+							protect_animal_rescue_date: '2020-12-03T00:00:00.000Z',
+							protect_animal_rescue_location: '강원도 평창군 장흥이 인근',
+							protect_animal_sex: 'female',
+							protect_animal_species: '기타',
+							protect_animal_species_detail: '사자',
+							protect_animal_status: 'rescue',
+							protect_animal_weight: 14,
+						},
+						{
+							__v: 2,
+							_id: '61c576c638c5f6dee5a8b9fd',
+							protect_act_applicants: ['61c5c80938c5f6dee5a8cdfa', '61c73f7b10b3b3bf4acbed77'],
+							protect_animal_belonged_shelter_id: '61c5724c38c5f6dee5a8b95c',
+							protect_animal_estimate_age: '2개월',
+							protect_animal_neutralization: 'unknown',
+							protect_animal_photo_uri_list: [
+								'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640330950796_A5781A26-0592-422C-BB9C-21A269B4B578.jpg',
+							],
+							protect_animal_protect_request_id: '61c576f538c5f6dee5a8ba06',
+							protect_animal_protector_discussion_id: [],
+							protect_animal_rescue_date: '2021-12-01T00:00:00.000Z',
+							protect_animal_rescue_location: '강원도 강릉시 주문진 인근',
+							protect_animal_sex: 'female',
+							protect_animal_species: '기타',
+							protect_animal_species_detail: '호랑이',
+							protect_animal_status: 'rescue',
+							protect_animal_weight: 8,
+						},
+					];
+
 					setData(result.msg);
 					setTimeout(() => {
 						setLoading(false);

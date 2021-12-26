@@ -1,5 +1,5 @@
 import React from 'react';
-import {LogBox, ScrollView, Image} from 'react-native';
+import {LogBox, ScrollView, Image, ActivityIndicator, TouchableOpacity} from 'react-native';
 import {Text, View} from 'react-native';
 import {login_style, reportDetail, temp_style} from './style_templete';
 import FeedContent from '../organism/FeedContent';
@@ -12,6 +12,7 @@ import {getCommentListByFeedId, createComment} from 'Root/api/commentapi';
 import moment from 'moment';
 import {create} from 'react-test-renderer';
 import {launchImageLibrary} from 'react-native-image-picker';
+import {txt} from 'Root/config/textstyle';
 
 export default MissingAnimalDetail = props => {
 	const navigation = useNavigation();
@@ -28,6 +29,7 @@ export default MissingAnimalDetail = props => {
 	const [writeCommentData, setWriteCommentData] = React.useState(); //더보기 클릭 State
 	const [replyPressed, setReplyPressed] = React.useState(false);
 	const debug = false;
+	const [loading, setLoading] = React.useState(true); //로딩상태
 
 	React.useEffect(() => {
 		setPhoto(props.route.params);
@@ -67,6 +69,9 @@ export default MissingAnimalDetail = props => {
 	React.useEffect(() => {
 		console.log(' - MissingAnimalDetail Comment -');
 		getCommnetList();
+		setTimeout(() => {
+			setLoading(false);
+		}, 500);
 	}, []);
 
 	// React.useEffect(() => {
@@ -211,6 +216,18 @@ export default MissingAnimalDetail = props => {
 	// 	} else return dummy_CommentObject;
 	// };
 
+	if (loading) {
+		return (
+			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
+				<ActivityIndicator size={'large'}></ActivityIndicator>
+			</View>
+		);
+	}
+
+	const moveToCommentList = () => {
+		navigation.push('FeedCommentList', {feedobject: props.data});
+	};
+
 	return (
 		<View style={[login_style.wrp_main]}>
 			<ScrollView contentContainerStyle={[reportDetail.container]}>
@@ -228,11 +245,17 @@ export default MissingAnimalDetail = props => {
 					{/* DB에서 가져오는 제보 피드글 데이터를 FeedContent에 넘겨준다. */}
 					<FeedContent data={data} />
 				</View>
+				<View style={[reportDetail.allCommentCount]}>
+					<TouchableOpacity onPress={moveToCommentList}>
+						<Text style={[txt.noto24]}>댓글 쓰기</Text>
+					</TouchableOpacity>
+				</View>
 				{/* [hjs] 이 화면 댓글도 AnimalProtectRequestDetail 같이 더보기 버튼이 있는것인지..아니면 쭉 늘어놓을 것인지 결정 필요. */}
 				{/* 댓글에 관한 내용 - API에서 넘겨주는 값 확인 후 재수정 필요*/}
 				<View style={[reportDetail.basic_separator]}>
 					<View style={[reportDetail.separator]}></View>
 				</View>
+
 				<View style={[temp_style.commentList, reportDetail.commentList]}>
 					<CommentList
 						items={commentDataList}

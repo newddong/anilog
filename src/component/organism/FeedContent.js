@@ -53,23 +53,13 @@ export default FeedContent = props => {
 	const navigation = useNavigation();
 
 	const [btnStatus, setBtnStatus] = React.useState(false); //더보기 Arrow방향 false면 아래
-	const [layout, setLayout] = React.useState({height: 100 * DP, width: 0}); // 초기의 Layout
+	const [layout, setLayout] = React.useState({height: 0 * DP, width: 0}); // 초기의 Layout
 	const [reportLayout, setReportLayout] = React.useState({height: 0, width: 0});
-	// const contentHeight = React.useRef(270 * DP);
-	const [contentHeight, setHeight] = React.useState(270*DP);
-	const shouldShowMoreBtn = layout.height +reportLayout.height- 100 * DP > 0;
-
-	const moveToFeedListForHashTag = tagText => {
-		const dummyHashData = {
-			keyword: tagText,
-			count: 10,
-			keywordBold: true,
-		};
-		navigation.push('FeedListForHashTag', dummyHashData);
-	};
+	const [labelLayout, setlabelLayout] = React.useState({height: 0, width: 0});
+	const [show,setShow] = React.useState(false);
 
 	//FeedText가 담긴 View 의 onLayout
-	const onLayout = event => {
+	const onLayoutContent = event => {
 		const {width, height} = event.nativeEvent.layout;
 		setLayout({width, height});
 	};
@@ -80,16 +70,29 @@ export default FeedContent = props => {
 		setReportLayout({width, height});
 	};
 
-	// FeedText View의 maxHeight설정
-	const getMaxHeight = () => {
-		// console.log('getMAx', layout.height);
-		if (btnStatus) {
-			return null;
-		} else if (layout.height > 120 * DP) {
-			return 120 * DP;
-		} else {
-			null;
+	const onLayoutLabel = event => {
+		const {width, height} = event.nativeEvent.layout;
+		setlabelLayout({width, height});
+	}
+
+	React.useEffect(()=>{
+		if(layout.height+reportLayout.height+labelLayout.height+116*DP>270*DP){
+			setBtnStatus(false);
+		}else{
+			setBtnStatus(true);
 		}
+	},[layout,reportLayout,labelLayout])
+
+
+	const parsingDate = date => {
+		let temp = date.match(/(\d{4})-(\d{1,2})-(\d{1,2}).*?$/);
+		return `${temp[1]}년 ${temp[2]}월 ${temp[3]}일`;
+	};
+
+	const getCommentedTime = () => {
+		let date = feed_date.match(/(\d{4})-(\d{1,2})-(\d{1,2}).*?$/);
+		let timelapsed = Date.now() - new Date(date[1], date[2] - 1, date[3]);
+		return <>{Math.ceil(timelapsed / 1000 / 60 / 60 / 24) - 1} 일 전</>;
 	};
 
 	const onClickMeatball = () => {
@@ -97,21 +100,13 @@ export default FeedContent = props => {
 	};
 
 	const showMore = () => {
-		let offset = layout.height - 100 * DP;
-		let reportOffset = reportLayout.height + 16 * DP;
-		if (btnStatus) {
-			setHeight(270 * DP);
-			setBtnStatus(false);
-		} else {
-			setHeight(270 * DP + offset + reportOffset);
-			setBtnStatus(true);
-		}
+		setShow(true);
 	};
 
 	return (
-		<View style={[organism_style.feedContent, {height: contentHeight}]}>
+		<View style={[organism_style.feedContent,show&&{height:null}]}>
 			{/* line 1 */}
-			<View style={[organism_style.userLocationLabel_view_feedContent]}>
+			<View style={[organism_style.userLocationLabel_view_feedContent]} onLayout={onLayoutLabel}>
 				{/* UserLocationLabel */}
 				<View style={[organism_style.userLocationLabel_feedContent]}>
 					<UserLocationLabel
@@ -124,19 +119,21 @@ export default FeedContent = props => {
 				{/* type값이 status일 경우 status 버튼이 나오고 그렇지 않으면 다른 버튼 표기 */}
 				{feed_type == 'feed' ? (
 					<>
-						<View style={[feedContent_style.status,{width:130*DP,height:38*DP}]}>
-							{feed_is_protect_diary&&<View
-								style={{
-									width: 130 * DP,
-									height: 38 * DP,
-									justifyContent: 'center',
-									alignItems: 'center',
-									borderColor: MAINCOLOR,
-									borderRadius: 10 * DP,
-									borderWidth: 2 * DP,
-								}}>
-								<Text style={[txt.roboto24, txt.maincolor]}>임보일기</Text>
-							</View>}
+						<View style={[feedContent_style.status /*{width:130*DP,height:38*DP}*/]}>
+							{feed_is_protect_diary && (
+								<View
+									style={{
+										width: 130 * DP,
+										height: 38 * DP,
+										justifyContent: 'center',
+										alignItems: 'center',
+										borderColor: MAINCOLOR,
+										borderRadius: 10 * DP,
+										borderWidth: 2 * DP,
+									}}>
+									<Text style={[txt.roboto24, txt.maincolor]}>임보일기</Text>
+								</View>
+							)}
 						</View>
 
 						<View style={[organism_style.meatball, feedContent_style.meatball]}>
@@ -168,54 +165,43 @@ export default FeedContent = props => {
 			{/* line 1-1 (제보관련 내용) */}
 			{feed_type == 'report' && (
 				<View style={[organism_style.tipOff_feedContent, feedContent_style.tipOff]} onLayout={onLayoutReport}>
-					<Text style={[txt.noto28]}>
-						제보 날짜: <Text style={[txt.noto34b]}>{report_witness_date}</Text>
-					</Text>
-					<Text style={[txt.noto28]}>
-						제보 장소: <Text style={[txt.noto28b]}>{report_witness_location}</Text>
-					</Text>
+					<View style={{flexDirection: 'row', alignItems: 'center'}}>
+						<Text style={[txt.noto28]}>제보 날짜: </Text>
+						<Text style={[txt.noto30b]}>{parsingDate(report_witness_date)}</Text>
+					</View>
+					<View style={{flexDirection: 'row', alignItems: 'flex-start', paddingTop: 10 * DP}}>
+						<Text style={[txt.noto28]}>제보 장소: </Text>
+						<Text style={[txt.noto28b, {width: 500 * DP}]}>{report_witness_location}</Text>
+					</View>
 				</View>
 			)}
 
 			{/* FeedText */}
 			<View
-				style={[
-					organism_style.content_feedContent,
-					feed_type == 'missing' ? feedContent_style.content : feedContent_style.content_Top10,
-					
-					{
-						// FeedText의 높이가 120이상(3줄 이상)일 경우 maxheight가 지정되며, 아닐 경우 Maxheight는 없다
-						// height: getMaxHeight(),
-						// maxHeight: getMaxHeight()
-					},
-					{
-						//하지만 더보기를 누른다면 maxHeight 제한은 사라지며 본래의 크기를 보여준다
-						// maxHeight: btnStatus ? null : 120 * DP,
-					},
-				]}
-				onLayout={onLayout}>
+				style={[organism_style.content_feedContent, feedContent_style.content_Top10]}
+				onLayout={onLayoutContent}>
 				{/* <FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} /> */}
-				<Text style={[txt.noto28,btnStatus?{height:300*DP}:{height:100*DP}]} /*ellipsizeMode="tail"*/>
+				<Text style={[txt.noto28]}>
 					{feed_content}
 				</Text>
 			</View>
 			{/* 피드 작성 날짜  3 */}
 			<View style={[organism_style.time_view_feedContent]}>
 				<View style={[organism_style.time_feedContent]}>
-					<Text style={[txt.noto22]}>{feed_date}</Text>
+					<Text style={[txt.noto22]}>{getCommentedTime()}</Text>
 				</View>
 
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}
-				{shouldShowMoreBtn && (
+				{!show&&
 					<TouchableWithoutFeedback onPress={showMore}>
 						<View style={[organism_style.addMore_view_feedContent]}>
 							<View style={[organism_style.addMore_feedContent]}>
 								<Text style={[txt.noto22, {color: GRAY10}]}>더보기</Text>
 							</View>
-							<View style={[organism_style.braket]}>{btnStatus ? <Arrow_Up_GRAY20 /> : <Arrow_Down_GRAY20 />}</View>
+							<View style={[organism_style.braket]}><Arrow_Down_GRAY20 /></View>
 						</View>
 					</TouchableWithoutFeedback>
-				)}
+				}
 			</View>
 		</View>
 	);

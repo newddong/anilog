@@ -120,7 +120,7 @@ export const login_style = StyleSheet.create({
 		// flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#FF00FF',
+		// backgroundColor: '#FF00FF',
 	},
 });
 
@@ -411,7 +411,7 @@ export const temp_style = StyleSheet.create({
 		alignItems: 'center',
 	},
 	feedThumbnailList: {
-		width: 734 * DP,
+		width: 750 * DP,
 		marginBottom: 100 * DP,
 		// height: 1032 * DP,
 		// alignItems: 'center',
@@ -510,9 +510,9 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	commentList: {
-		width: 654 * DP,
+		// width: 654 * DP,
 		// marginTop: 12 * DP,
-		backgroundColor: '#fff',
+		// backgroundColor: '#ff00ff',
 	},
 	floatingBtn: {
 		flexDirection: 'column',
@@ -2924,7 +2924,7 @@ export const applyVolunteer = StyleSheet.create({
 		flex: 1,
 	},
 	btn_w226: {
-		marginTop: 110 * DP,
+		marginTop: 60 * DP,
 		alignSelf: 'flex-end',
 		marginRight: 48 * DP,
 		marginBottom: 68 * DP,
@@ -3238,6 +3238,12 @@ export const reportDetail = StyleSheet.create({
 		backgroundColor: GRAY30,
 		marginTop: 30 * DP,
 	},
+	allCommentCount: {
+		width: 654 * DP,
+		height: 44 * DP,
+		alignItems: 'flex-end',
+		// backgroundColor: '#F8DDDD',
+	},
 });
 
 export const feedList = StyleSheet.create({
@@ -3263,15 +3269,15 @@ export const feedCommentList = StyleSheet.create({
 		// backgroundColor: '#ACC4D6',
 	},
 	feedContent: {
-		width: 750 * DP,
+		// width: 750 * DP,
 		// height: 330 * DP,
 		borderBottomWidth: 2 * DP,
 		borderBottomColor: GRAY30,
-		backgroundColor:WHITE
+		backgroundColor: WHITE,
 		// backgroundColor: 'powderblue',
 	},
 	commentList: {
-		width: 750 * DP,
+		// width: 750 * DP,
 		marginTop: 20 * DP,
 		alignItems: 'center',
 		// backgroundColor: 'yellow',
@@ -3395,6 +3401,7 @@ export const accountPicker = StyleSheet.create({
 	accountList: {
 		width: 750 * DP,
 		marginTop: 42 * DP,
+		marginBottom: 50 * DP,
 	},
 });
 
@@ -3449,6 +3456,7 @@ export const manageVolunteer = StyleSheet.create({
 	},
 	separator: {
 		width: 654 * DP,
+		marginTop: 40 * DP,
 		height: 2 * DP,
 		backgroundColor: APRI10,
 	},
@@ -3757,8 +3765,12 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 		bottom: 0,
 	},
 	btnContainer: {
-		width: 654 * DP,
-		height: 170 * DP,
+		width: 750 * DP,
+		height: 100 * DP,
+		backgroundColor: 'white',
+		justifyContent: 'space-between',
+		position: 'absolute',
+		bottom: 0 * DP,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -3770,7 +3782,7 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 			height: 2 * DP,
 		},
 		elevation: 2,
-		paddingHorizontal: 50 * DP,
+		paddingHorizontal: 60 * DP,
 		justifyContent: 'space-between',
 	},
 });

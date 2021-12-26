@@ -2,14 +2,12 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {ActivityIndicator, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {getAppliesRecord} from 'Root/api/protectapi';
-import {dummy_manageUserVolunteer, dummy_ProtectRequestList} from 'Root/config/dummyDate_json';
 import {dummy_AppliesRecord_protect} from 'Root/config/dummy_data_hjs';
 import {dummy_AppliesRecord_rescue} from 'Root/config/dummy_data_hjs';
 import {txt} from 'Root/config/textstyle';
 import {NextMark} from '../atom/icon';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import ShelterList from '../organism_ksw/ShelterList';
-import {protectedPetList} from '../organism_ksw/style_organism';
 import {appliesRecord, login_style} from './style_templete';
 
 export default AppliesRecord = ({route}) => {
@@ -36,8 +34,10 @@ export default AppliesRecord = ({route}) => {
 				let adopt_animal_info = adopt.protect_act_request_article_id.protect_animal_id;
 				delete adopt_animal_info._id;
 				adopt = Object.assign(adopt, adopt_animal_info);
+
 				adopt.protect_request_photos_uri = adopt.protect_act_request_article_id.protect_request_photos_uri;
 				adopt.protect_request_date = adopt.protect_act_request_article_id.protect_request_date;
+				adopt.protect_request_status = adopt.protect_act_request_article_id.protect_request_status;
 				adopt.shelter_name = adopt.protect_act_request_article_id.protect_request_writer_id.shelter_name;
 				delete adopt.protect_act_request_article_id;
 				const adoptArr = [adopt];
@@ -49,6 +49,7 @@ export default AppliesRecord = ({route}) => {
 				protect = Object.assign(protect, protect_animal_info);
 				protect.protect_request_photos_uri = protect.protect_act_request_article_id.protect_request_photos_uri;
 				protect.protect_request_date = protect.protect_act_request_article_id.protect_request_date;
+				protect.protect_request_status = protect.protect_act_request_article_id.protect_request_status;
 				protect.shelter_name = protect.protect_act_request_article_id.protect_request_writer_id.shelter_name;
 				delete protect.protect_act_request_article_id;
 				const protectArr = [protect];

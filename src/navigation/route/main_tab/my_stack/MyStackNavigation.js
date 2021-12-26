@@ -73,7 +73,7 @@ export default MyStackNavigation = props => {
 			<MyStack.Screen name="FeedCommentList" component={FeedCommentList} />
 			<MyStack.Screen name="SocialRelation" component={SocialRelationTopTabNavigation} />
 
-			<MyStack.Screen name="UserMenu" component={UserMenu} />
+			<MyStack.Screen name="UserMenu" component={UserMenu} options={{header: props => <SimpleHeader {...props} />, title: 'MY'}} />
 			<MyStack.Screen name="UserInfoSetting" component={UserInfoSetting} />
 
 			<MyStack.Screen name="ChangeUserProfileImage" component={ChangeUserProfileImage} />
@@ -117,7 +117,7 @@ export default MyStackNavigation = props => {
 
 			<MyStack.Screen name="AnimalProtectList" component={AnimalProtectList} />
 
-			<MyStack.Screen name="ShelterMenu" component={ShelterMenu} />
+			<MyStack.Screen name="ShelterMenu" component={ShelterMenu} options={{header: props => <SimpleHeader {...props} />, title: 'MY'}} />
 			<MyStack.Screen name="ShelterInfoSetting" component={ShelterInfoSetting} />
 			<MyStack.Screen name="EditShelterInfo" component={EditShelterInfo} />
 

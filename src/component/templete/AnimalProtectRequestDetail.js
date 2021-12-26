@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Image, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import {btn_w226} from '../atom/btn/btn_style';
+import {btn_w226, btn_w276} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import {login_style, temp_style, animalProtectRequestDetail_style, feedCommentList, accountPicker} from './style_templete';
 import RescueImage from '../molecules/RescueImage';
@@ -47,7 +47,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const [token, setToken] = React.useState();
 	const debug = false;
 
-	console.log('AnimalProtectRequestDetail data:', data);
+	debug && console.log('AnimalProtectRequestDetail data:', data);
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
@@ -384,16 +384,16 @@ export default AnimalProtectRequestDetail = ({route}) => {
 					/>
 				</View>
 				{/* 보호소 계정이 나의 보호요청 게시글을 통해 들어왔을 경우 버튼 출력 X */}
-				{route.name == 'ProtectRequestManage' ? (
-					<></>
-				) : (
-					<View style={[animalProtectRequestDetail_style.btnContainer]}>
-						<AniButton onPress={onPressProtectRequest} btnTitle={'임시보호 신청'} tnStyle={'border'} titleFontStyle={30} />
-						<AniButton onPress={onPressAdoptionRequest} btnTitle={'입양 신청'} titleFontStyle={30} />
-					</View>
-				)}
 			</ScrollView>
 			{/* ScrollView 바깥에 둬야 Scroll의 현재 위치에 상관없이 아래에 출력 */}
+			{route.name == 'ProtectRequestManage' ? (
+				<></>
+			) : (
+				<View style={[animalProtectRequestDetail_style.btnContainer]}>
+					<AniButton onPress={onPressProtectRequest} btnTitle={'임시보호 신청'} btnStyle={'border'} btnLayout={btn_w276} titleFontStyle={30} />
+					<AniButton onPress={onPressAdoptionRequest} btnTitle={'입양 신청'} btnLayout={btn_w276} titleFontStyle={30} />
+				</View>
+			)}
 			{editComment ? (
 				<ReplyWriteBox
 					onAddPhoto={onAddPhoto}
@@ -411,106 +411,3 @@ export default AnimalProtectRequestDetail = ({route}) => {
 };
 
 AnimalProtectRequestDetail.defaultProps = {};
-
-// const e = {
-// 	item: {
-// 		__v: 0,
-// 		_id: '61c4b4ff9e313cfaf3ebd25f',
-// 		protect_animal_id: {
-// 			__v: 0,
-// 			_id: '61c2b5537be07611b0094ebf',
-// 			protect_act_applicants: [Array],
-// 			protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
-// 			protect_animal_estimate_age: '2개월',
-// 			protect_animal_neutralization: 'no',
-// 			protect_animal_photo_uri_list: [Array],
-// 			protect_animal_protect_request_id: '61c4b4ff9e313cfaf3ebd25f',
-// 			protect_animal_protector_discussion_id: [Array],
-// 			protect_animal_rescue_date: '2021-12-08T00:00:00.000Z',
-// 			protect_animal_rescue_location: '하남시 검단산 형유포라 인근',
-// 			protect_animal_sex: 'male',
-// 			protect_animal_species: '기타',
-// 			protect_animal_species_detail: '도마뱀',
-// 			protect_animal_status: 'rescue',
-// 			protect_animal_weight: 1,
-// 		},
-// 		protect_animal_species: '기타',
-// 		protect_animal_species_detail: '도마뱀',
-// 		protect_request_comment_count: 0,
-// 		protect_request_content:
-// 			'도마뱀은 키우기 굉장히 쉬운편에 속합니다. 냄새도 생각보다 안나는 편이고 먹는 것도 잡식성이라 여러모로 호환성이랍니다 ㅎㅎ',
-// 		protect_request_date: '2021-12-23T17:42:23.462Z',
-// 		protect_request_favorite_count: 0,
-// 		protect_request_hit: 0,
-// 		protect_request_photos_uri: ['https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640150355540_FF507DC1-8B34-429A-941C-0C4913305857.jpg'],
-// 		protect_request_status: 'rescue',
-// 		protect_request_title: '도마뱀 키워볼까 분 있으실까요',
-// 		protect_request_update_date: '2021-12-23T17:42:23.462Z',
-// 		protect_request_writer_id: {
-// 			__v: 0,
-// 			_id: '61c023d9679aa5ae46128102',
-// 			pet_family: [Array],
-// 			shelter_address: [Object],
-// 			shelter_delegate_contact_number: '01096450001',
-// 			shelter_foundation_date: '2011-12-04T00:00:00.000Z',
-// 			shelter_homepage: '',
-// 			shelter_name: '상우 보호소6',
-// 			user_agreement: [Object],
-// 			user_denied: false,
-// 			user_email: 'lanad01@naver.com',
-// 			user_follow_count: 0,
-// 			user_follower_count: 0,
-// 			user_interests: [Array],
-// 			user_introduction:
-// 				'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
-// 			user_is_verified_email: false,
-// 			user_is_verified_phone_number: false,
-// 			user_my_pets: [Array],
-// 			user_name: '상우 보호소5',
-// 			user_nickname: '가하즈보호소',
-// 			user_password: '121212',
-// 			user_phone_number: '01096450001',
-// 			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
-// 			user_register_date: '2021-12-20T06:34:01.773Z',
-// 			user_type: 'shelter',
-// 			user_upload_count: 0,
-// 		},
-// 	},
-// 	list: [
-// 		{
-// 			__v: 0,
-// 			_id: '61c188ba2aaa7e1134cef1e2',
-// 			protect_animal_id: [Object],
-// 			protect_animal_species: '기타',
-// 			protect_animal_species_detail: '치와와',
-// 			protect_request_comment_count: 0,
-// 			protect_request_content: '함께 상처를 치료할 동반자를 구합니다. ',
-// 			protect_request_date: '2021-12-21T07:56:42.286Z',
-// 			protect_request_favorite_count: 0,
-// 			protect_request_hit: 0,
-// 			protect_request_photos_uri: [Array],
-// 			protect_request_status: 'rescue',
-// 			protect_request_title: '아직 사람을 그리워하는 것 같습니다.',
-// 			protect_request_update_date: '2021-12-21T07:56:42.286Z',
-// 			protect_request_writer_id: [Object],
-// 		},
-// 		{
-// 			__v: 0,
-// 			_id: '61c4b4ff9e313cfaf3ebd25f',
-// 			protect_animal_id: [Object],
-// 			protect_animal_species: '기타',
-// 			protect_animal_species_detail: '도마뱀',
-// 			protect_request_comment_count: 0,
-// 			protect_request_content:
-// 				'도마뱀은 키우기 굉장히 쉬운편에 속합니다. 냄새도 생각보다 안나는 편이고 먹는 것도 잡식성이라 여러모로 호환성이랍니다 ㅎㅎ',
-// 			protect_request_date: '2021-12-23T17:42:23.462Z',
-// 			protect_request_favorite_count: 0,
-// 			protect_request_hit: 0,
-// 			protect_request_photos_uri: [Array],
-// 			protect_request_status: 'rescue',
-// 			protect_request_title: '도마뱀 키워볼까 분 있으실까요',
-// 			protect_request_update_date: '2021-12-23T17:42:23.462Z',
-// 			protect_request_writer_id: [Object],
-// 		},
-// 	],
-// };

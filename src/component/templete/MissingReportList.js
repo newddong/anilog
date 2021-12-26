@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, Text, View, TouchableWithoutFeedback, ActivityIndicator} from 'react-native';
 import {feedWrite, login_style, missingReportList, searchProtectRequest, temp_style, temp_txt} from './style_templete';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
-import {WHITE} from 'Root/config/color';
+import {GRAY10, WHITE} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {Urgent_Write1, Urgent_Write2} from '../atom/icon';
 import {useNavigation} from '@react-navigation/core';
@@ -10,6 +10,7 @@ import {dummy_MissingReportList} from 'Root/config/dummy_data_hjs';
 import FilterButton from '../molecules/FilterButton';
 import {PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
 import {getMissingReportList} from 'Root/api/feedapi.js';
+import {getPettypes} from 'Root/api/userapi';
 
 export default MissingReportList = props => {
 	const navigation = useNavigation();
@@ -17,68 +18,80 @@ export default MissingReportList = props => {
 	const [showActionButton, setShowActionButton] = React.useState(false); // 긴급게시(하얀버전) 클릭 시 - 실종/제보 버튼 출력 Boolean
 	const [refreshing, setRefreshing] = React.useState(false);
 
-	const [data, setData] = React.useState({
-		filterValue: '',
-		protectArea: '',
-		kindFilter: '',
+	const [data, setData] = React.useState([]);
+	const [filterData, setFilterData] = React.useState({
+		city: '',
+		missing_animal_species: '',
+		feedobject_id: '',
+		request_number: 10,
 	});
+	const [petTypes, setPetTypes] = React.useState(['동물종류']);
+
+	React.useEffect(() => {
+		getPettypes(
+			{},
+			types => {
+				const species = [...petTypes];
+				types.msg.map((v, i) => {
+					species[i + 1] = v.pet_species;
+				});
+				setPetTypes(species);
+			},
+			err => Modal.alert(err),
+		);
+	}, []);
 
 	// 실종 데이터 불러오기 (아직 API 미작업 )
 	React.useEffect(() => {
-		console.log('MissingReportList:feedlist of missing');
+		console.log('MissingReportList:feedlist of missing', filterData);
 		getMissingReportList(
-			{
-				//필터 - 보호지역 (user_address.city 데이터)
-				city: '',
-				protect_animal_species: '',
-				feedobject_id: '',
-				request_number: 10,
-			},
+			filterData,
 			data => {
 				// console.log('getMissingReportList data', data.msg);
-				// console.log('data' + JSON.stringify(`data${data}`));
 				setData(data.msg);
 			},
 			err => {
 				console.log('getMissingReportList Error', err);
+				if (err == '검색 결과가 없습니다.') {
+					setData([]);
+				}
 			},
 		);
-	}, [refreshing]);
+	}, [refreshing, filterData]);
 
-	const filterOn = () => {
-		alert('입양 가능한 게시글만 보기');
-	};
-	const filterOff = () => {
-		alert('입양 가능한 게시글만 보기 끄기');
-	};
-	const onOff_protectAreaFilter = () => {
-		alert('보호지역 필터 버튼 오프');
-	};
-	const onOff_kindFilter = () => {
-		alert('동물 종류 필터 버튼 오프');
-	};
-	const onOn_protectAreaFilter = () => {
-		alert('보호지역 필터 버튼 온');
-	};
-	const onOn_kindFilter = () => {
-		alert('동물 종류 필터 버튼 온');
-	};
+	//제보 게시글 쓰기 클릭
 	const moveToReportForm = () => {
-		navigation.push('FeedWrite', {type: 'Report'});
+		navigation.push('FeedWrite', {feedType: 'Report'});
 	};
+
+	//실종 게시글 쓰기 클릭
 	const moveToMissingForm = () => {
-		navigation.push('FeedWrite', {type: 'Missing'});
+		navigation.push('FeedWrite', {feedType: 'Missing'});
 	};
+
+	//실종제보 게시글의 좋아요 태그 클릭
 	const onOff_FavoriteTag = (value, index) => {
 		console.log('즐겨찾기=>' + value + ' ' + index);
 	};
 
 	const onClickLabel = (status, id, item) => {
 		console.log(`\nMissingReportList:onLabelClick() - status=>${status} id=>${id} item=>${JSON.stringify(item)}`);
-
+		let sexValue = '';
 		switch (status) {
 			case 'missing':
-				navigation.push('MissingAnimalDetail', {_id: id});
+				switch (item.missing_animal_sex) {
+					case 'male':
+						sexValue = '남';
+						break;
+					case 'female':
+						sexValue = '여';
+						break;
+					case 'male':
+						sexValue = '성별모름';
+						break;
+				}
+				const titleValue = item.missing_animal_species + '/' + item.missing_animal_species_detail + '/' + sexValue;
+				navigation.push('MissingAnimalDetail', {title: titleValue, _id: id});
 				break;
 			case 'report':
 				navigation.push('ReportDetail', {_id: id});
@@ -88,15 +101,23 @@ export default MissingReportList = props => {
 	//제보게시글의 제보자 닉네임 클릭
 	const onPressReporter = item => {
 		console.log('item', item.feed_writer_id);
-		navigation.push('UserProfile', item.feed_writer_id);
+		navigation.push('UserProfile', {userobject: item.feed_writer_id});
 	};
 
 	const onSelectLocation = location => {
-		setData({...data, protectArea: location});
+		location == '지역' ? setFilterData({...filterData, city: ''}) : setFilterData({...filterData, city: location});
 	};
 
 	const onSelectKind = kind => {
-		setData({...data, kindFilter: kind});
+		kind == '동물종류' ? setFilterData({...filterData, missing_animal_species: ''}) : setFilterData({...filterData, missing_animal_species: kind});
+	};
+
+	const whenEmpty = () => {
+		return (
+			<View style={[{height: 100 * DP, marginVertical: 30 * DP, alignItems: 'center', justifyContent: 'center'}]}>
+				<Text style={[txt.roboto30b, {color: GRAY10}]}> 목록이 없습니다.</Text>
+			</View>
+		);
 	};
 
 	return (
@@ -106,10 +127,10 @@ export default MissingReportList = props => {
 					<View style={[searchProtectRequest.filterView.inside]}>
 						<View style={{flexDirection: 'row'}}>
 							<View style={[temp_style.filterBtn]}>
-								<FilterButton menu={PET_PROTECT_LOCATION} onSelect={onSelectLocation} width={306} />
+								<FilterButton menu={PET_PROTECT_LOCATION} onSelect={onSelectLocation} width={306} height={700} />
 							</View>
 							<View style={[temp_style.filterBtn]}>
-								<FilterButton menu={PET_KIND} onSelect={onSelectKind} width={306} />
+								<FilterButton menu={petTypes} onSelect={onSelectKind} width={306} />
 							</View>
 						</View>
 					</View>
@@ -121,7 +142,8 @@ export default MissingReportList = props => {
 						data={data}
 						onPressReporter={onPressReporter}
 						onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
-						onClickLabel={(status, id) => onClickLabel(status, id)}
+						onClickLabel={(status, id, item) => onClickLabel(status, id, item)}
+						whenEmpty={whenEmpty()}
 					/>
 				</View>
 			</ScrollView>

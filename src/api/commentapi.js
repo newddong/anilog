@@ -48,3 +48,16 @@ import {apiController, apiFormController} from './apiController';
  export async function getCommentListByProtectId(params, callback, errcallback){
 	apiController('/comment/getCommentListByProtectId',arguments);
 };
+
+
+/**
+ * 해당 댓글의 대댓글 불러오기
+ *
+ * @param {object} params
+ * @param {string} params.commentobject_id - 대댓글을 불러올 코맨트
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+ */
+ export async function getChildCommentList(params, callback, errcallback){
+	apiController('/comment/getChildCommentList',arguments);
+};

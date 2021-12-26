@@ -640,7 +640,6 @@ export const childComment = StyleSheet.create({
 	heart30: {
 		width: 30 * DP,
 		height: 30 * DP,
-		backgroundColor: 'lightgray',
 	},
 	likeCount: {
 		width: 50 * DP,
@@ -659,7 +658,7 @@ export const childComment = StyleSheet.create({
 	},
 	writeCommentText: {
 		color: GRAY20,
-		// includeFontPadding: false,
+		includeFontPadding: false,
 	},
 });
 
