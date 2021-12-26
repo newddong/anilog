@@ -62,20 +62,6 @@ export default SearchAccountA = props => {
 			'확인',
 			() => Modal.close(),
 			() => {
-				// navigation.dispatch(
-				// 	CommonActions.reset({
-				// 		index: 1,
-				// 		routes: [
-				// 			{name: 'UserProfile'},
-				// 			{
-				// 				name: props.prevNav,
-				// 				params: {addedAccount: item},
-				// 			},
-				// 		],
-				// 	}),
-				// );
-				// navigation.navigate(props.prevNav,
-				// 	{addedVolunteer: item});
 				navigation.navigate({
 					name: props.prevNav,
 					params: {addedVolunteer: item},

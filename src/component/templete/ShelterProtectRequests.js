@@ -8,6 +8,7 @@ import FilterButton from '../molecules/FilterButton';
 import MeatBallDropdown from '../molecules/MeatBallDropdown';
 import {getProtectRequestList, getProtectRequestListByShelterId} from 'Root/api/shelterapi';
 import Modal from '../modal/Modal';
+import {txt} from 'Root/config/textstyle';
 
 // ShelterMenu - 보호요청 올린 게시글 클릭
 // params - 로그인한 보호소 유저의 _id
@@ -71,6 +72,10 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 		}
 	};
 
+	const whenEmpty = () => {
+		return <Text style={[txt.roboto28b, {marginTop: 50, textAlign: 'center'}]}>보호 요청 게시목록이 없습니다. </Text>;
+	};
+
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<View style={[temp_style.filterbutton_view, protectRequestList_style.filterbutton_view]}>
@@ -82,7 +87,7 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 				</View>
 			</View>
 			<View style={[temp_style.baseFlatList_protectRequestList, baseInfo_style.list]}>
-				<AnimalNeedHelpList data={protectAnimalList} onClickLabel={onClickLabel} onFavoriteTag={onFavoriteTag} />
+				<AnimalNeedHelpList data={protectAnimalList} onClickLabel={onClickLabel} onFavoriteTag={onFavoriteTag} whenEmpty={whenEmpty()} />
 			</View>
 		</View>
 	);

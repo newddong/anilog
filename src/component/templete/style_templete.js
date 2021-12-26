@@ -411,7 +411,7 @@ export const temp_style = StyleSheet.create({
 		alignItems: 'center',
 	},
 	feedThumbnailList: {
-		width: 734 * DP,
+		width: 750 * DP,
 		marginBottom: 100 * DP,
 		// height: 1032 * DP,
 		// alignItems: 'center',
@@ -2924,7 +2924,7 @@ export const applyVolunteer = StyleSheet.create({
 		flex: 1,
 	},
 	btn_w226: {
-		marginTop: 110 * DP,
+		marginTop: 60 * DP,
 		alignSelf: 'flex-end',
 		marginRight: 48 * DP,
 		marginBottom: 68 * DP,
@@ -3401,6 +3401,7 @@ export const accountPicker = StyleSheet.create({
 	accountList: {
 		width: 750 * DP,
 		marginTop: 42 * DP,
+		marginBottom: 50 * DP,
 	},
 });
 
@@ -3764,8 +3765,12 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 		bottom: 0,
 	},
 	btnContainer: {
-		width: 654 * DP,
-		height: 170 * DP,
+		width: 750 * DP,
+		height: 100 * DP,
+		backgroundColor: 'white',
+		justifyContent: 'space-between',
+		position: 'absolute',
+		bottom: 0 * DP,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -3777,7 +3782,7 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 			height: 2 * DP,
 		},
 		elevation: 2,
-		paddingHorizontal: 50 * DP,
+		paddingHorizontal: 60 * DP,
 		justifyContent: 'space-between',
 	},
 });

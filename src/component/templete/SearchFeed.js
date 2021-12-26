@@ -6,17 +6,48 @@ import OnOffSwitch from '../molecules/OnOffSwitch';
 import {txt} from 'Root/config/textstyle';
 import {GRAY10} from 'Root/config/color';
 import {dummy_FeedObject} from 'Root/config/dummyDate_json';
+import ListEmptyInfo from '../molecules/ListEmptyInfo';
+import {getSuggestFeedList} from 'Root/api/feedapi';
 
-export default SearchFeed = props => {
-	const recommended_feedList = dummy_FeedObject;
+export default SearchFeed = ({route, navigation}) => {
+	const [feedList, setFeedList] = React.useState([]);
 
 	const onClickThumnail = (index, feed_id) => {
-		console.log('index', index);
-		console.log('feed_id', feed_id);
+		navigation.navigate('UserFeedList');
 	};
 
-	const onSwtichOff = () => {};
-	const onSwtichOn = () => {};
+	const [showOnlyProtect, setShowOnlyProtect] = React.useState(false);
+
+	React.useEffect(() => {
+		getSuggestFeedList(
+			{},
+			res => {
+				// console.log('res', res.msg[0]);
+				//임시보호 일기 게시글만 보기
+				if (showOnlyProtect) {
+					let filtered = [];
+					res.msg.map((v, i) => {
+						v.feed_is_protect_diary ? filtered.push(v) : false;
+					});
+					setFeedList(filtered);
+				} else {
+					setFeedList(res.msg);
+				}
+			},
+			err => console.log('err', err),
+		);
+	}, [showOnlyProtect]);
+
+	const onSwtichOn = () => {
+		console.log('임시보호 게시글만 보기');
+		setShowOnlyProtect(true);
+	};
+
+	const onSwtichOff = () => {
+		console.log('임시보호 게시글만 보기 OFF');
+		setShowOnlyProtect(false);
+	};
+
 	return (
 		<View style={[login_style.wrp_main, searchFeed.container]}>
 			<View style={[searchFeed.stateView]}>
@@ -34,7 +65,7 @@ export default SearchFeed = props => {
 			</View>
 			{/* 썸네일 리스트 */}
 			<View style={[temp_style.feedThumbnailList]}>
-				<FeedThumbnailList items={recommended_feedList} onClickThumnail={onClickThumnail} />
+				<FeedThumbnailList items={feedList} onClickThumnail={onClickThumnail} whenEmpty={<ListEmptyInfo text={'피드 게시글이 없습니다'} />} />
 			</View>
 		</View>
 	);

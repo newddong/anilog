@@ -2,14 +2,12 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {ActivityIndicator, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {getAppliesRecord} from 'Root/api/protectapi';
-import {dummy_manageUserVolunteer, dummy_ProtectRequestList} from 'Root/config/dummyDate_json';
 import {dummy_AppliesRecord_protect} from 'Root/config/dummy_data_hjs';
 import {dummy_AppliesRecord_rescue} from 'Root/config/dummy_data_hjs';
 import {txt} from 'Root/config/textstyle';
 import {NextMark} from '../atom/icon';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import ShelterList from '../organism_ksw/ShelterList';
-import {protectedPetList} from '../organism_ksw/style_organism';
 import {appliesRecord, login_style} from './style_templete';
 
 export default AppliesRecord = ({route}) => {

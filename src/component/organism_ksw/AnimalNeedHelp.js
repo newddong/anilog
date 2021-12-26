@@ -26,7 +26,7 @@ import moment from 'moment';
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
-	console.log('AnimalNeedHelp: -------------- ', JSON.stringify(data.protect_request_status));
+	// console.log('AnimalNeedHelp: -------------- ', JSON.stringify(data));
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 	const [thumbnailData, setThumbnailData] = React.useState({});
@@ -66,7 +66,7 @@ export default AnimalNeedHelp = props => {
 			}
 		} else {
 			resultJSON.gender = 'female';
-			resultJSON.status = data.protect_request_status;
+			resultJSON.status = data.protect_request_status || data.protect_act_status;
 			// 기타 다른 경우의 수가 있는지 추후 확인
 		}
 		// console.log('data.props.protect', data.protect_act_status);
@@ -268,7 +268,9 @@ export default AnimalNeedHelp = props => {
 							<View>{contents()}</View>
 						</TouchableOpacity>
 					) : (
-						<View>{contents()}</View>
+						<TouchableOpacity onPress={() => props.onClickLabel(data.feed_type, data._id)}>
+							<View>{contents()}</View>
+						</TouchableOpacity>
 					)}
 				</View>
 				{props.borderMode == true

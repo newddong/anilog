@@ -112,7 +112,9 @@ export default ManageVolunteer = ({route}) => {
 	};
 
 	const onClickLabel = data => {
-		navigation.push('UserProfile', {userobject: data.volunteer_target_shelter});
+		isShelterUser
+			? navigation.push('UserProfile', {userobject: data.volunteer_accompany[0]})
+			: navigation.push('UserProfile', {userobject: data.volunteer_target_shelter});
 	};
 
 	const whenEmpty = () => {

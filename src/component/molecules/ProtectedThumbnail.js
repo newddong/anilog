@@ -78,6 +78,8 @@ const ProtectedThumbnail = props => {
 				return '무지개다리';
 			case 'complete':
 				return '입양완료';
+			case 'accept':
+				return '입양완료';
 		}
 	};
 

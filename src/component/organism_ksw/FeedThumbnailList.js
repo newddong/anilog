@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {FlatList, ScrollView, Text, View} from 'react-native';
 import FeedThumnail from '../molecules/FeedThumnail';
 import {NORMAL, PET, SHELTER} from 'Root/i18n/msg';
 import AnimalNeedHelpList from './AnimalNeedHelpList';
+import {txt} from 'Root/config/textstyle';
+import {GRAY10} from 'Root/config/color';
+import ListEmptyInfo from '../molecules/ListEmptyInfo';
 /**
  *
  *@param {{
  * items: 'Array / 피드 목록',
  * onClickThumnail: void,
  * selectMode : boolean
+ * whenEmpty : Component
  * }} props
  */
 export default FeedThumbnailList = props => {
@@ -22,6 +26,7 @@ export default FeedThumbnailList = props => {
 			)}
 			keyExtractor={(item, index) => index + ''}
 			numColumns={NUMCOLUMNS}
+			ListEmptyComponent={props.whenEmpty ? props.whenEmpty : <></>}
 		/>
 	);
 

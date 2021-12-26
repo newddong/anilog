@@ -10,6 +10,7 @@ import {dummy_MissingReportList} from 'Root/config/dummy_data_hjs';
 import FilterButton from '../molecules/FilterButton';
 import {PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
 import {getMissingReportList} from 'Root/api/feedapi.js';
+import {getPettypes} from 'Root/api/userapi';
 
 export default MissingReportList = props => {
 	const navigation = useNavigation();
@@ -24,6 +25,21 @@ export default MissingReportList = props => {
 		feedobject_id: '',
 		request_number: 10,
 	});
+	const [petTypes, setPetTypes] = React.useState(['동물종류']);
+
+	React.useEffect(() => {
+		getPettypes(
+			{},
+			types => {
+				const species = [...petTypes];
+				types.msg.map((v, i) => {
+					species[i + 1] = v.pet_species;
+				});
+				setPetTypes(species);
+			},
+			err => Modal.alert(err),
+		);
+	}, []);
 
 	// 실종 데이터 불러오기 (아직 API 미작업 )
 	React.useEffect(() => {
@@ -60,9 +76,22 @@ export default MissingReportList = props => {
 
 	const onClickLabel = (status, id, item) => {
 		console.log(`\nMissingReportList:onLabelClick() - status=>${status} id=>${id} item=>${JSON.stringify(item)}`);
+		let sexValue = '';
 		switch (status) {
 			case 'missing':
-				navigation.push('MissingAnimalDetail', {_id: id});
+				switch (item.missing_animal_sex) {
+					case 'male':
+						sexValue = '남';
+						break;
+					case 'female':
+						sexValue = '여';
+						break;
+					case 'male':
+						sexValue = '성별모름';
+						break;
+				}
+				const titleValue = item.missing_animal_species + '/' + item.missing_animal_species_detail + '/' + sexValue;
+				navigation.push('MissingAnimalDetail', {title: titleValue, _id: id});
 				break;
 			case 'report':
 				navigation.push('ReportDetail', {_id: id});
@@ -98,10 +127,10 @@ export default MissingReportList = props => {
 					<View style={[searchProtectRequest.filterView.inside]}>
 						<View style={{flexDirection: 'row'}}>
 							<View style={[temp_style.filterBtn]}>
-								<FilterButton menu={PET_PROTECT_LOCATION} onSelect={onSelectLocation} width={306} />
+								<FilterButton menu={PET_PROTECT_LOCATION} onSelect={onSelectLocation} width={306} height={700} />
 							</View>
 							<View style={[temp_style.filterBtn]}>
-								<FilterButton menu={PET_KIND} onSelect={onSelectKind} width={306} />
+								<FilterButton menu={petTypes} onSelect={onSelectKind} width={306} />
 							</View>
 						</View>
 					</View>
@@ -113,7 +142,7 @@ export default MissingReportList = props => {
 						data={data}
 						onPressReporter={onPressReporter}
 						onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
-						onClickLabel={(status, id) => onClickLabel(status, id)}
+						onClickLabel={(status, id, item) => onClickLabel(status, id, item)}
 						whenEmpty={whenEmpty()}
 					/>
 				</View>

@@ -22,7 +22,7 @@ export default MeatBallHeader = props => {
 					<BackArrow32 onPress={props.navigation.goBack} />
 				</View>
 			</TouchableOpacity>
-			<Text style={txt.roboto40b}>{props.options.title}</Text>
+			<Text style={txt.roboto40b}>{props.options.title ? props.options.title : props.route.params.title}</Text>
 			<MeatBallDropdown
 				menu={props.menu}
 				onSelect={(v, i) => console.log(v + ':' + i)}

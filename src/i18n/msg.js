@@ -173,7 +173,25 @@ export const EMAIL_DOMAIN = ['naver.com', 'daum.net', 'gmail.com', 'hanmail.net'
 export const PET_KIND = ['동물종류', '개', '고양이', '새', '여우', '거북이', '햄스터', '기타'];
 
 //보호 지역
-export const PET_PROTECT_LOCATION = ['지역', '서울', '부산', '인천', '대구', '대전', '광주', '수원', '울산', '고양', '강원'];
+export const PET_PROTECT_LOCATION = [
+	'지역',
+	'서울',
+	'부산',
+	'인천',
+	'대구',
+	'대전',
+	'광주',
+	'울산',
+	'경기',
+	'강원',
+	'충청북도',
+	'충청남도',
+	'전라북도',
+	'전라남도',
+	'경상남도',
+	'경상북도',
+	'세종특별자치',
+];
 
 //반려동물 상태( 임보, 반려, 입양)
 export const PET_STATUS_PROTECT = 'protect';
