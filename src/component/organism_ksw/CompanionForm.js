@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import {getPettypes} from 'Root/api/userapi';
 import {GRAY10, GRAY40} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {COMPANION_DURATION, COMPANION_STATUS, PET_AGE, PET_KIND} from 'Root/i18n/msg';
@@ -18,6 +19,21 @@ import {companionForm} from './style_organism';
  * }} props
  */
 export default CompanionForm = props => {
+	const [petTypes, setPetTypes] = React.useState(['동물종류']);
+
+	React.useEffect(() => {
+		getPettypes(
+			{},
+			types => {
+				const species = [...petTypes];
+				types.msg.map((v, i) => {
+					species[i + 1] = v.pet_species;
+				});
+				setPetTypes(species);
+			},
+			err => Modal.alert(err),
+		);
+	}, []);
 	//종 선택 콜백
 	const onSelectSpecies = (v, i) => {
 		props.onSelectSpecies(v, i);
@@ -48,7 +64,7 @@ export default CompanionForm = props => {
 						</View>
 						<View style={[companionForm.dropDownSelect]}>
 							<NormalDropDown
-								menu={PET_KIND}
+								menu={petTypes}
 								onSelect={(v, i) => onSelectSpecies(v, i)}
 								// defaultIndex={isTempData ? species_index : 0}
 							/>

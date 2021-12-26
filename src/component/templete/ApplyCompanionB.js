@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import {getPettypes} from 'Root/api/userapi';
 import {APRI10, GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {COMPANION_DURATION, COMPANION_STATUS, PET_AGE, PET_KIND} from 'Root/i18n/msg';
@@ -24,6 +25,21 @@ export default ApplyCompanionC = props => {
 	const [isTempDataAdded, setIsTempDataAdded] = React.useState(false);
 	const [companionList, setCompanionList] = React.useState([]);
 	const [tempData, setTempData] = React.useState([]); //임시저장 정보가 들어갈 컨테이너
+	const [petTypes, setPetTypes] = React.useState(['동물종류']);
+
+	React.useEffect(() => {
+		getPettypes(
+			{},
+			types => {
+				const species = [...petTypes];
+				types.msg.map((v, i) => {
+					species[i + 1] = v.pet_species;
+				});
+				setPetTypes(species);
+			},
+			err => Modal.alert(err),
+		);
+	}, []);
 
 	React.useEffect(() => {
 		setData({...data, protect_act_companion_history: companionList});
@@ -56,7 +72,7 @@ export default ApplyCompanionC = props => {
 		}
 		//반려 생활 추가를 누를 시 모두 첫번째 드롭다운 선택 상태인 CompanionForm이 추가됨
 		copy.push({
-			companion_pet_species: PET_KIND[0],
+			companion_pet_species: petTypes[0],
 			companion_pet_age: PET_AGE[0],
 			companion_pet_period: COMPANION_DURATION[0],
 			companion_pet_current_status: COMPANION_STATUS[0],
