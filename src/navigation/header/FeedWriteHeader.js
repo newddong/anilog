@@ -9,7 +9,7 @@ import {RED} from 'Root/screens/color';
 import {createFeed, createMissing, createReport} from 'Root/api/feedapi';
 
 export default FeedWriteHeader = ({route, navigation, options}) => {
-	console.log('props SendHeader', route.params);
+	// console.log('props SendHeader', route.params);
 	const complete = result => {
 		Modal.close();
 		Modal.popNoBtn('게시물 등록이 완료되었습니다.');

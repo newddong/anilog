@@ -26,7 +26,7 @@ import moment from 'moment';
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
-	// console.log('AnimalNeedHelp: -------------- ', JSON.stringify(data.protect_request_status));
+	console.log('AnimalNeedHelp: -------------- ', JSON.stringify(data.protect_request_status));
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 	const [thumbnailData, setThumbnailData] = React.useState({});
