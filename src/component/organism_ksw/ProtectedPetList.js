@@ -5,22 +5,24 @@ import {GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import ProfileImageMedium120 from '../molecules/ProfileImageMedium120';
 import {protectedPetList} from './style_organism';
+import {getUserProtectAnimalList} from 'Root/api/protectapi';
 
 export default ProtectedPetList = props => {
 	const user_id = props.data;
 	const [userPet, setUserPet] = React.useState([]);
 	React.useEffect(() => {
-		getUserInfoById(
+		getUserProtectAnimalList(
 			{
-				userobject_id: user_id,
+				userobject_id: user_id._id,
 			},
 			result => {
 				// console.log('result / getUserInfoById / ProtectPet  ', result.msg);
-				let user_protect_pet = result.msg.user_my_pets.filter(e => e.pet_status != 'companion');
-				user_protect_pet.map((v, i) => {
-					user_protect_pet[i].protect_act_address = result.msg.user_address;
-				});
-				setUserPet(user_protect_pet);
+				// let user_protect_pet = result.msg.user_my_pets.filter(e => e.pet_status != 'companion');
+				// user_protect_pet.map((v, i) => {
+				// 	user_protect_pet[i].protect_act_address = result.msg.user_address;
+				// });
+				console.log(result);
+				setUserPet(result.msg);
 			},
 			err => {
 				console.log('err  / getUserInfoById / ProtectPet  ', err);

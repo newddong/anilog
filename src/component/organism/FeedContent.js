@@ -88,11 +88,15 @@ export default FeedContent = props => {
 		let temp = date.match(/(\d{4})-(\d{1,2})-(\d{1,2}).*?$/);
 		return `${temp[1]}년 ${temp[2]}월 ${temp[3]}일`;
 	};
-
 	const getCommentedTime = () => {
-		let date = feed_date.match(/(\d{4})-(\d{1,2})-(\d{1,2}).*?$/);
-		let timelapsed = Date.now() - new Date(date[1], date[2] - 1, date[3]);
-		return <>{Math.ceil(timelapsed / 1000 / 60 / 60 / 24) - 1} 일 전</>;
+		let date = feed_date.match(/(\d{4}-\d{1,2}-\d{1,2}T\d{2}:\d{2}:\d{2}).*?$/);
+		let timelapsed = Date.now() - new Date(date[1]);
+		timelapsed = timelapsed - 1000*60*60*9;//UTC 시간차
+		let day = Math.ceil(timelapsed / 1000 / 60 / 60 / 24)-1;
+		let hour = Math.ceil(timelapsed / 1000 / 60 / 60);
+		let min = Math.ceil(timelapsed / 1000 / 60);
+		let sec = Math.ceil(timelapsed / 1000);
+		return day>0?`${day}일 전`:hour>0?`${hour} 시간 전`:min>0?`${min} 분 전`:`${sec} 초 전`;
 	};
 
 	const onClickMeatball = () => {

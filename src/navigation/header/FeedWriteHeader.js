@@ -9,7 +9,6 @@ import {RED} from 'Root/screens/color';
 import {createFeed, createMissing, createReport} from 'Root/api/feedapi';
 
 export default FeedWriteHeader = ({route, navigation, options}) => {
-	// console.log('props SendHeader', route.params);
 	const complete = result => {
 		Modal.close();
 		Modal.popNoBtn('게시물 등록이 완료되었습니다.');
@@ -25,7 +24,6 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 	};
 
 	const onSend = () => {
-		// console.log('onSend PAram', route.params.type);
 		Modal.popNoBtn('게시물을 등록중입니다.');
 
 		switch (route.params?.feedType) {
@@ -43,7 +41,7 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 		}
 	};
 
-	const titleStyle = [{textAlign: 'center'}, txt.noto40b, route.params?.type != 'Feed' ? {color: RED} : {}];
+	const titleStyle = [{textAlign: 'center'}, txt.noto40b, route.params?.feedType != 'Feed' ? {color: RED} : {}];
 
 	const avartarSelect = () => {
 		Modal.feedAvartarSelect(petObject => {
@@ -60,7 +58,7 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 					<BackArrow32 onPress={navigation.goBack} />
 				</View>
 			</TouchableOpacity>
-			{route.params?.type != 'Feed' ? (
+			{route.params?.feedType != 'Feed' ? (
 				<View style={style.titleContainer}>
 					<Text style={titleStyle}>{options.title}</Text>
 				</View>

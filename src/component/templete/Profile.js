@@ -153,6 +153,13 @@ export default Profile = ({route, navigation}) => {
 		);
 	};
 
+
+	const onClickProtectPet = (item)=>{
+		navigation.push('UserProfile', item);
+	}
+
+
+
 	//TabSelect 하단 AccountList
 	const showTabContent = () => {
 		//테스트데이터 지워도 됨
@@ -175,7 +182,7 @@ export default Profile = ({route, navigation}) => {
 				return (
 					<View style={[temp_style.tabSelectFilled_Type2]}>
 						{getTabSelectList()}
-						{tabMenuSelected == 2&&data.user_type != SHELTER&&<ProtectedPetList data={data._id} onClickLabel={item => navigation.push('UserProfile', item)} />}
+						{tabMenuSelected == 2&&data.user_type != SHELTER&&<ProtectedPetList data={data._id} onClickLabel={onClickProtectPet} />}
 					</View>
 				);
 			}
