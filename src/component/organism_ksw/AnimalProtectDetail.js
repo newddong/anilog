@@ -13,7 +13,59 @@ import AnimalNeedHelp from './AnimalNeedHelp';
 import {animalProtectDetail} from './style_organism';
 
 export default AnimalProtectDetail = props => {
-	console.log(' AnimalProtectDetail / props.data', props.data);
+	// console.log(' AnimalProtectDetail / props.data', props.data);
+	const e = {
+		__v: 0,
+		_id: '61c73f7b10b3b3bf4acbed77',
+		protect_act_address: {brief: '서울특별시 마포구 마포대로 143(공덕동)', detail: '110동 2001호'},
+		protect_act_applicant_id: '61c56c7538c5f6dee5a8b835',
+		protect_act_checklist: {
+			is_adult: true,
+			is_agreed_housemate: true,
+			is_experience_defecate: true,
+			is_knowledge_sanitation: true,
+			is_near_veterinary: true,
+		},
+		protect_act_companion_history: [
+			{
+				_id: '61c73f7b10b3b3bf4acbed78',
+				companion_pet_age: '5세 이하',
+				companion_pet_current_status: 'living',
+				companion_pet_period: '5년 이하',
+				companion_pet_species: '동물종류',
+			},
+		],
+		protect_act_motivation: '임시보호에는 자신있습니다. ',
+		protect_act_phone_number: '01096450422',
+		protect_act_protect_animal_id: '61c576c638c5f6dee5a8b9fd',
+		protect_act_request_article_id: '61c576f538c5f6dee5a8ba06',
+		protect_act_request_shelter_id: '61c5724c38c5f6dee5a8b95c',
+		protect_act_status: 'accept',
+		protect_act_type: 'adopt',
+		protect_animal_data: {
+			protect_animal_estimate_age: '2개월',
+			protect_animal_neutralization: 'unknown',
+			protect_animal_photo_uri_list: [
+				'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640330950796_A5781A26-0592-422C-BB9C-21A269B4B578.jpg',
+			],
+			protect_animal_protect_request_id: '61c576f538c5f6dee5a8ba06',
+			protect_animal_rescue_date: '2021-12-01T00:00:00.000Z',
+			protect_animal_rescue_location: '강원도 강릉시 주문진 인근',
+			protect_animal_sex: 'female',
+			protect_animal_species: '기타',
+			protect_animal_status: 'rescue',
+			protect_animal_weight: 8,
+		},
+		protect_animal_rescue_location: '강원도 강릉시 주문진 인근',
+		protect_animal_species: '기타',
+		protect_animal_species_detail: '호랑이',
+		protect_request_date: '2021-12-24T07:29:57.236Z',
+		protect_request_photos_uri: ['https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640330950796_A5781A26-0592-422C-BB9C-21A269B4B578.jpg'],
+		shelter_name: '상우보호소',
+		user_introduction: '지금을 사세요',
+		user_nickname: '상우1',
+		user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640437954460_209CC267-AC61-4830-9F0E-33C8736F05F7.jpg',
+	};
 	const [data, setData] = React.useState(props.data);
 	const getStatusText = arg => {
 		switch (arg) {

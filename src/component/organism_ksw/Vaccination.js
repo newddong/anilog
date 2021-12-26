@@ -82,7 +82,12 @@ export default Vaccination = props => {
 				</View>
 				<ScrollView horizontal={false}>
 					<ScrollView horizontal={true}>
-						<FlatList data={_dummyData} renderItem={({item, index}) => renderItem(item, index)} keyExtractor={item => item.vacc_name} />
+						<FlatList
+							data={_dummyData}
+							renderItem={({item, index}) => renderItem(item, index)}
+							keyExtractor={item => item.vacc_name}
+							scrollEnabled={false}
+						/>
 					</ScrollView>
 				</ScrollView>
 			</View>

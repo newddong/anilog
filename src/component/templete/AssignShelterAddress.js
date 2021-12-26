@@ -27,6 +27,37 @@ export default AssignShelterAddress = props => {
 	});
 
 	React.useEffect(() => {
+		console.log('data', data);
+	}, [data]);
+
+	const e = {
+		admCd: '4715037028',
+		bdKdcd: '0',
+		bdMgtSn: '4715037028106910000000007',
+		bdNm: '경부고속도로 추풍령휴게소',
+		buldMnnm: '213',
+		buldSlno: '0',
+		detBdNmList: '',
+		detailAddr: '마하살리점',
+		emdNm: '봉산면',
+		emdNo: '01',
+		engAddr: '213, Gyeongbu Expressway, Bongsan-myeon, Gimcheon-si, Gyeongsangbuk-do',
+		jibunAddr: '경상북도 김천시 봉산면 광천리 691 경부고속도로 추풍령휴게소',
+		liNm: '광천리',
+		lnbrMnnm: '691',
+		lnbrSlno: '0',
+		mtYn: '0',
+		rn: '경부고속도로',
+		rnMgtSn: '471501000001',
+		roadAddr: '경상북도 김천시 봉산면 경부고속도로 213',
+		roadAddrPart1: '경상북도 김천시 봉산면 경부고속도로 213',
+		roadAddrPart2: '',
+		sggNm: '김천시',
+		siNm: '경상북도',
+		udrtYn: '0',
+		zipNo: '39560',
+	};
+	React.useEffect(() => {
 		if (props.route.params.addr) {
 			console.log('주소를 받아온다.', props.route.params.addr);
 			let addr = props.route.params.addr;
@@ -41,7 +72,7 @@ export default AssignShelterAddress = props => {
 	}, [props.route.params.addr]);
 
 	React.useEffect(() => {
-		if (data.shelter_address.brief.length > 0 && data.shelter_address.detail.length > 0 && data.shelter_name.length > 0) {
+		if (data.shelter_address.brief.length > 0 && data.shelter_address.detail != '' && data.shelter_name.length > 0) {
 			setConfirmed(true);
 		}
 	}, [data]);
@@ -83,7 +114,7 @@ export default AssignShelterAddress = props => {
 	const addressValidator = (addr, detailAddr) => {
 		console.log('addressValidator', addr, detailAddr);
 		// if (addr != undefined && detailAddr != undefined) {
-		return addr.length > 0 && detailAddr.length > 0;
+		return addr != '' > 0 && detailAddr != '' > 0;
 		// }
 	};
 

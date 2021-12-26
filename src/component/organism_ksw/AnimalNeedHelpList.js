@@ -16,6 +16,7 @@ import {dummy_AnimalNeedHelpList} from 'Root/config/dummyDate_json';
  *onPressAdoptorInfo : 'void / 테두리 모드 입양처 보기 클릭'
  *onPressProtectRequest : 'void / 테두리 모드 게시글보기 클릭',
  *onPressReporter : 'void / 제보 게시글의 제보자 닉네임 클릭',
+ *whenEmpty : 'component / 목록이 없을 시 출력되는 컴포넌트',
  *onLayout : void,
  * }} props
  */

@@ -2,14 +2,13 @@ import React from 'react';
 import {ScrollView, Text, View, ActivityIndicator} from 'react-native';
 import {login_style, protectRequestList, searchProtectRequest, temp_style} from './style_templete';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
-import {btn_w306} from '../atom/btn/btn_style';
 import {GRAY10} from 'Root/config/color';
 import OnOffSwitch from '../molecules/OnOffSwitch';
 import {txt} from 'Root/config/textstyle';
-import {dummy_ProtectRequestList} from 'Root/config/dummy_data_hjs';
 import {ONLY_CONTENT_FOR_ADOPTION, PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
 import FilterButton from '../molecules/FilterButton';
 import {getProtectRequestList, getProtectRequestListByShelterId} from 'Root/api/shelterapi.js';
+import {getPettypes} from 'Root/api/userapi';
 
 export default ProtectRequestList = ({navigation, route}) => {
 	const [data, setData] = React.useState([]);
@@ -23,38 +22,59 @@ export default ProtectRequestList = ({navigation, route}) => {
 		protect_request_object_id: '',
 		request_number: 10,
 	});
+	const [petTypes, setPetTypes] = React.useState(['동물종류']);
+	React.useEffect(() => {
+		const unsubscribe = navigation.addListener('focus', () => {
+			getList();
+		});
+
+		const getList = () => {
+			getProtectRequestList(
+				filterData,
+				data => {
+					// console.log('data' + JSON.stringify(`data${data}`));
+					// console.log('보호요청 ', data.msg[0]);
+					// data.msg.forEach(e => console.log('forEach', e.protect_animal_id.protect_animal_sex, e.protect_animal_id.protect_animal_status));
+					let filtered = [...data.msg];
+					data.msg.forEach(each => {
+						each.protect_animal_sex = each.protect_animal_id.protect_animal_sex;
+						each.protect_animal_status = each.protect_animal_id.protect_animal_status;
+					});
+					// setData(data.msg);
+					//아직 입양 완료된 목록을 제외하고 조회하는 API가 없음. 수동 처리
+					if (filterData.adoptable_posts) {
+						filtered = data.msg.filter(e => e.protect_request_status != 'complete');
+						setData(filtered);
+						console.log('length', filtered.length);
+					} else {
+						setData(data.msg);
+					}
+				},
+				err => {
+					console.log(`errcallback:${JSON.stringify(err)}`);
+					if (err == '검색 결과가 없습니다.') {
+						setData([]);
+					}
+				},
+			);
+		};
+		getList();
+		return unsubscribe;
+	}, [filterData]);
 
 	React.useEffect(() => {
-		console.log('getProtectRequestList:feedlist of protectRequest');
-		getProtectRequestList(
-			filterData,
-			data => {
-				// console.log('data' + JSON.stringify(`data${data}`));
-				console.log('length', data.msg.length);
-				// console.log('보호요청 ', data.msg[0]);
-				// data.msg.forEach(e => console.log('forEach', e.protect_animal_id.protect_animal_sex, e.protect_animal_id.protect_animal_status));
-				let filtered = [...data.msg];
-				data.msg.forEach(each => {
-					each.protect_animal_sex = each.protect_animal_id.protect_animal_sex;
-					each.protect_animal_status = each.protect_animal_id.protect_animal_status;
+		getPettypes(
+			{},
+			types => {
+				const species = [...petTypes];
+				types.msg.map((v, i) => {
+					species[i + 1] = v.pet_species;
 				});
-				// setData(data.msg);
-				//아직 입양 완료된 목록을 제외하고 조회하는 API가 없음. 수동 처리
-				if (filterData.adoptable_posts) {
-					filtered = data.msg.filter(e => e.protect_request_status != 'complete');
-					setData(filtered);
-				} else {
-					setData(data.msg);
-				}
+				setPetTypes(species);
 			},
-			err => {
-				console.log(`errcallback:${JSON.stringify(err)}`);
-				if (err == '검색 결과가 없습니다.') {
-					setData([]);
-				}
-			},
+			err => Modal.alert(err),
 		);
-	}, [filterData]);
+	}, []);
 
 	const onClickLabel = (status, id, item) => {
 		//data에는 getProtectRequestList(어떠한 필터도 없이 모든 보호요청게시글을 출력)의 결과값이 담겨있음
@@ -115,10 +135,10 @@ export default ProtectRequestList = ({navigation, route}) => {
 					<View style={[searchProtectRequest.filterView.inside]}>
 						<View style={{flexDirection: 'row'}}>
 							<View style={[temp_style.filterBtn]}>
-								<FilterButton menu={PET_PROTECT_LOCATION} onSelect={onSelectLocation} width={306} />
+								<FilterButton menu={PET_PROTECT_LOCATION} onSelect={onSelectLocation} width={306} height={700} />
 							</View>
 							<View style={[temp_style.filterBtn]}>
-								<FilterButton menu={PET_KIND} onSelect={onSelectKind} width={306} />
+								<FilterButton menu={petTypes} onSelect={onSelectKind} width={306} />
 							</View>
 						</View>
 						{/* 입양 가능한 게시물만 보기 */}

@@ -10,6 +10,7 @@ import {dummy_MissingReportList} from 'Root/config/dummy_data_hjs';
 import FilterButton from '../molecules/FilterButton';
 import {PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
 import {getMissingReportList} from 'Root/api/feedapi.js';
+import {getPettypes} from 'Root/api/userapi';
 
 export default MissingReportList = props => {
 	const navigation = useNavigation();
@@ -24,6 +25,21 @@ export default MissingReportList = props => {
 		feedobject_id: '',
 		request_number: 10,
 	});
+	const [petTypes, setPetTypes] = React.useState(['동물종류']);
+
+	React.useEffect(() => {
+		getPettypes(
+			{},
+			types => {
+				const species = [...petTypes];
+				types.msg.map((v, i) => {
+					species[i + 1] = v.pet_species;
+				});
+				setPetTypes(species);
+			},
+			err => Modal.alert(err),
+		);
+	}, []);
 
 	// 실종 데이터 불러오기 (아직 API 미작업 )
 	React.useEffect(() => {
@@ -98,10 +114,10 @@ export default MissingReportList = props => {
 					<View style={[searchProtectRequest.filterView.inside]}>
 						<View style={{flexDirection: 'row'}}>
 							<View style={[temp_style.filterBtn]}>
-								<FilterButton menu={PET_PROTECT_LOCATION} onSelect={onSelectLocation} width={306} />
+								<FilterButton menu={PET_PROTECT_LOCATION} onSelect={onSelectLocation} width={306} height={700} />
 							</View>
 							<View style={[temp_style.filterBtn]}>
-								<FilterButton menu={PET_KIND} onSelect={onSelectKind} width={306} />
+								<FilterButton menu={petTypes} onSelect={onSelectKind} width={306} />
 							</View>
 						</View>
 					</View>

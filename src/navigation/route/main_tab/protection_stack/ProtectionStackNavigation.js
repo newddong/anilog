@@ -26,7 +26,7 @@ export default ProtectionStackNavigation = () => {
 			<ProtectionStack.Screen name="HashFeedList" component={FeedList} />
 			<ProtectionStack.Screen name="ProtectAnimalFeedList" component={FeedList} />
 			<ProtectionStack.Screen name="UserTagFeedList" component={FeedList} />
-			{/* <ProtectionStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} /> */}
+			<ProtectionStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} />
 			<ProtectionStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
 			<ProtectionStack.Screen name="FeedCommentList" component={FeedCommentList} />
 

@@ -232,7 +232,7 @@ export default ApplyVolunteer = ({route, navigation}) => {
 							onPress={onRegister}
 							btnTitle={'신청'}
 							disable={
-								data.volunteer_accompany.length > 0 && data.volunteer_delegate_contact.length > 0 && data.volunteer_wish_date_list.length > 0
+								data.volunteer_accompany.length > 0 && data.volunteer_delegate_contact.length > 0 && data.volunteer_wish_date.length > 0
 									? false
 									: true
 							}

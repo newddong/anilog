@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TouchableOpacity, TouchableWithoutFeedback, Text, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, TouchableWithoutFeedback, Text, StyleSheet, ScrollView} from 'react-native';
 import Dropdown from 'Molecules/Dropdown';
 import {btn_w280, btn_w226} from 'Atom/btn/btn_style';
 import {APRI10, BLACK, BLUE10, GRAY10, GRAY40, WHITE} from 'Root/config/color';
@@ -18,6 +18,7 @@ import FilterButtonContainer from './FilterButtonContainer';
  * @param {number} props.titleFontStyle - 제목 글꼴 크기, 기본값 24
  * @param {number} props.defaultIndex - 미선택 상태에서 보여지는 item의 index
  * @param {number} props.width - DropDown 길이
+ * @param {number} props.height - DropDown 스크롤뷰 높이
  * @param {()=>void} props.onOpen - 드롭다운을 열었을 때 동작하는 콜백
  * @param {()=>void} props.onClose - 드롭다운을 닫았을 때 동작하는 콜백
  * @param {()=>void} props.onSelect - 드롭다운 내의 항목을 선택했을 때 동작하는 콜백
@@ -41,7 +42,7 @@ const FilterButton = props => {
 			dropdownList={
 				<View style={{backgroundColor: WHITE, borderRadius: 10 * DP, alignItems: 'center', borderWidth: 2 * DP}}>
 					<TouchableWithoutFeedback>
-						<View>
+						<ScrollView style={{height: props.height * DP || null}} contentContainerStyle={{}}>
 							{props.menu.map((v, i) => (
 								<View key={i}>
 									<TouchableWithoutFeedback onPress={() => onSelect(v, i)}>
@@ -61,7 +62,7 @@ const FilterButton = props => {
 									<View style={[styles.separator, {width: props.width != null ? props.width * DP : props.btnLayout.width}]} />
 								</View>
 							))}
-						</View>
+						</ScrollView>
 					</TouchableWithoutFeedback>
 				</View>
 			}
@@ -85,6 +86,7 @@ FilterButton.defaultProps = {
 	btnTitle: 'BTN_W654', //버튼의 제목
 	disable: false, // 버튼탭 사용불가 상태 boolean
 	btnLayout: btn_w226, // 버튼의 레이아웃(width, height, radius 등의 수치 결정)
+	// height: 300,
 	titleFontStyle: 24, // 버튼 title의 폰트 크기
 	btnStyle: 'border', // 버튼스타일 filled border noBorder,
 	defaultIndex: null,
