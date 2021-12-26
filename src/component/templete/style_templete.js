@@ -3267,7 +3267,7 @@ export const feedCommentList = StyleSheet.create({
 		// height: 330 * DP,
 		borderBottomWidth: 2 * DP,
 		borderBottomColor: GRAY30,
-		backgroundColor:WHITE
+		backgroundColor: WHITE,
 		// backgroundColor: 'powderblue',
 	},
 	commentList: {
@@ -3449,6 +3449,7 @@ export const manageVolunteer = StyleSheet.create({
 	},
 	separator: {
 		width: 654 * DP,
+		marginTop: 40 * DP,
 		height: 2 * DP,
 		backgroundColor: APRI10,
 	},

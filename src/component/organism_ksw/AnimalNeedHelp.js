@@ -190,6 +190,9 @@ export default AnimalNeedHelp = props => {
 							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
 								<Text style={[txt.noto30b, {color: RED10}]}>{data.missing_animal_species || ''}</Text>
 								<Text style={[txt.noto28, {color: RED10}, animalNeedHelp.breedText]}>{data.missing_animal_species_detail || ''}</Text>
+								<View style={[animalNeedHelp.detail_upper_tag]}>
+									{favorite ? <FavoriteTag48_Filled onPress={onPressFavoriteTag} /> : <FavoriteTag48_Border onPress={onPressFavoriteTag} />}
+								</View>
 							</View>
 							{/* 실종/제보 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
@@ -212,6 +215,9 @@ export default AnimalNeedHelp = props => {
 							{/* 동물 종류 및 품종 */}
 							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
 								<Text style={[txt.noto30b, {color: RED10}]}>{data.report_animal_species || ''}</Text>
+								<View style={[animalNeedHelp.detail_upper_tag]}>
+									{favorite ? <FavoriteTag48_Filled onPress={onPressFavoriteTag} /> : <FavoriteTag48_Border onPress={onPressFavoriteTag} />}
+								</View>
 							</View>
 							{/* 실종/제보 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
