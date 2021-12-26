@@ -64,7 +64,6 @@ export const organism_style = StyleSheet.create({
 		height: 48 * DP,
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		position: 'absolute',
 		backgroundColor: '#fff',
 		bottom: 0,
 	},
@@ -416,7 +415,7 @@ export const parentComment = StyleSheet.create({
 		marginTop: 20 * DP,
 		flexDirection: 'row',
 		alignItems: 'center',
-		alignSelf: 'flex-end',
+		// alignSelf: 'flex-end',
 		justifyContent: 'flex-end',
 	},
 	comment_contents: {
@@ -433,7 +432,6 @@ export const parentComment = StyleSheet.create({
 	heart30: {
 		width: 30 * DP,
 		height: 30 * DP,
-		backgroundColor: 'lightgray',
 	},
 	likeCount: {
 		width: 50 * DP,
@@ -452,6 +450,6 @@ export const parentComment = StyleSheet.create({
 	},
 	writeCommentText: {
 		color: GRAY20,
-		// includeFontPadding: false,
+		includeFontPadding: false,
 	},
 });

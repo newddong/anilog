@@ -15,7 +15,19 @@ import {feedCommentList} from '../templete/style_templete';
  * photo : 'Array / 사진 목록'
  * }} props
  */
-export default ReplyWriteBox = props => {
+export default ReplyWriteBox = React.forwardRef((props,ref) => {
+	React.useImperativeHandle(ref, () => ({
+		focus: () => {
+			inputRef.current.focus();
+		},
+		blur: () => {
+			inputRef.current.blur();
+		},
+		clear: () => {
+			onClear();
+		},
+	}));
+	
 	const inputRef = useRef();
 
 	const onWrite = () => {
@@ -37,14 +49,14 @@ export default ReplyWriteBox = props => {
 				</View>
 			) : false}
 			<View style={{flexDirection: 'row', alignItems: 'center'}}>
-				{props.privateComment ? <Lock60_Filled onPress={() => props.onLockBtnClick()} /> : <Lock60_Border onPress={() => props.onLockBtnClick()} />}
+				{/* {props.privateComment ? <Lock60_Filled onPress={() => props.onLockBtnClick()} /> : <Lock60_Border onPress={() => props.onLockBtnClick()} />} */}
 				<Photo60 onPress={() => props.onAddPhoto()} />
 				<TextInput style={[feedCommentList.replyTextInput]} onChangeText={props.onChangeReplyInput} ref={inputRef} />
 				<Send60 onPress={onWrite} />
 			</View>
 		</View>
 	);
-};
+});
 
 ReplyWriteBox.defaultProps = {
 	onLockBtnClick: e => console.log(e), // 비밀 댓글 클릭

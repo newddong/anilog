@@ -14,17 +14,12 @@ import {txt} from 'Root/config/textstyle';
  * }} props
  */
 export default CommentList = props => {
-	//자식 댓글의 답글쓰기 클릭 이벤트
-	const onPress_ChildComment_ReplyBtn = comment => {
-		props.onPress_ChildComment_ReplyBtn(comment);
-	};
 
 	const renderItem = ({item, index}) => {
 		return (
 			<ParentComment
 				parentComment={item}
-				onPressReplyBtn={() => props.onPressReplyBtn(item)} // 부모 댓글의 답글쓰기 클릭 이벤트
-				onPress_ChildComment_ReplyBtn={() => onPress_ChildComment_ReplyBtn(item)} // 자식 댓글의 답글쓰기 클릭 이벤트
+				onPressReplyBtn={props.onPressReplyBtn} // 부모 댓글의 답글쓰기 클릭 이벤트
 			/>
 		);
 	};
@@ -39,12 +34,7 @@ export default CommentList = props => {
 
 	return (
 		<View style={{backgroundColor: '#fff', flex: 1, paddingHorizontal: 48 * DP}}>
-			<FlatList
-				data={props.items}
-				renderItem={renderItem}
-				ListEmptyComponent={whenEmpty}
-				stickyHeaderIndices={[0]}
-			/>
+			<FlatList data={props.items} renderItem={renderItem} ListEmptyComponent={whenEmpty} stickyHeaderIndices={[0]} />
 		</View>
 	);
 };

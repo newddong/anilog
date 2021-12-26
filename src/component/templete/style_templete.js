@@ -120,7 +120,7 @@ export const login_style = StyleSheet.create({
 		// flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#FF00FF',
+		// backgroundColor: '#FF00FF',
 	},
 });
 
@@ -510,9 +510,9 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	commentList: {
-		width: 654 * DP,
+		// width: 654 * DP,
 		// marginTop: 12 * DP,
-		backgroundColor: '#fff',
+		// backgroundColor: '#ff00ff',
 	},
 	floatingBtn: {
 		flexDirection: 'column',
@@ -3237,6 +3237,12 @@ export const reportDetail = StyleSheet.create({
 		height: 2 * DP,
 		backgroundColor: GRAY30,
 		marginTop: 30 * DP,
+	},
+	allCommentCount: {
+		width: 654 * DP,
+		height: 44 * DP,
+		alignItems: 'flex-end',
+		// backgroundColor: '#F8DDDD',
 	},
 });
 

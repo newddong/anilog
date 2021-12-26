@@ -57,7 +57,7 @@ export default FeedContent = props => {
 	const [reportLayout, setReportLayout] = React.useState({height: 0, width: 0});
 	// const contentHeight = React.useRef(270 * DP);
 	const [contentHeight, setHeight] = React.useState(270*DP);
-	const shouldShowMoreBtn = layout.height +reportLayout.height- 100 * DP > 0;
+	const shouldShowMoreBtn = layout.height +reportLayout.height- 90 * DP > 0;
 
 	const moveToFeedListForHashTag = tagText => {
 		const dummyHashData = {
@@ -97,7 +97,7 @@ export default FeedContent = props => {
 	};
 
 	const showMore = () => {
-		let offset = layout.height - 100 * DP;
+		let offset = layout.height - 90 * DP;
 		let reportOffset = reportLayout.height + 16 * DP;
 		if (btnStatus) {
 			setHeight(270 * DP);

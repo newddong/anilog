@@ -18,9 +18,10 @@ export default FeedCommentList = props => {
 	const [editComment, setEditComment] = React.useState(false); //답글 쓰기 클릭 state
 	const [privateComment, setPrivateComment] = React.useState(false); // 공개 설정 클릭 state
 	const [photo, setPhoto] = React.useState();
-	const [data, setData] = React.useState({});
 	const [comments, setComments] = React.useState([]);
+	const [parentComment, setParentComment] = React.useState();
 	const [content, setContent] = React.useState('');
+	const input = React.useRef();
 
 	React.useEffect(() => {
 		if (props.route.name == 'FeedCommentList') {
@@ -31,8 +32,9 @@ export default FeedCommentList = props => {
 				},
 				comments => {
 					setComments(comments.msg);
+					console.log(comments);
 				},
-				err =>console.log(err),
+				err => console.log(err),
 			);
 		}
 	}, []);
@@ -42,17 +44,38 @@ export default FeedCommentList = props => {
 		let param = {
 			comment_photo_uri: photo, //사진uri
 			comment_contents: content, //내용
-			// commentobject_id: undefined, //부모댓글
-			feedobject_id: props.route.params.feedobject._id, //피드id
-			// protect_request_object_id: undefined, //요청게시물id
-			comment_is_secure: privateComment, //공개여부
+			// comment_is_secure: privateComment, //공개여부 테스트때 반영
+		};
+		if(props.route.name == 'FeedCommentList'){
+			param = {...param, feedobject_id: props.route.params.feedobject._id};
 		}
+		else if(props.route.name == '동물보호요청'){
+			param = {...param, protect_request_object_id: props.route.params.feedobject._id};
+		}
+
+		if(parentComment){
+			param = {...param, commentobject_id: parentComment};
+		}
+
 		console.log(userGlobalObject.userInfo);
-		createComment(param,(result)=>{
-			console.log(result);
-			setPhoto();
-			setComments([{...result.msg,comment_writer_id:userGlobalObject.userInfo}].concat(comments));
-		},(err)=>Modal.alert(err));
+		createComment(
+			param,
+			result => {
+				console.log(result);
+				setPhoto();
+				setParentComment();
+				parentComment||setComments([{...result.msg, comment_writer_id: userGlobalObject.userInfo}].concat(comments));
+				
+				// comments.find((v,i)=>{
+				// 	if(v._id==parentComment){
+				// 		v.array
+				// 	}
+				// })
+
+
+			},
+			err => Modal.alert(err),
+		);
 	};
 
 	// 답글 쓰기 -> 자물쇠버튼 클릭 콜백함수
@@ -65,12 +88,15 @@ export default FeedCommentList = props => {
 	const onAddPhoto = () => {
 		// navigation.push('SinglePhotoSelect', props.route.name);
 		ImagePicker.openPicker({
-			compressImageQuality:0.8,
+			compressImageQuality: 0.8,
 			cropping: true,
-		  }).then(images => {
-			setPhoto(images.path);
-			Modal.close();
-		  }).catch(err=>Modal.alert(err+''));Modal.close();
+		})
+			.then(images => {
+				setPhoto(images.path);
+				Modal.close();
+			})
+			.catch(err => Modal.alert(err + ''));
+		Modal.close();
 	};
 
 	const onDeleteImage = () => {
@@ -83,13 +109,11 @@ export default FeedCommentList = props => {
 	};
 
 	// 답글 쓰기 버튼 클릭 콜백함수
-	const onReplyBtnClick = () => {
-		setEditComment(!editComment);
-	};
-
-	// 자식 답글에서 답글쓰기 버튼 클릭 콜백함수
-	const onChildReplyBtnClick = comment => {
-		setEditComment(!editComment);
+	const onReplyBtnClick = parentCommentId => {
+		console.log(parentCommentId);
+		setParentComment(parentCommentId);
+		input.current.focus();
+		editComment||setEditComment(true);
 	};
 
 	const render = ({item, index}) => {
@@ -99,7 +123,7 @@ export default FeedCommentList = props => {
 					<Text style={[txt.noto28]}>댓글 {comments.length}개 </Text>
 				</View>
 			);
-		if (index > 0) return <CommentList items={item} onPressReplyBtn={onReplyBtnClick} onPress_ChildComment_ReplyBtn={onChildReplyBtnClick} />;
+		if (index > 0) return <CommentList items={item} onPressReplyBtn={onReplyBtnClick}/>;
 	};
 
 	return (
@@ -135,6 +159,7 @@ export default FeedCommentList = props => {
 					onDeleteImage={onDeleteImage}
 					privateComment={privateComment}
 					photo={photo}
+					ref={input}
 				/>
 			) : (
 				false

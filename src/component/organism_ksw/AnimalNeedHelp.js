@@ -26,7 +26,7 @@ import moment from 'moment';
  */
 export default AnimalNeedHelp = props => {
 	const data = props.data;
-	// console.log('AnimalNeedHelp: -------------- ', JSON.stringify(data.protect_act_status));
+	// console.log('AnimalNeedHelp: -------------- ', JSON.stringify(data));
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
 	const [thumbnailData, setThumbnailData] = React.useState({});
@@ -268,7 +268,9 @@ export default AnimalNeedHelp = props => {
 							<View>{contents()}</View>
 						</TouchableOpacity>
 					) : (
-						<View>{contents()}</View>
+						<TouchableOpacity onPress={() => props.onClickLabel(data.feed_type, data._id)}>
+							<View>{contents()}</View>
+						</TouchableOpacity>
 					)}
 				</View>
 				{props.borderMode == true

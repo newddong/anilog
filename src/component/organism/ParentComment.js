@@ -9,8 +9,9 @@ import {txt} from 'Root/config/textstyle';
 import MeatBallDropdown from '../molecules/MeatBallDropdown';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {DEFAULT_PROFILE, SETTING_COMMENT, SETTING_OWN_COMMENT} from 'Root/i18n/msg';
-import {dummy_ChildComment} from 'Root/config/dummyDate_json';
 import {GRAY10} from 'Root/config/color';
+import { getChildCommentList } from 'Root/api/commentapi';
+import Modal from '../modal/Modal';
 
 /**
  *
@@ -24,6 +25,7 @@ export default ParentComment = props => {
 	// console.log('ParentComment', props.parentComment.comment_contents);
 
 	const [data, setData] = React.useState(props.parentComment);
+	const [child, setChild] = React.useState([]);
 	const [likeState, setLikeState] = React.useState(false); //해당 댓글의 좋아요 상태 - 로그인 유저가 좋아요를 누른 기록이 있다면 filled , or border
 	const [isMyComment, setIsMyComment] = React.useState(false); //해당 댓글 작성자가 본인인지 여부 Boolean
 	const [showChild, setShowChild] = React.useState(false); //해당 댓글의 답글들 출력 여부 Boolean
@@ -42,12 +44,23 @@ export default ParentComment = props => {
 		// });
 	}, [props.parentComment]);
 
+	const onPressReplyBtn = () => {
+		props.onPressReplyBtn(props.parentComment._id);
+	}
+
 	const onCLickHeart = () => {
 		setLikeState(!likeState);
 	};
 
 	const showChildComment = () => {
-		setShowChild(!showChild);
+		getChildCommentList(
+			{
+				commentobject_id: props.parentComment._id
+			},
+			(result)=> {setChild(result.msg);setShowChild(!showChild);},
+			(err)=> Modal.alert(err)
+		)
+		
 	};
 
 	return (
@@ -77,7 +90,7 @@ export default ParentComment = props => {
 				{/* Data - 좋아요 상태 t/f */}
 
 				<TouchableOpacity onPress={showChildComment} style={[parentComment.showChildComment]}>
-					{data.childArray ? <Text style={[txt.noto24, {color: GRAY10}]}> 답글 {data.childArray.length}개 보기 </Text> : <></>}
+					{data.children_count>0&&<Text style={[txt.noto24, {color: GRAY10}]}> 답글{data.children_count}개 보기 </Text>}
 				</TouchableOpacity>
 				<View style={[parentComment.heart30]}>
 					{likeState ? <Heart30_Filled onPress={onCLickHeart} /> : <Heart30_Border onPress={onCLickHeart} />}
@@ -86,7 +99,7 @@ export default ParentComment = props => {
 					{/* Data - 좋아요 숫자 */}
 					<Text style={(txt.roboto24, parentComment.likeCountText)}>{data ? data.comment_like_count : ''}</Text>
 				</View>
-				<TouchableOpacity style={[parentComment.writeComment]} onPress={() => props.onPressReplyBtn(props.parentComment._id)}>
+				<TouchableOpacity style={[parentComment.writeComment]} onPress={onPressReplyBtn}>
 					<Text style={(txt.noto22, parentComment.writeCommentText)}>· 답글 쓰기</Text>
 				</TouchableOpacity>
 			</View>
@@ -94,13 +107,12 @@ export default ParentComment = props => {
 			{showChild ? (
 				<View style={[organism_style.childCommentList, parentComment.img_square_round_574]}>
 					<ChildCommentList
-						items={data.childArray}
+						items={child}
 						showChildComment={showChildComment}
-						onPressReplyBtn={comment => props.onPress_ChildComment_ReplyBtn(comment)}
 					/>
 				</View>
 			) : (
-				<></>
+				false
 			)}
 		</View>
 	);
