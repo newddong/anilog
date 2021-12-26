@@ -510,7 +510,7 @@ export const temp_style = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	commentList: {
-		// width: 654 * DP,
+		width: 654 * DP,
 		// marginTop: 12 * DP,
 		// backgroundColor: '#ff00ff',
 	},

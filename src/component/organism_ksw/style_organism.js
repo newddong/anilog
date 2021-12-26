@@ -749,7 +749,7 @@ export const protectedPetList = StyleSheet.create({
 	container: {
 		marginTop: 20 * DP,
 		justifyContent: 'center',
-		height:252*DP,
+		height: 252 * DP,
 	},
 	itemContainer: {
 		width: 184 * DP,
@@ -1081,7 +1081,7 @@ export const animalNeedHelp = StyleSheet.create({
 		top: 10 * DP,
 	},
 	detailContainer: {
-		width: 410 * DP,
+		width: 380 * DP,
 		height: 214 * DP,
 		marginLeft: 30 * DP,
 	},
@@ -1108,10 +1108,7 @@ export const animalNeedHelp = StyleSheet.create({
 		color: GRAY10,
 		lineHeight: 30 * DP,
 	},
-	detail_upper_tag: {
-		position: 'absolute',
-		right: 0,
-	},
+	detail_upper_tag: {},
 	detail_lowerMenu: {
 		width: 410 * DP,
 		height: 160 * DP,

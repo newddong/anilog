@@ -1,7 +1,8 @@
 import {useNavigation} from '@react-navigation/core';
 import {duration} from 'moment';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {ActivityIndicator, Text, View} from 'react-native';
+import {getUserListByNickname} from 'Root/api/userapi';
 import {dummy_AccountHashList, dummy_accountList, dummy_userObject} from 'Root/config/dummyDate_json';
 import AccountHashList from '../organism_ksw/AccountHashList';
 import SelectStat from '../organism_ksw/SelectStat';
@@ -15,12 +16,36 @@ export default SaveFavorite = props => {
 	//계정 좌측 CheckBox 디스플레이 여부
 	const [checkBoxMode, setCheckBoxMode] = React.useState(false);
 	//checkBox On
-	const [_dummyData, set_dummyData] = React.useState(dummy_AccountHashList);
+	const [data, setData] = React.useState([]);
+	const [loading, setLoading] = React.useState(true); // 화면 출력 여부 결정
 	let selectCNT = React.useRef(0);
 
 	React.useEffect(() => {
-		// console.log('SaveFavorite:_dummyData=>' + JSON.stringify(_dummyData));
-	}, [_dummyData]);
+		getUserListByNickname(
+			{
+				user_nickname: '이',
+				user_type: 'pet',
+				userobject_id: '',
+				request_number: 10,
+			},
+			res => {
+				res.msg.map((v, i) => {
+					res.msg[i].type = v.user_type;
+					res.msg[i].user_nickname = v.user_nickname;
+					res.msg[i].user_profile_uri = v.user_profile_uri;
+					res.msg[i].text_intro = v.user_introduction;
+					res.msg[i]._id = v._id;
+				});
+				setData(res.msg);
+				setTimeout(() => {
+					setLoading(false);
+				}, 1500);
+			},
+			err => {
+				console.log('err', err);
+			},
+		);
+	}, []);
 
 	//Check Box On
 	const showCheckBox = e => {
@@ -31,90 +56,90 @@ export default SaveFavorite = props => {
 		selectCNT.current = 0;
 
 		//취소를 누르고 다시 선택하기를 누를 경우 선택되어 있는 체크박스가 없게 하기 위해 false로 초기화.
-		let copy = [..._dummyData];
+		let copy = [...data];
 		copy.map((v, i) => {
 			v._index = i;
 			v.checkBoxState = false;
 		});
-		set_dummyData(copy);
+		setData(copy);
 	};
-
-	//CheckBox Off
-	// const hideCheckBox = e => {
-	// 	console.log('hideCheckBox  클릭 !!!');
-	// 	setCheckBoxMode(false);
-	// 	console.log('hideCheckBox =>' + checkBoxModeer);
-	// };
 
 	// 선택하기 => 전체 선택 클릭
 	const selectAll = () => {
-		//v.checkBoxState = !v.checkBoxState와 같이 할 경우 체크 박스 값들이 각각 다를 경우 그것의 반대로만 변경 될 뿐 모두 선택되거나 모두 취소 되지 않음.
-		// setSelectCNT(preSelectCNT => preSelectCNT + 1);
 		selectCNT.current += 1;
-
-		let copy = [..._dummyData];
+		let copy = [...data];
 		// console.log('selectCNT.current =====>' + selectCNT.current);
 		copy.map((v, i) => {
 			//카운트의 2로 나눈 나머지값을 이용해서 전체 선택 혹은 전체 취소가 되도록 함.
 			selectCNT.current % 2 == 1 ? (v.checkBoxState = true) : (v.checkBoxState = false);
 		});
-		set_dummyData(copy);
+		setData(copy);
 	};
 
 	// 선택하기 => 선택 삭제 클릭 (API 데이터 불러온 뒤 다시 수정할 것. - 실제로 ID를 API로 넘긴 후 데이터를 다시 가져와서 표출 해야함.)
 	const deleteSelectedItem = () => {
 		console.log('삭제시작');
-		let tempArray = [];
-
-		let copy = [..._dummyData];
+		let copy = [...data];
 		copy = copy.filter(e => e.checkBoxState != true);
-		// console.log('deleteSelectedItem:_dummyData=>' + JSON.stringify(copy));
-		// let deleteList = [];
-		// for (let i = 0; i < copy.length; i++) {
-		// 	if (copy[i].checkBoxState == true) {
-		// 		console.log('삭제목록임' + i);
-		// 		copy = copy.filter(item => item.checkBoxState != true);
-		// 		deleteList.push(copy[i].user_nickname == null ? copy[i].keyword : copy[i].user_nickname);
-		// 	}
-		// }
 		copy.map((v, i) => {
 			// console.log('index=>' + i);
 			v._index = i;
 			v.checkBoxState = false;
 		});
 
-		set_dummyData(copy);
+		setData(copy);
 	};
 
 	//CheckBox 클릭 시
 	const onCheckBox = (item, index) => {
 		// console.log(index);
-		let copy = [..._dummyData];
+		let copy = [...data];
 		copy[index].checkBoxState = !copy[index].checkBoxState;
 		// set_dummyData(copy);
 	};
 
-	return (
-		<View style={[login_style.wrp_main, {flex: 1}]}>
-			<View style={[temp_style.selectstat_view]}>
-				<View style={[temp_style.selectstat, selectstat_view_style.selectstat]}>
-					<SelectStat
-						onSelectMode={e => showCheckBox(e)}
-						onCancelSelectMode={e => hideCheckBox(e)}
-						onSelectAllClick={selectAll}
-						onDeleteSelectedItem={deleteSelectedItem}
+	const onClickFollow = data => {
+		console.log('data', data);
+	};
+	const onClickLabel = data => {
+		console.log('data', data);
+		navigation.push('UserProfile', {userobject: data});
+	};
+	const onClickHash = data => {
+		console.log('data', data);
+		navigation.push('FeedListForHashTag', data);
+	};
+
+	if (loading) {
+		return (
+			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
+				<ActivityIndicator size={'large'}></ActivityIndicator>
+			</View>
+		);
+	} else {
+		return (
+			<View style={[login_style.wrp_main, {flex: 1}]}>
+				<View style={[temp_style.selectstat_view]}>
+					<View style={[temp_style.selectstat, selectstat_view_style.selectstat]}>
+						<SelectStat
+							onSelectMode={e => showCheckBox(e)}
+							onCancelSelectMode={e => hideCheckBox(e)}
+							onSelectAllClick={selectAll}
+							onDeleteSelectedItem={deleteSelectedItem}
+						/>
+					</View>
+				</View>
+				<View style={[saveFavorite.accountHashList]}>
+					<AccountHashList
+						data={data}
+						checkBoxMode={checkBoxMode}
+						onClickLabel={onClickLabel}
+						onClickHash={onClickHash}
+						onClickFollow={onClickFollow}
+						onCheckBox={onCheckBox}
 					/>
 				</View>
 			</View>
-			<View style={[saveFavorite.accountHashList]}>
-				<AccountHashList
-					data={_dummyData}
-					checkBoxMode={checkBoxMode}
-					onLabelClick={item => navigation.push('UserProfile', item)}
-					onHashClick={item => navigation.push('FeedListForHashTag', item)}
-					onCheckBox={(item, index) => onCheckBox(item, index)}
-				/>
-			</View>
-		</View>
-	);
+		);
+	}
 };

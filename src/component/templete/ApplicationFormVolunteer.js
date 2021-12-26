@@ -128,8 +128,8 @@ export default ApplicationFormVolunteer = ({route, navigation}) => {
 	};
 
 	const onClickLabel = data => {
-		console.log('data', data);
-		navigation.push('UserProfile', data);
+		// console.log('data', data);
+		navigation.push('UserProfile', {userobject: data});
 	};
 
 	const parsing_wish_date = v => {

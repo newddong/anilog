@@ -7,12 +7,24 @@ import HashLabel from '../molecules/HashLabel';
 import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
 import {userAccount} from './style_organism';
 
+/**
+ * 친구 즐겨찾기 Hash와 유저오브젝트 리스트 출력 컴포넌트
+ * @param {object} props - Props Object
+ * @param {object} props.data - 친구 아이템 데이터
+ * @param {void} props.onHashClick - 해쉬 라벨 클릭
+ * @param {void} props.onLabelClick - 유저 라벨 클릭
+ * @param {void} props.onClickFollow - 팔로우, 팔로잉 버튼 클릭
+ * @param {boolean} props.checkBoxMode - 선택 삭제 모드 여부 (default = false)
+ * @param {boolean} props.checkBoxState - 선택 여부 (default = false)
+ */
 export default UserAccount = props => {
+	// console.log('item', props.data);
+
 	const [followState, setFollowState] = React.useState(true);
 
 	const getLabel = () => {
 		// console.log('props.data.type=>' + props.data.type);
-		if (props.data.type == 'user') {
+		if (props.data.type == 'user' || props.data.type == 'pet' || props.data.type == 'shelter') {
 			return <UserDescriptionLabel data={props.data} onClickLabel={e => props.onLabelClick(e)} />;
 		} else if (props.data.type == 'hash') {
 			return (
@@ -26,7 +38,7 @@ export default UserAccount = props => {
 	//팔로우 버튼 클릭
 	const onClickFollow = () => {
 		setFollowState(!followState);
-		props.onFollowBtnClick(followState);
+		props.onClickFollow(followState);
 	};
 
 	return (
@@ -57,7 +69,7 @@ export default UserAccount = props => {
 
 UserAccount.defaultProps = {
 	onLabelClick: e => console.log(e),
-	onFollowBtnClick: e => console.log(e),
+	onClickFollow: e => console.log(e),
 	onCheckBox: e => console.log(e),
 	checkBoxMode: false,
 	checkBoxState: false,

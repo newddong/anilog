@@ -75,7 +75,7 @@ export default AdoptorInformation = ({route, navigation}) => {
 
 	const onClickAdoptor = data => {
 		// console.log('data', data);
-		navigation.push('UserProfile', data);
+		navigation.push('UserProfile', {userobject: data});
 	};
 
 	if (loading) {

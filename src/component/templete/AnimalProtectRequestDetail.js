@@ -29,7 +29,7 @@ import {createComment} from 'Root/api/commentapi';
 // - ProtectRequestList(보호활동탭) , AnimalFromShelter(게시글보기) , Profile(보호활동)
 
 export default AnimalProtectRequestDetail = ({route}) => {
-	// console.log('AnimalProtectRequestDetail', route.params);
+	console.log('AnimalProtectRequestDetail', route.params);
 
 	const navigation = useNavigation();
 	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
@@ -48,12 +48,6 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const debug = false;
 
 	debug && console.log('AnimalProtectRequestDetail data:', data);
-
-	React.useEffect(() => {
-		AsyncStorage.getItem('token', (err, res) => {
-			res ? setToken(res) : setToken(null);
-		});
-	}, []);
 
 	React.useEffect(() => {
 		//현재 보고 있는 보호요청게시글의 작성자(보호소)의 모든 보호요청게시글이 담겨 있는 writersAnotherRequests

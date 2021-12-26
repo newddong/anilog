@@ -90,7 +90,7 @@ export default ProtectApplicant = ({route, navigation}) => {
 	//AccountList의 라벨 클릭 콜백 함수
 	const onClickLabel = data => {
 		console.log('data', data);
-		navigation.push('UserProfile', data);
+		navigation.push('UserProfile', {userobject: data});
 	};
 
 	//입양, 임보 신청자 아이템 클릭 콜백 함수 (라벨 이외의 영역)

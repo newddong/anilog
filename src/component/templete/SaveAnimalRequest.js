@@ -4,7 +4,7 @@ import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
 import SelectStat from '../organism_ksw/SelectStat';
 import {login_style, temp_style} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
-import {getProtectRequestList} from 'Root/api/shelterapi';
+import {getProtectRequestList, getProtectRequestListByShelterId} from 'Root/api/shelterapi';
 
 export default SaveAnimalRequest = ({route}) => {
 	const navigation = useNavigation();
@@ -91,28 +91,34 @@ export default SaveAnimalRequest = ({route}) => {
 	};
 
 	//썸네일 클릭
-	const navigationGo = (status, user_id) => {
-		console.log('status , id => ' + status + '_' + user_id);
-		switch (status) {
-			case 'adoption_available':
-				navigation.push('UserProfile', {userId: user_id});
-				break;
-			case 'emergency':
-				navigation.push('UserProfile', {userId: user_id});
-				break;
-			case 'missing':
-				navigation.push('UserProfile', {userId: user_id});
-				break;
-			case 'reported':
-				navigation.push('UserProfile', {userId: user_id});
-				break;
-			case 'onNegotiation':
-				navigation.push('UserProfile', {userId: user_id});
-				break;
-			case 'adopted':
-				navigation.push('UserProfile', {userId: user_id});
-				break;
-		}
+	const navigationGo = (status, user_id, item) => {
+		let sexValue = '';
+		getProtectRequestListByShelterId(
+			{
+				shelter_userobject_id: item.protect_request_writer_id._id,
+				protect_request_status: 'all',
+				protect_request_object_id: null,
+				request_number: 10,
+			},
+			result => {
+				switch (item.protect_animal_sex) {
+					case 'male':
+						sexValue = '남';
+						break;
+					case 'female':
+						sexValue = '여';
+						break;
+					case 'male':
+						sexValue = '성별모름';
+						break;
+				}
+				const titleValue = item.protect_animal_species + '/' + item.protect_animal_species_detail + '/' + sexValue;
+				navigation.push('ProtectRequestManage', {item: item, list: result.msg, title: titleValue});
+			},
+			err => {
+				console.log('err / getProtectRequestListByShelterId / ProtectRequestList   : ', err);
+			},
+		);
 	};
 
 	return (

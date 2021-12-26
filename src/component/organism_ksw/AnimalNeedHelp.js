@@ -151,9 +151,6 @@ export default AnimalNeedHelp = props => {
 							) : null}
 						</View>
 						{/* 좋아요 State Tag */}
-						<View style={[animalNeedHelp.detail_upper_tag]}>
-							{favorite ? <FavoriteTag48_Filled onPress={onPressFavoriteTag} /> : <FavoriteTag48_Border onPress={onPressFavoriteTag} />}
-						</View>
 					</View>
 				)}
 
@@ -190,9 +187,6 @@ export default AnimalNeedHelp = props => {
 							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
 								<Text style={[txt.noto30b, {color: RED10}]}>{data.missing_animal_species || ''}</Text>
 								<Text style={[txt.noto28, {color: RED10}, animalNeedHelp.breedText]}>{data.missing_animal_species_detail || ''}</Text>
-								<View style={[animalNeedHelp.detail_upper_tag]}>
-									{favorite ? <FavoriteTag48_Filled onPress={onPressFavoriteTag} /> : <FavoriteTag48_Border onPress={onPressFavoriteTag} />}
-								</View>
 							</View>
 							{/* 실종/제보 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
@@ -202,7 +196,7 @@ export default AnimalNeedHelp = props => {
 									나이:{data.missing_animal_age || ''} / 성별: {getParsedSex()}
 									{/* {data.missing_animal_sex} */}
 								</Text>
-								<Text style={[txt.noto24]}>실종위치: {data.missing_animal_lost_location || ''}</Text>
+								<Text style={[txt.noto24, {width: 380 * DP}]}>실종위치: {data.missing_animal_lost_location || ''}</Text>
 								<Text style={[txt.noto24]} numberOfLines={1}>
 									특징: {data.missing_animal_features || ''}
 								</Text>
@@ -215,15 +209,12 @@ export default AnimalNeedHelp = props => {
 							{/* 동물 종류 및 품종 */}
 							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
 								<Text style={[txt.noto30b, {color: RED10}]}>{data.report_animal_species || ''}</Text>
-								<View style={[animalNeedHelp.detail_upper_tag]}>
-									{favorite ? <FavoriteTag48_Filled onPress={onPressFavoriteTag} /> : <FavoriteTag48_Border onPress={onPressFavoriteTag} />}
-								</View>
 							</View>
 							{/* 실종/제보 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
 								<Text style={[txt.noto24, {color: RED10}]}>제보일: {getParsedDate()}</Text>
 
-								<Text style={[txt.noto24]}>제보위치: {data.report_witness_location || ''}</Text>
+								<Text style={[txt.noto24, {width: 380 * DP}]}>제보위치: {data.report_witness_location || ''}</Text>
 								<Text style={[txt.noto24]} numberOfLines={1}>
 									특징: {data.report_animal_features || ''}
 								</Text>
@@ -272,6 +263,9 @@ export default AnimalNeedHelp = props => {
 							<View>{contents()}</View>
 						</TouchableOpacity>
 					)}
+					<View style={[animalNeedHelp.detail_upper_tag]}>
+						{favorite ? <FavoriteTag48_Filled onPress={onPressFavoriteTag} /> : <FavoriteTag48_Border onPress={onPressFavoriteTag} />}
+					</View>
 				</View>
 				{props.borderMode == true
 					? selected && (
