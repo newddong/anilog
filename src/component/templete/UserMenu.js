@@ -67,7 +67,7 @@ export default UserMenu = props => {
 
 	// 내 정보 수정 클릭
 	const onPressModifyMyInfo = () => {
-		navigation.push('UserInfoSetting'); //userObject
+		navigation.push('UserInfoSetting', {token: data._id}); //userObject
 	};
 
 	//하단 메뉴 클릭

@@ -70,13 +70,21 @@ export default AddFamilyAccount = ({route, navigation}) => {
 				},
 				result => {
 					console.log('result / addUserToFamily / AddFamilyAccount    :  ', result);
+					Modal.close();
+					navigation.navigate({
+						name: 'PetInfoSetting',
+						params: {addedAccount: result.msg},
+						merge: true,
+					});
 				},
 				err => {
 					console.log('err / addUserToFamily / AddFamilyAccount   :  ', err);
+					if (err == '반려동물 끼리는 가족이 될 수 없습니다.') {
+						Modal.close();
+						Modal.popOneBtn('반려동물 끼리는 가족이 될 수 없습니다.', '확인', () => Modal.close());
+					}
 				},
 			);
-			Modal.close();
-			navigation.goBack();
 		};
 		if (selectedAccount) {
 			Modal.popTwoBtn('이 계정을 가족으로 추가하시겠습니까?', '취소', '추가', () => Modal.close(), finalize);

@@ -64,6 +64,7 @@ export default AnimalNeedHelpList = props => {
 						scrollEnabled={false}
 						showsVerticalScrollIndicator={false}
 						keyExtractor={item => item._id}
+						ListEmptyComponent={props.whenEmpty}
 					/>
 				</View>
 			</ScrollView>

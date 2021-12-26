@@ -8,11 +8,8 @@ import {Cross52, NextMark} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import OnOffSwitch from '../molecules/OnOffSwitch';
 import PetImageLabel from '../molecules/PetImageLabel';
-import FamilyAccountList from '../organism_ksw/FamilyAccountList';
 import {btn_style, login_style, petInfoSetting, temp_style} from './style_templete';
 import {_dummy_petInfo_from_user} from 'Root/config/dummy_data_hjs';
-import {dummy_userObject} from 'Root/config/dummyDate_json';
-import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import Modal from '../modal/Modal';
 import {getUserInfoById, removeUserFromFamily} from 'Root/api/userapi';
 import {familyAccountList_style} from '../organism_ksw/style_organism';
@@ -31,7 +28,7 @@ export default PetInfoSetting = ({route}) => {
 	React.useEffect(() => {
 		const unsubscribe = navigation.addListener('focus', () => setFamily());
 		return unsubscribe;
-	}, []);
+	}, [familyAccountList]);
 
 	const setFamily = () => {
 		getUserInfoById(

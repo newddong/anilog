@@ -8,6 +8,7 @@ import {login_style, btn_style, temp_style, assignShelterProfileImage_style} fro
 import Modal from 'Component/modal/Modal';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {assignShelter} from 'Root/api/userapi';
+import ImagePicker from 'react-native-image-crop-picker';
 
 export default AssignShelterProfileImage = props => {
 	const [data, setData] = React.useState({
@@ -39,18 +40,29 @@ export default AssignShelterProfileImage = props => {
 
 	const selectPhoto = () => {
 		// props.navigation.push('SinglePhotoSelect', props.route.name);
-		launchImageLibrary(
-			{
-				mediaType: 'photo',
-				selectionLimit: 1,
-			},
-			responseObject => {
-				console.log('선택됨', responseObject);
-				responseObject.didCancel
-					? console.log('선택취소')
-					: setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri});
-			},
-		);
+		// launchImageLibrary(
+		// 	{
+		// 		mediaType: 'photo',
+		// 		selectionLimit: 1,
+		// 		maxHeight:1500,
+		// 		maxWidth:1500,
+		// 		quality:0.8
+		// 	},
+		// 	responseObject => {
+		// 		console.log('선택됨', responseObject);
+		// 		responseObject.didCancel
+		// 			? console.log('선택취소')
+		// 			: setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri});
+		// 	},
+		// );
+		ImagePicker.openPicker({
+			compressImageQuality:0.8,
+			cropping: true,
+			cropperCircleOverlay:true,
+		  }).then(images => {
+			setData({...data, user_profile_uri: images.path});
+			Modal.close();
+		  }).catch(err=>Modal.alert(err+''));Modal.close();
 	};
 
 	return (

@@ -33,7 +33,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 
 	const navigation = useNavigation();
 	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
-	const data = route.params ? route.params.item : dummy_AnimalNeedHelpList_various_status; // ProtectRequestObject, ShelterProtectAnimalObject 정보가 담겨 있는 상태
+	const data = route.params ? route.params.item : ''; // ProtectRequestObject, ShelterProtectAnimalObject 정보가 담겨 있는 상태
 	const [writersAnotherRequests, setWritersAnotherRequests] = React.useState(route.params.list ? route.params.list : []);
 	const [loading, setLoading] = React.useState(true); //로딩상태
 	const [editComment, setEditComment] = React.useState(false); // 댓글 쓰기 클릭
@@ -44,9 +44,11 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const [commentDataList, setCommentDataList] = React.useState(); //comment list 정보
 	const [writeCommentData, setWriteCommentData] = React.useState(); //입력한 댓글 정보
 	const [replyPressed, setReplyPressed] = React.useState(false);
-
 	const [token, setToken] = React.useState();
-	console.log('AnimalPortection data', data);
+	const debug = false;
+
+	console.log('AnimalProtectRequestDetail data:', data);
+
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
 			res ? setToken(res) : setToken(null);
@@ -70,7 +72,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 				{...writeCommentData},
 
 				callback => {
-					console.log('write commnet success', callback);
+					debug && console.log('write commnet success', callback);
 					getCommnetList();
 				},
 				err => {
@@ -89,12 +91,12 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const getCommnetList = () => {
 		getCommentListByProtectId(
 			{
-				feedobject_id: '61c288f97be07611b0094b43',
-				commentobject_id: '61c2c0de7be07611b0094ffd',
+				feedobject_id: data._id,
+				commentobject_id: '',
 				request_number: 10,
 			},
 			commentdata => {
-				console.log('commentdata', commentdata.msg);
+				debug && console.log('AnimalProtectRequestDetail / getCommentListByProtectId:', commentdata.msg);
 				commentdata.msg.map((v, i) => {
 					//1depth를 올려준다.
 					commentdata.msg[i].user_address = commentdata.msg[i].comment_writer_id.user_address;
@@ -127,13 +129,20 @@ export default AnimalProtectRequestDetail = ({route}) => {
 				});
 				// console.log(`commentArray -${JSON.stringify(commentArray)}`);
 				setCommentDataList(commentArray);
-				console.log('commentArray refresh', commentArray);
+				debug && console.log('commentArray refresh', commentArray);
 			},
 			errcallback => {
 				console.log(`Comment errcallback:${JSON.stringify(errcallback)}`);
 			},
 		);
 	};
+
+	//댓글 불러오기 (상단의 useEffect와 합칠지는 추후 결정)
+	React.useEffect(() => {
+		console.log(' - AnimalProtectRequestDetail getCommnetList -');
+		getCommnetList();
+	}, []);
+
 	//답글 최종 확인(SendIcon 클릭)
 	const onWrite = () => {
 		// setReplyData({

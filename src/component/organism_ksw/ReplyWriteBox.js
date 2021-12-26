@@ -39,7 +39,7 @@ export default ReplyWriteBox = props => {
 			<View style={{flexDirection: 'row', alignItems: 'center'}}>
 				{props.privateComment ? <Lock60_Filled onPress={() => props.onLockBtnClick()} /> : <Lock60_Border onPress={() => props.onLockBtnClick()} />}
 				<Photo60 onPress={() => props.onAddPhoto()} />
-				<TextInput style={[feedCommentList.replyTextInput]} onChangeText={text => props.onChangeReplyInput(text)} ref={inputRef} />
+				<TextInput style={[feedCommentList.replyTextInput]} onChangeText={props.onChangeReplyInput} ref={inputRef} />
 				<Send60 onPress={onWrite} />
 			</View>
 		</View>

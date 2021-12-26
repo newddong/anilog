@@ -24,6 +24,7 @@ import userGlobalObj from 'Root/config/userGlobalObject';
 import NormalDropDown from 'Molecules/NormalDropDown';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {getPettypes} from 'Root/api/userapi';
+import ImagePicker from 'react-native-image-crop-picker';
 
 export default FeedWrite = props => {
 	const [showPetAccountList, setShowPetAccountList] = React.useState(false); //PetAccount 계정
@@ -93,18 +94,38 @@ export default FeedWrite = props => {
 
 	//사진 추가
 	const moveToMultiPhotoSelect = () => {
-		launchImageLibrary(
-			{
-				mediaType: 'photo',
-				selectionLimit: 5,
-			},
-			responseObject => {
-				console.log('선택됨', responseObject);
-				if (!responseObject.didCancel) {
-					responseObject.didCancel ? console.log('선택취소') : setSelectedImg(responseObject.assets.map(v => v.uri).slice(0, 5));
-				}
-			},
-		);
+		if(selectedImg.length>4){
+			Modal.alert('첨부파일은 5개까지만 가능합니다');
+			return;
+		}
+		Modal.popTwoBtn('사진 선택 모드를 선택하세요','하나씩선택','여러개선택',()=>{
+			ImagePicker.openPicker({
+				// multiple: true,
+				compressImageQuality:0.8,
+				cropping: true,
+			  }).then(images => {
+				console.log(images);
+				setSelectedImg(selectedImg.concat(images.path));
+				Modal.close();
+			  }).catch(err=>Modal.alert(err+''));Modal.close();
+		},()=>{
+			launchImageLibrary(
+				{
+					mediaType: 'photo',
+					selectionLimit: 5,
+					maxHeight:1500,
+					maxWidth:1500,
+					quality:0.8
+				},
+				responseObject => {
+					console.log('선택됨', responseObject);
+					if (!responseObject.didCancel) {
+						responseObject.didCancel ? console.log('선택취소') : setSelectedImg(responseObject.assets.map(v => v.uri).slice(0, 5-selectedImg.length));
+						Modal.close();
+					}
+				},
+			);
+		})
 	};
 	//사진 삭제
 	const deletePhoto = index => {

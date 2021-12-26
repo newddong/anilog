@@ -43,7 +43,10 @@ export default Feed = React.memo(props => {
 		feed_writer_id,
 		feed_avatar_id,
 	} = props.data;
-	
+	// console.log(props.data);
+	const moveToCommentList = () => {
+		navigation.push('FeedCommentList',{feedobject:props.data});
+	}
 
 	return (
 		<View style={[organism_style.feed]}>
@@ -74,7 +77,7 @@ export default Feed = React.memo(props => {
 
 					{/* 댓글 comment_count개 모두 보기 */}
 					<View style={[organism_style.allCommentCount]}>
-						<TouchableOpacity onPress={() => navigation.push('FeedCommentList')}>
+						<TouchableOpacity onPress={moveToCommentList}>
 							<Text style={[txt.noto24]}>{feed_comment_count>0?`댓글 ${feed_comment_count}개 모두 보기`:'댓글 쓰기'}</Text>
 						</TouchableOpacity>
 					</View>

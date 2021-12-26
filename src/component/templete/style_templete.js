@@ -511,7 +511,8 @@ export const temp_style = StyleSheet.create({
 	},
 	commentList: {
 		width: 654 * DP,
-		marginTop: 12 * DP,
+		// marginTop: 12 * DP,
+		backgroundColor: '#fff',
 	},
 	floatingBtn: {
 		flexDirection: 'column',
@@ -3224,7 +3225,18 @@ export const reportDetail = StyleSheet.create({
 		marginTop: 40 * DP,
 	},
 	commentList: {
-		marginTop: 62 * DP,
+		// marginTop: 62 * DP,
+	},
+	basic_separator: {
+		width: 654 * DP,
+		height: 60 * DP,
+		backgroundColor: '#fff',
+	},
+	separator: {
+		width: 654 * DP,
+		height: 2 * DP,
+		backgroundColor: GRAY30,
+		marginTop: 30 * DP,
 	},
 });
 
@@ -3254,7 +3266,8 @@ export const feedCommentList = StyleSheet.create({
 		width: 750 * DP,
 		// height: 330 * DP,
 		borderBottomWidth: 2 * DP,
-		borderBottomColor: GRAY40,
+		borderBottomColor: GRAY30,
+		backgroundColor:WHITE
 		// backgroundColor: 'powderblue',
 	},
 	commentList: {
@@ -3671,7 +3684,7 @@ export const profile = StyleSheet.create({
 	container: {flex: 1},
 	profileInfo: {
 		width: '100%',
-		backgroundColor:WHITE,
+		backgroundColor: WHITE,
 		// marginVertical: 30 * DP,
 		// height: 416 * DP,
 	},
@@ -3691,8 +3704,8 @@ export const profile = StyleSheet.create({
 		width: 750 * DP,
 		alignItems: 'center',
 		marginTop: 20 * DP,
-		flex:1,
-		height:400*DP,
+		flex: 1,
+		height: 400 * DP,
 	},
 });
 

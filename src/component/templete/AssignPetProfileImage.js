@@ -16,7 +16,7 @@ import {stagebar_style} from '../organism_ksw/style_organism';
 import {login_style, btn_style, temp_style, progressbar_style, assignPetProfileImage_style} from './style_templete';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {checkProtectPet, nicknameDuplicationCheck} from 'Root/api/userapi';
-
+import ImagePicker from 'react-native-image-crop-picker';
 // 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
@@ -89,18 +89,26 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 	//프로필이미지 클릭 시 PhotoSelect로 이동
 	const selectPhoto = () => {
 		// navigation.push('SinglePhotoSelect', route.name);
-		launchImageLibrary(
-			{
-				mediaType: 'photo',
-				selectionLimit: 1,
-			},
-			responseObject => {
-				console.log('선택됨', responseObject);
-				responseObject.didCancel
-					? console.log('선택취소')
-					: setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri});
-			},
-		);
+		// launchImageLibrary(
+		// 	{
+		// 		mediaType: 'photo',
+		// 		selectionLimit: 1,
+		// 	},
+		// 	responseObject => {
+		// 		console.log('선택됨', responseObject);
+		// 		responseObject.didCancel
+		// 			? console.log('선택취소')
+		// 			: setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri});
+		// 	},
+		// );
+		ImagePicker.openPicker({
+			compressImageQuality:0.8,
+			cropping: true,
+			cropperCircleOverlay:true,
+		  }).then(images => {
+			setData({...data, user_profile_uri: images.path})
+			Modal.close();
+		  }).catch(err=>Modal.alert(err+''));Modal.close();
 	};
 
 	const onNicknameChange = text => {
