@@ -11,6 +11,7 @@ import {txt} from 'Root/config/textstyle';
 import Modal from '../modal/Modal';
 import ImagePicker from 'react-native-image-crop-picker';
 import userGlobalObject from 'Root/config/userGlobalObject';
+import DP from 'Root/config/dp';
 
 export default FeedCommentList = props => {
 	// console.log('그림들' + props.route.params);
@@ -65,13 +66,6 @@ export default FeedCommentList = props => {
 				setPhoto();
 				setParentComment();
 				parentComment||setComments([{...result.msg, comment_writer_id: userGlobalObject.userInfo}].concat(comments));
-				
-				// comments.find((v,i)=>{
-				// 	if(v._id==parentComment){
-				// 		v.array
-				// 	}
-				// })
-
 
 			},
 			err => Modal.alert(err),
@@ -131,24 +125,9 @@ export default FeedCommentList = props => {
 			<FlatList
 				data={[{}, comments]}
 				renderItem={render}
-				ListHeaderComponent={
-					<>
-						<View style={[feedCommentList.feedContent]}>
-							<FeedContent data={props.route.params.feedobject} />
-						</View>
-						{/* <View style={{justifyContent: 'flex-end', paddingBottom: 10 * DP, height: 60 * DP, backgroundColor: '#FFF', paddingHorizontal: 48 * DP}}>
-							<Text style={[txt.noto28]}>댓글 {comments.length}개 </Text>
-						</View> */}
-					</>
-				}
-				stickyHeaderIndices={[0]}
+				stickyHeaderIndices={[1]}
+				ListHeaderComponent={<FeedContent data={props.route.params.feedobject} />}
 			/>
-
-			{/* <View style={[feedCommentList.commentList]}> */}
-			{/* CommentList 안에는 ParentComent와 ChildComments 데이터가 필요 */}
-
-			{/* </View> */}
-
 			{/* Parent Comment 혹은 Child Comment 에서 답글쓰기를 클릭할 시 화면 최하단에 등장 */}
 			{editComment || props.route.name == 'FeedCommentList' ? (
 				<ReplyWriteBox
