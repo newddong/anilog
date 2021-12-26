@@ -60,9 +60,22 @@ export default MissingReportList = props => {
 
 	const onClickLabel = (status, id, item) => {
 		console.log(`\nMissingReportList:onLabelClick() - status=>${status} id=>${id} item=>${JSON.stringify(item)}`);
+		let sexValue = '';
 		switch (status) {
 			case 'missing':
-				navigation.push('MissingAnimalDetail', {_id: id});
+				switch (item.missing_animal_sex) {
+					case 'male':
+						sexValue = '남';
+						break;
+					case 'female':
+						sexValue = '여';
+						break;
+					case 'male':
+						sexValue = '성별모름';
+						break;
+				}
+				const titleValue = item.missing_animal_species + '/' + item.missing_animal_species_detail + '/' + sexValue;
+				navigation.push('MissingAnimalDetail', {title: titleValue, _id: id});
 				break;
 			case 'report':
 				navigation.push('ReportDetail', {_id: id});
@@ -113,7 +126,7 @@ export default MissingReportList = props => {
 						data={data}
 						onPressReporter={onPressReporter}
 						onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
-						onClickLabel={(status, id) => onClickLabel(status, id)}
+						onClickLabel={(status, id, item) => onClickLabel(status, id, item)}
 						whenEmpty={whenEmpty()}
 					/>
 				</View>
