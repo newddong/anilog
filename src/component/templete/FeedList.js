@@ -37,7 +37,7 @@ export default FeedList = ({route, navigation}) => {
 	}, [refreshing]);
 
 	const moveToFeedWrite = () => {
-		userGlobalObject.userInfo&&navigation.push('FeedWrite',{type:'Feed'});
+		userGlobalObject.userInfo&&navigation.push('FeedWrite',{feedType:'Feed'});
 	};
 
 	const renderItem = item => {

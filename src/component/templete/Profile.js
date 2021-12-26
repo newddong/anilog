@@ -113,7 +113,7 @@ export default Profile = ({route, navigation}) => {
 
 	//피드글작성 버튼 클릭(액션버튼)
 	const moveToFeedWrite = () => {
-		navigation.push('FeedWrite');
+		navigation.push('FeedWrite',{feedType:'Feed'});
 	};
 
 	//액션버튼 하단 탭 메뉴 클릭 콜백함수
