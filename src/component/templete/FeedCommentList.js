@@ -29,7 +29,7 @@ export default FeedCommentList = props => {
 				comments => {
 					setComments(comments.msg);
 				},
-				err => Modal.alert(err),
+				err =>console.log(err),
 			);
 		}
 	}, []);

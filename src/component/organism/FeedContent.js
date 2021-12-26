@@ -55,7 +55,8 @@ export default FeedContent = props => {
 	const [btnStatus, setBtnStatus] = React.useState(false); //더보기 Arrow방향 false면 아래
 	const [layout, setLayout] = React.useState({height: 100 * DP, width: 0}); // 초기의 Layout
 	const [reportLayout, setReportLayout] = React.useState({height: 0, width: 0});
-	const contentHeight = React.useRef(270 * DP);
+	// const contentHeight = React.useRef(270 * DP);
+	const [contentHeight, setHeight] = React.useState(270*DP);
 	const shouldShowMoreBtn = layout.height +reportLayout.height- 100 * DP > 0;
 
 	const moveToFeedListForHashTag = tagText => {
@@ -99,16 +100,16 @@ export default FeedContent = props => {
 		let offset = layout.height - 100 * DP;
 		let reportOffset = reportLayout.height + 16 * DP;
 		if (btnStatus) {
-			contentHeight.current = 270 * DP;
+			setHeight(270 * DP);
 			setBtnStatus(false);
 		} else {
-			contentHeight.current = 270 * DP + offset + reportOffset;
+			setHeight(270 * DP + offset + reportOffset);
 			setBtnStatus(true);
 		}
 	};
 
 	return (
-		<View style={[organism_style.feedContent, {height: contentHeight.current}]}>
+		<View style={[organism_style.feedContent, {height: contentHeight}]}>
 			{/* line 1 */}
 			<View style={[organism_style.userLocationLabel_view_feedContent]}>
 				{/* UserLocationLabel */}
@@ -181,6 +182,7 @@ export default FeedContent = props => {
 				style={[
 					organism_style.content_feedContent,
 					feed_type == 'missing' ? feedContent_style.content : feedContent_style.content_Top10,
+					
 					{
 						// FeedText의 높이가 120이상(3줄 이상)일 경우 maxheight가 지정되며, 아닐 경우 Maxheight는 없다
 						// height: getMaxHeight(),
@@ -193,7 +195,7 @@ export default FeedContent = props => {
 				]}
 				onLayout={onLayout}>
 				{/* <FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} /> */}
-				<Text style={txt.noto28} ellipsizeMode="tail">
+				<Text style={[txt.noto28,btnStatus?{height:300*DP}:{height:100*DP}]} /*ellipsizeMode="tail"*/>
 					{feed_content}
 				</Text>
 			</View>
