@@ -156,7 +156,7 @@ export default ProfileInfo = props => {
 			{/* 프로필 관련 버튼 */}
 			<View style={[organism_style.btn_w280_view_profileInfo, profileInfo_style.btn_w280_view]}>
 				<View style={[organism_style.btn_w280_profileInfo, profileInfo_style.btn_w280]}>
-					{followState || true ? (
+					{followState || false ? (
 						<ProfileDropdown
 							btnTitle={'팔로우 중'}
 							titleFontStyle={30}

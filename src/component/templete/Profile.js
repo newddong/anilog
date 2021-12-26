@@ -26,13 +26,14 @@ export default Profile = ({route, navigation}) => {
 	const [showCompanion, setShowCompanion] = React.useState(false); // User계정이 반려동물버튼을 클릭
 	const [protectActList, setProtectActList] = React.useState([]);
 	React.useEffect(() => {
+		console.log('유저프로필 로드', route.params)
 		if (route.params && route.params.userobject) {
 			getUserProfile(
 				{
 					userobject_id: route.params.userobject._id,
 				},
 				result => {
-					// console.log('result ', result.msg);
+					console.log('result ', result.msg);
 					navigation.setOptions({title:result.msg.user_nickname})
 					setData(result.msg);
 				},
@@ -125,13 +126,42 @@ export default Profile = ({route, navigation}) => {
 	//유저타입 - 펫 => 반려인 계정에서 가족계정의 이미지 라벨을 클릭
 	const onClickOwnerLabel = item => {
 		console.log('item', item);
+		navigation.push('UserProfile', {userobject:item});
 	};
 
 	//유저타입 - 유저 => 반려동물 리스트에서 항목 클릭
 	const onClickMyCompanion = item => {
 		console.log('item', item);
+		navigation.push('UserProfile', {userobject:item});
 	};
 
+
+
+
+	const onClickProtectPet = (item)=>{
+		navigation.push('UserProfile', {userobject:item});
+	}
+
+	//userType이 PET이며 Tab의 반려인계정이 Open으로 설정이 되어 있는 경우
+	const showPetOrOwnerList = () => {
+		if (data.user_type == PET && showOwnerState) {
+			// 반려인 계정
+			console.log('반려인은?',data);
+			return (
+				<View style={[profile.petList]}>
+					<OwnerList items={data.pet_family} onClickLabel={onClickOwnerLabel} />
+				</View>
+			);
+			//반려동물
+		} else if (data.user_type == NORMAL && showCompanion) {
+			return (
+				<View style={[profile.petList]}>
+					<PetList items={data.user_my_pets} onClickLabel={onClickMyCompanion} />
+				</View>
+			);
+		}
+	};
+	
 	const userProfileInfo = () => {
 		return (
 			<>
@@ -152,13 +182,6 @@ export default Profile = ({route, navigation}) => {
 			</>
 		);
 	};
-
-
-	const onClickProtectPet = (item)=>{
-		navigation.push('UserProfile', item);
-	}
-
-
 
 	//TabSelect 하단 AccountList
 	const showTabContent = () => {
@@ -182,7 +205,7 @@ export default Profile = ({route, navigation}) => {
 				return (
 					<View style={[temp_style.tabSelectFilled_Type2]}>
 						{getTabSelectList()}
-						{tabMenuSelected == 2&&data.user_type != SHELTER&&<ProtectedPetList data={data._id} onClickLabel={onClickProtectPet} />}
+						{tabMenuSelected == 2&&data.user_type != SHELTER&&<ProtectedPetList data={data} onClickLabel={onClickProtectPet} />}
 					</View>
 				);
 			}
@@ -215,24 +238,6 @@ export default Profile = ({route, navigation}) => {
 
 	};
 
-	//userType이 PET이며 Tab의 반려인계정이 Open으로 설정이 되어 있는 경우
-	const showPetOrOwnerList = () => {
-		if (data.user_type == PET && showOwnerState) {
-			// 반려인 계정
-			return (
-				<View style={[profile.petList]}>
-					<OwnerList items={data.pet_family} onClickLabel={onClickOwnerLabel} />
-				</View>
-			);
-			//반려동물
-		} else if (data.user_type == NORMAL && showCompanion) {
-			return (
-				<View style={[profile.petList]}>
-					<PetList items={data.user_my_pets} onClickLabel={onClickMyCompanion} />
-				</View>
-			);
-		}
-	};
 
 	// 유저타입에 따라 다른 탭 아이템 출력
 	const getTabSelectList = () => {

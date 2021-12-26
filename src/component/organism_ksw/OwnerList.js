@@ -25,7 +25,7 @@ export default OwnerList = props => {
 			</View>
 		);
 	};
-
+	
 	return (
 		<View style={[ownerList.container]}>
 			<View style={[ownerList.insideContainer]}>

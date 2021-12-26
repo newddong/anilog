@@ -18,7 +18,7 @@ export default PetList = props => {
 
 				<View style={[petList.petProfileInfo]}>
 					<Text style={[txt.noto24, {color: GRAY10}]}> {item.user_nickname}</Text>
-					<Text style={[txt.noto24, {color: GRAY10}]}>{item.pet_species_detail}</Text>
+					<Text style={[txt.noto24, {color: GRAY10}]}>{item.pet_species_detail?item.pet_species_detail:''}</Text>
 				</View>
 			</View>
 		);

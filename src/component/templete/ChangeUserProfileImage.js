@@ -13,6 +13,7 @@ import {CommonActions} from '@react-navigation/routers';
 // import {nicknameDuplicationCheck} from 'Root/api/usermenuapi';
 import {updateUserInformation, nicknameDuplicationCheck} from 'Root/api/userapi';
 import Modal from '../modal/Modal';
+import ImagePicker from 'react-native-image-crop-picker';
 
 export default ChangeUserProfileImage = ({route}) => {
 	// console.log('route / Profile', route.params);1
@@ -84,22 +85,30 @@ export default ChangeUserProfileImage = ({route}) => {
 
 	const selectPhoto = () => {
 		// navigation.push('SinglePhotoSelect', route.name);
-		launchImageLibrary(
-			{
-				mediaType: 'photo',
-				selectionLimit: 1,
-			},
-			responseObject => {
-				setConfirmed(true);
-				console.log('선택됨!!', responseObject);
-				// setUri(responseObject.assets[responseObject.assets.length - 1].uri);
+		// launchImageLibrary(
+		// 	{
+		// 		mediaType: 'photo',
+		// 		selectionLimit: 1,
+		// 	},
+		// 	responseObject => {
+		// 		setConfirmed(true);
+		// 		console.log('선택됨!!', responseObject);
+		// 		// setUri(responseObject.assets[responseObject.assets.length - 1].uri);
 
-				responseObject.didCancel
-					? console.log('선택취소')
-					: // : setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || data.user_profile_uri});
-					  setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || data.user_profile_uri});
-			},
-		);
+		// 		responseObject.didCancel
+		// 			? console.log('선택취소')
+		// 			: // : setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || data.user_profile_uri});
+		// 			  setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || data.user_profile_uri});
+		// 	},
+		// );
+		ImagePicker.openPicker({
+			compressImageQuality:0.8,
+			cropping: true,
+			cropperCircleOverlay:true,
+		  }).then(images => {
+			setData({...data, user_profile_uri: images.path || data.user_profile_uri});
+			Modal.close();
+		  }).catch(err=>Modal.alert(err+''));Modal.close();
 	};
 
 	//중복 처리

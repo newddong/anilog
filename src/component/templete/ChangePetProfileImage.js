@@ -10,6 +10,7 @@ import Input24 from '../molecules/Input24';
 import Input30 from '../molecules/Input30';
 import ProfileImageSelect from '../molecules/ProfileImageSelect';
 import {login_style, btn_style, temp_style, changePetProfileImage_style} from './style_templete';
+import ImagePicker from 'react-native-image-crop-picker';
 
 export default ChangePetProfileImage = props => {
 	const navigation = useNavigation();
@@ -24,18 +25,26 @@ export default ChangePetProfileImage = props => {
 
 	const selectPhoto = () => {
 		// navigation.push('SinglePhotoSelect', props.route.name);
-		launchImageLibrary(
-			{
-				mediaType: 'photo',
-				selectionLimit: 1,
-			},
-			responseObject => {
-				console.log('선택됨', responseObject);
-				responseObject.didCancel
-					? console.log('선택취소')
-					: setPetData({...petData, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || petData.user_profile_uri});
-			},
-		);
+		// launchImageLibrary(
+		// 	{
+		// 		mediaType: 'photo',
+		// 		selectionLimit: 1,
+		// 	},
+		// 	responseObject => {
+		// 		console.log('선택됨', responseObject);
+		// 		responseObject.didCancel
+		// 			? console.log('선택취소')
+		// 			: setPetData({...petData, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || petData.user_profile_uri});
+		// 	},
+		// );
+		ImagePicker.openPicker({
+			compressImageQuality:0.8,
+			cropping: true,
+			cropperCircleOverlay:true,
+		  }).then(images => {
+			setPetData({...petData, user_profile_uri: images.path || petData.user_profile_uri});
+			Modal.close();
+		  }).catch(err=>Modal.alert(err+''));Modal.close();
 	};
 
 	//중복 처리

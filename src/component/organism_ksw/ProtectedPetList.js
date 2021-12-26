@@ -9,6 +9,7 @@ import {getUserProtectAnimalList} from 'Root/api/protectapi';
 
 export default ProtectedPetList = props => {
 	const user_id = props.data;
+	console.log(user_id);
 	const [userPet, setUserPet] = React.useState([]);
 	React.useEffect(() => {
 		getUserProtectAnimalList(
@@ -30,25 +31,27 @@ export default ProtectedPetList = props => {
 		);
 	}, []);
 
-	const renderItem = (item, index) => {
+	const renderItem = ({item, index}) => {
 		return (
-			<View style={[protectedPetList.itemContainer]}>
-				<View style={[protectedPetList.petProfileImageMedium]}>
-					<TouchableOpacity onPress={() => props.onClickLabel(item)}>
+			<TouchableOpacity onPress={() => props.onClickLabel(item)}>
+				<View style={[protectedPetList.itemContainer]}>
+					<View style={[protectedPetList.petProfileImageMedium]}>
 						<ProfileImageMedium120 data={item} />
-					</TouchableOpacity>
-				</View>
+					</View>
 
-				<View style={[protectedPetList.petProfileInfo]}>
-					<Text style={[txt.noto30, protectedPetList.nicknameCont]}> {item.user_nickname}</Text>
-					<Text style={[txt.noto24, protectedPetList.addressCont]}>{item.protect_act_address.brief}</Text>
+					<View style={[protectedPetList.petProfileInfo]}>
+						<Text style={[txt.noto30, protectedPetList.nicknameCont, {textAlign: 'center'}]}> {item.user_nickname}</Text>
+						<Text style={[txt.noto24, protectedPetList.addressCont, {textAlign: 'center'}]}>
+							{user_id.user_address?.city + ' ' + user_id.user_address?.district}
+						</Text>
+					</View>
 				</View>
-			</View>
+			</TouchableOpacity>
 		);
 	};
 	return (
 		<View style={[protectedPetList.container]}>
-			<FlatList data={userPet} renderItem={({item, index}) => renderItem(item, index)} horizontal={true} showsHorizontalScrollIndicator={false} />
+			<FlatList data={userPet} renderItem={renderItem} horizontal={true} showsHorizontalScrollIndicator={false} />
 		</View>
 	);
 };
