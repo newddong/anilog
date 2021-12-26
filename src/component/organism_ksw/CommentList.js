@@ -14,17 +14,12 @@ import {txt} from 'Root/config/textstyle';
  * }} props
  */
 export default CommentList = props => {
-	//자식 댓글의 답글쓰기 클릭 이벤트
-	const onPress_ChildComment_ReplyBtn = comment => {
-		props.onPress_ChildComment_ReplyBtn(comment);
-	};
 
 	const renderItem = ({item, index}) => {
 		return (
 			<ParentComment
 				parentComment={item}
 				onPressReplyBtn={props.onPressReplyBtn} // 부모 댓글의 답글쓰기 클릭 이벤트
-				onPress_ChildComment_ReplyBtn={onPress_ChildComment_ReplyBtn} // 자식 댓글의 답글쓰기 클릭 이벤트
 			/>
 		);
 	};

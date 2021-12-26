@@ -19,16 +19,21 @@ const UserTimeLabel = props => {
 	//현재 접속한 토큰과 출력된 유저라벨의 유저가 같은지 확인
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
-			res == props.data._id ? setIsLoginUser(true) : setIsLoginUser(false);
+			res == props.data.comment_writer_id._id ? setIsLoginUser(true) : setIsLoginUser(false);
 		});
 	}, [props.data]);
 
 	const getCommentedTime = () => {
-		const commented_date = props.data.comment_date;
-		let split = commented_date.split('-');
-		let commented_date_time = new Date(split[0], split[1] - 1, split[2]);
-		let date = new Date().getDate() - commented_date_time.getDate();
-		return <>{date} 일 전</>;
+		let date = props.data.comment_date.match(/(\d{4})-(\d{1,2})-(\d{1,2}).*?$/);
+		console.log(date);
+		let timelapsed = Date.now() - new Date(date[1],date[2]-1,date[3]);
+		console.log(timelapsed);
+		
+		// let split = commented_date.split('-');
+		// console.log(split);
+		// let commented_date_time = new Date(split[0], split[1] - 1, split[2]);
+		// let date = parseInt(new Date().getDay()) - parseInt(commented_date_time.getDay());
+		return <>{Math.ceil(timelapsed/1000/60/60/24)-1} 일 전</>;
 	};
 
 	const onClickLabel = e => {
@@ -38,11 +43,11 @@ const UserTimeLabel = props => {
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
 			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{uri: props.data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_46} />
+				<Image source={{uri: props.data.comment_writer_id.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_46} />
 			</TouchableOpacity>
 			<View style={{marginLeft: 20 * DP, flexDirection: 'row', paddingBottom: 10 * DP, height: 36 * DP}}>
 				<Text style={[txt.roboto24, {lineHeight: 30 * DP, color: isLoginUser ? APRI10 : BLACK}]} numberOfLines={1} ellipsizeMode="tail">
-					{props.data.user_nickname || ''}
+					{props.data.comment_writer_id.user_nickname || ''}
 				</Text>
 				<Text style={[txt.noto24, {lineHeight: 30 * DP, color: GRAY20, paddingLeft: 16 * DP}]} numberOfLines={1} ellipsizeMode="tail">
 					{props.data.feed_type == undefined ? getCommentedTime() : props.data.comment_date} {/* {getCommentedTime()}일 전 */}

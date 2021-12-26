@@ -39,8 +39,6 @@ const UserLocationTimeLabel = props => {
 	// 	// return '23';
 	// };
 	const address = Object.assign({}, props.data.user_address);
-
-	console.log(address);
 	return (
 		<TouchableOpacity onPress={onClickLabel} style={{paddingBottom: 8 * DP}}>
 			<View style={{flexDirection: 'row', alignItems: 'center'}}>
