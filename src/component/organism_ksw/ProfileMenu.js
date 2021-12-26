@@ -26,18 +26,22 @@ export default ProfileMenu = props => {
 				<View style={[profileMenu.itemContainer]}>
 					<View style={[profileMenu.item_step1]}>
 						<View style={[profileMenu.item]}>
-							<View style={[profileMenu.item_text]}>
-								<Text style={[txt.noto24, {color: GRAY10}]}>{item[0]}</Text>
-							</View>
+							<TouchableOpacity onPress={() => menuClick(item[0])}>
+								<View style={[profileMenu.item_text]}>
+									<Text style={[txt.noto24, {color: GRAY10}]}>{item[0]}</Text>
+								</View>
+							</TouchableOpacity>
 							<View style={[profileMenu.item_bracket]}>
 								<NextMark onPress={() => menuClick(item[0])} />
 							</View>
 						</View>
 						<View style={[profileMenu.vertical_separator]} />
 						<View style={[profileMenu.item]}>
-							<View style={[profileMenu.item_text]}>
-								<Text style={[txt.noto24, {color: GRAY10}]}>{item[1]}</Text>
-							</View>
+							<TouchableOpacity onPress={() => menuClick(item[1])}>
+								<View style={[profileMenu.item_text]}>
+									<Text style={[txt.noto24, {color: GRAY10}]}>{item[1]}</Text>
+								</View>
+							</TouchableOpacity>
 							<View style={[profileMenu.item_bracket]}>{item[1] == '' ? null : <NextMark onPress={() => menuClick(item[1])} />}</View>
 						</View>
 					</View>

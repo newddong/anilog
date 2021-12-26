@@ -34,12 +34,7 @@ export default CommentList = props => {
 
 	return (
 		<View style={{backgroundColor: '#fff', flex: 1, paddingHorizontal: 48 * DP}}>
-			<FlatList
-				data={props.items}
-				renderItem={renderItem}
-				ListEmptyComponent={whenEmpty}
-				stickyHeaderIndices={[0]}
-			/>
+			<FlatList data={props.items} renderItem={renderItem} ListEmptyComponent={whenEmpty} stickyHeaderIndices={[0]} />
 		</View>
 	);
 };
