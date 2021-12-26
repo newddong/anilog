@@ -45,14 +45,14 @@ export default FeedWrite = props => {
 	}, [selectedImg]); //네비게이션 파라메터에 이미지 리스트를 넣음(헤더에서 처리하도록)
 
 	React.useEffect(() => {
-		if (props.route.params?.type == 'Feed') {
+		if (props.route.params?.feedType == 'Feed') {
 			props.navigation.setOptions({title: userGlobalObj.userInfo?.user_nickname});
-			props.navigation.setParams({...props.route.params, type: 'Feed'});
+			props.navigation.setParams({...props.route.params, feedType: 'Feed'});
 		}
-		if (props.route.params?.type == 'Missing') {
+		if (props.route.params?.feedType == 'Missing') {
 			onPressMissingWrite();
 		}
-		if (props.route.params?.type == 'Report') {
+		if (props.route.params?.feedType == 'Report') {
 			onPressReportWrite();
 		}
 	}, []); //처음 로딩시 유저 닉네임 표시
@@ -70,14 +70,14 @@ export default FeedWrite = props => {
 	//긴급버튼 중 - 실종 클릭
 	const onPressMissingWrite = () => {
 		setShowLostAnimalForm(true);
-		props.navigation.setParams({...props.route.params, type: 'Missing'});
+		props.navigation.setParams({...props.route.params, feedType: 'Missing'});
 		props.navigation.setOptions({title: '실종 게시물'});
 	};
 
 	//긴급버튼 중 - 제보 클릭
 	const onPressReportWrite = () => {
 		setShowRepotForm(true);
-		props.navigation.setParams({...props.route.params, type: 'Report'});
+		props.navigation.setParams({...props.route.params, feedType: 'Report'});
 		props.navigation.setOptions({title: '제보 게시물'});
 	};
 
