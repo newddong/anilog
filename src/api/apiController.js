@@ -12,11 +12,9 @@ let sid = undefined;
  */
 export async function apiController(path, args) {
 	if (!sid) {
-		console.log('어싱크 스코리지에서 불러옴');
 		sid = await AsyncStorage.getItem('sid');
 	}
 	if (sid) {
-		console.log(sid);
 		try {
 			await cookieReset(sid, path);
 		} catch (err) {

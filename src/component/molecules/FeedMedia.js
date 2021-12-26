@@ -79,13 +79,7 @@ export default FeedMedia = props => {
 		} else return false;
 	};
 
-	const [emergencyH, setEmergencyH] = React.useState(0);
 
-	const onLayout = e => {
-		setEmergencyH(e.nativeEvent.layout.height);
-	}
-
-	const backgroundHeight = emergencyH < 200*DP? 200*DP:null;
 
 	return (
 		<View style={style.img_square_750x750}>
@@ -112,17 +106,17 @@ export default FeedMedia = props => {
 				false
 			)}
 			{isEmergency ? (
-				<View style={[style.emergency_background, {paddingVertical: 20 * DP, paddingHorizontal: 48 * DP,height:backgroundHeight}]} onLayout={onLayout}>
+				<View style={[style.emergency_background, {paddingVertical: 20 * DP, paddingHorizontal: 48 * DP, height:null}]}>
 					<View style={style.emergency_info_container}>
 						<View style={{flexDirection: 'row'}}>
 							<Text style={[txt.roboto34b, {color: 'white'}]}>{animal_species + (animal_species_detail ? ' / ' + animal_species_detail : '')}</Text>
 						</View>
-						<View style={{marginLeft: 20 * DP, flex: 1}}>
+						<View style={{marginLeft: 20 * DP,flex:1}}>
 							<Text style={[txt.roboto34b, {color: 'white'}]}>{emergency_location}</Text>
 						</View>
 					</View>
-					<View>
-						<Text style={[txt.roboto24, {color: 'white', marginTop: 20 * DP}]}>{feed_content}</Text>
+					<View style={{flex:1}}>
+						<Text style={[txt.roboto24, {color: 'white', marginTop: 20 * DP}]} ellipsizeMode='tail'>{report_animal_features}</Text>
 					</View>
 				</View>
 			) : (
