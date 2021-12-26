@@ -43,7 +43,6 @@ export default CommentList = props => {
 				data={props.items}
 				renderItem={renderItem}
 				ListEmptyComponent={whenEmpty}
-				// ListHeaderComponent={<Text style={[txt.noto28, {marginBottom: 10 * DP,height:60*DP,textAlignVertical:'bottom'}]}>댓글 {props.items.length}개 </Text>}
 				stickyHeaderIndices={[0]}
 			/>
 		</View>

@@ -35,7 +35,7 @@ export default ReplyWriteBox = props => {
 					{/* <Image source={{ uri: props.photo[0] }} style={styles.img_square_round_606} /> */}
 					<SelectedMedia media_uri={props.photo} layout={styles.img_square_round_606} onDelete={onDeleteImage} />
 				</View>
-			) : null}
+			) : false}
 			<View style={{flexDirection: 'row', alignItems: 'center'}}>
 				{props.privateComment ? <Lock60_Filled onPress={() => props.onLockBtnClick()} /> : <Lock60_Border onPress={() => props.onLockBtnClick()} />}
 				<Photo60 onPress={() => props.onAddPhoto()} />
