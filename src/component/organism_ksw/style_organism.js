@@ -388,7 +388,7 @@ export const profileMenu = StyleSheet.create({
 		alignSelf: 'center',
 	},
 	item_text: {
-		width: 210 * DP,
+		width: 220 * DP,
 		height: 36 * DP,
 		marginRight: 52 * DP,
 		alignSelf: 'center',
@@ -749,7 +749,7 @@ export const protectedPetList = StyleSheet.create({
 	container: {
 		marginTop: 20 * DP,
 		justifyContent: 'center',
-		height:252*DP,
+		height: 252 * DP,
 	},
 	itemContainer: {
 		width: 184 * DP,

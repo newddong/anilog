@@ -130,14 +130,15 @@ export default FavoriteFeeds = ({route, navigation}) => {
 	};
 
 	//썸네일 클릭 - [ selecteMode에 따른 분기 ]
-	const onClickThumnail = (index, feed_id) => {
+	const onClickThumnail = (index, feed_id, item) => {
 		//선택하기 모드가 아닐 경우 (일반모드이며 썸네일 클릭시 네비게이션 동작)
+		const titleValue = item.feed_writer_id.user_nickname;
 		if (!selectMode) {
 			//선택모드 true값과 false값이 반대로 주는 이유 확인 후 case 문으로 변경 필요
 			if (route.name == 'UserFeeds') {
-				navigation.push('UserFeedList', feed_id);
+				navigation.push('UserFeedList', {feed_id, title: titleValue});
 			} else if (route.name == 'TagMeFeeds') {
-				navigation.push('TagMeFeedList', feed_id);
+				navigation.push('TagMeFeedList', {feed_id, title: titleValue + '님을 태그한 글'});
 			} else if (route.name == 'FavoriteFeeds') {
 				navigation.push('FavoriteFeedList', feed_id);
 			}
