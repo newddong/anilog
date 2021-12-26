@@ -1,5 +1,5 @@
 import React from 'react';
-import {LogBox, ScrollView, Image} from 'react-native';
+import {LogBox, ScrollView, Image, ActivityIndicator} from 'react-native';
 import {Text, View} from 'react-native';
 import {login_style, reportDetail, temp_style} from './style_templete';
 import FeedContent from '../organism/FeedContent';
@@ -28,6 +28,8 @@ export default ReportDetail = props => {
 	const [writeCommentData, setWriteCommentData] = React.useState(); //더보기 클릭 State
 	const [replyPressed, setReplyPressed] = React.useState(false);
 	const debug = false;
+	const [loading, setLoading] = React.useState(true); //로딩상태
+
 	React.useEffect(() => {
 		setPhoto(props.route.params);
 	}, [props.route.params]);
@@ -69,6 +71,9 @@ export default ReportDetail = props => {
 	React.useEffect(() => {
 		console.log(' - ReportDetail Comment -');
 		getCommnetList();
+		setTimeout(() => {
+			setLoading(false);
+		}, 500);
 	}, []);
 
 	React.useEffect(() => {
@@ -208,6 +213,14 @@ export default ReportDetail = props => {
 	// 		} else return dummy_CommentObject;
 	// 	} else return dummy_CommentObject;
 	// };
+
+	if (loading) {
+		return (
+			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
+				<ActivityIndicator size={'large'}></ActivityIndicator>
+			</View>
+		);
+	}
 
 	return (
 		<View style={[login_style.wrp_main]}>
