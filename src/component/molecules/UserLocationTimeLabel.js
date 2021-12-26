@@ -6,7 +6,7 @@ import {txt} from 'Root/config/textstyle';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 /**
  * 유저의 프로필 사진, 닉네임, 댓글 작성 날짜 출력하는 라벨
@@ -27,7 +27,7 @@ const UserLocationTimeLabel = props => {
 
 	const onClickLabel = e => {
 		// props.onLabelClick(props.data._id);
-		navigation.navigate('UserProfile', {userobject: props.data})
+		navigation.navigate('UserProfile', {userobject: props.data});
 	};
 
 	// const getCommentedTime = () => {
@@ -38,35 +38,35 @@ const UserLocationTimeLabel = props => {
 	// 	return <>{date}일 전</>;
 	// 	// return '23';
 	// };
-	const address = Object.assign({},props.data.user_address); 
+	const address = Object.assign({}, props.data.user_address);
 
 	console.log(address);
 	return (
-		<View style={{flexDirection: 'row', alignItems: 'center'}}>
-			<TouchableOpacity onPress={onClickLabel} style={{paddingBottom: 8 * DP}}>
+		<TouchableOpacity onPress={onClickLabel} style={{paddingBottom: 8 * DP}}>
+			<View style={{flexDirection: 'row', alignItems: 'center'}}>
 				<Image source={{uri: props.data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_60} />
-			</TouchableOpacity>
-			<View style={{marginLeft: 20 * DP}}>
-				<Text style={[txt.roboto24, {color: isLoginUser ? APRI10 : BLACK}]} numberOfLines={1}>
-					{props.data.user_nickname || ''}
-				</Text>
-				<Text style={[txt.noto24, {lineHeight: 36 * DP, color: GRAY20}]} numberOfLines={1}>
-					{address?.city} {address?.district} ·{' '}
-					{/* {props.data.feed_type == undefined ? getCommentedTime() : props.data.comment_date} */}
-					{/* {getCommentedTime()}일 전 */}
-				</Text>
+
+				<View style={{marginLeft: 20 * DP}}>
+					<Text style={[txt.roboto24, {color: isLoginUser ? APRI10 : BLACK}]} numberOfLines={1}>
+						{props.data.user_nickname || ''}
+					</Text>
+					<Text style={[txt.noto24, {lineHeight: 36 * DP, color: GRAY20}]} numberOfLines={1}>
+						{address?.city} {address?.district} · {/* {props.data.feed_type == undefined ? getCommentedTime() : props.data.comment_date} */}
+						{/* {getCommentedTime()}일 전 */}
+					</Text>
+				</View>
 			</View>
-		</View>
+		</TouchableOpacity>
 	);
 };
 
 UserLocationTimeLabel.defaultProps = {
 	onClickLabel: e => console.log(e),
-	data:{
-		user_address:{
-			city:'',
-			district:''
-		}
-	}
+	data: {
+		user_address: {
+			city: '',
+			district: '',
+		},
+	},
 };
 export default UserLocationTimeLabel;

@@ -9,6 +9,8 @@ import {feedCommentList, login_style} from './style_templete';
 import {createComment, getCommentListByFeedId, getCommentListByProtectId} from 'Root/api/commentapi';
 import {txt} from 'Root/config/textstyle';
 import Modal from '../modal/Modal';
+import ImagePicker from 'react-native-image-crop-picker';
+import userGlobalObject from 'Root/config/userGlobalObject';
 
 export default FeedCommentList = props => {
 	// console.log('그림들' + props.route.params);
@@ -18,6 +20,7 @@ export default FeedCommentList = props => {
 	const [photo, setPhoto] = React.useState();
 	const [data, setData] = React.useState({});
 	const [comments, setComments] = React.useState([]);
+	const [content, setContent] = React.useState('');
 
 	React.useEffect(() => {
 		if (props.route.name == 'FeedCommentList') {
@@ -34,47 +37,59 @@ export default FeedCommentList = props => {
 		}
 	}, []);
 
-	React.useEffect(() => {
-		console.log('routeparmas', props.route.params);
-		if (props.route.params == null) {
-		} else if (props.route.params.length > 0) {
-			setPhoto(props.route.params);
-		}
-	}, [props.route.params]);
-
 	//답글 쓰기 => Input 작성 후 보내기 클릭 콜백 함수
 	const onWrite = () => {
-		console.log('onWrite');
+		let param = {
+			comment_photo_uri: photo, //사진uri
+			comment_contents: content, //내용
+			// commentobject_id: undefined, //부모댓글
+			feedobject_id: props.route.params.feedobject._id, //피드id
+			// protect_request_object_id: undefined, //요청게시물id
+			comment_is_secure: privateComment, //공개여부
+		}
+		console.log(userGlobalObject.userInfo);
+		createComment(param,(result)=>{
+			console.log(result);
+			setPhoto();
+			setComments([{...result.msg,comment_writer_id:userGlobalObject.userInfo}].concat(comments));
+		},(err)=>Modal.alert(err));
 	};
 
 	// 답글 쓰기 -> 자물쇠버튼 클릭 콜백함수
 	const onLockBtnClick = () => {
-		// setPrivateComment(!privateComment);
-		// !privateComment ? alert('비밀댓글로 설정되었습니다.') : alert('댓글이 공개설정되었습니다.');
+		setPrivateComment(!privateComment);
+		!privateComment ? Modal.alert('비밀댓글로 설정되었습니다.') : Modal.alert('댓글이 공개설정되었습니다.');
 	};
 
 	// 답글 쓰기 -> 이미지버튼 클릭 콜백함수
 	const onAddPhoto = () => {
 		// navigation.push('SinglePhotoSelect', props.route.name);
+		ImagePicker.openPicker({
+			compressImageQuality:0.8,
+			cropping: true,
+		  }).then(images => {
+			setPhoto(images.path);
+			Modal.close();
+		  }).catch(err=>Modal.alert(err+''));Modal.close();
 	};
 
 	const onDeleteImage = () => {
-		// setPhoto()
+		setPhoto();
 	};
 
 	// 답글 쓰기 -> Input value 변경 콜백함수
 	const onChangeReplyInput = text => {
-		console.log(text);
+		setContent(text);
 	};
 
 	// 답글 쓰기 버튼 클릭 콜백함수
 	const onReplyBtnClick = () => {
-		// setEditComment(!editComment);
+		setEditComment(!editComment);
 	};
 
 	// 자식 답글에서 답글쓰기 버튼 클릭 콜백함수
 	const onChildReplyBtnClick = comment => {
-		// setEditComment(!editComment);
+		setEditComment(!editComment);
 	};
 
 	const render = ({item, index}) => {
