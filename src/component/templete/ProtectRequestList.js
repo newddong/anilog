@@ -68,7 +68,7 @@ export default ProtectRequestList = ({navigation, route}) => {
 				request_number: 10,
 			},
 			result => {
-				console.log('result / getPRotectRequestListByShelterId / ProtectRequestList  : ', result.msg);
+				// console.log('result / getPRotectRequestListByShelterId / ProtectRequestList  : ', result.msg);
 				navigation.navigate('AnimalProtectRequestDetail', {item: item, list: result.msg});
 			},
 			err => {

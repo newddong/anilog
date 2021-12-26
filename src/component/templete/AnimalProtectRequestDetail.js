@@ -47,7 +47,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const [token, setToken] = React.useState();
 	const debug = false;
 
-	console.log('AnimalProtectRequestDetail data:', data);
+	debug && console.log('AnimalProtectRequestDetail data:', data);
 
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {

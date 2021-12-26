@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Profile from 'Templete/Profile';
 import FeedList from 'Templete/FeedList';
-// import AnimalProtectRequestDetail from "Templete/AnimalProtectRequestDetail";
+import AnimalProtectRequestDetail from 'Templete/AnimalProtectRequestDetail';
 import FeedListForHashTag from 'Templete/FeedListForHashTag';
 import FeedCommentList from 'Templete/FeedCommentList';
 import MissingAnimalDetail from 'Templete/MissingAnimalDetail';
@@ -26,7 +26,7 @@ export default ProtectionStackNavigation = () => {
 			<ProtectionStack.Screen name="HashFeedList" component={FeedList} />
 			<ProtectionStack.Screen name="ProtectAnimalFeedList" component={FeedList} />
 			<ProtectionStack.Screen name="UserTagFeedList" component={FeedList} />
-			{/* <ProtectionStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} /> */}
+			<ProtectionStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} />
 			<ProtectionStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
 			<ProtectionStack.Screen name="FeedCommentList" component={FeedCommentList} />
 
