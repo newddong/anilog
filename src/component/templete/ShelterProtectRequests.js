@@ -9,13 +9,15 @@ import MeatBallDropdown from '../molecules/MeatBallDropdown';
 import {getProtectRequestList, getProtectRequestListByShelterId} from 'Root/api/shelterapi';
 import Modal from '../modal/Modal';
 import {txt} from 'Root/config/textstyle';
+import {getPettypes} from 'Root/api/userapi';
 
 // ShelterMenu - 보호요청 올린 게시글 클릭
 // params - 로그인한 보호소 유저의 _id
 export default ShelterProtectRequests = ({route, navigation}) => {
 	const [protectAnimalList, setProtectAnimalList] = React.useState([]); // AnimalNeedHelpList 내가 올린 보호요청 게시글 목록 리스트
-	const [filterSpecies, setFilterSpecies] = React.useState();
-	const [filterStatus, setFilterStatus] = React.useState('rescue');
+	const [filterStatus, setFilterStatus] = React.useState('all');
+	const [filterSpecies, setFilterSpecies] = React.useState('');
+	const [petTypes, setPetTypes] = React.useState(['동물종류']);
 
 	React.useEffect(() => {
 		Modal.popNoBtn('잠시만 기다려주세요.');
@@ -27,16 +29,38 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 				request_number: 10,
 			},
 			result => {
-				console.log('result / getProtectRequestList / ShelterProtectRequests', result.msg);
-				setProtectAnimalList(result.msg);
+				// console.log('result / getProtectRequestList / ShelterProtectRequests', result.msg[0]);
+				if (filterSpecies) {
+					const filtered = result.msg.filter(e => e.protect_animal_species == filterSpecies);
+					setProtectAnimalList(filtered);
+				} else {
+					setProtectAnimalList(result.msg);
+				}
 				Modal.close();
 			},
 			err => {
 				console.log('err / getProtectReqeustListByShelterId / ShelterProtectRequest', err);
+				if (err == '검색 결과가 없습니다.') {
+					setProtectAnimalList([]);
+				}
 				Modal.close();
 			},
 		);
 	}, [filterSpecies, filterStatus]);
+
+	React.useEffect(() => {
+		getPettypes(
+			{},
+			types => {
+				const species = [...petTypes];
+				types.msg.map((v, i) => {
+					species[i + 1] = v.pet_species;
+				});
+				setPetTypes(species);
+			},
+			err => Modal.alert(err),
+		);
+	}, []);
 
 	//보호 게시글 목록의 라벨 클릭 콜백
 	const onClickLabel = (status, user_id, item) => {
@@ -51,10 +75,10 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 	//화면 좌측 상단 필터드롭다운
 	const onSelectFilter = (v, i) => {
 		let filter = v;
-		i == 0 ? setFilterSpecies() : setFilterSpecies(filter);
+		i == 0 ? setFilterSpecies('') : setFilterSpecies(filter);
 	};
 
-	//화면 우측상단 미트볼 드롭다운
+	//화면 우측상단 요청게시글 상태 선택 드롭다운
 	const onSelectMeatball = (v, i) => {
 		//입양가능 , 협의중 , 완료
 		switch (i) {
@@ -80,7 +104,7 @@ export default ShelterProtectRequests = ({route, navigation}) => {
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<View style={[temp_style.filterbutton_view, protectRequestList_style.filterbutton_view]}>
 				<View style={[temp_style.filterbutton]}>
-					<FilterButton menu={PET_KIND} width={306} onSelect={onSelectFilter} />
+					<FilterButton menu={petTypes} width={306} onSelect={onSelectFilter} />
 				</View>
 				<View style={[temp_style.meatball50]}>
 					<MeatBallDropdown menu={PROTECT_STATUS} onSelect={onSelectMeatball} />
