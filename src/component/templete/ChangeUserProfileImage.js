@@ -9,7 +9,6 @@ import AniButton from '../molecules/AniButton';
 import Input24 from '../molecules/Input24';
 import ProfileImageSelect from '../molecules/ProfileImageSelect';
 import {login_style, btn_style, temp_style, changeUserProfileImage_style} from './style_templete';
-import {CommonActions} from '@react-navigation/routers';
 // import {nicknameDuplicationCheck} from 'Root/api/usermenuapi';
 import {updateUserInformation, nicknameDuplicationCheck} from 'Root/api/userapi';
 import Modal from '../modal/Modal';
@@ -17,32 +16,16 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 export default ChangeUserProfileImage = ({route}) => {
 	// console.log('route / Profile', route.params);1
-
+	console.log('changeUser', route.params.data);
 	const [data, setData] = React.useState(route.params.data);
-	const [newNick, setNewNick] = React.useState('');
+	const [newNick, setNewNick] = React.useState(route.params.data.user_nickname);
 	const navigation = useNavigation();
 	const [confirmed, setConfirmed] = React.useState(false);
 	const [duplicated, setDuplicated] = React.useState(false);
 	const [validateted, setValidated] = React.useState(false);
-	const [changed, setChanged] = React.useState(false);
+	// const [changed, setChanged] = React.useState(false);
 
-	// React.useEffect(() => {
-	// 	// console.log('data useEffect', data);
-	// 	setConfirmed(true); //사진 선택시 확인버튼 누르게
-	// }, [data.user_profile_uri]);
-	// React.useEffect(() => {}, [duplicated]);
-	console.log('rot', route.params);
-	React.useEffect(() => {
-		if (changed) {
-			Modal.close();
-			navigation.navigate({
-				name: 'UserInfoSetting',
-				key: route.params.routeInfo.key,
-				params: {changedPhoto: data.user_profile_uri},
-				merge: true,
-			});
-		}
-	}, [changed]);
+	// React.useEffect(() => {}, [changed]);
 
 	const onConfirmed = () => {
 		console.log('duplic', duplicated);
@@ -59,12 +42,21 @@ export default ChangeUserProfileImage = ({route}) => {
 					user_profile_uri: data.user_profile_uri,
 				},
 				success => {
-					setChanged(true);
-					console.log('profileChange success', success);
+					// setChanged(true);
+					// console.log('profileChange success', success);
+					Modal.close();
+					// navigation.goBack();
+					navigation.navigate({
+						name: route.params.routeInfo.name,
+						key: route.params.routeInfo.key,
+						params: {changedPhoto: data.user_profile_uri},
+						merge: true,
+					});
 				},
 				// console.log('userObject', userObject);
 				err => {
-					setChanged(true);
+					Modal.close();
+
 					console.log('err', err);
 				},
 			);
@@ -102,13 +94,17 @@ export default ChangeUserProfileImage = ({route}) => {
 		// 	},
 		// );
 		ImagePicker.openPicker({
-			compressImageQuality:0.8,
+			compressImageQuality: 0.8,
 			cropping: true,
-			cropperCircleOverlay:true,
-		  }).then(images => {
-			setData({...data, user_profile_uri: images.path || data.user_profile_uri});
-			Modal.close();
-		  }).catch(err=>Modal.alert(err+''));Modal.close();
+			cropperCircleOverlay: true,
+		})
+			.then(images => {
+				setData({...data, user_profile_uri: images.path || data.user_profile_uri});
+				setConfirmed(true);
+				Modal.close();
+			})
+			.catch(err => console.log('err / ImageOpenPicker / ChangeUserProfile', err));
+		Modal.close();
 	};
 
 	//중복 처리
@@ -200,14 +196,7 @@ export default ChangeUserProfileImage = ({route}) => {
 				</View>
 				{/* 확인버튼 */}
 				<View style={[btn_style.btn_w654, changeUserProfileImage_style.btn_w654]}>
-					<AniButton
-						btnTitle={'확인'}
-						btnTheme={'shadow'}
-						titleFontStyle={32}
-						btnLayout={btn_w654}
-						onPress={onConfirmed}
-						disable={confirmed ? false : true}
-					/>
+					<AniButton onPress={onConfirmed} btnTitle={'확인'} titleFontStyle={32} btnLayout={btn_w654} disable={confirmed ? false : true} />
 				</View>
 			</View>
 		</ScrollView>

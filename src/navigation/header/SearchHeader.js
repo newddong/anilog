@@ -11,19 +11,19 @@ import FormTxtInput from 'Screens/common/formtxtinput';
 // import { useNavigationState } from '@react-navigation/native';
 import {searchTxtChange} from './uselist';
 //deprecated
-export default SearchHeader = (props) => {
-	
-	
-
+export default SearchHeader = props => {
 	return (
-		<View style={[style.headerContainer,style.shadow]}>
+		<View style={[style.headerContainer, style.shadow]}>
 			<TouchableWithoutFeedback onPress={props.navigation.goBack}>
-				<View style={{width:80*DP,height:80*DP,justifyContent:'center',alignItems:'center'}}>
-				<SvgWrapper style={{width: 32 * DP, height: 32 * DP}} svg={<Backbutton />} />
+				<View style={{width: 80 * DP, height: 80 * DP, justifyContent: 'center', alignItems: 'center'}}>
+					<SvgWrapper style={{width: 32 * DP, height: 32 * DP}} svg={<Backbutton />} />
 				</View>
 			</TouchableWithoutFeedback>
 			<View style={style.cntr_txtinput}>
-				<FormTxtInput inputStyle={[style.input_txt]} placeholder={'검색'} onChange={searchTxtChange}
+				<FormTxtInput
+					inputStyle={[style.input_txt]}
+					placeholder={'검색'}
+					onChange={searchTxtChange}
 					// onBlur={()=>{navigation.navigate('HealthMovie',{test:0})}} onFocus={()=>{navigation.navigate('HealthMovie',{test:1})}}
 					placeholderTextColor={'#767676'}
 				/>
@@ -36,7 +36,6 @@ export default SearchHeader = (props) => {
 	);
 };
 
-
 const style = StyleSheet.create({
 	headerContainer: {
 		alignItems: 'center',
@@ -45,8 +44,8 @@ const style = StyleSheet.create({
 		backgroundColor: '#FFFFFF',
 		justifyContent: 'space-between',
 		// paddingHorizontal: 48 * DP,
-		paddingLeft:24*DP,
-		paddingRight:48*DP,
+		paddingLeft: 24 * DP,
+		paddingRight: 48 * DP,
 	},
 	cntr_txtinput: {
 		flexDirection: 'row',
@@ -63,11 +62,11 @@ const style = StyleSheet.create({
 	},
 	input_txt: {
 		width: 490 * DP,
-		height: 80*DP,
+		height: 80 * DP,
 		paddingLeft: 20 * DP,
-		paddingVertical:0*DP,
-		borderWidth:0,
-		includeFontPadding:false,
+		paddingVertical: 0 * DP,
+		borderWidth: 0,
+		includeFontPadding: false,
 	},
 	searchbtn: {
 		width: 48 * DP,
@@ -82,14 +81,14 @@ const style = StyleSheet.create({
 		fontSize: 100 * DP,
 	},
 	shadow: {
-		shadowColor: '#000000',
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
-		shadowOffset: {
-			width: 0,
-			height: 4,
-		},
-		elevation: 4,
+		// shadowColor: '#000000',
+		// shadowOpacity: 0.27,
+		// shadowRadius: 4.65,
+		// shadowOffset: {
+		// 	width: 0,
+		// 	height: 4,
+		// },
+		// elevation: 4,
 	},
 	noto40b: {
 		fontFamily: 'NotoSansKR-Bold',

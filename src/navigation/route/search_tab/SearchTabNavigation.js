@@ -4,6 +4,7 @@ import SearchFeedTabNavigation from './feed_tab/SearchFeedTabNavigation';
 import SearchProtectRequest from 'Templete/SearchProtectRequest';
 import Temp from 'Navigation/route/main_tab/community_stack/temp';
 import TopTabNavigation_Filled from 'Root/component/organism_ksw/TopTabNavigation_Filled';
+import InputAndSearchHeader from 'Root/navigation/header/InputAndSearchHeader';
 
 const SearchTabNav = createMaterialTopTabNavigator();
 
@@ -39,7 +40,7 @@ export default SearchTabNavigation = ({route, navigation}) => {
 					/>
 				);
 			}}>
-			<SearchTabNav.Screen name="FEED">
+			<SearchTabNav.Screen name="FEED" options={{header: props => <InputAndSearchHeader {...props} />, title: ''}}>
 				{props => (
 					<SearchFeedTabNavigation
 						{...props}

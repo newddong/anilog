@@ -1,6 +1,6 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import {Text, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import DP from 'Root/config/dp';
 import {Calendar48_Border} from '../atom/icon';
 import {APRI10} from 'Root/config/color';
@@ -38,7 +38,8 @@ const DatePicker = props => {
 	};
 
 	return (
-		<View
+		<TouchableOpacity
+			onPress={openCalendar}
 			style={{
 				width: props.width * DP,
 				height: 82 * DP,
@@ -67,10 +68,10 @@ const DatePicker = props => {
 					{selectedDate}
 				</Text>
 				<View style={{position: 'absolute', right: 15 * DP}}>
-					<Calendar48_Border onPress={openCalendar} />
+					<Calendar48_Border />
 				</View>
 			</View>
-		</View>
+		</TouchableOpacity>
 	);
 };
 DatePicker.defaultProps = {

@@ -90,14 +90,14 @@ const style = StyleSheet.create({
 		width: 126 * DP,
 	},
 	shadow: {
-		shadowColor: '#000000',
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
-		shadowOffset: {
-			width: 0,
-			height: 4,
-		},
-		elevation: 4,
+		// shadowColor: '#000000',
+		// shadowOpacity: 0.27,
+		// shadowRadius: 4.65,
+		// shadowOffset: {
+		// 	width: 0,
+		// 	height: 4,
+		// },
+		// elevation: 4,
 	},
 	backButtonContainer: {
 		width: 80 * DP,

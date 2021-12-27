@@ -29,15 +29,15 @@ export default LoginTemplete = props => {
 				// console.log('userObject', userObject.msg);
 				Modal.close();
 				Modal.popNoBtn(userObject.msg.user_nickname + '님 \n로그인이 성공하였습니다.');
-				AsyncStorage.setItem('token', userObject.msg._id||'');
-				AsyncStorage.setItem('type', userObject.msg.user_type||'');
-				
-				if(!userObject.msg._id){
-					AsyncStorage.getItem('userInfo').then((user)=>{
+				AsyncStorage.setItem('token', userObject.msg._id || '');
+				AsyncStorage.setItem('type', userObject.msg.user_type || '');
+
+				if (!userObject.msg._id) {
+					AsyncStorage.getItem('userInfo').then(user => {
 						userGlobalObj.userInfo = JSON.parse(user);
-					})
-				}else{
-					AsyncStorage.setItem('userInfo',JSON.stringify(userObject.msg));
+					});
+				} else {
+					AsyncStorage.setItem('userInfo', JSON.stringify(userObject.msg));
 					userGlobalObj.userInfo = userObject.msg;
 				}
 				setTimeout(() => {
@@ -56,10 +56,9 @@ export default LoginTemplete = props => {
 
 	const moveToMainTab = async () => {
 		let type = undefined;
-		try{
-		 type = await AsyncStorage.getItem('type');
-		}
-		catch(error){
+		try {
+			type = await AsyncStorage.getItem('type');
+		} catch (error) {
 			Modal.popOneBtn(error, '확인', () => {
 				Modal.close();
 			});
@@ -75,12 +74,8 @@ export default LoginTemplete = props => {
 		props.navigation.push('ShelterCodeCheck');
 	};
 
-	const findMyId = () => {
-
-	}
-	const changePassword = () => {
-
-	}
+	const findMyId = () => {};
+	const changePassword = () => {};
 
 	//자동로그인 박스 클릭
 	const onCheckAutoLogin = state => {
@@ -130,7 +125,7 @@ export default LoginTemplete = props => {
 			{/* LoginForm */}
 			<View style={[loginTemplete_style.loginForm]}>
 				<View style={[loginTemplete_style.idInput]}>
-					<Input24 placeholder={'아이디를 작성해주세요'} width={520} onChange={onChangeId} value={id} />
+					<Input24 placeholder={'전화번호를 입력해주세요.'} width={520} onChange={onChangeId} value={id} />
 				</View>
 				<View style={[loginTemplete_style.pwdInput]}>
 					<PasswordInput

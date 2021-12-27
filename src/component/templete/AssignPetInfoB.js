@@ -68,6 +68,7 @@ export default AssignPetInfoB = props => {
 					props.navigation.reset({
 						index: 0,
 						routes: [{name: data.previousRouteName}],
+						params: {addedPet: true},
 					});
 				});
 			},
@@ -140,10 +141,10 @@ export default AssignPetInfoB = props => {
 			{/* (A)Btn_w654 */}
 			<View style={[temp_style.btn_w226_assignPetInfo, assignPetInfo_style.btn_w226_viewB]}>
 				<View style={[btn_style.btn_w226]}>
-					<AniButton btnTitle={'뒤로'} btnTheme={'shadow'} btnStyle={'border'} onPress={() => navigation.goBack()} />
+					<AniButton btnTitle={'뒤로'} btnStyle={'border'} onPress={() => navigation.goBack()} />
 				</View>
 				<View style={[btn_style.btn_w226, assignPetInfo_style.btn_w226]}>
-					<AniButton btnTitle={'등록'} btnTheme={'shadow'} onPress={onRegister} />
+					<AniButton btnTitle={'등록'} onPress={onRegister} />
 				</View>
 			</View>
 		</View>

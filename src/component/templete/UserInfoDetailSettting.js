@@ -23,32 +23,12 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	// 갱신되는 데이터는 Header에도 Json형태로 전해짐
 	React.useEffect(() => {
 		navigation.setParams({data: data, route_name: route.name});
-		// console.log('changing Data', data);
+		console.log('user_mobile_company', data.user_mobile_company);
 	}, [data]);
 
 	React.useEffect(() => {
 		navigation.setParams({data: route.params, route_name: route.name});
 		setLoaded(true);
-
-		// AsyncStorage.getItem('token', (err, res) => {
-		// 	Modal.popNoBtn('Loading');
-		// 	getUserInfoById(
-		// 		{
-		// 			userobject_id: res,
-		// 		},
-		// 		userInfo => {
-		// 			// console.log('userInfo', userInfo.msg.user_interests);
-		// 			setData({...userInfo.msg});
-		// 			// setData({...userInfo.msg, user_birthday: '2021-01-01', user_sex: 'male', user_interests: {location: [], activity: []}});
-		// 			navigation.setParams({data: userInfo.msg, route_name: route.name});
-		// 			setLoaded(true);
-		// 			Modal.close();
-		// 		},
-		// 		err => {
-		// 			console.log('er', err);
-		// 		},
-		// 	);
-		// });
 	}, []);
 
 	React.useEffect(() => {
@@ -56,8 +36,6 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 			if (route.params.addr && !addrSearched) {
 				console.log('route.params.Address Changed?   ', route.params.addr);
 				const addr = route.params.addr;
-
-				// setData({...data, user_address: {city: addr.siNm, district: addr.sggNm, neighbor: addr.rn + ' ' + addr.buldMnnm}});
 				setData({...data, user_address: {brief: addr.roadAddr, detail: addr.detailAddr}});
 				setAddrSearched(true);
 			}

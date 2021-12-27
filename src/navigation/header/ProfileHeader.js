@@ -4,17 +4,14 @@ import Backbutton from 'Screens/header/icon_back.svg';
 import Dropdown from 'Screens/common/dropdown';
 import {Logo, AlarmIcon, SearchIcon, AnimalIcon, MeatballIcon} from 'Asset/image';
 import {DropdownMeatball, BracketDown} from 'Asset/image_v2';
-import {GRAY_MEATBALL,GRAY, MAINCOLOR} from 'Screens/color';
+import {GRAY_MEATBALL, GRAY, MAINCOLOR} from 'Screens/color';
 import {txt} from 'Screens/textstyle';
 import DP from 'Screens/dp';
 import SvgWrapper from 'Screens/svgwrapper';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 //deprecated
 export default ProfileHeader = ({options, route, navigation}) => {
-
 	const [isMeatballOpen, setMeatballOpen] = React.useState(false);
-
-
 
 	return (
 		<View style={[style.headerContainer, style.shadow]}>
@@ -46,7 +43,9 @@ export default ProfileHeader = ({options, route, navigation}) => {
 				}}
 				animation
 				// component={<SvgWrapper style={style.buttonMeatBall} svg={<MeatballIcon fill="#fff" />} />}
-				component={<SvgWrapper style={{width:30*DP,height:80*DP}} svg={<DropdownMeatball fill={isMeatballOpen ? MAINCOLOR : GRAY_MEATBALL} />} />}
+				component={
+					<SvgWrapper style={{width: 30 * DP, height: 80 * DP}} svg={<DropdownMeatball fill={isMeatballOpen ? MAINCOLOR : GRAY_MEATBALL} />} />
+				}
 			/>
 		</View>
 	);
@@ -62,14 +61,14 @@ const style = StyleSheet.create({
 		paddingHorizontal: 48 * DP,
 	},
 	shadow: {
-		shadowColor: '#000000',
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
-		shadowOffset: {
-			width: 0,
-			height: 4,
-		},
-		elevation: 4,
+		// shadowColor: '#000000',
+		// shadowOpacity: 0.27,
+		// shadowRadius: 4.65,
+		// shadowOffset: {
+		// 	width: 0,
+		// 	height: 4,
+		// },
+		// elevation: 4,
 	},
 	meatballContainer: {
 		width: 40 * DP,

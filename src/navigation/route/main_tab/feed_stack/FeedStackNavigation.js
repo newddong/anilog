@@ -18,7 +18,11 @@ const FeedStack = createStackNavigator();
 export default FeedStackNavigation = () => {
 	return (
 		<FeedStack.Navigator initialRouteName="MainHomeFeedList">
-			<FeedStack.Screen name="MainHomeFeedList" component={FeedList} options={{header: props => <LogoHeader {...props} />}} />
+			<FeedStack.Screen
+				name="MainHomeFeedList"
+				component={FeedList}
+				options={{header: props => <LogoHeader {...props} />, headerStyle: {elevation: 0, shadowOpacity: 0, borderBottomWidth: 0}}}
+			/>
 			<FeedStack.Screen name="UserProfile" component={Profile} options={{header: props => <MeatBallHeader {...props} />, title: '프로필'}} />
 			<FeedStack.Screen name="SocialRelation" component={SocialRelation} />
 			<FeedStack.Screen name="UserFeedList" component={FeedList} />

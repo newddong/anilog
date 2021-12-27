@@ -16,10 +16,8 @@ import {getUserInfoById, getUserProfile, updateUserIntroduction} from 'Root/api/
 // 필요한 데이터 - 로그인 유저 제반 데이터, 나의 반려동물 관련 데이터(CompanionObject 참조)
 export default UserInfoSetting = ({route}) => {
 	const navigation = useNavigation();
-	const [data, setData] = React.useState([]); // 로그인 유저의 UserObject
-	const [companions, setCompanions] = React.useState([]); //반려동물 userObject
+	const [data, setData] = React.useState({}); // 로그인 유저의 UserObject
 	const [modifyMode, setModifyMode] = React.useState(false);
-	const [intro_modified, setIntro_modified] = React.useState('');
 	const modifyRef = React.useRef();
 
 	React.useEffect(() => {
@@ -30,19 +28,15 @@ export default UserInfoSetting = ({route}) => {
 				},
 				userObject => {
 					setData(userObject.msg);
-					console.log('result / getUserProfile / UserInfoSetting', userObject.msg.user_my_pets);
+					console.log('result / getUserProfile / UserInfoSetting', userObject.msg.user_introduction);
 				},
 				err => {
 					console.log('er', err);
 				},
 			);
 		});
-	}, [route.params?.token]);
-
-	React.useEffect(() => {
-		// console.log(`data${JSON.stringify(data)}`);
-		setCompanions(data.user_my_pets);
-	}, [data]);
+		//첫 마운트 시, 프로필 변경이 있을 시 getUSerInfoById에 접속
+	}, [route.params?.token, route.params?.changedPhoto]);
 
 	//상세 정보 클릭
 	const onPressDetail = () => {
@@ -68,7 +62,7 @@ export default UserInfoSetting = ({route}) => {
 
 	// 나의 반려동물 -> 반려동물 등록
 	const onPressAddPet = () => {
-		navigation.push('AssignPetProfileImage', {userobject_id: data._id, previousRouteName: 'UserInfoSetting'});
+		navigation.push('AssignPetProfileImage', {userobject_id: data._id, previousRouteName: route.name});
 	};
 
 	//나의 반려동물 => 반려클릭
@@ -90,22 +84,16 @@ export default UserInfoSetting = ({route}) => {
 	//수정 후 적용 버튼 클릭
 	const modify_finalize = () => {
 		setModifyMode(!modifyMode);
-		setData({...data, user_introduction: intro_modified});
-		console.log('intro', intro_modified, typeof intro_modified);
 		updateUserIntroduction(
-			{user_introduction: intro_modified},
-			success => {
-				console.log('suceess', success);
-			},
-			err => {
-				console.log('er', err);
-			},
+			{user_introduction: data.user_introduction},
+			success => {},
+			err => {},
 		);
 	};
 
 	//수정 TextInput 콜백 함수
 	const modifyIntroText = text => {
-		setIntro_modified(text);
+		setData({...data, user_introduction: text});
 	};
 
 	return (
@@ -194,7 +182,7 @@ export default UserInfoSetting = ({route}) => {
 						</View>
 					</View>
 					<View style={[temp_style.myPetList_myPetList]}>
-						<MyPetList items={companions} onLabelClick={onClickCompanionLabel} addPet={onPressAddPet} />
+						<MyPetList items={data?.user_my_pets} onLabelClick={onClickCompanionLabel} addPet={onPressAddPet} />
 					</View>
 				</View>
 			</ScrollView>

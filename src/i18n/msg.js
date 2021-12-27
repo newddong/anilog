@@ -26,6 +26,7 @@ export const FIND_MY_ACCOUNT = '내 계정 찾기';
 export const CONFIRM_MY_ACCOUNT = '계정 확인';
 export const NONE_OF_YOUR_ACCOUNTS = '이 번호로 가입한 계정이 없습니다.';
 export const NEEDS_LOGIN_ARE_YOU_MEMBER = '로그인이 필요한 페이지입니다.\n아직 회원이 아닌가요?';
+export const LOGOUT = '로그아웃';
 
 //Verify_User
 export const REQ_NAME = '이름을 입력해주세요.';
@@ -164,7 +165,7 @@ export const PET = 'pet';
 export const SHELTER = 'shelter';
 
 //통신사
-export const mobile_carrier = ['SKT텔레콤', 'LG U+', 'KT', '알뜰'];
+export const mobile_carrier = ['SK텔레콤', 'LG U+', 'KT', '알뜰'];
 
 //이메일 도메인
 export const EMAIL_DOMAIN = ['naver.com', 'daum.net', 'gmail.com', 'hanmail.net', 'kakao.com', 'nate.com', 'outlook.com', 'paran.com', 'yahoo.com'];
