@@ -16,9 +16,9 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 export default ChangeUserProfileImage = ({route}) => {
 	// console.log('route / Profile', route.params);1
-
+	console.log('changeUser', route.params.data);
 	const [data, setData] = React.useState(route.params.data);
-	const [newNick, setNewNick] = React.useState('');
+	const [newNick, setNewNick] = React.useState(route.params.data.user_nickname);
 	const navigation = useNavigation();
 	const [confirmed, setConfirmed] = React.useState(false);
 	const [duplicated, setDuplicated] = React.useState(false);
@@ -100,6 +100,7 @@ export default ChangeUserProfileImage = ({route}) => {
 		})
 			.then(images => {
 				setData({...data, user_profile_uri: images.path || data.user_profile_uri});
+				setConfirmed(true);
 				Modal.close();
 			})
 			.catch(err => console.log('err / ImageOpenPicker / ChangeUserProfile', err));

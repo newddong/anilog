@@ -89,14 +89,18 @@ export default FeedContent = props => {
 	};
 	const getCommentedTime = () => {
 		let date = feed_date.match(/(\d{4}-\d{1,2}-\d{1,2}T\d{2}:\d{2}:\d{2}).*?$/);
-		let timelapsed = new Date() - new Date(date[1]);
-		let localtime = 1000 * 60 * 60 * 9;
-		timelapsed = timelapsed - Platform.OS == 'ios' ? 0 : localtime; //UTC 시간차
-		let day = Math.ceil(timelapsed / 1000 / 60 / 60 / 24) - 1;
-		let hour = Math.ceil(timelapsed / 1000 / 60 / 60);
-		let min = Math.ceil(timelapsed / 1000 / 60);
-		let sec = Math.ceil(timelapsed / 1000);
+		console.log(date);
+		let dateobj = new Date(date[1]);
 
+		let timelapsed = Date.now() - new Date(date[1]);
+
+		let localtime = Platform.OS == 'ios' ? 1000 * 60 * 60 * 9 : 1000 * 60 * 60 * 9;
+		timelapsed = timelapsed - localtime; //UTC 시간차
+		let day = Math.floor(timelapsed / 1000 / 60 / 60 / 24);
+		let hour = Math.floor(timelapsed / 1000 / 60 / 60);
+		let min = Math.floor(timelapsed / 1000 / 60);
+		let sec = Math.ceil(timelapsed / 1000);
+		console.log(day > 0 ? `${day}일 전` : hour > 0 ? `${hour} 시간 전` : min > 0 ? `${min} 분 전` : `방금`);
 		return day > 0 ? `${day}일 전` : hour > 0 ? `${hour} 시간 전` : min > 0 ? `${min} 분 전` : `방금`;
 	};
 
@@ -123,7 +127,7 @@ export default FeedContent = props => {
 
 				{/* type값이 status일 경우 status 버튼이 나오고 그렇지 않으면 다른 버튼 표기 */}
 				{feed_type == 'feed' ? (
-					<>
+					<View style={{flexDirection: 'row', alignItems: 'center'}}>
 						<View style={[feedContent_style.status /*{width:130*DP,height:38*DP}*/]}>
 							{feed_is_protect_diary && (
 								<View
@@ -131,6 +135,7 @@ export default FeedContent = props => {
 										width: 130 * DP,
 										height: 38 * DP,
 										justifyContent: 'center',
+										alignSelf: 'flex-end',
 										alignItems: 'center',
 										borderColor: MAINCOLOR,
 										borderRadius: 10 * DP,
@@ -144,7 +149,7 @@ export default FeedContent = props => {
 						<View style={[organism_style.meatball, feedContent_style.meatball]}>
 							<Meatball50_GRAY20_Horizontal onPress={onClickMeatball} />
 						</View>
-					</>
+					</View>
 				) : (
 					<View style={[organism_style.button_view_feedContent]}>
 						<View style={[organism_style.favoriteTag_view_feedContent]}>
