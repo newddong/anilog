@@ -35,11 +35,13 @@ import {
 	ACCOUNT,
 	DEFAULT_PROFILE,
 	MODIFY_SHELTER_DATA,
+	LOGOUT,
 } from 'Root/i18n/msg';
 import {GRAY10} from 'Root/config/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from '../modal/Modal';
 import {getUserProfile} from 'Root/api/userapi';
+import {userLogout} from 'Root/api/userapi';
 
 export default ShelterMenu = ({route}) => {
 	const navigation = useNavigation();
@@ -77,6 +79,22 @@ export default ShelterMenu = ({route}) => {
 	//게시물 추가
 	const moveToAidRequestAnimalList = () => {
 		navigation.push('AidRequestAnimalList', data._id);
+	};
+
+	//로그아웃 기능
+	const logout = () => {
+		userLogout(
+			1,
+			e => {
+				console.log('e', e);
+				AsyncStorage.clear();
+				alert('Logout 성공');
+				navigation.navigate('Login');
+			},
+			err => {
+				console.log('err', err);
+			},
+		);
 	};
 
 	//메뉴에 해당되는 네이게이션 이동
@@ -152,6 +170,10 @@ export default ShelterMenu = ({route}) => {
 			// 계정
 			case ACCOUNT:
 				alert('준비중입니다.');
+				break;
+			//로그아웃
+			case LOGOUT:
+				logout();
 				break;
 		}
 	};
@@ -237,7 +259,15 @@ export default ShelterMenu = ({route}) => {
 					/>
 				</View>
 				<View style={[shelterMenu.profileMenu4]}>
-					<ProfileMenu menuTitle={SETTING} menuItems={[[INFO_QUESTION, ACCOUNT]]} onClick={click_menu} titleIcon={<Setting46 />} />
+					<ProfileMenu
+						menuTitle={SETTING}
+						menuItems={[
+							[INFO_QUESTION, ACCOUNT],
+							[, LOGOUT],
+						]}
+						onClick={click_menu}
+						titleIcon={<Setting46 />}
+					/>
 				</View>
 			</ScrollView>
 		</View>

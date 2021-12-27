@@ -30,6 +30,9 @@ export default MainTabNavigation = ({route, navigation}) => {
 
 				options={({route}) => ({
 					tabBarVisible: getTabBarVisibility(route),
+					tabBarLabel: '동물보호',
+					tabBarHideOnKeyboard: true,
+					header: props => false,
 				})}
 			/>
 			<MainTabNav.Screen name="COMMUNITY" component={Temp} options={{header: props => <SimpleHeader {...props} />, title: '커뮤니티'}} />
