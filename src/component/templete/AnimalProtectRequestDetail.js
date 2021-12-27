@@ -29,7 +29,7 @@ import {createComment} from 'Root/api/commentapi';
 // - ProtectRequestList(보호활동탭) , AnimalFromShelter(게시글보기) , Profile(보호활동)
 
 export default AnimalProtectRequestDetail = ({route}) => {
-	console.log('AnimalProtectRequestDetail', route.params);
+	// console.log('AnimalProtectRequestDetail', route.params);
 
 	const navigation = useNavigation();
 	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
@@ -350,11 +350,11 @@ export default AnimalProtectRequestDetail = ({route}) => {
 				<View style={[temp_style.commentList]}>
 					{/* CommentList에 필요한 데이터 - CommentObject, WriterObejct(UserObject), FeedObject(FeedObject), LikeCommentObject */}
 					{/* 위의 모든 데이터가 CommentList items에 담겨져 있어야 함 */}
-					<CommentList
+					{/* <CommentList
 						items={commentDataList}
 						onPressReplyBtn={onReplyBtnClick}
 						onPress_ChildComment_ReplyBtn={comment => onChildReplyBtnClick(comment)}
-					/>
+					/> */}
 				</View>
 
 				{/* 더보기 버튼 - 기본 2개 표출되며, 더보기 누르면 모두 보이도록 함. (hjs - 추후에 5개씩 더 보이게 한다거나 등등의 개수 제어 필요) */}

@@ -24,24 +24,24 @@ export default WriteHeader = ({navigation, route, options, back}) => {
 		if (route.name === 'photoTag') {
 			navigation.goBack();
 		} else if (route.name === 'editFeed') {
-			console.log('editFeed    ====>    '+JSON.stringify(route.params.editImages))
-			let { _id, location,time, content } = route.params.editData;
+			console.log('editFeed    ====>    ' + JSON.stringify(route.params.editImages));
+			let {_id, location, time, content} = route.params.editData;
 			// console.log('editData ===> ' + JSON.stringify(scene.route.params.editData));
 			// console.log('localSelectedImages ===> ' + JSON.stringify(scene.route.params.localSelectedImages));
 			editPost(
 				{
-					post_id:_id,
-					location:location,
-					time:time,
-					content:route.params.content,
-					images:route.params.editImages,
+					post_id: _id,
+					location: location,
+					time: time,
+					content: route.params.content,
+					images: route.params.editImages,
 				},
 				result => {
 					console.log('Edit Post ==> ' + JSON.stringify(result));
 					alert('수정이 완료되었습니다.');
-					navigation.navigate({name: route.params.navfrom, params:  {update: true}, merge: true});
-				}
-			)
+					navigation.navigate({name: route.params.navfrom, params: {update: true}, merge: true});
+				},
+			);
 		} else {
 			createPost(
 				{
@@ -101,14 +101,14 @@ const style = StyleSheet.create({
 		width: 150 * DP,
 	},
 	shadow: {
-		shadowColor: '#000000',
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
-		shadowOffset: {
-			width: 0,
-			height: 4,
-		},
-		elevation: 4,
+		// shadowColor: '#000000',
+		// shadowOpacity: 0.27,
+		// shadowRadius: 4.65,
+		// shadowOffset: {
+		// 	width: 0,
+		// 	height: 4,
+		// },
+		// elevation: 4,
 	},
 	noto40b: {
 		fontFamily: 'NotoSansKR-Bold',

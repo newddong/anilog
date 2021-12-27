@@ -8,14 +8,13 @@ import SvgWrapper from 'Screens/svgwrapper';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 //deprecated
 export default StackHeader = ({navigation, route, options, back}) => {
-	
 	return (
 		<View style={[style.headerContainer, style.shadow]}>
 			<TouchableWithoutFeedback onPress={navigation.goBack}>
 				<SvgWrapper style={{width: 32 * DP, height: 32 * DP}} svg={<Backbutton />} />
 			</TouchableWithoutFeedback>
 			<Text style={style.noto40b}>{route.params.title}</Text>
-			<TouchableWithoutFeedback onPress={()=>alert('검색')}>
+			<TouchableWithoutFeedback onPress={() => alert('검색')}>
 				<SvgWrapper style={{width: 48 * DP, height: 48 * DP}} svg={<SearchIcon />} />
 			</TouchableWithoutFeedback>
 		</View>
@@ -35,14 +34,14 @@ const style = StyleSheet.create({
 		fontSize: 100 * DP,
 	},
 	shadow: {
-		shadowColor: '#000000',
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
-		shadowOffset: {
-			width: 0,
-			height: 4,
-		},
-		elevation: 4,
+		// shadowColor: '#000000',
+		// shadowOpacity: 0.27,
+		// shadowRadius: 4.65,
+		// shadowOffset: {
+		// 	width: 0,
+		// 	height: 4,
+		// },
+		// elevation: 4,
 	},
 	noto40b: {
 		fontFamily: 'NotoSansKR-Bold',

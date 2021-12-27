@@ -18,7 +18,7 @@ import {
 } from 'Atom/icon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function BottomTab({state, descriptors, navigation}) {
+export default function BottomTab({state, descriptors, navigation, route}) {
 	const focusedOptions = descriptors[state.routes[state.index].key].options;
 	const icons = [<FeedTabBorder />, <AnimalSavingTabBorder />, <CommunityTabBorder />, <MyTabBorder />];
 	const iconsFocused = [<FeedTabFilled />, <AnimalSavingTabFilled />, <CommunityTabFilled />, <MyTabFilled />];
