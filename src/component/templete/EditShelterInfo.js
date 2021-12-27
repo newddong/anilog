@@ -237,7 +237,7 @@ export default EditShelterInfo = ({route, navigation}) => {
 							</View>
 						</View>
 						<View style={[editShelterInfo.input30]}>
-							<DatePicker width={530} onDateChange={onChangeDate} defaultDate={getFoundationDate()} />
+							<DatePicker width={530} onDateChange={onChangeDate} defaultDate={getFoundationDate()} future={false} />
 						</View>
 					</View>
 				</View>

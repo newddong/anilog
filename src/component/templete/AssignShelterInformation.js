@@ -131,7 +131,7 @@ export default AssignShelterInformation = props => {
 
 				{/* (M)DatePicker */}
 				<View style={[temp_style.datePicker_assignShelterInformation, assignShelterInformation_style.datePicker]}>
-					<DatePicker width={654} title={'설립일'} onDateChange={onChangeDate} />
+					<DatePicker width={654} title={'설립일'} onDateChange={onChangeDate} future={false} />
 				</View>
 			</View>
 

@@ -85,7 +85,7 @@ const YearDropDownSelect = React.forwardRef(
 					}}>
 					<Text
 						style={[
-							txt.roboto32b,
+							txt.roboto36b,
 							props.textStyle,
 							{
 								paddingVertical: 16 * DP, // Value와 최상위 View와의 paddingVertical 16px

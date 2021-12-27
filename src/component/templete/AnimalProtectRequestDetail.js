@@ -25,6 +25,8 @@ import {ActivityIndicator} from 'react-native';
 import moment from 'moment';
 import {getCommentListByProtectId} from 'Root/api/commentapi';
 import {createComment} from 'Root/api/commentapi';
+import ImagePicker from 'react-native-image-crop-picker';
+
 //AnimalProtectRequestDetail 호출 경로
 // - ProtectRequestList(보호활동탭) , AnimalFromShelter(게시글보기) , Profile(보호활동)
 
@@ -183,17 +185,29 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	// 답글 쓰기 -> 이미지버튼 클릭 콜백함수
 	const onAddPhoto = () => {
 		// navigation.push('SinglePhotoSelect', route.name);
-		launchImageLibrary(
-			{
-				mediaType: 'photo',
-				selectionLimit: 1,
-			},
-			responseObject => {
-				console.log('선택됨', responseObject);
-				setPhoto(responseObject.assets[responseObject.assets.length - 1].uri);
-				setReplyData({...replyData, comment_photo_uri: responseObject.assets[responseObject.assets.length - 1].uri});
-			},
-		);
+		ImagePicker.openPicker({
+			compressImageQuality: 0.8,
+			cropping: true,
+			cropperCircleOverlay: true,
+		})
+			.then(images => {
+				setPhoto(images.path || data.user_profile_uri);
+				setReplyData({...replyData, comment_photo_uri: images.path});
+				Modal.close();
+			})
+			.catch(err => console.log('err / ImageOpenPicker / ChangeUserProfile', err));
+		Modal.close();
+		// launchImageLibrary(
+		// 	{
+		// 		mediaType: 'photo',
+		// 		selectionLimit: 1,
+		// 	},
+		// 	responseObject => {
+		// 		console.log('선택됨', responseObject);
+		// 		setPhoto(responseObject.assets[responseObject.assets.length - 1].uri);
+		// 		setReplyData({...replyData, comment_photo_uri: responseObject.assets[responseObject.assets.length - 1].uri});
+		// 	},
+		// );
 	};
 
 	// 답글 쓰기 -> 이미지버튼 클릭 -> 이미지 가져오기 -> X마크 클릭

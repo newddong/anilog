@@ -6,6 +6,7 @@ import {txt} from 'Root/config/textstyle';
 import {mobile_carrier} from 'Root/i18n/msg';
 import {btn_w226, btn_w654} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
+import Input24 from '../molecules/Input24';
 import InputWithSelect from '../molecules/InputWithSelect';
 import Stagebar from '../molecules/Stagebar';
 import AddressInput from '../organism_ksw/AddressInput';
@@ -20,7 +21,6 @@ import {applyCompanionA, btn_style, login_style, temp_style} from './style_templ
 export default ApplyCompanionA = ({route}) => {
 	const navigation = useNavigation();
 	const isProtect = route.name == 'ApplyProtectActivityA'; //임시보호 신청여부 , false일 경우 자동으로 입양모드 전환
-	console.log('isProtect 값', isProtect);
 	const [confirmed, setConfirmed] = React.useState(false);
 	const [addrSearched, setAddrSearched] = React.useState(false);
 
@@ -50,7 +50,7 @@ export default ApplyCompanionA = ({route}) => {
 	//보호장소 및 연락처가 공란이면 다음 단계로 넘어갈 수 없는 로직
 	React.useEffect(() => {
 		// console.log('data', data);
-		data.protect_act_address != null && data.protect_act_phone_number != null ? setConfirmed(true) : setConfirmed(false);
+		data.protect_act_address.brief != '' && data.protect_act_phone_number != null ? setConfirmed(true) : setConfirmed(false);
 	}, [data]);
 
 	React.useEffect(() => {
@@ -86,7 +86,7 @@ export default ApplyCompanionA = ({route}) => {
 
 	const phoneValidate = num => {
 		console.log('num', num);
-		var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+		let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 		if (regPhone.test(num) === true) {
 			console.log('입력된 값은 휴대전화번호입니다.');
 		}
@@ -123,8 +123,10 @@ export default ApplyCompanionA = ({route}) => {
 				/>
 			</View>
 			{/* textMSg */}
-			<View style={[temp_style.stageBar, applyCompanionA.textMsg]}>
-				<Text style={[txt.noto24, {color: GRAY10}]}>개인정보의 내용이 맞는지 확인해 주세요.</Text>
+			<View style={[temp_style.stageBar, applyCompanionA.textMsg, {height: null}]}>
+				<Text style={[txt.noto24, {color: GRAY10}]}>
+					개인정보의 내용이 맞는지 확인해 주세요.{'\n'} (보호장소 및 연락처는 반드시 작성되어야합니다.)
+				</Text>
 			</View>
 			{/* InputForm */}
 			<View style={[temp_style.inputForm_ApplyCompanionA, applyCompanionA.inputForm]}>
@@ -141,7 +143,19 @@ export default ApplyCompanionA = ({route}) => {
 					/>
 				</View>
 				<View style={[temp_style.input24A_applyCompanionA, applyCompanionA.input24A]}>
-					<InputWithSelect
+					<Input24
+						title={'연락처'}
+						keyboardType={'number-pad'}
+						value={data.protect_act_phone_number || ''}
+						width={654}
+						onChange={onChangePhoneNum}
+						validator={phoneValidate}
+						descriptionType={'star'}
+						placeholder={'연락처를 입력해주세요.'}
+						showCrossMark={false}
+					/>
+
+					{/* <InputWithSelect
 						onChange={onChangePhoneNum}
 						validator={phoneValidate}
 						keyboardType={'number-pad'}
@@ -150,7 +164,7 @@ export default ApplyCompanionA = ({route}) => {
 						items={mobile_carrier}
 						width={360}
 						placeholder={'연락처를 입력해주세요.'}
-					/>
+					/> */}
 				</View>
 			</View>
 			{/* (A)Btn_w654 */}
@@ -159,73 +173,4 @@ export default ApplyCompanionA = ({route}) => {
 			</View>
 		</View>
 	);
-};
-
-const e = {
-	protect_request_pet_data: {
-		__v: 0,
-		_id: '61c2b82b7be07611b0094ed2',
-		protect_animal_id: {
-			__v: 0,
-			_id: '61c2b6007be07611b0094ec4',
-			protect_act_applicants: [Array],
-			protect_animal_belonged_shelter_id: '61c023d9679aa5ae46128102',
-			protect_animal_estimate_age: '2개월',
-			protect_animal_neutralization: 'no',
-			protect_animal_photo_uri_list: [Array],
-			protect_animal_protect_request_id: '61c2b82b7be07611b0094ed2',
-			protect_animal_protector_discussion_id: [Array],
-			protect_animal_rescue_date: '2021-12-08T00:00:00.000Z',
-			protect_animal_rescue_location: 'AK풀라자 포하',
-			protect_animal_sex: 'female',
-			protect_animal_species: '기타',
-			protect_animal_species_detail: '토끼',
-			protect_animal_status: 'rescue',
-			protect_animal_weight: 2,
-		},
-		protect_animal_species: '기타',
-		protect_animal_species_detail: '토끼',
-		protect_request_comment_count: 0,
-		protect_request_content:
-			'토끼 키우는 것은 생각보다 많은 각오가 필요한 일입니다.경력까지는 요구하지 않겠지만 어느정도 소양을 갖춘 분이 데려가주시면 좋겠습니다.',
-		protect_request_date: '2021-12-22T05:31:23.186Z',
-		protect_request_favorite_count: 0,
-		protect_request_hit: 0,
-		protect_request_photos_uri: [
-			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640150528231_E3043E03-4A96-4270-958B-CF38B89588C5.jpg',
-			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640150528246_D9B16F08-812E-4BF1-B5DF-9DAB2E3E0BF2.jpg',
-		],
-		protect_request_status: 'rescue',
-		protect_request_title: '아이스크림 같이 녹을 것만 같은 아이입니다.',
-		protect_request_update_date: '2021-12-22T05:31:23.187Z',
-		protect_request_writer_id: {
-			__v: 0,
-			_id: '61c023d9679aa5ae46128102',
-			pet_family: [Array],
-			shelter_address: [Object],
-			shelter_delegate_contact_number: '01096450001',
-			shelter_foundation_date: '2011-12-04T00:00:00.000Z',
-			shelter_homepage: '',
-			shelter_name: '상우 보호소6',
-			user_agreement: [Object],
-			user_denied: false,
-			user_email: 'lanad01@naver.com',
-			user_follow_count: 0,
-			user_follower_count: 0,
-			user_interests: [Array],
-			user_introduction:
-				'Sadjaskldlsadjklasdjklsadjklsajdklasjdlkasjdklajsdlsajdlkjsalkdjklsajdlkasjdklajdlkasjdklasjdlkasjdlkjasdlksajdlkasjdklajdslkasjdklja',
-			user_is_verified_email: false,
-			user_is_verified_phone_number: false,
-			user_my_pets: [Array],
-			user_name: '상우 보호소5',
-			user_nickname: '가하즈보호소',
-			user_password: '121212',
-			user_phone_number: '01096450001',
-			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640002215862_5A703C7F-7163-47C5-B5D4-7FCE8F4B171D.jpg',
-			user_register_date: '2021-12-20T06:34:01.773Z',
-			user_type: 'shelter',
-			user_upload_count: 0,
-		},
-	},
 };

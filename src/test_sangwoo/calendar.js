@@ -12,7 +12,7 @@ import YearDropDown from 'Root/component/molecules/YearDropDown';
 import Modal from 'Root/component/modal/Modal';
 
 const Calendar = props => {
-	// console.log('props', props);
+	console.log('props', props.future);
 	const BG = 'white';
 
 	const [getMoment, setMoment] = React.useState(moment()); //현재 시각 정보
@@ -29,16 +29,7 @@ const Calendar = props => {
 	};
 
 	const onSelectDate = date => {
-		if (!props.past) {
-			const todayValue = new Date().getTime();
-			const e = moment(date).add(9, 'h').valueOf();
-			if (todayValue < e) {
-				// Alert.alert('오류', '오늘 날짜 이후로만 선택이 가능합니다!!');
-				props.selectDate(date.format('yyyy.MM.DD'));
-			}
-		} else {
-			props.selectDate(date.format('yyyy.MM.DD'));
-		}
+		props.selectDate(date.format('yyyy.MM.DD'));
 	};
 
 	const years = () => {
@@ -66,6 +57,122 @@ const Calendar = props => {
 		setMoment(getMoment.clone().subtract(getMoment.local().year() - y, 'year'));
 	};
 
+	const days_selectableMode = week => {
+		if (props.past && props.future) {
+			return (
+				<View style={styles.dateContainer}>
+					{Array(7) //today를 기준으로 조회한 이번 달의 첫째 주부터 마지막 주까지 Array
+						.fill(0)
+						.map((data, index) => {
+							//result에는 해당 날짜를 하나씩 붙여간다.
+							let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day'); //d로해도되지만 직관성 - index값에  day정보
+							// console.log("days console : "+days.date())
+							if (moment().format('YYYYMMDD') === days.format('YYYYMMDD')) {
+								//정확히 오늘 날짜와 일치하는 date
+								return (
+									<TouchableOpacity onPress={() => onSelectDate(days)} key={index} style={styles.today}>
+										<View
+											style={{
+												width: 66 * DP,
+												height: 116 * DP,
+												alignItems: 'center',
+												justifyContent: 'center',
+											}}>
+											<Text style={[txt.roboto28b, {color: WHITE, lineHeight: 66 * DP, backgroundColor: APRI10}]}>{days.format('D')}</Text>
+										</View>
+									</TouchableOpacity>
+								);
+							} else if (days.format('MM') !== today.format('MM')) {
+								//이번달이 아니지만 달력에 출력된 dates
+								return (
+									<View key={index} style={styles.days_this_month}>
+										<Text style={[txt.roboto28, {color: GRAY30}]}>{days.format('D')}</Text>
+									</View>
+								);
+							} else {
+								//이외의 이번달 날짜들은 하얀색으로 출력
+								return (
+									<TouchableOpacity onPress={() => onSelectDate(days)} key={index} style={styles.days_this_month}>
+										<Text style={[txt.roboto28, {}]}>{days.format('D')}</Text>
+									</TouchableOpacity>
+								);
+							}
+						})}
+				</View>
+			);
+		} else if (!props.future && props.past) {
+			return (
+				<View style={styles.dateContainer}>
+					{Array(7) //today를 기준으로 조회한 이번 달의 첫째 주부터 마지막 주까지 Array
+						.fill(0)
+						.map((data, index) => {
+							//result에는 해당 날짜를 하나씩 붙여간다.
+							let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day'); //d로해도되지만 직관성 - index값에  day정보
+							// console.log("days console : "+days.date())
+							if (moment() > days) {
+								//정확히 오늘 날짜와 일치하는 date
+								return (
+									<TouchableOpacity onPress={() => onSelectDate(days)} key={index} style={styles.today}>
+										<View
+											style={{
+												width: 66 * DP,
+												height: 116 * DP,
+												alignItems: 'center',
+												justifyContent: 'center',
+											}}>
+											<Text style={[txt.roboto28b, {color: BLACK, lineHeight: 66 * DP}]}>{days.format('D')}</Text>
+										</View>
+									</TouchableOpacity>
+								);
+							} else {
+								//이외의 이번달 날짜들은 하얀색으로 출력
+								return (
+									<View key={index} style={styles.days_this_month}>
+										<Text style={[txt.roboto28, {color: GRAY30}]}>{days.format('D')}</Text>
+									</View>
+								);
+							}
+						})}
+				</View>
+			);
+		} else {
+			return (
+				<View style={styles.dateContainer}>
+					{Array(7) //today를 기준으로 조회한 이번 달의 첫째 주부터 마지막 주까지 Array
+						.fill(0)
+						.map((data, index) => {
+							//result에는 해당 날짜를 하나씩 붙여간다.
+							let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day'); //d로해도되지만 직관성 - index값에  day정보
+							// console.log("days console : "+days.date())
+							if (moment() < days) {
+								//정확히 오늘 날짜와 일치하는 date
+								return (
+									<TouchableOpacity onPress={() => onSelectDate(days)} key={index} style={styles.today}>
+										<View
+											style={{
+												width: 66 * DP,
+												height: 116 * DP,
+												alignItems: 'center',
+												justifyContent: 'center',
+											}}>
+											<Text style={[txt.roboto28b, {color: BLACK, lineHeight: 66 * DP}]}>{days.format('D')}</Text>
+										</View>
+									</TouchableOpacity>
+								);
+							} else {
+								//이외의 이번달 날짜들은 하얀색으로 출력
+								return (
+									<View key={index} style={styles.days_this_month}>
+										<Text style={[txt.roboto28, {color: GRAY30}]}>{days.format('D')}</Text>
+									</View>
+								);
+							}
+						})}
+				</View>
+			);
+		}
+	};
+
 	const calendarArr = () => {
 		//달력 각 Booth에 들어갈 날짜정보
 		let result = [];
@@ -75,81 +182,7 @@ const Calendar = props => {
 			result = result.concat(
 				//날짜 정보를 하나씩 추가해간다.
 				<TouchableWithoutFeedback key={week} onPress={() => {}}>
-					{props.past ? ( //이전 날짜 선택 가능 모드
-						<View style={styles.dateContainer}>
-							{Array(7) //today를 기준으로 조회한 이번 달의 첫째 주부터 마지막 주까지 Array
-								.fill(0)
-								.map((data, index) => {
-									//result에는 해당 날짜를 하나씩 붙여간다.
-									let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day'); //d로해도되지만 직관성 - index값에  day정보
-									// console.log("days console : "+days.date())
-									if (moment().format('YYYYMMDD') === days.format('YYYYMMDD')) {
-										//정확히 오늘 날짜와 일치하는 date
-										return (
-											<TouchableOpacity onPress={() => onSelectDate(days)} key={index} style={styles.today}>
-												<View
-													style={{
-														width: 66 * DP,
-														height: 116 * DP,
-														alignItems: 'center',
-														justifyContent: 'center',
-													}}>
-													<Text style={[txt.roboto28b, {color: WHITE, lineHeight: 66 * DP, backgroundColor: APRI10}]}>{days.format('D')}</Text>
-												</View>
-											</TouchableOpacity>
-										);
-									} else if (days.format('MM') !== today.format('MM')) {
-										//이번달이 아니지만 달력에 출력된 dates
-										return (
-											<View key={index} style={styles.days_this_month}>
-												<Text style={[txt.roboto28, {color: GRAY30}]}>{days.format('D')}</Text>
-											</View>
-										);
-									} else {
-										//이외의 이번달 날짜들은 하얀색으로 출력
-										return (
-											<TouchableOpacity onPress={() => onSelectDate(days)} key={index} style={styles.days_this_month}>
-												<Text style={[txt.roboto28, {}]}>{days.format('D')}</Text>
-											</TouchableOpacity>
-										);
-									}
-								})}
-						</View>
-					) : (
-						// 이전날짜 선택 불가 모드
-						<View style={styles.dateContainer}>
-							{Array(7) //today를 기준으로 조회한 이번 달의 첫째 주부터 마지막 주까지 Array
-								.fill(0)
-								.map((data, index) => {
-									//result에는 해당 날짜를 하나씩 붙여간다.
-									let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day'); //d로해도되지만 직관성 - index값에  day정보
-									// console.log("days console : "+days.date())
-									if (moment() < days) {
-										//정확히 오늘 날짜와 일치하는 date
-										return (
-											<TouchableOpacity onPress={() => onSelectDate(days)} key={index} style={styles.today}>
-												<View
-													style={{
-														width: 66 * DP,
-														height: 116 * DP,
-														alignItems: 'center',
-														justifyContent: 'center',
-													}}>
-													<Text style={[txt.roboto28b, {color: BLACK, lineHeight: 66 * DP}]}>{days.format('D')}</Text>
-												</View>
-											</TouchableOpacity>
-										);
-									} else {
-										//이외의 이번달 날짜들은 하얀색으로 출력
-										return (
-											<View key={index} style={styles.days_this_month}>
-												<Text style={[txt.roboto28, {color: GRAY30}]}>{days.format('D')}</Text>
-											</View>
-										);
-									}
-								})}
-						</View>
-					)}
+					{days_selectableMode(week)}
 				</TouchableWithoutFeedback>,
 			);
 		}

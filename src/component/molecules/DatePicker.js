@@ -14,6 +14,7 @@ import Modal from '../modal/Modal';
  * @param {boolean} props.disable - 버튼 활성화 여부
  * @param {number} props.width - 전체 DatePicker의 너비 (default = 520 *DP )
  * @param {boolean} props.past - 이전날짜 선택 불가 모드 (default = true)
+ * @param {boolean} props.future - 이전날짜 선택 불가 모드 (default = true)
  * @param {(title:string)=>void} props.onDateChange - 달력에서 날짜가 선택되었을 때 실행되는 콜백. 날짜정보를 반환함
  */
 const DatePicker = props => {
@@ -33,7 +34,7 @@ const DatePicker = props => {
 
 	const openCalendar = () => {
 		console.log('openCale');
-		Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date), props.past);
+		Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date), props.past, props.future);
 		setShowCalendar(true);
 	};
 

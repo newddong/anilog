@@ -42,7 +42,7 @@ const YearDropDown = props => {
 						marginLeft: 28 * DP,
 						marginBottom: 100,
 						top: 220 * DP,
-						width: 140 * DP,
+						width: 240 * DP,
 						borderRadius: 10 * DP,
 						alignItems: 'center',
 					}}>
@@ -50,10 +50,10 @@ const YearDropDown = props => {
 						{props.menu.map((v, i) => (
 							<View key={i}>
 								<TouchableWithoutFeedback onPress={() => onSelect(v, i)}>
-									<View style={[styles.itemContainer, {width: 140 * DP}]}>
+									<View style={[styles.itemContainer, {width: 240 * DP}]}>
 										<Text
 											style={[
-												txt.roboto28b,
+												txt.roboto32b,
 												{
 													alignSelf: 'center',
 													textAlign: 'center',

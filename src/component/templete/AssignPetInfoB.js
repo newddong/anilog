@@ -111,7 +111,7 @@ export default AssignPetInfoB = props => {
 				<View style={[temp_style.inputForm_assignPetInfo_line1]}>
 					<Text style={[txt.noto28, temp_style.text_assignPetInfo, {color: GRAY10}]}>생일</Text>
 					<View style={[temp_style.datePicker_assignPetInfo_depth1, assignPetInfo_style.datePicker_depth1]}>
-						<DatePicker width={290} onDateChange={onSelectBirthDate} defaultDate={selectedBirthDate} />
+						<DatePicker width={290} onDateChange={onSelectBirthDate} defaultDate={selectedBirthDate} future={false} />
 					</View>
 					<Text style={[temp_style.text218_assignPetInfo, assignPetInfo_style.text218]}>{getBirthDate()}</Text>
 				</View>

@@ -100,7 +100,7 @@ export default UserInfoSetting = ({route}) => {
 	};
 
 	return (
-		<View style={login_style.wrp_main}>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<ScrollView>
 				{/* step1 */}
 				<View style={[temp_style.userInfoSetting_step1]}>

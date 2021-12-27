@@ -147,7 +147,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 								<Text style={[txt.noto28, {color: GRAY10}]}>생일</Text>
 							</View>
 							<View style={[temp_style.tabSelectFilled_Type1]}>
-								<DatePicker onDateChange={date => onDateChange(date)} defaultDate={data.user_birthday} />
+								<DatePicker onDateChange={date => onDateChange(date)} defaultDate={data.user_birthday} future={false} />
 							</View>
 						</View>
 						{/* 전화번호 */}

@@ -123,7 +123,7 @@ export default SetPetInformation = ({route, navigation}) => {
 						</View>
 					</View>
 					<View style={[setPetInformation.datePicker]}>
-						<DatePicker onDateChange={onSelectBirthDate} defaultDate={parseBirth()} width={290} />
+						<DatePicker onDateChange={onSelectBirthDate} defaultDate={parseBirth()} width={290} future={false} />
 					</View>
 					<View style={[setPetInformation.birthTime]}>{getBirthDate()}</View>
 				</View>

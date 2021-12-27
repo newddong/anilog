@@ -1,6 +1,6 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
-import {Text, TouchableOpacity, FlatList} from 'react-native';
+import {Text, TouchableOpacity, FlatList, View} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY10, GRAY40, WHITE} from 'Root/config/color';
 import TabSelectBorder_Type3 from './TabSelectBorder_Type3';
@@ -50,7 +50,11 @@ const TabSelectFilled_Type3 = props => {
 		);
 	};
 
-	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />;
+	return (
+		<View style={{backgroundColor: 'white'}}>
+			<FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} />
+		</View>
+	);
 };
 TabSelectFilled_Type3.defaultProps = {
 	items: [1, 2, 3], //FlatList에 담길 배열 정보

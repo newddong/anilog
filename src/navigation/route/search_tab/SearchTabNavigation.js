@@ -18,9 +18,8 @@ export default SearchTabNavigation = ({route, navigation}) => {
 	//SearchHeader에서 작성한 검색어와 검색클릭이 행해지면 SearchInput에 값이 들어감
 
 	const [currentScreen, setCurrentScreen] = React.useState(0); //현재 보고 있는 화면 State
-	const routeName = getFocusedRouteNameFromRoute(route);
+	const routeName = getFocusedRouteNameFromRoute(route); //현재 활성화되어 있는 스크린의 이름을 받아옴
 	React.useEffect(() => {
-		// console.log('routeName', routeName);
 		if (routeName == navName[0]) setCurrentScreen(0);
 		else if (routeName == navName[1]) setCurrentScreen(1);
 		else if (routeName == navName[2]) setCurrentScreen(2);

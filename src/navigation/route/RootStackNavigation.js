@@ -104,8 +104,8 @@ export default RootStackNavigation = () => {
 		!isPop && setPop(true);
 	};
 
-	Modal.popCalendar = (visible, onOff, date, past) => {
-		popIn(<Calendar modalOn={visible} modalOff={onOff} selectDate={date} past={past} />);
+	Modal.popCalendar = (visible, onOff, date, past, future) => {
+		popIn(<Calendar modalOn={visible} modalOff={onOff} selectDate={date} past={past} future={future} />);
 		!isPop && setPop(true);
 	};
 
