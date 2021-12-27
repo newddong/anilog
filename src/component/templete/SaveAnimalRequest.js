@@ -113,7 +113,7 @@ export default SaveAnimalRequest = ({route}) => {
 						break;
 				}
 				const titleValue = item.protect_animal_species + '/' + item.protect_animal_species_detail + '/' + sexValue;
-				navigation.push('ProtectRequestManage', {item: item, list: result.msg, title: titleValue});
+				navigation.push('AnimalProtectRequestDetail', {item: item, list: result.msg, title: titleValue});
 			},
 			err => {
 				console.log('err / getProtectRequestListByShelterId / ProtectRequestList   : ', err);

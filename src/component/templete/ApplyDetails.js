@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View, ScrollView, Image} from 'react-native';
 import {createProtectActivity} from 'Root/api/protectapi';
@@ -26,7 +25,7 @@ export default ApplyDetails = ({route, navigation}) => {
 				protect_act_motivation: data.protect_act_motivation,
 			},
 			result => {
-				console.log('result / createProtectActivity / ApplyDetails  : ', result);
+				// console.log('result / createProtectActivity / ApplyDetails  : ', result);
 				// navigation.reset({index: 0, routes: [{name: 'UserProfile', params: data.protect_request_writer_id}]});
 				// navigation.reset({routes: [{name: 'UserProfile', params: data.protect_request_writer_id}]});
 				navigation.reset({

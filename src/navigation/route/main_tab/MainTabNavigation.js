@@ -14,7 +14,6 @@ const MainTabNav = createBottomTabNavigator();
 export default MainTabNavigation = ({route, navigation}) => {
 	const getTabBarVisibility = route => {
 		const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-		// console.log('routeNAme1', routeName1);
 		if (routeName === 'AnimalProtectRequestDetail') {
 			return false;
 		}

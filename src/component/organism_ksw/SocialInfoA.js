@@ -7,9 +7,11 @@ import {useNavigation} from '@react-navigation/core';
 export default SocialInfoA = props => {
 	// console.log('SocialInfo', ViewPropTypes);
 	const navigation = useNavigation();
+
 	const moveToSocialRelation = () => {
 		navigation.push('SocialRelation');
 	};
+
 	const count_to_K = cnt => {
 		if (cnt > 1000000) {
 			let count = (cnt / 1000000).toFixed(0) + 'm';

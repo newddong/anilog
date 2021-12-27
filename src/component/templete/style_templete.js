@@ -483,7 +483,7 @@ export const temp_style = StyleSheet.create({
 		backgroundColor: 'white',
 	},
 	animalProtectDetails: {
-		width: 654 * DP,
+		width: 750 * DP,
 		// height: 1316 * DP,
 	},
 	img_square_750: {
@@ -3140,6 +3140,7 @@ export const applyDetails = StyleSheet.create({
 		height: 70 * DP,
 		marginTop: 40 * DP,
 		marginBottom: 30 * DP,
+		alignSelf: 'center',
 		flexDirection: 'row',
 	},
 });

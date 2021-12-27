@@ -15,7 +15,7 @@ export default AnimalInfoList = props => {
 	const renderItem = (item, index) => {
 		return (
 			<TouchableOpacity onPress={() => props.onPressLabel(item, index)} style={[animalInfoList.itemContainer]}>
-				<AnimalInfo data={item} />
+				<AnimalInfo data={item} onPressLabel={() => props.onPressLabel(item, index)} />
 			</TouchableOpacity>
 		);
 	};

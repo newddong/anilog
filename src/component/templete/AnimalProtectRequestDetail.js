@@ -235,6 +235,16 @@ export default AnimalProtectRequestDetail = ({route}) => {
 		console.log('FavoriteTag', index, item);
 	};
 
+	//보호요청 게시글 작성 보호소 라벨의 좋아요 태그 클릭
+	const onPressShelterLabelFavorite = () => {
+		console.log('d');
+	};
+
+	//보호소 라벨 공유 클릭
+	const onPressShare = () => {
+		console.log('공유클릭');
+	};
+
 	//더보기 클릭
 	const onPressShowMore = () => {
 		setShowMore(!showMore);
@@ -264,7 +274,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	if (loading) {
 		return (
 			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
-				<ActivityIndicator size={'large'}></ActivityIndicator>
+				<ActivityIndicator size={'large'} />
 			</View>
 		);
 	}
@@ -282,7 +292,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 				<View style={[temp_style.rescueContentTitle]}>
 					<Text style={[txt.noto28b]}>{data.protect_request_title || ''}</Text>
 				</View>
-				{/* ShelterSmallLabel */}
+				{/* 보호소 라벨 */}
 				<View style={[temp_style.shelterSmallLabel_view_animalProtectRequestDetail]}>
 					<View style={[temp_style.shelterSmallLabel_animalProtectRequestDetail]}>
 						<ShelterSmallLabel data={data.protect_request_writer_id} />
@@ -290,13 +300,13 @@ export default AnimalProtectRequestDetail = ({route}) => {
 					{/* Buttons */}
 					<View style={[temp_style.button_animalProtectRequestDetail]}>
 						<View>
-							<FavoriteTag48_Filled />
+							<FavoriteTag48_Filled onPress={onPressShelterLabelFavorite} />
 							<Text style={[txt.roboto24, {color: APRI10, alignSelf: 'center'}]}>
 								{data ? count_to_K(data.protect_request_writer_id.user_follow_count) : ''}
 							</Text>
 						</View>
 						<View style={{marginLeft: 30 * DP}}>
-							<Share48_Filled />
+							<Share48_Filled onPress={onPressShare} />
 							<Text style={[txt.roboto24, {color: APRI10}]}>공유</Text>
 						</View>
 					</View>

@@ -50,6 +50,8 @@ import SaveButtonHeader from 'Navigation/header/SaveButtonHeader';
 import MeatBallHeader from 'Root/navigation/header/MeatBallHeader';
 import SocialRelationTopTabNavigation from '../protection_stack/socialRelation_tab/SocialRelationTopTabNavigation';
 import SendHeader from 'Root/navigation/header/SendHeader';
+import SimpleHeader from 'Root/navigation/header/SimpleHeader';
+import LogoHeader from 'Root/navigation/header/LogoHeader';
 
 const MyStack = createStackNavigator();
 
@@ -58,7 +60,7 @@ export default MyStackNavigation = props => {
 	return (
 		<MyStack.Navigator initialRouteName={props.user_type == 'shelter' ? 'ShelterMenu' : 'UserMenu'}>
 			{/* // <MyStack.Navigator initialRouteName={'ShelterMenu'}> */}
-			<MyStack.Screen name="UserFeedList" component={FeedList} options={{header: props => <SimpleHeader {...props} />}} />
+			<MyStack.Screen name="UserFeedList" component={FeedList} options={{header: props => <MeatBallHeader {...props} />, title: '피드 게시글'}} />
 			<MyStack.Screen name="UserFeeds" component={FavoriteFeeds} options={{header: props => <SimpleHeader {...props} />, title: '내 게시글'}} />
 			<MyStack.Screen name="HashFeedList" component={FeedList} options={{header: props => <SimpleHeader {...props} />, title: '#반려동물'}} />
 			<MyStack.Screen name="ProtectAnimalFeedList" component={FeedList} />
@@ -66,26 +68,27 @@ export default MyStackNavigation = props => {
 			<MyStack.Screen
 				name="UserProfile"
 				component={Profile}
-				options={{header: props => <MeatBallHeader {...props} menu={['신고하기', '신고']} />, title: 'UserProfile'}}
+				options={{header: props => <MeatBallHeader {...props} menu={['신고하기', '신고']} />, title: '프로필'}}
 			/>
-			<MyStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} />
+			<MyStack.Screen
+				name="AnimalProtectRequestDetail"
+				component={AnimalProtectRequestDetail}
+				options={{header: props => <SimpleHeader {...props} />}}
+			/>
 			<MyStack.Screen
 				name="FeedListForHashTag"
 				component={FeedListForHashTag}
 				options={{header: props => <SimpleHeader {...props} />, title: '#반려동물'}}
 			/>
 			<MyStack.Screen name="SocialRelation" component={SocialRelationTopTabNavigation} />
-
 			<MyStack.Screen name="UserMenu" component={UserMenu} options={{header: props => <SimpleHeader {...props} />, title: 'MY'}} />
 			<MyStack.Screen name="UserInfoSetting" component={UserInfoSetting} />
-
 			<MyStack.Screen
 				name="ChangeUserProfileImage"
 				component={ChangeUserProfileImage}
 				options={{header: props => <SimpleHeader {...props} />, title: '프로필 변경'}}
 			/>
 			<MyStack.Screen name="PhotoSelect" component={PhotoSelect} />
-
 			<MyStack.Screen
 				name="ChangePassword"
 				component={ChangePassword}
@@ -96,9 +99,7 @@ export default MyStackNavigation = props => {
 				component={UserInfoDetailSettting}
 				options={{header: props => <SaveButtonHeader {...props} />, title: '프로필 상세 정보'}}
 			/>
-
 			<MyStack.Screen name="PetInfoSetting" component={PetInfoSetting} />
-
 			<MyStack.Screen
 				name="ChangePetProfileImage"
 				component={ChangePetProfileImage}
@@ -121,7 +122,6 @@ export default MyStackNavigation = props => {
 			/>
 			<MyStack.Screen name="AnimalAdoption" component={AnimalAdoption} options={{header: props => <SimpleHeader {...props} />, title: '상태 변경'}} />
 			<MyStack.Screen name="SelectAccount" component={SelectAccount} options={{header: props => <ConfirmInputHeader {...props} />}} />
-
 			<MyStack.Screen
 				name="AssignPetProfileImage"
 				component={AssignPetProfileImage}
@@ -137,7 +137,6 @@ export default MyStackNavigation = props => {
 				component={AssignPetInfoB}
 				options={{header: props => <SimpleHeader {...props} />, title: '반려동물 등록'}}
 			/>
-
 			<MyStack.Screen name="SaveFavorite" component={SaveFavorite} options={{header: props => <SimpleHeader {...props} />, title: '친구 즐겨찾기'}} />
 			<MyStack.Screen
 				name="UserSaveAnimalRequest"
@@ -157,13 +156,11 @@ export default MyStackNavigation = props => {
 			<MyStack.Screen name="FavoriteFeedList" component={FeedList} options={{header: props => <SimpleHeader {...props} />, title: '즐겨찾기'}} />
 			<MyStack.Screen name="TagMeFeedList" component={FeedList} options={{header: props => <SimpleHeader {...props} />}} />
 			<MyStack.Screen name="TagMeFeeds" component={FavoriteFeeds} options={{header: props => <SimpleHeader {...props} />, title: '나를 태그한 글'}} />
-
 			<MyStack.Screen
 				name="AnimalProtectList"
 				component={AnimalProtectList}
 				options={{header: props => <SimpleHeader {...props} />, title: '동물 보호 현황'}}
 			/>
-
 			<MyStack.Screen name="ShelterMenu" component={ShelterMenu} options={{header: props => <SimpleHeader {...props} />, title: 'MY'}} />
 			<MyStack.Screen
 				name="ShelterInfoSetting"
@@ -175,7 +172,6 @@ export default MyStackNavigation = props => {
 				component={EditShelterInfo}
 				options={{header: props => <SimpleHeader {...props} />, title: '보호소 정보 수정'}}
 			/>
-
 			<MyStack.Screen
 				name="AssignProtectAnimalImage"
 				component={AssignProtectAnimalImage}
@@ -196,7 +192,6 @@ export default MyStackNavigation = props => {
 				component={AssignProtectAnimalInfo}
 				options={{header: props => <SimpleHeader {...props} />, title: '보호 동물 등록'}}
 			/>
-
 			<MyStack.Screen
 				name="AidRequestAnimalList"
 				component={AidRequestAnimalList}
@@ -207,13 +202,11 @@ export default MyStackNavigation = props => {
 				component={WriteAidRequest}
 				options={{header: props => <SendHeader {...props} />, title: '동물 보호 요청'}}
 			/>
-
 			<MyStack.Screen
 				name="ShelterProtectAnimalList"
 				component={AidRequestManage}
 				options={{header: props => <SimpleHeader {...props} />, title: '보호 동물 목록'}}
 			/>
-
 			<MyStack.Screen
 				name="ProtectApplyList"
 				component={AidRequestManage}
@@ -229,7 +222,6 @@ export default MyStackNavigation = props => {
 				component={ProtectApplyForm}
 				options={{header: props => <SimpleHeader {...props} />, title: '보호 활동 신청자'}}
 			/>
-
 			<MyStack.Screen
 				name="AnimalFromShelter"
 				component={AnimalFromShelter}
@@ -256,7 +248,6 @@ export default MyStackNavigation = props => {
 				component={AnimalProtectRequestDetail}
 				options={{header: props => <SimpleHeader {...props} />, title: '보호소 보호중인 동물 정보'}}
 			/>
-
 			<MyStack.Screen name="AppliesRecord" component={AppliesRecord} options={{header: props => <SimpleHeader {...props} />, title: '신청 내역'}} />
 			<MyStack.Screen
 				name="ApplyAdoptionList"

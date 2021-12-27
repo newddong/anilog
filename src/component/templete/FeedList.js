@@ -14,6 +14,12 @@ export default FeedList = ({route, navigation}) => {
 	const [feedList, setFeedList] = React.useState([]);
 	const [refreshing, setRefreshing] = React.useState(false);
 
+	//피드썸네일 클릭 리스트일 경우
+	React.useEffect(() => {
+		// console.log('userobject', route.params?.userobject);
+		navigation.setOptions({title: route.params?.userobject.user_nickname + '님의 게시글'});
+	}, [route.params?.userobject]);
+
 	React.useEffect(() => {
 		const getList = () => {
 			getSuggestFeedList(
@@ -37,7 +43,7 @@ export default FeedList = ({route, navigation}) => {
 	}, [refreshing]);
 
 	const moveToFeedWrite = () => {
-		userGlobalObject.userInfo&&navigation.push('FeedWrite',{feedType:'Feed'});
+		userGlobalObject.userInfo && navigation.push('FeedWrite', {feedType: 'Feed'});
 	};
 
 	const renderItem = item => {
@@ -62,9 +68,11 @@ export default FeedList = ({route, navigation}) => {
 				keyExtractor={(item, index) => index}
 				refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
 			/>
-			{userGlobalObject.userInfo&&<View style={{position:'absolute',bottom:40*DP,right:30*DP}}>
-				<Write94 onPress={moveToFeedWrite} />
-			</View>}
+			{userGlobalObject.userInfo && (
+				<View style={{position: 'absolute', bottom: 40 * DP, right: 30 * DP}}>
+					<Write94 onPress={moveToFeedWrite} />
+				</View>
+			)}
 		</View>
 	);
 };

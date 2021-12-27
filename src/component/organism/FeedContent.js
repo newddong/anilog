@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, Text, View,Platform} from 'react-native';
+import {Dimensions, Text, View, Platform} from 'react-native';
 import {organism_style, feedContent_style} from './style_organism';
 import UserLocationLabel from 'Root/component/molecules/UserLocationLabel';
 import AniButton from 'Root/component/molecules/AniButton';
@@ -56,7 +56,7 @@ export default FeedContent = props => {
 	const [layout, setLayout] = React.useState({height: 0 * DP, width: 0}); // 초기의 Layout
 	const [reportLayout, setReportLayout] = React.useState({height: 0, width: 0});
 	const [labelLayout, setlabelLayout] = React.useState({height: 0, width: 0});
-	const [show,setShow] = React.useState(false);
+	const [show, setShow] = React.useState(false);
 
 	//FeedText가 담긴 View 의 onLayout
 	const onLayoutContent = event => {
@@ -73,16 +73,15 @@ export default FeedContent = props => {
 	const onLayoutLabel = event => {
 		const {width, height} = event.nativeEvent.layout;
 		setlabelLayout({width, height});
-	}
+	};
 
-	React.useEffect(()=>{
-		if(layout.height+reportLayout.height+labelLayout.height+116*DP>270*DP){
+	React.useEffect(() => {
+		if (layout.height + reportLayout.height + labelLayout.height + 116 * DP > 270 * DP) {
 			setBtnStatus(false);
-		}else{
+		} else {
 			setBtnStatus(true);
 		}
-	},[layout,reportLayout,labelLayout])
-
+	}, [layout, reportLayout, labelLayout]);
 
 	const parsingDate = date => {
 		let temp = date.match(/(\d{4})-(\d{1,2})-(\d{1,2}).*?$/);
@@ -91,14 +90,14 @@ export default FeedContent = props => {
 	const getCommentedTime = () => {
 		let date = feed_date.match(/(\d{4}-\d{1,2}-\d{1,2}T\d{2}:\d{2}:\d{2}).*?$/);
 		let timelapsed = new Date() - new Date(date[1]);
-		let localtime = 1000*60*60*9;
-		timelapsed = timelapsed - Platform.OS=='ios'?0:localtime;//UTC 시간차
-		let day = Math.ceil(timelapsed / 1000 / 60 / 60 / 24)-1;
+		let localtime = 1000 * 60 * 60 * 9;
+		timelapsed = timelapsed - Platform.OS == 'ios' ? 0 : localtime; //UTC 시간차
+		let day = Math.ceil(timelapsed / 1000 / 60 / 60 / 24) - 1;
 		let hour = Math.ceil(timelapsed / 1000 / 60 / 60);
 		let min = Math.ceil(timelapsed / 1000 / 60);
 		let sec = Math.ceil(timelapsed / 1000);
-		
-		return day>0?`${day}일 전`:hour>0?`${hour} 시간 전`:min>0?`${min} 분 전`:`방금`;
+
+		return day > 0 ? `${day}일 전` : hour > 0 ? `${hour} 시간 전` : min > 0 ? `${min} 분 전` : `방금`;
 	};
 
 	const onClickMeatball = () => {
@@ -110,7 +109,7 @@ export default FeedContent = props => {
 	};
 
 	return (
-		<View style={[organism_style.feedContent,show&&{height:null}]}>
+		<View style={[organism_style.feedContent, show && {height: null}]}>
 			{/* line 1 */}
 			<View style={[organism_style.userLocationLabel_view_feedContent]} onLayout={onLayoutLabel}>
 				{/* UserLocationLabel */}
@@ -183,13 +182,9 @@ export default FeedContent = props => {
 			)}
 
 			{/* FeedText */}
-			<View
-				style={[organism_style.content_feedContent, feedContent_style.content_Top10]}
-				onLayout={onLayoutContent}>
+			<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]} onLayout={onLayoutContent}>
 				{/* <FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} /> */}
-				<Text style={[txt.noto28]}>
-					{feed_content}
-				</Text>
+				<Text style={[txt.noto28]}>{feed_content}</Text>
 			</View>
 			{/* 피드 작성 날짜  3 */}
 			<View style={[organism_style.time_view_feedContent]}>
@@ -198,16 +193,18 @@ export default FeedContent = props => {
 				</View>
 
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}
-				{!show&&
+				{!show && (
 					<TouchableWithoutFeedback onPress={showMore}>
 						<View style={[organism_style.addMore_view_feedContent]}>
 							<View style={[organism_style.addMore_feedContent]}>
 								<Text style={[txt.noto22, {color: GRAY10}]}>더보기</Text>
 							</View>
-							<View style={[organism_style.braket]}><Arrow_Down_GRAY20 /></View>
+							<View style={[organism_style.braket]}>
+								<Arrow_Down_GRAY20 />
+							</View>
 						</View>
 					</TouchableWithoutFeedback>
-				}
+				)}
 			</View>
 		</View>
 	);

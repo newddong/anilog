@@ -10,6 +10,7 @@ import {FavoriteTag48_Border, FavoriteTag48_Filled} from '../atom/icon';
 import {BLUE10, BLUE20, RED10} from 'Root/config/color';
 import {DEFAULT_ANIMAL_PROFILE, DEFAULT_PROFILE} from 'Root/i18n/msg';
 import moment from 'moment';
+import {useNavigation} from '@react-navigation/core';
 
 /**
  *
@@ -25,7 +26,9 @@ import moment from 'moment';
  * }} props
  */
 export default AnimalNeedHelp = props => {
+	const navigation = useNavigation();
 	const data = props.data;
+	console.log('datadd'.data);
 	// console.log('AnimalNeedHelp: -------------- ', JSON.stringify(data));
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);
@@ -98,7 +101,7 @@ export default AnimalNeedHelp = props => {
 	};
 
 	const onPressReporter = () => {
-		props.onPressReporter();
+		navigation.push('UserProfile', {userobject: data});
 	};
 
 	const getParsedDate = () => {

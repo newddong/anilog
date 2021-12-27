@@ -12,20 +12,21 @@ import LogoHeader from 'Navigation/header/LogoHeader';
 import MeatBallHeader from 'Navigation/header/MeatBallHeader';
 import AlarmAndSearchHeader from 'Navigation/header/AlarmAndSearchHeader';
 import BookmarkHeader from 'Navigation/header/BookmarkHeader';
+import SocialRelationTopTabNavigation from '../protection_stack/socialRelation_tab/SocialRelationTopTabNavigation';
 
 const FeedStack = createStackNavigator();
 
 export default FeedStackNavigation = () => {
 	return (
 		<FeedStack.Navigator initialRouteName="MainHomeFeedList">
-			<FeedStack.Screen
-				name="MainHomeFeedList"
-				component={FeedList}
-				options={{header: props => <LogoHeader {...props} />, headerStyle: {elevation: 0, shadowOpacity: 0, borderBottomWidth: 0}}}
-			/>
+			<FeedStack.Screen name="MainHomeFeedList" component={FeedList} options={{header: props => <LogoHeader {...props} />}} />
 			<FeedStack.Screen name="UserProfile" component={Profile} options={{header: props => <MeatBallHeader {...props} />, title: '프로필'}} />
-			<FeedStack.Screen name="SocialRelation" component={SocialRelation} />
-			<FeedStack.Screen name="UserFeedList" component={FeedList} />
+			<FeedStack.Screen
+				name="SocialRelation"
+				component={SocialRelationTopTabNavigation}
+				options={{header: props => <MeatBallHeader {...props} />, title: '프로필'}}
+			/>
+			<FeedStack.Screen name="UserFeedList" component={FeedList} options={{header: props => <MeatBallHeader {...props} />, title: '프로필'}} />
 			<FeedStack.Screen name="HashFeedList" component={FeedList} />
 			<FeedStack.Screen name="ProtectAnimalFeedList" component={FeedList} />
 			<FeedStack.Screen name="UserTagFeedList" component={FeedList} />
