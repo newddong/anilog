@@ -21,7 +21,7 @@ export default ApplyCompanionA = ({route}) => {
 	console.log('route.params', route);
 
 	const navigation = useNavigation();
-	navigation.setOptions({title: '입양신청'});
+
 	const isProtect = route.name == 'ApplyProtectActivityA'; //임시보호 신청여부 , false일 경우 자동으로 입양모드 전환
 	const [confirmed, setConfirmed] = React.useState(false);
 	const [addrSearched, setAddrSearched] = React.useState(false);
@@ -35,6 +35,7 @@ export default ApplyCompanionA = ({route}) => {
 			brief: '',
 			detail: '',
 		},
+
 		protect_act_phone_number: null,
 		protect_request_pet_data: null,
 	});
@@ -49,6 +50,7 @@ export default ApplyCompanionA = ({route}) => {
 	React.useEffect(() => {
 		// console.log('data', data);
 		data.protect_act_address != null && data.protect_act_phone_number != null ? setConfirmed(true) : setConfirmed(false);
+		navigation.setOptions({title: '입양신청'});
 	}, [data]);
 
 	React.useEffect(() => {
