@@ -15,7 +15,7 @@ import {login_style, btn_style, temp_style, progressbar_style, userPasswordCheck
 
 export default UserPasswordCheck = props => {
 	const [pwdValid, setPwdValid] = React.useState(false); // 비밀번호 양식 체크 (8자이상~~)
-
+	console.log('UserPasswordCheck', props);
 	const user_data = React.useRef({
 		...props.route.params,
 		user_password: '',

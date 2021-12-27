@@ -19,11 +19,16 @@ import {applyCompanionD, btn_style, login_style, temp_style} from './style_templ
 
 export default ApplyCompanionD = props => {
 	const navigation = useNavigation();
+	const isProtect = props.route.name == 'ApplyProtectActivityD';
+
 	const [temp, setTemp] = React.useState(''); //임시저장된 data
 	const [data, setData] = React.useState({
 		...props.route.params,
 		protect_act_motivation: null, //보호활동 신청동기
 	});
+	React.useEffect(() => {
+		isProtect ? navigation.setOptions({title: '임시보호 신청'}) : navigation.setOptions({title: '입양 신청'});
+	}, []);
 
 	React.useEffect(() => {
 		setData({...data, protect_act_motivation: temp});

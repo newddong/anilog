@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getUserInfoById, getUserProfile, updateUserIntroduction} from 'Root/api/userapi';
 // 필요한 데이터 - 로그인 유저 제반 데이터, 나의 반려동물 관련 데이터(CompanionObject 참조)
 export default UserInfoSetting = ({route}) => {
+	console.log('userInfoSetting', route);
 	const navigation = useNavigation();
 	const [data, setData] = React.useState({}); // 로그인 유저의 UserObject
 	const [modifyMode, setModifyMode] = React.useState(false);
@@ -28,6 +29,8 @@ export default UserInfoSetting = ({route}) => {
 				},
 				userObject => {
 					setData(userObject.msg);
+					navigation.setOptions({title: userObject.msg.user_nickname});
+
 					console.log('result / getUserProfile / UserInfoSetting', userObject.msg.user_introduction);
 				},
 				err => {
@@ -97,7 +100,7 @@ export default UserInfoSetting = ({route}) => {
 	};
 
 	return (
-		<View style={[login_style.wrp_main, {flex: 1}]}>
+		<View style={login_style.wrp_main}>
 			<ScrollView>
 				{/* step1 */}
 				<View style={[temp_style.userInfoSetting_step1]}>
