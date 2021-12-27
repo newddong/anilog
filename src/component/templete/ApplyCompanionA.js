@@ -18,8 +18,10 @@ import {applyCompanionA, btn_style, login_style, temp_style} from './style_templ
 // ShelterProtectAnimalObject - 유저가 클릭한 동물의 정보가 들어있는 테이블 [ 입양 및 임시보호 Data Write가 완료된 뒤 ApplyDetail에서 보여질 대상 동물 관련 Data]
 
 export default ApplyCompanionA = ({route}) => {
-	// console.log('route.params', route.params);
+	console.log('route.params', route);
+
 	const navigation = useNavigation();
+	navigation.setOptions({title: '입양신청'});
 	const isProtect = route.name == 'ApplyProtectActivityA'; //임시보호 신청여부 , false일 경우 자동으로 입양모드 전환
 	const [confirmed, setConfirmed] = React.useState(false);
 	const [addrSearched, setAddrSearched] = React.useState(false);

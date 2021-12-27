@@ -22,7 +22,7 @@ import {applyCompanionC, btn_style, login_style, temp_style} from './style_templ
 
 export default ApplyCompanionC = props => {
 	const navigation = useNavigation();
-
+	navigation.setOptions({title: '입양신청'});
 	const [data, setData] = React.useState({
 		...props.route.params,
 		protect_act_checklist: {

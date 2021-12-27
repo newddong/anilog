@@ -42,7 +42,6 @@ export default UserMenu = props => {
 	const navigation = useNavigation();
 	//-test for commit -
 	const [data, setData] = React.useState({}); //우선 userObject 0번 추가
-
 	//토큰에 로그인한 유저의 _id를 저장
 	React.useLayoutEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {

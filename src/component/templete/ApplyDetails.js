@@ -12,8 +12,10 @@ export default ApplyDetails = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params);
 	// console.log('', data.protect_act_motivation);
 	//모달창에서 최종 확인을 클릭
+	navigation.setOptions({title: '입양신청'});
 	const onFinalize = () => {
 		Modal.close();
+
 		createProtectActivity(
 			{
 				protect_request_object_id: data._id,

@@ -19,6 +19,7 @@ import {applyCompanionD, btn_style, login_style, temp_style} from './style_templ
 
 export default ApplyCompanionD = props => {
 	const navigation = useNavigation();
+	navigation.setOptions({title: '입양신청'});
 	const [temp, setTemp] = React.useState(''); //임시저장된 data
 	const [data, setData] = React.useState({
 		...props.route.params,

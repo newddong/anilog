@@ -16,7 +16,7 @@ import {applyCompanionB, login_style, temp_style, applyCompanionC, btn_style} fr
 
 export default ApplyCompanionC = props => {
 	const navigation = useNavigation();
-
+	navigation.setOptions({title: '입양신청'});
 	const [data, setData] = React.useState({
 		...props.route.params,
 		protect_act_companion_history: [],
