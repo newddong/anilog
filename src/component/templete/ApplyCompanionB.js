@@ -16,12 +16,12 @@ import {applyCompanionB, login_style, temp_style, applyCompanionC, btn_style} fr
 
 export default ApplyCompanionC = props => {
 	const navigation = useNavigation();
-	navigation.setOptions({title: '입양신청'});
+
 	const [data, setData] = React.useState({
 		...props.route.params,
 		protect_act_companion_history: [],
 	});
-
+	const isProtect = props.route.name == 'ApplyProtectActivityB';
 	const [isTempDataAdded, setIsTempDataAdded] = React.useState(false);
 	const [companionList, setCompanionList] = React.useState([]);
 	const [tempData, setTempData] = React.useState([]); //임시저장 정보가 들어갈 컨테이너
@@ -39,6 +39,7 @@ export default ApplyCompanionC = props => {
 			},
 			err => Modal.alert(err),
 		);
+		isProtect ? navigation.setOptions({title: '임시보호 신청'}) : navigation.setOptions({title: '입양 신청'});
 	}, []);
 
 	React.useEffect(() => {

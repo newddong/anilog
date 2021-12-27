@@ -22,7 +22,8 @@ import {applyCompanionC, btn_style, login_style, temp_style} from './style_templ
 
 export default ApplyCompanionC = props => {
 	const navigation = useNavigation();
-	navigation.setOptions({title: '입양신청'});
+	const isProtect = props.route.name == 'ApplyProtectActivityC';
+
 	const [data, setData] = React.useState({
 		...props.route.params,
 		protect_act_checklist: {
@@ -36,7 +37,9 @@ export default ApplyCompanionC = props => {
 
 	const [temp, setTemp] = React.useState(undefined);
 	const [checkList, setCheckList] = React.useState(applyComanionCheckList);
-
+	React.useEffect(() => {
+		isProtect ? navigation.setOptions({title: '임시보호 신청'}) : navigation.setOptions({title: '입양 신청'});
+	}, []);
 	//임시저장된 자료에 맞춰 각 CheckListItem에 대한 체크 상태 여부를 결정
 	React.useEffect(() => {
 		if (temp != undefined) {
