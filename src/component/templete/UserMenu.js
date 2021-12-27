@@ -24,6 +24,7 @@ import {
 	PROTECTION_REQUEST,
 	SETTING,
 	TAGED_CONTENTS_FOR_ME,
+	LOGOUT,
 } from 'Root/i18n/msg';
 import {btn_w280} from '../atom/btn/btn_style';
 import {FavoriteTag48_Filled, Paw48_APRI10, Setting46} from '../atom/icon';
@@ -35,6 +36,7 @@ import {login_style, temp_style, userMenu_style} from './style_templete';
 // import {getUserProfile} from 'Root/api/usermenuapi';
 import {getUserProfile} from 'Root/api/userapi';
 import Modal from '../modal/Modal';
+import {userLogout} from 'Root/api/userapi';
 
 export default UserMenu = props => {
 	const navigation = useNavigation();
@@ -84,6 +86,22 @@ export default UserMenu = props => {
 		navigation.push('UserInfoSetting', {token: data._id}); //userObject
 	};
 
+	//로그아웃 기능
+	const logout = () => {
+		userLogout(
+			1,
+			e => {
+				console.log('e', e);
+				AsyncStorage.clear();
+				alert('Logout 성공');
+				navigation.navigate('Login');
+			},
+			err => {
+				console.log('err', err);
+			},
+		);
+	};
+
 	//하단 메뉴 클릭
 	const menuClick = menuItem => {
 		switch (menuItem) {
@@ -122,6 +140,9 @@ export default UserMenu = props => {
 				break;
 			case '알림':
 				alert('업데이트 예정입니다');
+				break;
+			case '로그아웃':
+				logout();
 				break;
 		}
 		// navigation.push('me')
@@ -192,7 +213,7 @@ export default UserMenu = props => {
 						menuTitle={SETTING}
 						menuItems={[
 							[INFO_QUESTION, ACCOUNT],
-							[INFO, ''],
+							[INFO, LOGOUT],
 						]}
 						onClick={menuClick}
 						titleIcon={<Setting46 />}

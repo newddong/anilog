@@ -129,10 +129,10 @@ export default RootStackNavigation = () => {
 		!isPop && setPop(true);
 	};
 
-	Modal.alert = (msg)=>{
+	Modal.alert = msg => {
 		popIn(<OneBtnModal popUpMsg={msg} onOk={Modal.close} okMsg={'확인'} />);
 		!isPop && setPop(true);
-	}
+	};
 	// const openCalendar = () => {
 	// 	console.log('openCale')
 	// 	Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date))
@@ -143,7 +143,8 @@ export default RootStackNavigation = () => {
 		<SafeAreaView style={{flex: 1}}>
 			<NavigationContainer>
 				<RootStack.Navigator initialRouteName="Login">
-					<RootStack.Screen name="MainTab" component={MainTabNavigation} options={{header: props => <LogoutView {...props} />}} />
+					{/* <RootStack.Screen name="MainTab" component={MainTabNavigation} options={{header: props => <LogoutView {...props} />}} /> */}
+					<RootStack.Screen name="MainTab" component={MainTabNavigation} options={{headerShown: false}} />
 					<RootStack.Screen name="Login" component={LoginTemplete} options={{headerShown: false}} />
 					<RootStack.Screen name="Search" component={SearchTabNavigation} options={{header: props => <InputAndSearchHeader {...props} />}} />
 
