@@ -80,17 +80,21 @@ export const changeUserPassword = async params => {
 	}
 };
 
-export const nicknameDuplicationCheck = async (params, callback) => {
-	console.log('nicknameDuplicationCheck', params);
-	let result = await axios.post(serveruri + '/user/nicknameDuplicationCheck', {
-		user_nickname: params,
-	});
-	const {msg, status} = result.data;
-	if (status === 200) {
-		console.log('nicknameDup msg', msg);
-		callback(!msg);
-		return msg;
-	} else {
-		console.log('nicknameDuplicationCheck Network Error :' + JSON.stringify(msg));
-	}
-};
+// export const nicknameDuplicationCheck = async (params, callback) => {
+// 	console.log('nicknameDuplicationCheck', params);
+// 	let result = await axios.post(serveruri + '/user/nicknameDuplicationCheck', {
+// 		user_nickname: params,
+// 	});
+// 	const {msg, status} = result.data;
+// 	if (status === 200) {
+// 		console.log('nicknameDup msg', msg);
+// 		callback(!msg);
+// 		return msg;
+// 	} else {
+// 		console.log('nicknameDuplicationCheck Network Error :' + JSON.stringify(msg));
+// 	}
+// };
+
+export async function nicknameDuplicationCheck(params, callback, errcallback) {
+	apiController( '/user/nicknameDuplicationCheck', arguments);
+}
