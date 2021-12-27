@@ -128,7 +128,7 @@ export default FeedContent = props => {
 
 				{/* type값이 status일 경우 status 버튼이 나오고 그렇지 않으면 다른 버튼 표기 */}
 				{feed_type == 'feed' ? (
-					<>
+					<View style={{flexDirection:'row',alignItems:'center'}}>
 						<View style={[feedContent_style.status /*{width:130*DP,height:38*DP}*/]}>
 							{feed_is_protect_diary && (
 								<View
@@ -136,6 +136,7 @@ export default FeedContent = props => {
 										width: 130 * DP,
 										height: 38 * DP,
 										justifyContent: 'center',
+										alignSelf:'flex-end',
 										alignItems: 'center',
 										borderColor: MAINCOLOR,
 										borderRadius: 10 * DP,
@@ -149,7 +150,7 @@ export default FeedContent = props => {
 						<View style={[organism_style.meatball, feedContent_style.meatball]}>
 							<Meatball50_GRAY20_Horizontal onPress={onClickMeatball} />
 						</View>
-					</>
+					</View>
 				) : (
 					<View style={[organism_style.button_view_feedContent]}>
 						<View style={[organism_style.favoriteTag_view_feedContent]}>

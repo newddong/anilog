@@ -109,8 +109,6 @@ export async function nicknameDuplicationCheck(params, callback, errcallback) {
 // 	}
 // };
 
-<<<<<<< HEAD
-=======
 // export const changeUserPassword = async params => {
 // 	console.log('changePassword', params);
 // 	let result = await axios.post(serveruri + '/user/changeUserPassord', {
@@ -125,7 +123,6 @@ export async function nicknameDuplicationCheck(params, callback, errcallback) {
 // 	}
 // };
 
->>>>>>> 89b678d96a5234a3bdbb61bc5fdd20ba5603eb8d
 // export const nicknameDuplicationCheck = async (params, callback) => {
 // 	console.log('nicknameDuplicationCheck', params);
 // 	let result = await axios.post(serveruri + '/user/nicknameDuplicationCheck', {
@@ -140,10 +137,3 @@ export async function nicknameDuplicationCheck(params, callback, errcallback) {
 // 		console.log('nicknameDuplicationCheck Network Error :' + JSON.stringify(msg));
 // 	}
 // };
-<<<<<<< HEAD
-
-export async function nicknameDuplicationCheck(params, callback, errcallback) {
-	apiController( '/user/nicknameDuplicationCheck', arguments);
-}
-=======
->>>>>>> 89b678d96a5234a3bdbb61bc5fdd20ba5603eb8d
