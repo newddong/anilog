@@ -107,7 +107,23 @@ export default Profile = ({route, navigation}) => {
 	//보호소프로필의 보호활동 탭의 피드 썸네일 클릭
 	const onClickProtectAnimal = (status, user_id, item) => {
 		console.log('item', item);
-		navigation.push('AnimalProtectRequestDetail', {item: item, list: protectActList});
+		let sexValue = '';
+
+		switch (item.protect_animal_id?.protect_animal_sex || item.protect_animal_sex) {
+			case 'male':
+				sexValue = '남';
+				break;
+			case 'female':
+				sexValue = '여';
+				break;
+			case 'male':
+				sexValue = '성별모름';
+				break;
+		}
+		// navigation.push('AnimalProtectRequestDetail', {item: item, list: protectActList});
+		const titleValue = item.protect_animal_species + '/' + item.protect_animal_species_detail + '/' + sexValue;
+
+		navigation.navigate('AnimalProtectRequestDetail', {item: item, list: protectActList, title: titleValue});
 	};
 
 	//피드글작성 버튼 클릭(액션버튼)
@@ -181,21 +197,6 @@ export default Profile = ({route, navigation}) => {
 
 	//TabSelect 하단 AccountList
 	const showTabContent = () => {
-		//테스트데이터 지워도 됨
-		// let test;
-		// if (data.feedList?.length > 0) {
-		// 	console.log('th');
-		// 	test = Array.from({length: 50}, (v, i) => data?.feedList[i % data.feedList?.length]);
-		// } else {
-		// 	console.log('tt');
-		// 	test = Array.from({length: 50}, (v, i) => ({
-		// 		_id: i,
-		// 		checkBoxState: false,
-		// 		feed_thumbnail: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640337348438_9C72445F-0B25-47C0-8D5F-BC7BD1545EFF.jpg',
-		// 		feed_type: 'feed',
-		// 		feed_medias: [],
-		// 	}));
-		// }
 		const renderItem = (item, index) => {
 			if (index == 0) {
 				return (

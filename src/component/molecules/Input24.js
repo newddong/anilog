@@ -106,7 +106,14 @@ const Input24 = React.forwardRef((props, ref) => {
 				</View>
 			)}
 			{/* 하단테두리 2px이 있기 때문에 inputValue와 82px가 차이가 나도 -2한 80값을 height로 줌 */}
-			<View style={{height: 80 * DP, borderBottomWidth: 2 * DP, borderBottomColor: setBorderColor(), flexDirection: 'row', alignItems: 'center'}}>
+			<View
+				style={{
+					height: 80 * DP,
+					borderBottomWidth: 2 * DP,
+					borderBottomColor: setBorderColor(),
+					flexDirection: 'row',
+					alignItems: 'center',
+				}}>
 				<TextInput
 					ref={inputRef}
 					onChangeText={onChange}
@@ -123,6 +130,7 @@ const Input24 = React.forwardRef((props, ref) => {
 						txt.noto28,
 						props.style,
 						{
+							// width: props.width * DP,
 							paddingLeft: 24 * DP,
 							height: '100%', //ios에서 안드로이드와 동작 일치시키기 위함
 							lineHeight: 44 * DP,

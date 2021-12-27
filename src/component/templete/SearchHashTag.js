@@ -7,20 +7,19 @@ import HashTagList from '../organism_ksw/HashTagList';
 import {login_style, searchHashTag, temp_style} from './style_templete';
 
 export default SearchHashTag = props => {
-	// console.log('props.Search', props.input);
-	const [tagList, setTagList] = React.useState(dummy_hashTagListObject);
+	const [tagList, setTagList] = React.useState([]);
 	const searched_tagList = tagList; //검색 후 받아올 데이터 더미
 	return (
 		<View style={[login_style.wrp_main, searchHashTag.container]}>
 			<ScrollView style={{flex: 1}}>
 				{/* 검색내역이 없을 경우 최근 검색한 태그를 출력 */}
-				{props.input == null || props.input == undefined ? (
+				{tagList.length == 0 ? (
 					<View>
 						<View style={[temp_style.controllableHashTagList]}>
 							<Text style={[txt.noto24, {color: GRAY20}]}>최근 검색한 태그</Text>
 						</View>
 						<View style={[temp_style.hashTagList]}>
-							<HashTagList items={tagList} />
+							<HashTagList items={dummy_hashTagListObject} />
 						</View>
 					</View>
 				) : (

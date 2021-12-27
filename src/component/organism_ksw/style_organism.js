@@ -375,11 +375,6 @@ export const profileMenu = StyleSheet.create({
 		height: 76 * DP,
 		// backgroundColor: 'pink',
 	},
-	item_step2: {
-		flexDirection: 'row',
-		height: 76 * DP,
-		backgroundColor: 'yellow',
-	},
 	item: {
 		width: 310 * DP,
 		height: 48 * DP,
@@ -388,9 +383,11 @@ export const profileMenu = StyleSheet.create({
 		alignSelf: 'center',
 	},
 	item_text: {
-		width: 220 * DP,
-		height: 36 * DP,
+		width: 210 * DP,
+		height: 50 * DP,
 		marginRight: 52 * DP,
+		justifyContent: 'center',
+		// backgroundColor: 'yellow',
 		alignSelf: 'center',
 	},
 	item_bracket: {

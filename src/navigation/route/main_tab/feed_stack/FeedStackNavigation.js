@@ -30,7 +30,11 @@ export default FeedStackNavigation = () => {
 			<FeedStack.Screen name="HashFeedList" component={FeedList} />
 			<FeedStack.Screen name="ProtectAnimalFeedList" component={FeedList} />
 			<FeedStack.Screen name="UserTagFeedList" component={FeedList} />
-			<FeedStack.Screen name="AnimalProtectRequestDetail" component={AnimalProtectRequestDetail} />
+			<FeedStack.Screen
+				name="AnimalProtectRequestDetail"
+				component={AnimalProtectRequestDetail}
+				options={{header: props => <SimpleHeader {...props} />}}
+			/>
 			<FeedStack.Screen
 				name="FeedCommentList"
 				component={FeedCommentList}

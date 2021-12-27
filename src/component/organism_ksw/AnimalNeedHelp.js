@@ -28,7 +28,6 @@ import {useNavigation} from '@react-navigation/core';
 export default AnimalNeedHelp = props => {
 	const navigation = useNavigation();
 	const data = props.data;
-	console.log('datadd'.data);
 	// console.log('AnimalNeedHelp: -------------- ', JSON.stringify(data));
 	const [selected, setSelected] = React.useState(false);
 	const [favorite, setFavorite] = React.useState(false);

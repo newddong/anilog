@@ -14,6 +14,7 @@ export default TopTabNavigation_Border_Type2 = props => {
 				onSelect={pressedNum => props.onSelect(pressedNum)}
 				select={props.select}
 				fontSize={props.fontSize}
+				value={props.value}
 			/>
 		</View>
 	);

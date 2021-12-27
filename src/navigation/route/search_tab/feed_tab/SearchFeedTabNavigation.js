@@ -7,16 +7,22 @@ import SearchHashTag from 'Templete/SearchHashTag';
 import ConfirmInputHeader from 'Root/navigation/header/ConfirmInputHeader';
 import TopTabNavigation_Border from 'Root/component/organism_ksw/TopTabNavigation_Border';
 import TopTabNavigation_Border_Type2 from 'Root/component/organism_ksw/TopTabNavigation_Border_Type2';
+import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
 const SearchFeedTabNav = createMaterialTopTabNavigator();
 
 export default SearchFeedTabNavigation = props => {
-	const [searchInput, setSearchInput] = React.useState();
-	const prev = props.prevNav;
+	const [searchInput, setSearchInput] = React.useState(); // 검색어 관련 State
+	const [currentScreen, setCurrentScreen] = React.useState(0); //현재 보고 있는 화면 State
+	const routeName = getFocusedRouteNameFromRoute(props.route);
+	React.useEffect(() => {
+		if (routeName == navName[0]) setCurrentScreen(0);
+		else if (routeName == navName[1]) setCurrentScreen(1);
+		else if (routeName == navName[2]) setCurrentScreen(2);
+	}, [routeName]);
 
 	React.useEffect(() => {
 		//SearchHeader에서 작성한 검색어와 검색클릭이 행해지면 SearchInput에 값이 들어감
-		console.log('props.input / FeedTabNavi', props.input);
 		setSearchInput(props.input);
 	}, [props.input]);
 
@@ -27,6 +33,7 @@ export default SearchFeedTabNavigation = props => {
 		<SearchFeedTabNav.Navigator
 			initialRouteName={navName[props.defaultIndex]}
 			tabBar={({state, descriptors, navigation, position}) => {
+				// console.log('navigation', navigation);
 				const onSelectTab = pressedTab => {
 					// console.log('press', state.routes[pressedTab].name);
 					navigation.navigate({
@@ -41,6 +48,7 @@ export default SearchFeedTabNavigation = props => {
 						onSelect={onSelectTab} // 현재 클릭된 상태인 tab (pressedTab에는 클릭된 index가 담겨져있음)
 						select={props.defaultIndex || 0} // gesture Handler(손가락으로 swipe)로 tab을 움직였을 시 자식까지 state를 연동시키기 위한 props
 						fontSize={24}
+						value={currentScreen}
 					/>
 				);
 			}}>
@@ -48,7 +56,7 @@ export default SearchFeedTabNavigation = props => {
 			<SearchFeedTabNav.Screen name="SearchFeed">{props => <SearchFeed {...props} input={searchInput} />}</SearchFeedTabNav.Screen>
 			{/* 계정 */}
 			<SearchFeedTabNav.Screen name="SearchAccountA">
-				{props => <SearchAccountA {...props} prevNav={prev} input={searchInput} />}
+				{props => <SearchAccountA {...props} prevNav={props.prev} input={searchInput} />}
 			</SearchFeedTabNav.Screen>
 			{/* 태그 */}
 			<SearchFeedTabNav.Screen name="SearchHashTag">{props => <SearchHashTag {...props} input={searchInput} />}</SearchFeedTabNav.Screen>

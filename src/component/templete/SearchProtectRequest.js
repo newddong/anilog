@@ -3,9 +3,8 @@ import {ScrollView, Text, View} from 'react-native';
 import {getProtectRequestList, getProtectRequestListByShelterId} from 'Root/api/shelterapi';
 import {getPettypes} from 'Root/api/userapi';
 import {GRAY10, GRAY20} from 'Root/config/color';
-import {dummy_AnimalNeedHelpList, dummy_AnimalNeedHelpList_various_status} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
-import {PET_KIND, PET_PROTECT_LOCATION} from 'Root/i18n/msg';
+import {PET_PROTECT_LOCATION} from 'Root/i18n/msg';
 import FilterButton from '../molecules/FilterButton';
 import OnOffSwitch from '../molecules/OnOffSwitch';
 import AnimalNeedHelpList from '../organism_ksw/AnimalNeedHelpList';
@@ -88,7 +87,21 @@ export default SearchProtectRequest = ({route, navigation}) => {
 			},
 			result => {
 				console.log('result / getPRotectRequestListByShelterId / ProtectRequestList  : ', result.msg);
-				navigation.navigate('AnimalProtectRequestDetail', {item: item, list: result.msg});
+				let sexValue = '';
+
+				switch (item.protect_animal_sex) {
+					case 'male':
+						sexValue = '남';
+						break;
+					case 'female':
+						sexValue = '여';
+						break;
+					case 'male':
+						sexValue = '성별모름';
+						break;
+				}
+				const titleValue = item.protect_animal_species + '/' + item.protect_animal_species_detail + '/' + sexValue;
+				navigation.navigate('AnimalProtectRequestDetail', {item: item, list: result.msg, title: titleValue});
 			},
 			err => {
 				console.log('err / getProtectRequestListByShelterId / ProtectRequestList   : ', err);

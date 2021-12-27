@@ -45,9 +45,15 @@ export default ProtectRequestList = ({navigation, route}) => {
 					if (filterData.adoptable_posts) {
 						filtered = data.msg.filter(e => e.protect_request_status != 'complete');
 						setData(filtered);
+						setTimeout(() => {
+							setLoading(false);
+						}, 1500);
 						// console.log('length', filtered.length);
 					} else {
 						setData(data.msg);
+						setTimeout(() => {
+							setLoading(false);
+						}, 1500);
 					}
 				},
 				err => {
@@ -55,6 +61,9 @@ export default ProtectRequestList = ({navigation, route}) => {
 					if (err == '검색 결과가 없습니다.') {
 						setData([]);
 					}
+					setTimeout(() => {
+						setLoading(false);
+					}, 1500);
 				},
 			);
 		};
@@ -140,38 +149,46 @@ export default ProtectRequestList = ({navigation, route}) => {
 		);
 	};
 
-	return (
-		<View style={[login_style.wrp_main, {flex: 1}]}>
-			<ScrollView style={{flex: 1}}>
-				<View style={[searchProtectRequest.filterView]}>
-					<View style={[searchProtectRequest.filterView.inside]}>
-						<View style={{flexDirection: 'row'}}>
-							<View style={[temp_style.filterBtn]}>
-								<FilterButton menu={PET_PROTECT_LOCATION} onSelect={onSelectLocation} width={306} height={700} />
+	if (loading) {
+		return (
+			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
+				<ActivityIndicator size={'large'}></ActivityIndicator>
+			</View>
+		);
+	} else {
+		return (
+			<View style={[login_style.wrp_main, {flex: 1}]}>
+				<ScrollView style={{flex: 1}}>
+					<View style={[searchProtectRequest.filterView]}>
+						<View style={[searchProtectRequest.filterView.inside]}>
+							<View style={{flexDirection: 'row'}}>
+								<View style={[temp_style.filterBtn]}>
+									<FilterButton menu={PET_PROTECT_LOCATION} onSelect={onSelectLocation} width={306} height={700} />
+								</View>
+								<View style={[temp_style.filterBtn]}>
+									<FilterButton menu={petTypes} onSelect={onSelectKind} width={306} />
+								</View>
 							</View>
-							<View style={[temp_style.filterBtn]}>
-								<FilterButton menu={petTypes} onSelect={onSelectKind} width={306} />
-							</View>
-						</View>
-						{/* 입양 가능한 게시물만 보기 */}
-						<View style={[searchProtectRequest.filterView.onOffBtnView]}>
-							<View style={[searchProtectRequest.filterView.onOffBtnMsg]}>
-								<Text style={[txt.noto20, {color: GRAY10}]}>{ONLY_CONTENT_FOR_ADOPTION}</Text>
-							</View>
-							<View style={[temp_style.onOffSwitch, searchProtectRequest.filterView.onOffSwitch]}>
-								<OnOffSwitch onSwtichOn={filterOn} onSwtichOff={filterOff} />
+							{/* 입양 가능한 게시물만 보기 */}
+							<View style={[searchProtectRequest.filterView.onOffBtnView]}>
+								<View style={[searchProtectRequest.filterView.onOffBtnMsg]}>
+									<Text style={[txt.noto20, {color: GRAY10}]}>{ONLY_CONTENT_FOR_ADOPTION}</Text>
+								</View>
+								<View style={[temp_style.onOffSwitch, searchProtectRequest.filterView.onOffSwitch]}>
+									<OnOffSwitch onSwtichOn={filterOn} onSwtichOff={filterOff} />
+								</View>
 							</View>
 						</View>
 					</View>
-				</View>
-				<View style={[searchProtectRequest.animalNeedHelpList]}>
-					{/* <AnimalNeedHelpList data={data} onClickLabel={onClickLabel} onFavoriteTag={onOff_FavoriteTag} /> */}
-					{/* <ActivityIndicator  */}
-					<AnimalNeedHelpList data={data} onClickLabel={onClickLabel} onFavoriteTag={onOff_FavoriteTag} whenEmpty={whenEmpty()} />
-				</View>
-			</ScrollView>
-		</View>
-	);
+					<View style={[searchProtectRequest.animalNeedHelpList]}>
+						{/* <AnimalNeedHelpList data={data} onClickLabel={onClickLabel} onFavoriteTag={onOff_FavoriteTag} /> */}
+						{/* <ActivityIndicator  */}
+						<AnimalNeedHelpList data={data} onClickLabel={onClickLabel} onFavoriteTag={onOff_FavoriteTag} whenEmpty={whenEmpty()} />
+					</View>
+				</ScrollView>
+			</View>
+		);
+	}
 };
 
 ProtectRequestList.defaultProps = {};

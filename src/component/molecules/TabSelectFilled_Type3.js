@@ -14,12 +14,15 @@ import TabSelectBorder_Type3 from './TabSelectBorder_Type3';
  */
 const TabSelectFilled_Type3 = props => {
 	const [selected, setSelected] = React.useState(props.defaultIndex ? props.defaultIndex : 0);
-
 	//선택된 Tab의 State를 True로 이외의 Tab은 False로
 	const onSelect = index => {
 		setSelected(index);
 		props.onSelect(index);
 	};
+
+	React.useEffect(() => {
+		setSelected(props.value);
+	}, [props.value]);
 
 	const renderItem = ({item, index}) => {
 		return (

@@ -8,13 +8,12 @@ import {login_style, searchAccountA} from './style_templete';
 import {getUserListByNickname} from 'Root/api/userapi';
 
 export default SearchAccountA = props => {
-	console.log('SearchAccountA', props.input);
+	// console.log('SearchAccountA', props.input);
 	const navigation = useNavigation();
 	//검색이벤트 발생 시 props.input의 값이 바뀌고 검색을 실시
 	const [searchedList, setSearchedList] = React.useState([]);
 
 	React.useEffect(() => {
-		console.log('props.input 반응 확인', props.input);
 		if (props.input != null) {
 			// const inputData = props.input.searchIn
 			//검색 로직에 대해선 아직 미구현이므로 닉네임과 검색Input이 정확히 일치하는 Account Array를 userList로 반환

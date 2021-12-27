@@ -129,7 +129,7 @@ export default LoginTemplete = props => {
 				</View>
 				<View style={[loginTemplete_style.pwdInput]}>
 					<PasswordInput
-						placeholder={'비밀번호를 작성해주세요'}
+						placeholder={'암호를 작성해주세요'}
 						width={520}
 						validator={passwordValidator}
 						onChange={onChangePassword}

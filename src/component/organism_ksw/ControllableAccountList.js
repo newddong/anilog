@@ -5,6 +5,7 @@ import {txt} from 'Root/config/textstyle';
 import ControllableAccount from './ControllableAccount';
 import {dummy_userObject} from '../../config/dummyDate_json';
 import {controllableAccountList} from './style_organism';
+import ListEmptyInfo from '../molecules/ListEmptyInfo';
 
 /**
  *
@@ -63,7 +64,12 @@ export default ControllableAccountList = props => {
 						</View>
 					)}
 					<View style={{alignItems: 'center'}}>
-						<FlatList data={props.items} scrollEnabled={false} renderItem={({item, index}) => renderItem(item, index)} />
+						<FlatList
+							data={props.items}
+							scrollEnabled={false}
+							renderItem={({item, index}) => renderItem(item, index)}
+							ListEmptyComponent={<ListEmptyInfo text={'목록이 없습니다.'} />}
+						/>
 					</View>
 				</View>
 			</ScrollView>

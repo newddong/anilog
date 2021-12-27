@@ -16,10 +16,13 @@ import {APRI10, GRAY20, GRAY30} from 'Root/config/color';
  */
 const TabSelectBorder_Type2 = props => {
 	const [selected, setSelected] = React.useState(props.defaultIndex ? props.defaultIndex : 0);
-
 	React.useEffect(() => {
 		setSelected(props.select);
 	}, [props.select]);
+
+	React.useEffect(() => {
+		setSelected(props.value);
+	}, [props.value]);
 
 	//선택된 Tab의 State를 True로 이외의 Tab은 False로
 	const onSelect = index => {

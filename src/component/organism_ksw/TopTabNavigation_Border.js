@@ -7,7 +7,7 @@ import TabSelectBorder_Type3 from '../molecules/TabSelectBorder_Type3';
 
 export default TopTabNavigation_Border = props => {
 	return (
-		<View style={{borderTopColor: APRI10, borderTopWidth: 2 * DP, backgroundColor: 'white'}}>
+		<View style={{borderTopColor: APRI10, backgroundColor: 'white'}}>
 			<TabSelectBorder_Type3
 				items={props.items}
 				onSelect={pressedNum => props.onSelect(pressedNum)}
