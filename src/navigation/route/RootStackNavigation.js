@@ -61,6 +61,7 @@ import Modal from 'Component/modal/Modal';
 import Calendar from 'Root/test_sangwoo/calendar';
 import InputAndSearchHeader from '../header/InputAndSearchHeader';
 import LogoutView from 'Root/test_sangwoo/LogoutView';
+import RequestLogin from 'Root/component/templete/RequestLogin';
 // import Camera from 'Root/component/templete/Camera';
 const RootStack = createStackNavigator();
 
@@ -267,6 +268,7 @@ export default RootStackNavigation = () => {
 						component={AddressSearch}
 						options={{header: props => <SimpleHeader {...props} />, title: '주소 검색'}}
 					/>
+					<RootStack.Screen name="RequestLogin" component={RequestLogin} />
 				</RootStack.Navigator>
 			</NavigationContainer>
 

@@ -5,11 +5,11 @@ import {socialInfoA} from './style_organism';
 import {useNavigation} from '@react-navigation/core';
 
 export default SocialInfoA = props => {
-	// console.log('SocialInfo', ViewPropTypes);
+	// console.log('SocialInfo', props);
 	const navigation = useNavigation();
 
 	const moveToSocialRelation = () => {
-		navigation.push('SocialRelation');
+		navigation.push('SocialRelation', {userobject: props.data});
 	};
 
 	const count_to_K = cnt => {
@@ -28,19 +28,19 @@ export default SocialInfoA = props => {
 		<View style={[socialInfoA.container]}>
 			<TouchableWithoutFeedback onPress={moveToSocialRelation}>
 				<View style={[socialInfoA.socialInfo]}>
-					<Text style={[txt.roboto30b, socialInfoA.number]}>{count_to_K(props.upload_count)}</Text>
+					<Text style={[txt.roboto30b, socialInfoA.number]}>{count_to_K(props.data.user_upload_count)}</Text>
 					<Text style={[txt.noto24, socialInfoA.title]}>업로드</Text>
 				</View>
 			</TouchableWithoutFeedback>
 			<TouchableWithoutFeedback onPress={moveToSocialRelation}>
 				<View style={[socialInfoA.socialInfo]}>
-					<Text style={[txt.roboto30b, socialInfoA.number]}>{count_to_K(props.follower_count)}</Text>
+					<Text style={[txt.roboto30b, socialInfoA.number]}>{count_to_K(props.data.user_follower_count)}</Text>
 					<Text style={[txt.noto24, socialInfoA.title]}>팔로워</Text>
 				</View>
 			</TouchableWithoutFeedback>
 			<TouchableWithoutFeedback onPress={moveToSocialRelation}>
 				<View style={[socialInfoA.socialInfo]}>
-					<Text style={[txt.roboto30b, socialInfoA.number]}>{count_to_K(props.follow_count)}</Text>
+					<Text style={[txt.roboto30b, socialInfoA.number]}>{count_to_K(props.data.user_follow_count)}</Text>
 					<Text style={[txt.noto24, socialInfoA.title]}>팔로잉</Text>
 				</View>
 			</TouchableWithoutFeedback>

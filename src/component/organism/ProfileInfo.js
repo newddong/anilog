@@ -117,11 +117,7 @@ export default ProfileInfo = props => {
 					<ProfileImageLarge160 data={props.data} />
 				</View>
 				<View style={[organism_style.socialInfo_profileInfo, profileInfo_style.socialInfo]}>
-					<SocialInfoA
-						upload_count={profile_data.user_upload_count}
-						follow_count={profile_data.user_follow_count}
-						follower_count={profile_data.user_follower_count}
-					/>
+					<SocialInfoA data={profile_data} />
 				</View>
 			</View>
 

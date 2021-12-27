@@ -13,6 +13,7 @@ import {dummy_userObject} from 'Root/config/dummyDate_json';
 import {getUserInfoById} from 'Root/api/userapi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from '../modal/Modal';
+import Input24 from '../molecules/Input24';
 export default UserInfoDetailSettting = ({route, navigation}) => {
 	// console.log('UserInfoDetailSetting route.params : ', route.params);
 	// console.log('UserInfoDetailSetting route.params : ', route.params.data.user_interests);
@@ -23,7 +24,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	// 갱신되는 데이터는 Header에도 Json형태로 전해짐
 	React.useEffect(() => {
 		navigation.setParams({data: data, route_name: route.name});
-		console.log('user_mobile_company', data.user_mobile_company);
+		// console.log('user_mobile_company', data.user_mobile_company);
 	}, [data]);
 
 	React.useEffect(() => {
@@ -83,12 +84,21 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	};
 
 	const onChangePhoneNum = num => {
-		console.log('splited', num.split(' '));
-		let phone_number = num.slice(-11); //num의 인자값이 통신사와 같이 넘어와서 처리
-		let phone_company = num.slice(0, -11); //통신사 처리
-		console.log('전화 번호값', num.slice(-11, num.length));
-		setData({...data, user_phone_number: phone_number});
-		setData({...data, user_mobile_company: phone_company});
+		// console.log('splited', num.split(' '));
+		// let phone_number = num.slice(-11); //num의 인자값이 통신사와 같이 넘어와서 처리
+		// let phone_company = num.slice(0, -11); //통신사 처리
+		// console.log('전화 번호값', num.slice(-11, num.length));
+		setData({...data, user_phone_number: num});
+		// setData({...data, user_mobile_company: phone_company});
+	};
+
+	const phoneValidate = num => {
+		console.log('num', num);
+		let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+		if (regPhone.test(num) === true) {
+			console.log('입력된 값은 휴대전화번호입니다.');
+		}
+		return regPhone.test(num);
 	};
 
 	//관심지역 태그 X마크 삭제클릭
@@ -124,8 +134,8 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	};
 	if (loaded) {
 		return (
-			<ScrollView>
-				<View style={[login_style.wrp_main, {flex: 1}]}>
+			<View style={[login_style.wrp_main, {flex: 1}]}>
+				<ScrollView contentContainerStyle={{flex: 1}}>
 					<View style={[temp_style.inputForm_userInfoDetailSettting, userInfoDetailSettting_style.inputForm]}>
 						{/* 성별 */}
 						<View style={[userInfoDetailSettting_style.inputForm_detail]}>
@@ -155,8 +165,18 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 							<View style={[temp_style.text_userInfoDetailSettting, userInfoDetailSettting_style.text]}>
 								<Text style={[txt.noto28, {color: GRAY10}]}>전화번호</Text>
 							</View>
-							<View style={[userInfoDetailSettting_style.phone_num_input]}>
-								<InputWithSelect
+							<View style={[userInfoDetailSettting_style.phone_num_input, {}]}>
+								<Input24
+									value={data.user_phone_number}
+									width={654}
+									onChange={onChangePhoneNum}
+									descriptionType={'none'}
+									validator={phoneValidate}
+									placeholder={'연락처를 입력해주세요.'}
+									showCrossMark={false}
+									keyboardType={'number-pad'}
+								/>
+								{/* <InputWithSelect
 									onChange={onChangePhoneNum}
 									onSelectDropDown={onSelectMobileCompany}
 									items={mobile_carrier}
@@ -165,7 +185,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 									defaultValue={data.user_phone_number || ''}
 									defaultIndex={getDefault()}
 									defaultInput={data.user_phone_number || ''}
-								/>
+								/> */}
 							</View>
 						</View>
 						{/* 나의 지역 */}
@@ -194,8 +214,8 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 							</View>
 						</View>
 					</View>
-				</View>
-			</ScrollView>
+				</ScrollView>
+			</View>
 		);
 	} else {
 		return <View></View>;

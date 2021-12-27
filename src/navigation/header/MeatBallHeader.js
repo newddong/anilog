@@ -15,7 +15,7 @@ import {btn_w280} from 'Root/component/atom/btn/btn_style';
  * @param {(value:object, index:number)=>void} props.onSelect - 버튼을 눌렸을때 동작하는 콜백, 제목 반환환
  */
 export default MeatBallHeader = props => {
-	console.log('props.options', props);
+	// console.log('props.options', props);
 	return (
 		<View style={[style.headerContainer, style.shadow]}>
 			<TouchableOpacity onPress={props.navigation.goBack}>

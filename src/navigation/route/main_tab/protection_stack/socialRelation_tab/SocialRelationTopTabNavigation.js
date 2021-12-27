@@ -4,12 +4,33 @@ import TopTabNavigation_Border from 'Root/component/organism_ksw/TopTabNavigatio
 import LinkedAccountList from 'Root/component/templete/LinkedAccountList';
 import FollowerList from 'Root/component/templete/FollowerList';
 import RecommendedAccountList from 'Root/component/templete/RecommendedAccountList';
+import {getFocusedRouteNameFromRoute} from '@react-navigation/core';
 
 const SocialRelationTab = createMaterialTopTabNavigator();
 
-export default SocialRelationTopTabNavigation = () => {
+export default SocialRelationTopTabNavigation = ({route, navigation}) => {
+	const [data, setData] = React.useState({});
+	const [currentScreen, setCurrentScreen] = React.useState(0); //현재 보고 있는 화면 State
+	const routeName = getFocusedRouteNameFromRoute(route); ////현재 보고 있는 화면 얻어오는 라이브러리
+
+	//헤더 타이틀 설정 작업 및 유저 오브젝트 할당
+	React.useEffect(() => {
+		navigation.setOptions({title: route.params.userobject.user_nickname});
+		setData(route.params.userobject);
+	}, [route.params?.userobject]);
+
+	const navName = ['LinkedAccountList', 'FollowerList', 'FollowingList', 'RecommendedAccountList']; //Top 탭 스크린 name
+	const tabBarItems = [1032 + ' 함께 아는 사람', data.user_follower_count + ' 팔로워', data.user_follow_count + ' 팔로잉', '추천']; //커스텀 TabBar의 각 라벨들
+
+	//현재 보고있는 스크린이 바뀜에 따라 TopTab도 변경
+	React.useEffect(() => {
+		const index = navName.findIndex(e => e == routeName);
+		index == -1 ? setCurrentScreen(0) : setCurrentScreen(index);
+	}, [routeName]);
+
 	return (
 		<SocialRelationTab.Navigator
+			initialRouteName={'LinkedAccountList'}
 			tabBar={({state, descriptors, navigation, position}) => {
 				const onSelectTab = pressedTab => {
 					navigation.navigate({
@@ -18,22 +39,14 @@ export default SocialRelationTopTabNavigation = () => {
 						merge: true,
 					});
 				};
-				const number_of_accounts_followed_together = 1032; // 함께아는사람 숫자,  현재 더미데이타
-				const number_of_follower = 623; // 해당 계정의 팔로워 숫자,  현재 더미데이타
-				const number_of_following = 1029; // 해당 계정의 팔로윙 숫자,  현재 더미데이타
-				const tabBarItems = [
-					number_of_accounts_followed_together + ' 함께 아는 사람',
-					number_of_follower + ' 팔로워',
-					number_of_following + ' 팔로잉',
-					'추천',
-				];
 
 				return (
 					<TopTabNavigation_Border
 						items={tabBarItems} //Tab에 출력될 Label 배열
-						onSelect={pressedTab => onSelectTab(pressedTab)} // 현재 클릭된 상태인 tab (pressedTab에는 클릭된 index가 담겨져있음)
+						onSelect={onSelectTab} // 현재 클릭된 상태인 tab (pressedTab에는 클릭된 index가 담겨져있음)
 						select={state.index} // gesture Handler(손가락으로 swipe)로 tab을 움직였을 시 자식까지 state를 연동시키기 위한 props
 						fontSize={24}
+						value={currentScreen} //TopTab의 현재 선택 Value(가변)
 					/>
 				);
 			}}>

@@ -1626,7 +1626,7 @@ export const userInfoDetailSettting_style = StyleSheet.create({
 	},
 	phone_num_input: {
 		width: 520 * DP,
-		bottom: 20 * DP,
+		bottom: 0 * DP,
 		// height: 82 * DP,
 		// backgroundColor: '#EDEDED',
 	},
@@ -1948,9 +1948,7 @@ export const requestLogin_style = StyleSheet.create({
 	btn_w522: {
 		marginTop: 24 * DP,
 	},
-	social_info: {
-		marginTop: 70 * DP,
-	},
+	social_info: {},
 });
 
 export const temp_txt = StyleSheet.create({

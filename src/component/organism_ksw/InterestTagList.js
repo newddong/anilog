@@ -17,7 +17,7 @@ import {INTEREST_REGION} from 'Root/i18n/msg';
  * }} props
  */
 export default InterestTagList = props => {
-	console.log('InterstTagList props', props);
+	// console.log('InterstTagList props', props);
 	const navigation = useNavigation();
 	const onDelete = index => {
 		props.onDelete(index);

@@ -12,11 +12,12 @@ import {APRI10, GRAY20, GRAY30} from 'Root/config/color';
  * @param {(index:number)=>void} props.onSelect - 탭 클릭할 때 동작하는 콜백, 선택한 탭의 인덱스 반환
  */
 const TabSelectBorder_Type3 = props => {
-	const [selected, setSelected] = React.useState(props.defaultIndex ? props.defaultIndex : 0);
+	const [selected, setSelected] = React.useState(props.defaultIndex || 0);
 
 	React.useEffect(() => {
 		setSelected(props.value);
 	}, [props.value]);
+
 	//선택된 Tab의 State를 True로 이외의 Tab은 False로
 	const onSelect = index => {
 		setSelected(index);

@@ -52,11 +52,18 @@ import SocialRelationTopTabNavigation from '../protection_stack/socialRelation_t
 import SendHeader from 'Root/navigation/header/SendHeader';
 import SimpleHeader from 'Root/navigation/header/SimpleHeader';
 import LogoHeader from 'Root/navigation/header/LogoHeader';
+import InputAndSearchHeader from 'Root/navigation/header/InputAndSearchHeader';
 
 const MyStack = createStackNavigator();
 
 export default MyStackNavigation = props => {
 	// console.log('MyStack', props.user_type);
+	const [searchInput, setSearchInput] = React.useState();
+
+	React.useEffect(() => {
+		setSearchInput(props.route.params);
+	}, [props.route.params]);
+
 	return (
 		<MyStack.Navigator initialRouteName={props.user_type == 'shelter' ? 'ShelterMenu' : 'UserMenu'}>
 			{/* // <MyStack.Navigator initialRouteName={'ShelterMenu'}> */}
@@ -121,7 +128,10 @@ export default MyStackNavigation = props => {
 				options={{header: props => <SimpleHeader {...props} />, title: '가족 계정 추가'}}
 			/>
 			<MyStack.Screen name="AnimalAdoption" component={AnimalAdoption} options={{header: props => <SimpleHeader {...props} />, title: '상태 변경'}} />
-			<MyStack.Screen name="SelectAccount" component={SelectAccount} options={{header: props => <ConfirmInputHeader {...props} />}} />
+			<MyStack.Screen name="SelectAccount" options={{header: props => <InputAndSearchHeader {...props} />, title: ''}}>
+				{props => <SelectAccount {...props} input={searchInput} prevNav={props.route.params.prevNav} />}
+			</MyStack.Screen>
+			{/* <MyStack.Screen name="SelectAccount" component={SelectAccount} options={{header: props => <InputAndSearchHeader {...props} />}} /> */}
 			<MyStack.Screen
 				name="AssignPetProfileImage"
 				component={AssignPetProfileImage}

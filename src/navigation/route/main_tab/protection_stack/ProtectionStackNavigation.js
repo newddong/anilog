@@ -8,8 +8,6 @@ import FeedCommentList from 'Templete/FeedCommentList';
 import MissingAnimalDetail from 'Templete/MissingAnimalDetail';
 import ReportDetail from 'Templete/ReportDetail';
 import ActivationDetail from 'Templete/ActivationDetail';
-
-import {PIC_SELECTION} from 'Root/i18n/msg';
 import SocialRelationTopTabNavigation from './socialRelation_tab/SocialRelationTopTabNavigation';
 import ProtectionTopTabNavigation from './protection_tab/ProtectionTopTabNavigation';
 
@@ -19,8 +17,7 @@ export default ProtectionStackNavigation = () => {
 	return (
 		<ProtectionStack.Navigator initialRouteName="ProtectionTab">
 			<ProtectionStack.Screen name="ProtectionTab" component={ProtectionTopTabNavigation} options={{header: props => <LogoHeader {...props} />}} />
-
-			<ProtectionStack.Screen name="UserProfile" component={Profile} />
+			<ProtectionStack.Screen name="UserProfile" component={Profile} options={{header: props => <MeatBallHeader {...props} />, title: '프로필'}} />
 			<ProtectionStack.Screen name="SocialRelationTopTab" component={SocialRelationTopTabNavigation} />
 			<ProtectionStack.Screen name="UserFeedList" component={FeedList} />
 			<ProtectionStack.Screen name="HashFeedList" component={FeedList} />

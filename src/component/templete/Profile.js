@@ -24,7 +24,7 @@ export default Profile = ({route, navigation}) => {
 	const [showCompanion, setShowCompanion] = React.useState(false); // User계정이 반려동물버튼을 클릭
 	const [protectActList, setProtectActList] = React.useState([]);
 	React.useEffect(() => {
-		console.log('유저프로필 로드', route.params);
+		// console.log('유저프로필 로드', route.params);
 		if (route.params && route.params.userobject) {
 			getUserProfile(
 				{

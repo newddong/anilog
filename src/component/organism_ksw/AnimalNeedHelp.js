@@ -100,7 +100,8 @@ export default AnimalNeedHelp = props => {
 	};
 
 	const onPressReporter = () => {
-		navigation.push('UserProfile', {userobject: data});
+		console.log('data', data);
+		navigation.push('UserProfile', {userobject: data.feed_writer_id});
 	};
 
 	const getParsedDate = () => {
@@ -220,12 +221,14 @@ export default AnimalNeedHelp = props => {
 								<Text style={[txt.noto24]} numberOfLines={1}>
 									특징: {data.report_animal_features || ''}
 								</Text>
-								<Text style={[txt.noto24]} numberOfLines={1}>
-									제보자: {'  '}
-									<Text onPress={onPressReporter} style={{textDecorationLine: 'underline', color: BLUE20}}>
-										{data.feed_writer_id.user_nickname || ''}{' '}
+								<View style={{flexDirection: 'row', alignItems: 'center'}}>
+									<Text style={[txt.noto24, {}]} numberOfLines={1}>
+										제보자: {'  '}
 									</Text>
-								</Text>
+									<TouchableOpacity onPress={onPressReporter}>
+										<Text style={[txt.noto24, {textDecorationLine: 'underline', color: BLUE20}]}>{data.feed_writer_id.user_nickname || ''} </Text>
+									</TouchableOpacity>
+								</View>
 							</View>
 						</>
 					)}
