@@ -14,6 +14,7 @@ import {GRAY10} from 'Root/config/color';
 import {SHARE} from 'Root/i18n/msg';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {MAINCOLOR} from 'Root/screens/color';
+import {getTimeLapsed, parsingDate} from 'Root/util/dateutil';
 
 export default FeedContent = props => {
 	const {
@@ -82,27 +83,6 @@ export default FeedContent = props => {
 			setBtnStatus(true);
 		}
 	}, [layout, reportLayout, labelLayout]);
-
-	const parsingDate = date => {
-		let temp = date.match(/(\d{4})-(\d{1,2})-(\d{1,2}).*?$/);
-		return `${temp[1]}년 ${temp[2]}월 ${temp[3]}일`;
-	};
-	const getCommentedTime = () => {
-		let date = feed_date.match(/(\d{4}-\d{1,2}-\d{1,2}T\d{2}:\d{2}:\d{2}).*?$/);
-		console.log(date);
-		let dateobj = new Date(date[1]);
-
-		let timelapsed = Date.now() - new Date(date[1]);
-
-		let localtime = Platform.OS == 'ios' ? 1000 * 60 * 60 * 9 : 1000 * 60 * 60 * 9;
-		timelapsed = timelapsed - localtime; //UTC 시간차
-		let day = Math.floor(timelapsed / 1000 / 60 / 60 / 24);
-		let hour = Math.floor(timelapsed / 1000 / 60 / 60);
-		let min = Math.floor(timelapsed / 1000 / 60);
-		let sec = Math.ceil(timelapsed / 1000);
-		console.log(day > 0 ? `${day}일 전` : hour > 0 ? `${hour} 시간 전` : min > 0 ? `${min} 분 전` : `방금`);
-		return day > 0 ? `${day}일 전` : hour > 0 ? `${hour} 시간 전` : min > 0 ? `${min} 분 전` : `방금`;
-	};
 
 	const onClickMeatball = () => {
 		console.log('meatball');
@@ -194,7 +174,7 @@ export default FeedContent = props => {
 			{/* 피드 작성 날짜  3 */}
 			<View style={[organism_style.time_view_feedContent]}>
 				<View style={[organism_style.time_feedContent]}>
-					<Text style={[txt.noto22]}>{getCommentedTime()}</Text>
+					<Text style={[txt.noto22]}>{getTimeLapsed(feed_date)}</Text>
 				</View>
 
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}

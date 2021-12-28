@@ -221,25 +221,20 @@ export default FeedWrite = props => {
 					</View>
 					{!showReportForm && !showLostAnimalForm && (
 						<View style={[feedWrite.btn_w194_container]}>
-							{/* 임보일기 */}
-							{
-								<View style={[btn_style.btn_w194, feedWrite.btn_w194]}>
-									<AniButton
-										btnTitle={'임보일기'}
-										btnStyle={isDiary ? 'filled' : 'border'}
-										titleFontStyle={24}
-										btnLayout={btn_w194}
-										onPress={onSetDiary}
-									/>
-								</View>
-							}
-							{/* 전체공개 */}
+							<View style={[btn_style.btn_w194, feedWrite.btn_w194]}>
+								<AniButton
+									btnTitle={'임보일기'}
+									btnStyle={isDiary ? 'filled' : 'border'}
+									titleFontStyle={24}
+									btnLayout={btn_w194}
+									onPress={onSetDiary}
+								/>
+							</View>
 							<View style={[btn_style.btn_w194]}>
 								<ActionButton btnTitle={'전체 공개'} btnStyle={'border'} titleFontStyle={24} btnLayout={btn_w194} />
 							</View>
 						</View>
 					)}
-					{/* SelectMediaList */}
 					{selectedImg.length > 0 && (
 						<View style={[temp_style.selectedMediaList, feedWrite.selectedMediaList]}>
 							<SelectedMediaList items={selectedImg} onDelete={deletePhoto} />
@@ -251,10 +246,11 @@ export default FeedWrite = props => {
 			);
 		}
 	};
-
+	console.log('오늘은 @@테스트1@@과 함께 ##춘천막국수##에서 @@행복이@@와 함깨 ##애니로그##에서'.match(/([\@{2}|\#{2}])/))
 	return (
 		<View style={[login_style.wrp_main, feedWrite.container]}>
-			<ScrollView contentContainerStyle={{width: 750 * DP, alignItems: 'center'}}>
+			
+			{/* <ScrollView contentContainerStyle={{width: 750 * DP, alignItems: 'center'}}> */}
 				<View style={[temp_style.feedTextEdit, feedWrite.feedTextEdit]}>
 					{/* 피드 글 작성 */}
 					<TextInput
@@ -262,9 +258,10 @@ export default FeedWrite = props => {
 						multiline={true}
 						style={{flex: 1}}
 						placeholder="게시물을 작성하세요"
-						onChangeText={inputFeedTxt}></TextInput>
+						onChangeText={inputFeedTxt}
+						></TextInput>
 				</View>
-
+				
 				{/* Input Text 하단 언더라인 */}
 				<View style={{width: 654 * DP, height: 2 * DP, marginVertical: 40 * DP, backgroundColor: APRI10}} />
 
@@ -274,7 +271,7 @@ export default FeedWrite = props => {
 
 				{setWriteModeState()}
 				{/* 긴급 게시물 관련 버튼 컨테이너 */}
-			</ScrollView>
+			{/* </ScrollView> */}
 			{showUrgentBtns ? (
 				<View style={[temp_style.floatingBtn, feedWrite.urgentBtnContainer]}>
 					{showActionButton ? (
@@ -298,10 +295,24 @@ export default FeedWrite = props => {
 			) : (
 				false
 			)}
+			<View style={{position:'absolute',width:658*DP,height:300*DP,backgroundColor:'yellow',top:300*DP,flexDirection:'row'}}>
+				<Text style={{backgroundColor:'green'}}>{feedText}<Text>한글</Text><Text>아</Text></Text>
+				
+			</View>
 		</View>
 	);
 };
 
+//오늘은 @@테스트1@@과 함께 ##춘천막국수##에서 @@행복이@@와 함깨 ##애니로그##에서
+const CustTomTxt = props => {
+	
+	// <View><Text>{props.children}</Text></View>	
+	return (
+	<View><Text>{props.children}</Text></View>
+	);
+}
+
+//실종 컴포넌트
 const MissingForm = props => {
 	const [types, setTypes] = React.useState([
 		{
@@ -459,6 +470,7 @@ const MissingForm = props => {
 	);
 };
 
+//제보 컴포넌트
 const ReportForm = props => {
 	const navigation = useNavigation();
 	const route = useRoute();

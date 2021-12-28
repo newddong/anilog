@@ -52,7 +52,8 @@ export default FeedMedia = props => {
 	const emergency_title = feed_type == 'report' ? '제보' : feed_type == 'missing' ? '실종' : '';
 	const isEmergency = feed_type == 'report' || feed_type == 'missing';
 	const animal_species = missing_animal_species || report_animal_species;
-	const animal_species_detail = missing_animal_species_detail || report_animal_species_detail;
+	const species_detail = missing_animal_species_detail || report_animal_species_detail;
+	const animal_species_detail = species_detail?.includes('un')?'':' / '+species_detail;
 	const emergency_location = missing_animal_lost_location || report_witness_location;
 	// console.log(props.data.medias);
 
@@ -109,7 +110,7 @@ export default FeedMedia = props => {
 				<View style={[style.emergency_background, {paddingVertical: 20 * DP, paddingHorizontal: 48 * DP, height:null}]}>
 					<View style={style.emergency_info_container}>
 						<View style={{flexDirection: 'row'}}>
-							<Text style={[txt.roboto34b, {color: 'white'}]}>{animal_species + (animal_species_detail ? ' / ' + animal_species_detail : '')}</Text>
+							<Text style={[txt.roboto34b, {color: 'white'}]}>{animal_species + animal_species_detail}</Text>
 						</View>
 						<View style={{marginLeft: 20 * DP,flex:1}}>
 							<Text style={[txt.roboto34b, {color: 'white'}]}>{emergency_location}</Text>
