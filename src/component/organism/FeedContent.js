@@ -89,7 +89,7 @@ export default FeedContent = props => {
 	};
 	const getCommentedTime = () => {
 		let date = feed_date.match(/(\d{4}-\d{1,2}-\d{1,2}T\d{2}:\d{2}:\d{2}).*?$/);
-		console.log(date);
+		// console.log(date);
 		let dateobj = new Date(date[1]);
 
 		let timelapsed = Date.now() - new Date(date[1]);
@@ -100,7 +100,7 @@ export default FeedContent = props => {
 		let hour = Math.floor(timelapsed / 1000 / 60 / 60);
 		let min = Math.floor(timelapsed / 1000 / 60);
 		let sec = Math.ceil(timelapsed / 1000);
-		console.log(day > 0 ? `${day}일 전` : hour > 0 ? `${hour} 시간 전` : min > 0 ? `${min} 분 전` : `방금`);
+		// console.log(day > 0 ? `${day}일 전` : hour > 0 ? `${hour} 시간 전` : min > 0 ? `${min} 분 전` : `방금`);
 		return day > 0 ? `${day}일 전` : hour > 0 ? `${hour} 시간 전` : min > 0 ? `${min} 분 전` : `방금`;
 	};
 
