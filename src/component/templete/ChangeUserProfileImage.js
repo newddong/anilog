@@ -147,6 +147,7 @@ export default ChangeUserProfileImage = ({route}) => {
 		// 영문자, 소문자, 숫자, "-","_" 로만 구성된 길이 2~10자리 사이의 문자열
 		// checkDuplicateNickname(newNick);
 		console.log('Dup', duplicated);
+
 		let regExp = /^[가-힣a-zA-Z0-9_-]{2,15}$/;
 		setValidated(regExp.test(nick));
 		// checkDuplicateNickname(nick);
@@ -156,8 +157,8 @@ export default ChangeUserProfileImage = ({route}) => {
 	};
 
 	return (
-		<ScrollView>
-			<View style={[login_style.wrp_main, {flex: 1}]}>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
+			<ScrollView contentContainerStyle={{alignItems: 'center'}}>
 				<View style={[temp_style.profileImageSelect, changeUserProfileImage_style.profileImageSelect]}>
 					<ProfileImageSelect selectedImageUri={data.user_profile_uri || DEFAULT_PROFILE} onClick={selectPhoto} />
 				</View>
@@ -178,6 +179,7 @@ export default ChangeUserProfileImage = ({route}) => {
 						<Input24
 							onChange={nickName_validator}
 							validator={validateNewNick}
+							defaultValue={newNick}
 							onValid={onValidName}
 							value={newNick}
 							title={NEW_NICK_TITLE}
@@ -197,8 +199,8 @@ export default ChangeUserProfileImage = ({route}) => {
 				<View style={[btn_style.btn_w654, changeUserProfileImage_style.btn_w654]}>
 					<AniButton onPress={onConfirmed} btnTitle={'확인'} titleFontStyle={32} btnLayout={btn_w654} disable={confirmed ? false : true} />
 				</View>
-			</View>
-		</ScrollView>
+			</ScrollView>
+		</View>
 	);
 };
 ChangeUserProfileImage.defaultProps = {
