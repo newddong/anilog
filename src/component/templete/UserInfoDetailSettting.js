@@ -37,7 +37,10 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 			if (route.params.addr && !addrSearched) {
 				console.log('route.params.Address Changed?   ', route.params.addr);
 				const addr = route.params.addr;
-				setData({...data, user_address: {city: addr.siNm, district: addr.sggNm + ' ' + addr.emdNm, brief: addr.roadAddr, detail: addr.detailAddr}});
+				setData({
+					...data,
+					user_address: {city: addr.siNm, district: addr.sggNm, neighbor: addr.emdNm, brief: addr.roadAddr, detail: addr.detailAddr},
+				});
 				setAddrSearched(true);
 			}
 		}
