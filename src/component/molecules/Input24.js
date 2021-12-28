@@ -117,8 +117,8 @@ const Input24 = React.forwardRef((props, ref) => {
 				<TextInput
 					ref={inputRef}
 					onChangeText={onChange}
-					onFocus={onFocus}
-					onBlur={onBlur}
+					// onFocus={onFocus}
+					// onBlur={onBlur}
 					value={props.value}
 					placeholder={props.placeholder}
 					placeholderTextColor={GRAY10}
@@ -130,7 +130,7 @@ const Input24 = React.forwardRef((props, ref) => {
 						txt.noto28,
 						props.style,
 						{
-							// width: props.width * DP,
+							width: props.width * DP - 46 * DP,
 							paddingLeft: 24 * DP,
 							height: '100%', //ios에서 안드로이드와 동작 일치시키기 위함
 							lineHeight: 44 * DP,

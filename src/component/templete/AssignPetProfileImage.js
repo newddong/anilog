@@ -102,13 +102,17 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 		// 	},
 		// );
 		ImagePicker.openPicker({
-			compressImageQuality:0.8,
+			compressImageQuality: 0.8,
 			cropping: true,
-			cropperCircleOverlay:true,
-		  }).then(images => {
-			setData({...data, user_profile_uri: images.path})
-			Modal.close();
-		  }).catch(err=>Modal.alert(err+''));Modal.close();
+			cropperCircleOverlay: true,
+		})
+			.then(images => {
+				console.log('images', images.path);
+				setData({...data, user_profile_uri: images.path});
+				Modal.close();
+			})
+			.catch(err => Modal.alert(err + ''));
+		Modal.close();
 	};
 
 	const onNicknameChange = text => {

@@ -285,6 +285,11 @@ export default AnimalProtectRequestDetail = ({route}) => {
 		navigation.push('ApplyAnimalAdoptionA', {protect_request_pet_data: data});
 	};
 
+	const onClickShelterLabel = data => {
+		console.log('data', data);
+		navigation.push('UserProfile', {userobject: data});
+	};
+
 	if (loading) {
 		return (
 			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
@@ -309,7 +314,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 				{/* 보호소 라벨 */}
 				<View style={[temp_style.shelterSmallLabel_view_animalProtectRequestDetail]}>
 					<View style={[temp_style.shelterSmallLabel_animalProtectRequestDetail]}>
-						<ShelterSmallLabel data={data.protect_request_writer_id} />
+						<ShelterSmallLabel data={data.protect_request_writer_id} onClickLabel={onClickShelterLabel} />
 					</View>
 					{/* Buttons */}
 					<View style={[temp_style.button_animalProtectRequestDetail]}>

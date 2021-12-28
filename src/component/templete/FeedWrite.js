@@ -489,7 +489,7 @@ const ReportForm = props => {
 			setAddr(route.params.addr.jibunAddr);
 			setDetailAddr(route.params.addr.detailAddr);
 		}
-	}, [route.params]);
+	}, [route.params?.addr]);
 
 	React.useEffect(() => {
 		setData({...data, report_witness_location: addr + ' ' + detailAddr});
@@ -508,7 +508,15 @@ const ReportForm = props => {
 		setAddr(addr);
 	};
 
+	const onClearAddr = () => {
+		setAddr('');
+	};
+	const onClearDetailAddr = () => {
+		setDetailAddr('');
+	};
+
 	const onChangeDetailAddr = addr => {
+		console.log('addr', addr);
 		setDetailAddr(addr);
 	};
 	const onDateChange = date => {
@@ -557,7 +565,7 @@ const ReportForm = props => {
 								<Text style={[txt.noto24, {color: APRI10}]}>제보 장소</Text>
 							</View>
 							<View style={[temp_style.inputNoTitle, feedWrite.reportLocation_form_left_inputNoTitle]}>
-								<Input24 width={438} placeholder={'동주소 까지 적어주세요'} onChange={onChangeAddr} value={addr} />
+								<Input24 onChange={onChangeAddr} value={addr} width={438} placeholder={'동주소 까지 적어주세요'} onClear={onClearAddr} />
 							</View>
 						</View>
 						<View style={[feedWrite.reportLocation_form_right]}>
@@ -570,7 +578,13 @@ const ReportForm = props => {
 						</View>
 					</View>
 					<View style={[temp_style.inputNoTitle, feedWrite.locationDetail]}>
-						<Input24 width={654} placeholder={'장소의 세부적인 정보를 적어주세요'} onChange={onChangeDetailAddr} value={detailAddr} />
+						<Input24
+							onChange={onChangeDetailAddr}
+							onClear={onClearDetailAddr}
+							width={654}
+							placeholder={'장소의 세부적인 정보를 적어주세요'}
+							value={detailAddr}
+						/>
 					</View>
 					<View style={[temp_style.inputBalloon, feedWrite.inputBalloon]}>
 						<InputBalloon

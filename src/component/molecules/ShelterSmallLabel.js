@@ -37,11 +37,13 @@ const ShelterSmallLabel = props => {
 	};
 
 	const onClickLabel = e => {
-		props.onLabelClick(props.data.user_id);
+		props.onClickLabel(props.data);
 	};
 
 	const getFoundationDate = () => {
 		let date = data.shelter_foundation_date;
+		// console.log(date);
+
 		date = moment(date).format('YYYY-MM-DD');
 		return date;
 	};
@@ -52,13 +54,17 @@ const ShelterSmallLabel = props => {
 				<Image source={{uri: data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_72} />
 				<View style={{position: 'absolute', right: 0, bottom: 0}}>{getStatusMark()}</View>
 			</TouchableOpacity>
-			<View style={{marginLeft: 10 * DP}}>
+			<View style={{marginLeft: 10 * DP, maxWidth: 440 * DP}}>
 				<Text style={[txt.noto24b, {color: validation ? APRI10 : GRAY10}]} numberOfLines={1} ellipsizeMode="tail">
 					{data.shelter_name} / {data.shelter_address.brief}
 				</Text>
-				<Text style={[txt.noto24, {color: GRAY20}]} numberOfLines={1} ellipsizeMode="tail">
-					{getFoundationDate()}
-				</Text>
+				{data.shelter_foundation_date != null || data.shelter_foundation_date != undefined ? (
+					<Text style={[txt.noto24, {color: GRAY20}]} numberOfLines={1} ellipsizeMode="tail">
+						{getFoundationDate()}
+					</Text>
+				) : (
+					<></>
+				)}
 			</View>
 		</View>
 	);

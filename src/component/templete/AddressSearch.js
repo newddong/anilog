@@ -22,7 +22,7 @@ export default AddressSearch = props => {
 	useEffect(() => {
 		// console.log('refresh component');
 		// console.log(addr);
-		console.log('props.address', props);
+		// console.log('props.address', props);
 		setAddrList({common: {}, list: []});
 		setSelectedIndex(-1);
 		search(data.keyword, 1);
@@ -36,8 +36,8 @@ export default AddressSearch = props => {
 	}, [selectedIndex]);
 
 	const search = (keyword, page) => {
-		console.log('search using addr api');
-		if(keyword.length<2)return;
+		// console.log('search using addr api');
+		if (keyword.length < 2) return;
 		axios
 			.post(
 				'https://www.juso.go.kr/addrlink/addrLinkApi.do',
@@ -50,7 +50,7 @@ export default AddressSearch = props => {
 				}),
 			)
 			.then(result => {
-				console.log(result);
+				// console.log(result);
 				setAddrList({
 					common: JSON.parse(result.request._response).results.common,
 					list: [...addrList.list, ...JSON.parse(result.request._response)?.results.juso],
@@ -102,7 +102,7 @@ export default AddressSearch = props => {
 	};
 
 	const complete = () => {
-		console.log('onpress', addr);
+		// console.log('onpress', addr);
 		if (addr.detailAddr == undefined || addr.roadAddr == undefined) {
 			alert('상세 주소까지 주소를 꼭 입력해주세요.');
 			return;

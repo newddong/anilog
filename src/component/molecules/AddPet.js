@@ -20,7 +20,7 @@ const AddPet = props => {
 			<TouchableOpacity onPress={onAdd}>
 				<Add_Pet />
 			</TouchableOpacity>
-			<Text style={[txt.noto24, {color: APRI10, textAlign: 'center', width: 106 * DP, height: 80 * DP}]}>{ASSIGN_PET}</Text>
+			<Text style={[txt.noto24, {color: APRI10, textAlign: 'center', width: 160 * DP, height: 80 * DP, marginTop: 10 * DP}]}>{ASSIGN_PET}</Text>
 		</View>
 	);
 };
