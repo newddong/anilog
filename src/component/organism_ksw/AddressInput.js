@@ -30,7 +30,7 @@ const AddressInput = props => {
 	// console.log('addressInpit', props);
 	const [detailAddr, setDetailAddr] = React.useState(props.detailAddress || '');
 	React.useEffect(() => {
-		// console.log('addressinput Detail', detailAddr);
+		console.log('addressinput Detail', detailAddr);
 	}, [detailAddr]);
 	const validator = (addr, detailAddr) => {
 		let isValid = props.validator(addr, detailAddr);

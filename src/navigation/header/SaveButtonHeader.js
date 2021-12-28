@@ -48,9 +48,11 @@ export default SaveButtonHeader = ({navigation, route, options, back}) => {
 
 						result => {
 							console.log('result / updateUserDetailInformation / SaveButtonHeader   : ', result);
+							Modal.popOneBtn('저장되었습니다.', '확인', Modal.close);
 						},
 						err => {
 							console.log('err / updateUserDetailInformation / SaveButtonHeader    :  ', err);
+							Modal.popOneBtn('저장실패 하였습니다.' + err, '확인', Modal.close);
 						},
 					);
 			} else if (route.params.route_name == 'SetPetInformation') {
