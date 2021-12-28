@@ -65,6 +65,7 @@ export default FeedWrite = props => {
 
 	React.useEffect(() => {
 		props.navigation.setParams({...props.route.params, feed_content: feedText});
+		console.log(feedText);
 	}, [feedText]);
 
 	//긴급버튼 중 - 실종 클릭
@@ -173,6 +174,7 @@ export default FeedWrite = props => {
 	};
 
 	const inputFeedTxt = feedInput => {
+		console.log('오늘은@@기영@@이와함께##딸기##를@@효쏭과함께@@사먹었어요@@행복@@이는##간식을##먹네요$$부럽네요$$증말'.match(/(.*?\n.*?(@@.*?@@|##.*?##))/gm))
 		setFeedText(feedInput);
 	};
 
@@ -246,7 +248,7 @@ export default FeedWrite = props => {
 			);
 		}
 	};
-	console.log('오늘은 @@테스트1@@과 함께 ##춘천막국수##에서 @@행복이@@와 함깨 ##애니로그##에서'.match(/([\@{2}|\#{2}])/))
+	
 	return (
 		<View style={[login_style.wrp_main, feedWrite.container]}>
 			
@@ -296,12 +298,30 @@ export default FeedWrite = props => {
 				false
 			)}
 			<View style={{position:'absolute',width:658*DP,height:300*DP,backgroundColor:'yellow',top:300*DP,flexDirection:'row'}}>
-				<Text style={{backgroundColor:'green'}}>{feedText}<Text>한글</Text><Text>아</Text></Text>
+				<Text style={{backgroundColor:'green'}}>{makeFeedInputView()}</Text>
+				{/* <Text style={{backgroundColor:'green'}}>{[<Text style={{color:'blue'}}>우호</Text>,<Text style={{color:'red'}}>우호</Text>]}</Text> */}
 				
 			</View>
 		</View>
 	);
 };
+
+const makeFeedInputView = (string) => {
+
+	let arr = "오늘은@@기영||eioasd@@이와함께##딸기||aslkdfja##를@@효쏭||aslfs@@과 함께\n 사먹었\n어\n요 @@행복@@이는##간식을##먹네요$$부럽네요$$증말".match(/((.*?\n)*?.*?(@@.*?@@|##.*?##))/g)
+	console.log(arr)
+	return arr?.map((v,i)=>{
+		let item = v.match(/(((.*?\n)*.*?)(@@(.*?)@@|##(.*?)##))/)
+		console.log(item)
+		if(v.includes('@'))return (<>{item[2]}<Text key={i} style={{color:'blue'}} onPress={()=>{alert(item[5].split('||')[1])}}>{item[5].split('||')[0]}</Text></>)
+		
+		
+		if(v.includes('#'))return (<>{item[2]}<Text key={i} style={{color:'red'}} onPress={()=>{alert(item[6].split('||')[1])}}>{item[6].split('||')[0]}</Text></>)
+	})
+
+
+}
+
 
 //오늘은 @@테스트1@@과 함께 ##춘천막국수##에서 @@행복이@@와 함깨 ##애니로그##에서
 const CustTomTxt = props => {
