@@ -125,7 +125,7 @@ export const COVID = '코로나';
 export const KENNEL_COUGH = '캔넬코프';
 export const RABIES = '광견병';
 export const DISCLOSE = '공개';
-export const ASSIGN_PET = '반려동물 등록';
+export const ASSIGN_PET = '반려동물 추가';
 
 //SearchTopTabRoute
 export const FEED = '피드';

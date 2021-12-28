@@ -23,13 +23,13 @@ export default AnimalFromShelter = ({route}) => {
 				request_number: 10,
 			},
 			result => {
-				console.log('result / getProtectRequestListByShelterId / AnimalFromShelter', result.msg[0].protect_animal_id);
+				// console.log('result / getProtectRequestListByShelterId / AnimalFromShelter', result.msg[0].protect_animal_id);
+
 				setData(result.msg);
 				Modal.close();
 				setTimeout(() => {
 					setLoading(false);
 				}, 500);
-				// setProtectAnimalList(successed.msg);
 				// 받아온 protect_animal_protect_Request_id로 해당 게시글 좋아요 여부도 판별해야함
 			},
 			err => {
@@ -49,13 +49,14 @@ export default AnimalFromShelter = ({route}) => {
 
 	//테두리 모드 On 상태에서 입양처 보기 클릭
 	const onPressAdoptorInfo = data => {
-		console.log('item', data);
+		console.log('item / onPressAdoptorInfo', data);
+		// 61c7104c10b3b3bf4acbd20b
 		navigation.push('AdoptorInformation', data);
 	};
 
 	// 테두리 모드 On 상태에서 게시글보기 클릭 => AnimapProtectRequestDetail == ProtectRequestManage
 	const onPressProtectRequest = item => {
-		console.log('item', item);
+		// console.log('item', item);
 		navigation.push('ProtectRequestManage', {item: item, list: data});
 	};
 

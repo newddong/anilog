@@ -13,6 +13,7 @@ import Input30 from '../molecules/Input30';
 import {assignPet} from 'Root/api/userapi';
 import {stagebar_style} from '../organism_ksw/style_organism';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {DEFAULT_ANIMAL_PROFILE, DEFAULT_PROFILE} from 'Root/i18n/msg';
 
 export default AssignPetInfoB = props => {
 	console.log(props.route.params);
@@ -20,6 +21,7 @@ export default AssignPetInfoB = props => {
 
 	const [data, setData] = React.useState({
 		...props.route.params,
+		user_profile_uri: 'http://',
 		pet_birthday: '2021.01.01',
 		pet_weight: '0',
 	});
@@ -58,27 +60,30 @@ export default AssignPetInfoB = props => {
 	const onRegister = async () => {
 		Modal.popNoBtn('반려동물 등록 중입니다.');
 		console.log('data before assiginPet', data);
-		assignPet(
-			{...data, userobject_id: data.userobject_id},
-			success => {
-				console.log('success', success);
-				Modal.close();
-				Modal.popOneBtn('반려동물 등록이 완료되었습니다.', '확인', () => {
-					Modal.close();
-					props.navigation.reset({
-						index: 0,
-						routes: [{name: data.previousRouteName}],
-						params: {addedPet: true},
-					});
-				});
-			},
-			error => {
-				console.log('error', error);
-				Modal.close();
 
-				Modal.popOneBtn(error, '확인', () => Modal.close());
-			},
-		);
+		try {
+			assignPet(
+				{...data, userobject_id: data.userobject_id},
+				success => {
+					console.log('success', success);
+					Modal.close();
+					Modal.popOneBtn('반려동물 등록이 완료되었습니다.', '확인', () => {
+						Modal.close();
+						props.navigation.navigate(data.previousRouteName);
+					});
+				},
+				error => {
+					console.log('error', error);
+					Modal.close();
+
+					Modal.popOneBtn(error, '확인', () => Modal.close());
+				},
+			);
+		} catch (err) {
+			console.log('err', err);
+		} finally {
+			Modal.close();
+		}
 	};
 
 	const weigthValid = e => {

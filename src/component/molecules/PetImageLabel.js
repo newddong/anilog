@@ -28,9 +28,18 @@ const PetImageLabel = props => {
 		props.onPressLabel();
 	};
 
+	console.log('dd', props.data.user_profile_uri);
 	return (
 		<TouchableOpacity onPress={onPressLabel} style={{width: 180 * DP, height: 180 * DP}}>
-			<Image source={{uri: props.data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_180} />
+			<Image
+				source={{
+					uri:
+						props.data.user_profile_uri != undefined
+							? props.data.user_profile_uri
+							: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/daebe896352685.5eac4787af6fa.jpg',
+				}}
+				style={styles.img_round_180}
+			/>
 			<View style={{position: 'absolute'}}>{petStatus()}</View>
 			{props.showNickname ? <Text style={[txt.noto28, {color: GRAY10, textAlign: 'center'}]}>{props.data.user_nickname}</Text> : <></>}
 		</TouchableOpacity>

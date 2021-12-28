@@ -20,7 +20,7 @@ import ProfileImageSmall from '../molecules/ProfileImageSmall';
 //변수들은 모두 db 변수로 스네이크 형식으로 추후에 변경 필요.
 
 export default PetInfoSetting = ({route, navigation}) => {
-	console.log('PetInfoSetting / route.params', route.params);
+	// console.log('PetInfoSetting / route.params', route.params);
 	const [petData, setPetData] = React.useState({}); // 현재 반려동물 프로필 데이터
 	const [familyAccountList, setFamilyAccountList] = React.useState([]); //가족 계정 목록 데이터
 
