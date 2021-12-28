@@ -92,10 +92,10 @@ export default SaveButtonHeader = ({navigation, route, options, back}) => {
 					'저장 후 나감',
 					'나가기',
 					() => {
-						Modal.close();
 						setSaved(true); //save State true로 하여 상단의 useEffect가 수행되도록 설정
-						navigation.goBack();
-						// navigation.dispatch(e.data.action, data); // 뒤로가기 이제 실시
+						Modal.close();
+						// navigation.goBack();
+						navigation.dispatch(e.data.action, data); // 뒤로가기 이제 실시
 					},
 					() => {
 						Modal.close();

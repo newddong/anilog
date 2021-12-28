@@ -39,12 +39,20 @@ import Modal from '../modal/Modal';
 import {userLogout} from 'Root/api/userapi';
 import {useIsFocused} from '@react-navigation/native';
 export default UserMenu = props => {
+	console.log('UserMenu Props', props);
 	const navigation = useNavigation();
 	const ifFoucsed = useIsFocused();
 	//-test for commit -
 	const [data, setData] = React.useState({}); //우선 userObject 0번 추가
 	//토큰에 로그인한 유저의 _id를 저장
 	// React.useLayoutEffect(() => {
+	React.useEffect(() => {
+		AsyncStorage.getItem('token', (err, res) => {
+			if (res == null) {
+				navigation.navigate('Login');
+			}
+		});
+	}, []);
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
 			getUserProfile(

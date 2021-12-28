@@ -26,7 +26,7 @@ export default UserVerification = props => {
 	const [verified, setVerified] = React.useState(false);
 	const [verified_num, setVerified_num] = React.useState();
 	const [time, setTime] = React.useState(0);
-	const [async, setAsync] = React.useState({isConfirm:false});
+	const [async, setAsync] = React.useState({isConfirm: false});
 
 	const goToNextStep = () => {
 		console.log(user_data);
@@ -47,7 +47,7 @@ export default UserVerification = props => {
 	const onPhoneNumberInputChange = phone_num => {
 		console.log('Userverification onPhoneNumberInputChange      ', phone_num);
 		let phoneNum = phone_num.split('|');
-		
+
 		user_data.user_phone_number = phoneNum[1];
 		user_data.user_mobile_company = phoneNum[0];
 	};
@@ -57,33 +57,33 @@ export default UserVerification = props => {
 	};
 
 	const verificationRequest = () => {
-		console.log('인증요청')
+		console.log('인증요청');
 		setTime(300);
-		setTimeout(()=>{
-			setAsync({isConfirm:true});
-		},500);
+		setTimeout(() => {
+			setAsync({isConfirm: true});
+		}, 500);
 		//번호 인증 요청(비동기)
 	};
 
 	const reVerificationRequest = () => {
-		console.log('인증요청재설정')
+		console.log('인증요청재설정');
 		setTime(300);
 		//인증번호 재설정
 	};
 
-	const mobileNumValidator = (text) => {
-		return text.length>6;
+	const mobileNumValidator = text => {
+		return text.length > 6;
 		//휴대폰 인증함수
-	}
+	};
 
-	const verifyNumValidator = (verifyNum) => {
-		return verifyNum.length>5;
+	const verifyNumValidator = verifyNum => {
+		return verifyNum.length > 5;
 		//인증번호 입력 인증함수(여기서는 true를 반환해도 번호인증요청에서 false가 되면 통과하지 못하므로 return true를 해도 상관없음)
-	}
+	};
 
 	const onVaild = isValid => {
 		setVerified(isValid);
-	}
+	};
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* <TouchableWithoutFeedback onPress={() => console.log(user_data)}>
@@ -108,8 +108,7 @@ export default UserVerification = props => {
 				</View> */}
 
 				<View style={temp_style.textMassage}>
-					<Text style={[userAssign.textMessageInside]}>휴대폰 번호로 </Text>
-					<Text style={[userAssign.textMessageInside]}>가입이 가능합니다.</Text>
+					<Text style={[userAssign.textMessageInside]}>휴대폰 번호로 가입이 가능합니다.</Text>
 				</View>
 
 				{tabState == 0 ? (
