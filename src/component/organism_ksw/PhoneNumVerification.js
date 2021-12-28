@@ -21,12 +21,12 @@ import {phoneNumVerification} from './style_organism';
  */
 export default PhoneNumVerification = props => {
 	const [timeOut, setTimeOut] = React.useState(false);
-	const [timeLimit, setTimeLimit] = React.useState({limit:props.verifyTimeLimit});
+	const [timeLimit, setTimeLimit] = React.useState({limit: props.verifyTimeLimit});
 	const [userName, setUserName] = React.useState('');
 	// const [validMobile, setValidMobile] = React.useState(false);
-	const validMobile =React.useRef(false);
+	const validMobile = React.useRef(false);
 	const validVerifyNum = React.useRef(false);
-	const [validName,setValidName] = React.useState(false);
+	const [validName, setValidName] = React.useState(false);
 	// const [validVerifyNum, setValidVerifyNum] = React.useState(false);
 	const onEndTimer = () => {
 		setTimeOut(true);
@@ -54,55 +54,66 @@ export default PhoneNumVerification = props => {
 
 	const onValidMobileNum = isValid => {
 		validMobile.current = isValid;
-		props.onValid&&props.onValid(isValid&&validVerifyNum.current&&props.asyncConfirm.isConfirm&&validName);
-	}
+		props.onValid && props.onValid(isValid && validVerifyNum.current && props.asyncConfirm.isConfirm && validName);
+	};
 	const mobileValidator = mobileNum => {
-		let isValid = props.mobileNumValidator&&props.mobileNumValidator(mobileNum); //휴대폰 번호 검증
+		let isValid = props.mobileNumValidator && props.mobileNumValidator(mobileNum); //휴대폰 번호 검증
 		return isValid;
-	}
+	};
 
-	const onValidVerifyNum = isValid=>{
+	const onValidVerifyNum = isValid => {
 		validVerifyNum.current = isValid;
-		props.onValid&&props.onValid(isValid&&validMobile.current&&props.asyncConfirm.isConfirm&&validName);
-	}
+		props.onValid && props.onValid(isValid && validMobile.current && props.asyncConfirm.isConfirm && validName);
+	};
 	const verifyNumValidator = verifyNum => {
-		let isValid = props.verifyNumValidator&&props.verifyNumValidator(verifyNum); //인증 번호 검증
+		let isValid = props.verifyNumValidator && props.verifyNumValidator(verifyNum); //인증 번호 검증
 		return isValid;
-	}
+	};
 
-	const nameValidator = name =>{
-		return name.length>0;
-	}
+	const nameValidator = name => {
+		return name.length > 0;
+	};
 
 	const onValidName = isValid => {
 		setValidName(isValid);
-	}
+	};
 
-	React.useEffect(()=>{
-		let isValid =validVerifyNum.current&&validMobile.current&&props.asyncConfirm.isConfirm&&validName;
-		props.onValid&&props.onValid(isValid);
-	},[props.asyncConfirm])
+	React.useEffect(() => {
+		let isValid = validVerifyNum.current && validMobile.current && props.asyncConfirm.isConfirm && validName;
+		props.onValid && props.onValid(isValid);
+	}, [props.asyncConfirm]);
 
-	React.useEffect(()=>{
-		setTimeLimit({...timeLimit,limit:props.verifyTimeLimit})
-		console.log('시간 재설정')
-	},[props.verifyTimeLimit])
+	React.useEffect(() => {
+		setTimeLimit({...timeLimit, limit: props.verifyTimeLimit});
+		console.log('시간 재설정');
+	}, [props.verifyTimeLimit]);
 
 	return (
 		<View style={[phoneNumVerification.container]}>
 			<View style={[temp_style.input30, phoneNumVerification.input30]}>
-				<Input30 showTitle={false} width={654} placeholder={'이름 입력'} onChange={onNameInputChange} onValid={onValidName} validator={nameValidator} value={userName} confirm showmsg={false}/>
+				<Input30
+					showTitle={false}
+					width={654}
+					placeholder={'이름 입력'}
+					onChange={onNameInputChange}
+					onValid={onValidName}
+					validator={nameValidator}
+					value={userName}
+					confirm
+					showmsg={false}
+				/>
 			</View>
 			<View style={[temp_style.inputWithSelect, phoneNumVerification.inputWithSelect]}>
 				<InputWithSelect
 					width={654}
 					items={mobile_carrier}
-					delimiter='|'
+					delimiter="|"
 					placeholder={'휴대폰 번호 입력(-제외)'}
 					onChange={onPhoneNumberInputChange}
 					onSelectDropDown={onMobileCompanyInputChange}
 					onValid={onValidMobileNum}
 					validator={mobileValidator}
+					keyboardType="numeric"
 				/>
 			</View>
 			<View style={{flexDirection: 'row'}}>

@@ -35,6 +35,7 @@ export default MainTabNavigation = ({route, navigation}) => {
 				})}
 			/>
 			<MainTabNav.Screen name="COMMUNITY" component={Temp} options={{header: props => <SimpleHeader {...props} />, title: '커뮤니티'}} />
+
 			<MainTabNav.Screen name="MY" options={{tabBarLabel: 'MY', header: props => false}}>
 				{props => <MyStackNavigation {...props} user_type={route.params} />}
 			</MainTabNav.Screen>
