@@ -89,8 +89,12 @@ export default UserInfoSetting = ({route}) => {
 		setModifyMode(!modifyMode);
 		updateUserIntroduction(
 			{user_introduction: data.user_introduction},
-			success => {},
-			err => {},
+			success => {
+				console.log('introduction modify api', success);
+			},
+			err => {
+				console.log('introduction modify api', err);
+			},
 		);
 	};
 

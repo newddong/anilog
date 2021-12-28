@@ -37,13 +37,15 @@ import {login_style, temp_style, userMenu_style} from './style_templete';
 import {getUserProfile} from 'Root/api/userapi';
 import Modal from '../modal/Modal';
 import {userLogout} from 'Root/api/userapi';
-
+import {useIsFocused} from '@react-navigation/native';
 export default UserMenu = props => {
 	const navigation = useNavigation();
+	const ifFoucsed = useIsFocused();
 	//-test for commit -
 	const [data, setData] = React.useState({}); //우선 userObject 0번 추가
 	//토큰에 로그인한 유저의 _id를 저장
-	React.useLayoutEffect(() => {
+	// React.useLayoutEffect(() => {
+	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
 			getUserProfile(
 				{
@@ -59,7 +61,7 @@ export default UserMenu = props => {
 				},
 			);
 		});
-	}, [navigation]);
+	}, [ifFoucsed]); //원래 navigation이였음
 
 	// 나의 반려동물 버튼 클릭
 	const onPressMyCompanion = () => {
