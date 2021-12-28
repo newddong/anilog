@@ -39,7 +39,7 @@ import Modal from '../modal/Modal';
 import {userLogout} from 'Root/api/userapi';
 import {useIsFocused} from '@react-navigation/native';
 export default UserMenu = props => {
-	console.log('UserMenu Props', props);
+	// console.log('UserMenu Props', props);
 	const navigation = useNavigation();
 	const ifFoucsed = useIsFocused();
 	//-test for commit -
