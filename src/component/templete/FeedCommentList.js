@@ -42,6 +42,8 @@ export default FeedCommentList = props => {
 
 	//답글 쓰기 => Input 작성 후 보내기 클릭 콜백 함수
 	const onWrite = () => {
+		if (content.trim() == '') return Modal.popOneBtn('메세지를 입력하세요.', '확인', () => Modal.close());
+
 		let param = {
 			comment_photo_uri: photo, //사진uri
 			comment_contents: content, //내용
