@@ -39,10 +39,9 @@ import Modal from '../modal/Modal';
 import {userLogout} from 'Root/api/userapi';
 import {useIsFocused} from '@react-navigation/native';
 export default UserMenu = props => {
-	console.log('UserMenu Props', props);
+	// console.log('UserMenu Props', props);
 	const navigation = useNavigation();
 	const ifFoucsed = useIsFocused();
-	//-test for commit -
 	const [data, setData] = React.useState({}); //우선 userObject 0번 추가
 	//토큰에 로그인한 유저의 _id를 저장
 	// React.useLayoutEffect(() => {
@@ -86,7 +85,7 @@ export default UserMenu = props => {
 				},
 			);
 		} else {
-			navigation.push('PetInfoSetting', {pet_id: data.user_my_pets[0]._id}); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
+			navigation.push('PetInfoSetting', {pet_id: data.user_my_pets[0]._id, token: data}); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
 		}
 	};
 

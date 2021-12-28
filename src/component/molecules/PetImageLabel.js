@@ -27,8 +27,6 @@ const PetImageLabel = props => {
 	const onPressLabel = () => {
 		props.onPressLabel();
 	};
-
-	console.log('dd', props.data.user_profile_uri);
 	return (
 		<TouchableOpacity onPress={onPressLabel} style={{width: 180 * DP, height: 180 * DP}}>
 			<Image

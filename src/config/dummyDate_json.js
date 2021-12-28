@@ -274,8 +274,6 @@ export const userAssign_agreementCheckList = [
 
 export const initial_number = ['010', '02', '031', '033', '043', '041', '054', '055', '063', '061', '064'];
 
-export const email_supplier = ['naver.com', 'hanmail.net', 'gmail.com'];
-
 export const dummy_ActivationList = [
 	{
 		title: '임시보호 참여하기',

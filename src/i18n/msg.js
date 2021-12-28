@@ -168,7 +168,18 @@ export const SHELTER = 'shelter';
 export const mobile_carrier = ['SK텔레콤', 'LG U+', 'KT', '알뜰'];
 
 //이메일 도메인
-export const EMAIL_DOMAIN = ['naver.com', 'daum.net', 'gmail.com', 'hanmail.net', 'kakao.com', 'nate.com', 'outlook.com', 'paran.com', 'yahoo.com'];
+export const EMAIL_DOMAIN = [
+	'직접입력',
+	'naver.com',
+	'daum.net',
+	'gmail.com',
+	'hanmail.net',
+	'kakao.com',
+	'nate.com',
+	'outlook.com',
+	'paran.com',
+	'yahoo.com',
+];
 
 //반려동물 종류
 export const PET_KIND = ['동물종류', '개', '고양이', '새', '여우', '거북이', '햄스터', '기타'];

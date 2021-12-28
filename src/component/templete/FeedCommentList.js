@@ -47,14 +47,13 @@ export default FeedCommentList = props => {
 			comment_contents: content, //내용
 			// comment_is_secure: privateComment, //공개여부 테스트때 반영
 		};
-		if(props.route.name == 'FeedCommentList'){
+		if (props.route.name == 'FeedCommentList') {
 			param = {...param, feedobject_id: props.route.params.feedobject._id};
-		}
-		else if(props.route.name == '동물보호요청'){
+		} else if (props.route.name == '동물보호요청') {
 			param = {...param, protect_request_object_id: props.route.params.feedobject._id};
 		}
 
-		if(parentComment){
+		if (parentComment) {
 			param = {...param, commentobject_id: parentComment};
 		}
 
@@ -65,8 +64,7 @@ export default FeedCommentList = props => {
 				console.log(result);
 				setPhoto();
 				setParentComment();
-				parentComment||setComments([{...result.msg, comment_writer_id: userGlobalObject.userInfo}].concat(comments));
-
+				parentComment || setComments([{...result.msg, comment_writer_id: userGlobalObject.userInfo}].concat(comments));
 			},
 			err => Modal.alert(err),
 		);
@@ -89,7 +87,7 @@ export default FeedCommentList = props => {
 				setPhoto(images.path);
 				Modal.close();
 			})
-			.catch(err => Modal.alert(err + ''));
+			.catch(err => console.log(err + ''));
 		Modal.close();
 	};
 
@@ -107,7 +105,7 @@ export default FeedCommentList = props => {
 		console.log(parentCommentId);
 		setParentComment(parentCommentId);
 		input.current.focus();
-		editComment||setEditComment(true);
+		editComment || setEditComment(true);
 	};
 
 	const render = ({item, index}) => {
@@ -117,7 +115,7 @@ export default FeedCommentList = props => {
 					<Text style={[txt.noto28]}>댓글 {comments.length}개 </Text>
 				</View>
 			);
-		if (index > 0) return <CommentList items={item} onPressReplyBtn={onReplyBtnClick}/>;
+		if (index > 0) return <CommentList items={item} onPressReplyBtn={onReplyBtnClick} />;
 	};
 
 	return (

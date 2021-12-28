@@ -38,13 +38,16 @@ export default ChangePetProfileImage = props => {
 		// 	},
 		// );
 		ImagePicker.openPicker({
-			compressImageQuality:0.8,
+			compressImageQuality: 0.8,
 			cropping: true,
-			cropperCircleOverlay:true,
-		  }).then(images => {
-			setPetData({...petData, user_profile_uri: images.path || petData.user_profile_uri});
-			Modal.close();
-		  }).catch(err=>Modal.alert(err+''));Modal.close();
+			cropperCircleOverlay: true,
+		})
+			.then(images => {
+				setPetData({...petData, user_profile_uri: images.path || petData.user_profile_uri});
+				Modal.close();
+			})
+			.catch(err => console.log(err + ''));
+		Modal.close();
 	};
 
 	//중복 처리

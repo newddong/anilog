@@ -8,6 +8,7 @@ import {txt} from 'Root/config/textstyle';
 import {COMPANION_DURATION, COMPANION_STATUS, PET_AGE, PET_KIND} from 'Root/i18n/msg';
 import {btn_w176} from '../atom/btn/btn_style';
 import {AddItem64} from '../atom/icon';
+import Modal from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
 import Stagebar from '../molecules/Stagebar';
 import CompanionFormList from '../organism_ksw/CompanionFormList';
@@ -40,6 +41,12 @@ export default ApplyCompanionC = props => {
 			err => Modal.alert(err),
 		);
 		isProtect ? navigation.setOptions({title: '임시보호 신청'}) : navigation.setOptions({title: '입양 신청'});
+	}, []);
+
+	React.useEffect(() => {
+		navigation.addListener('beforeRemove', () => {
+			Modal.close();
+		});
 	}, []);
 
 	React.useEffect(() => {
@@ -201,13 +208,3 @@ export default ApplyCompanionC = props => {
 		</View>
 	);
 };
-
-// StageBar.defaultProps={
-// 	style:{}, //전체 container style, text와 bar를 감싸는 view의 style
-// 	backgroundBarStyle:{}, //배경이 되는 bar의 style, width props으로 너비결정됨
-// 	insideBarStyle:{}, //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
-// 	current:1, //현재 단계를 정의
-// 	maxstage:1, //전체 단계를 정의
-// 	width:0, //bar의 너비
-// 	textStyle:{},//text의 스타일
-//  }

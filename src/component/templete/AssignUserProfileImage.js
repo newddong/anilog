@@ -11,14 +11,10 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import {assignUser, nicknameDuplicationCheck} from 'Root/api/userapi';
 import ImagePicker from 'react-native-image-crop-picker';
 
-
 export default AssignUserProfileImage = props => {
 	const [imgSelected, setImgSelected] = React.useState();
 	const [nickname, setNickname] = React.useState('');
 	const [confirmed, setConfirmed] = React.useState(false);
-
-
-
 
 	const selectPhoto = () => {
 		// props.navigation.push('SinglePhotoSelect');
@@ -33,13 +29,16 @@ export default AssignUserProfileImage = props => {
 		// 	},
 		// );
 		ImagePicker.openPicker({
-			compressImageQuality:0.8,
+			compressImageQuality: 0.8,
 			cropping: true,
-			cropperCircleOverlay:true,
-		  }).then(images => {
-			setImgSelected(images.path);
-			Modal.close();
-		  }).catch(err=>Modal.alert(err+''));Modal.close();
+			cropperCircleOverlay: true,
+		})
+			.then(images => {
+				setImgSelected(images.path);
+				Modal.close();
+			})
+			.catch(err => console.log(err + ''));
+		Modal.close();
 	};
 
 	//확인버튼
@@ -48,18 +47,19 @@ export default AssignUserProfileImage = props => {
 		nicknameDuplicationCheck(
 			{user_nickname: params.user_nickname},
 			result => {
-				if(result.msg){
+				if (result.msg) {
 					Modal.popOneBtn('이미 사용자가 있는 닉네임입니다.', '확인', () => Modal.close());
-				}else{
+				} else {
 					assign(params);
 				}
 			},
-			error => {Modal.popOneBtn(error, '확인', () => Modal.close())}
+			error => {
+				Modal.popOneBtn(error, '확인', () => Modal.close());
+			},
 		);
-		
 	};
 
-	const assign = (params) => {
+	const assign = params => {
 		Modal.popNoBtn('등록중입니다.');
 		assignUser(
 			params,
@@ -82,7 +82,7 @@ export default AssignUserProfileImage = props => {
 						//네비게이션 초기화, 동물 등록으로 이동
 						props.navigation.reset({
 							index: 1,
-							routes: [{name: 'Login'}, {name: 'AssignPetProfileImage',params:{userobject_id:successmsg.msg._id,previousRouteName:'Login'}}],
+							routes: [{name: 'Login'}, {name: 'AssignPetProfileImage', params: {userobject_id: successmsg.msg._id, previousRouteName: 'Login'}}],
 						});
 					},
 				);
@@ -95,7 +95,7 @@ export default AssignUserProfileImage = props => {
 				});
 			},
 		);
-	}
+	};
 
 	//중복 처리
 	const checkDuplicateNickname = nick => {

@@ -15,7 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getUserInfoById, getUserProfile, updateUserIntroduction} from 'Root/api/userapi';
 // 필요한 데이터 - 로그인 유저 제반 데이터, 나의 반려동물 관련 데이터(CompanionObject 참조)
 export default UserInfoSetting = ({route}) => {
-	console.log('userInfoSetting', route);
+	// console.log('userInfoSetting', route);
 	const navigation = useNavigation();
 	const [data, setData] = React.useState({}); // 로그인 유저의 UserObject
 	const [modifyMode, setModifyMode] = React.useState(false);
@@ -70,8 +70,8 @@ export default UserInfoSetting = ({route}) => {
 
 	//나의 반려동물 => 반려클릭
 	const onClickCompanionLabel = myPetData => {
-		console.log('myPetdata', myPetData);
-		navigation.push('PetInfoSetting', {pet_id: myPetData._id});
+		// console.log('myPetdata', myPetData);
+		navigation.push('PetInfoSetting', {pet_id: myPetData._id, token: data});
 	};
 
 	//비밀번호 변경하기 클릭
