@@ -11,20 +11,9 @@ let sid = undefined;
  * @param {IArguments}} args - 함수의 arguments, MDN참조
  */
 export async function apiController(path, args) {
-	if (!sid) {
-		sid = await AsyncStorage.getItem('sid');
-	}
-	if (sid) {
-		try {
-			await cookieReset(sid, path);
-		} catch (err) {
-			console.log('쿠키 에러', err);
-			args[2](err + ''); //에러 처리 콜백
-		}
-	}
-
 	let existFileField = Object.keys(args[0]).some(v => v.includes('uri'));
 	if (existFileField) {
+		console.log('첨부파일 uri처리 루틴 진입');
 		apiFormController(path, args);
 		return;
 	}
@@ -34,9 +23,12 @@ export async function apiController(path, args) {
 		if (path.includes('userLogin')) {
 			try {
 				let cookie = await CookieManager.get(serveruri);
+				console.log('경로 %s에 대한 쿠키정보 ',serveruri,cookie);
 				if(cookie['connect.sid']){
 					sid = cookie['connect.sid'].value;
-					await AsyncStorage.setItem('sid', cookie['connect.sid'].value);
+					console.log('메모리에 sid정보 불러옴',sid);
+					let sidLocal = await AsyncStorage.setItem('sid', cookie['connect.sid'].value);
+					console.log('디스크에 sid정보를 씀', sidLocal);
 				}
 				console.log('유저로그인', cookie);
 			} catch (err) {
@@ -46,12 +38,48 @@ export async function apiController(path, args) {
 		}
 		if (result.data.status == 200) {
 			args[1](result.data);
-		} else {
+		} 
+
+		else if(result.data.status == 401){
+			if (!sid) {
+				try{
+				sid = await AsyncStorage.getItem('sid');
+				}catch(err){
+					console.log('디스크에서 sid정보 불러오기 오류',sid);	
+				}
+				console.log('메모리상에 sid 정보가 없어 로컬에서 불러옴',sid);
+			}
+			console.log('메모리 sid정보',sid);
+
+			if (sid) {
+				try {
+					let cookie = await cookieReset(sid, path);
+					console.log('쿠키 리셋 완료', cookie);
+				} catch (err) {
+					console.log('쿠키 리셋중 에러', err);
+					args[2](err + ''); //에러 처리 콜백
+				}
+			}
+			let result = await axios.post(serveruri + path, args[0]);//한번 더 요청
+			if (result.data.status == 200) {
+				args[1](result.data);
+			}
+			else {
+				args[2](result.data.msg); //이 단계에서는 로그인을 하지 않음이 확실해짐
+			}
+		}
+		else {
 			args[2](result.data.msg);
 		}
 	} catch (err) {
 		args[2](err + ''); //에러 처리 콜백
 	}
+
+
+
+
+
+
 }
 
 /**
