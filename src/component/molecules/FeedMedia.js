@@ -53,7 +53,7 @@ export default FeedMedia = props => {
 	const isEmergency = feed_type == 'report' || feed_type == 'missing';
 	const animal_species = missing_animal_species || report_animal_species;
 	const species_detail = missing_animal_species_detail || report_animal_species_detail;
-	const animal_species_detail = species_detail?.includes('un')?'':' / '+species_detail;
+	const animal_species_detail = species_detail?.includes('un')||!species_detail?'':' / '+species_detail;
 	const emergency_location = missing_animal_lost_location || report_witness_location;
 	// console.log(props.data.medias);
 

@@ -25,6 +25,7 @@ import NormalDropDown from 'Molecules/NormalDropDown';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {getPettypes} from 'Root/api/userapi';
 import ImagePicker from 'react-native-image-crop-picker';
+import HashInput from 'Molecules/HashInput';
 
 export default FeedWrite = props => {
 	const [showPetAccountList, setShowPetAccountList] = React.useState(false); //PetAccount 계정
@@ -139,6 +140,8 @@ export default FeedWrite = props => {
 			},
 		);
 	};
+
+	
 	//사진 삭제
 	const deletePhoto = index => {
 		setSelectedImg(selectedImg.filter((v, i) => i != index));
@@ -174,7 +177,6 @@ export default FeedWrite = props => {
 	};
 
 	const inputFeedTxt = feedInput => {
-		console.log('오늘은@@기영@@이와함께##딸기##를@@효쏭과함께@@사먹었어요@@행복@@이는##간식을##먹네요$$부럽네요$$증말'.match(/(.*?\n.*?(@@.*?@@|##.*?##))/gm))
 		setFeedText(feedInput);
 	};
 
@@ -255,13 +257,13 @@ export default FeedWrite = props => {
 			{/* <ScrollView contentContainerStyle={{width: 750 * DP, alignItems: 'center'}}> */}
 				<View style={[temp_style.feedTextEdit, feedWrite.feedTextEdit]}>
 					{/* 피드 글 작성 */}
-					<TextInput
+					<HashInput
+						containerStyle={{flex: 1,backgroundColor:'yellow'}}
 						textAlignVertical={'top'}
 						multiline={true}
-						style={{flex: 1}}
 						placeholder="게시물을 작성하세요"
 						onChangeText={inputFeedTxt}
-						></TextInput>
+						></HashInput>
 				</View>
 				
 				{/* Input Text 하단 언더라인 */}
@@ -297,40 +299,11 @@ export default FeedWrite = props => {
 			) : (
 				false
 			)}
-			<View style={{position:'absolute',width:658*DP,height:300*DP,backgroundColor:'yellow',top:300*DP,flexDirection:'row'}}>
-				<Text style={{backgroundColor:'green'}}>{makeFeedInputView()}</Text>
-				{/* <Text style={{backgroundColor:'green'}}>{[<Text style={{color:'blue'}}>우호</Text>,<Text style={{color:'red'}}>우호</Text>]}</Text> */}
-				
-			</View>
+
 		</View>
 	);
 };
 
-const makeFeedInputView = (string) => {
-
-	let arr = "오늘은@@기영||eioasd@@이와함께##딸기||aslkdfja##를@@효쏭||aslfs@@과 함께\n 사먹었\n어\n요 @@행복@@이는##간식을##먹네요$$부럽네요$$증말".match(/((.*?\n)*?.*?(@@.*?@@|##.*?##))/g)
-	console.log(arr)
-	return arr?.map((v,i)=>{
-		let item = v.match(/(((.*?\n)*.*?)(@@(.*?)@@|##(.*?)##))/)
-		console.log(item)
-		if(v.includes('@'))return (<>{item[2]}<Text key={i} style={{color:'blue'}} onPress={()=>{alert(item[5].split('||')[1])}}>{item[5].split('||')[0]}</Text></>)
-		
-		
-		if(v.includes('#'))return (<>{item[2]}<Text key={i} style={{color:'red'}} onPress={()=>{alert(item[6].split('||')[1])}}>{item[6].split('||')[0]}</Text></>)
-	})
-
-
-}
-
-
-//오늘은 @@테스트1@@과 함께 ##춘천막국수##에서 @@행복이@@와 함깨 ##애니로그##에서
-const CustTomTxt = props => {
-	
-	// <View><Text>{props.children}</Text></View>	
-	return (
-	<View><Text>{props.children}</Text></View>
-	);
-}
 
 //실종 컴포넌트
 const MissingForm = props => {

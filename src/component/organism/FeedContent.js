@@ -15,6 +15,7 @@ import {SHARE} from 'Root/i18n/msg';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {MAINCOLOR} from 'Root/screens/color';
 import {getTimeLapsed, parsingDate} from 'Root/util/dateutil';
+import HashText from 'Molecules/HashText';
 
 export default FeedContent = props => {
 	const {
@@ -169,7 +170,8 @@ export default FeedContent = props => {
 			{/* FeedText */}
 			<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]} onLayout={onLayoutContent}>
 				{/* <FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} /> */}
-				<Text style={[txt.noto28]}>{feed_content}</Text>
+				{/* <HashText title=''></HashText> */}
+				<HashText style={[txt.noto28]}>{feed_content}</HashText>
 			</View>
 			{/* 피드 작성 날짜  3 */}
 			<View style={[organism_style.time_view_feedContent]}>
