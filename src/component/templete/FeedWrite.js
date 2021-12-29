@@ -114,7 +114,7 @@ export default FeedWrite = props => {
 						setSelectedImg(selectedImg.concat(images.path));
 						Modal.close();
 					})
-					.catch(err => Modal.alert(err + ''));
+					.catch(err => console.log(err + ''));
 				Modal.close();
 			},
 			() => {
@@ -337,9 +337,10 @@ const MissingForm = props => {
 	const [types, setTypes] = React.useState([
 		{
 			pet_species: '개',
-			pet_species_detail: [],
+			pet_species_detail: ['믹스견', '치와와', '말티즈', '미니어처 핀셔', '파피용', '포메라니안', '푸들', '시추'],
 		},
 	]);
+	const [isSpeciesChanged, setIsSpeciesChanged] = React.useState(false);
 
 	const [data, setData] = React.useState({
 		missing_animal_species: types[0].pet_species,
@@ -373,6 +374,7 @@ const MissingForm = props => {
 
 	const onSelectSpecies = (v, i) => {
 		setData({...data, missing_animal_species: types[i].pet_species, type: types[i]});
+		setIsSpeciesChanged(!isSpeciesChanged);
 	};
 
 	const onSelectSpeciesDetail = (v, i) => {
@@ -421,7 +423,14 @@ const MissingForm = props => {
 						<NormalDropDown items={pet_kind} menu={types.map(v => v.pet_species)} width={292} onSelect={onSelectSpecies} defaultIndex={0} />
 					</View>
 					<View style={[temp_style.dropdownSelect, feedWrite.dropdownSelect]}>
-						<NormalDropDown items={pet_kind} menu={data.type.pet_species_detail} width={292} height={500} onSelect={onSelectSpeciesDetail} />
+						<NormalDropDown
+							items={pet_kind}
+							menu={data.type.pet_species_detail}
+							width={292}
+							height={500}
+							isLargeCategoryChanged={isSpeciesChanged}
+							onSelect={onSelectSpeciesDetail}
+						/>
 					</View>
 				</View>
 			</View>
@@ -499,7 +508,7 @@ const ReportForm = props => {
 	const [types, setTypes] = React.useState([
 		{
 			pet_species: '개',
-			pet_species_detail: [],
+			pet_species_detail: ['믹스견', '치와와', '말티즈', '미니어처 핀셔', '파피용', '포메라니안', '푸들', '시추'],
 		},
 	]);
 
@@ -511,6 +520,8 @@ const ReportForm = props => {
 		report_animal_species_detail: types[0].pet_species_detail[0],
 		type: types[0],
 	});
+
+	const [isSpeciesChanged, setIsSpeciesChanged] = React.useState(false);
 
 	React.useEffect(() => {
 		props.onDataChange && props.onDataChange(data);
@@ -560,6 +571,7 @@ const ReportForm = props => {
 
 	const onSelectSpecies = (v, i) => {
 		setData({...data, report_animal_species: types[i].pet_species, type: types[i]});
+		setIsSpeciesChanged(!isSpeciesChanged);
 	};
 
 	const onSelectSpeciesDetail = (v, i) => {
@@ -581,7 +593,14 @@ const ReportForm = props => {
 								<NormalDropDown items={pet_kind} menu={types.map(v => v.pet_species)} width={292} onSelect={onSelectSpecies} defaultIndex={0} />
 							</View>
 							<View style={[temp_style.dropdownSelect, feedWrite.dropdownSelect]}>
-								<NormalDropDown items={pet_kind} menu={data.type.pet_species_detail} width={292} height={500} onSelect={onSelectSpeciesDetail} />
+								<NormalDropDown
+									items={pet_kind}
+									isLargeCategoryChanged={isSpeciesChanged}
+									menu={data.type.pet_species_detail}
+									width={292}
+									height={500}
+									onSelect={onSelectSpeciesDetail}
+								/>
 							</View>
 						</View>
 					</View>

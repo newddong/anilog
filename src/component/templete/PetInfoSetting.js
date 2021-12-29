@@ -14,13 +14,16 @@ import Modal from '../modal/Modal';
 import {getUserInfoById, removeUserFromFamily} from 'Root/api/userapi';
 import {familyAccountList_style} from '../organism_ksw/style_organism';
 import ProfileImageSmall from '../molecules/ProfileImageSmall';
+import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
 
 //이 화면에 들어오면서 특정 _id를 API 연동으로 데이터를 가져 옴.
 //이전 화면에서 모든 데이터를 가진 상태에서 들어오는 것이 아님.
 //변수들은 모두 db 변수로 스네이크 형식으로 추후에 변경 필요.
 
 export default PetInfoSetting = ({route, navigation}) => {
-	// console.log('PetInfoSetting / route.params', route.params);
+	console.log('PetInfoSetting / route.params', route.params.token.user_nickname);
+	const loginUser = route.params.token;
+
 	const [petData, setPetData] = React.useState({}); // 현재 반려동물 프로필 데이터
 	const [familyAccountList, setFamilyAccountList] = React.useState([]); //가족 계정 목록 데이터
 
@@ -91,6 +94,11 @@ export default PetInfoSetting = ({route, navigation}) => {
 		);
 	};
 
+	//가족 계정의 프로필 라벨 클릭
+	const onClickFamilyLabel = data => {
+		navigation.push('UserProfile', {userobject: data});
+	};
+
 	//계정 공개 여부 변경 Switch On
 	const onSwtichOn = () => {};
 
@@ -103,8 +111,8 @@ export default PetInfoSetting = ({route, navigation}) => {
 	};
 
 	return (
-		<ScrollView>
-			<View style={[login_style.wrp_main, petInfoSetting.container]}>
+		<View style={[login_style.wrp_main, petInfoSetting.container]}>
+			<ScrollView>
 				{/* 프로필 컨테이너 */}
 				<View style={[petInfoSetting.profileContainer]}>
 					<View style={[temp_style.petImageLabel, petInfoSetting.petImageLabel]}>
@@ -179,13 +187,20 @@ export default PetInfoSetting = ({route, navigation}) => {
 							{familyAccountList.map((v, i) => {
 								return (
 									<View style={[familyAccountList_style.itemContainer]} key={i}>
-										<View style={[familyAccountList_style.profileImageSmall]}>
+										{/* <View style={[familyAccountList_style.profileImageSmall]}>
 											<ProfileImageSmall data={v} />
 										</View>
 										<View style={[familyAccountList_style.userIDContainer]}>
 											<Text style={[txt.roboto28b]}>{v.user_nickname}</Text>
-										</View>
-										<Cross52 onPress={() => onDeleteFamilyAccount(i)} style={[familyAccountList_style.cross52]} />
+										</View> */}
+										<UserDescriptionLabel data={v} onClickLabel={onClickFamilyLabel} />
+										{v.user_nickname == loginUser.user_nickname ? (
+											<></>
+										) : (
+											<View style={{position: 'absolute', right: 5 * DP}}>
+												<Cross52 onPress={() => onDeleteFamilyAccount(i)} style={[familyAccountList_style.cross52]} />
+											</View>
+										)}
 									</View>
 								);
 							})}
@@ -227,8 +242,8 @@ export default PetInfoSetting = ({route, navigation}) => {
 					</View>
 				</View>
 				{/* )} */}
-			</View>
-		</ScrollView>
+			</ScrollView>
+		</View>
 	);
 };
 

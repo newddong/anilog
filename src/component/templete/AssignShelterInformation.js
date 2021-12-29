@@ -48,7 +48,7 @@ export default AssignShelterInformation = props => {
 
 	//이메일
 	const onChangeEmail = email => {
-		// console.log(email);
+		console.log(email);
 		setData({...data, user_email: email});
 	};
 
@@ -101,6 +101,7 @@ export default AssignShelterInformation = props => {
 						validator={phoneValidate}
 						onChange={onChangePhoneNumber}
 						onValid={onValidPhoneNumber}
+						width={420}
 					/>
 				</View>
 
@@ -110,7 +111,7 @@ export default AssignShelterInformation = props => {
 						placeholder={'이메일 입력란'}
 						title={'E-mail'}
 						title_star={true}
-						dropdownItems={email_supplier}
+						width={370}
 						onChange={onChangeEmail}
 						onValid={onValidEmail}
 					/>

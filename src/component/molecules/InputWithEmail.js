@@ -7,6 +7,7 @@ import {APRI10, GRAY30, RED10} from 'Root/config/color';
 import NormalDropDown from './NormalDropDown';
 import Input24 from './Input24';
 import {EMAIL_DOMAIN} from 'Root/i18n/msg';
+import EmialDropDown from './EmailDropDown';
 
 /**
  *
@@ -28,11 +29,13 @@ const InputWithEmail = props => {
 	const [selectedItem, setSelectedItem] = React.useState(props.itemList[props.defaultIndex]);
 	const [index, setIndex] = React.useState(props.defaultIndex);
 	const [input, setInput] = React.useState(props.value || '');
+	const [domainDirect, setDomainDirect] = React.useState('');
+	const [directInput, setDirectInput] = React.useState(false);
 	const inputRef = React.useRef();
 
 	const onChange = txt => {
 		setInput(txt);
-		props.onChange(txt + '@' + selectedItem);
+		directInput ? props.onChange(txt + '@' + domainDirect) : props.onChange(txt + '@' + selectedItem);
 	};
 
 	const onClear = () => {
@@ -41,10 +44,16 @@ const InputWithEmail = props => {
 	};
 
 	const onSelectDropDown = (item, index) => {
-		// console.log('onselectDropdown', e, i);
+		console.log('onselectDropdown', item, index);
+		item == '직접입력' ? setDirectInput(true) : false;
 		setSelectedItem(item);
 		setIndex(index);
 		props.onSelectDropDown(item, index);
+	};
+
+	const onDirectInput = text => {
+		// console.log('onDirectInput', text);
+		setDomainDirect(text);
 	};
 
 	const validator = text => {
@@ -80,7 +89,7 @@ const InputWithEmail = props => {
 				<View style={{}}>
 					<Text style={[txt.roboto24b, {lineHeight: 36 * DP}]}>@</Text>
 				</View>
-				<NormalDropDown menu={EMAIL_DOMAIN} width={254} defaultIndex={index} onSelect={onSelectDropDown} height={400} />
+				<EmialDropDown menu={EMAIL_DOMAIN} width={254} defaultIndex={index} onChangeDomain={onDirectInput} onSelect={onSelectDropDown} height={600} />
 			</View>
 		</View>
 	);

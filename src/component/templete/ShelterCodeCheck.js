@@ -49,6 +49,10 @@ export default ShelterCodeCheck = props => {
 		code.length > 1 ? setConfirmed(true) : null;
 	};
 
+	const validator = text => {
+		return true;
+	};
+
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<View style={[temp_style.textMsg]}>
@@ -56,7 +60,14 @@ export default ShelterCodeCheck = props => {
 			</View>
 
 			<View style={[temp_style.input30]}>
-				<Input24 placeholder={'보호소 코드를 입력해주세요.'} onChange={codeChecker} value={shelterCode} />
+				{/* <Input24 placeholder={'보호소 코드를 입력해주세요.'} onChange={codeChecker} value={shelterCode} validator={validator} /> */}
+				<Input24
+					width={654}
+					// defaultValue={'123'}
+					value={shelterCode}
+					placeholder={'보호소 코드를 입력해주세요.'}
+					onChange={codeChecker}
+				/>
 			</View>
 
 			<View style={[btn_style.queryBtn, shelterCodeCheck_style.queryBtn]}>

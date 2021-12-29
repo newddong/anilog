@@ -56,13 +56,16 @@ export default AssignShelterProfileImage = props => {
 		// 	},
 		// );
 		ImagePicker.openPicker({
-			compressImageQuality:0.8,
+			compressImageQuality: 0.8,
 			cropping: true,
-			cropperCircleOverlay:true,
-		  }).then(images => {
-			setData({...data, user_profile_uri: images.path});
-			Modal.close();
-		  }).catch(err=>Modal.alert(err+''));Modal.close();
+			cropperCircleOverlay: true,
+		})
+			.then(images => {
+				setData({...data, user_profile_uri: images.path});
+				Modal.close();
+			})
+			.catch(err => console.log(err + ''));
+		Modal.close();
 	};
 
 	return (

@@ -38,6 +38,9 @@ export default AssignPetInfoA = props => {
 		pet_sex: 'male',
 		pet_neutralization: 'unknown',
 	});
+
+	const [isSpeciesChanged, setIsSpeciesChanged] = React.useState(false);
+
 	React.useEffect(() => {
 		getPettypes(
 			{},
@@ -72,6 +75,7 @@ export default AssignPetInfoA = props => {
 	const onSelectSpecies = (v, i) => {
 		console.log('v=>' + v + ' i=>' + i);
 		setData({...data, pet_species: types[i].pet_species, type: types[i]});
+		setIsSpeciesChanged(!isSpeciesChanged);
 	};
 
 	const onSelectSpeciesDetail = (v, i) => {
@@ -81,7 +85,6 @@ export default AssignPetInfoA = props => {
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>
-			{/* (M)StageBar	 */}
 			<View style={[temp_style.stageBar, progressbar_style.stageBar]}>
 				<Stagebar
 					backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨
@@ -99,18 +102,25 @@ export default AssignPetInfoA = props => {
 
 			{/* InputForm */}
 			<View style={[temp_style.assignPetInfoA, assignPetInfo_style.inputForm]}>
-				{/* InputForm line1 */}
+				{/* 분류 */}
 				<View style={[temp_style.inputForm_assignPetInfo_line1]}>
 					<Text style={[temp_style.text_assignPetInfo, txt.noto28, {color: GRAY10}]}>분류</Text>
 					<View style={[temp_style.dropdownSelect_assignPetInfo_depth1, assignPetInfo_style.dropdownSelect_depth1]}>
 						<NormalDropDown menu={types.map(v => v.pet_species)} width={204} onSelect={onSelectSpecies} defaultIndex={0} />
 					</View>
 					<View style={[temp_style.dropdownSelect_assignPetInfo_depth2, assignPetInfo_style.dropdownSelect_depth2]}>
-						<NormalDropDown menu={data.type.pet_species_detail} width={292} height={500} onSelect={onSelectSpeciesDetail} />
+						<NormalDropDown
+							menu={data.type.pet_species_detail}
+							isLargeCategoryChanged={isSpeciesChanged}
+							defaultIndex={0}
+							width={292}
+							height={500}
+							onSelect={onSelectSpeciesDetail}
+						/>
 					</View>
 				</View>
 
-				{/* InputForm line2 */}
+				{/* 성별 */}
 				<View style={[temp_style.inputForm_assignPetInfo_line2, assignPetInfo_style.line2]}>
 					<Text style={[temp_style.text_assignPetInfo, txt.noto28, {color: GRAY10}]}>성별</Text>
 					<View style={[temp_style.tabSelectFilled_Type1, assignPetInfo_style.tabSelectFilled_Type1]}>
@@ -118,7 +128,7 @@ export default AssignPetInfoA = props => {
 					</View>
 				</View>
 
-				{/* InputForm line3 */}
+				{/* 중성화 */}
 				<View style={[temp_style.inputForm_assignPetInfo_line3, assignPetInfo_style.line3]}>
 					<Text style={[temp_style.text_assignPetInfo, txt.noto28, {color: GRAY10}]}>중성화</Text>
 					<View style={[temp_style.radioBox_assignPetInfo, assignPetInfo_style.tabSelectFilled_Type1]}>

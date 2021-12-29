@@ -71,7 +71,14 @@ export default PhoneNumVerification = props => {
 	};
 
 	const nameValidator = name => {
-		return name.length > 0;
+		const trimmed = name.trim();
+		// let regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
+		let regExp = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_-]{2,20}$/;
+		let pattern = /\s/g;
+		console.log('trimmed:' + trimmed.length);
+		console.log('regex', regExp.test(trimmed));
+		return !pattern.test(trimmed) && regExp.test(trimmed);
+		// return name.length > 0;
 	};
 
 	const onValidName = isValid => {

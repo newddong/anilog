@@ -22,7 +22,6 @@ export default ApplyCompanionA = ({route}) => {
 	const navigation = useNavigation();
 	const isProtect = route.name == 'ApplyProtectActivityA'; //임시보호 신청여부 , false일 경우 자동으로 입양모드 전환
 	const [confirmed, setConfirmed] = React.useState(false);
-	const [addrSearched, setAddrSearched] = React.useState(false);
 
 	const [data, setData] = React.useState({
 		protect_act_type: isProtect ? 'protect' : 'adopt',
@@ -58,17 +57,16 @@ export default ApplyCompanionA = ({route}) => {
 
 		if (route.params != null) {
 			//한번 주소 검색이 된적이 있는가?
-			if (addr && !addrSearched) {
+			if (addr) {
 				console.log('route.params.Address Changed?   ', addr);
 				// setData({...data, user_address: {city: addr.siNm, district: addr.sggNm, neighbor: addr.rn + ' ' + addr.buldMnnm}});
 				setData({...data, protect_act_address: {brief: addr.roadAddr, detail: addr.detailAddr}});
-				setAddrSearched(true); // 다시 검색할 수 있도록 state 원상복귀
 			}
 		}
 	}, [route.params.addr]);
 
 	React.useEffect(() => {
-		console.log('data Address ', data.protect_act_address);
+		// console.log('data Address ', data.protect_act_address);
 	}, [data]);
 
 	//주소찾기 버튼 클릭
@@ -95,12 +93,24 @@ export default ApplyCompanionA = ({route}) => {
 
 	//세부주소 입력
 	const onChangeDeatilAddress = addr => {
-		let addrData = {...data.protect_act_address};
-		addrData.detail = addr;
-		// setData({
-		// 	...data,
-		// 	protect_act_address: addrData,
-		// });
+		setData({
+			...data,
+			protect_act_address: {
+				brief: data.protect_act_address.brief,
+				detail: addr,
+			},
+		});
+	};
+
+	//주소 입력
+	const onChangeAddress = addr => {
+		setData({
+			...data,
+			protect_act_address: {
+				brief: addr,
+				detail: data.protect_act_address.detail,
+			},
+		});
 	};
 
 	//확인 버튼 클릭
@@ -136,10 +146,10 @@ export default ApplyCompanionA = ({route}) => {
 						title={'보호장소'}
 						titleMode={'star'}
 						address={data.protect_act_address.brief}
-						detailAddressDefault={data.protect_act_address.detail}
-						addressDefault={data.protect_act_address.brief}
-						onPressSearchAddr={goToAddressSearch}
 						detailAddress={data.protect_act_address.detail}
+						onChangeAddress={onChangeAddress}
+						onChangeDeatilAddress={onChangeDeatilAddress}
+						onPressSearchAddr={goToAddressSearch}
 					/>
 				</View>
 				<View style={[temp_style.input24A_applyCompanionA, applyCompanionA.input24A]}>

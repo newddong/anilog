@@ -1231,6 +1231,7 @@ export const familyAccountList_style = StyleSheet.create({
 		height: 94 * DP,
 		marginBottom: 30 * DP,
 		flexDirection: 'row',
+		alignItems: 'center',
 	},
 	profileImageSmall: {
 		width: 94 * DP,

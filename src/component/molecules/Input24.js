@@ -4,7 +4,7 @@ import PropsTypes, {any, bool, func, number, object, oneOf, oneOfType, string} f
 import {Text, View, TextInput, Platform} from 'react-native';
 import DP from 'Root/config/dp';
 import {APRI10, GRAY10, GRAY20, GRAY30, GRAY40, GREEN, RED10} from 'Root/config/color';
-import {Cross46} from '../atom/icon';
+import {Cross46, Eye52_APRI10, Eye52_GRAY20} from '../atom/icon';
 import Modal from 'Component/modal/Modal';
 /**
  * 인풋 크기 24
@@ -12,7 +12,7 @@ import Modal from 'Component/modal/Modal';
  *
  */
 const Input24 = React.forwardRef((props, ref) => {
-	console.log('props', props);
+	// console.log('props', props);
 	React.useImperativeHandle(ref, () => ({
 		focus: () => {
 			inputRef.current.focus();
@@ -123,8 +123,8 @@ const Input24 = React.forwardRef((props, ref) => {
 				<TextInput
 					ref={inputRef}
 					onChangeText={onChange}
-					// onFocus={onFocus}
-					// onBlur={onBlur}
+					onFocus={onFocus}
+					onBlur={onBlur}
 					value={props.value}
 					placeholder={props.placeholder}
 					placeholderTextColor={GRAY10}
@@ -132,11 +132,12 @@ const Input24 = React.forwardRef((props, ref) => {
 					editable={props.editable}
 					keyboardType={props.keyboardType}
 					secureTextEntry={props.secureTextEntry}
+					maxLength={props.maxlength}
 					style={[
 						txt.noto28,
 						props.style,
 						{
-							width: props.width * DP - 46 * DP,
+							width: props.width ? props.width * DP - 46 * DP : null,
 							paddingLeft: 24 * DP,
 							height: '100%', //ios에서 안드로이드와 동작 일치시키기 위함
 							lineHeight: 44 * DP,
@@ -174,6 +175,8 @@ const Input24Props = {
 	info: string,
 	/** @type {number} 입력창 너비 */
 	width: number,
+	/** @type {number} 최대 글자수 */
+	maxlength: number,
 	/** @type {boolean} 하단의 경고/확인 메세지를 표시할지 여부를 결정 */
 	showMsg: bool,
 	/** @type {object}  입력창의 스타일 */
@@ -221,7 +224,9 @@ Input24.defaultProps = {
 	showHttp: false, //AssignShelterInformation에서 http:// 인풋 좌측에 놓기 위한 props
 	onClear: e => {},
 	onChange: e => {},
-	validator: () => true,
+	validator: () => {
+		return true;
+	},
 	onValid: e => {},
 	onFocus: e => {},
 	onBlur: e => {},

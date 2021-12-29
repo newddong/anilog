@@ -41,7 +41,14 @@ export default ShelterAssignEntrance = props => {
 
 			{/* (A)Btn_w522 */}
 			<View style={[btn_style.btn_w522, shelterAssignEntrance_style.btn_w522_public]}>
-				<AniButton btnTitle={'공립 보호소'} btnTheme={'shadow'} btnLayout={btn_w522} titleFontStyle={32} onPress={goToPrivateShelter} />
+				<AniButton
+					btnTitle={'공립 보호소'}
+					btnTheme={'shadow'}
+					btnStyle={'border'}
+					btnLayout={btn_w522}
+					titleFontStyle={32}
+					onPress={goToPrivateShelter}
+				/>
 			</View>
 
 			{/* (A)Btn_w522 */}
