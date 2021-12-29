@@ -20,8 +20,7 @@ export default UserInfoSetting = ({route}) => {
 	const [data, setData] = React.useState({}); // 로그인 유저의 UserObject
 	const [modifyMode, setModifyMode] = React.useState(false);
 	const modifyRef = React.useRef();
-
-	React.useEffect(() => {
+	const fetchData = () => {
 		AsyncStorage.getItem('token', (err, res) => {
 			getUserInfoById(
 				{
@@ -30,21 +29,19 @@ export default UserInfoSetting = ({route}) => {
 				userObject => {
 					setData(userObject.msg);
 					navigation.setOptions({title: userObject.msg.user_nickname});
-
-					console.log('result / getUserProfile / UserInfoSetting', userObject.msg.user_introduction);
+					// console.log('result / getUserProfile / UserInfoSetting', userObject.msg.user_introduction);
 				},
 				err => {
 					console.log('er', err);
 				},
 			);
 		});
-		//첫 마운트 시, 프로필 변경이 있을 시 getUSerInfoById에 접속
-	}, [route.params?.token, route.params?.changedPhoto]);
-
-	//상세 정보 클릭
-	const onPressDetail = () => {
-		navigation.push('UserInfoDetailSetting', data);
 	};
+	React.useEffect(() => {
+		fetchData();
+		navigation.addListener('focus', () => fetchData());
+		//스크린 포커스, 프로필 변경이 있을 시 getUSerInfoById에 접속
+	}, [route.params?.token, route.params?.changedPhoto]);
 
 	//프로필 변경을 통한 사진변경이 발생했을 경우 params로 해당 포토 uri를 받아오고 data에 적용
 	React.useEffect(() => {
@@ -57,6 +54,11 @@ export default UserInfoSetting = ({route}) => {
 	React.useEffect(() => {
 		modifyMode ? modifyRef.current.focus() : null;
 	}, [modifyMode]);
+
+	//상세 정보 클릭
+	const onPressDetail = () => {
+		navigation.push('UserInfoDetailSetting', data);
+	};
 
 	//프로필 변경 클릭
 	const onPressModofyProfile = () => {

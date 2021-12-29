@@ -215,6 +215,13 @@ export const temp_style = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
+	textMassageLeftTop: {
+		width: 654 * DP,
+		height: 214 * DP,
+		alignItems: 'baseline',
+		justifyContent: 'flex-start',
+		paddingTop: 10,
+	},
 	phoneNumVerification: {
 		width: 654 * DP,
 		alignItems: 'center',
@@ -1139,7 +1146,7 @@ export const userAssign = StyleSheet.create({
 	},
 	textMessageInside: {
 		width: 414 * DP,
-		textAlign: 'center',
+		textAlign: 'left',
 	},
 });
 
@@ -2158,7 +2165,8 @@ export const editShelterInfo = StyleSheet.create({
 	inputEmail: {
 		flexDirection: 'row',
 		alignSelf: 'center',
-		height: 150 * DP,
+		height: 100 * DP,
+		marginBottom: 40 * DP,
 		// backgroundColor: 'yellow',
 	},
 	shelterInfoForm: {
@@ -2194,6 +2202,7 @@ export const editShelterInfo = StyleSheet.create({
 		// justifyContent: 'center',
 		// backgroundColor: '#EDEDED',
 	},
+	inputWithEmail: {},
 	addressInput: {
 		width: 654 * DP,
 		height: 236 * DP,

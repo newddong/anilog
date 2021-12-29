@@ -66,7 +66,7 @@ const InputWithEmail = props => {
 
 	return (
 		<View style={{}}>
-			{props.title != null ? (
+			{props.title ? (
 				<View style={{flexDirection: 'row'}}>
 					<Text style={[txt.noto24, {color: APRI10}]}>{props.title}</Text>
 					<Text style={[txt.noto24, {color: RED10, marginLeft: 30 * DP}]}>{props.title_star ? '*' : ''}</Text>
@@ -100,7 +100,6 @@ InputWithEmail.defaultProps = {
 	placeholder: 'placeholder',
 	defaultIndex: 0,
 	value: '',
-	title: '',
 	title_star: false,
 	onClear: e => {},
 	onChange: e => {},

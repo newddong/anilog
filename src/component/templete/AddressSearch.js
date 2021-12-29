@@ -17,7 +17,8 @@ export default AddressSearch = props => {
 	const [page, setPage] = React.useState(1);
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
 	const scroll = React.useRef();
-	const [isSelect, setIsSelect] = React.useState(true);
+	const [isSelect, setIsSelect] = React.useState(false);
+	const [detailData, setDetailData] = React.useState(false);
 
 	useEffect(() => {
 		// console.log('refresh component');
@@ -37,6 +38,7 @@ export default AddressSearch = props => {
 
 	const search = (keyword, page) => {
 		// console.log('search using addr api');
+		// console.log('keyword:', keyword);
 		if (keyword.length < 2) return;
 		axios
 			.post(
@@ -62,7 +64,11 @@ export default AddressSearch = props => {
 	};
 
 	const keywordInput = keyword => {
+		if (keyword.nativeEvent.text == '') {
+			setIsSelect(false);
+		}
 		setData({...data, keyword: keyword.nativeEvent.text});
+		// console.log('keyword:', keyword.nativeEvent.text);
 	};
 
 	const scrollReachedEnd = () => {
@@ -77,17 +83,22 @@ export default AddressSearch = props => {
 	};
 
 	const selectAddr = (addr, index) => {
-		// console.log('index'+index);
-		// console.log(addr);
+		console.log('\nindex:' + index);
+		console.log('addr:', addr);
 		scroll.current?.scrollToIndex({index: index});
 		setSelectedIndex(index);
 		setIsSelect(true);
 		setAddr(addr);
 	};
 
+	React.useEffect(() => {
+		addr.detailAddr = detailData;
+	}, [addr]);
+
 	const inputDetailAddr = e => {
-		// console.log(addr);
-		setAddr({...addr, detailAddr: e.nativeEvent.text});
+		console.log('inputDetailAddr:', e.nativeEvent.text);
+		setAddr({...addr, detailAddr: e.nativeEvent.text.trim()});
+		setDetailData(e.nativeEvent.text.trim());
 	};
 
 	const summary = () => {
@@ -102,28 +113,35 @@ export default AddressSearch = props => {
 	};
 
 	const complete = () => {
-		// console.log('onpress', addr);
-		if (addr.detailAddr == undefined || addr.roadAddr == undefined) {
-			alert('상세 주소까지 주소를 꼭 입력해주세요.');
-			return;
+		console.log('addr.detailAddr:', addr.detailAddr);
+		if (!isSelect) {
+			Modal.popOneBtn('검색 결과에서 나온 \n기본주소를 선택해 주세요.', '확인', () => {
+				Modal.close();
+			});
+		} else if (addr.detailAddr != undefined && detailData != '') {
+			props.navigation.navigate({
+				name: props.route.params.from,
+				key: props.route.params.fromkey,
+				params: {addr: addr},
+				merge: true,
+			});
+		} else {
+			// alert('상세 주소까지 주소를 꼭 입력해주세요.');
+			Modal.popOneBtn('상세 주소를 입력해 주세요.', '확인', () => {
+				Modal.close();
+			});
 		}
-		props.navigation.navigate({
-			name: props.route.params.from,
-			key: props.route.params.fromkey,
-			params: {addr: addr},
-			merge: true,
-		});
 	};
 
 	return (
 		<View style={lo.wrp_main}>
 			<View style={[lo.cntr_contents, lo.shadow]}>
 				<View style={lo.cntr_tab}>
-					<TouchableWithoutFeedback onPress={() => {}}>
+					{/* <TouchableWithoutFeedback onPress={() => {}}>
 						<View style={[lo.btn_tab]}>
 							<Text style={[txt.noto28, txt.gray]}>지번 주소</Text>
 						</View>
-					</TouchableWithoutFeedback>
+					</TouchableWithoutFeedback> */}
 					<TouchableWithoutFeedback onPress={() => {}}>
 						<View style={[lo.btn_tab, lo.tab_selected]}>
 							<Text style={[txt.noto28b, txt.white]}>도로명 주소</Text>
@@ -144,7 +162,7 @@ export default AddressSearch = props => {
 						onChange={keywordInput}
 						style={lo.form_input}
 						inputStyle={[txt.noto28, {includeFontPadding: false, paddingVertical: 0}]}
-						placeholder={'지번/도로명을 입력해 주세요.'}
+						placeholder={'도로명을 입력해 주세요.'}
 						placeholderTextColor={'#DBDBDB'}
 						value={data.keyword}
 						onFocus={() => {}}
@@ -206,36 +224,36 @@ export default AddressSearch = props => {
 			</View>
 			{/* )} */}
 
-			{isSelect && (
-				<View style={lo.cntr_footer}>
-					<View style={lo.cntr_detail_addr}>
-						<Text style={txt.noto24b}>상세주소 입력</Text>
-						<Text style={txt.noto24}>상세주소 입력</Text>
-						<FormTxtInput
-							style={lo.form_input}
-							inputStyle={[txt.noto24, {includeFontPadding: false, paddingVertical: 0}]}
-							placeholder={'상세주소를 입력하세요.'}
-							placeholderTextColor={'#DBDBDB'}
-							onChange={inputDetailAddr}
-						/>
-					</View>
-					<View style={lo.cntr_msg}>
-						<Text style={[txt.noto40b, txt.maincolor, {lineHeight: 42 * DP}]}>·</Text>
-						<View>
-							<Text style={[txt.noto20, txt.maincolor, {lineHeight: 28 * DP}]}>
-								기본 주소 선택 후 상세 주소를 반드시 입력해 주세요. 상세 주소가 없는 경우 주소지 특징을 입력해 주세요.
-							</Text>
-						</View>
-					</View>
-					<View style={lo.cntr_btn}>
-						<TouchableWithoutFeedback onPress={complete}>
-							<View style={[btn.confirm_button, btn.shadow]}>
-								<Text style={[txt.noto24b, txt.white]}>{'주소 입력 완료'}</Text>
-							</View>
-						</TouchableWithoutFeedback>
+			{/* {isSelect && ( */}
+			<View style={lo.cntr_footer}>
+				<View style={lo.cntr_detail_addr}>
+					<Text style={txt.noto24b}>상세주소 입력</Text>
+					{/* <Text style={txt.noto24}>상세주소 입력</Text> */}
+					<FormTxtInput
+						style={lo.form_input}
+						inputStyle={[txt.noto24, {includeFontPadding: false, paddingVertical: 0}]}
+						placeholder={'상세주소를 입력하세요.'}
+						placeholderTextColor={'#DBDBDB'}
+						onChange={inputDetailAddr}
+					/>
+				</View>
+				<View style={lo.cntr_msg}>
+					<Text style={[txt.noto40b, txt.maincolor, {lineHeight: 42 * DP}]}>·</Text>
+					<View>
+						<Text style={[txt.noto20, txt.maincolor, {lineHeight: 28 * DP}]}>
+							기본 주소 선택 후 상세 주소를 반드시 입력해 주세요. 상세 주소가 없는 경우 주소지 특징을 입력해 주세요.
+						</Text>
 					</View>
 				</View>
-			)}
+				<View style={lo.cntr_btn}>
+					<TouchableWithoutFeedback onPress={complete}>
+						<View style={[btn.confirm_button, btn.shadow]}>
+							<Text style={[txt.noto24b, txt.white]}>{'주소 입력 완료'}</Text>
+						</View>
+					</TouchableWithoutFeedback>
+				</View>
+			</View>
+			{/* )} */}
 		</View>
 	);
 };
@@ -244,7 +262,6 @@ const AddrItem = React.memo(props => {
 	const isSelect = props.index === props.selectedIndex;
 	const select = () => {
 		props.onSelect(props.data, props.index);
-		console.log('touch');
 	};
 
 	return (

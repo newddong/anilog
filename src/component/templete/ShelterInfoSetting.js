@@ -16,25 +16,26 @@ import moment from 'moment';
 export default ShelterInfoSetting = ({route}) => {
 	// console.log('ShelterInfoSetting', route.params);
 	const navigation = useNavigation();
-
 	const [data, setData] = React.useState({});
-	const [modifyMode, setModifyMode] = React.useState(false);
-	const [intro_modified, setIntro_modified] = React.useState('');
+	const [modifyMode, setModifyMode] = React.useState(false); //소개라 수정모드
+	const [intro_modified, setIntro_modified] = React.useState(''); //수정된 소개란 텍스트
 	const modifyRef = React.useRef();
 
+	const fetchData = () => {
+		getUserInfoById(
+			{userobject_id: route.params},
+			result => {
+				// console.log('result / getUserInfoById / ShelterInfoSetting   : ', result.msg.user_nickname);
+				setData(result.msg);
+			},
+			err => {
+				console.log('err / getUserInfoById', err);
+			},
+		);
+	};
+
 	React.useEffect(() => {
-		AsyncStorage.getItem('token', (err, res) => {
-			getUserInfoById(
-				{userobject_id: res},
-				result => {
-					console.log('result / getUserInfoById / ShelterInfoSetting   : ', result.msg.user_introduction);
-					setData(result.msg);
-				},
-				err => {
-					console.log('err / getUserInfoById', err);
-				},
-			);
-		});
+		navigation.addListener('focus', () => fetchData());
 	}, []);
 
 	//프로필변경

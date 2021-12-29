@@ -59,15 +59,6 @@ const MyStack = createStackNavigator();
 
 export default MyStackNavigation = props => {
 	// console.log('MyStack', props.navigation);
-	const navigation = useNavigation();
-
-	//navigation State가 바뀔 때마다 수행
-	React.useEffect(() => {
-		navigation.addListener('state', () => {
-			console.log('MyStackNavi', props);
-		});
-	}, []);
-
 	const [searchInput, setSearchInput] = React.useState();
 
 	React.useEffect(() => {

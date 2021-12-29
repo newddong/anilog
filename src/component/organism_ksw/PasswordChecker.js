@@ -132,7 +132,8 @@ export default PasswordChecker = props => {
 					alert_msg={PASSWORD_UNMATCHED}
 					confirm_msg={CURRENT_PWD_TITLE}
 					// confirm_msg={PASSWORD_CHECK_MATCHED}
-					information={CURRENT_PWD_INFO}
+					// information={CURRENT_PWD_INFO}
+					information=""
 					validator={compare_curr_pwd}
 					onClear={() => onPressClear('cur')}
 				/>

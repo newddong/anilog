@@ -490,7 +490,9 @@ export const addressInput = StyleSheet.create({
 		alignSelf: 'flex-start',
 	},
 	btn_w226: {
-		marginBottom: 10 * DP,
+		// marginBottom: 10 * DP,
+		marginTop: 10 * DP,
+		// backgroundColor: 'yellow',
 		// marginTop: 60 * DP,
 	},
 	inputNoTitle: {
