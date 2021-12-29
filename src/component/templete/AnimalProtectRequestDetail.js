@@ -46,9 +46,9 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const [commentDataList, setCommentDataList] = React.useState(); //comment list 정보
 	const [writeCommentData, setWriteCommentData] = React.useState(); //입력한 댓글 정보
 	const [replyPressed, setReplyPressed] = React.useState(false);
-	const [token, setToken] = React.useState();
 	const debug = false;
-
+	// console.log('data PtoectAnimalSEx', data.protect_animal_id.protect_animal_sex);
+	// console.log('protect_animal_sex @@@@@@@@@@@@@@ ', data.protect_animal_sex);
 	debug && console.log('AnimalProtectRequestDetail data:', data);
 
 	React.useEffect(() => {
@@ -345,7 +345,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 							</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>성별</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-								{data.protect_animal_sex && data.protect_animal_sex == 'male' ? '수컷' : '암컷'}
+								{data.protect_animal_id ? (data.protect_animal_id.protect_animal_sex == 'male' ? '수컷' : '암컷') : ''}
 							</Text>
 						</View>
 						<View style={[animalProtectRequestDetail_style.rescueSummary_insideItem]}>

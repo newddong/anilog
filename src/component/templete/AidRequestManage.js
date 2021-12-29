@@ -26,49 +26,6 @@ export default AidRequestManage = ({route, navigation}) => {
 				},
 				result => {
 					console.log('result / getShelterProtectAnimalList / ShelterProtectAnimalList', result.msg);
-					const mt = [
-						{
-							__v: 1,
-							_id: '61c5734438c5f6dee5a8b96e',
-							protect_act_applicants: ['61c5820238c5f6dee5a8bbdd'],
-							protect_animal_belonged_shelter_id: '61c5724c38c5f6dee5a8b95c',
-							protect_animal_estimate_age: '2년 2개월',
-							protect_animal_neutralization: 'no',
-							protect_animal_photo_uri_list: [
-								'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640330052596_797A0127-E891-4286-8F6D-856C0F09003D.jpg',
-							],
-							protect_animal_protect_request_id: '61c575b538c5f6dee5a8b9d1',
-							protect_animal_protector_discussion_id: [],
-							protect_animal_rescue_date: '2020-12-03T00:00:00.000Z',
-							protect_animal_rescue_location: '강원도 평창군 장흥이 인근',
-							protect_animal_sex: 'female',
-							protect_animal_species: '기타',
-							protect_animal_species_detail: '사자',
-							protect_animal_status: 'rescue',
-							protect_animal_weight: 14,
-						},
-						{
-							__v: 2,
-							_id: '61c576c638c5f6dee5a8b9fd',
-							protect_act_applicants: ['61c5c80938c5f6dee5a8cdfa', '61c73f7b10b3b3bf4acbed77'],
-							protect_animal_belonged_shelter_id: '61c5724c38c5f6dee5a8b95c',
-							protect_animal_estimate_age: '2개월',
-							protect_animal_neutralization: 'unknown',
-							protect_animal_photo_uri_list: [
-								'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640330950796_A5781A26-0592-422C-BB9C-21A269B4B578.jpg',
-							],
-							protect_animal_protect_request_id: '61c576f538c5f6dee5a8ba06',
-							protect_animal_protector_discussion_id: [],
-							protect_animal_rescue_date: '2021-12-01T00:00:00.000Z',
-							protect_animal_rescue_location: '강원도 강릉시 주문진 인근',
-							protect_animal_sex: 'female',
-							protect_animal_species: '기타',
-							protect_animal_species_detail: '호랑이',
-							protect_animal_status: 'rescue',
-							protect_animal_weight: 8,
-						},
-					];
-
 					setData(result.msg);
 					setTimeout(() => {
 						setLoading(false);
@@ -88,24 +45,15 @@ export default AidRequestManage = ({route, navigation}) => {
 			getAnimalListWithApplicant(
 				{},
 				result => {
-					// console.log('result / getAnimalListWithApplicant / ProtectApplyList', result.msg[0]);
+					// console.log('result / getAnimalListWithApplicant / ProtectApplyList', result.msg);
 					let merged = [];
 					result.msg.map((data, i) => {
-						console.log('v', i, data.protect_act_applicants);
-						data.protect_act_applicants.map((v, i) => {
-							console.log('v', i, v.protect_act_status);
-							if (v.protect_act_status == 'wait') {
-								merged.push(data);
-								data.shelter_name = route.params.shelter_name;
-							}
-						});
-						// if (v.protect_act_applicants.protect_act_status == 'wait') {
-						// 	v.shelter_name = route.params.shelter_name;
-						// 	merged.push(v);
-						// }
+						data.shelter_name = route.params.shelter_name;
+						//출력된 보호요청게시글들이 가지는 지원신청서가 혹시 wait상태인 것이 없는 경우 ( == 입양/임보가 확정-취소-신청취소 된 상태 )
+						// ==> 출력되어서는 안됨
+						const hasApplicantsWaitng = data.protect_act_applicants.some(e => e.protect_act_status == 'wait');
+						hasApplicantsWaitng ? merged.push(data) : false;
 					});
-
-					// console.log('merged', JSON.stringify(merged));
 					setData(merged);
 					setTimeout(() => {
 						setLoading(false);
@@ -162,3 +110,143 @@ export default AidRequestManage = ({route, navigation}) => {
 	}
 };
 // 61c1cc107be07611b00945f9
+
+const t = [
+	{
+		__v: 2,
+		_id: '61cbce57b6fcf452771afa6c',
+		protect_act_applicants: [[Object]],
+		protect_animal_belonged_shelter_id: '61cbcbfdb6fcf452771af939',
+		protect_animal_estimate_age: '1개월',
+		protect_animal_neutralization: 'unknown',
+		protect_animal_photo_uri_list: [
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640746583784_rn_image_picker_lib_temp_5e9662f7-b787-418b-aafc-682d5ded3916.jpg',
+		],
+		protect_animal_protect_request_id: '61cbe478b6fcf452771b06c3',
+		protect_animal_protector_discussion_id: [],
+		protect_animal_rescue_date: null,
+		protect_animal_rescue_location: '골목 안',
+		protect_animal_sex: 'male',
+		protect_animal_species: '개',
+		protect_animal_species_detail: '말티즈',
+		protect_animal_status: 'rescue',
+		protect_animal_weight: 0,
+	},
+	{
+		__v: 4,
+		_id: '61cbf9e7b6fcf452771b1991',
+		protect_act_applicants: [[Object], [Object], [Object], [Object]],
+		protect_animal_belonged_shelter_id: '61cbcbfdb6fcf452771af939',
+		protect_animal_estimate_age: '3년 12개월',
+		protect_animal_neutralization: 'unknown',
+		protect_animal_photo_uri_list: [
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640757735290_rn_image_picker_lib_temp_29cee8f1-3f04-4bde-b648-a1db006a77a1.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640757735299_rn_image_picker_lib_temp_c3f86414-7a30-427e-b6b3-d599d02a28a2.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640757735326_rn_image_picker_lib_temp_55b3cd1e-1850-4bfa-986d-4899fc7fb38e.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640757735349_rn_image_picker_lib_temp_d87d5262-5e66-457d-9e91-adacf2b5ee50.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640757735355_rn_image_picker_lib_temp_6648c0f3-f9bd-42f9-9289-ee4876c8933e.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640757735360_rn_image_picker_lib_temp_4bf45c9c-79bb-41fc-ab00-62dc3cf07476.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640757735367_rn_image_picker_lib_temp_32c10fa5-4b0b-4925-8599-0f82fc15a29f.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640757735372_rn_image_picker_lib_temp_0853acad-43f3-4113-8f05-88162540eb77.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640757735376_rn_image_picker_lib_temp_388c911c-f6f1-4dc2-8005-85a5f380ef82.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640757735382_rn_image_picker_lib_temp_e9ebc2e3-bd40-44ca-b784-23a81aa17fe1.jpg',
+			'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640757735388_rn_image_picker_lib_temp_9ad661c6-9c4d-4c94-a23d-8e2c9077a64a.jpg',
+		],
+		protect_animal_protect_request_id: '61cbfabab6fcf452771b1a9a',
+		protect_animal_protector_discussion_id: [],
+		protect_animal_rescue_date: '2021-12-15T00:00:00.000Z',
+		protect_animal_rescue_location: '',
+		protect_animal_sex: 'female',
+		protect_animal_species: '고양이',
+		protect_animal_species_detail: '믹스묘',
+		protect_animal_status: 'rescue',
+		protect_animal_weight: 4,
+	},
+];
+
+const d = [
+	{
+		__v: 0,
+		_id: '61cc0219b6fcf452771b23de',
+		protect_act_address: {brief: '서울특별시 마포구 마포대로 86(도화동)', detail: '16층'},
+		protect_act_applicant_id: '61ca7212951b87d739e53293',
+		protect_act_checklist: {
+			is_adult: true,
+			is_agreed_housemate: true,
+			is_experience_defecate: true,
+			is_knowledge_sanitation: true,
+			is_near_veterinary: true,
+		},
+		protect_act_companion_history: [],
+		protect_act_motivation: '보호소끼리의 입양신청',
+		protect_act_phone_number: '0107777777',
+		protect_act_protect_animal_id: '61cbf9e7b6fcf452771b1991',
+		protect_act_request_article_id: '61cbfabab6fcf452771b1a9a',
+		protect_act_request_shelter_id: '61cbcbfdb6fcf452771af939',
+		protect_act_status: 'wait',
+		protect_act_type: 'adopt',
+	},
+	{
+		__v: 0,
+		_id: '61cc03ceb6fcf452771b2588',
+		protect_act_address: {brief: '서울특별시 마포구 마포대로 86(도화동)', detail: '16층'},
+		protect_act_applicant_id: '61ca7212951b87d739e53293',
+		protect_act_checklist: {
+			is_adult: false,
+			is_agreed_housemate: false,
+			is_experience_defecate: false,
+			is_knowledge_sanitation: false,
+			is_near_veterinary: false,
+		},
+		protect_act_companion_history: [[Object]],
+		protect_act_motivation: '보호소테스트2',
+		protect_act_phone_number: '11',
+		protect_act_protect_animal_id: '61cbf9e7b6fcf452771b1991',
+		protect_act_request_article_id: '61cbfabab6fcf452771b1a9a',
+		protect_act_request_shelter_id: '61cbcbfdb6fcf452771af939',
+		protect_act_status: 'wait',
+		protect_act_type: 'protect',
+	},
+	{
+		__v: 0,
+		_id: '61cc040bb6fcf452771b25f5',
+		protect_act_address: {brief: '경상북도 영양군 일월면 오리도곡로 737', detail: '오리오리'},
+		protect_act_applicant_id: '61ca7212951b87d739e53293',
+		protect_act_checklist: {
+			is_adult: false,
+			is_agreed_housemate: false,
+			is_experience_defecate: false,
+			is_knowledge_sanitation: false,
+			is_near_veterinary: false,
+		},
+		protect_act_companion_history: [],
+		protect_act_motivation: null,
+		protect_act_phone_number: '11111',
+		protect_act_protect_animal_id: '61cbf9e7b6fcf452771b1991',
+		protect_act_request_article_id: '61cbfabab6fcf452771b1a9a',
+		protect_act_request_shelter_id: '61cbcbfdb6fcf452771af939',
+		protect_act_status: 'accept',
+		protect_act_type: 'protect',
+	},
+	{
+		__v: 0,
+		_id: '61cc0451b6fcf452771b268b',
+		protect_act_address: {brief: '서울특별시 동대문구 천호대로87길 43(장안동)', detail: '1'},
+		protect_act_applicant_id: '61ca7212951b87d739e53293',
+		protect_act_checklist: {
+			is_adult: false,
+			is_agreed_housemate: false,
+			is_experience_defecate: false,
+			is_knowledge_sanitation: false,
+			is_near_veterinary: false,
+		},
+		protect_act_companion_history: [],
+		protect_act_motivation: null,
+		protect_act_phone_number: '7',
+		protect_act_protect_animal_id: '61cbf9e7b6fcf452771b1991',
+		protect_act_request_article_id: '61cbfabab6fcf452771b1a9a',
+		protect_act_request_shelter_id: '61cbcbfdb6fcf452771af939',
+		protect_act_status: 'wait',
+		protect_act_type: 'adopt',
+	},
+];

@@ -20,7 +20,7 @@ export default AssignProtectAnimalImage = props => {
 	const [imageList, setImageList] = React.useState([]); //PhotoSelect에서 선택된 사진List
 
 	const [data, setData] = React.useState({
-		protect_animal_photo_uri_list: null,
+		protect_animal_photo_uri_list: [],
 	});
 
 	//SelectedMedia 아이템의 X마크를 클릭
@@ -41,9 +41,9 @@ export default AssignProtectAnimalImage = props => {
 			{
 				mediaType: 'photo',
 				selectionLimit: 5,
-				maxHeight:1500,
-				maxWidth:1500,
-				quality:0.8
+				maxHeight: 1500,
+				maxWidth: 1500,
+				quality: 0.8,
 			},
 			responseObject => {
 				console.log('선택됨', responseObject);

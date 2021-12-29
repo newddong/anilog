@@ -17,13 +17,15 @@ import {aidRequest} from './style_organism';
  */
 export default AidRequest = props => {
 	const data = props.data;
+	// console.log('data', data.protect_animal_species);
+
 	//해당 AidRequest박스 선택 시 부모컴포넌트 OnSelect 실행
 	const onSelect = () => {
 		props.onSelect();
 	};
 
 	return (
-		<View style={[aidRequest.container]}>
+		<TouchableOpacity onPress={onSelect} style={[aidRequest.container]}>
 			<View
 				style={[
 					aidRequest.insideContainer,
@@ -41,48 +43,46 @@ export default AidRequest = props => {
 				</View>
 				{/* 오른쪽 보호동물 상세 정보 */}
 				<View style={[aidRequest.rightContainer]}>
-					<TouchableOpacity onPress={onSelect}>
-						<View style={[aidRequest.right_insideContainer]}>
-							<View style={[aidRequest.right_upperMenu]}>
-								<Text style={txt.noto28b}>
-									{data.protect_animal_species ? data.protect_animal_species : ''} /
-									{data.protect_animal_species_detail ? data.protect_animal_species_detail : ''}
-								</Text>
+					<View style={[aidRequest.right_insideContainer]}>
+						<View style={[aidRequest.right_upperMenu]}>
+							<Text style={txt.noto28b}>
+								{data.protect_animal_species ? data.protect_animal_species : ''} /
+								{data.protect_animal_species_detail != 'undefined' ? data.protect_animal_species_detail : ''}
+							</Text>
+						</View>
+						<View style={[aidRequest.right_middleMenu]}>
+							<View style={[aidRequest.right_middleMenu_title]}>
+								<Text style={[txt.noto24, {color: GRAY20}]}>예상연령</Text>
 							</View>
-							<View style={[aidRequest.right_middleMenu]}>
-								<View style={[aidRequest.right_middleMenu_title]}>
-									<Text style={[txt.noto24, {color: GRAY20}]}>예상연령</Text>
-								</View>
-								<View style={[aidRequest.right_middleMenu_content]}>
-									<Text style={[txt.noto24]}>{data.protect_animal_estimate_age || ''}</Text>
-								</View>
-								<View style={[aidRequest.right_middleMenu_title]}>
-									<Text style={[txt.noto24, {color: GRAY20}]}>체중</Text>
-								</View>
-								<View style={[aidRequest.right_middleMenu_content]}>
-									<Text style={[txt.noto24]}>{data.protect_animal_weight ? parseFloat(data.protect_animal_weight).toFixed(1) + 'kg' : '모름'}</Text>
-								</View>
+							<View style={[aidRequest.right_middleMenu_content]}>
+								<Text style={[txt.noto24]}>{data.protect_animal_estimate_age || ''}</Text>
 							</View>
-							<View style={[aidRequest.right_lowerMenu]}>
-								<View style={[aidRequest.right_middleMenu_title]}>
-									<Text style={[txt.noto24, {color: GRAY20}]}>중성화</Text>
-								</View>
-								<View style={[aidRequest.right_middleMenu_content]}>
-									<Text style={[txt.noto24]}>
-										{data.protect_animal_neutralization ? (data.protect_animal_neutralization == 'yes' ? 'O' : 'X') : '모름'}
-									</Text>
-								</View>
-								<View style={[aidRequest.right_middleMenu_title]}>
-									<Text style={[txt.noto24, {color: GRAY20}]}>구조장소</Text>
-								</View>
-								<View style={[aidRequest.right_middleMenu_content]}>
-									<Text numberOfLines={1} style={[txt.noto24]} ellipsizeMode={'tail'} style={[aidRequest.saved_location_text]}>
-										{data.protect_animal_rescue_location ? data.protect_animal_rescue_location : ''}
-									</Text>
-								</View>
+							<View style={[aidRequest.right_middleMenu_title]}>
+								<Text style={[txt.noto24, {color: GRAY20}]}>체중</Text>
+							</View>
+							<View style={[aidRequest.right_middleMenu_content]}>
+								<Text style={[txt.noto24]}>{data.protect_animal_weight ? parseFloat(data.protect_animal_weight).toFixed(1) + 'kg' : '모름'}</Text>
 							</View>
 						</View>
-					</TouchableOpacity>
+						<View style={[aidRequest.right_lowerMenu]}>
+							<View style={[aidRequest.right_middleMenu_title]}>
+								<Text style={[txt.noto24, {color: GRAY20}]}>중성화</Text>
+							</View>
+							<View style={[aidRequest.right_middleMenu_content]}>
+								<Text style={[txt.noto24]}>
+									{data.protect_animal_neutralization ? (data.protect_animal_neutralization == 'yes' ? 'O' : 'X') : '모름'}
+								</Text>
+							</View>
+							<View style={[aidRequest.right_middleMenu_title]}>
+								<Text style={[txt.noto24, {color: GRAY20}]}>구조장소</Text>
+							</View>
+							<View style={[aidRequest.right_middleMenu_content]}>
+								<Text numberOfLines={1} style={[txt.noto24]} ellipsizeMode={'tail'} style={[aidRequest.saved_location_text]}>
+									{data.protect_animal_rescue_location ? data.protect_animal_rescue_location : ''}
+								</Text>
+							</View>
+						</View>
+					</View>
 				</View>
 			</View>
 			{/* 해당 동물의 보호요청 및 입양 신청한 유저의 숫자, 현재는 억지로 배열형태로 더미데이터로 만들어서 하는 중  */}
@@ -100,7 +100,7 @@ export default AidRequest = props => {
 					<Text style={[txt.noto24, {color: WHITE}]}>{data.protect_act_request_article_id_cnt ? data.protect_act_request_article_id_cnt : ''}</Text>
 				</View>
 			)}
-		</View>
+		</TouchableOpacity>
 	);
 };
 

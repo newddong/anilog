@@ -9,15 +9,15 @@ import {AddItem64, Camera54} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 import AidRequest from '../organism_ksw/AidRequest';
 import {assignProtectAnimal_style, feedWrite, login_style, temp_style, writeAidRequest} from './style_templete';
+import ImagePicker from 'react-native-image-crop-picker';
 
 export default WriteAidRequest = ({route, navigation}) => {
 	// console.log('WriteAidRequest', route.params);
-	const [token, setToken] = React.useState();
 	const [data, setData] = React.useState({...route.params.data}); //ShelterProtectAnimalObject(보호소의 보호동물) 정보가 담겨있음
 	//ProtectRequestObject(보호소의 동물 보호 요청 게시글) 테이블에 맞춘 보호요청 작성글을 작성
 	const [protectRequestData, setProtectRequestData] = React.useState({
 		shelter_protect_animal_object_id: data._id,
-		protect_request_photos: imageList,
+		protect_request_photos_uri: imageList,
 		protect_request_photo_thumbnail: data.protect_animal_photos ? data.protect_animal_photos[0] : DEFAULT_PROFILE,
 		protect_animal_id: data._id, // 이 부분 API에서 받아와야 함 보호요청을 하려고 하는 동물의 _id
 		protect_request_title: null,
@@ -26,37 +26,33 @@ export default WriteAidRequest = ({route, navigation}) => {
 	});
 	const [imageList, setImageList] = React.useState([]); //PhotoSelect에서 선택된 사진List
 
+	//헤더로 데이터 보내기
 	React.useEffect(() => {
 		// console.log('ProtectRequestData / WriteAidRequest ', protectRequestData.shelter_protect_animal_object_id);
 		navigation.setParams({data: protectRequestData, nav: route.name});
 	}, [protectRequestData]);
 
-	React.useEffect(() => {
-		AsyncStorage.getItem('token', (err, res) => {
-			res != null ? setToken(res) : null;
-		});
-	}, []);
-
 	const gotoSelectPicture = () => {
 		// navigation.push('SinglePhotoSelect', route.name);
-		launchImageLibrary(
-			{
-				mediaType: 'photo',
-				selectionLimit: 5,
-			},
-			responseObject => {
-				console.log('선택됨', responseObject);
-				if (!responseObject.didCancel) {
-					let photoList = [];
-					responseObject.assets.map((v, i) => {
-						photoList.push(v.uri);
-					});
-					setImageList(photoList);
-					setProtectRequestData({...protectRequestData, protect_request_photos: photoList});
-					setData({...data, protect_request_photos: photoList || data.protect_request_photos});
-				}
-			},
-		);
+
+		ImagePicker.openPicker({
+			compressImageQuality: 0.8,
+			cropping: true,
+			cropperCircleOverlay: true,
+			multiple: true,
+		})
+			.then(images => {
+				let photoList = [...imageList];
+				// console.log('images', images);
+				images.map((v, i) => {
+					photoList.push(v.path);
+				});
+				setImageList(photoList);
+				setProtectRequestData({...protectRequestData, protect_request_photos_uri: photoList});
+				setData({...data, protect_request_photos_uri: photoList || data.protect_request_photos_uri});
+				Modal.close();
+			})
+			.catch(err => console.log('err / ImageOpenPicker / ChangeUserProfile', err));
 	};
 
 	//SelectedMedia 아이템의 X마크를 클릭
