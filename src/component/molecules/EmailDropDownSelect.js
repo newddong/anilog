@@ -93,6 +93,7 @@ const EmailDropDownSelect = React.forwardRef(
 						<TextInput
 							placeholder={props.value}
 							ref={emailRef}
+							autoFocus
 							textAlign={'left'}
 							maxLength={30}
 							onChangeText={onChangeDomain}

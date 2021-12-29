@@ -169,7 +169,6 @@ export const mobile_carrier = ['SK텔레콤', 'LG U+', 'KT', '알뜰'];
 
 //이메일 도메인
 export const EMAIL_DOMAIN = [
-	'직접입력',
 	'naver.com',
 	'daum.net',
 	'gmail.com',
@@ -179,6 +178,7 @@ export const EMAIL_DOMAIN = [
 	'outlook.com',
 	'paran.com',
 	'yahoo.com',
+	'직접입력',
 ];
 
 //반려동물 종류

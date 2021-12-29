@@ -12,6 +12,7 @@ import {getUserInfoById, updateUserIntroduction} from 'Root/api/userapi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TextInput} from 'react-native';
 import moment from 'moment';
+import {Arrow_Down_GRAY20} from '../atom/icon';
 
 export default ShelterInfoSetting = ({route}) => {
 	// console.log('ShelterInfoSetting', route.params);
@@ -19,13 +20,15 @@ export default ShelterInfoSetting = ({route}) => {
 	const [data, setData] = React.useState({});
 	const [modifyMode, setModifyMode] = React.useState(false); //소개라 수정모드
 	const [intro_modified, setIntro_modified] = React.useState(''); //수정된 소개란 텍스트
+	const [numberOfLines, setNumOfLines] = React.useState();
+	const [showMore, setShowMore] = React.useState();
 	const modifyRef = React.useRef();
 
 	const fetchData = () => {
 		getUserInfoById(
 			{userobject_id: route.params},
 			result => {
-				// console.log('result / getUserInfoById / ShelterInfoSetting   : ', result.msg.user_nickname);
+				// console.log('result / getUserInfoById / ShelterInfoSetting   : ', result.msg.user_email);
 				setData(result.msg);
 			},
 			err => {
@@ -33,14 +36,21 @@ export default ShelterInfoSetting = ({route}) => {
 			},
 		);
 	};
-
+	//해당 스크린 포커스시 API접속
 	React.useEffect(() => {
+		fetchData();
 		navigation.addListener('focus', () => fetchData());
+		navigation.addListener('blur', () => setModifyMode(false));
 	}, []);
+
+	//소개란 수정모드
+	React.useEffect(() => {
+		modifyMode ? modifyRef.current.focus() : null;
+	}, [modifyMode]);
 
 	//프로필변경
 	const moveToChangeUserProfileImage = () => {
-		navigation.push('ChangeUserProfileImage', data);
+		navigation.push('ChangeUserProfileImage', {routeInfo: route, data: data});
 	};
 
 	//비밀번호 변경
@@ -74,10 +84,15 @@ export default ShelterInfoSetting = ({route}) => {
 		);
 	};
 
+	//설립일 Date타입 치환
 	const getParsedFoundationDate = () => {
 		let date = data.shelter_foundation_date;
-		date = moment(date).format('YYYY-MM-DD');
-		return date;
+		if (date) {
+			date = moment(date).format('YYYY-MM-DD');
+			return date;
+		} else {
+			return '';
+		}
 	};
 
 	//수정 TextInput 콜백 함수
@@ -130,19 +145,39 @@ export default ShelterInfoSetting = ({route}) => {
 						<View style={[temp_style.userText_userInfoSetting, shelterInfoSetting.userIntroCont]}>
 							{/* 소개란의 수정버튼을 누를 시 TextInput으로 변경 */}
 							{modifyMode ? (
-								<TextInput
-									onChangeText={modifyIntroText}
-									style={[txt.noto24, shelterInfoSetting.modificationTextInput]}
-									defaultValue={data.user_introduction || '소개란이 비어있습니다.'}
-									multiline={true}
-									maxLength={500}
-									ref={modifyRef}
-									selectTextOnFocus
-								/>
+								<View style={[shelterInfoSetting.modificationTextCont]}>
+									<TextInput
+										onChangeText={modifyIntroText}
+										style={[txt.noto24, shelterInfoSetting.modificationTextInput]}
+										defaultValue={data.user_introduction || '소개란이 비어있습니다.'}
+										multiline={true}
+										maxLength={500}
+										ref={modifyRef}
+										selectTextOnFocus
+									/>
+								</View>
 							) : (
-								<Text style={[txt.noto24, {color: GRAY10}]} numberOfLines={2} ellipsizeMode={'tail'}>
-									{data.user_introduction ? data.user_introduction : '소개란이 비어있습니다'}
-								</Text>
+								<View style={{}}>
+									<Text
+										style={[txt.noto24, {color: GRAY10}]}
+										ellipsizeMode={'tail'}
+										numberOfLines={showMore ? null : 3}
+										onTextLayout={({nativeEvent: {lines}}) => {
+											setNumOfLines(lines.length);
+										}}>
+										{data.user_introduction || '소개란이 비어있습니다.'}
+									</Text>
+									{numberOfLines >= 3 ? (
+										<TouchableOpacity
+											onPress={() => setShowMore(!showMore)}
+											style={{alignSelf: 'flex-end', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+											<Text style={[txt.noto24, {color: GRAY10}]}>더보기</Text>
+											<Arrow_Down_GRAY20 />
+										</TouchableOpacity>
+									) : (
+										<></>
+									)}
+								</View>
 							)}
 						</View>
 					</View>

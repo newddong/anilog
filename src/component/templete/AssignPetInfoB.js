@@ -60,7 +60,6 @@ export default AssignPetInfoB = props => {
 	const onRegister = async () => {
 		Modal.popNoBtn('반려동물 등록 중입니다.');
 		console.log('data before assiginPet', data);
-
 		try {
 			assignPet(
 				{...data, userobject_id: data.userobject_id},

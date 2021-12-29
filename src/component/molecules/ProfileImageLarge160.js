@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {View, Image, Text} from 'react-native';
-import {DEFAULT_PROFILE} from 'Root/i18n/msg';
+import {DEFAULT_ANIMAL_PROFILE, DEFAULT_PROFILE} from 'Root/i18n/msg';
 import profile from 'Root/screens/feed/profile/profile';
 import {Paw48_Mixed, Paw48_YELL20, Paw48_APRI10, Private62, Public62} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
@@ -12,8 +12,6 @@ import {styles} from '../atom/image/imageStyle';
  * @param {object} props.data - 데이터 오브젝트 (UserObject - pet , shelter_type)
  */
 const ProfileImageLarge160 = props => {
-	// console.log('PrifleImageLabel / Props Data ' + JSON.stringify(props.data));
-
 	const profile_data = props.data
 		? props.data
 		: {
@@ -21,6 +19,7 @@ const ProfileImageLarge160 = props => {
 				pet_status: 'normal',
 				shelter_type: 'private',
 		  };
+	console.log('PrifleImageLabel / Props Data ' + JSON.stringify(profile_data.user_profile_uri));
 
 	// 유저의 프로필 이미지를 표시,  유저의 종류(일반유저, 반려동물, 보호소)와 상태(임시보호중,입양,공립,사립)에 따라 아이콘을 표시
 	const petStatus = () => {
@@ -59,7 +58,7 @@ const ProfileImageLarge160 = props => {
 	};
 	return (
 		<View style={styles.img_round_160}>
-			<Image source={{uri: profile_data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_160} />
+			<Image source={{uri: profile_data.user_profile_uri ? profile_data.user_profile_uri : DEFAULT_ANIMAL_PROFILE}} style={styles.img_round_160} />
 			{userType()}
 		</View>
 	);

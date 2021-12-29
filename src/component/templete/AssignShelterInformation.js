@@ -21,7 +21,7 @@ export default AssignShelterInformation = props => {
 		...props.route.params.data,
 		shelter_delegate_contact_number: '',
 		user_email: '',
-		shelter_homepage: '',
+		shelter_homepage: 'http://',
 		shelter_foundation_date: '',
 	});
 
@@ -30,9 +30,14 @@ export default AssignShelterInformation = props => {
 
 	//확인버튼 클릭
 	const goToNextStep = () => {
-		// console.log(data);
+		console.log(data);
 		props.navigation.push('CheckShelterPassword', data);
 	};
+
+	React.useEffect(() => {
+		console.log('이메일 정규식 체크', emailConfirmed);
+		console.log('휴대전화 정규식 체크', phoneConfirmed);
+	}, [phoneConfirmed, emailConfirmed]);
 
 	//홈페이지
 	const onChangeHp = hp => {
@@ -42,14 +47,24 @@ export default AssignShelterInformation = props => {
 
 	//전화번호
 	const onChangePhoneNumber = num => {
-		// console.log(num);
 		setData({...data, shelter_delegate_contact_number: num});
 	};
 
 	//이메일
 	const onChangeEmail = email => {
-		console.log(email);
+		console.log('emial ------------', email);
+		// var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+		// setEmailConfirmed(regEmail.test(email));
 		setData({...data, user_email: email});
+	};
+
+	React.useEffect(() => {
+		var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+		setEmailConfirmed(regEmail.test(data.user_email));
+	}, [data.user_email]);
+
+	const onClearHomepage = () => {
+		setData({...data, shelter_homepage: 'http://'});
 	};
 
 	//설립일
@@ -59,20 +74,17 @@ export default AssignShelterInformation = props => {
 	};
 
 	const onValidEmail = isValid => {
-		setEmailConfirmed(isValid);
+		// console.log('isValid', isValid);
+		// setEmailConfirmed(isValid);
 	};
 
 	const onValidPhoneNumber = isValid => {
-		setPhoneConfirmed(isValid);
+		let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+		setPhoneConfirmed(regPhone.test(data.shelter_delegate_contact_number));
 	};
 
 	const phoneValidate = num => {
-		console.log('num', num);
-		var regPhone = /^-?([0-9]{3,4})-?([0-9]{4})$/;
-		if (regPhone.test(num) === true) {
-			console.log('입력된 값은 휴대전화번호입니다.');
-		}
-		return regPhone.test(num);
+		return num.length > 0;
 	};
 
 	return (
@@ -89,9 +101,10 @@ export default AssignShelterInformation = props => {
 			</View>
 			{/* InputForm */}
 			<View>
-				{/* (M)InputWithSelect */}
+				{/* (M)전화번호 */}
 				<View style={[temp_style.inputWithSelect_assignShelterInformation, assignShelterInformation_style.input24A]}>
 					<InputWithSelect
+						value={data.shelter_delegate_contact_number}
 						placeholder={'전화번호 입력란'}
 						title={'전화번호'}
 						title_star={true}
@@ -105,9 +118,10 @@ export default AssignShelterInformation = props => {
 					/>
 				</View>
 
-				{/* (M)InputWithEmail */}
+				{/* (M)이메일 */}
 				<View style={[temp_style.inputWithSelect_assignShelterInformation, assignShelterInformation_style.inputWithEmail]}>
 					<InputWithEmail
+						value={data.user_email}
 						placeholder={'이메일 입력란'}
 						title={'E-mail'}
 						title_star={true}
@@ -117,20 +131,20 @@ export default AssignShelterInformation = props => {
 					/>
 				</View>
 
-				{/* (M)Input24A */}
+				{/* (M)홈페이지 */}
 				<View style={[temp_style.inputWithSelect_assignShelterInformation, assignShelterInformation_style.input24A]}>
 					<Input24
+						value={data.shelter_homepage}
 						title={'홈페이지'}
-						placeholder={'내용 입력...'}
 						descriptionType={'none'}
 						showHttp={true}
-						showCrossMark={false}
+						showCrossMark={true}
+						onClear={onClearHomepage}
 						onChange={onChangeHp}
-						value={data.shelter_homepage}
 					/>
 				</View>
 
-				{/* (M)DatePicker */}
+				{/* (M)설립일 */}
 				<View style={[temp_style.datePicker_assignShelterInformation, assignShelterInformation_style.datePicker]}>
 					<DatePicker width={654} title={'설립일'} onDateChange={onChangeDate} future={false} />
 				</View>
@@ -138,14 +152,7 @@ export default AssignShelterInformation = props => {
 
 			{/* (A)Btn_w654 */}
 			<View style={[btn_style.btn_w654, assignShelterInformation_style.btn_w654]}>
-				<AniButton
-					btnTitle={'확인'}
-					btnTheme={'shadow'}
-					disable={!phoneConfirmed || !emailConfirmed}
-					btnLayout={btn_w654}
-					titleFontStyle={32}
-					onPress={goToNextStep}
-				/>
+				<AniButton btnTitle={'확인'} disable={!phoneConfirmed || !emailConfirmed} btnLayout={btn_w654} titleFontStyle={32} onPress={goToNextStep} />
 			</View>
 		</View>
 	);

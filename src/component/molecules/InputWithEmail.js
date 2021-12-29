@@ -19,6 +19,7 @@ import EmialDropDown from './EmailDropDown';
  * @param {string} props.title - InputWithEmail의 제목
  * @param {boolean} props.title_star - 제목에 *표시 여부
  * @param {()=>void} props.onClear - 지우기 버튼 클릭시 콜백
+ * @param {()=>void} props.onSelectDirectInput - 직접 입력 선택 콜백
  * @param {(isValid:boolean)=>void} props.onValid - 택스트 입력이 유효할 경우 반환(현재는 입력길이가 1이상일 경우 유효함)
  * @param {(item:object, index:number)=>void} props.onSelectDropDown - 이메일 도메인에서 선택값 오브젝트와 인덱스 반환
  * @param {(value:string)=>void} props.onChange - InputWithEmail값의 변동에 따른 콜백
@@ -26,34 +27,51 @@ import EmialDropDown from './EmailDropDown';
  */
 const InputWithEmail = props => {
 	// Dropdown에서 현재 선택된 항목 State, 처음 Mount시 itemList[defaultIndex]를 반환
-	const [selectedItem, setSelectedItem] = React.useState(props.itemList[props.defaultIndex]);
-	const [index, setIndex] = React.useState(props.defaultIndex);
+	const [selectedItem, setSelectedItem] = React.useState(EMAIL_DOMAIN[props.defaultIndex || 0]);
+	const [index, setIndex] = React.useState();
 	const [input, setInput] = React.useState(props.value || '');
 	const [domainDirect, setDomainDirect] = React.useState('');
-	const [directInput, setDirectInput] = React.useState(false);
-	const inputRef = React.useRef();
+	const [directInputMode, setDirectInputMode] = React.useState(false);
+	const [email, setEmail] = React.useState(props.value);
 
-	const onChange = txt => {
-		setInput(txt);
-		directInput ? props.onChange(txt + '@' + domainDirect) : props.onChange(txt + '@' + selectedItem);
-	};
+	React.useEffect(() => {
+		// console.log('Email 합치기 :', email);
+		props.onChange(email);
+	}, [email]);
 
-	const onClear = () => {
-		setInput(''); //email state를 null로 해주어야 borderColor가 GRAY30으로 반응한다
-		props.onChange('');
+	React.useEffect(() => {
+		//상세정보인 경우 DB의 값을 가져와서 드롭다운을 해당 DB도메인주소와 맞춰준다
+		if (props.defaultValue) {
+			const findIndex = EMAIL_DOMAIN.findIndex(e => e == props.defaultValue.split('@')[1]);
+			setIndex(findIndex);
+			setSelectedItem(EMAIL_DOMAIN[findIndex]);
+		}
+	}, [props.defaultValue]);
+
+	const onChange = text => {
+		setInput(text);
+		directInputMode ? setEmail(text + '@' + domainDirect) : setEmail(text + '@' + selectedItem);
 	};
 
 	const onSelectDropDown = (item, index) => {
-		console.log('onselectDropdown', item, index);
-		item == '직접입력' ? setDirectInput(true) : false;
-		setSelectedItem(item);
-		setIndex(index);
-		props.onSelectDropDown(item, index);
+		// console.log('onselectDropdown', item, index);
+		if (item == '직접입력') {
+			setDomainDirect('');
+			setDirectInputMode(true);
+			setEmail(input);
+			props.onSelectDropDown(item, index);
+		} else {
+			setDirectInputMode(false);
+			setSelectedItem(item);
+			setIndex(index);
+			setEmail(input + '@' + selectedItem);
+			props.onSelectDropDown(item, index);
+		}
 	};
 
 	const onDirectInput = text => {
-		// console.log('onDirectInput', text);
 		setDomainDirect(text);
+		setEmail(input + '@' + text);
 	};
 
 	const validator = text => {
@@ -78,10 +96,11 @@ const InputWithEmail = props => {
 			<View style={{flexDirection: 'row', alignItems: 'center'}}>
 				<Input24
 					placeholder={props.placeholder}
-					value={input}
-					ref={inputRef}
+					value={props.defaultValue ? props.defaultValue.split('@')[0] : input}
 					onChange={onChange}
-					onClear={onClear}
+					showCrossMark={false}
+					maxlength={30}
+					// onClear={onClear}
 					width={props.width || 240}
 					validator={validator}
 					onValid={onValid}
@@ -89,16 +108,13 @@ const InputWithEmail = props => {
 				<View style={{}}>
 					<Text style={[txt.roboto24b, {lineHeight: 36 * DP}]}>@</Text>
 				</View>
-				<EmialDropDown menu={EMAIL_DOMAIN} width={254} defaultIndex={index} onChangeDomain={onDirectInput} onSelect={onSelectDropDown} height={600} />
+				<EmialDropDown menu={EMAIL_DOMAIN} width={254} defaultIndex={index} onChangeDomain={onDirectInput} onSelect={onSelectDropDown} />
 			</View>
 		</View>
 	);
 };
 InputWithEmail.defaultProps = {
-	dropdownItems: ['naver.com', 'daum.net', 'nate.com'],
-	itemList: ['naver.com', 'daum.net', 'nate.com'],
 	placeholder: 'placeholder',
-	defaultIndex: 0,
 	value: '',
 	title_star: false,
 	onClear: e => {},
