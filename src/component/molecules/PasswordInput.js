@@ -89,6 +89,7 @@ const PasswordInput = React.forwardRef((props, ref) => {
 					}}>
 					<Input24
 						ref={inputRef}
+						maxlength={25}
 						placeholder={props.placeholder}
 						onChange={onChange}
 						width={props.width}

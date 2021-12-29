@@ -1,7 +1,7 @@
 import React from 'react';
 import {txt} from 'Root/config/textstyle';
 import PropsTypes, {any, func, number, object, oneOf, oneOfType, shape} from 'prop-types';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
 import {APRI10, BLACK, GRAY40} from 'Root/config/color';
@@ -11,7 +11,7 @@ import {string} from 'prop-types';
 
 /**
  * 드롭다운 선택 버튼
- * @type {React.ForwardRefRenderFunction<React.FunctionComponent,DropdownSelectProps>}
+ * @type {React.ForwardRefRenderFunction<React.FunctionComponent,EmailDropDownSelectProps>}
  *
  * 레퍼런스를 가짐
  * ```js
@@ -38,7 +38,7 @@ import {string} from 'prop-types';
  *
  *
  */
-const DropdownSelect = React.forwardRef(
+const EmailDropDownSelect = React.forwardRef(
 	(
 		props,
 		/** @type {object} 레퍼런스 오브젝트, press 메소드를 가짐 */
@@ -71,6 +71,12 @@ const DropdownSelect = React.forwardRef(
 			props.onClose();
 		};
 
+		const onChangeDomain = text => {
+			props.onChangeDomain(text);
+		};
+
+		const emailRef = React.useRef();
+
 		return (
 			<TouchableOpacity onPress={onPress}>
 				<View
@@ -83,18 +89,40 @@ const DropdownSelect = React.forwardRef(
 						alignItems: 'center',
 						justifyContent: 'center',
 					}}>
-					<Text
-						style={[
-							txt.noto24b,
-							props.textStyle,
-							{
-								paddingVertical: 16 * DP, // Value와 최상위 View와의 paddingVertical 16px
-								// textAlign: 'center',
-								marginRight: 40 * DP,
-							},
-						]}>
-						{props.value}
-					</Text>
+					{props.value == '직접입력' ? (
+						<TextInput
+							placeholder={props.value}
+							ref={emailRef}
+							textAlign={'left'}
+							maxLength={30}
+							onChangeText={onChangeDomain}
+							style={[
+								txt.noto24b,
+								props.textStyle,
+								{
+									paddingVertical: 16 * DP, // Value와 최상위 View와의 paddingVertical 16px
+									paddingHorizontal: 30 * DP,
+									textAlign: 'left',
+									marginRight: 40 * DP,
+									flex: 1,
+								},
+							]}>
+							{props.value == '직접입력' ? '' : props.value}
+						</TextInput>
+					) : (
+						<Text
+							style={[
+								txt.noto24b,
+								props.textStyle,
+								{
+									paddingVertical: 16 * DP, // Value와 최상위 View와의 paddingVertical 16px
+									marginRight: 40 * DP,
+								},
+							]}>
+							{props.value}
+						</Text>
+					)}
+
 					<View
 						style={{
 							height: 82 * DP,
@@ -113,29 +141,31 @@ const DropdownSelect = React.forwardRef(
 	},
 );
 
-const DropdownSelectProps = {
+const EmailDropDownSelectProps = {
 	/** @type {string} 버튼에 표시되는 값 */
 	value: string,
 	/** @type {()=>void} 닫힐때의 콜백 */
 	onClose: func,
 	/** @type {()=>void} 열릴 때 콜백 */
 	onOpen: func,
+	/** @type {()=>void} 도메인주소 바뀔 때 콜백 */
+	onChangeDomain: func,
 	/** @type {object} 표시되는 글의 글꼴 */
 	textStyle: object,
 	/** @type {number} 버튼의 너비 숫자만 입력, DP는 컴포넌트 내부에서 자동으로 계산됨 */
 	width: number,
 };
 
-DropdownSelect.propTypes = DropdownSelectProps;
+EmailDropDownSelect.propTypes = EmailDropDownSelectProps;
 
-DropdownSelect.defaultProps = {
+EmailDropDownSelect.defaultProps = {
 	value: '',
 	// width: 0, //Select+Text 부분의 width Default=180(5글자)
-	onChange: e => console.log('DropdownSelect Default onChange', e),
-	onPress: e => console.log('DropdownSelect Default onPress', e),
-	onClose: e => console.log('DropdownSelect Default onClose  ', e),
-	onOpen: e => console.log('DropdownSelect Default onOpen', e),
+	onChange: e => console.log('EmailDropDownSelect Default onChange', e),
+	onPress: e => console.log('EmailDropDownSelect Default onPress', e),
+	onClose: e => console.log('EmailDropDownSelect Default onClose  ', e),
+	onOpen: e => console.log('EmailDropDownSelect Default onOpen', e),
 	textStyle: null,
 };
 
-export default DropdownSelect;
+export default EmailDropDownSelect;

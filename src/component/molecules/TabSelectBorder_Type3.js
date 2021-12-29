@@ -24,20 +24,12 @@ const TabSelectBorder_Type3 = props => {
 		props.onSelect(index);
 	};
 
-	const getWidth = index => {
-		let width = (720 * DP) / props.items.length - 10;
-		if (index == selected) {
-			return (720 * DP) / props.items.length + 30;
-		}
-		return width;
-	};
-
 	const renderItem = ({item, index}) => {
 		return (
 			<TouchableOpacity
 				onPress={() => onSelect(index)}
 				style={{
-					width: getWidth(index),
+					width: (720 * DP) / props.items.length,
 					height: 60 * DP,
 					borderBottomWidth: 2 * DP,
 					borderBottomColor: index == selected ? APRI10 : GRAY30,

@@ -41,16 +41,20 @@ const UserDescriptionLabel = props => {
 			<View style={{marginLeft: 30 * DP}}>
 				<View style={{flexDirection: 'row'}}>
 					<Text style={(txt.roboto28b, {color: isLoginUser ? APRI10 : BLACK})} numberOfLines={1} ellipsizeMode="tail">
-						{props.data.user_nickname || ''}
+						{data.user_nickname || ''}
 					</Text>
-					{props.data.showStatus ? <Text style={[txt.noto22, {color: APRI10, alignSelf: 'center', paddingLeft: 10 * DP}]}> STATUS</Text> : null}
+					{data.showStatus ? <Text style={[txt.noto22, {color: APRI10, alignSelf: 'center', paddingLeft: 10 * DP}]}> STATUS</Text> : null}
 				</View>
-				<Text
-					style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10, maxWidth: props.width * DP || 400 * DP}]}
-					numberOfLines={1}
-					ellipsizeMode="tail">
-					{props.data.user_introduction || ''}
-				</Text>
+				{data.user_introduction ? (
+					<Text
+						style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10, maxWidth: props.width * DP || 400 * DP}]}
+						numberOfLines={1}
+						ellipsizeMode="tail">
+						{data.user_introduction || ''}
+					</Text>
+				) : (
+					<></>
+				)}
 			</View>
 		</View>
 	);

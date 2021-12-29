@@ -75,6 +75,7 @@ export default RootStackNavigation = () => {
 	 * @param {React.FC} Component - 팝업할 컴포넌트
 	 * @return void
 	 */
+
 	const popIn = Component => {
 		const component = React.cloneElement(Component, {key: popupComponent.length});
 		setPopupComponent([...popupComponent, component]);
@@ -142,7 +143,10 @@ export default RootStackNavigation = () => {
 
 	return (
 		<SafeAreaView style={{flex: 1}}>
-			<NavigationContainer>
+			<NavigationContainer
+				onStateChange={() => {
+					Modal.close();
+				}}>
 				<RootStack.Navigator initialRouteName="Login">
 					{/* <RootStack.Screen name="MainTab" component={MainTabNavigation} options={{header: props => <LogoutView {...props} />}} /> */}
 					<RootStack.Screen name="MainTab" component={MainTabNavigation} options={{headerShown: false}} />

@@ -30,7 +30,7 @@ const AddressInput = props => {
 	// console.log('addressInpit', props);
 	const [detailAddr, setDetailAddr] = React.useState(props.detailAddress || '');
 	React.useEffect(() => {
-		console.log('addressinput Detail', detailAddr);
+		// console.log('addressinput Detail', detailAddr);
 	}, [detailAddr]);
 	const validator = (addr, detailAddr) => {
 		let isValid = props.validator(addr, detailAddr);
@@ -74,9 +74,9 @@ const AddressInput = props => {
 			<View style={[addressInput.upperContainer]}>
 				<View style={[addressInput.input24A, {flexDirection: 'row'}]}>
 					<Input24
-						// value={props.address.brief + ' ' + props.address.neighbor}
+						value={props.address}
 						// value={props.address.district + ' ' + props.address.neighbor}
-						value={props.addressDefault}
+						// value={props.addressDefault}
 						editable={false}
 						width={470}
 						placeholder={'주소 찾기를 눌러주세요'}
@@ -95,8 +95,8 @@ const AddressInput = props => {
 			<View style={[temp_style.inputNoTitle, addressInput.inputNoTitle]}>
 				<Input24
 					width={654}
-					// value={detailAddr}
-					value={props.detailAddressDefault}
+					value={props.detailAddress}
+					defaultValue={props.detailAddressDefault}
 					// defaultValue={'123'}
 					placeholder={'세부 주소를 입력해 주세요.'}
 					onChange={onChangeDetailAddress}
@@ -110,8 +110,6 @@ AddressInput.defaultProps = {
 	title: '나의 장소',
 	titleColor: GRAY10,
 	titleMode: '',
-	addressDefault: '주소 찾기를 눌러주세요',
-	detailAddressDefault: '',
 	onChangeDeatilAddress: e => {},
 	onChangeAddress: e => {},
 	onPressSearchAddr: e => {},

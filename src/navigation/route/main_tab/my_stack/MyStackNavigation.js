@@ -53,11 +53,21 @@ import SendHeader from 'Root/navigation/header/SendHeader';
 import SimpleHeader from 'Root/navigation/header/SimpleHeader';
 import LogoHeader from 'Root/navigation/header/LogoHeader';
 import InputAndSearchHeader from 'Root/navigation/header/InputAndSearchHeader';
+import {useNavigation} from '@react-navigation/core';
 
 const MyStack = createStackNavigator();
 
 export default MyStackNavigation = props => {
-	// console.log('MyStack', props.user_type);
+	// console.log('MyStack', props.navigation);
+	const navigation = useNavigation();
+
+	//navigation State가 바뀔 때마다 수행
+	React.useEffect(() => {
+		navigation.addListener('state', () => {
+			console.log('MyStackNavi', props);
+		});
+	}, []);
+
 	const [searchInput, setSearchInput] = React.useState();
 
 	React.useEffect(() => {
