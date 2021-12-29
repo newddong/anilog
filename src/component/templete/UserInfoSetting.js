@@ -5,7 +5,7 @@ import {GRAY10, GRAY40} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {DEFAULT_PROFILE, MODIFY_PROFILE} from 'Root/i18n/msg';
 import {btn_w114, btn_w242} from '../atom/btn/btn_style';
-import {NextMark} from '../atom/icon';
+import {Arrow_Down_GRAY20, NextMark} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import ProfileImageLarge194 from '../molecules/ProfileImageLarge194';
 import MyPetList from '../organism_ksw/MyPetList';
@@ -19,29 +19,29 @@ export default UserInfoSetting = ({route}) => {
 	const navigation = useNavigation();
 	const [data, setData] = React.useState({}); // 로그인 유저의 UserObject
 	const [modifyMode, setModifyMode] = React.useState(false);
+	const [numberOfLines, setNumOfLines] = React.useState();
+	const [showMore, setShowMore] = React.useState();
 	const modifyRef = React.useRef();
 	const fetchData = () => {
-		AsyncStorage.getItem('token', (err, res) => {
-			getUserInfoById(
-				{
-					userobject_id: res,
-				},
-				userObject => {
-					setData(userObject.msg);
-					navigation.setOptions({title: userObject.msg.user_nickname});
-					// console.log('result / getUserProfile / UserInfoSetting', userObject.msg.user_introduction);
-				},
-				err => {
-					console.log('er', err);
-				},
-			);
-		});
+		getUserInfoById(
+			{
+				userobject_id: route.params.token,
+			},
+			userObject => {
+				setData(userObject.msg);
+				navigation.setOptions({title: userObject.msg.user_nickname});
+				// console.log('result / getUserProfile / UserInfoSetting', userObject.msg.user_introduction);
+			},
+			err => {
+				console.log('er', err);
+			},
+		);
 	};
 	React.useEffect(() => {
 		fetchData();
 		navigation.addListener('focus', () => fetchData());
 		//스크린 포커스, 프로필 변경이 있을 시 getUSerInfoById에 접속
-	}, [route.params?.token, route.params?.changedPhoto]);
+	}, [route.params?.changedPhoto]);
 
 	//프로필 변경을 통한 사진변경이 발생했을 경우 params로 해당 포토 uri를 받아오고 data에 적용
 	React.useEffect(() => {
@@ -166,19 +166,39 @@ export default UserInfoSetting = ({route}) => {
 						<View style={[temp_style.userText_userInfoSetting, userInfoSetting_style.userText]}>
 							{/* 소개란의 수정버튼을 누를 시 TextInput으로 변경 */}
 							{modifyMode ? (
-								<TextInput
-									onChangeText={modifyIntroText}
-									style={[txt.noto24, userInfoSetting_style.user_intro_modifyMode]}
-									defaultValue={data.user_introduction || ''}
-									multiline={true}
-									maxLength={500}
-									ref={modifyRef}
-									selectTextOnFocus
-								/>
+								<View style={[userInfoSetting_style.user_introModifyContainer]}>
+									<TextInput
+										onChangeText={modifyIntroText}
+										style={[txt.noto24, userInfoSetting_style.user_intro_modifyMode]}
+										defaultValue={data.user_introduction || ''}
+										multiline={true}
+										maxLength={500}
+										ref={modifyRef}
+										selectTextOnFocus
+									/>
+								</View>
 							) : (
-								<Text style={[txt.noto24, {color: GRAY10}]} numberOfLines={2} ellipsizeMode={'tail'}>
-									{data.user_introduction || ''}
-								</Text>
+								<View style={{}}>
+									<Text
+										style={[txt.noto24, {color: GRAY10}]}
+										ellipsizeMode={'tail'}
+										numberOfLines={showMore ? null : 3}
+										onTextLayout={({nativeEvent: {lines}}) => {
+											setNumOfLines(lines.length);
+										}}>
+										{data.user_introduction || ''}
+									</Text>
+									{numberOfLines >= 3 ? (
+										<TouchableOpacity
+											onPress={() => setShowMore(!showMore)}
+											style={{alignSelf: 'flex-end', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+											<Text style={[txt.noto24, {color: GRAY10}]}>더보기</Text>
+											<Arrow_Down_GRAY20 />
+										</TouchableOpacity>
+									) : (
+										<></>
+									)}
+								</View>
 							)}
 						</View>
 					</View>

@@ -19,7 +19,7 @@ import Modal from '../modal/Modal';
  */
 const DatePicker = props => {
 	const [showCalendar, setShowCalendar] = React.useState(false);
-	const [selectedDate, setSelectedDate] = React.useState(props.defaultDate ? props.defaultDate : '2021-01-01');
+	const [selectedDate, setSelectedDate] = React.useState(props.defaultDate ? props.defaultDate : '눌러서 지정해주세요!');
 
 	const onDateChange = date => {
 		setSelectedDate(date);

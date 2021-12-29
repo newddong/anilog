@@ -120,6 +120,7 @@ export default AssignShelterAddress = props => {
 					validator={nameValidator}
 					onValid={onValidName}
 					showMsg
+					width={654}
 					confirm_msg={''}
 					alert_msg={'보호소 이름을 입력하세요'}
 				/>

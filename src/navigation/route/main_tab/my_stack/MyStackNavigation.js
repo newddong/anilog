@@ -210,7 +210,7 @@ export default MyStackNavigation = props => {
 			<MyStack.Screen
 				name="AidRequestAnimalList"
 				component={AidRequestAnimalList}
-				options={{header: props => <SendHeader {...props} />, title: 'AidRequestAnimalList'}}
+				options={{header: props => <SendHeader {...props} />, title: '동물 보호 요청'}}
 			/>
 			<MyStack.Screen
 				name="WriteAidRequest"

@@ -29,6 +29,11 @@ const EmialDropDown = props => {
 	};
 
 	React.useEffect(() => {
+		console.log('props.', props.defaultIndex);
+		setValue(props.menu[props.defaultIndex]);
+	}, [props.defaultIndex]);
+
+	React.useEffect(() => {
 		setValue(props.menu[0]);
 	}, [props.isLargeCategoryChanged]);
 
@@ -43,30 +48,28 @@ const EmialDropDown = props => {
 			ref={dropdown}
 			buttonComponent={<EmailDropDownSelect width={props.width} value={value} onChangeDomain={onChangeDomain} />}
 			dropdownList={
-				<View style={{backgroundColor: WHITE, borderRadius: 10 * DP, alignItems: 'center', borderWidth: 2 * DP}}>
-					<TouchableWithoutFeedback>
-						<ScrollView style={{height: props.height * DP || null}} contentContainerStyle={{}}>
-							{props.menu.map((v, i) => (
-								<View key={i}>
-									<TouchableWithoutFeedback onPress={() => onSelect(v, i)}>
-										<View style={[styles.itemContainer, {width: props.width != null ? props.width * DP : props.btnLayout.width}]}>
-											<Text
-												style={[
-													txt.noto28b,
-													{
-														fontSize: props.titleFontStyle * DP,
-														textAlign: 'center',
-													},
-												]}>
-												{v}
-											</Text>
-										</View>
-									</TouchableWithoutFeedback>
-									<View style={[styles.separator, {width: props.width != null ? props.width * DP : props.btnLayout.width}]} />
-								</View>
-							))}
-						</ScrollView>
-					</TouchableWithoutFeedback>
+				<View style={{backgroundColor: 'white', alignItems: 'center', borderWidth: 2 * DP}}>
+					<ScrollView style={{height: props.height * DP || null}} contentContainerStyle={{}}>
+						{props.menu.map((v, i) => (
+							<View key={i} style={{justifyContent: 'center'}}>
+								<TouchableWithoutFeedback onPress={() => onSelect(v, i)}>
+									<View style={[styles.itemContainer, {width: props.width != null ? props.width * DP : props.btnLayout.width}]}>
+										<Text
+											style={[
+												txt.noto28b,
+												{
+													fontSize: props.titleFontStyle * DP,
+													textAlign: 'center',
+												},
+											]}>
+											{v}
+										</Text>
+									</View>
+								</TouchableWithoutFeedback>
+								<View style={[styles.separator, {}]} />
+							</View>
+						))}
+					</ScrollView>
 				</View>
 			}
 		/>
@@ -76,7 +79,7 @@ const EmialDropDown = props => {
 export const styles = StyleSheet.create({
 	itemContainer: {
 		justifyContent: 'center',
-		height: 60 * DP,
+		height: 50 * DP,
 		borderRadius: 10 * DP,
 	},
 	separator: {

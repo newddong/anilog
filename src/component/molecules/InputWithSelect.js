@@ -39,7 +39,7 @@ const InputWithSelect = props => {
 	};
 
 	const onSelectDropDown = (v, i) => {
-		console.log('드롭다운 선택확인 ', v, i);
+		// console.log('드롭다운 선택확인 ', v, i);
 		props.onChange(v + props.delimiter + input);
 		setDropdownVal(v);
 	};

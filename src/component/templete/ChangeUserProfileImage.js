@@ -14,7 +14,7 @@ import Modal from '../modal/Modal';
 import ImagePicker from 'react-native-image-crop-picker';
 
 export default ChangeUserProfileImage = ({route}) => {
-	// console.log('route / Profile', route.params);1
+	// console.log('route / Profile', route.params);
 	console.log('changeUser', route.params.data);
 	const [data, setData] = React.useState(route.params.data);
 	const [newNick, setNewNick] = React.useState(route.params.data.user_nickname);
@@ -148,7 +148,7 @@ export default ChangeUserProfileImage = ({route}) => {
 		// checkDuplicateNickname(newNick);
 		console.log('Dup', duplicated);
 
-		let regExp = /^[가-힣a-zA-Z0-9_-]{2,15}$/;
+		let regExp = /^[가-힣a-zA-Z0-9_ ]{2,15}$/;
 		setValidated(regExp.test(nick));
 		// checkDuplicateNickname(nick);
 		// console.log('is duplicated?', nick, regExp.test(newNick), duplicated);

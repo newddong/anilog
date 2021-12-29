@@ -42,7 +42,8 @@ export default LoginTemplete = props => {
 				}
 				setTimeout(() => {
 					Modal.close();
-					props.navigation.navigate('MainTab', userObject.msg.user_type);
+					// props.navigation.navigate('MainTab', userObject.msg.user_type);
+					props.navigation.reset({routes: [{name: 'MainTab', params: userObject.msg.user_type}]});
 				}, 1000);
 			},
 			error => {
@@ -63,7 +64,7 @@ export default LoginTemplete = props => {
 				Modal.close();
 			});
 		}
-		props.navigation.push('MainTab', type);
+		props.navigation.reset({routes: [{name: 'MainTab', params: type}]});
 	};
 	const moveToAssign = () => {
 		props.navigation.push('AgreementCheck');
@@ -125,7 +126,7 @@ export default LoginTemplete = props => {
 			{/* LoginForm */}
 			<View style={[loginTemplete_style.loginForm]}>
 				<View style={[loginTemplete_style.idInput]}>
-					<Input24 placeholder={'전화번호를 입력해주세요.'} width={520} onChange={onChangeId} value={id} />
+					<Input24 placeholder={'전화번호를 입력해주세요.'} keyboardType={'number-pad'} width={520} onChange={onChangeId} value={id} />
 				</View>
 				<View style={[loginTemplete_style.pwdInput]}>
 					<PasswordInput

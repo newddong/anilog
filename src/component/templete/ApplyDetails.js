@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {Text, View, ScrollView, Image} from 'react-native';
 import {createProtectActivity} from 'Root/api/protectapi';
@@ -33,9 +34,11 @@ export default ApplyDetails = ({route, navigation}) => {
 				// console.log('result / createProtectActivity / ApplyDetails  : ', result);
 				// navigation.reset({index: 0, routes: [{name: 'UserProfile', params: data.protect_request_writer_id}]});
 				// navigation.reset({routes: [{name: 'UserProfile', params: data.protect_request_writer_id}]});
-				navigation.reset({
-					index: 0,
-					routes: [{name: 'MainTab'}],
+				AsyncStorage.getItem('type', (err, res) => {
+					navigation.reset({
+						index: 0,
+						routes: [{name: 'MainTab', params: res}],
+					});
 				});
 			},
 			err => {

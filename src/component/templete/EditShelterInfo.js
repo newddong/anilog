@@ -6,7 +6,7 @@ import AddressInput from '../organism_ksw/AddressInput';
 import Input30 from '../molecules/Input30';
 import InputWithEmail from '../molecules/InputWithEmail';
 import DatePicker from '../molecules/DatePicker';
-import {COMPLETE_MODIFY} from 'Root/i18n/msg';
+import {COMPLETE_MODIFY, EMAIL_DOMAIN} from 'Root/i18n/msg';
 import {btn_w654} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
 import {GRAY10} from 'Root/config/color';
@@ -16,7 +16,6 @@ import {updateShelterDetailInformation} from 'Root/api/userapi';
 
 export default EditShelterInfo = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params.data);
-	console.log('data', data.shelter_name);
 
 	React.useEffect(() => {
 		if (route.params.addr) {
@@ -82,14 +81,20 @@ export default EditShelterInfo = ({route, navigation}) => {
 
 	//이메일 주소 변경 콜백
 	const onChangeEmail = email => {
-		console.log('email', email);
+		console.log('email / EditShelterInfo ', email);
 		setData({...data, user_email: email});
+	};
+
+	const onClearHomepage = () => {
+		setData({...data, shelter_homepage: 'http://'});
 	};
 
 	// 설립일 Parsing(Date to String & String to Date) 함수
 	const getFoundationDate = () => {
 		let date = data.shelter_foundation_date;
-		if (date.length < 15) {
+		if (date == null) {
+			return '';
+		} else if (date.length < 15) {
 			return date;
 		} else {
 			date = moment(date).format('YYYY-MM-DD');
@@ -105,27 +110,43 @@ export default EditShelterInfo = ({route, navigation}) => {
 			'예',
 			() => Modal.close(),
 			() => {
-				// console.log('Test', data);
-				updateShelterDetailInformation(
-					{
-						userobject_id: data._id,
-						shelter_name: data.shelter_name,
-						shelter_address: data.shelter_address,
-						shelter_delegate_contact_number: data.shelter_delegate_contact_number,
-						user_email: data.user_email,
-						shelter_homepage: data.shelter_homepage,
-						shelter_foundation_date: data.shelter_foundation_date,
-					},
-					result => {
-						console.log('result / updateShelterDetail / EditShelterInfo   :  ', result);
-						Modal.close();
-					},
-					err => {
-						console.log('err / updateShelterInfo  EditShelterInfo  : ', err);
-						Modal.close();
-					},
-				);
-				navigation.navigate('ShelterInfoSetting');
+				let regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+				let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+				const regexPhone = regPhone.test(data.shelter_delegate_contact_number);
+				const regexEmail = regEmail.test(data.user_email);
+				console.log('email', data.user_email);
+				console.log('regexEmail', regexEmail);
+				console.log('regexPhone', regexPhone);
+				if (regexEmail && regexPhone) {
+					console.log('Test', data);
+					updateShelterDetailInformation(
+						{
+							userobject_id: data._id,
+							shelter_name: data.shelter_name,
+							shelter_address: data.shelter_address,
+							shelter_delegate_contact_number: data.shelter_delegate_contact_number,
+							user_email: data.user_email,
+							shelter_homepage: data.shelter_homepage,
+							shelter_foundation_date: data.shelter_foundation_date,
+						},
+						result => {
+							console.log('result / updateShelterDetail / EditShelterInfo   :  ', result);
+							Modal.close();
+						},
+						err => {
+							console.log('err / updateShelterInfo  EditShelterInfo  : ', err);
+							Modal.close();
+						},
+					);
+					navigation.navigate('ShelterInfoSetting');
+				} else if (!regexEmail || !regexPhone) {
+					console.log('eeee');
+					Modal.close();
+					setTimeout(() => {
+						Modal.popOneBtn('이메일 혹은 전화번호를 \n 다시 확인해주세요.', '확인', () => Modal.close());
+					}, 500);
+				} else {
+				}
 			},
 		);
 	};
@@ -196,9 +217,10 @@ export default EditShelterInfo = ({route, navigation}) => {
 						</View>
 						<View style={[editShelterInfo.inputWithEmail]}>
 							<InputWithEmail
+								value={data.user_email}
 								onSelectDropDown={onSelectDomain}
 								onChange={onChangeEmail}
-								value={data.user_email.split('@')[0]}
+								defaultValue={data.user_email}
 								width={240}
 								placeholder={'이메일을 입력'}
 							/>
@@ -218,7 +240,7 @@ export default EditShelterInfo = ({route, navigation}) => {
 								showTitle={false}
 								showmsg={false}
 								width={520}
-								placeholder={'http://'}
+								onClear={onClearHomepage}
 								confirm={true}
 								onChange={onChangeHomePage}
 							/>

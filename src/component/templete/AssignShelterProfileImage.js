@@ -18,8 +18,10 @@ export default AssignShelterProfileImage = props => {
 
 	const assginShelter = () => {
 		Modal.popNoBtn('등록중입니다.');
+		console.log('data', data.user_profile_uri);
+
 		assignShelter(
-			data,
+			{...data, user_profile_uri: data.user_profile_uri ? data.user_profile_uri : 'http://'},
 			successmsg => {
 				Modal.close(); //NoBtn팝업 종료
 				Modal.popNoBtn('보호소 등록이 완료되었습니다.');
@@ -39,22 +41,6 @@ export default AssignShelterProfileImage = props => {
 	};
 
 	const selectPhoto = () => {
-		// props.navigation.push('SinglePhotoSelect', props.route.name);
-		// launchImageLibrary(
-		// 	{
-		// 		mediaType: 'photo',
-		// 		selectionLimit: 1,
-		// 		maxHeight:1500,
-		// 		maxWidth:1500,
-		// 		quality:0.8
-		// 	},
-		// 	responseObject => {
-		// 		console.log('선택됨', responseObject);
-		// 		responseObject.didCancel
-		// 			? console.log('선택취소')
-		// 			: setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri});
-		// 	},
-		// );
 		ImagePicker.openPicker({
 			compressImageQuality: 0.8,
 			cropping: true,
@@ -82,7 +68,7 @@ export default AssignShelterProfileImage = props => {
 
 			{/* (A)Btn_w654 */}
 			<View style={[btn_style.btn_w654, assignShelterProfileImage_style.btn_w654]}>
-				<AniButton btnTitle={'확인'} titleFontStyle={'32'} btnTheme={'shadow'} btnLayout={btn_w654} onPress={assginShelter} />
+				<AniButton btnTitle={'확인'} titleFontStyle={'32'} btnLayout={btn_w654} onPress={assginShelter} />
 			</View>
 		</View>
 	);

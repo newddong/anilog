@@ -18,7 +18,7 @@ export default AidRequestAnimalList = ({route, navigation}) => {
 				request_number: 0,
 			},
 			result => {
-				console.log('result / getShelterProtectAnimalList', result.msg);
+				// console.log('result / getShelterProtectAnimalList', result.msg);
 				setData(result.msg);
 			},
 			err => {

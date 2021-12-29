@@ -970,7 +970,7 @@ export const temp_style = StyleSheet.create({
 		// backgroundColor: '#FF00FF',
 	},
 	introduce_shelterInfoSetting_view: {
-		height: 238 * DP,
+		minHeight: 200 * DP,
 		alignItems: 'center',
 		backgroundColor: '#FFF',
 	},
@@ -1751,19 +1751,23 @@ export const userInfoSetting_style = StyleSheet.create({
 		marginTop: 40 * DP,
 		marginLeft: 340 * DP,
 	},
+	user_introModifyContainer: {
+		height: 140 * DP,
+		borderBottomColor: APRI10,
+		borderBottomWidth: 3 * DP,
+	},
 	user_intro_modifyMode: {
-		maxHeight: 200 * DP,
+		// maxHeight: 200 * DP,
 		paddingVertical: 10 * DP,
+		paddingLeft: 10 * DP,
 		color: GRAY10,
-		backgroundColor: WHITE,
-		shadowColor: '#000000',
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
-		shadowOffset: {
-			width: 1 * DP,
-			height: 2 * DP,
-		},
-		elevation: 2,
+		// shadowOpacity: 0.27,
+		// shadowRadius: 4.65,
+		// shadowOffset: {
+		// 	width: 1 * DP,
+		// 	height: 2 * DP,
+		// },
+		// elevation: 2,
 	},
 });
 
@@ -2112,20 +2116,11 @@ export const shelterInfoSetting = StyleSheet.create({
 	},
 	userIntroCont: {
 		marginTop: 15 * DP,
+		marginBottom: 15 * DP,
 	},
 	modificationTextInput: {
-		maxHeight: 200 * DP,
-		paddingVertical: 10 * DP,
+		paddingLeft: 10 * DP,
 		color: GRAY10,
-		backgroundColor: WHITE,
-		shadowColor: '#000000',
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
-		shadowOffset: {
-			width: 1 * DP,
-			height: 2 * DP,
-		},
-		elevation: 2,
 	},
 	btn_w114: {
 		position: 'absolute',
@@ -2141,6 +2136,11 @@ export const shelterInfoSetting = StyleSheet.create({
 		width: 750 * DP,
 		borderRightColor: '#EDEDED',
 		borderRightWidth: 2 * DP,
+	},
+	modificationTextCont: {
+		height: 140 * DP,
+		borderBottomColor: APRI10,
+		borderBottomWidth: 3 * DP,
 	},
 });
 
@@ -3509,15 +3509,16 @@ export const writeAidRequest = StyleSheet.create({
 	},
 	titleContainer: {
 		marginBottom: 20 * DP,
-		height: 80 * DP,
+		// height: 80 * DP,
 		borderBottomColor: APRI10,
 		borderBottomWidth: 4 * DP,
 	},
 	titleInput: {
 		paddingHorizontal: 15 * DP,
 		marginTop: 10 * DP,
-		lineHeight: 40 * DP,
-		maxHeight: 80 * DP,
+		// lineHeight: 40 * DP,
+		// backgroundColor: 'yellow',
+		height: 100 * DP,
 	},
 	feedTextEdit: {
 		marginTop: 80 * DP,
@@ -3799,6 +3800,9 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 		// elevation: 2,
 		paddingHorizontal: 60 * DP,
 		justifyContent: 'space-between',
+	},
+	replyWriteBox: {
+		marginTop: 58 * DP,
 	},
 });
 
