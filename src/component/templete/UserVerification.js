@@ -107,8 +107,8 @@ export default UserVerification = props => {
 					<TabSelectBorder_Type1 items={['휴대폰 인증', '이메일 인증']} width={650} onSelect={state => changeTabState(state)} />
 				</View> */}
 
-				<View style={temp_style.textMassage}>
-					<Text style={[userAssign.textMessageInside]}>휴대폰 번호로 가입이 가능합니다.</Text>
+				<View style={[temp_style.textMassageLeftTop]}>
+					<Text style={userAssign.textMessageInside}>휴대폰 번호로 가입이 가능합니다.</Text>
 				</View>
 
 				{tabState == 0 ? (

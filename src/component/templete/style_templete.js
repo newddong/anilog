@@ -215,6 +215,13 @@ export const temp_style = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
+	textMassageLeftTop: {
+		width: 654 * DP,
+		height: 214 * DP,
+		alignItems: 'baseline',
+		justifyContent: 'flex-start',
+		paddingTop: 10,
+	},
 	phoneNumVerification: {
 		width: 654 * DP,
 		alignItems: 'center',
@@ -1139,7 +1146,7 @@ export const userAssign = StyleSheet.create({
 	},
 	textMessageInside: {
 		width: 414 * DP,
-		textAlign: 'center',
+		textAlign: 'left',
 	},
 });
 
