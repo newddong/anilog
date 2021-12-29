@@ -61,6 +61,7 @@ const InputWithSearchIcon = props => {
 				}}>
 				<TextInput
 					// value={props.value}
+					onSubmitEditing={onSearch}
 					onChangeText={text => onChange(text)}
 					placeholder={props.placeholder}
 					ref={inputRef}

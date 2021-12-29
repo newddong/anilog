@@ -3800,6 +3800,9 @@ export const animalProtectRequestDetail_style = StyleSheet.create({
 		paddingHorizontal: 60 * DP,
 		justifyContent: 'space-between',
 	},
+	replyWriteBox: {
+		marginTop: 58 * DP,
+	},
 });
 
 export const animalProtectList = StyleSheet.create({

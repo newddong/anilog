@@ -26,6 +26,7 @@ import moment from 'moment';
 import {getCommentListByProtectId} from 'Root/api/commentapi';
 import {createComment} from 'Root/api/commentapi';
 import ImagePicker from 'react-native-image-crop-picker';
+import Modal from '../modal/Modal';
 
 //AnimalProtectRequestDetail 호출 경로
 // - ProtectRequestList(보호활동탭) , AnimalFromShelter(게시글보기) , Profile(보호활동)
@@ -38,7 +39,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const data = route.params ? route.params.item : ''; // ProtectRequestObject, ShelterProtectAnimalObject 정보가 담겨 있는 상태
 	const [writersAnotherRequests, setWritersAnotherRequests] = React.useState(route.params.list ? route.params.list : []);
 	const [loading, setLoading] = React.useState(true); //로딩상태
-	const [editComment, setEditComment] = React.useState(false); // 댓글 쓰기 클릭
+	const [editComment, setEditComment] = React.useState(true); // 댓글 쓰기 클릭
 	const [privateComment, setPrivateComment] = React.useState(false); // 팝업된 댓글창에서 비밀글 상태
 	const [photo, setPhoto] = React.useState(); // PhotoSelect에서 가져온 Photo uri
 	const [replyData, setReplyData] = React.useState();
@@ -47,6 +48,8 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const [writeCommentData, setWriteCommentData] = React.useState(); //입력한 댓글 정보
 	const [replyPressed, setReplyPressed] = React.useState(false);
 	const [token, setToken] = React.useState();
+	const [content, setContent] = React.useState('');
+	const [parentComment, setParentComment] = React.useState();
 	const debug = false;
 
 	debug && console.log('AnimalProtectRequestDetail data:', data);
@@ -58,7 +61,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 		setWritersAnotherRequests(filteredList);
 		setTimeout(() => {
 			setLoading(false);
-		}, 1500);
+		}, 1000);
 	}, []);
 
 	//대댓글 달기 버튼 누르면 대댓글 작성
@@ -139,87 +142,84 @@ export default AnimalProtectRequestDetail = ({route}) => {
 		getCommnetList();
 	}, []);
 
-	//답글 최종 확인(SendIcon 클릭)
+	//답글 쓰기 => Input 작성 후 보내기 클릭 콜백 함수
 	const onWrite = () => {
-		// setReplyData({
-		// 	...replyData,
-		// 	comment_photo_uri: photo ? photo : null,
-		// 	comment_like_count: 0,
-		// 	comment_dislike_count: 0,
-		// 	comment_report_count: 0,
-		// 	comment_report_block: false,
-		// 	comment_date: new Date(),
-		// 	comment_update_date: new Date(),
-		// 	comment_writer_id: token,
-		// 	comment_protect_request_id: data.protect_request_id,
-		// 	comment_protect_request_writer_id: data.protect_animal_writer_id,
-		// 	comment_is_secure: privateComment,
-		// 	comment_is_delete: false,
-		// });
-		// setPhoto();
-		setWriteCommentData({...writeCommentData, comment_contents: replyText, comment_is_secure: privateComment});
-		setReplyPressed(true);
-		setPrivateComment(false);
-	};
+		Modal.popOneBtn('아직 댓글 기능을 제공하지 않습니다.', '확인', () => Modal.close());
+		return;
+		if (content.trim() == '') return Modal.popOneBtn('메세지를 입력하세요.', '확인', () => Modal.close());
 
-	// 부모 댓글에서 답글 쓰기 버튼 클릭 콜백함수
-	const onReplyBtnClick = parent => {
-		console.log('답글쓰기를 클릭한 댓글의 고유 _id', parent.comment_contents);
-		setEditComment(!editComment);
-		setWriteCommentData({...writeCommentData, commentobject_id: parent._id, feedobject_id: parent.comment_feed_id});
-	};
+		let param = {
+			comment_photo_uri: photo, //사진uri
+			comment_contents: content, //내용
+			protect_request_object_id: data._id,
+			// comment_is_secure: privateComment, //공개여부 테스트때 반영
+		};
 
-	// 자식 답글에서 답글쓰기 버튼 클릭 콜백함수
-	const onChildReplyBtnClick = comment => {
-		console.log('답글쓰기를 클릭한 댓글의 고유 _id', comment);
-		// setReplyData({...replyData, comment_parent: comment.comment_parent, comment_parent_writer_id: comment.comment_parent_writer_id});
-		setEditComment(!editComment);
+		// if (parentComment) {
+		// 	param = {...param, commentobject_id: parentComment};
+		// }
+		console.log('param:', param);
+		createComment(
+			param,
+			result => {
+				console.log(result);
+				setPhoto();
+				setParentComment();
+				getCommnetList();
+			},
+			err => Modal.alert(err),
+		);
 	};
 
 	// 답글 쓰기 -> 자물쇠버튼 클릭 콜백함수
 	const onLockBtnClick = () => {
 		setPrivateComment(!privateComment);
-		!privateComment ? alert('비밀댓글로 설정되었습니다.') : alert('댓글이 공개설정되었습니다.');
+		!privateComment ? Modal.alert('비밀댓글로 설정되었습니다.') : Modal.alert('댓글이 공개설정되었습니다.');
 	};
 
 	// 답글 쓰기 -> 이미지버튼 클릭 콜백함수
 	const onAddPhoto = () => {
-		// navigation.push('SinglePhotoSelect', route.name);
+		Modal.popOneBtn('아직 기능을 제공하지 않습니다.', '확인', () => Modal.close());
+		return;
+		navigation.push('SinglePhotoSelect', props.route.name);
 		ImagePicker.openPicker({
 			compressImageQuality: 0.8,
 			cropping: true,
-			cropperCircleOverlay: true,
 		})
 			.then(images => {
-				setPhoto(images.path || data.user_profile_uri);
-				setReplyData({...replyData, comment_photo_uri: images.path});
+				setPhoto(images.path);
 				Modal.close();
 			})
-			.catch(err => console.log('err / ImageOpenPicker / ChangeUserProfile', err));
+			.catch(err => console.log(err + ''));
 		Modal.close();
-		// launchImageLibrary(
-		// 	{
-		// 		mediaType: 'photo',
-		// 		selectionLimit: 1,
-		// 	},
-		// 	responseObject => {
-		// 		console.log('선택됨', responseObject);
-		// 		setPhoto(responseObject.assets[responseObject.assets.length - 1].uri);
-		// 		setReplyData({...replyData, comment_photo_uri: responseObject.assets[responseObject.assets.length - 1].uri});
-		// 	},
-		// );
-	};
-
-	// 답글 쓰기 -> 이미지버튼 클릭 -> 이미지 가져오기 -> X마크 클릭
-	const onDeleteImage = () => {
-		setPhoto([]);
 	};
 
 	// 답글 쓰기 -> Input value 변경 콜백함수
 	const onChangeReplyInput = text => {
-		console.log('답글쓰기 ', text);
-		// setReplyData({...replyData, comment_contents: text});
-		setReplyData(text);
+		setContent(text);
+	};
+
+	// 답글 쓰기 버튼 클릭 콜백함수
+	const onReplyBtnClick = parentCommentId => {
+		console.log(parentCommentId);
+		setParentComment(parentCommentId);
+		input.current.focus();
+		editComment || setEditComment(true);
+	};
+
+	// 자식 답글에서 답글쓰기 버튼 클릭 콜백함수
+	const onChildReplyBtnClick = comment => {
+		setEditComment(!editComment);
+	};
+
+	// 답글 이미지 등록 후 지우기 버튼 클릭 콜백함수
+	const onDeleteImage = () => {
+		setPhoto([]);
+	};
+
+	//더보기 클릭
+	const onPressShowMore = () => {
+		setShowMore(!showMore);
 	};
 
 	//보호요청 더보기의 Thumnail클릭
@@ -257,11 +257,6 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	//보호소 라벨 공유 클릭
 	const onPressShare = () => {
 		console.log('공유클릭');
-	};
-
-	//더보기 클릭
-	const onPressShowMore = () => {
-		setShowMore(!showMore);
 	};
 
 	//댓글 리스트 표출 개수 제어
@@ -393,6 +388,21 @@ export default AnimalProtectRequestDetail = ({route}) => {
 						<Bracket48 />
 					</View>
 				</TouchableOpacity>
+				<View style={[animalProtectRequestDetail_style.replyWriteBox]}>
+					{editComment && (
+						<ReplyWriteBox
+							onAddPhoto={onAddPhoto}
+							onChangeReplyInput={onChangeReplyInput}
+							onLockBtnClick={onLockBtnClick}
+							onWrite={onWrite}
+							onDeleteImage={onDeleteImage}
+							privateComment={privateComment}
+							photo={photo}
+							// ref={input}
+						/>
+					)}
+				</View>
+
 				{/* 보호요청 더 보기addMoreRequest */}
 				<View style={[temp_style.addMoreRequest_view]}>
 					<Text style={[txt.noto24, temp_style.addMoreRequest, {color: GRAY20}]}>보호요청 더보기</Text>
