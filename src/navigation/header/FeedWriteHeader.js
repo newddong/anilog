@@ -25,7 +25,6 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 
 	const onSend = () => {
 		Modal.popNoBtn('게시물을 등록중입니다.');
-
 		switch (route.params?.feedType) {
 			case 'Feed':
 				createFeed(route.params, complete, handleError);

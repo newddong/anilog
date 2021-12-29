@@ -19,7 +19,7 @@ import Input30 from '../molecules/Input30';
 import {assignShelterAnimal} from 'Root/api/shelterapi';
 
 export default AssignProtectAnimalInfo = ({route}) => {
-	// console.log('Assing', route.params);
+	console.log('Assing', route.params);
 	const navigation = useNavigation();
 
 	const [data, setData] = React.useState({
@@ -73,17 +73,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 
 	const registerProtectPet = () => {
 		console.log('Before AssiginShelterAnimal Data? ', data);
-		const s = {
-			protect_animal_photo_uri_list: data.protect_animal_photo_uri_list, // 보호중인 동물의 사진 로컬 경로 목록
-			protect_animal_rescue_date: data.protect_animal_rescue_date, // - 보호중인 동물의 구조날자
-			protect_animal_rescue_location: data.protect_animal_rescue_location, // - 보호중인 동물의 구조장소
-			protect_animal_species: data.pet_species, // 보호중인 동물의 종류(ex 개, 고양이, 토끼)
-			protect_animal_species_detail: data.pet_species_detail, //  보호중인 동물의 종류(ex 리트리버, 푸들, 진돗개)
-			protect_animal_neutralization: data.protect_animal_neutralization, //  - { 'yes'|'no'|'unknown'} 중성화 여부
-			protect_animal_sex: data.pet_sex, //  보호중인 동물의 성별
-			protect_animal_estimate_age: data.protect_animal_estimate_age, // - 보호중인 동물의 예상 연령
-			protect_animal_weight: data.protect_animal_weight, //- 보호중인 동물의 몸무게
-		};
+
 		assignShelterAnimal(
 			data,
 			result => {
@@ -138,7 +128,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 					width={600 * DP} //bar의 너비
 				/>
 			</View>
-			<TouchableWithoutFeedback onPress={() => console.log(data)}>
+			{/* <TouchableWithoutFeedback onPress={() => console.log(data)}>
 				<View
 					style={{
 						backgroundColor: 'red',
@@ -150,7 +140,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 						top: 0,
 						left: 0,
 					}}></View>
-			</TouchableWithoutFeedback>
+			</TouchableWithoutFeedback> */}
 
 			<View style={[temp_style.textMsg_assignProtectAnimal, assignProtectAnimal_style.textMsg]}>
 				<Text style={[txt.noto24, {color: GRAY10}]}>해당 동물의 예상 연령과 체중, 중성화 여부를 적어주세요.</Text>

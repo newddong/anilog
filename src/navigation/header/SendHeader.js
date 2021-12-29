@@ -31,13 +31,13 @@ export default SendHeader = ({route, navigation, options}) => {
 							console.log('SendHeader / Before Create AidRequest ', data);
 							createProtectRequest(
 								{
-									protect_request_photos: data.protect_request_photos,
+									protect_request_photos_uri: data.protect_request_photos_uri,
 									shelter_protect_animal_object_id: data.shelter_protect_animal_object_id,
 									protect_request_title: data.protect_request_title,
 									protect_request_content: data.protect_request_content,
 								},
 								successed => {
-									console.log('successed / createProtectRequest / SendHeader', successed);
+									console.log('successed / createProtectRequest / SendHeader', successed.protect_request_photos_uri);
 									Modal.popNoBtn('보호요청 게시글 \n 작성이 완료되었습니다!');
 									Modal.close();
 									navigation.push('ShelterMenu');

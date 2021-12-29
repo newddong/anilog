@@ -146,29 +146,29 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const onWrite = () => {
 		Modal.popOneBtn('아직 댓글 기능을 제공하지 않습니다.', '확인', () => Modal.close());
 		return;
-		if (content.trim() == '') return Modal.popOneBtn('메세지를 입력하세요.', '확인', () => Modal.close());
+		// if (content.trim() == '') return Modal.popOneBtn('메세지를 입력하세요.', '확인', () => Modal.close());
 
-		let param = {
-			comment_photo_uri: photo, //사진uri
-			comment_contents: content, //내용
-			protect_request_object_id: data._id,
-			// comment_is_secure: privateComment, //공개여부 테스트때 반영
-		};
+		// let param = {
+		// 	comment_photo_uri: photo, //사진uri
+		// 	comment_contents: content, //내용
+		// 	protect_request_object_id: data._id,
+		// 	// comment_is_secure: privateComment, //공개여부 테스트때 반영
+		// };
 
-		// if (parentComment) {
-		// 	param = {...param, commentobject_id: parentComment};
-		// }
-		console.log('param:', param);
-		createComment(
-			param,
-			result => {
-				console.log(result);
-				setPhoto();
-				setParentComment();
-				getCommnetList();
-			},
-			err => Modal.alert(err),
-		);
+		// // if (parentComment) {
+		// // 	param = {...param, commentobject_id: parentComment};
+		// // }
+		// console.log('param:', param);
+		// createComment(
+		// 	param,
+		// 	result => {
+		// 		console.log(result);
+		// 		setPhoto();
+		// 		setParentComment();
+		// 		getCommnetList();
+		// 	},
+		// 	err => Modal.alert(err),
+		// );
 	};
 
 	// 답글 쓰기 -> 자물쇠버튼 클릭 콜백함수
@@ -181,17 +181,17 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const onAddPhoto = () => {
 		Modal.popOneBtn('아직 기능을 제공하지 않습니다.', '확인', () => Modal.close());
 		return;
-		navigation.push('SinglePhotoSelect', props.route.name);
-		ImagePicker.openPicker({
-			compressImageQuality: 0.8,
-			cropping: true,
-		})
-			.then(images => {
-				setPhoto(images.path);
-				Modal.close();
-			})
-			.catch(err => console.log(err + ''));
-		Modal.close();
+		// navigation.push('SinglePhotoSelect', props.route.name);
+		// ImagePicker.openPicker({
+		// 	compressImageQuality: 0.8,
+		// 	cropping: true,
+		// })
+		// 	.then(images => {
+		// 		setPhoto(images.path);
+		// 		Modal.close();
+		// 	})
+		// 	.catch(err => console.log(err + ''));
+		// Modal.close();
 	};
 
 	// 답글 쓰기 -> Input value 변경 콜백함수
@@ -326,7 +326,6 @@ export default AnimalProtectRequestDetail = ({route}) => {
 					</View>
 				</View>
 
-				{/* RescueSummary */}
 				<View style={[temp_style.rescueSummary, animalProtectRequestDetail_style.rescueSummary]}>
 					<View style={[animalProtectRequestDetail_style.rescueSummary_insideContainer]}>
 						<View style={[animalProtectRequestDetail_style.rescueSummary_insideItem]}>
@@ -340,7 +339,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 							</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_category]}>성별</Text>
 							<Text style={[txt.noto24, animalProtectRequestDetail_style.rescueSummary_insideItem_content]}>
-								{data.protect_animal_sex && data.protect_animal_sex == 'male' ? '수컷' : '암컷'}
+								{data.protect_animal_id ? (data.protect_animal_id.protect_animal_sex == 'male' ? '수컷' : '암컷') : ''}
 							</Text>
 						</View>
 						<View style={[animalProtectRequestDetail_style.rescueSummary_insideItem]}>
@@ -366,7 +365,6 @@ export default AnimalProtectRequestDetail = ({route}) => {
 					</View>
 				</View>
 
-				{/* RescueText */}
 				<View style={[animalProtectRequestDetail_style.rescueText]}>
 					<Text style={[txt.noto24]}>{data.protect_request_content || ''}</Text>
 				</View>

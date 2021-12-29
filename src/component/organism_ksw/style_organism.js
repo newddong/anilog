@@ -383,9 +383,9 @@ export const profileMenu = StyleSheet.create({
 		alignSelf: 'center',
 	},
 	item_text: {
-		width: 210 * DP,
+		width: 270 * DP,
 		height: 50 * DP,
-		marginRight: 52 * DP,
+		// marginRight: 52 * DP,
 		justifyContent: 'center',
 		// backgroundColor: 'yellow',
 		alignSelf: 'center',

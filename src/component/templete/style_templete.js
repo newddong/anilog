@@ -3509,15 +3509,16 @@ export const writeAidRequest = StyleSheet.create({
 	},
 	titleContainer: {
 		marginBottom: 20 * DP,
-		height: 80 * DP,
+		// height: 80 * DP,
 		borderBottomColor: APRI10,
 		borderBottomWidth: 4 * DP,
 	},
 	titleInput: {
 		paddingHorizontal: 15 * DP,
 		marginTop: 10 * DP,
-		lineHeight: 40 * DP,
-		maxHeight: 80 * DP,
+		// lineHeight: 40 * DP,
+		// backgroundColor: 'yellow',
+		height: 100 * DP,
 	},
 	feedTextEdit: {
 		marginTop: 80 * DP,

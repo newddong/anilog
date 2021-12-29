@@ -16,7 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {DEFAULT_ANIMAL_PROFILE, DEFAULT_PROFILE} from 'Root/i18n/msg';
 
 export default AssignPetInfoB = props => {
-	console.log(props.route.params);
+	// console.log('AssignPetInfoB', props.route.params);
 	const navigation = useNavigation();
 
 	const [data, setData] = React.useState({

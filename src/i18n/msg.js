@@ -1,3 +1,5 @@
+import {getPettypes} from 'Root/api/userapi';
+
 //common
 export const BTN_CHECK = '확인';
 export const INQUIRY = '문의하기';
@@ -182,7 +184,23 @@ export const EMAIL_DOMAIN = [
 ];
 
 //반려동물 종류
-export const PET_KIND = ['동물종류', '개', '고양이', '새', '여우', '거북이', '햄스터', '기타'];
+export const PET_KIND = async () => {
+	let a = [];
+	function getPetKind() {
+		return new Promise((res, rej) => {
+			getPettypes(
+				{},
+				types => {
+					res(types.msg);
+				},
+				err => Modal.alert(err),
+			);
+		});
+	}
+	const result = await getPetKind();
+	// console.log('result', result);
+	return result;
+};
 
 //보호 지역
 export const PET_PROTECT_LOCATION = [

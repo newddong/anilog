@@ -40,7 +40,7 @@ const NormalDropDown = props => {
 			dropdownList={
 				<View style={{backgroundColor: WHITE, borderRadius: 10 * DP, alignItems: 'center', borderWidth: 2 * DP}}>
 					<TouchableWithoutFeedback>
-						<ScrollView style={{height: props.height * DP || null}} contentContainerStyle={{}}>
+						<ScrollView style={{height: props.height * DP || null}} contentContainerStyle={{}} persistentScrollbar={true}>
 							{props.menu.map((v, i) => (
 								<View key={i}>
 									<TouchableWithoutFeedback onPress={() => onSelect(v, i)}>
