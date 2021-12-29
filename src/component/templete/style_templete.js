@@ -2165,7 +2165,8 @@ export const editShelterInfo = StyleSheet.create({
 	inputEmail: {
 		flexDirection: 'row',
 		alignSelf: 'center',
-		height: 150 * DP,
+		height: 100 * DP,
+		marginBottom: 40 * DP,
 		// backgroundColor: 'yellow',
 	},
 	shelterInfoForm: {
@@ -2201,6 +2202,7 @@ export const editShelterInfo = StyleSheet.create({
 		// justifyContent: 'center',
 		// backgroundColor: '#EDEDED',
 	},
+	inputWithEmail: {},
 	addressInput: {
 		width: 654 * DP,
 		height: 236 * DP,

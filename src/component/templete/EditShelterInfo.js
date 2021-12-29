@@ -17,27 +17,23 @@ import {updateShelterDetailInformation} from 'Root/api/userapi';
 export default EditShelterInfo = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params.data);
 	console.log('data', data.shelter_name);
-	const [addrSearched, setAddrSearched] = React.useState(false);
 
 	React.useEffect(() => {
-		if (route.params != null) {
-			if (route.params.addr && !addrSearched) {
-				console.log('route.params.Address Changed?   ', route.params.addr);
-				const addr = route.params.addr;
-				setData({
-					...data,
-					shelter_address: {
-						brief: addr.siNm + ' ' + addr.sggNm + ' ' + addr.rn + ' ' + addr.buldMnnm,
-						detail: '',
-						city: addr.siNm,
-						district: addr.sggNm + ' ' + addr.emdNm + ' ' + addr.lnbrMnnm + '-' + addr.lnbrSlno,
-						neighbor: '',
-					},
-				});
-				setAddrSearched(true);
-			}
+		if (route.params.addr) {
+			console.log('route.params.Address Changed?   ', route.params.addr);
+			const addr = route.params.addr;
+			setData({
+				...data,
+				shelter_address: {
+					brief: addr.siNm + ' ' + addr.sggNm + ' ' + addr.rn + ' ' + addr.buldMnnm,
+					detail: addr.detailAddr,
+					city: addr.siNm,
+					district: addr.sggNm + ' ' + addr.emdNm + ' ' + addr.lnbrMnnm + '-' + addr.lnbrSlno,
+					neighbor: '',
+				},
+			});
 		}
-	}, [route.params]);
+	}, [route.params?.addr]);
 
 	//보호소 이름 변경 콜백
 	const onChangeShelterName = name => {
@@ -46,7 +42,6 @@ export default EditShelterInfo = ({route, navigation}) => {
 
 	//주소찾기 클릭
 	const onPressSearchAddr = () => {
-		setAddrSearched(false);
 		navigation.push('AddressSearch', {addr: data.shelter_address ? data.shelter_address.brief : '', from: route.name});
 	};
 
@@ -130,7 +125,7 @@ export default EditShelterInfo = ({route, navigation}) => {
 						Modal.close();
 					},
 				);
-				navigation.reset({routes: [{name: 'ShelterInfoSetting'}]});
+				navigation.navigate('ShelterInfoSetting');
 			},
 		);
 	};
@@ -161,14 +156,14 @@ export default EditShelterInfo = ({route, navigation}) => {
 							/>
 						</View>
 					</View>
-					{/* 주소 찾기 */}
+					{/* 나의 지역 */}
 					<View style={[editShelterInfo.addressInput]}>
 						<AddressInput
 							onChangeDeatilAddress={onChangeDeatilAddress}
 							width={654}
 							title={'나의 지역'}
-							address={data.shelter_address ? data.shelter_address.brief : ''}
-							detailAddress={data.shelter_address ? data.shelter_address.detail : ''}
+							address={data.shelter_address.brief}
+							detailAddress={data.shelter_address.detail}
 							onPressSearchAddr={onPressSearchAddr}
 						/>
 					</View>
@@ -199,7 +194,7 @@ export default EditShelterInfo = ({route, navigation}) => {
 								<Text style={[txt.noto28, {color: GRAY10}]}>이메일</Text>
 							</View>
 						</View>
-						<View style={[editShelterInfo.input30]}>
+						<View style={[editShelterInfo.inputWithEmail]}>
 							<InputWithEmail
 								onSelectDropDown={onSelectDomain}
 								onChange={onChangeEmail}

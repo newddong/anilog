@@ -96,7 +96,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	};
 
 	const phoneValidate = num => {
-		console.log('num', num);
+		// console.log('num', num);
 		let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 		if (regPhone.test(num) === true) {
 			console.log('입력된 값은 휴대전화번호입니다.');
@@ -196,7 +196,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 							<AddressInput
 								title={'나의 지역'}
 								address={data.user_address.brief}
-								// address={data.user_address.city + ' ' + data.user_address.district + ' ' + data.user_address.neighbor}
+								detailAddress={data.user_address.detail}
 								onChangeAddress={onChangeAddress}
 								onChangeDeatilAddress={onChangeDeatilAddress}
 								onPressSearchAddr={onPressSearchAddress}
@@ -204,7 +204,6 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 								addressDefault={data.user_address.brief}
 								// detailAddressDefault={data ? data.user_address.neighbor : ''}
 								detailAddressDefault={data.user_address.detail}
-								detailAddress={data.user_address.detailAddr}
 							/>
 						</View>
 						{/* 관심지역 및 활동 */}
@@ -223,66 +222,4 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	} else {
 		return <View></View>;
 	}
-};
-
-const add = {
-	__v: 6,
-	_id: '61b84ddb4a1b66f74b699b1e',
-	pet_family: [],
-	user_address: {city: '마포구', district: '신수동g', neighbor: '8977'},
-	user_agreement: {
-		is_donation_info: true,
-		is_location_service_info: true,
-		is_marketting_info: true,
-		is_over_fourteen: true,
-		is_personal_info: true,
-		is_service: true,
-	},
-	user_birthday: '2021-01-01',
-	user_denied: false,
-	user_follow_count: 0,
-	user_follower_count: 0,
-	user_interests: {activity: [], location: []},
-	user_introduction: '',
-	user_is_verified_email: false,
-	user_is_verified_phone_number: true,
-	user_mobile_company: 'LG U+',
-	user_my_pets: [
-		{
-			__v: 0,
-			_id: '61bc7bc5c946746900218905',
-			pet_birthday: '2021-12-07T00:00:00.000Z',
-			pet_family: [Array],
-			pet_is_temp_protection: true,
-			pet_neutralization: 'no',
-			pet_sex: 'female',
-			pet_species: '기타',
-			pet_species_detail: '새',
-			pet_status: 'protect',
-			pet_weight: '11',
-			user_agreement: [Object],
-			user_denied: false,
-			user_follow_count: 0,
-			user_follower_count: 0,
-			user_interests: [Array],
-			user_introduction: '',
-			user_is_verified_email: false,
-			user_is_verified_phone_number: false,
-			user_my_pets: [Array],
-			user_nickname: '토라',
-			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639742405433_6040B5AC-48AF-44FA-A3D0-81FF80F8C09A.jpg',
-			user_register_date: '2021-12-17T12:00:05.624Z',
-			user_type: 'pet',
-			user_upload_count: 0,
-		},
-	],
-	user_name: '권상우',
-	user_nickname: 'Di1',
-	user_password: 'tkddn123',
-	user_phone_number: '01096450422',
-	user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1639666144077_B70FDBD2-53F4-4FAA-A6F1-13345B04FEE3.jpg',
-	user_register_date: '2021-12-14T07:55:07.933Z',
-	user_sex: 'female',
-	user_type: 'user',
-	user_upload_count: 0,
 };
