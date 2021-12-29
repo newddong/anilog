@@ -31,7 +31,7 @@ export default AccountHashList = props => {
 	};
 
 	return (
-		<View style={[accountHashList.container]}>
+		<View style={[accountHashList.container,{height:300*DP}]}>
 			<FlatList
 				data={props.data}
 				keyExtractor={item => item._id}

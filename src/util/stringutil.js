@@ -1,0 +1,56 @@
+/**
+ * 문자열의 특정 위치근처 에서 구분되는 단어를 찾는다. #,@,' ',\n로 구분되는 단어를 반환
+ * 
+ * @param {number} position - 검색하고자하는 위치
+ * @param {string} string - 검색하고자하는 대상 문자열
+ * @example
+ * getTimeLapsed('2021-12-28T07:39:48.018Z')
+ */
+export function findTagAt(position, string){
+    
+    let checkChar = [' ','@','#','\n'];
+    let foreIndx = Math.max.apply(null,checkChar.map(v=>string.lastIndexOf(v,position-1)));
+    let aftIndx =  Math.min.apply(null,checkChar.map(v=>{
+        let indx = string.indexOf(v,position);
+        if(indx<0)return 999999;
+        else return indx;
+    }));
+    return string.slice(foreIndx,aftIndx)
+}
+
+/**
+ * 현재 position에서 가장 가까운 태그 시작 위치 '#','@' 의 인덱스를 찾는다.
+ * 
+ * @param {number} position - 검사하고자하는 위치
+ * @param {string} string - 태그의 시작 위치를 찾고자하는 문자열
+ * @example
+ * getTimeLapsed('2021-12-28T07:39:48.018Z')
+ */
+export function findStartIndexOfTag(position, string){
+    
+    let checkChar = [' ','@','#','\n'];
+    let foreIndx = Math.max.apply(null,checkChar.map(v=>string.lastIndexOf(v,position)));
+    return foreIndx;
+}
+
+
+
+/**
+ * 대상 문자열이 태그인지 아닌지 판별
+ * @param {string} string 
+ */
+export function isTag(string){
+    let checkChar = ['#','@'];
+    return checkChar.some(v=>string.at(0)==v);
+}
+
+
+/**
+ * 태그에서 기호를 땐다
+ * @param {string} string
+ */
+export function getTagName(string){
+    let checkChar = ['#','@'];
+    if(checkChar.some(v=>string.at(0)==v))return string.substring(1);
+    return string;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, Text, TouchableOpacity, View, TouchableWithoutFeedback, TextInput} from 'react-native';
-import {APRI10, WHITE} from 'Root/config/color';
+import {APRI10, WHITE, GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import DP from 'Root/screens/dp';
 import {Camera54, Location54_APRI10, Paw54_Border} from 'Root/component/atom/icon/index';
@@ -26,6 +26,8 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import {getPettypes} from 'Root/api/userapi';
 import ImagePicker from 'react-native-image-crop-picker';
 import HashInput from 'Molecules/HashInput';
+import {getUserListByNickname} from 'Root/api/userapi';
+import AccountHashList from '../organism_ksw/AccountHashList';
 
 export default FeedWrite = props => {
 	const [showPetAccountList, setShowPetAccountList] = React.useState(false); //PetAccount 계정
@@ -175,9 +177,22 @@ export default FeedWrite = props => {
 	const moveToFeedMediaTagEdit = () => {
 		// props.navigation.push('FeedMediaTagEdit');
 	};
-
+	const [lis, setLis] = React.useState([]);
 	const inputFeedTxt = feedInput => {
-		setFeedText(feedInput);
+		// console.log('해쉬 인풋', feedInput);
+		// if(feedInput.length>0&&feedInput.test()){}
+		// if(feedInput[feedInput.length-1]=='@'){
+		// 	setShowPetAccountList(true);
+		// }
+		// getUserListByNickname({user_nickname:feedInput},
+		// 	(result)=>{
+		// 		setLis(result.msg);
+		// 	console.log(result);
+		// },
+		// (err)=>{
+		// 	console.log(err);
+		// });
+		// setFeedText(feedInput);
 	};
 
 	//긴급 버튼 - '제보' '실종' 중 하나 클릭 시 변동되는 View 분기 처리
@@ -194,14 +209,14 @@ export default FeedWrite = props => {
 		if (showPetAccountList) {
 			return (
 				<View style={[temp_style.petAccountList, feedWrite.petAccountList]}>
-					<PetAccountList items={dummy_UserObject_pet_with_owner} />
+					<AccountHashList data={lis} />
 				</View>
 			);
 		}
 		//일반 FeedWrite 분기
 		else {
 			return (
-				<View>
+				<>
 					{/* 사진추가 / 위치추가 / 태그하기 */}
 					<View style={[feedWrite.buttonContainer]}>
 						<TouchableWithoutFeedback onPress={moveToMultiPhotoSelect}>
@@ -246,28 +261,26 @@ export default FeedWrite = props => {
 					)}
 					{/* 긴급 게시 관련 버튼 클릭 시 출력되는 View */}
 					{setUrgBtnsClickedView()}
-				</View>
+				</>
 			);
 		}
 	};
 	
 	return (
 		<View style={[login_style.wrp_main, feedWrite.container]}>
-			
 			{/* <ScrollView contentContainerStyle={{width: 750 * DP, alignItems: 'center'}}> */}
-				<View style={[temp_style.feedTextEdit, feedWrite.feedTextEdit]}>
+				{/* <View style={[temp_style.feedTextEdit,{height:800*DP}]}> */}
 					{/* 피드 글 작성 */}
-					<HashInput
-						containerStyle={{flex: 1,backgroundColor:'yellow'}}
-						textAlignVertical={'top'}
-						multiline={true}
-						placeholder="게시물을 작성하세요"
-						onChangeText={inputFeedTxt}
-						></HashInput>
-				</View>
+				<HashInput
+					containerStyle={[temp_style.feedTextEdit,{backgroundColor:'yellow',borderBottomWidth:2*DP,borderBottomColor:APRI10}]}
+					textAlignVertical={'top'}
+					multiline={true}
+					placeholder="게시물을 작성하세요"
+					placeholderTextColor={GRAY20}
+					onChangeText={inputFeedTxt}
+					></HashInput>
+				{/* </View> */}
 				
-				{/* Input Text 하단 언더라인 */}
-				<View style={{width: 654 * DP, height: 2 * DP, marginVertical: 40 * DP, backgroundColor: APRI10}} />
 
 				{/* <View style={{width: 654 * DP, height: 300 * DP, backgroundColor: 'lightblue', flexDirection: 'row'}}>
 					{completed ? getFeedContent(draft) : null}
