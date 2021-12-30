@@ -21,7 +21,7 @@ import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
 //변수들은 모두 db 변수로 스네이크 형식으로 추후에 변경 필요.
 
 export default PetInfoSetting = ({route, navigation}) => {
-	console.log('PetInfoSetting / route.params', route.params.token.user_nickname);
+	console.log('PetInfoSetting / route.params', route.params.pet_id);
 	const loginUser = route.params.token;
 
 	const [petData, setPetData] = React.useState({}); // 현재 반려동물 프로필 데이터
@@ -36,7 +36,39 @@ export default PetInfoSetting = ({route, navigation}) => {
 		getUserInfoById(
 			{userobject_id: route.params.pet_id},
 			result => {
-				// console.log('result / GetUserInfoById / PetInfoSetting', result.msg.pet_family);
+				console.log('result / GetUserInfoById / PetInfoSetting', result.msg);
+				const t = {
+					__v: 0,
+					_id: '61cdfebb07a02d82987ee5e5',
+
+					pet_is_temp_protection: false,
+					pet_neutralization: 'unknown',
+					pet_sex: 'female',
+					pet_species: '고양이',
+					pet_species_detail: '믹스묘',
+					pet_status: 'adopt',
+					pet_weight: '2',
+					user_agreement: {
+						is_donation_info: false,
+						is_location_service_info: false,
+						is_marketting_info: false,
+						is_over_fourteen: false,
+						is_personal_info: false,
+						is_service: false,
+					},
+					user_denied: false,
+					user_follow_count: 0,
+					user_follower_count: 0,
+					user_interests: [],
+					user_introduction: '',
+					user_is_verified_email: false,
+					user_is_verified_phone_number: false,
+					user_my_pets: [],
+					user_nickname: '고양이',
+					user_register_date: '2021-12-30T18:47:23.728Z',
+					user_type: 'pet',
+					user_upload_count: 0,
+				};
 				setFamilyAccountList(result.msg.pet_family);
 				navigation.setOptions({title: result.msg.user_nickname});
 				setPetData(result.msg);
@@ -130,7 +162,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 						</View>
 						<View style={[petInfoSetting.petAccountInfo.information]}>
 							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoTitle]}>종</Text>
-							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoContent]}>{_dummy_petInfo_from_user[0].pet_species}</Text>
+							<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoContent]}>{petData.pet_species}</Text>
 							<TouchableOpacity onPress={changePetInfo} style={{position: 'absolute', right: 0}}>
 								<Text style={[txt.noto24, petInfoSetting.petAccountInfo.infoContent]}>변경하기</Text>
 							</TouchableOpacity>

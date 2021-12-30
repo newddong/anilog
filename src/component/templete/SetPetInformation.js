@@ -9,9 +9,9 @@ import RadioBox from '../molecules/RadioBox';
 import moment from 'moment';
 
 export default SetPetInformation = ({route, navigation}) => {
-	const [selectedBirthDate, setSelectedBirthDate] = React.useState('2021.11.01');
-
 	const [data, setData] = React.useState(route.params);
+	// console.log('data', data);
+	const [selectedBirthDate, setSelectedBirthDate] = React.useState('');
 
 	React.useEffect(() => {
 		navigation.setParams({route_name: route.name, data: data});
@@ -19,31 +19,38 @@ export default SetPetInformation = ({route, navigation}) => {
 
 	//생일 TypeParsing / 차후 정리 예정
 	const parseBirth = () => {
-		if (data.pet_birthday.length < 15) {
+		if (data.pet_birthday && data.pet_birthday.length < 15) {
 			return data.pet_birthday;
+		} else if (data.pet_birthday == undefined) {
+			return '생일을 지정해주세요';
 		} else {
 			let date = moment(data.pet_birthday).format('YYYY.MM.DD');
 			date = date.toString();
+			console.log('data', date);
 			return date;
 		}
 	};
 
 	//생녈월일 계산 함수
 	const getBirthDate = () => {
-		const today = new Date().getTime();
-		let split = selectedBirthDate.split('.');
-		const selectDate = new Date(split[0], split[1] - 1, split[2]);
-		const duration = (today - selectDate.getTime()) / 1000;
-		// console.log(duration / 86400); //하루단위
-		const birthDate = () => {
-			let year = parseInt(duration / 86400 / 365) + '년 ';
-			let month = parseInt(((duration / 86400) % 365) / 30) + '개월';
-			if (parseInt(duration / 86400 / 365) == 0) {
-				year = '';
-			}
-			return year + month;
-		};
-		return <Text style={[txt.noto22]}>{birthDate()}</Text>;
+		if (selectedBirthDate) {
+			const today = new Date().getTime();
+			let split = selectedBirthDate.split('.');
+			const selectDate = new Date(split[0], split[1] - 1, split[2]);
+			const duration = (today - selectDate.getTime()) / 1000;
+			// console.log(duration / 86400); //하루단위
+			const birthDate = () => {
+				let year = parseInt(duration / 86400 / 365) + '년 ';
+				let month = parseInt(((duration / 86400) % 365) / 30) + '개월';
+				if (parseInt(duration / 86400 / 365) == 0) {
+					year = '';
+				}
+				return year + month;
+			};
+			return <Text style={[txt.noto22]}>{birthDate()}</Text>;
+		} else {
+			<Text style={[txt.noto22]}></Text>;
+		}
 	};
 
 	//생일이 지정되었을 때
@@ -123,9 +130,9 @@ export default SetPetInformation = ({route, navigation}) => {
 						</View>
 					</View>
 					<View style={[setPetInformation.datePicker]}>
-						<DatePicker onDateChange={onSelectBirthDate} defaultDate={parseBirth()} width={290} future={false} />
+						<DatePicker onDateChange={onSelectBirthDate} defaultDate={parseBirth()} width={400} future={false} />
+						<View style={[setPetInformation.birthTime]}>{getBirthDate()}</View>
 					</View>
-					<View style={[setPetInformation.birthTime]}>{getBirthDate()}</View>
 				</View>
 				{/* 체중 */}
 				<View style={[setPetInformation.inputForm_line_layout]}>

@@ -338,6 +338,8 @@ export const CONFIRM_FINALIZED =
 export const CONFIRM_DELETE_TAG_ME_FEED = '해당 게시글을 나의 "태그된 피드"에서 삭제하시겠습니까? 게시물을 올린 계정에서는 삭제되지 않습니다.';
 export const CONFIRM_DELETE_FAVORITE_FEED = '선택한 피드를 즐겨찾기에서 해제하시겠습니까?';
 export const CONFIRM_DELETE_MY_FEED = '선택한 목록을 내 피드글에서 해제하시겠습니까?';
+export const PROTECT_ACT_PROTECT_CONFIRM = '임시보호는 확정을 눌러도 이 게시물의 \n 상태가 "입양가능"으로 유지됩니다.';
+export const PROTECT_ACT_ADOPT_CONFIRM = '입양확정을 하게 되면 이 게시물의 상태가 "완료"로 변경됩니다.';
 
 //보호동물 및 보호 요청게시글 상태에 대한 텍스트
 export const RESCUE = '입양가능';

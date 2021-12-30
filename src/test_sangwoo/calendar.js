@@ -10,6 +10,7 @@ import {APRI10, BLACK, GRAY20, GRAY30, WHITE} from 'Root/config/color';
 import {NextMark} from 'Root/component/atom/icon';
 import YearDropDown from 'Root/component/molecules/YearDropDown';
 import Modal from 'Root/component/modal/Modal';
+import AniButton from 'Root/component/molecules/AniButton';
 
 const Calendar = props => {
 	console.log('props', props.future);
@@ -190,59 +191,68 @@ const Calendar = props => {
 	};
 
 	return (
-		<TouchableWithoutFeedback onPress={modalOff} style={[styles.outside]}>
-			<View style={{justifyContent: 'center', alignItems: 'center', marginTop: 100, backgroundColor: WHITE}}>
-				<YearDropDown menu={years()} defaultIndex={4} index={getMoment.year()} onSelect={onSelectYear} />
-				<View style={[styles.headerCont, {}]}>
-					<TouchableOpacity
-						style={styles.changeMonthBtn}
-						onPress={() => {
-							setMoment(getMoment.clone().subtract(1, 'month'));
-						}}>
-						<View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-							<Text style={[txt.roboto32b, {color: GRAY20, marginRight: 12 * DP}]}>{getMoment.clone().subtract(1, 'month').month() + 1}</Text>
-							<View style={{transform: [{rotate: '180deg'}]}}>
-								<NextMark />
-							</View>
-						</View>
-					</TouchableOpacity>
-					<TouchableWithoutFeedback style={styles.changeMonthBtn}>
-						<Text style={[txt.roboto32b, {justifyContent: 'center', textAlign: 'center', width: 130}]}>{today.format('MM')}</Text>
-					</TouchableWithoutFeedback>
-					<TouchableOpacity
-						style={styles.changeMonthBtn}
-						onPress={() => {
-							setMoment(getMoment.clone().add(1, 'month'));
-						}}>
-						<View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-							<NextMark />
-							<Text style={[txt.roboto32b, {color: GRAY20, marginLeft: 15 * DP}]}>{getMoment.clone().add(1, 'month').month() + 1}</Text>
-						</View>
-					</TouchableOpacity>
-				</View>
-				<View style={{backgroundColor: APRI10, width: '100%', height: 2 * DP}} />
-				<View style={styles.daysCont}>
-					{Array(7)
-						.fill(day) //월화수목금토일 정보
-						.map((data, index) => {
-							//data가 없으면 안되는구나.
-							return (
-								<View key={index} style={styles.daysView}>
-									<Text
-										style={
-											[txt.roboto24, index == 0 ? styles.weekend : styles.daysText]
-											//일요일 토요일은 빨간색 글자로 출력
-										}>
-										{day[index]}
-									</Text>
+		<TouchableWithoutFeedback>
+			<View style={[styles.outside]}>
+				<View style={{justifyContent: 'center', alignItems: 'center', marginTop: 100, backgroundColor: WHITE}}>
+					<YearDropDown menu={years()} defaultIndex={4} index={getMoment.year()} onSelect={onSelectYear} />
+					<View style={[styles.headerCont, {}]}>
+						<TouchableOpacity
+							style={styles.changeMonthBtn}
+							onPress={() => {
+								setMoment(getMoment.clone().subtract(1, 'month'));
+							}}>
+							<View
+								style={{
+									flexDirection: 'row',
+									alignItems: 'center',
+									justifyContent: 'center',
+									width: 120 * DP,
+									height: 80 * DP,
+								}}>
+								<Text style={[txt.roboto32b, {color: GRAY20, marginRight: 12 * DP}]}>{getMoment.clone().subtract(1, 'month').month() + 1}</Text>
+								<View style={{transform: [{rotate: '180deg'}]}}>
+									<NextMark />
 								</View>
-							);
-						})}
-				</View>
-
-				<View style={{marginTop: 15 * DP, backgroundColor: 'white', height: 700 * DP}}>{calendarArr()}</View>
-				{/* 모달바깥쪽 클릭이 modalOFF로 처리되게끔 한 View 목록 */}
-				<TouchableWithoutFeedback onPress={modalOff}>
+							</View>
+						</TouchableOpacity>
+						<TouchableWithoutFeedback style={styles.changeMonthBtn}>
+							<Text style={[txt.roboto32b, {justifyContent: 'center', textAlign: 'center', width: 130, paddingTop: 20 * DP}]}>
+								{today.format('MM')}
+							</Text>
+						</TouchableWithoutFeedback>
+						<TouchableOpacity
+							style={styles.changeMonthBtn}
+							onPress={() => {
+								setMoment(getMoment.clone().add(1, 'month'));
+							}}>
+							<View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: 120 * DP, height: 80 * DP}}>
+								<NextMark />
+								<Text style={[txt.roboto32b, {color: GRAY20, marginLeft: 15 * DP}]}>{getMoment.clone().add(1, 'month').month() + 1}</Text>
+							</View>
+						</TouchableOpacity>
+					</View>
+					<View style={{backgroundColor: APRI10, width: '100%', height: 2 * DP}} />
+					<View style={styles.daysCont}>
+						{Array(7)
+							.fill(day) //월화수목금토일 정보
+							.map((data, index) => {
+								//data가 없으면 안되는구나.
+								return (
+									<View key={index} style={styles.daysView}>
+										<Text
+											style={
+												[txt.roboto24, index == 0 ? styles.weekend : styles.daysText]
+												//일요일 토요일은 빨간색 글자로 출력
+											}>
+											{day[index]}
+										</Text>
+									</View>
+								);
+							})}
+					</View>
+					<View style={{marginTop: 15 * DP, marginBottom: 5 * DP}}>{calendarArr()}</View>
+					{/* 모달바깥쪽 클릭이 modalOFF로 처리되게끔 한 View 목록 */}
+					{/* <TouchableWithoutFeedback onPress={modalOff}>
 					<View style={{position: 'absolute', width: 440, height: 100, top: -100, left: -20, backgroundColor: BG}} />
 				</TouchableWithoutFeedback>
 				<TouchableWithoutFeedback onPress={modalOff}>
@@ -253,7 +263,11 @@ const Calendar = props => {
 				</TouchableWithoutFeedback>
 				<TouchableWithoutFeedback onPress={modalOff}>
 					<View style={{position: 'absolute', width: 440, height: 170, bottom: -170, left: -20, backgroundColor: BG}} />
-				</TouchableWithoutFeedback>
+				</TouchableWithoutFeedback> */}
+					<View style={{backgroundColor: APRI10, width: '100%', height: 2 * DP, marginBottom: 20}} />
+
+					<AniButton btnTitle={'나가기'} onPress={modalOff}></AniButton>
+				</View>
 			</View>
 		</TouchableWithoutFeedback>
 	);

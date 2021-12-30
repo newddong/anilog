@@ -6,25 +6,16 @@ export const styles = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	outside: {
-		width: '100%',
-		height: '100%',
 		// marginTop: 200 * DP,
-		shadowColor: APRI10,
-		shadowOpacity: 0.27,
-		shadowRadius: 2,
-		shadowOffset: {
-			width: 2,
-			height: 1,
-		},
-		elevation: 2,
-		// backgroundColor: 'white',
 		// borderRadius: 40 * DP,
+		backgroundColor: 'white',
 	},
 	popUpWindow: {
 		// backgroundColor: BLUE10,
 		alignItems: 'center',
 	},
 	headerCont: {
+		// backgroundColor: BLUE10,
 		flexDirection: 'row',
 		alignSelf: 'center',
 	},
