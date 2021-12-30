@@ -4,7 +4,6 @@
  * @param {number} position - 검색하고자하는 위치
  * @param {string} string - 검색하고자하는 대상 문자열
  * @example
- * getTimeLapsed('2021-12-28T07:39:48.018Z')
  */
 export function findTagAt(position, string){
     
@@ -24,7 +23,6 @@ export function findTagAt(position, string){
  * @param {number} position - 검사하고자하는 위치
  * @param {string} string - 태그의 시작 위치를 찾고자하는 문자열
  * @example
- * getTimeLapsed('2021-12-28T07:39:48.018Z')
  */
 export function findStartIndexOfTag(position, string){
     
@@ -33,7 +31,23 @@ export function findStartIndexOfTag(position, string){
     return foreIndx;
 }
 
-
+/**
+ * 현재 position에서 가장 가까운 태그 마지막 위치 '#','@' 의 인덱스를 찾는다.
+ * 
+ * @param {number} position - 검사하고자하는 위치
+ * @param {string} string - 태그의 시작 위치를 찾고자하는 문자열
+ * @example
+ */
+ export function findEndIndexOfTag(position, string){
+    
+    let checkChar = [' ','@','#','\n'];
+    let aftIndx =  Math.min.apply(null,checkChar.map(v=>{
+        let indx = string.indexOf(v,position);
+        if(indx<0)return 999999;
+        else return indx;
+    }));
+    return aftIndx;
+}
 
 /**
  * 대상 문자열이 태그인지 아닌지 판별
