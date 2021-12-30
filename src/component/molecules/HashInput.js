@@ -4,14 +4,14 @@ import HashText from 'Molecules/HashText';
 import AccountHashList from '../organism_ksw/AccountHashList';
 import AccountList from '../organism_ksw/AccountList';
 import {GRAY20} from 'Root/config/color';
-import {findTagAt, isTag, getTagName,findStartIndexOfTag} from 'Root/util/stringutil';
+import {findTagAt, isTag, getTagName,findStartIndexOfTag,findEndIndexOfTag} from 'Root/util/stringutil';
 import {getUserListByNickname} from 'Root/api/userapi';
 import Modal from '../modal/Modal';
 
 export default function HashInput(props) {
 	const [value, setValue] = React.useState('');
 	const [find, setFind] = React.useState(false);
-	const [cursor, setCursor] = React.useState({start: 0, end: 0});
+	const [cursor, setCursor] = React.useState();
 	const inputRef = React.useState();
 	const internal = React.useRef({
 		text: '',
@@ -30,7 +30,8 @@ export default function HashInput(props) {
         internal.editTag = findTagAt(inputCursor.current, text);
 		console.log('편집중인글 =>', internal.editTag);
 		console.log('편집중인 위치가 테그인지', isTag(internal.editTag));
-		
+		setFind(isTag(internal.editTag));
+
         if (isTag(internal.editTag)) {
 			getUserListByNickname(
 				{
@@ -52,7 +53,7 @@ export default function HashInput(props) {
 	};
 
 	const onSelectionChange = e => {
-		setCursor(e.nativeEvent.selection);
+		// setCursor(e.nativeEvent.selection);
 		const {start, end} = e.nativeEvent.selection;
 		if (start == end) {
 			inputCursor.current = start;
@@ -72,8 +73,8 @@ export default function HashInput(props) {
 
 	const userSelect = (user,index) => {
         let nickname = '@'+user.user_nickname
-        console.log(internal.editTag)
-        console.log(value.replace(internal.editTag,nickname))
+        console.log(internal.editTag);
+        console.log(value.replace(internal.editTag,nickname));
         setValue(value.replace(internal.editTag,nickname));
 
 
