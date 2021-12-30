@@ -49,7 +49,7 @@ export default ApplyCompanionA = ({route}) => {
 	//보호장소 및 연락처가 공란이면 다음 단계로 넘어갈 수 없는 로직
 	React.useEffect(() => {
 		// console.log('data', data);
-		data.protect_act_address.brief != '' && data.protect_act_phone_number != null ? setConfirmed(true) : setConfirmed(false);
+		data.protect_act_address.brief != '' && data.protect_act_phone_number != '' ? setConfirmed(true) : setConfirmed(false);
 	}, [data]);
 
 	React.useEffect(() => {
@@ -66,7 +66,7 @@ export default ApplyCompanionA = ({route}) => {
 	}, [route.params.addr]);
 
 	React.useEffect(() => {
-		// console.log('data Address ', data.protect_act_address);
+		// console.log('data: ', data);
 	}, [data]);
 
 	//주소찾기 버튼 클릭
@@ -83,7 +83,7 @@ export default ApplyCompanionA = ({route}) => {
 	};
 
 	const phoneValidate = num => {
-		console.log('num', num);
+		// console.log('num', num);
 		let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 		if (regPhone.test(num) === true) {
 			console.log('입력된 값은 휴대전화번호입니다.');

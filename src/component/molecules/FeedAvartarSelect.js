@@ -8,7 +8,7 @@ import Modal from 'Component/modal/Modal';
 import {getUserInfoById} from 'Root/api/userapi';
 import userGlobalObj from 'Root/config/userGlobalObject';
 import PetAccountList from 'Component/organism_ksw/PetAccountList';
-import { txt } from 'Root/screens/assign/style_assign';
+import {txt} from 'Root/screens/assign/style_assign';
 
 /**
  * 아바타 동물을 선택하는 모달창
@@ -20,8 +20,8 @@ import { txt } from 'Root/screens/assign/style_assign';
  *
  */
 const FeedAvartarSelect = props => {
-
 	const [items, setItems] = React.useState([]);
+	const checkApi = React.useRef(false);
 
 	const pressOk = () => {
 		props.onOk();
@@ -38,20 +38,28 @@ const FeedAvartarSelect = props => {
 				Modal.popOneBtn(err, '확인', () => Modal.close());
 			},
 		);
+		checkApi.current = true;
 	}, []);
 
 	const selectPet = petobject => {
-		props.onSelectPet&&props.onSelectPet(petobject);
+		props.onSelectPet && props.onSelectPet(petobject);
 	};
 
 	return (
 		<View style={style.background}>
 			<View style={[style.popUpWindow, style.shadow]}>
-				<PetAccountList items={items} onLabelClick={selectPet} />
-				{items.length<1&&<Text style={[{textAlign:'center',marginBottom:30*DP},txt.noto28b]}>{'등록된 반려동물이 없습니다.\n 반려동물을 등록해주세요'}</Text>}
+				{console.log('items.length:', items.length)}
+				{checkApi.current ? (
+					items.length > 0 ? (
+						<PetAccountList items={items} onLabelClick={selectPet} />
+					) : (
+						<Text style={[{textAlign: 'center', marginBottom: 30 * DP}, txt.noto28b]}>{'등록된 반려동물이 없습니다.\n 반려동물을 등록해주세요'}</Text>
+					)
+				) : null}
 				<View style={style.buttonContainer}>
 					<AniButton btnLayout={btn_w226} btnStyle={'filled'} btnTitle={props.okButtonnMsg} onPress={pressOk} />
 				</View>
+				{(checkApi.current = false)}
 			</View>
 		</View>
 	);
@@ -62,7 +70,7 @@ FeedAvartarSelect.defaultProps = {
 	onOk: () => {
 		console.log('YES');
 	},
-	onSelectPet:(e)=>{}
+	onSelectPet: e => {},
 };
 
 const style = StyleSheet.create({
