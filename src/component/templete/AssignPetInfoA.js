@@ -21,7 +21,9 @@ export default AssignPetInfoA = props => {
 	const isProtectAnimalRoute = props.route.name == 'AssignProtectAnimalType';
 	// console.log(isProtectAnimalRoute)
 	const [loading, setLoading] = React.useState(true); // 화면 출력 여부 결정
-
+	React.useEffect(() => {
+		console.log('assignpetInto A data ', data);
+	}, [data]);
 	// const [pet_speciesArray, setSpecies] = React.useState();
 	// const [pet_speciesDog, setDosType] = React.useState();
 	const [types, setTypes] = React.useState([

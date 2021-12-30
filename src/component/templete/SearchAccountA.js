@@ -55,8 +55,10 @@ export default SearchAccountA = props => {
 
 	//계정 클릭 콜백
 	const onClickAccount = (item, index) => {
+		console.log('onClickAccount', props);
 		Modal.popTwoBtn(
-			item.user_nickname + '님을 봉사활동자 \n 목록에 추가하시겠습니까?',
+			// item.user_nickname + '님을 봉사활동자 \n 목록에 추가하시겠습니까?',
+			item.user_nickname + '님을 팔로우 \n 하시겠습니까?',
 			'취소',
 			'확인',
 			() => Modal.close(),

@@ -16,13 +16,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {DEFAULT_ANIMAL_PROFILE, DEFAULT_PROFILE} from 'Root/i18n/msg';
 
 export default AssignPetInfoB = props => {
-	// console.log('AssignPetInfoB', props.route.params);
+	console.log('AssignPetInfoB', props.route.params);
 	const navigation = useNavigation();
 
 	const [data, setData] = React.useState({
 		...props.route.params,
-		user_profile_uri: 'http://',
-		pet_birthday: '2021.01.01',
+		// user_profile_uri: 'http://',
+		pet_birthday: '2021.03.03',
 		pet_weight: '0',
 	});
 	const [selectedBirthDate, setSelectedBirthDate] = React.useState('2021.03.01');
