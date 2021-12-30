@@ -1,7 +1,16 @@
 import React from 'react';
 import {View, Image} from 'react-native';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
-import {Paw48_Mixed, Paw48_YELL20, Paw48_APRI10, Private62, Public62} from '../atom/icon';
+import {
+	Paw48_Mixed,
+	Paw48_YELL20,
+	Paw48_APRI10,
+	Private62,
+	Public62,
+	ProfileDefaultImg1_194,
+	ProfileDefaultImg2_194,
+	ProfileDefaultImg3_194,
+} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 
 /**
@@ -43,10 +52,29 @@ const ProfileImageLarge194 = props => {
 				return <></>;
 		}
 	};
+
+	function getRandomInt(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+	}
+
+	const randomdefault = () => {
+		const rand = [<ProfileDefaultImg1_194 />, <ProfileDefaultImg2_194 />, <ProfileDefaultImg3_194 />];
+
+		return rand[getRandomInt(0, 3)];
+	};
+
 	return (
 		<View style={styles.img_round_194}>
-			<Image source={{uri: props.data.user_profile_uri || DEFAULT_PROFILE}} style={styles.img_round_194} />
-			{userType()}
+			{props.data.user_profile_uri != undefined ? (
+				<>
+					<Image source={{uri: props.data.user_profile_uri}} style={styles.img_round_194} />
+					{userType()}
+				</>
+			) : (
+				randomdefault()
+			)}
 		</View>
 	);
 };

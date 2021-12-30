@@ -9,7 +9,7 @@ import {APRI10, GRAY10, GRAY30} from 'Root/config/color';
  * @param {object} props - Props Object
  * @param {string} props.placeholder - 인풋 PlaceHolder
  * @param {string} props.value - 인풋 값
- * @param {number} props.maxLength - 최대 글자 수 제한
+ * @param {number} props.maxlength - 최대 글자 수 제한
  * @param {(input:string)=>void} props.onChange - 인풋 값 변경 콜백
  */
 const InputLongText = props => {
@@ -52,11 +52,12 @@ const InputLongText = props => {
 				<View style={{width: 654 * DP, height: 344 * DP}}>
 					<TextInput
 						style={[txt.noto24, {width: 654 * DP, height: 314 * DP, textAlignVertical: 'top'}]}
-						onChangeText={text => onChange(text)}
+						onChangeText={onChange}
 						placeholder={props.placeholder}
 						multiline={true}
 						ref={inputRef}
 						defaultValue={props.value}
+						maxLength={props.maxlength}
 					/>
 					<View style={{width: 95 * DP, height: 30 * DP, alignSelf: 'flex-end'}}>
 						<Text style={[txt.roboto24, {color: GRAY10}]}>

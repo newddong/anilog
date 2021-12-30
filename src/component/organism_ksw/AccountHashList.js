@@ -31,7 +31,7 @@ export default AccountHashList = props => {
 	};
 
 	return (
-		<View style={[accountHashList.container,{height:300*DP}]}>
+		<View style={[accountHashList.container, {height: props.routeName != 'SaveFavorite' ? 300 * DP : null}]}>
 			<FlatList
 				data={props.data}
 				keyExtractor={item => item._id}

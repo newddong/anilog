@@ -129,7 +129,7 @@ export default SaveFavorite = props => {
 						/>
 					</View>
 				</View>
-				<View style={[saveFavorite.accountHashList]}>
+				<View style={[saveFavorite.accountHashList, {height: null}]}>
 					<AccountHashList
 						data={data}
 						checkBoxMode={checkBoxMode}
@@ -137,6 +137,7 @@ export default SaveFavorite = props => {
 						onClickHash={onClickHash}
 						onClickFollow={onClickFollow}
 						onCheckBox={onCheckBox}
+						routeName={props.route.name}
 					/>
 				</View>
 			</View>

@@ -160,7 +160,7 @@ export default ChangeUserProfileImage = ({route}) => {
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			<ScrollView contentContainerStyle={{alignItems: 'center'}}>
 				<View style={[temp_style.profileImageSelect, changeUserProfileImage_style.profileImageSelect]}>
-					<ProfileImageSelect selectedImageUri={data.user_profile_uri || DEFAULT_PROFILE} onClick={selectPhoto} />
+					<ProfileImageSelect selectedImageUri={data.user_profile_uri} onClick={selectPhoto} />
 				</View>
 				<View style={[temp_style.profileNicknameChange, changeUserProfileImage_style.profileNicknameChange]}>
 					{/* 기존 닉네임 */}

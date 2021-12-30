@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Image} from 'react-native';
-import {DEFAULT_PROFILE} from 'Root/i18n/msg';
+import {DEFAULT_ANIMAL_PROFILE, DEFAULT_PROFILE} from 'Root/i18n/msg';
 import {
 	HashLabel46,
 	HashLabel60,
@@ -11,6 +11,9 @@ import {
 	Paw30_Mixed,
 	Paw30_YELL20,
 	Private48,
+	ProfileDefaultImg1_194,
+	ProfileDefaultImg2_194,
+	ProfileDefaultImg3_194,
 	Public48,
 } from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
@@ -78,6 +81,7 @@ const ProfileImageSmall = props => {
 				return <HashLabel46 />;
 		}
 	};
+
 	return (
 		<View>
 			{props.data.user_type == 'hash' ? (
@@ -85,7 +89,7 @@ const ProfileImageSmall = props => {
 			) : (
 				<Image
 					source={{
-						uri: props.data.user_profile_uri || DEFAULT_PROFILE,
+						uri: props.data.user_profile_uri || DEFAULT_ANIMAL_PROFILE,
 					}}
 					style={getSize()}
 				/>

@@ -402,6 +402,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 							onDeleteImage={onDeleteImage}
 							privateComment={privateComment}
 							photo={photo}
+							isProtectRequest={true}
 							// ref={input}
 						/>
 					)}

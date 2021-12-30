@@ -85,7 +85,17 @@ export default UserMenu = props => {
 				},
 			);
 		} else {
-			navigation.push('PetInfoSetting', {pet_id: data.user_my_pets[0]._id, token: data}); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
+			Modal.popRadioSelect(
+				data.user_my_pets,
+				'선택',
+				'나가기',
+				selectedPet => {
+					// console.log('selected', selectedPet);
+					navigation.push('PetInfoSetting', {pet_id: selectedPet._id, token: data}); //data에 있는 userObject를 토대로 해당 유저의 반려동물을 검색해서 보내야함
+					Modal.close();
+				},
+				() => Modal.close(),
+			);
 		}
 	};
 
@@ -172,7 +182,7 @@ export default UserMenu = props => {
 							</View>
 							<View style={[userMenu_style.contents]}>
 								<Text ellipsizeMode={'tail'} numberOfLines={3} style={[txt.noto24, {color: GRAY10}]}>
-									{data.user_introduction || ''}
+									{data.user_introduction || '자기소개가 없습니다.'}
 								</Text>
 							</View>
 						</View>

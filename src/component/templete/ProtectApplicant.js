@@ -4,9 +4,9 @@ import {login_style, manageVolunteer, protectApplicant} from './style_templete';
 import {txt} from 'Root/config/textstyle';
 import {GRAY20} from 'Root/config/color';
 import AccountList from '../organism_ksw/AccountList';
-import {dummy_userObject} from 'Root/config/dummyDate_json';
 import {getUserInfoById, getUserProfile} from 'Root/api/userapi';
 
+//보호 활동 신청자
 export default ProtectApplicant = ({route, navigation}) => {
 	// console.log('ProtectApplicant route', route.params);
 	const data = route.params;
@@ -47,12 +47,13 @@ export default ProtectApplicant = ({route, navigation}) => {
 				},
 				result => {
 					// console.log('result / getUserProfile / ProtectApplicant / Adoprtor  : ', result.msg);
+					//API 접속 후 받은 데이터 + 비어있는 필드를 합쳐진 merged 변수 선언
 					const merged = {...v, protect_animal_data};
 					merged.user_introduction = result.msg.user_introduction;
 					merged.user_profile_uri = result.msg.user_profile_uri;
 					merged.user_nickname = result.msg.user_nickname;
 					merged.shelter_name = route.params.shelter_name;
-					// console.log('merged', merged);
+					merged.applicantObject = {_id: result.msg._id}; //UserProfile에 연결 시키기 위한 지원자의 userObject
 					copyAdopt.push(merged);
 					setAdoptorList(copyAdopt);
 				},
@@ -69,11 +70,14 @@ export default ProtectApplicant = ({route, navigation}) => {
 				},
 				result => {
 					// console.log('result / getUserProfile / ProtectApplicant / Adoprtor  : ', result.msg);
+					//API 접속 후 받은 데이터 + 비어있는 필드를 합쳐진 merged 변수 선언
 					const merged = {...v, protect_animal_data};
 					merged.user_introduction = result.msg.user_introduction;
 					merged.user_profile_uri = result.msg.user_profile_uri;
 					merged.user_nickname = result.msg.user_nickname;
 					merged.shelter_name = route.params.shelter_name;
+					merged.applicantObject = {_id: result.msg._id}; //UserProfile에 연결 시키기 위한 지원자의 userObject
+
 					copyProtect.push(merged);
 					setProtectorList(copyProtect);
 				},
@@ -89,13 +93,12 @@ export default ProtectApplicant = ({route, navigation}) => {
 
 	//AccountList의 라벨 클릭 콜백 함수
 	const onClickLabel = data => {
-		console.log('data', data);
-		navigation.push('UserProfile', {userobject: data});
+		// console.log('data', data);
+		navigation.push('UserProfile', {userobject: data.applicantObject});
 	};
 
 	//입양, 임보 신청자 아이템 클릭 콜백 함수 (라벨 이외의 영역)
 	const onSelect = (item, index) => {
-		console.log('item', item);
 		navigation.push('ProtectApplyForm', item);
 	};
 	if (loading) {

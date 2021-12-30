@@ -23,19 +23,22 @@ export default UserInfoSetting = ({route}) => {
 	const [showMore, setShowMore] = React.useState();
 	const modifyRef = React.useRef();
 	const fetchData = () => {
-		getUserInfoById(
-			{
-				userobject_id: route.params.token,
-			},
-			userObject => {
-				setData(userObject.msg);
-				navigation.setOptions({title: userObject.msg.user_nickname});
-				// console.log('result / getUserProfile / UserInfoSetting', userObject.msg.user_introduction);
-			},
-			err => {
-				console.log('er', err);
-			},
-		);
+		AsyncStorage.getItem('token', (err, res) => {
+			getUserInfoById(
+				{
+					userobject_id: res,
+				},
+				userObject => {
+					setData(userObject.msg);
+					navigation.setOptions({title: userObject.msg.user_nickname});
+
+					console.log('result / getUserProfile / UserInfoSetting', userObject.msg.user_introduction);
+				},
+				err => {
+					console.log('er', err);
+				},
+			);
+		});
 	};
 	React.useEffect(() => {
 		fetchData();

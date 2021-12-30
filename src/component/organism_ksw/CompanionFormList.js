@@ -45,9 +45,9 @@ export default CompanionFormList = props => {
 
 	return (
 		<View style={[companionFormList.container]}>
-			<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
-				<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>
-					<FlatList data={companionList} renderItem={({item, index}) => renderItem(item, index)} />
+			<ScrollView horizontal={false} contentContainerStyle={{flex: 0}} scrollEnabled={false}>
+				<ScrollView horizontal={true} contentContainerStyle={{flex: 1}} scrollEnabled={false}>
+					<FlatList data={companionList} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled={false} />
 				</ScrollView>
 			</ScrollView>
 		</View>

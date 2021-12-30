@@ -12,12 +12,14 @@ import {aidRequest} from './style_organism';
  *@param {{
  * onSelect : void,
  * selected : 'Boolean / true일 경우 메인색의 테두리 형성 or 회색의 얇은 테두리 형성',
- * selectBorderMode : 'Boolean / 테두리 형성 모드 적용 여부 default true'
+ * selectBorderMode : 'Boolean / 테두리 형성 모드 적용 여부 default true',
+ * showBadge : 'Boolean / 지원자 신청을 나타내는 뱃지 번호 출력 여부',
  * }} props
  */
 export default AidRequest = props => {
 	const data = props.data;
 	// console.log('data', data.protect_animal_species);
+	// console.log('badge', data.protect_act_applicants.length);
 
 	//해당 AidRequest박스 선택 시 부모컴포넌트 OnSelect 실행
 	const onSelect = () => {
@@ -85,20 +87,15 @@ export default AidRequest = props => {
 					</View>
 				</View>
 			</View>
-			{/* 해당 동물의 보호요청 및 입양 신청한 유저의 숫자, 현재는 억지로 배열형태로 더미데이터로 만들어서 하는 중  */}
-			{data.protect_act_applicants && data.protect_act_applicants.length > 0 ? (
+
+			{/* 앞 화면이 신청서 조회일 경우에만 표기 되도록 변경, 추후에 분기 타도록 ~ */}
+			{/* {console.log('props.nvName=>' + props.nvName)} */}
+			{props.showBadge && data.protect_act_applicants.length > 0 ? (
 				<View style={[aidRequest.numberContainer]}>
-					<Text style={{color: WHITE}}>{data.protect_act_applicants.length} </Text>
+					<Text style={[{color: WHITE, width: 15}]}>{data.protect_act_applicants ? data.protect_act_applicants.length : ''}</Text>
 				</View>
 			) : (
 				<></>
-			)}
-			{/* 앞 화면이 신청서 조회일 경우에만 표기 되도록 변경, 추후에 분기 타도록 ~ */}
-			{/* {console.log('props.nvName=>' + props.nvName)} */}
-			{props.nvName == 'ProtectApplyList' && (
-				<View style={[aidRequest.numberContainer]}>
-					<Text style={[txt.noto24, {color: WHITE}]}>{data.protect_act_request_article_id_cnt ? data.protect_act_request_article_id_cnt : ''}</Text>
-				</View>
 			)}
 		</TouchableOpacity>
 	);
@@ -107,4 +104,5 @@ export default AidRequest = props => {
 AidRequest.defaultProps = {
 	onSelect: e => console.log('AidRequest', e),
 	selectBorderMode: true,
+	showBadge: true,
 };

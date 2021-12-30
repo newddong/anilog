@@ -17,6 +17,7 @@ import {aidRequestList} from './style_organism';
 export default AidRequestList = props => {
 	const [selectedIndex, setSelectedIndex] = React.useState();
 	const [isSelectedOnce, setIsSelectedOnce] = React.useState(false);
+	const isShelterProtectAnimal = props.callFrom == 'ShelterProtectAnimalList';
 	const onPressAddProtectAnimal = () => {
 		setIsSelectedOnce(false);
 		setSelectedIndex(-1);
@@ -39,7 +40,13 @@ export default AidRequestList = props => {
 		return (
 			<View
 				style={[aidRequestList.itemContainer, index != selectedIndex && isSelectedOnce && props.selectBorderMode ? {opacity: 0.5} : {opacity: 1}]}>
-				<AidRequest data={item} selected={isSelected} onSelect={() => onSelect(index)} selectBorderMode={props.selectBorderMode} />
+				<AidRequest
+					data={item}
+					selected={isSelected}
+					onSelect={() => onSelect(index)}
+					selectBorderMode={props.selectBorderMode}
+					showBadge={!isShelterProtectAnimal}
+				/>
 			</View>
 		);
 	};
@@ -49,7 +56,7 @@ export default AidRequestList = props => {
 			<View style={[aidRequestList.container]}>
 				{/* {console.log('ProtectRequestList=>' + JSON.stringify(dummy_ProtectRequestList))} */}
 				{/* '보호중인 동물' 메뉴에 들어갔을때만 '보호중인 동물 추가하기 기능 보임' */}
-				{props.nvName != 'ProtectApplyList' ? (
+				{props.callFrom != 'ProtectApplyList' ? (
 					<TouchableOpacity onPress={onPressAddProtectAnimal} style={[aidRequestList.addProtectedPetContainer]}>
 						<View style={[aidRequestList.addProtectedPet_insideContainer]}>
 							<AddItem64 />

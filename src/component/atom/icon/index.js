@@ -145,7 +145,8 @@ const size92 = {width: 92 * DP, height: 92 * DP};
 const size94 = {width: 94 * DP, height: 94 * DP};
 const size110 = {width: 110 * DP, height: 110 * DP};
 const size126x92 = {width: 126 * DP, height: 92 * DP};
-const defaultProfileImg = {width:294*DP,height:294*DP};
+const defaultProfileImg = {width: 294 * DP, height: 294 * DP};
+const profileDefaultImg_194 = {width: 194 * DP, height: 194 * DP};
 
 const makeSvg = (component, style, color) => {
 	return props =>
@@ -158,6 +159,9 @@ const makeSvg = (component, style, color) => {
 export const ProfileDefaultImg1 = makeSvg(profiledefault1, defaultProfileImg, '');
 export const ProfileDefaultImg2 = makeSvg(profiledefault2, defaultProfileImg, '');
 export const ProfileDefaultImg3 = makeSvg(profiledefault3, defaultProfileImg, '');
+export const ProfileDefaultImg1_194 = makeSvg(profiledefault1, profileDefaultImg_194, '');
+export const ProfileDefaultImg2_194 = makeSvg(profiledefault2, profileDefaultImg_194, '');
+export const ProfileDefaultImg3_194 = makeSvg(profiledefault3, profileDefaultImg_194, '');
 
 export const Heart30_Filled = makeSvg(heartFilled, size30, APRI10);
 export const Heart30_Border = makeSvg(heartBorder, size30, APRI10);
