@@ -32,12 +32,12 @@ import Modal from '../modal/Modal';
 // - ProtectRequestList(보호활동탭) , AnimalFromShelter(게시글보기) , Profile(보호활동)
 
 export default AnimalProtectRequestDetail = ({route}) => {
-	// console.log('AnimalProtectRequestDetail', route.params);
+	console.log('AnimalProtectRequestDetail', route.params.item.protect_request_writer_id._id);
 
 	const navigation = useNavigation();
 	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
 	const data = route.params ? route.params.item : ''; // ProtectRequestObject, ShelterProtectAnimalObject 정보가 담겨 있는 상태
-	const [writersAnotherRequests, setWritersAnotherRequests] = React.useState(route.params.list ? route.params.list : []);
+	const [writersAnotherRequests, setWritersAnotherRequests] = React.useState(route.params.list ? route.params.list : []); //해당 게시글 작성자의 따른 보호요청게시글 목록
 	const [loading, setLoading] = React.useState(true); //로딩상태
 	const [editComment, setEditComment] = React.useState(true); // 댓글 쓰기 클릭
 	const [privateComment, setPrivateComment] = React.useState(false); // 팝업된 댓글창에서 비밀글 상태
@@ -50,6 +50,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	const [token, setToken] = React.useState();
 	const [content, setContent] = React.useState('');
 	const [parentComment, setParentComment] = React.useState();
+	const [isShelter, setIsShelter] = React.useState(false);
 	const debug = false;
 
 	debug && console.log('AnimalProtectRequestDetail data:', data);
@@ -62,6 +63,11 @@ export default AnimalProtectRequestDetail = ({route}) => {
 		setTimeout(() => {
 			setLoading(false);
 		}, 1000);
+		//보고있는 요청글의 작성자가 로그인한 계정과 일치한다면 입양 / 임보 버튼이 나와서는 안됨
+		AsyncStorage.getItem('type', (err, res) => {
+			// console.log('type', res);
+			res == 'shelter' ? setIsShelter(true) : setIsShelter(false);
+		});
 	}, []);
 
 	//대댓글 달기 버튼 누르면 대댓글 작성
@@ -417,7 +423,9 @@ export default AnimalProtectRequestDetail = ({route}) => {
 				{/* 보호소 계정이 나의 보호요청 게시글을 통해 들어왔을 경우 버튼 출력 X */}
 			</ScrollView>
 			{/* ScrollView 바깥에 둬야 Scroll의 현재 위치에 상관없이 아래에 출력 */}
-			{route.name == 'ProtectRequestManage' ? (
+
+			{isShelter ? (
+				//보호소메뉴에서 자신의 보호요청게시글을 보는 경우 or 작성자 본인인 경우에는 임보/입양 버튼이 출력이 안됨
 				<></>
 			) : (
 				<View style={[animalProtectRequestDetail_style.btnContainer]}>
@@ -425,18 +433,6 @@ export default AnimalProtectRequestDetail = ({route}) => {
 					<AniButton onPress={onPressAdoptionRequest} btnTitle={'입양 신청'} btnLayout={btn_w276} titleFontStyle={30} />
 				</View>
 			)}
-			{editComment ? (
-				<ReplyWriteBox
-					onAddPhoto={onAddPhoto}
-					onChangeReplyInput={text => onChangeReplyInput(text)}
-					onChildReplyBtnClick
-					onLockBtnClick={onLockBtnClick}
-					onDeleteImage={onDeleteImage}
-					onWrite={onWrite}
-					privateComment={privateComment}
-					photo={photo}
-				/>
-			) : null}
 		</View>
 	);
 };
