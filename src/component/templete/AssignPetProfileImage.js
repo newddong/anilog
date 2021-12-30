@@ -108,7 +108,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 		})
 			.then(images => {
 				console.log('images', images.path);
-				setData({...data, user_profile_uri: images.path});
+				setData({...data, user_profile_uri: images.path || data.user_profile_uri});
 				Modal.close();
 			})
 			.catch(err => console.log(err + ''));
