@@ -27,7 +27,7 @@ export function findTagAt(position, string){
 export function findStartIndexOfTag(position, string){
     
     let checkChar = [' ','@','#','\n'];
-    let foreIndx = Math.max.apply(null,checkChar.map(v=>string.lastIndexOf(v,position)));
+    let foreIndx = Math.max.apply(null,checkChar.map(v=>string.lastIndexOf(v,position-1)));
     return foreIndx;
 }
 

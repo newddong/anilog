@@ -268,9 +268,20 @@ export default FeedWrite = props => {
 	
 	return (
 		<View style={[login_style.wrp_main, feedWrite.container]}>
+			
 			{/* <ScrollView contentContainerStyle={{width: 750 * DP, alignItems: 'center'}}> */}
-				{/* <View style={[temp_style.feedTextEdit,{height:800*DP}]}> */}
-					{/* 피드 글 작성 */}
+			{/* <View style={[temp_style.feedTextEdit, feedWrite.feedTextEdit]}>
+					<TextInput
+						textAlignVertical={'top'}
+						multiline={true}
+						style={{flex: 1}}
+						placeholder="게시물을 작성하세요"
+						onChangeText={inputFeedTxt}
+						></TextInput>
+				</View> */}
+				
+				{/* Input Text 하단 언더라인 */}
+				{/* <View style={{width: 654 * DP, height: 2 * DP, marginVertical: 40 * DP, backgroundColor: APRI10}} /> */}
 				<HashInput
 					containerStyle={[temp_style.feedTextEdit,{backgroundColor:'yellow',borderBottomWidth:2*DP,borderBottomColor:APRI10}]}
 					textAlignVertical={'top'}
@@ -279,15 +290,13 @@ export default FeedWrite = props => {
 					placeholderTextColor={GRAY20}
 					onChangeText={inputFeedTxt}
 					></HashInput>
-				{/* </View> */}
-				
-
 				{/* <View style={{width: 654 * DP, height: 300 * DP, backgroundColor: 'lightblue', flexDirection: 'row'}}>
 					{completed ? getFeedContent(draft) : null}
 				</View> */}
 
 				{setWriteModeState()}
 				{/* 긴급 게시물 관련 버튼 컨테이너 */}
+				
 			{/* </ScrollView> */}
 			{showUrgentBtns ? (
 				<View style={[temp_style.floatingBtn, feedWrite.urgentBtnContainer]}>
