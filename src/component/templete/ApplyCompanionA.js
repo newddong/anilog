@@ -22,7 +22,7 @@ export default ApplyCompanionA = ({route}) => {
 	const navigation = useNavigation();
 	const isProtect = route.name == 'ApplyProtectActivityA'; //임시보호 신청여부 , false일 경우 자동으로 입양모드 전환
 	const [confirmed, setConfirmed] = React.useState(false);
-
+	const [phoneNumFormCheck, setPhoneNumFormCheck] = React.useState(false);
 	const [data, setData] = React.useState({
 		protect_act_type: isProtect ? 'protect' : 'adopt',
 		protect_act_address: {
@@ -49,12 +49,11 @@ export default ApplyCompanionA = ({route}) => {
 	//보호장소 및 연락처가 공란이면 다음 단계로 넘어갈 수 없는 로직
 	React.useEffect(() => {
 		// console.log('data', data);
-		data.protect_act_address.brief != '' && data.protect_act_phone_number != '' ? setConfirmed(true) : setConfirmed(false);
+		data.protect_act_address.brief != '' && phoneNumFormCheck ? setConfirmed(true) : setConfirmed(false);
 	}, [data]);
 
 	React.useEffect(() => {
 		const addr = route.params.addr;
-
 		if (route.params != null) {
 			//한번 주소 검색이 된적이 있는가?
 			if (addr) {
@@ -89,6 +88,11 @@ export default ApplyCompanionA = ({route}) => {
 			console.log('입력된 값은 휴대전화번호입니다.');
 		}
 		return regPhone.test(num);
+	};
+
+	const onValidPhoneNum = isValid => {
+		console.log('isValidPhone', isValid);
+		setPhoneNumFormCheck(isValid);
 	};
 
 	//세부주소 입력
@@ -158,7 +162,11 @@ export default ApplyCompanionA = ({route}) => {
 						keyboardType={'number-pad'}
 						value={data.protect_act_phone_number || ''}
 						width={654}
+						alert_msg={'전화번호는 - 을 제외하고 10~11자로 작성해주세요'}
+						showMsg
+						confirm_msg={'올바른 전화번호 양식입니다.'}
 						onChange={onChangePhoneNum}
+						onValid={onValidPhoneNum}
 						validator={phoneValidate}
 						descriptionType={'star'}
 						placeholder={'연락처를 입력해주세요.'}

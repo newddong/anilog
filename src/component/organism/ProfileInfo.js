@@ -89,7 +89,7 @@ export default ProfileInfo = props => {
 					<ActionButton
 						btnTitle={'반려인 계정'}
 						btnStyle={ownerListState ? 'filled' : 'border'}
-						titleFontStyle={30}
+						titleFontStyle={24}
 						btnLayout={btn_w280}
 						onOpen={showOwner}
 						onClose={hideOwner}
@@ -100,14 +100,14 @@ export default ProfileInfo = props => {
 				<ActionButton
 					btnTitle={'반려동물'}
 					btnStyle={companionListState ? 'filled' : 'border'}
-					titleFontStyle={30}
+					titleFontStyle={24}
 					btnLayout={btn_w280}
 					onOpen={showCompanion}
 					onClose={hideCompanion}
 				/>
 			);
 		}
-		return <AniButton btnTitle={'봉사 활동'} btnStyle={'border'} titleFontStyle={30} btnLayout={btn_w280} onPress={onPressVolunteer} />;
+		return <AniButton btnTitle={'봉사 활동'} btnStyle={'border'} titleFontStyle={24} btnLayout={btn_w280} onPress={onPressVolunteer} />;
 	};
 	return (
 		<View style={organism_style.profileInfo_main}>
@@ -155,7 +155,7 @@ export default ProfileInfo = props => {
 					{followState || false ? (
 						<ProfileDropdown
 							btnTitle={'팔로우 중'}
-							titleFontStyle={30}
+							titleFontStyle={24}
 							btnLayout={btn_w280}
 							menu={['메뉴1', '메뉴2', '메뉴3', '메뉴4']}
 							onSelect={(v, i) => console.log(v + ':' + i)}
@@ -166,11 +166,11 @@ export default ProfileInfo = props => {
 						<AniButton
 							btnTitle={'팔로우'}
 							btnStyle={'border'}
-							titleFontStyle={30}
+							titleFontStyle={24}
 							btnLayout={btn_w280}
 							onPress={() => {
 								setFollowState(!followState);
-								Modal.popOneBtn('nobtasdsafn', '확인', () => {
+								Modal.popOneBtn('팔로우 기능은 패치예정입니다!', '확인', () => {
 									Modal.close();
 								});
 							}}

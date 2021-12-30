@@ -59,7 +59,6 @@ export default FeedContent = props => {
 	const [reportLayout, setReportLayout] = React.useState({height: 0, width: 0});
 	const [labelLayout, setlabelLayout] = React.useState({height: 0, width: 0});
 	const [show, setShow] = React.useState(false);
-
 	//FeedText가 담긴 View 의 onLayout
 	const onLayoutContent = event => {
 		const {width, height} = event.nativeEvent.layout;
@@ -94,7 +93,7 @@ export default FeedContent = props => {
 	};
 
 	return (
-		<View style={[organism_style.feedContent, show && {height: null}]}>
+		<View style={[organism_style.feedContent, show || props.missingOrReportDetail ? {height: null} : null]}>
 			{/* line 1 */}
 			<View style={[organism_style.userLocationLabel_view_feedContent]} onLayout={onLayoutLabel}>
 				{/* UserLocationLabel */}
@@ -168,12 +167,22 @@ export default FeedContent = props => {
 			)}
 
 			{/* FeedText */}
-			<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]} onLayout={onLayoutContent}>
-				{/* <FeedText text={feed_content} /> */}
-				{/* <HashText title=''></HashText> */}
-				<HashText style={[txt.noto28]}>{feed_content}</HashText>
-				{/* <HashText style={[txt.noto28]}>{'&@&@@시프리티|&|61c5667e38c5f6dee5a8b77f&@&@ &@&@레몬이|&|61c5669d38c5f6dee5a8b782&@&@ &#&#띠롱|&|띠롱&#&#오늘은&@&@기영|&|eioasd&@&@이와함께 &#&#딸기|&|aslkdfja&#&# 를&@&@효쏭|&|aslfs&@&@과 함께 사먹었어요 &@&@행복&@&@이는&#&#간식을&#&#먹네요$$부럽네요$$증말'}</HashText> */}
-			</View>
+			{props.missingOrReportDetail ? (
+				<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]}>
+					{/* <FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} /> */}
+					{/* <HashText title=''></HashText> */}
+					<HashText style={[txt.noto28]}>{feed_content}</HashText>
+					{/* <HashText style={[txt.noto28]}>{'&@&@@시프리티|&|61c5667e38c5f6dee5a8b77f&@&@ &@&@레몬이|&|61c5669d38c5f6dee5a8b782&@&@ &#&#띠롱|&|띠롱&#&#오늘은&@&@기영|&|eioasd&@&@이와함께 &#&#딸기|&|aslkdfja&#&# 를&@&@효쏭|&|aslfs&@&@과 함께 사먹었어요 &@&@행복&@&@이는&#&#간식을&#&#먹네요$$부럽네요$$증말'}</HashText> */}
+				</View>
+			) : (
+				<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]} onLayout={onLayoutContent}>
+					{/* <FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} /> */}
+					{/* <HashText title=''></HashText> */}
+					<HashText style={[txt.noto28]}>{feed_content}</HashText>
+					{/* <HashText style={[txt.noto28]}>{'&@&@@시프리티|&|61c5667e38c5f6dee5a8b77f&@&@ &@&@레몬이|&|61c5669d38c5f6dee5a8b782&@&@ &#&#띠롱|&|띠롱&#&#오늘은&@&@기영|&|eioasd&@&@이와함께 &#&#딸기|&|aslkdfja&#&# 를&@&@효쏭|&|aslfs&@&@과 함께 사먹었어요 &@&@행복&@&@이는&#&#간식을&#&#먹네요$$부럽네요$$증말'}</HashText> */}
+				</View>
+			)}
+
 			{/* 피드 작성 날짜  3 */}
 			<View style={[organism_style.time_view_feedContent]}>
 				<View style={[organism_style.time_feedContent]}>
@@ -181,7 +190,8 @@ export default FeedContent = props => {
 				</View>
 
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}
-				{!show && (
+				{/* 제보 실종 게시물 디테일의 경우 더보기 버튼 미출력 */}
+				{!show && !props.missingOrReportDetail && (
 					<TouchableWithoutFeedback onPress={showMore}>
 						<View style={[organism_style.addMore_view_feedContent]}>
 							<View style={[organism_style.addMore_feedContent]}>

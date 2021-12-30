@@ -13,66 +13,8 @@ import AnimalNeedHelp from './AnimalNeedHelp';
 import {animalProtectDetail} from './style_organism';
 
 export default AnimalProtectDetail = props => {
-	console.log(' AnimalProtectDetail / props.data', props.data);
-	const t = {
-		__v: 0,
-		_id: '61cd332d07a02d82987e0bee',
-		protect_act_address: {brief: '서울특별시 은평구 불광로 60(불광동)', detail: '미성'},
-		protect_act_applicant_id: '61c821e598117827ac528e0b',
-		protect_act_checklist: {
-			is_adult: false,
-			is_agreed_housemate: false,
-			is_experience_defecate: false,
-			is_knowledge_sanitation: false,
-			is_near_veterinary: false,
-		},
-		protect_act_companion_history: [
-			{
-				_id: '61cd332d07a02d82987e0bef',
-				companion_pet_age: '1세 이하',
-				companion_pet_current_status: 'adopted',
-				companion_pet_period: '1년 이하',
-				companion_pet_species: '개',
-			},
-			{
-				_id: '61cd332d07a02d82987e0bf0',
-				companion_pet_age: '10세 이하',
-				companion_pet_current_status: 'adopted',
-				companion_pet_period: '1년 이하',
-				companion_pet_species: '고양이',
-			},
-		],
-		protect_act_motivation: '페러사이트',
-		protect_act_phone_number: '01096450421',
-		protect_act_protect_animal_id: '61c82cfa98117827ac529665',
-		protect_act_request_article_id: '61c82ebc98117827ac529792',
-		protect_act_request_shelter_id: '61c5724c38c5f6dee5a8b95c',
-		protect_act_status: 'wait',
-		protect_act_type: 'protect',
-		protect_animal_data: {
-			protect_animal_estimate_age: '1년 1개월',
-			protect_animal_neutralization: 'unknown',
-			protect_animal_photo_uri_list: [
-				'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640508665826_1F44F15B-AA0E-4D90-B7C9-28F98C44476F.jpg',
-			],
-			protect_animal_protect_request_id: '61cc8a14b6fcf452771b7bed',
-			protect_animal_rescue_date: '2021-12-10T00:00:00.000Z',
-			protect_animal_rescue_location: '마포구 신수동 장로신교회',
-			protect_animal_sex: 'female',
-			protect_animal_species: '개',
-			protect_animal_status: 'rescue',
-			protect_animal_weight: 5,
-		},
-		protect_animal_rescue_location: '마포구 신수동 장로신교회',
-		protect_animal_species: '개',
-		protect_animal_species_detail: '믹스견',
-		protect_request_date: '2021-12-26T08:58:36.231Z',
-		protect_request_photos_uri: ['https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640508665826_1F44F15B-AA0E-4D90-B7C9-28F98C44476F.jpg'],
-		shelter_name: '상우보호소',
-		user_introduction: '',
-		user_nickname: '도르마무',
-		user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1640505829006_AA792ACB-08AB-4A72-98D5-E45C620224C0.jpg',
-	};
+	// console.log(' AnimalProtectDetail / props.data', props.data);
+
 	const data = props.data;
 	const getStatusText = arg => {
 		switch (arg) {
@@ -127,7 +69,7 @@ export default AnimalProtectDetail = props => {
 						</View>
 						<View style={[animalProtectDetail.detail_content]}>
 							<Text style={[txt.noto24]}>
-								{data.protect_act_address.brief || ''}
+								{data.protect_act_address.brief || ''} {'  ' + data.protect_act_address.detail}
 								{data.protect_act_address.city || ''} {data.protect_act_address.district || ''} {data.protect_act_address.neighbor || ''}
 							</Text>
 						</View>
@@ -149,7 +91,7 @@ export default AnimalProtectDetail = props => {
 							<Text style={[txt.noto24b, {color: GRAY10}]}>{'   '}반려 동물 생활</Text>
 						</View>
 						{data.protect_act_companion_history.map((v, i) => {
-							console.log('v', i, v.companion_pet_current_status);
+							// console.log('v', i, v.companion_pet_current_status);
 							return (
 								<View style={[animalProtectDetail.detail_content]} key={i}>
 									<Text style={[txt.noto24]}>

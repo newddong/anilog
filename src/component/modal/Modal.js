@@ -86,8 +86,21 @@ export default Modal = {
 	 */
 	feedAvartarSelect: (onSelectPet, onOk, okButtonnMsg) => {},
 
+	/**
+	 * 반려 동물을 선택하는 모달창
+	 * @param {Array.<string>} items - 첫번째 항목 배열
+	 * @param {string} selectMsg - 확인 버튼 메시지
+	 * @param {string} exitMsg - 확인 버튼 메시지
+	 * @param {(petObject:string)=>void} onSelect - 확인 버튼 콜백
+	 * @param {()=>void} onExit - 확인 버튼 콜백
+	 *
+	 * @example
+	 * Modal.popSelect(['개','고양이','기타'],['리트리버','말티즈','푸들','치와와'],(val1,val2)=>alert(val1+':'+val2),'동물선택');
+	 */
+	popRadioSelect: (items, selectMsg, exitMsg, onSelect, onExit) => {},
 
-	alert:()=>{},
+	alert: () => {},
 
-	closeKeboard: ()=>{}
+	closeKeboard: () => {},
 };
+// items, selectMsg, exitMsg, onSelect, onExit

@@ -62,6 +62,7 @@ import Calendar from 'Root/test_sangwoo/calendar';
 import InputAndSearchHeader from '../header/InputAndSearchHeader';
 import LogoutView from 'Root/test_sangwoo/LogoutView';
 import RequestLogin from 'Root/component/templete/RequestLogin';
+import RadioSelectModal from 'Root/component/molecules/RadioSelectModal';
 // import Camera from 'Root/component/templete/Camera';
 const RootStack = createStackNavigator();
 
@@ -133,6 +134,11 @@ export default RootStackNavigation = () => {
 
 	Modal.alert = msg => {
 		popIn(<OneBtnModal popUpMsg={msg} onOk={Modal.close} okMsg={'확인'} />);
+		!isPop && setPop(true);
+	};
+
+	Modal.popRadioSelect = (items, selectMsg, exitMsg, onSelect, onExit) => {
+		popIn(<RadioSelectModal items={items} selectMsg={selectMsg} exitMsg={exitMsg} onSelect={onSelect} onExit={onExit} />);
 		!isPop && setPop(true);
 	};
 	// const openCalendar = () => {

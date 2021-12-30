@@ -1679,6 +1679,7 @@ export const userMenu_style = StyleSheet.create({
 	user_id: {
 		width: 420 * DP,
 		height: 48 * DP,
+		marginTop: 44 * DP,
 	},
 	contents: {
 		width: 420 * DP,
@@ -3312,14 +3313,19 @@ export const feedCommentList = StyleSheet.create({
 		width: 750 * DP,
 		// height: 94 * DP,
 		// flexDirection: 'row',
-		shadowColor: '#000000',
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
-		shadowOffset: {
-			width: 1 * DP,
-			height: 2 * DP,
-		},
-		elevation: 2,
+
+		// position: 'absolute',
+		backgroundColor: WHITE,
+		bottom: 0,
+		alignItems: 'center',
+		paddingTop: 30 * DP,
+	},
+	editCommentFromRequest: {
+		width: 654 * DP,
+		// height: 94 * DP,
+		// flexDirection: 'row',
+		borderBottomColor: APRI10,
+		borderBottomWidth: 2 * DP,
 		// position: 'absolute',
 		backgroundColor: WHITE,
 		bottom: 0,
@@ -3330,18 +3336,17 @@ export const feedCommentList = StyleSheet.create({
 		width: 750 * DP,
 		// height: 94 * DP,
 		// flexDirection: 'row',
-		shadowColor: '#000000',
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
-		shadowOffset: {
-			width: 1 * DP,
-			height: 2 * DP,
-		},
-		elevation: 2,
+
 		// position: 'absolute',
 		backgroundColor: WHITE,
 		bottom: 0,
 		alignItems: 'center',
+	},
+	InputFromProtectRequest: {
+		width: 600 * DP,
+		height: 108 * DP,
+		marginLeft: 20 * DP,
+		fontSize: 28 * DP,
 	},
 	replyTextInput: {
 		width: 453 * DP,

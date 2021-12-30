@@ -15,6 +15,7 @@ import ProtectedPetList from '../organism_ksw/ProtectedPetList';
 import {login_style, profile, temp_style} from './style_templete';
 import Modal from 'Component/modal/Modal';
 import userGlobalObject from 'Root/config/userGlobalObject';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default Profile = ({route, navigation}) => {
 	// console.log('profile props', props.route.params);
@@ -101,7 +102,13 @@ export default Profile = ({route, navigation}) => {
 	//보호소프로필의 봉사활동 클릭
 	const onClick_Volunteer_ShelterProfile = () => {
 		console.log('profile', data._id);
-		navigation.push('ApplyVolunteer', {token: data._id});
+		AsyncStorage.getItem('type', (err, res) => {
+			if (res == 'shelter') {
+				Modal.popOneBtn('보호소 계정은 봉사활동을 \n 신청하실 수 없습니다.', '확인', () => Modal.close());
+			} else {
+				navigation.push('ApplyVolunteer', {token: data._id});
+			}
+		});
 	};
 
 	//보호소프로필의 보호활동 탭의 피드 썸네일 클릭

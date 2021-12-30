@@ -120,6 +120,7 @@ export default ApplyCompanionC = props => {
 
 	//itemIndex번째 반려동물의 '반려생활 상태' 선택 콜백, value에는 선택한 item의 String , selectedIndex에는 선택한 Item의 Index가 담겨있음
 	const onSelectStatus = (value, selectedIndex, itemIndex) => {
+		console.log('va', value);
 		let copy = [...companionList];
 		let status = () => {
 			if (selectedIndex == 0) {
@@ -139,7 +140,16 @@ export default ApplyCompanionC = props => {
 
 	//다음버튼 클릭
 	const goToNextStep = () => {
-		props.route.name == 'ApplyProtectActivityB' ? navigation.push('ApplyProtectActivityC', data) : navigation.push('ApplyAnimalAdoptionC', data);
+		console.log('data', data.protect_act_companion_history);
+		const isSelectedCompanionKind = !data.protect_act_companion_history.some(e => e.companion_pet_species == '동물종류');
+		console.log('isSelectedCompanionKind', isSelectedCompanionKind);
+		if (isSelectedCompanionKind) {
+			//반려생활추가 목록 중 동물종류가 올바르게 선택되지 않았을 경우
+			props.route.name == 'ApplyProtectActivityB' ? navigation.push('ApplyProtectActivityC', data) : navigation.push('ApplyAnimalAdoptionC', data);
+		} else {
+			Modal.popOneBtn('동물의 종은 반드시 선택해주셔야 합니다!', '확인', () => Modal.close());
+		}
+		// props.route.name == 'ApplyProtectActivityB' ? navigation.push('ApplyProtectActivityC', data) : navigation.push('ApplyAnimalAdoptionC', data);
 	};
 
 	const onDelteCompanion = index => {
@@ -153,55 +163,57 @@ export default ApplyCompanionC = props => {
 	// }
 
 	return (
-		<View style={[login_style.wrp_main]}>
-			<ScrollView contentContainerStyle={[applyCompanionB.container]}>
-				{/* StageBar */}
-				<View style={[temp_style.stageBar, applyCompanionB.stageBar]}>
-					<Stagebar
-						backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨
-						insideBarStyle={stagebar_style.insideBar} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
-						current={2} //현재 단계를 정의
-						maxstage={4} //전체 단계를 정의
-						width={600 * DP} //bar의 너비
-						textStyle={[txt.roboto24, stagebar_style.text]} //text의 스타일
-					/>
-				</View>
-				<View style={[temp_style.stageBar, applyCompanionB.textMsg]}>
-					<Text style={[txt.noto24, {color: GRAY10}]}>지금까지 함께 한 반려동물에 대해 알려주세요.</Text>
-				</View>
-				{/* 반려동물 정보 박스 */}
-				<View style={[temp_style.companionFormList, applyCompanionB.inputForm]}>
-					<CompanionFormList
-						items={companionList}
-						onSelectSpecies={(v, i, index) => onSelectSpecies(v, i, index)}
-						onSelectAge={(v, i, index) => onSelectAge(v, i, index)}
-						onSelectDuration={(v, i, index) => onSelectPeriod(v, i, index)}
-						onSelectStatus={(v, i, index) => onSelectStatus(v, i, index)}
-						onDelete={index => onDelteCompanion(index)}
-						// tempData={tempData}
-					/>
-				</View>
+		<View style={[login_style.wrp_main, {flex: 1}]}>
+			<ScrollView contentContainerStyle={{}} showsVerticalScrollIndicator={false}>
+				<View style={{alignItems: 'center', flex: 1}}>
+					{/* StageBar */}
+					<View style={[temp_style.stageBar, applyCompanionB.stageBar]}>
+						<Stagebar
+							backgroundBarStyle={stagebar_style.backgroundBar} //배경이 되는 bar의 style, width props으로 너비결정됨
+							insideBarStyle={stagebar_style.insideBar} //내부 bar의 style, width는 background bar의 길이에서 현재 단계에 따라 변화됨
+							current={2} //현재 단계를 정의
+							maxstage={4} //전체 단계를 정의
+							width={600 * DP} //bar의 너비
+							textStyle={[txt.roboto24, stagebar_style.text]} //text의 스타일
+						/>
+					</View>
+					<View style={[temp_style.stageBar, applyCompanionB.textMsg]}>
+						<Text style={[txt.noto24, {color: GRAY10}]}>지금까지 함께 한 반려동물에 대해 알려주세요.</Text>
+					</View>
+					{/* 반려동물 정보 박스 */}
+					<View style={[temp_style.companionFormList, applyCompanionB.inputForm]}>
+						<CompanionFormList
+							items={companionList}
+							onSelectSpecies={(v, i, index) => onSelectSpecies(v, i, index)}
+							onSelectAge={(v, i, index) => onSelectAge(v, i, index)}
+							onSelectDuration={(v, i, index) => onSelectPeriod(v, i, index)}
+							onSelectStatus={(v, i, index) => onSelectStatus(v, i, index)}
+							onDelete={index => onDelteCompanion(index)}
+							// tempData={tempData}
+						/>
+					</View>
 
-				{/* 반려생활 추가 */}
-				<TouchableOpacity onPress={onPressAddCompanion} style={[applyCompanionB.addPetBtnView]}>
-					<AddItem64 />
-					<View style={[applyCompanionB.addPetTextView]}>
-						<Text style={[txt.noto30, {color: APRI10}]}>반려 생활 추가</Text>
-						{/* <TouchableOpacity onPress={deleteAs}>
+					{/* 반려생활 추가 */}
+					<TouchableOpacity onPress={onPressAddCompanion} style={[applyCompanionB.addPetBtnView]}>
+						<AddItem64 />
+						<View style={[applyCompanionB.addPetTextView]}>
+							<Text style={[txt.noto30, {color: APRI10}]}>반려 생활 추가</Text>
+							{/* <TouchableOpacity onPress={deleteAs}>
 							<Text style={[txt.noto30, { color: APRI10 }]}>어싱크 체크</Text>
 						</TouchableOpacity> */}
-					</View>
-				</TouchableOpacity>
-				{/* 3개 버튼 */}
-				<View style={[applyCompanionC.btnContainer]}>
-					<View style={[btn_style.btn_w176, applyCompanionC.btn_w176]}>
-						<AniButton btnStyle={'border'} btnLayout={btn_w176} btnTitle={'뒤로'} onPress={() => navigation.goBack()} />
-					</View>
-					<View style={[btn_style.btn_w176, applyCompanionC.btn_w176]}>
-						<AniButton btnStyle={'border'} btnLayout={btn_w176} btnTitle={'임시저장'} onPress={tempSave} />
-					</View>
-					<View style={[btn_style.btn_w176, applyCompanionC.btn_w176]}>
-						<AniButton btnLayout={btn_w176} btnTitle={'다음'} onPress={goToNextStep} />
+						</View>
+					</TouchableOpacity>
+					{/* 3개 버튼 */}
+					<View style={[applyCompanionC.btnContainer]}>
+						<View style={[btn_style.btn_w176, applyCompanionC.btn_w176]}>
+							<AniButton btnStyle={'border'} btnLayout={btn_w176} btnTitle={'뒤로'} onPress={() => navigation.goBack()} />
+						</View>
+						<View style={[btn_style.btn_w176, applyCompanionC.btn_w176]}>
+							<AniButton btnStyle={'border'} btnLayout={btn_w176} btnTitle={'임시저장'} onPress={tempSave} />
+						</View>
+						<View style={[btn_style.btn_w176, applyCompanionC.btn_w176]}>
+							<AniButton btnLayout={btn_w176} btnTitle={'다음'} onPress={goToNextStep} />
+						</View>
 					</View>
 				</View>
 			</ScrollView>
