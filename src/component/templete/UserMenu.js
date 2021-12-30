@@ -157,8 +157,8 @@ export default UserMenu = props => {
 	};
 
 	return (
-		<View style={[login_style.wrp_main, userMenu_style.container]}>
-			<ScrollView>
+		<ScrollView>
+			<View style={[login_style.wrp_main, userMenu_style.container]}>
 				{/* 유저 프로필 정보 */}
 				<View style={[userMenu_style.userMenu_step1]}>
 					<View style={[temp_style.userInfo, userMenu_style.userInfo]}>
@@ -227,7 +227,7 @@ export default UserMenu = props => {
 						titleIcon={<Setting46 />}
 					/>
 				</View>
-			</ScrollView>
-		</View>
+			</View>
+		</ScrollView>
 	);
 };

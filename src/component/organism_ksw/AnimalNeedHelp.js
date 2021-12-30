@@ -26,6 +26,8 @@ import {useNavigation} from '@react-navigation/core';
  * }} props
  */
 export default AnimalNeedHelp = props => {
+	console.log('AnimalNeedHelp', props.data);
+
 	const navigation = useNavigation();
 	const data = props.data;
 	// console.log('AnimalNeedHelp: -------------- ', JSON.stringify(data));

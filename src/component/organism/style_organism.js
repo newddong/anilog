@@ -10,15 +10,15 @@ export const organism_style = StyleSheet.create({
 		height: 270 * DP,
 		alignItems: 'center',
 		paddingTop: 40 * DP,
-		paddingBottom:50*DP,
-		backgroundColor:WHITE,
-		paddingHorizontal:48*DP,
+		paddingBottom: 50 * DP,
+		backgroundColor: WHITE,
+		paddingHorizontal: 48 * DP,
 	},
 	userLocationLabel_view_feedContent: {
 		flexDirection: 'row',
-		justifyContent:'space-between',
-		width:'100%',
-		alignItems:'center'
+		justifyContent: 'space-between',
+		width: '100%',
+		alignItems: 'center',
 	},
 	userLocationLabel_feedContent: {
 		flexDirection: 'row',
@@ -58,7 +58,7 @@ export const organism_style = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	content_feedContent: {
-		width:'100%',
+		width: '100%',
 	},
 	time_view_feedContent: {
 		flexDirection: 'row',
@@ -67,7 +67,7 @@ export const organism_style = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		backgroundColor: '#fffd',
-		position:'absolute',
+		position: 'absolute',
 		bottom: 0,
 	},
 	time_feedContent: {
@@ -95,7 +95,7 @@ export const organism_style = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	tipOff_feedContent: {
-		width:'100%',
+		width: '100%',
 		justifyContent: 'center',
 	},
 	button_view_feedContent: {
@@ -217,12 +217,12 @@ export const organism_style = StyleSheet.create({
 		// backgroundColor: '#F8DDDD',
 	},
 	writerID_feed_view: {
-		width: 116 * DP,
+		// width: 116 * DP,
 		height: 76 * DP,
 		// backgroundColor: '#FF00FF',
 	},
 	writerID_feed: {
-		width: 96 * DP,
+		// width: 96 * DP,
 		height: 36 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
