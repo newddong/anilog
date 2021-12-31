@@ -44,7 +44,7 @@ export default EditShelterInfo = ({route, navigation}) => {
 
 	//주소찾기 클릭
 	const onPressSearchAddr = () => {
-		navigation.push('AddressSearch', {addr: data.shelter_address ? data.shelter_address.brief : '', from: route.name});
+		navigation.push('AddressSearch', {addr: data.shelter_address ? data.shelter_address : '', from: route.name});
 	};
 
 	const onChangeDeatilAddress = detail => {

@@ -10,8 +10,12 @@ import {ScrollView, FlatList} from 'react-native';
 import axios from 'axios';
 import qs from 'qs';
 export default AddressSearch = props => {
+	console.log('data', props.route.params);
 	// const [data, setData] = React.useState({keyword:'',...props.route.params?.data,input:{}});
-	const [data, setData] = React.useState({keyword: props.route.params.addr ? props.route.params.addr : ''});
+	const [data, setData] = React.useState({
+		keyword: props.route.params.addr ? props.route.params.addr.brief : '',
+		detail: props.route.params.addr ? props.route.params.addr.detail : '',
+	});
 	const [addr, setAddr] = React.useState({});
 	const [addrList, setAddrList] = React.useState({common: {}, list: []});
 	const [page, setPage] = React.useState(1);
@@ -232,6 +236,7 @@ export default AddressSearch = props => {
 					<FormTxtInput
 						style={lo.form_input}
 						inputStyle={[txt.noto24, {includeFontPadding: false, paddingVertical: 0}]}
+						value={data.detail}
 						placeholder={'상세주소를 입력하세요.'}
 						placeholderTextColor={'#DBDBDB'}
 						onChange={inputDetailAddr}
