@@ -59,10 +59,18 @@ export default AssignPetInfoB = props => {
 	//등록 완료
 	const onRegister = async () => {
 		Modal.popNoBtn('반려동물 등록 중입니다.');
-		console.log('data before assiginPet', data);
+		console.log('data before assiginPet', data.user_profile_uri);
+
+		console.log('ddd', data.user_profile_uri == 'null');
+		console.log('ddd', data.user_profile_uri == '');
+		let isCopied = {...data};
+		if (isCopied.user_profile_uri == '') {
+			isCopied.user_profile_uri = 'http://';
+		}
+		console.log('isCopied.user_profile_uri ', isCopied.user_profile_uri);
 		try {
 			assignPet(
-				{...data, userobject_id: data.userobject_id},
+				{...isCopied, userobject_id: data.userobject_id},
 				success => {
 					console.log('success', success);
 					Modal.close();
