@@ -105,6 +105,7 @@ const Input30 = React.forwardRef((props, ref) => {
 						placeholderTextColor={GRAY10}
 						defaultValue={props.defaultValue}
 						keyboardType={props.keyboardType}
+						maxLength={props.maxLength}
 						style={[
 							txt.roboto28,
 							{
@@ -112,7 +113,9 @@ const Input30 = React.forwardRef((props, ref) => {
 								paddingLeft: 16 * DP,
 								textAlignVertical: 'bottom',
 								color: props.confirm ? BLACK : RED10,
-								width: props.width * DP,
+								// width: props.width * DP,
+								width: props.width ? props.width * DP - 46 * DP : null,
+
 								// textAlign: 'center',
 							},
 						]}
@@ -153,6 +156,8 @@ const Input30Props = {
 	info: string,
 	/** @type {number} 입력창 너비 */
 	width: number,
+	/** @type {number} 글자수제한 */
+	maxLength: number,
 	/** @type {boolean} 하단의 경고/확인 메세지를 표시할지 여부를 결정 */
 	showmsg: bool,
 	/** @type {object}  입력창의 스타일 */

@@ -39,14 +39,21 @@ const InputWithEmail = props => {
 		props.onChange(email);
 	}, [email]);
 
-	React.useEffect(() => {
-		//상세정보인 경우 DB의 값을 가져와서 드롭다운을 해당 DB도메인주소와 맞춰준다
-		if (props.defaultValue) {
-			const findIndex = EMAIL_DOMAIN.findIndex(e => e == props.defaultValue.split('@')[1]);
-			setIndex(findIndex);
-			setSelectedItem(EMAIL_DOMAIN[findIndex]);
-		}
-	}, [props.defaultValue]);
+	// React.useEffect(() => {
+	// 	//상세정보인 경우 DB의 값을 가져와서 드롭다운을 해당 DB도메인주소와 맞춰준다
+	// 	console.log('props.DefaultValue', props.defaultValue);
+	// 	if (props.defaultValue) {
+	// 		const findIndex = EMAIL_DOMAIN.findIndex(e => e == props.defaultValue.split('@')[1]);
+	// 		console.log('findIndex', findIndex);
+	// 		if (findIndex == -1) {
+	// 			const directInputIndex = EMAIL_DOMAIN.findIndex(e => e == '직접입력');
+	// 			setIndex(directInputIndex);
+	// 		} else {
+	// 			setIndex(findIndex);
+	// 			setSelectedItem(EMAIL_DOMAIN[findIndex]);
+	// 		}
+	// 	}
+	// }, [props.defaultValue]);
 
 	const onChange = text => {
 		setInput(text);
@@ -101,6 +108,7 @@ const InputWithEmail = props => {
 					showCrossMark={false}
 					maxlength={30}
 					// onClear={onClear}
+					numberOfLinst={1}
 					width={props.width || 240}
 					validator={validator}
 					onValid={onValid}
@@ -108,7 +116,14 @@ const InputWithEmail = props => {
 				<View style={{}}>
 					<Text style={[txt.roboto24b, {lineHeight: 36 * DP}]}>@</Text>
 				</View>
-				<EmialDropDown menu={EMAIL_DOMAIN} width={254} defaultIndex={index} onChangeDomain={onDirectInput} onSelect={onSelectDropDown} />
+				<EmialDropDown
+					menu={EMAIL_DOMAIN}
+					width={254}
+					// defaultIndex={index}
+					defaultValue={props.defaultValue}
+					onChangeDomain={onDirectInput}
+					onSelect={onSelectDropDown}
+				/>
 			</View>
 		</View>
 	);

@@ -133,6 +133,7 @@ const Input24 = React.forwardRef((props, ref) => {
 					keyboardType={props.keyboardType}
 					secureTextEntry={props.secureTextEntry}
 					maxLength={props.maxlength}
+					numberOfLines={props.numberOfLines}
 					style={[
 						txt.noto28,
 						props.style,

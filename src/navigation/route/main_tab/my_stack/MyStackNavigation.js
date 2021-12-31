@@ -90,7 +90,7 @@ export default MyStackNavigation = props => {
 			/>
 			<MyStack.Screen name="SocialRelation" component={SocialRelationTopTabNavigation} />
 			<MyStack.Screen name="UserMenu" component={UserMenu} options={{header: props => <SimpleHeader {...props} />, title: 'MY'}} />
-			<MyStack.Screen name="UserInfoSetting" component={UserInfoSetting} />
+			<MyStack.Screen name="UserInfoSetting" component={UserInfoSetting} options={{header: props => <SimpleHeader {...props} />, title: 'MY'}} />
 			<MyStack.Screen
 				name="ChangeUserProfileImage"
 				component={ChangeUserProfileImage}

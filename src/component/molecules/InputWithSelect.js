@@ -45,10 +45,12 @@ const InputWithSelect = props => {
 	};
 
 	const validator = text => {
-		return props.validator(text) ? props.validator(text) : true;
+		console.log('props.validator(text) ', props.validator(text));
+		return props.validator(text) ? props.validator(text) : false;
 	};
 
 	const onValid = isValid => {
+		// console.log('isValud', isValid);
 		props.onValid(isValid);
 	};
 

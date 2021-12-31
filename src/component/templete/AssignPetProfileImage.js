@@ -167,6 +167,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 							onChange={onNicknameChange}
 							onValid={onNicknameValid}
 							ref={nicknameInput}
+							maxLength={25}
 						/>
 					</View>
 					<View style={[temp_style.checkBox_assignPetProfileImage, assignPetProfileImage_style.checkBox]}>

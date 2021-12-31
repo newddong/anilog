@@ -16,6 +16,9 @@ import {updateShelterDetailInformation} from 'Root/api/userapi';
 
 export default EditShelterInfo = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params.data);
+	// console.log('dataEmail  : ', data.user_email);
+	const isDirectInput = !EMAIL_DOMAIN.some(e => e == data.user_email.split('@')[1]);
+	// console.log('isDirectInput', isDirectInput);
 
 	React.useEffect(() => {
 		if (route.params.addr) {
@@ -86,7 +89,7 @@ export default EditShelterInfo = ({route, navigation}) => {
 	};
 
 	const onClearHomepage = () => {
-		setData({...data, shelter_homepage: 'http://'});
+		setData({...data, shelter_homepage: ''});
 	};
 
 	// 설립일 Parsing(Date to String & String to Date) 함수
@@ -237,6 +240,7 @@ export default EditShelterInfo = ({route, navigation}) => {
 							<Input30
 								value={data.shelter_homepage || ''}
 								defaultValue={data.shelter_homepage || ''}
+								placeholder={'홈페이지 입력'}
 								showTitle={false}
 								showmsg={false}
 								width={520}

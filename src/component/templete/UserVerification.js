@@ -47,7 +47,6 @@ export default UserVerification = props => {
 	const onPhoneNumberInputChange = phone_num => {
 		console.log('Userverification onPhoneNumberInputChange      ', phone_num);
 		let phoneNum = phone_num.split('|');
-
 		user_data.user_phone_number = phoneNum[1];
 		user_data.user_mobile_company = phoneNum[0];
 	};
@@ -72,17 +71,18 @@ export default UserVerification = props => {
 	};
 
 	const nameValidator = name => {
-		console.log('name', name);
 		const trimmed = name.trim();
 		// let regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
 		let regExp = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_-]{2,20}$/;
 		let pattern = /\s/g;
 		// console.log('trimmed:' + trimmed.length);
-		console.log('regex', !pattern.test(trimmed) && regExp.test(trimmed));
+		// console.log('regex', !pattern.test(trimmed) && regExp.test(trimmed));
 		return !pattern.test(trimmed) && regExp.test(trimmed);
 	};
 
 	const mobileNumValidator = text => {
+		// console.log('text', text);
+		// console.log('상단 폼 체크 : ', text.length > 6);
 		return text.length > 6;
 		//휴대폰 인증함수
 	};

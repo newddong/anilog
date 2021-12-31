@@ -21,7 +21,7 @@ export default AssignShelterInformation = props => {
 		...props.route.params.data,
 		shelter_delegate_contact_number: '',
 		user_email: '',
-		shelter_homepage: 'http://',
+		shelter_homepage: '',
 		shelter_foundation_date: '',
 	});
 
@@ -64,7 +64,7 @@ export default AssignShelterInformation = props => {
 	}, [data.user_email]);
 
 	const onClearHomepage = () => {
-		setData({...data, shelter_homepage: 'http://'});
+		setData({...data, shelter_homepage: ''});
 	};
 
 	//설립일
@@ -79,8 +79,8 @@ export default AssignShelterInformation = props => {
 	};
 
 	const onValidPhoneNumber = isValid => {
-		let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-		setPhoneConfirmed(regPhone.test(data.shelter_delegate_contact_number));
+		// let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+		setPhoneConfirmed(8 < data.shelter_delegate_contact_number.length < 12);
 	};
 
 	const phoneValidate = num => {
@@ -136,8 +136,10 @@ export default AssignShelterInformation = props => {
 					<Input24
 						value={data.shelter_homepage}
 						title={'홈페이지'}
+						placeholder={'http://'}
 						descriptionType={'none'}
 						showHttp={true}
+						width={654}
 						showCrossMark={true}
 						onClear={onClearHomepage}
 						onChange={onChangeHp}
