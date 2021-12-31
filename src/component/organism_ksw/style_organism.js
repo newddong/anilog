@@ -231,10 +231,24 @@ export const phoneNumVerification = StyleSheet.create({
 		marginBottom: 60 * DP,
 	},
 	inputWithSelect: {
-		height: 82 * DP,
-		marginBottom: 60 * DP,
+		// height: 82 * DP,
+		marginBottom: 50 * DP,
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
+	},
+	phoneNumValidPassedText: {
+		// width: 654 * DP,
+		alignSelf: 'flex-end',
+		right: 60 * DP,
+		color: 'red',
+		// backgroundColor: 'yellow',
+		paddingLeft: 10 * DP,
+		marginTop: -20 * DP,
+		marginBottom: 10 * DP,
+	},
+	inputTimeLimitContainer: {
+		flexDirection: 'row',
+		marginTop: 40 * DP,
 	},
 	inputTimeLimit: {
 		width: 388 * DP,

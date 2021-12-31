@@ -22,7 +22,7 @@ const InputTimeLimit = props => {
 	const [input, setInput] = React.useState('');
 	const [confirm, setConfirm] = React.useState();
 	const inputRef = React.useRef();
-	const interval = 1500; //1 sec
+	const interval = 1000; //1 sec
 
 	let min = Math.floor((props.timelimit.limit / 60) % 60); //184 나누기 60의 몫
 	let sec = Math.floor(props.timelimit.limit % 60); // 184 나누기 60의 나머지
@@ -32,7 +32,7 @@ const InputTimeLimit = props => {
 
 	React.useEffect(() => {
 		//onStartTimer
-		if(props.timelimit.limit==0)return;
+		if (props.timelimit.limit == 0) return;
 		if (minutes == min && seconds == sec) {
 			console.log('처음');
 			props.onStartTimer();
@@ -56,21 +56,18 @@ const InputTimeLimit = props => {
 		return () => clearInterval(countdown);
 	}, [minutes, seconds]);
 
-	React.useEffect(()=>{
+	React.useEffect(() => {
 		setMinutes(Math.floor((props.timelimit.limit / 60) % 60));
 		setSeconds(Math.floor(props.timelimit.limit % 60));
 		setTimeout(false);
-	},[props.timelimit])
-	
-
+	}, [props.timelimit]);
 
 	const validator = text => {
 		//Validation 조건 아직 불분명하기에 length<10일 경우 false로 설정
-		if(props.validator&&props.validator(text)){
+		if (props.validator && props.validator(text)) {
 			props.onValid(true);
 			setConfirm(true);
-
-		}else{
+		} else {
 			props.onValid(false);
 			setConfirm(false);
 		}

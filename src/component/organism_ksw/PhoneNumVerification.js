@@ -1,7 +1,10 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import {GREEN} from 'Root/config/color';
+import {txt} from 'Root/config/textstyle';
 import {mobile_carrier} from 'Root/i18n/msg';
 import {btn_w226} from '../atom/btn/btn_style';
+import Modal from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
 import Input30 from '../molecules/Input30';
 import InputTimeLimit from '../molecules/InputTimeLimit';
@@ -27,16 +30,27 @@ export default PhoneNumVerification = props => {
 	const validMobile = React.useRef(false);
 	const validVerifyNum = React.useRef(false);
 	const [validName, setValidName] = React.useState(false);
+	const [validPhone, setValidPhone] = React.useState(false);
 	// const [validVerifyNum, setValidVerifyNum] = React.useState(false);
 	const onEndTimer = () => {
 		setTimeOut(true);
 	};
 	const requestReVerification = () => {
-		setTimeOut(false);
-		props.requestReVerification();
+		if (!validMobile.current) {
+			Modal.popOneBtn('휴대전화번호를 먼저 입력해주세요.', '확인', () => Modal.close());
+		} else {
+			setTimeOut(false);
+			setTimeLimit({limit: props.verifyTimeLimit});
+			props.requestReVerification();
+		}
 	};
 	const requestVerification = () => {
-		props.requestVerification();
+		console.log('validMobile', validMobile);
+		if (!validMobile.current) {
+			Modal.popOneBtn('휴대전화번호를 먼저 입력해주세요.', '확인', () => Modal.close());
+		} else {
+			props.requestVerification();
+		}
 	};
 	const onNameInputChange = text => {
 		setUserName(text);
@@ -53,6 +67,8 @@ export default PhoneNumVerification = props => {
 	};
 
 	const onValidMobileNum = isValid => {
+		// console.log('onValidMobileNum', isValid);
+		setValidPhone(isValid);
 		validMobile.current = isValid;
 		props.onValid && props.onValid(isValid && validVerifyNum.current && props.asyncConfirm.isConfirm && validName);
 	};
@@ -83,12 +99,12 @@ export default PhoneNumVerification = props => {
 
 	React.useEffect(() => {
 		let isValid = validVerifyNum.current && validMobile.current && props.asyncConfirm.isConfirm && validName;
-		// if (!isValid) {
-		// 	!validVerifyNum.current ? console.log('validVerifyNum.current') : null;
-		// 	!validMobile.current ? console.log('validMobile.current') : null;
-		// 	!props.asyncConfirm.isConfirm ? console.log('props.asyncConfirm.isConfirm') : null;
-		// 	!validName ? console.log('validName') : null;
-		// }
+		if (!isValid) {
+			// !validVerifyNum.current ? console.log('validVerifyNum.current') : null;
+			!validMobile.current ? console.log('validMobile.current') : null;
+			// !props.asyncConfirm.isConfirm ? console.log('props.asyncConfirm.isConfirm') : null;
+			// !validName ? console.log('validName') : null;
+		}
 		props.onValid && props.onValid(isValid);
 	}, [validVerifyNum, validName, validMobile, props.asyncConfirm]);
 
@@ -125,10 +141,18 @@ export default PhoneNumVerification = props => {
 					onSelectDropDown={onMobileCompanyInputChange}
 					onValid={onValidMobileNum}
 					validator={mobileValidator}
+					// showMsg
+					// confirm_msg={'휴대전화 양식과 일치합니다.'}
 					keyboardType="numeric"
 				/>
 			</View>
-			<View style={{flexDirection: 'row'}}>
+			{validPhone ? (
+				<Text style={[txt.noto26, phoneNumVerification.phoneNumValidPassedText, {color: GREEN}]}>휴대전화번호 양식과 일치합니다. </Text>
+			) : (
+				<Text style={[txt.noto26, phoneNumVerification.phoneNumValidPassedText]}>휴대전화번호 양식에 맞춰주세요.</Text>
+			)}
+
+			<View style={[phoneNumVerification.inputTimeLimitContainer]}>
 				<View style={[phoneNumVerification.inputTimeLimit]}>
 					<InputTimeLimit
 						width={400}

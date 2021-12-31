@@ -40,6 +40,15 @@ export default AddressSearch = props => {
 		// }
 	}, [selectedIndex]);
 
+	React.useEffect(() => {
+		setTimeout(() => {
+			if (props.route.params.addr) {
+				setAddr({...addr, addr: props.route.params.addr.brief, detailAddr: props.route.params.addr.detail});
+				setDetailData(props.route.params.addr.detail);
+			}
+		}, 500);
+	}, [props.route.params?.addr]);
+
 	const search = (keyword, page) => {
 		// console.log('search using addr api');
 		// console.log('keyword:', keyword);
@@ -117,7 +126,6 @@ export default AddressSearch = props => {
 	};
 
 	const complete = () => {
-		console.log('addr.detailAddr:', addr.detailAddr);
 		if (!isSelect) {
 			Modal.popOneBtn('검색 결과에서 나온 \n기본주소를 선택해 주세요.', '확인', () => {
 				Modal.close();
@@ -236,7 +244,7 @@ export default AddressSearch = props => {
 					<FormTxtInput
 						style={lo.form_input}
 						inputStyle={[txt.noto24, {includeFontPadding: false, paddingVertical: 0}]}
-						value={data.detail}
+						defaultValue={data.detail || ''}
 						placeholder={'상세주소를 입력하세요.'}
 						placeholderTextColor={'#DBDBDB'}
 						onChange={inputDetailAddr}

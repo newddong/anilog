@@ -32,6 +32,7 @@ const Input30 = React.forwardRef((props, ref) => {
 	const onChange = text => {
 		// validator(text);
 		// setInput(text);
+		console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
 		props.validator && validator(text);
 		props.onChange && props.onChange(text);
 	};
@@ -44,7 +45,6 @@ const Input30 = React.forwardRef((props, ref) => {
 
 	const getMsg = () => {
 		if (props.showmsg) {
-			// if (input == undefined || input.length == 0) {
 			if (props.value == undefined || props.value.length == 0) {
 				return null;
 			} else if (confirmed == true) {

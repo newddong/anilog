@@ -9,9 +9,9 @@ export default FormTxtInput = React.forwardRef((props, ref) => {
 	const [pass, setPass] = React.useState(props.password);
 	const input = React.useRef();
 	const clear = e => {
-		if(ref){
+		if (ref) {
 			ref.current.clear();
-		}else{
+		} else {
 			input.current.clear();
 		}
 		// ref.current.clear();
@@ -39,13 +39,13 @@ export default FormTxtInput = React.forwardRef((props, ref) => {
 			input.current.focus();
 		};
 	}
-	const setRef = (inputRef)=>{
-		if(ref){
-			ref.current=inputRef;
-		}else{
-			input.current=inputRef;
+	const setRef = inputRef => {
+		if (ref) {
+			ref.current = inputRef;
+		} else {
+			input.current = inputRef;
 		}
-	}
+	};
 	return (
 		<View style={[props.style, {justifyContent: 'center'}]}>
 			<TextInput
@@ -60,9 +60,9 @@ export default FormTxtInput = React.forwardRef((props, ref) => {
 				ref={setRef}
 				secureTextEntry={pass}
 				value={props.value}
+				defaultValue={props.defaultValue}
 				maxLength={props.maxLength}
-				onEndEditing={props.onEndEditing}
-				></TextInput>
+				onEndEditing={props.onEndEditing}></TextInput>
 
 			{props.password && showClear && (
 				<SvgWrap
@@ -72,7 +72,9 @@ export default FormTxtInput = React.forwardRef((props, ref) => {
 				/>
 			)}
 
-			{showClear && <SvgWrap hitboxStyle={{width: 52 * DP, height: 52 * DP, position:'absolute', right: 20 * DP}} onPress={clear} svg={<CancelInput />} />}
+			{showClear && (
+				<SvgWrap hitboxStyle={{width: 52 * DP, height: 52 * DP, position: 'absolute', right: 20 * DP}} onPress={clear} svg={<CancelInput />} />
+			)}
 		</View>
 	);
 });
@@ -85,9 +87,9 @@ FormTxtInput.defaultProps = {
 	onBlur: () => {}, //포커스를 잃었을때 실행
 	multiline: false, //다중행 입력을 활성
 	placeholderTextColor: '#000', //placeholder의 글자색
-	placeholder: '',//placeholder 텍스트
-	inputStyle:{},//TextInput의 스타일
-	style:{},//TextInput의 container View스타일
+	placeholder: '', //placeholder 텍스트
+	inputStyle: {}, //TextInput의 스타일
+	style: {}, //TextInput의 container View스타일
 };
 //maxLength, onEndEditing prop설명 추가 필요
 //ref로 사용가능한 함수

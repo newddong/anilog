@@ -506,7 +506,7 @@ export const temp_style = StyleSheet.create({
 	},
 	inputWithSelect: {
 		width: 654 * DP,
-		height: 122 * DP,
+		// height: 122 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},

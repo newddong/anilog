@@ -75,6 +75,8 @@ const InputWithSelect = props => {
 						value={input}
 						ref={inputRef}
 						keyboardType={props.keyboardType}
+						confirm_msg={props.confirm_msg}
+						showMsg={props.showMsg}
 						// defaultValue={props.defaultValue}
 						onChange={onChange}
 						validator={validator}
@@ -91,6 +93,7 @@ InputWithSelect.defaultProps = {
 	items: ['default1', 'default2', 'default3', 'test3', 'test5'],
 	defaultIndex: 0, // props로 받은 itemList의 디폴트 인덱스
 	value: '',
+	showMsg: false,
 	title: '',
 	title_star: false,
 	alert_msg: '',

@@ -58,7 +58,7 @@ export default UserVerification = props => {
 
 	const verificationRequest = () => {
 		console.log('인증요청');
-		setTime(300);
+		setTime(30);
 		setTimeout(() => {
 			setAsync({isConfirm: true});
 		}, 500);
@@ -67,7 +67,7 @@ export default UserVerification = props => {
 
 	const reVerificationRequest = () => {
 		console.log('인증요청재설정');
-		setTime(300);
+		setTime(30);
 		//인증번호 재설정
 	};
 

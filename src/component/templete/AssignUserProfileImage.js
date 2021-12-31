@@ -114,13 +114,19 @@ export default AssignUserProfileImage = props => {
 		// var regExp = /^(?=.*\d)(?=.*[a-zA-Zㄱ-ㅎ가-힣])[0-9a-zA-Z]{1,15}$/;
 		// var regExp = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{1,15}$/;
 		// var regExp = /^[a-z0-9_-]{2,10}$/ ;
-		let regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
-		let regExSpace = text.search(/\s/);
-		console.log('regex', regExSpace);
-		return regExp.test(text) && checkDuplicateNickname(text) && regExSpace;
+		if (text) {
+			var blank_pattern = /\s/g;
+			let regExp = /^[\w\W가-힣]{2,20}$/;
+			let regExSpace = text.search(/\s/);
+			console.log('regexSPa', regExSpace);
+			return regExp.test(text) && checkDuplicateNickname(text) && !blank_pattern.test(text);
+		} else {
+			return false;
+		}
 	};
 
 	const onNicknameValid = isValid => {
+		console.log('onNicknameValid', isValid);
 		setConfirmed(isValid);
 	};
 
@@ -156,6 +162,9 @@ export default AssignUserProfileImage = props => {
 					validator={nickName_validator}
 					onChange={onNicknameChange}
 					onValid={onNicknameValid}
+					confirm={nickName_validator}
+					maxLength={15}
+					showmsg
 				/>
 			</View>
 
