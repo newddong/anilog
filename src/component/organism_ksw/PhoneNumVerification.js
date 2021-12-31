@@ -71,13 +71,8 @@ export default PhoneNumVerification = props => {
 	};
 
 	const nameValidator = name => {
-		const trimmed = name.trim();
-		// let regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
-		let regExp = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_-]{2,20}$/;
-		let pattern = /\s/g;
-		console.log('trimmed:' + trimmed.length);
-		console.log('regex', regExp.test(trimmed));
-		return !pattern.test(trimmed) && regExp.test(trimmed);
+		let isValid = props.nameValidator && props.nameValidator(name); //휴대폰 번호 검증
+		return isValid;
 		// return name.length > 0;
 	};
 
@@ -87,6 +82,7 @@ export default PhoneNumVerification = props => {
 
 	React.useEffect(() => {
 		let isValid = validVerifyNum.current && validMobile.current && props.asyncConfirm.isConfirm && validName;
+		console.log('validName', validName);
 		props.onValid && props.onValid(isValid);
 	}, [props.asyncConfirm]);
 

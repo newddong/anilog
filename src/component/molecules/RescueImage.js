@@ -50,7 +50,16 @@ const RescueImage = props => {
 				</Swiper>
 			)}
 
-			<View style={{width: 480 * DP, height: 64 * DP, borderBottomLeftRadius: 30 * DP, backgroundColor: APRI10, position: 'absolute', right: 0}}>
+			<View
+				style={{
+					width: 480 * DP,
+					height: 64 * DP,
+					opacity: 0.8,
+					borderBottomLeftRadius: 30 * DP,
+					backgroundColor: APRI10,
+					position: 'absolute',
+					right: 0,
+				}}>
 				<Text style={[txt.noto36, {textAlign: 'center', color: 'white'}]}>{getStatusText()}</Text>
 			</View>
 		</View>

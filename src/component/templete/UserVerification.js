@@ -71,6 +71,17 @@ export default UserVerification = props => {
 		//인증번호 재설정
 	};
 
+	const nameValidator = name => {
+		console.log('name', name);
+		const trimmed = name.trim();
+		// let regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
+		let regExp = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_-]{2,20}$/;
+		let pattern = /\s/g;
+		// console.log('trimmed:' + trimmed.length);
+		console.log('regex', !pattern.test(trimmed) && regExp.test(trimmed));
+		return !pattern.test(trimmed) && regExp.test(trimmed);
+	};
+
 	const mobileNumValidator = text => {
 		return text.length > 6;
 		//휴대폰 인증함수
@@ -122,6 +133,7 @@ export default UserVerification = props => {
 							onMobileCompanyInputChange={onMobileCompanyInputChange}
 							mobileNumValidator={mobileNumValidator}
 							verifyNumValidator={verifyNumValidator}
+							nameValidator={nameValidator}
 							onValid={onVaild}
 							verifyTimeLimit={time}
 							asyncConfirm={async}
