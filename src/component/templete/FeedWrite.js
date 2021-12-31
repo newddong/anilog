@@ -179,7 +179,7 @@ export default FeedWrite = props => {
 	};
 	const [lis, setLis] = React.useState([]);
 	const inputFeedTxt = feedInput => {
-		// console.log('해쉬 인풋', feedInput);
+		console.log('해쉬 인풋', feedInput);
 		// if(feedInput.length>0&&feedInput.test()){}
 		// if(feedInput[feedInput.length-1]=='@'){
 		// 	setShowPetAccountList(true);
@@ -192,7 +192,7 @@ export default FeedWrite = props => {
 		// (err)=>{
 		// 	console.log(err);
 		// });
-		// setFeedText(feedInput);
+		setFeedText(feedInput);
 	};
 
 	//긴급 버튼 - '제보' '실종' 중 하나 클릭 시 변동되는 View 분기 처리
@@ -270,7 +270,7 @@ export default FeedWrite = props => {
 		<View style={[login_style.wrp_main, feedWrite.container]}>
 			
 			{/* <ScrollView contentContainerStyle={{width: 750 * DP, alignItems: 'center'}}> */}
-			<View style={[temp_style.feedTextEdit, feedWrite.feedTextEdit]}>
+			{/* <View style={[temp_style.feedTextEdit, feedWrite.feedTextEdit]}>
 					<TextInput
 						textAlignVertical={'top'}
 						multiline={true}
@@ -279,17 +279,17 @@ export default FeedWrite = props => {
 						onChangeText={inputFeedTxt}
 						></TextInput>
 				</View>
-				
+				<View style={{width: 654 * DP, height: 2 * DP, marginVertical: 40 * DP, backgroundColor: APRI10}} /> */}
 				{/* Input Text 하단 언더라인 */}
-				<View style={{width: 654 * DP, height: 2 * DP, marginVertical: 40 * DP, backgroundColor: APRI10}} />
-				{/* <HashInput
+				
+				<HashInput
 					containerStyle={[temp_style.feedTextEdit,{backgroundColor:'yellow',borderBottomWidth:2*DP,borderBottomColor:APRI10}]}
 					textAlignVertical={'top'}
 					multiline={true}
 					placeholder="게시물을 작성하세요"
 					placeholderTextColor={GRAY20}
 					onChangeText={inputFeedTxt}
-					></HashInput> */}
+					></HashInput>
 				{/* <View style={{width: 654 * DP, height: 300 * DP, backgroundColor: 'lightblue', flexDirection: 'row'}}>
 					{completed ? getFeedContent(draft) : null}
 				</View> */}
