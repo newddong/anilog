@@ -313,7 +313,8 @@ export const temp_style = StyleSheet.create({
 	},
 	input30_changePetProfileImage: {
 		width: 654 * DP,
-		height: 118 * DP,
+		// height: 118 * DP,
+		height: 236 * DP,
 	},
 	passwordChecker_changePassword: {
 		width: 654 * DP,

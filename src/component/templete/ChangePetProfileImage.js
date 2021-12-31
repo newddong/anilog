@@ -2,20 +2,21 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Text, View} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
-import {AVAILABLE_NICK, NEW_NICK_REQUEST, UNAVAILABLE_NICK} from 'Root/i18n/msg';
+import {AVAILABLE_NICK, NEW_NICK_REQUEST, UNAVAILABLE_NICK, PREVIOUS_NICK_TITLE, NEW_NICK_TITLE} from 'Root/i18n/msg';
 import {btn_w654} from '../atom/btn/btn_style';
 import Modal from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
 import Input24 from '../molecules/Input24';
 import Input30 from '../molecules/Input30';
 import ProfileImageSelect from '../molecules/ProfileImageSelect';
-import {login_style, btn_style, temp_style, changePetProfileImage_style} from './style_templete';
+import {login_style, btn_style, temp_style, changePetProfileImage_style, changeUserProfileImage_style} from './style_templete';
 import ImagePicker from 'react-native-image-crop-picker';
+import {updateUserInformation} from 'Root/api/userapi';
 
 export default ChangePetProfileImage = props => {
 	const navigation = useNavigation();
 	const [petData, setPetData] = React.useState(props.route.params);
-
+	console.log('petData', props);
 	const [newNick, setNewNick] = React.useState('');
 	const [confirmed, setConfirmed] = React.useState(false);
 
@@ -44,6 +45,7 @@ export default ChangePetProfileImage = props => {
 		})
 			.then(images => {
 				setPetData({...petData, user_profile_uri: images.path || petData.user_profile_uri});
+				setConfirmed(true);
 				Modal.close();
 			})
 			.catch(err => console.log(err + ''));
@@ -80,15 +82,36 @@ export default ChangePetProfileImage = props => {
 
 	const onPressConfirm = () => {
 		console.log('props.nv', props.navigation);
-		Modal.popNoBtn('잠시만 기다려주세요.');
-		setTimeout(() => {
-			Modal.close();
-			Modal.popNoBtn('프로필 변경이 완료되었습니다!');
-		}, 1000);
-		setTimeout(() => {
-			Modal.close();
-			navigation.goBack();
-		}, 3000);
+		// Modal.popNoBtn('잠시만 기다려주세요.');
+		// setTimeout(() => {
+		// 	Modal.close();
+		// 	Modal.popNoBtn('프로필 변경이 완료되었습니다!');
+		// }, 1000);
+		// setTimeout(() => {
+		// 	Modal.close();
+		// 	navigation.goBack();
+		// }, 3000);
+		Modal.popNoBtn('프로필을 바꾸는 중입니다.');
+		updateUserInformation(
+			{
+				userobject_id: petData._id,
+				user_nickname: newNick == '' ? petData.user_nickname : newNick,
+				// user_nickname: newNick,
+				user_profile_uri: petData.user_profile_uri,
+			},
+			success => {
+				// setChanged(true);
+				console.log('profileChange success', success);
+				Modal.close();
+				navigation.goBack();
+			},
+			// console.log('userObject', userObject);
+			err => {
+				Modal.close();
+
+				console.log('err', err);
+			},
+		);
 	};
 
 	return (
@@ -98,21 +121,48 @@ export default ChangePetProfileImage = props => {
 			</View>
 
 			<View style={[temp_style.input30_changePetProfileImage, changePetProfileImage_style.input30]}>
-				<Input24
-					onChange={text => nickName_validator(text)}
-					validator={validateNewNick}
-					onValid={onValidName}
-					value={newNick}
-					placeholder={NEW_NICK_REQUEST}
-					showMsg={true}
-					alert_msg={UNAVAILABLE_NICK}
-					confirm_msg={AVAILABLE_NICK}
-					width={654}
-					onClear={onClearNickname}
-				/>
+				{/* 기존 닉네임 */}
+				<View style={[temp_style.input24_changeUserProfileImage, changeUserProfileImage_style.input24]}>
+					<Input24
+						title={PREVIOUS_NICK_TITLE}
+						value={petData.user_nickname || ''}
+						width={654}
+						descriptionType={'none'}
+						editable={false}
+						showCrossMark={false}
+					/>
+				</View>
+				<View style={[temp_style.input24_changeUserProfileImage]}>
+					{/* <Input24
+						onChange={text => nickName_validator(text)}
+						validator={validateNewNick}
+						onValid={onValidName}
+						value={newNick}
+						placeholder={NEW_NICK_REQUEST}
+						showMsg={true}
+						alert_msg={UNAVAILABLE_NICK}
+						confirm_msg={AVAILABLE_NICK}
+						width={654}
+						onClear={onClearNickname}
+					/> */}
+					<Input24
+						onChange={nickName_validator}
+						validator={validateNewNick}
+						onValid={onValidName}
+						value={newNick}
+						title={NEW_NICK_TITLE}
+						descriptionType={'none'}
+						placeholder={NEW_NICK_REQUEST}
+						showMsg={true}
+						alert_msg={UNAVAILABLE_NICK}
+						confirm_msg={AVAILABLE_NICK}
+						width={654}
+						onClear={onClearNickname}
+					/>
+				</View>
 			</View>
 
-			<View style={[btn_style.btn_w654, changePetProfileImage_style.btn_w654]}>
+			<View style={[btn_style.btn_w654, changePetProfileImage_style.btn_w654, {paddingTop: 25}]}>
 				<AniButton
 					onPress={onPressConfirm}
 					disable={confirmed ? false : true}

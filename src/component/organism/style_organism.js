@@ -218,7 +218,8 @@ export const organism_style = StyleSheet.create({
 	},
 	writerID_feed_view: {
 		// width: 116 * DP,
-		height: 76 * DP,
+		// height: 76 * DP,
+		height: 114 * DP,
 		// backgroundColor: '#FF00FF',
 	},
 	writerID_feed: {

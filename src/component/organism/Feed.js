@@ -86,13 +86,15 @@ export default Feed = React.memo(props => {
 
 				{/* RecentComment */}
 				<View style={[organism_style.recentComment_view, feed_style.recentComment_view]}>
-					<View style={organism_style.writerID_feed_view}>
-						<View style={organism_style.writerID_feed}>
+					<View style={[organism_style.writerID_feed_view]}>
+						<View style={[organism_style.writerID_feed, {flex: 1}, {alignItems: 'flex-start'}]}>
 							<Text style={[txt.roboto24, {color: GRAY10}]}>{feed_recent_comment?.comment_user_nickname}</Text>
 						</View>
-					</View>
-					<View style={organism_style.commentText_view}>
-						<Text style={[txt.noto24]}>{feed_recent_comment?.comment_contents}</Text>
+						<View style={(organism_style.commentText_view, {flex: 2})}>
+							<Text style={[txt.noto24]} numberOfLines={2} ellipsizeMode="tail">
+								{feed_recent_comment?.comment_contents}
+							</Text>
+						</View>
 					</View>
 				</View>
 			</View>

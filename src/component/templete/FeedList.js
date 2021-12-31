@@ -13,7 +13,6 @@ import userGlobalObject from 'Root/config/userGlobalObject';
 export default FeedList = ({route, navigation}) => {
 	const [feedList, setFeedList] = React.useState([]);
 	const [refreshing, setRefreshing] = React.useState(false);
-
 	//피드썸네일 클릭 리스트일 경우
 	React.useEffect(() => {
 		// console.log('userobject', route.params?.userobject);
