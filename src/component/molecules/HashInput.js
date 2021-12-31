@@ -9,7 +9,7 @@ import {getUserListByNickname} from 'Root/api/userapi';
 import Modal from '../modal/Modal';
 
 export default function HashInput(props) {
-	const [value, setValue] = React.useState('디비에서 날아온 기초값');
+	const [value, setValue] = React.useState('');
 	const [find, setFind] = React.useState(false);
 	const [cursor, setCursor] = React.useState();
 	const inputRef = React.useState();
@@ -23,23 +23,28 @@ export default function HashInput(props) {
 		currentTag:'',
 		editTag:'',
 		prevEditTag:'',
-
-
+		hashStore: new Map(),
+		linkStore: new Map(),
 	}).current;
 
-	const inputCursor = React.useRef(0);
-
 	const [userlist, setUserlist] = React.useState([]);
-
+	const changeTextRegex = /([#@])([^#@\s]+)/gm;
 	//이벤트는 onChangeText가 onSelectionChange보다 먼저 발생한다.
 	//onSelectionChange는 한글의 자모 조립시에는 발생하지 않고, 한 음절이 입력이 끝난 뒤 커서의 위치가 변동되었을 경우만 발생한다.
 	const onChangeText = text => {
-		// internal.text = text.replace(/([#@])([^#@\s]*)/gm,'&$1&$1$1$2|&|&$1&$1'); //디비에 입력될 내용으로 변환
-		internal.text = text.replace(/([#@])([^#@][^#@\s]*)/gm,'&$1&$1$1$2|&|&$1&$1'); //디비에 입력될 내용으로 변환
-        internal.editTag = findTagAt(internal.textInputCursor, text);
-		console.log('편집중인글 =>', internal.editTag);
-		console.log('편집중인 위치가 테그인지', isTag(internal.editTag));
-		console.log('편집중일때 커서위치',internal.tagStartIdx,internal.tagEndIdx);
+		// internal.text = text.replace(/([#@])([^#@\s]+)/gm,'&$1&$1$1$2|&|&$1&$1'); //디비에 입력될 내용으로 변환
+		let temp = text.replace(changeTextRegex,'&$1&$1$1$2|&|&$1&$1'); //디비에 입력될 내용으로 변환
+        if(linkStore.size>0){
+			linkStore.forEach((value,key) => {
+				let regex = new RegExp(`&@&@@${key}|&|.*?&@&@`)
+				// temp.replace(,)
+			});
+		}
+		if(hashStore.size>0){
+			hashStore.forEach((value,key))
+		}
+
+		internal.editTag = findTagAt(internal.textInputCursor, text);
 		setFind(isTag(internal.editTag));
 
         if (isTag(internal.editTag)) {
@@ -86,14 +91,7 @@ export default function HashInput(props) {
 
 		internal.tagStartIdx = findStartIndexOfTag(internal.textInputCursor,value); //현재 커서가 위치한 단어의 시작 인덱스,
 		internal.tagEndIdx = findEndIndexOfTag(internal.textInputCursor,value); //현재 커서가 위치한 단어의 끝 인덱스
-		
-		console.log('start at : ',internal.tagStartIdx,', end at : ', internal.tagEndIdx);
-		console.log('커서부근의 단어 =>', internal.editTag);
-		console.log('커서가 테그 편집에 있는지', isTag(internal.editTag));
-		console.log(value.slice(internal.tagStartIdx,internal.tagEndIdx));
 		setFind(isTag(internal.editTag));
-		// console.log(value.match(/[@#](\S*?)(?=[\s\n@#]|$)/g));
-		// const regex = /[@#](\S*?)(?=[\s\n@#]|$)/gm;
 	};
 
 	const userSelect = (user,index) => {
@@ -101,19 +99,13 @@ export default function HashInput(props) {
 		let offset = Platform.OS=='android'?0:1;
 		console.log('userselect start at : ',internal.tagStartIdx,', end at : ', internal.tagEndIdx);
         console.log('대상 태그',value.substring(internal.tagStartIdx, internal.tagEndIdx));
-		// setValue(value.slice(0,internal.tagStartIdx+1).concat(user.user_nickname, value.slice(internal.tagEndIdx)));
-		internal.value= internal.value.substring(0,internal.tagStartIdx+offset).concat(nickname, internal.value.substring(internal.tagEndIdx)).trimEnd().concat(' ');
+		setValue(value.substring(0,internal.tagStartIdx+offset).concat(nickname, value.substring(internal.tagEndIdx)).trimEnd().concat(' '));
 		
-		setValue(internal.value);
-		// console.log(internal.editTag);
-
-        // console.log(value.replace(internal.editTag,nickname));
+		internal.linkStore.set(user.user_nickname,user._id);
 		
-        // setValue(value.replace(internal.editTag,nickname));
 
 
-
-		// setCursor({start: 0, end: 0});
+		console.log(internal.linkStore);
 
 		setFind(false);
 	};

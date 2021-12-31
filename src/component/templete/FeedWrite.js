@@ -270,7 +270,7 @@ export default FeedWrite = props => {
 		<View style={[login_style.wrp_main, feedWrite.container]}>
 			
 			{/* <ScrollView contentContainerStyle={{width: 750 * DP, alignItems: 'center'}}> */}
-			{/* <View style={[temp_style.feedTextEdit, feedWrite.feedTextEdit]}>
+			<View style={[temp_style.feedTextEdit, feedWrite.feedTextEdit]}>
 					<TextInput
 						textAlignVertical={'top'}
 						multiline={true}
@@ -278,18 +278,18 @@ export default FeedWrite = props => {
 						placeholder="게시물을 작성하세요"
 						onChangeText={inputFeedTxt}
 						></TextInput>
-				</View> */}
+				</View>
 				
 				{/* Input Text 하단 언더라인 */}
-				{/* <View style={{width: 654 * DP, height: 2 * DP, marginVertical: 40 * DP, backgroundColor: APRI10}} /> */}
-				<HashInput
+				<View style={{width: 654 * DP, height: 2 * DP, marginVertical: 40 * DP, backgroundColor: APRI10}} />
+				{/* <HashInput
 					containerStyle={[temp_style.feedTextEdit,{backgroundColor:'yellow',borderBottomWidth:2*DP,borderBottomColor:APRI10}]}
 					textAlignVertical={'top'}
 					multiline={true}
 					placeholder="게시물을 작성하세요"
 					placeholderTextColor={GRAY20}
 					onChangeText={inputFeedTxt}
-					></HashInput>
+					></HashInput> */}
 				{/* <View style={{width: 654 * DP, height: 300 * DP, backgroundColor: 'lightblue', flexDirection: 'row'}}>
 					{completed ? getFeedContent(draft) : null}
 				</View> */}

@@ -36,7 +36,7 @@ const makeFeedInputView = (input,allowTab) => {
 	let match;
 	let viewArr = []
 	while((match=Regex.exec(input))!==null){
-		console.log(match);
+		// console.log(match);
 		let pressfn = match[5]?onUserClick:onHashClick;
 		let id = match[6]||match[8];
 		viewArr.push(
