@@ -8,7 +8,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import {getUserInfoById} from 'Root/api/userapi';
 import Modal from 'Component/modal/Modal';
-
+import {ProfileDefaultImg1, ProfileDefaultImg1_70} from '../atom/icon';
+import {profiledefault2} from '../atom/icon/profiledefault2.svg';
+import ProfileImageMedium120 from './ProfileImageMedium120';
 /**
  * 유저의 프로필 사진, 닉네임, 사는지역을 출력하는 라벨
  * @param {object} props - Props Object
@@ -17,7 +19,7 @@ import Modal from 'Component/modal/Modal';
  */
 const UserLocationLabel = props => {
 	const [isLoginUser, setIsLoginUser] = React.useState(false); //현재 접속 중인 아이디와 같다면 닉네임 색깔이 메인색깔
-
+	// console.log('UserLocationLabel', props.data.user_profile_uri);
 	//현재 접속한 토큰과 출력된 유저라벨의 유저가 같은지 확인
 	// React.useEffect(()=>{
 	// 	getUserInfoById({userobject_id:userId},
@@ -38,6 +40,12 @@ const UserLocationLabel = props => {
 	// 	});
 	// }, [props.data]);
 
+	// React.useEffect(() => {
+	// 	if (props.data.user_profile_uri === undefined) {
+	// 		props.data.user_profile_uri = ProfileDefaultImg1;
+	// 		console.log('UserLocationLabel', props.data.user_profile_uri);
+	// 	}
+	// }, []);
 	const onClickLabel = e => {
 		props.onLabelClick(props.data);
 	};
@@ -45,7 +53,11 @@ const UserLocationLabel = props => {
 	return (
 		<TouchableOpacity onPress={onClickLabel}>
 			<View style={{flexDirection: 'row', alignItems: 'center'}}>
-				<Image source={{uri: props.data.user_profile_uri}} style={styles.img_round_70} />
+				{props.data.user_profile_uri === undefined ? (
+					<ProfileDefaultImg1_70 data={props.data} style={styles.img_round_70} />
+				) : (
+					<Image source={{uri: props.data.user_profile_uri}} style={styles.img_round_70} />
+				)}
 
 				<View style={{marginLeft: 20 * DP}}>
 					<Text style={[txt.roboto28b, {color: isLoginUser ? APRI10 : BLACK}]} numberOfLines={1} ellipsizeMode="tail">

@@ -162,6 +162,7 @@ export const ProfileDefaultImg3 = makeSvg(profiledefault3, defaultProfileImg, ''
 export const ProfileDefaultImg1_194 = makeSvg(profiledefault1, profileDefaultImg_194, '');
 export const ProfileDefaultImg2_194 = makeSvg(profiledefault2, profileDefaultImg_194, '');
 export const ProfileDefaultImg3_194 = makeSvg(profiledefault3, profileDefaultImg_194, '');
+export const ProfileDefaultImg1_70 = makeSvg(profiledefault1, size70, '');
 
 export const Heart30_Filled = makeSvg(heartFilled, size30, APRI10);
 export const Heart30_Border = makeSvg(heartBorder, size30, APRI10);

@@ -20,7 +20,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params); //기존 유저의 데이터가 담겨있음
 	const [loaded, setLoaded] = React.useState(false);
 	const [addrSearched, setAddrSearched] = React.useState(false);
-
+	console.log('UserInfoDeatail Setting', data);
 	// 갱신되는 데이터는 Header에도 Json형태로 전해짐
 	React.useEffect(() => {
 		navigation.setParams({data: data, route_name: route.name});
@@ -195,15 +195,15 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 						<View style={[temp_style.addressInput]}>
 							<AddressInput
 								title={'나의 지역'}
-								address={data.user_address.brief}
-								detailAddress={data.user_address.detail}
+								// address={data.user_address.brief ? data.user_address.brief : '없음'}
+								// detailAddress={data.user_address.detail ? data.user_address.detail : '없음'}
 								onChangeAddress={onChangeAddress}
 								onChangeDeatilAddress={onChangeDeatilAddress}
 								onPressSearchAddr={onPressSearchAddress}
 								// addressDefault={data ? data.user_address.city + '  ' + data.user_address.district : ''}
-								addressDefault={data.user_address.brief}
+								// addressDefault={data.user_address.brief ? data.user_address.brief : '없음'}
 								// detailAddressDefault={data ? data.user_address.neighbor : ''}
-								detailAddressDefault={data.user_address.detail}
+								// detailAddressDefault={data.user_address.detail ? data.user_address.detail : '없음'}
 							/>
 						</View>
 						{/* 관심지역 및 활동 */}

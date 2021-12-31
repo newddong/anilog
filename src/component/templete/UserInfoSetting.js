@@ -144,7 +144,9 @@ export default UserInfoSetting = ({route}) => {
 					{/* 상세정보 */}
 					<View style={[temp_style.detailInfo]}>
 						<View style={[temp_style.title, userInfoSetting_style.title_detail]}>
-							<Text style={[txt.noto30b, {color: GRAY10}]}>상세 정보</Text>
+							<TouchableOpacity onPress={onPressDetail}>
+								<Text style={[txt.noto30b, {color: GRAY10}]}>상세 정보</Text>
+							</TouchableOpacity>
 						</View>
 						<View style={[temp_style.bracket48, userInfoSetting_style.bracket48]}>
 							<NextMark onPress={onPressDetail} />
