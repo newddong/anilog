@@ -7,7 +7,8 @@ import {txt} from 'Root/config/textstyle';
 import {WHITE, APRI10} from 'Root/config/color';
 import InputWithSearchIcon from 'Molecules/InputWithSearchIcon';
 
-export default ConfirmInputHeader = ({navigation, route, options, back}) => {
+export default ConfirmInputHeader = props => {
+	console.log('props Confirn', props);
 	const [searchInput, setSearchInput] = React.useState('');
 	const confirm = () => {
 		// navigation.navigate('Search');
@@ -21,9 +22,9 @@ export default ConfirmInputHeader = ({navigation, route, options, back}) => {
 
 	return (
 		<View style={[style.headerContainer, style.shadow]}>
-			<TouchableOpacity onPress={navigation.goBack}>
+			<TouchableOpacity onPress={props.navigation.goBack}>
 				<View style={style.backButtonContainer}>
-					<BackArrow32 onPress={navigation.goBack} />
+					<BackArrow32 onPress={props.navigation.goBack} />
 				</View>
 			</TouchableOpacity>
 			<View style={{marginBottom: 20 * DP, flex: 1}}>

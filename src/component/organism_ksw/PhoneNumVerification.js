@@ -56,6 +56,7 @@ export default PhoneNumVerification = props => {
 		validMobile.current = isValid;
 		props.onValid && props.onValid(isValid && validVerifyNum.current && props.asyncConfirm.isConfirm && validName);
 	};
+
 	const mobileValidator = mobileNum => {
 		let isValid = props.mobileNumValidator && props.mobileNumValidator(mobileNum); //휴대폰 번호 검증
 		return isValid;
@@ -82,9 +83,14 @@ export default PhoneNumVerification = props => {
 
 	React.useEffect(() => {
 		let isValid = validVerifyNum.current && validMobile.current && props.asyncConfirm.isConfirm && validName;
-		console.log('validName', validName);
+		// if (!isValid) {
+		// 	!validVerifyNum.current ? console.log('validVerifyNum.current') : null;
+		// 	!validMobile.current ? console.log('validMobile.current') : null;
+		// 	!props.asyncConfirm.isConfirm ? console.log('props.asyncConfirm.isConfirm') : null;
+		// 	!validName ? console.log('validName') : null;
+		// }
 		props.onValid && props.onValid(isValid);
-	}, [props.asyncConfirm]);
+	}, [validVerifyNum, validName, validMobile, props.asyncConfirm]);
 
 	React.useEffect(() => {
 		setTimeLimit({...timeLimit, limit: props.verifyTimeLimit});
@@ -102,8 +108,11 @@ export default PhoneNumVerification = props => {
 					onValid={onValidName}
 					validator={nameValidator}
 					value={userName}
-					confirm
-					showmsg={false}
+					confirm={nameValidator}
+					// confirm
+					showmsg
+					alert_msg={'이름은 2자 이상으로 설정해주세요 '}
+					confirm_msg={'양식에 맞는 이름입니다.'}
 				/>
 			</View>
 			<View style={[temp_style.inputWithSelect, phoneNumVerification.inputWithSelect]}>
@@ -128,7 +137,8 @@ export default PhoneNumVerification = props => {
 						onChange={onVerificationNumberChange}
 						placeholder={'인증번호 입력'}
 						timeout_msg={'인증 가능한 시간이 초과되었습니다.'}
-						alert_msg={'인증번호가 일치하지 않습니다.'}
+						// alert_msg={'인증번호가 일치하지 않습니다.'}
+						alert_msg={'3자리 이상 넣어주세요.'}
 						validator={verifyNumValidator}
 						onValid={onValidVerifyNum}
 					/>

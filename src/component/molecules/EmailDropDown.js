@@ -7,6 +7,7 @@ import DP from 'Root/config/dp';
 import {txt} from 'Root/config/textstyle';
 import DropdownSelect from './DropdownSelect';
 import EmailDropDownSelect from './EmailDropDownSelect';
+import {EMAIL_DOMAIN} from 'Root/i18n/msg';
 
 /**
  * 이메일 전용 드롭다운
@@ -29,8 +30,21 @@ const EmialDropDown = props => {
 	};
 
 	React.useEffect(() => {
-		console.log('props.', props.defaultIndex);
-		setValue(props.menu[props.defaultIndex]);
+		if (props.defaultValue) {
+			const defaultEmail = props.defaultValue;
+			console.log('props.default', defaultEmail);
+			const findIndex = EMAIL_DOMAIN.findIndex(e => e == defaultEmail.split('@')[1]);
+			console.log('findIndex', findIndex);
+			setValue(props.menu[findIndex]);
+			props.onSelect(props.menu[findIndex], findIndex);
+		}
+	}, [props.defaultValue]);
+
+	React.useEffect(() => {
+		if (props.defaultIndex) {
+			console.log('Props.DefaultIndex : ', props.defaultIndex);
+			setValue(props.menu[props.defaultIndex]);
+		}
 	}, [props.defaultIndex]);
 
 	React.useEffect(() => {
@@ -46,7 +60,9 @@ const EmialDropDown = props => {
 		<Dropdown
 			alignBottom
 			ref={dropdown}
-			buttonComponent={<EmailDropDownSelect width={props.width} value={value} onChangeDomain={onChangeDomain} />}
+			buttonComponent={
+				<EmailDropDownSelect width={props.width} value={value} defaultDirectInput={props.defaultDirectInput} onChangeDomain={onChangeDomain} />
+			}
 			dropdownList={
 				<View style={{backgroundColor: 'white', alignItems: 'center', borderWidth: 2 * DP}}>
 					<ScrollView style={{height: props.height * DP || null}} contentContainerStyle={{}}>

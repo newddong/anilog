@@ -126,9 +126,10 @@ export default FeedContent = props => {
 							)}
 						</View>
 
-						<View style={[organism_style.meatball, feedContent_style.meatball]}>
+						{/* 연결되는 기능 개발 후 추후 연결 */}
+						{/* <View style={[organism_style.meatball, feedContent_style.meatball]}>
 							<Meatball50_GRAY20_Horizontal onPress={onClickMeatball} />
-						</View>
+						</View> */}
 					</View>
 				) : (
 					<View style={[organism_style.button_view_feedContent]}>

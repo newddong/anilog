@@ -25,7 +25,7 @@ const AniButton = props => {
 				shadowRadius: 4.65,
 				shadowOffset: {
 					width: 1 * DP,
-					height: 2 * DP,
+					height: 1 * DP,
 				},
 				elevation: 2,
 			};

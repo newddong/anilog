@@ -71,9 +71,10 @@ export default ParentComment = props => {
 				<View style={organism_style.userLocationTimeLabel}>
 					<UserLocationTimeLabel data={data.comment_writer_id} time={parentComment.comment_update_date} />
 				</View>
-				<View style={[organism_style.meatball_50_vertical]}>
+				{/* 연결되는 기능 개발 후 추후 연결 */}
+				{/* <View style={[organism_style.meatball_50_vertical]}>
 					<MeatBallDropdown menu={isMyComment ? SETTING_OWN_COMMENT : SETTING_COMMENT} horizontal={false} />
-				</View>
+				</View> */}
 			</View>
 			{/* 댓글 Dummy 이미지 및 대댓글 목록 */}
 			{data.comment_photo_uri != null ? ( //img_square_round_574

@@ -99,6 +99,10 @@ export default UserMenu = props => {
 		}
 	};
 
+	const onPressMyName = () => {
+		navigation.push('UserProfile', {userobject: data});
+	};
+
 	// 내 정보 수정 클릭
 	const onPressModifyMyInfo = () => {
 		navigation.push('UserInfoSetting', {token: data._id}); //userObject
@@ -177,9 +181,9 @@ export default UserMenu = props => {
 						</View>
 
 						<View>
-							<View style={[userMenu_style.user_id]}>
+							<TouchableOpacity onPress={onPressMyName} style={[userMenu_style.user_id]}>
 								<Text style={[txt.roboto36b]}>{data.user_nickname || ''}</Text>
-							</View>
+							</TouchableOpacity>
 							<View style={[userMenu_style.contents]}>
 								<Text ellipsizeMode={'tail'} numberOfLines={3} style={[txt.noto24, {color: GRAY10}]}>
 									{data.user_introduction || '자기소개가 없습니다.'}
@@ -201,7 +205,11 @@ export default UserMenu = props => {
 
 						{/* 나의 반려동물 버튼 */}
 						<View style={[userMenu_style.btn_w280]}>
-							<AniButton btnLayout={btn_w280} btnStyle={'border'} btnTheme={'gray'} btnTitle={MY_COMPANION} onPress={onPressMyCompanion} />
+							{data.user_my_pets?.length == 0 ? (
+								<AniButton btnLayout={btn_w280} disable btnTitle={MY_COMPANION} />
+							) : (
+								<AniButton btnLayout={btn_w280} btnStyle={'border'} btnTheme={'shadow'} btnTitle={MY_COMPANION} onPress={onPressMyCompanion} />
+							)}
 						</View>
 					</View>
 				</View>

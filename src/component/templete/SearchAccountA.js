@@ -56,21 +56,23 @@ export default SearchAccountA = props => {
 	//계정 클릭 콜백
 	const onClickAccount = (item, index) => {
 		console.log('onClickAccount', props);
-		Modal.popTwoBtn(
-			// item.user_nickname + '님을 봉사활동자 \n 목록에 추가하시겠습니까?',
-			item.user_nickname + '님을 팔로우 \n 하시겠습니까?',
-			'취소',
-			'확인',
-			() => Modal.close(),
-			() => {
-				navigation.navigate({
-					name: props.prevNav,
-					params: {addedVolunteer: item},
-					merge: true,
-				});
-				Modal.close();
-			},
-		);
+		console.log('click item', item);
+		let sendUserobject = {_id: item._id};
+		// navigation.push('UserProfile', {userobject: sendUserobject});
+		navigation.navigate('UserProfile', {userobject: sendUserobject});
+
+		// 	() => {
+		// 		console.log('pressed');
+		// 		navigation.push('UserFeedList', {userobject: item._id});
+		// 		Modal.close();
+		// 		// navigation.navigate('UserFeedList', {userobject: item._id});
+		// 		// navigation.navigate({
+		// 		// 	name: props.prevNav,
+		// 		// 	params: {addedVolunteer: item},
+		// 		// 	merge: true,
+		// 		// });
+		// 	},
+		// );
 	};
 
 	return (
