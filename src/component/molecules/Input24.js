@@ -35,7 +35,6 @@ const Input24 = React.forwardRef((props, ref) => {
 	//Validator 조건확인이 안되었기에 테스트용으로 입력된 텍스트가
 	// 10자 이상일 때 confirmed가 되도록 작성
 	const validator = text => {
-		// console.log('text', text);
 		let isValid = props.validator(text);
 		props.onValid && props.onValid(isValid);
 		setConfirm(isValid);

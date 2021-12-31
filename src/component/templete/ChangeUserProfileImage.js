@@ -147,8 +147,7 @@ export default ChangeUserProfileImage = ({route}) => {
 		// 영문자, 소문자, 숫자, "-","_" 로만 구성된 길이 2~10자리 사이의 문자열
 		// checkDuplicateNickname(newNick);
 		console.log('Dup', duplicated);
-
-		let regExp = /^[가-힣a-zA-Z0-9_ ]{2,15}$/;
+		let regExp = /^[가-힣a-zA-Z0-9_]{2,20}$/;
 		setValidated(regExp.test(nick));
 		// checkDuplicateNickname(nick);
 		// console.log('is duplicated?', nick, regExp.test(newNick), duplicated);

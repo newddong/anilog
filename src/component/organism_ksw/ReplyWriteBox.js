@@ -12,9 +12,10 @@ import {feedCommentList} from '../templete/style_templete';
  * onAddPhoto : void,
  * onDeleteImage : 'void / 댓글창에서 추가한 사진 삭제 버튼 클릭',
  * onWrite : void,
+ * onFocusReplyBox : void,
  * privateComment : 'boolean / 비밀글 여부',
  * isProtectRequest : 'boolean / 보호요청 게시글에서의 호출',
- * photo : 'Array / 사진 목록'
+ * photo : 'Array / 사진 목록',
  * }} props
  */
 export default ReplyWriteBox = React.forwardRef((props, ref) => {
@@ -84,6 +85,7 @@ ReplyWriteBox.defaultProps = {
 	onLockBtnClick: e => console.log(e), // 비밀 댓글 클릭
 	onAddPhoto: e => console.log(e), // 사진추가하기 버튼 클릭
 	onChangeReplyInput: e => console.log(e), // 리플 Input 변경
+	onFocusReplyBox: e => console.log(e), // 리플 Input 변경
 	onDeleteImage: e => console.log(e),
 	onWrite: e => console.log(e), // 보내기 클릭
 	privateComment: false, // 비밀 댓글 상태 여부

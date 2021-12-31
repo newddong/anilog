@@ -8,6 +8,10 @@ import {useNavigation} from '@react-navigation/core';
 import {txt} from 'Root/config/textstyle';
 import {GRAY10} from 'Root/config/color';
 import Swiper from 'react-native-swiper';
+import CookieManager from '@react-native-cookies/cookies';
+import {serveruri} from 'Root/config/server';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Modal from '../modal/Modal';
 
 export default Feed = React.memo(props => {
 	console.log('Feed', props.data);
@@ -45,8 +49,18 @@ export default Feed = React.memo(props => {
 		feed_avatar_id,
 	} = props.data;
 	// console.log(props.data);
-	const moveToCommentList = () => {
-		navigation.push('FeedCommentList', {feedobject: props.data});
+	const moveToCommentList = async () => {
+		AsyncStorage.getItem('sid', (err, res) => {
+			console.log('res', res);
+			if (res == null && feed_comment_count == 0) {
+				Modal.popNoBtn('로그인이 필요합니다.');
+				setTimeout(() => {
+					Modal.close();
+				}, 1500);
+			} else {
+				navigation.push('FeedCommentList', {feedobject: props.data});
+			}
+		});
 	};
 
 	return (

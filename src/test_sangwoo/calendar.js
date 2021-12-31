@@ -6,7 +6,7 @@ import moment from 'moment';
 import DP from 'Root/config/dp';
 import {day} from 'Root/i18n/msg';
 import {txt} from 'Root/config/textstyle';
-import {APRI10, BLACK, GRAY20, GRAY30, WHITE} from 'Root/config/color';
+import {APRI10, BLACK, GRAY10, GRAY20, GRAY30, WHITE} from 'Root/config/color';
 import {NextMark} from 'Root/component/atom/icon';
 import YearDropDown from 'Root/component/molecules/YearDropDown';
 import Modal from 'Root/component/modal/Modal';
@@ -14,7 +14,7 @@ import AniButton from 'Root/component/molecules/AniButton';
 
 const Calendar = props => {
 	console.log('props', props.future);
-	const BG = 'white';
+	const BG = 'yellow';
 
 	const [getMoment, setMoment] = React.useState(moment()); //현재 시각 정보
 
@@ -87,7 +87,7 @@ const Calendar = props => {
 								//이번달이 아니지만 달력에 출력된 dates
 								return (
 									<View key={index} style={styles.days_this_month}>
-										<Text style={[txt.roboto28, {color: GRAY30}]}>{days.format('D')}</Text>
+										<Text style={[txt.roboto28, {color: GRAY20}]}>{days.format('D')}</Text>
 									</View>
 								);
 							} else {
@@ -109,9 +109,7 @@ const Calendar = props => {
 						.map((data, index) => {
 							//result에는 해당 날짜를 하나씩 붙여간다.
 							let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day'); //d로해도되지만 직관성 - index값에  day정보
-							// console.log("days console : "+days.date())
 							if (moment() > days) {
-								//정확히 오늘 날짜와 일치하는 date
 								return (
 									<TouchableOpacity onPress={() => onSelectDate(days)} key={index} style={styles.today}>
 										<View
@@ -126,10 +124,10 @@ const Calendar = props => {
 									</TouchableOpacity>
 								);
 							} else {
-								//이외의 이번달 날짜들은 하얀색으로 출력
+								// 과거날짜일 경우
 								return (
 									<View key={index} style={styles.days_this_month}>
-										<Text style={[txt.roboto28, {color: GRAY30}]}>{days.format('D')}</Text>
+										<Text style={[txt.roboto28, {color: GRAY20}]}>{days.format('D')}</Text>
 									</View>
 								);
 							}
@@ -146,7 +144,6 @@ const Calendar = props => {
 							let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day'); //d로해도되지만 직관성 - index값에  day정보
 							// console.log("days console : "+days.date())
 							if (moment() < days) {
-								//정확히 오늘 날짜와 일치하는 date
 								return (
 									<TouchableOpacity onPress={() => onSelectDate(days)} key={index} style={styles.today}>
 										<View
@@ -161,10 +158,10 @@ const Calendar = props => {
 									</TouchableOpacity>
 								);
 							} else {
-								//이외의 이번달 날짜들은 하얀색으로 출력
+								//미래의 날짜들
 								return (
 									<View key={index} style={styles.days_this_month}>
-										<Text style={[txt.roboto28, {color: GRAY30}]}>{days.format('D')}</Text>
+										<Text style={[txt.roboto28, {color: GRAY20}]}>{days.format('D')}</Text>
 									</View>
 								);
 							}
@@ -201,14 +198,7 @@ const Calendar = props => {
 							onPress={() => {
 								setMoment(getMoment.clone().subtract(1, 'month'));
 							}}>
-							<View
-								style={{
-									flexDirection: 'row',
-									alignItems: 'center',
-									justifyContent: 'center',
-									width: 120 * DP,
-									height: 80 * DP,
-								}}>
+							<View style={[styles.monthConatiner]}>
 								<Text style={[txt.roboto32b, {color: GRAY20, marginRight: 12 * DP}]}>{getMoment.clone().subtract(1, 'month').month() + 1}</Text>
 								<View style={{transform: [{rotate: '180deg'}]}}>
 									<NextMark />
@@ -225,7 +215,7 @@ const Calendar = props => {
 							onPress={() => {
 								setMoment(getMoment.clone().add(1, 'month'));
 							}}>
-							<View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: 120 * DP, height: 80 * DP}}>
+							<View style={[styles.monthConatiner]}>
 								<NextMark />
 								<Text style={[txt.roboto32b, {color: GRAY20, marginLeft: 15 * DP}]}>{getMoment.clone().add(1, 'month').month() + 1}</Text>
 							</View>
@@ -252,18 +242,7 @@ const Calendar = props => {
 					</View>
 					<View style={{marginTop: 15 * DP, marginBottom: 5 * DP}}>{calendarArr()}</View>
 					{/* 모달바깥쪽 클릭이 modalOFF로 처리되게끔 한 View 목록 */}
-					{/* <TouchableWithoutFeedback onPress={modalOff}>
-					<View style={{position: 'absolute', width: 440, height: 100, top: -100, left: -20, backgroundColor: BG}} />
-				</TouchableWithoutFeedback>
-				<TouchableWithoutFeedback onPress={modalOff}>
-					<View style={{position: 'absolute', width: 30, height: 1000, top: 0, right: -20, backgroundColor: BG}} />
-				</TouchableWithoutFeedback>
-				<TouchableWithoutFeedback onPress={modalOff}>
-					<View style={{position: 'absolute', width: 30, height: 1000, top: 0, left: -20, backgroundColor: BG}} />
-				</TouchableWithoutFeedback>
-				<TouchableWithoutFeedback onPress={modalOff}>
-					<View style={{position: 'absolute', width: 440, height: 170, bottom: -170, left: -20, backgroundColor: BG}} />
-				</TouchableWithoutFeedback> */}
+
 					<View style={{backgroundColor: APRI10, width: '100%', height: 2 * DP, marginBottom: 20}} />
 
 					<AniButton btnTitle={'나가기'} onPress={modalOff}></AniButton>

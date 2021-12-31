@@ -45,7 +45,6 @@ const InputWithSelect = props => {
 	};
 
 	const validator = text => {
-		console.log('props.validator(text) ', props.validator(text));
 		return props.validator(text) ? props.validator(text) : false;
 	};
 

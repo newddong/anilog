@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import {APRI10, BLUE10, GRAY10, LIGHT_SALMON, MIDNIGHT_BLUE, PALETUR, WHITE} from 'Root/config/color';
 import DP from 'Root/config/dp';
 export const styles = StyleSheet.create({
@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
 	outside: {
 		// marginTop: 200 * DP,
 		// borderRadius: 40 * DP,
+		height: 1500 * DP,
 		backgroundColor: 'white',
 	},
 	popUpWindow: {
@@ -25,6 +26,13 @@ export const styles = StyleSheet.create({
 		alignSelf: 'center',
 		color: MIDNIGHT_BLUE,
 		textAlign: 'center',
+	},
+	monthConatiner: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		width: 120 * DP,
+		height: 80 * DP,
 	},
 	changeMonthBtn: {
 		alignItems: 'center',

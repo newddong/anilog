@@ -116,7 +116,7 @@ export default AssignUserProfileImage = props => {
 		// var regExp = /^[a-z0-9_-]{2,10}$/ ;
 		if (text) {
 			var blank_pattern = /\s/g;
-			let regExp = /^[\w\W가-힣]{2,20}$/;
+			let regExp = /^[가-힣a-zA-Z0-9_]{2,20}$/;
 			let regExSpace = text.search(/\s/);
 			console.log('regexSPa', regExSpace);
 			return regExp.test(text) && checkDuplicateNickname(text) && !blank_pattern.test(text);

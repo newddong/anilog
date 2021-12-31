@@ -12,6 +12,7 @@ import Modal from '../modal/Modal';
 import ImagePicker from 'react-native-image-crop-picker';
 import userGlobalObject from 'Root/config/userGlobalObject';
 import DP from 'Root/config/dp';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default FeedCommentList = props => {
 	// console.log('그림들' + props.route.params);
@@ -23,7 +24,7 @@ export default FeedCommentList = props => {
 	const [parentComment, setParentComment] = React.useState();
 	const [content, setContent] = React.useState('');
 	const input = React.useRef();
-
+	userGlobalObject;
 	React.useEffect(() => {
 		if (props.route.name == 'FeedCommentList') {
 			getCommentListByFeedId(
@@ -58,8 +59,6 @@ export default FeedCommentList = props => {
 		if (parentComment) {
 			param = {...param, commentobject_id: parentComment};
 		}
-
-		console.log(userGlobalObject.userInfo);
 		createComment(
 			param,
 			result => {
@@ -119,7 +118,6 @@ export default FeedCommentList = props => {
 			);
 		if (index > 0) return <CommentList items={item} onPressReplyBtn={onReplyBtnClick} />;
 	};
-
 	return (
 		<View style={[login_style.wrp_main, feedCommentList.container]}>
 			<FlatList
@@ -129,7 +127,8 @@ export default FeedCommentList = props => {
 				ListHeaderComponent={<FeedContent data={props.route.params.feedobject} />}
 			/>
 			{/* Parent Comment 혹은 Child Comment 에서 답글쓰기를 클릭할 시 화면 최하단에 등장 */}
-			{editComment || props.route.name == 'FeedCommentList' ? (
+			{/* 비로그인 유저일 경우 리플란이 안보이도록 처리 - 상우 */}
+			{userGlobalObject.userInfo && (editComment || props.route.name == 'FeedCommentList') ? (
 				<ReplyWriteBox
 					onAddPhoto={onAddPhoto}
 					onChangeReplyInput={onChangeReplyInput}
