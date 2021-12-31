@@ -30,17 +30,6 @@ const EmialDropDown = props => {
 	};
 
 	React.useEffect(() => {
-		if (props.defaultValue) {
-			const defaultEmail = props.defaultValue;
-			console.log('props.default', defaultEmail);
-			const findIndex = EMAIL_DOMAIN.findIndex(e => e == defaultEmail.split('@')[1]);
-			console.log('findIndex', findIndex);
-			setValue(props.menu[findIndex]);
-			props.onSelect(props.menu[findIndex], findIndex);
-		}
-	}, [props.defaultValue]);
-
-	React.useEffect(() => {
 		if (props.defaultIndex) {
 			console.log('Props.DefaultIndex : ', props.defaultIndex);
 			setValue(props.menu[props.defaultIndex]);

@@ -12,7 +12,8 @@ import {getUserInfoById, updateUserIntroduction} from 'Root/api/userapi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TextInput} from 'react-native';
 import moment from 'moment';
-import {Arrow_Down_GRAY20} from '../atom/icon';
+import {Arrow_Down_GRAY20, ProfileDefaultImg} from '../atom/icon';
+import dp from 'Root/screens/dp';
 
 export default ShelterInfoSetting = ({route}) => {
 	// console.log('ShelterInfoSetting', route.params);

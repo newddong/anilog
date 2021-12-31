@@ -107,6 +107,8 @@ export default EditShelterInfo = ({route, navigation}) => {
 
 	//수정 완료 클릭
 	const finalized = () => {
+		console.log('email', data.user_email);
+
 		Modal.popTwoBtn(
 			'정말 보호소 정보를 수정하시겠습니까?',
 			'아니오',
@@ -117,11 +119,10 @@ export default EditShelterInfo = ({route, navigation}) => {
 				let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 				const regexPhone = regPhone.test(data.shelter_delegate_contact_number);
 				const regexEmail = regEmail.test(data.user_email);
-				console.log('email', data.user_email);
 				console.log('regexEmail', regexEmail);
 				console.log('regexPhone', regexPhone);
 				if (regexEmail && regexPhone) {
-					console.log('Test', data);
+					// console.log('Test', data);
 					updateShelterDetailInformation(
 						{
 							userobject_id: data._id,
@@ -133,7 +134,7 @@ export default EditShelterInfo = ({route, navigation}) => {
 							shelter_foundation_date: data.shelter_foundation_date,
 						},
 						result => {
-							console.log('result / updateShelterDetail / EditShelterInfo   :  ', result);
+							// console.log('result / updateShelterDetail / EditShelterInfo   :  ', result);
 							Modal.close();
 						},
 						err => {

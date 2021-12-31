@@ -71,13 +71,13 @@ export default UserVerification = props => {
 	};
 
 	const nameValidator = name => {
-		const trimmed = name.trim();
+		// const trimmed = name.trim();
 		// let regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
 		let regExp = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_-]{2,20}$/;
 		let pattern = /\s/g;
 		// console.log('trimmed:' + trimmed.length);
 		// console.log('regex', !pattern.test(trimmed) && regExp.test(trimmed));
-		return !pattern.test(trimmed) && regExp.test(trimmed);
+		return !pattern.test(name) && regExp.test(name);
 	};
 
 	const mobileNumValidator = text => {

@@ -171,6 +171,7 @@ export const mobile_carrier = ['SK텔레콤', 'LG U+', 'KT', '알뜰'];
 
 //이메일 도메인
 export const EMAIL_DOMAIN = [
+	'선택',
 	'naver.com',
 	'daum.net',
 	'gmail.com',

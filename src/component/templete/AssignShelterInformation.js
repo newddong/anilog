@@ -61,7 +61,7 @@ export default AssignShelterInformation = props => {
 	React.useEffect(() => {
 		var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 		setEmailConfirmed(regEmail.test(data.user_email));
-	}, [data.user_email]);
+	}, [data]);
 
 	const onClearHomepage = () => {
 		setData({...data, shelter_homepage: ''});
@@ -80,11 +80,13 @@ export default AssignShelterInformation = props => {
 
 	const onValidPhoneNumber = isValid => {
 		// let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-		setPhoneConfirmed(8 < data.shelter_delegate_contact_number.length < 12);
+		console.log('dd', data.shelter_delegate_contact_number.length > 9);
+
+		setPhoneConfirmed(9 < data.shelter_delegate_contact_number.length);
 	};
 
 	const phoneValidate = num => {
-		return num.length > 0;
+		return 12 > num.length > 8;
 	};
 
 	return (

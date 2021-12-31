@@ -15,6 +15,7 @@ import EmialDropDown from './EmailDropDown';
  * @param {Array.<string>} props.dropdownItems - 메일주소 업체들
  * @param {number} props.defaultIndex - 드롭다운의 기본 인덱스(기본값:0)
  * @param {string} props.value - 값
+ * @param {string} props.defaultValue -디폴트 값
  * @param {number} props.width - 텍스트입력의 너비
  * @param {string} props.title - InputWithEmail의 제목
  * @param {boolean} props.title_star - 제목에 *표시 여부
@@ -27,35 +28,35 @@ import EmialDropDown from './EmailDropDown';
  */
 const InputWithEmail = props => {
 	// Dropdown에서 현재 선택된 항목 State, 처음 Mount시 itemList[defaultIndex]를 반환
-	const [selectedItem, setSelectedItem] = React.useState(EMAIL_DOMAIN[props.defaultIndex || 0]);
-	const [index, setIndex] = React.useState();
+	const [selectedItem, setSelectedItem] = React.useState();
+	const [defaultIndex, setDefaultIndex] = React.useState(0);
 	const [input, setInput] = React.useState(props.value || '');
 	const [domainDirect, setDomainDirect] = React.useState('');
 	const [directInputMode, setDirectInputMode] = React.useState(false);
 	const [email, setEmail] = React.useState(props.value);
+	const [defaultAffected, setDefaultAffected] = React.useState(false);
 
 	React.useEffect(() => {
-		// console.log('Email 합치기 :', email);
+		console.log('Email 합치기 :', email);
 		props.onChange(email);
 	}, [email]);
 
-	// React.useEffect(() => {
-	// 	//상세정보인 경우 DB의 값을 가져와서 드롭다운을 해당 DB도메인주소와 맞춰준다
-	// 	console.log('props.DefaultValue', props.defaultValue);
-	// 	if (props.defaultValue) {
-	// 		const findIndex = EMAIL_DOMAIN.findIndex(e => e == props.defaultValue.split('@')[1]);
-	// 		console.log('findIndex', findIndex);
-	// 		if (findIndex == -1) {
-	// 			const directInputIndex = EMAIL_DOMAIN.findIndex(e => e == '직접입력');
-	// 			setIndex(directInputIndex);
-	// 		} else {
-	// 			setIndex(findIndex);
-	// 			setSelectedItem(EMAIL_DOMAIN[findIndex]);
-	// 		}
-	// 	}
-	// }, [props.defaultValue]);
+	React.useEffect(() => {
+		if (props.defaultValue && !defaultAffected) {
+			const findDefaultDomain = EMAIL_DOMAIN.findIndex(e => e == props.defaultValue.split('@')[1]);
+			if (findDefaultDomain == -1) {
+				const directInputIndex = EMAIL_DOMAIN.findIndex(e => e == '직접입력');
+				setDefaultIndex(directInputIndex);
+				setDefaultAffected(true);
+			} else {
+				setDefaultIndex(findDefaultDomain);
+				setDefaultAffected(true);
+			}
+		}
+	}, [props.defaultValue]);
 
 	const onChange = text => {
+		console.log('text', text);
 		setInput(text);
 		directInputMode ? setEmail(text + '@' + domainDirect) : setEmail(text + '@' + selectedItem);
 	};
@@ -65,20 +66,21 @@ const InputWithEmail = props => {
 		if (item == '직접입력') {
 			setDomainDirect('');
 			setDirectInputMode(true);
-			setEmail(input);
+			setSelectedItem('');
+			// console.log('직접입력 Input', input);
+			setEmail(input.split('@')[0]);
 			props.onSelectDropDown(item, index);
 		} else {
 			setDirectInputMode(false);
 			setSelectedItem(item);
-			setIndex(index);
-			setEmail(input + '@' + selectedItem);
+			setEmail(input.split('@')[0] + '@' + item);
 			props.onSelectDropDown(item, index);
 		}
 	};
 
 	const onDirectInput = text => {
 		setDomainDirect(text);
-		setEmail(input + '@' + text);
+		setEmail(input.split('@')[0] + '@' + text);
 	};
 
 	const validator = text => {
@@ -103,7 +105,8 @@ const InputWithEmail = props => {
 			<View style={{flexDirection: 'row', alignItems: 'center'}}>
 				<Input24
 					placeholder={props.placeholder}
-					value={props.defaultValue ? props.defaultValue.split('@')[0] : input}
+					value={input.split('@')[0]}
+					defaultValue={props.defaultValue ? props.defaultValue.split('@')[0] : ''}
 					onChange={onChange}
 					showCrossMark={false}
 					maxlength={30}
@@ -119,8 +122,8 @@ const InputWithEmail = props => {
 				<EmialDropDown
 					menu={EMAIL_DOMAIN}
 					width={254}
-					// defaultIndex={index}
-					defaultValue={props.defaultValue}
+					defaultIndex={defaultIndex}
+					defaultDirectInput={props.defaultValue ? props.defaultValue.split('@')[1] || '' : ''}
 					onChangeDomain={onDirectInput}
 					onSelect={onSelectDropDown}
 				/>
