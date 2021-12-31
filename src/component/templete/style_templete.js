@@ -559,8 +559,8 @@ export const temp_style = StyleSheet.create({
 		// backgroundColor: '#B3EBB5',
 	},
 	bracket48: {
-		width: 50 * DP,
-		height: 50 * DP,
+		width: 70 * DP, //원래 50
+		height: 70 * DP,
 		// backgroundColor: '#8F8065',
 	},
 	introduceInfo: {
