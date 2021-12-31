@@ -83,12 +83,12 @@ export default UserVerification = props => {
 	const mobileNumValidator = text => {
 		// console.log('text', text);
 		// console.log('상단 폼 체크 : ', text.length > 6);
-		return text.length > 6;
+		return text.length > 2;
 		//휴대폰 인증함수
 	};
 
 	const verifyNumValidator = verifyNum => {
-		return verifyNum.length > 5;
+		return verifyNum.length > 2;
 		//인증번호 입력 인증함수(여기서는 true를 반환해도 번호인증요청에서 false가 되면 통과하지 못하므로 return true를 해도 상관없음)
 	};
 
