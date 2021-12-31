@@ -16,23 +16,26 @@ import {login_style, profile, temp_style} from './style_templete';
 import Modal from 'Component/modal/Modal';
 import userGlobalObject from 'Root/config/userGlobalObject';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {emailVerification} from '../organism_ksw/style_organism';
 
 export default Profile = ({route, navigation}) => {
-	// console.log('profile props', props.route.params);
+	console.log('profile props', route);
 	const [data, setData] = React.useState({...route.params?.userobject, feedList: []}); //라벨을 클릭한 유저의 userObject data
 	const [tabMenuSelected, setTabMenuSelected] = React.useState(0); //프로필 Tab의 선택상태
 	const [showOwnerState, setShowOwnerState] = React.useState(false); // 현재 로드되어 있는 profile의 userType이 Pet인 경우 반려인 계정 리스트의 출력 여부
 	const [showCompanion, setShowCompanion] = React.useState(false); // User계정이 반려동물버튼을 클릭
 	const [protectActList, setProtectActList] = React.useState([]);
 	React.useEffect(() => {
-		// console.log('유저프로필 로드', route.params);
+		console.log('유저프로필 로드', route);
+
 		if (route.params && route.params.userobject) {
+			console.log('받아짐???', route.params.userobject._id);
 			getUserProfile(
 				{
 					userobject_id: route.params.userobject._id,
 				},
 				result => {
-					// console.log('result ', result.msg);
+					console.log('result ', result.msg);
 					navigation.setOptions({title: result.msg.user_nickname});
 					setData(result.msg);
 				},
