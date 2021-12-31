@@ -15,6 +15,7 @@ import {login_style, btn_style, temp_style, progressbar_style, userAssign} from 
 // 이메일부분 삭제 컨펌 나면 삭제 실시 예정
 
 export default UserVerification = props => {
+	console.log('-UserVerification-');
 	const user_data = React.useRef({
 		...props.route.params,
 		user_name: 'name',
@@ -71,13 +72,12 @@ export default UserVerification = props => {
 	};
 
 	const nameValidator = name => {
-		const trimmed = name.trim();
 		// let regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
 		let regExp = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_-]{2,20}$/;
 		let pattern = /\s/g;
 		// console.log('trimmed:' + trimmed.length);
 		// console.log('regex', !pattern.test(trimmed) && regExp.test(trimmed));
-		return !pattern.test(trimmed) && regExp.test(trimmed);
+		return !pattern.test(name) && regExp.test(name);
 	};
 
 	const mobileNumValidator = text => {
