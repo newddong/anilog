@@ -71,6 +71,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 
 	//확인클릭
 	const goToNextStep = () => {
+		console.log('data', data);
 		nicknameDuplicationCheck(
 			{user_nickname: data.user_nickname},
 			result => {
@@ -109,6 +110,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 			.then(images => {
 				console.log('images', images.path);
 				setData({...data, user_profile_uri: images.path || data.user_profile_uri});
+				console.log('AssignPetProfileImage', data);
 				Modal.close();
 			})
 			.catch(err => console.log(err + ''));
