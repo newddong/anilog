@@ -169,13 +169,13 @@ export default FeedContent = props => {
 			{/* FeedText */}
 			{props.missingOrReportDetail ? (
 				<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]}>
-					<FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
-					{/* <HashText style={[txt.noto28]}>{feed_content}</HashText> */}
+					{/* <FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} /> */}
+					<HashText style={[txt.noto28]}>{feed_content}</HashText>
 				</View>
 			) : (
 				<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]} onLayout={onLayoutContent}>
-					<FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} />
-					{/* <HashText style={[txt.noto28]}>{feed_content}</HashText> */}
+					{/* <FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} /> */}
+					<HashText style={[txt.noto28]}>{feed_content}</HashText>
 				</View>
 			)}
 
