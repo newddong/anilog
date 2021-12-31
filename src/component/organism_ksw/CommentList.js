@@ -14,7 +14,6 @@ import {txt} from 'Root/config/textstyle';
  * }} props
  */
 export default CommentList = props => {
-
 	const renderItem = ({item, index}) => {
 		return (
 			<ParentComment
