@@ -10,6 +10,7 @@ import {GRAY10} from 'Root/config/color';
 import Swiper from 'react-native-swiper';
 
 export default Feed = React.memo(props => {
+	console.log('Feed', props.data);
 	const navigation = useNavigation();
 	const {
 		feed_content,

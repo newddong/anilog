@@ -424,7 +424,7 @@ export const parentComment = StyleSheet.create({
 	comment_contents: {
 		width: 574 * DP,
 		marginLeft: 80 * DP,
-		marginTop: 15 * DP,
+		// marginTop: 3 * DP, //원래는 15였음
 		alignSelf: 'flex-start',
 	},
 	showChildComment: {
@@ -454,5 +454,8 @@ export const parentComment = StyleSheet.create({
 	writeCommentText: {
 		color: GRAY20,
 		includeFontPadding: false,
+	},
+	img_square_round: {
+		marginTop: 5 * DP,
 	},
 });

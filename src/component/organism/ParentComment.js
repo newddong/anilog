@@ -10,7 +10,7 @@ import MeatBallDropdown from '../molecules/MeatBallDropdown';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {DEFAULT_PROFILE, SETTING_COMMENT, SETTING_OWN_COMMENT} from 'Root/i18n/msg';
 import {GRAY10} from 'Root/config/color';
-import { getChildCommentList } from 'Root/api/commentapi';
+import {getChildCommentList} from 'Root/api/commentapi';
 import Modal from '../modal/Modal';
 
 /**
@@ -45,7 +45,7 @@ export default ParentComment = props => {
 
 	const onPressReplyBtn = () => {
 		props.onPressReplyBtn(props.parentComment._id);
-	}
+	};
 
 	const onCLickHeart = () => {
 		setLikeState(!likeState);
@@ -54,12 +54,14 @@ export default ParentComment = props => {
 	const showChildComment = () => {
 		getChildCommentList(
 			{
-				commentobject_id: props.parentComment._id
+				commentobject_id: props.parentComment._id,
 			},
-			(result)=> {setChild(result.msg);setShowChild(!showChild);},
-			(err)=> Modal.alert(err)
-		)
-		
+			result => {
+				setChild(result.msg);
+				setShowChild(!showChild);
+			},
+			err => Modal.alert(err),
+		);
 	};
 
 	return (
@@ -67,15 +69,15 @@ export default ParentComment = props => {
 			{/* 유저프로필 라벨 및 Meatball  */}
 			<View style={[organism_style.UserLocationTimeLabel_view_parentComment]}>
 				<View style={organism_style.userLocationTimeLabel}>
-					<UserLocationTimeLabel data={data.comment_writer_id} time={parentComment.comment_update_date}/>
+					<UserLocationTimeLabel data={data.comment_writer_id} time={parentComment.comment_update_date} />
 				</View>
 				<View style={[organism_style.meatball_50_vertical]}>
 					<MeatBallDropdown menu={isMyComment ? SETTING_OWN_COMMENT : SETTING_COMMENT} horizontal={false} />
 				</View>
 			</View>
 			{/* 댓글 Dummy 이미지 및 대댓글 목록 */}
-			{data.comment_photo_uri != null ? (
-				<View style={[organism_style.img_square_round_574, parentComment.img_square_round_574]}>
+			{data.comment_photo_uri != null ? ( //img_square_round_574
+				<View style={[organism_style.img_square_round_574, parentComment.img_square_round]}>
 					<Image style={[styles.img_square_round_574]} source={{uri: data ? data.comment_photo_uri : DEFAULT_PROFILE}} />
 				</View>
 			) : (
@@ -89,7 +91,7 @@ export default ParentComment = props => {
 				{/* Data - 좋아요 상태 t/f */}
 
 				<TouchableOpacity onPress={showChildComment} style={[parentComment.showChildComment]}>
-					{data.children_count>0&&<Text style={[txt.noto24, {color: GRAY10}]}> 답글{data.children_count}개 보기 </Text>}
+					{data.children_count > 0 && <Text style={[txt.noto24, {color: GRAY10}]}> 답글{data.children_count}개 보기 </Text>}
 				</TouchableOpacity>
 				<View style={[parentComment.heart30]}>
 					{likeState ? <Heart30_Filled onPress={onCLickHeart} /> : <Heart30_Border onPress={onCLickHeart} />}
@@ -105,10 +107,7 @@ export default ParentComment = props => {
 			{/* Data - 대댓글List */}
 			{showChild ? (
 				<View style={[organism_style.childCommentList, parentComment.img_square_round_574]}>
-					<ChildCommentList
-						items={child}
-						showChildComment={showChildComment}
-					/>
+					<ChildCommentList items={child} showChildComment={showChildComment} />
 				</View>
 			) : (
 				false
