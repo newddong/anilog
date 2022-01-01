@@ -81,7 +81,8 @@ const InputTimeLimit = props => {
 
 	const getMsg = () => {
 		if (input.length == 0 && !timeOut) {
-			return '인증번호를 입력하세요';
+			// return '인증번호를 입력하세요';
+			return '3글자 이상 문자 입력 후 인증 요청을 눌러주세요.';
 		} else if (!confirm && !timeOut) {
 			return props.alert_msg;
 		} else if (timeOut) {

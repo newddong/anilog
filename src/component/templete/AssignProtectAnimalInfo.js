@@ -150,14 +150,14 @@ export default AssignProtectAnimalInfo = ({route}) => {
 				{/* 예상 연령 */}
 				<View style={[temp_style.inputForm_assignProtectAnimal_line1]}>
 					<View style={assignProtectAnimal_style.width118}>
-						<Text style={[txt.noto28]}>예상 연령</Text>
+						<Text style={[txt.noto28, {color: GRAY10}]}>예상 연령</Text>
 					</View>
 					<View style={[assignProtectAnimal_style.dropdownSelect_year]}>
-						<NormalDropDown menu={PET_YEAR} height={500} onSelect={onSelectYear} defaultIndex={0} />
+						<NormalDropDown menu={PET_YEAR} height={500} width={160} onSelect={onSelectYear} defaultIndex={0} />
 					</View>
 					<Text style={[txt.noto24, assignProtectAnimal_style.text118]}>년</Text>
-					<View style={[assignProtectAnimal_style.dropdownSelect_year]}>
-						<NormalDropDown menu={PET_MONTH} onSelect={onSelectMonth} defaultIndex={0} />
+					<View style={[assignProtectAnimal_style.dropdownSelect_month]}>
+						<NormalDropDown menu={PET_MONTH} onSelect={onSelectMonth} width={160} defaultIndex={0} />
 					</View>
 					<Text style={[txt.noto24, assignProtectAnimal_style.text118]}>개월</Text>
 				</View>
@@ -165,7 +165,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 				{/* 체중 */}
 				<View style={[temp_style.inputForm_assignProtectAnimal_line2, assignProtectAnimal_style.inputform]}>
 					<View style={assignProtectAnimal_style.width118}>
-						<Text style={[txt.noto28]}>체중</Text>
+						<Text style={[txt.noto28, {color: GRAY10}]}>체중</Text>
 					</View>
 					<View style={[assignProtectAnimal_style.dropdownSelect_year]}>
 						<Input30
@@ -173,9 +173,9 @@ export default AssignProtectAnimalInfo = ({route}) => {
 							showmsg={false}
 							confirm={true}
 							showTitle={false}
-							width={164}
+							width={200}
 							placeholder={'몸무게 입력'}
-							clearMark={false}
+							showCrossMark={false}
 							onChange={onChangeKg}
 							value={data.protect_animal_weight}
 							validator={weigthValid}

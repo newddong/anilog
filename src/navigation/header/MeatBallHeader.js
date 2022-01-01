@@ -24,13 +24,13 @@ export default MeatBallHeader = props => {
 				</View>
 			</TouchableOpacity>
 			<Text style={txt.roboto40b}>{props.options.title ? props.options.title : props.route.params.title}</Text>
-			{/* <MeatBallDropdown
+			<MeatBallDropdown
 				menu={props.menu}
 				onSelect={(v, i) => console.log(v + ':' + i)}
 				horizontal
 				// onOpen={()=>{alert('open')}}
 				// onClose={()=>{alert('close')}}
-			/> */}
+			/>
 		</View>
 	);
 };

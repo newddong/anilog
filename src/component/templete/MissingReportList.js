@@ -43,20 +43,28 @@ export default MissingReportList = props => {
 
 	// 실종 데이터 불러오기 (아직 API 미작업 )
 	React.useEffect(() => {
+		const unsubscribe = navigation.addListener('focus', () => {
+			getList();
+		});
+
 		console.log('MissingReportList:feedlist of missing', filterData);
-		getMissingReportList(
-			filterData,
-			data => {
-				// console.log('getMissingReportList data', data.msg);
-				setData(data.msg);
-			},
-			err => {
-				console.log('getMissingReportList Error', err);
-				if (err == '검색 결과가 없습니다.') {
-					setData([]);
-				}
-			},
-		);
+		const getList = () => {
+			getMissingReportList(
+				filterData,
+				data => {
+					// console.log('getMissingReportList data', data.msg);
+					setData(data.msg);
+				},
+				err => {
+					console.log('getMissingReportList Error', err);
+					if (err == '검색 결과가 없습니다.') {
+						setData([]);
+					}
+				},
+			);
+		};
+		getList();
+		return unsubscribe;
 	}, [refreshing, filterData]);
 
 	//제보 게시글 쓰기 클릭

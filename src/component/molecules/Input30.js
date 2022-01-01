@@ -121,7 +121,7 @@ const Input30 = React.forwardRef((props, ref) => {
 						]}
 					/>
 					{/* {input.length > 0 ? ( */}
-					{props.value.length > 0 ? (
+					{props.value.length > 0 && props.showCrossMark ? (
 						<TouchableOpacity onPress={onClear} style={{position: 'absolute', right: 0}}>
 							<Cross52 />
 						</TouchableOpacity>
@@ -193,6 +193,7 @@ Input30.defaultProps = {
 	showmsg: true,
 	alert_msg: 'alert_msg',
 	confirm_msg: 'confirm_msg',
+	showCrossMark: true,
 	editable: true,
 	onClear: e => console.log(e),
 	onChange: e => console.log(e),

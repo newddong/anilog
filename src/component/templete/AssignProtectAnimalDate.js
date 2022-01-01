@@ -21,10 +21,6 @@ export default AssignProtectAnimalDate = props => {
 		protect_animal_rescue_location: '',
 	});
 
-	React.useEffect(() => {
-		console.log('data / AnimalDate:', data);
-	}, [data]);
-
 	//구조날짜 값 변경 콜백
 	const onDateChange = date => {
 		setData({...data, protect_animal_rescue_date: date});
@@ -37,6 +33,7 @@ export default AssignProtectAnimalDate = props => {
 
 	//다음 버튼 클릭
 	const gotoNextStep = () => {
+		console.log('Before MoveOut Data : ', data);
 		navigation.push('AssignProtectAnimalType', {data: data, route: 'AssignProtectAnimalType'});
 	};
 
@@ -83,8 +80,13 @@ export default AssignProtectAnimalDate = props => {
 			</View>
 
 			<View style={[temp_style.btn_w226_assignProtectAnimal, assignProtectAnimal_style.btn_w226_view_image]}>
-				<AniButton btnLayout={btn_w226} btnTitle={BTN_BACK} btnTheme={'shadow'} btnStyle={'border'} onPress={() => navigation.goBack()} />
-				<AniButton btnLayout={btn_w226} btnTitle={BTN_NEXT} btnTheme={'shadow'} titleFontStyle={24} onPress={gotoNextStep} />
+				<AniButton onPress={() => navigation.goBack()} btnLayout={btn_w226} btnTitle={BTN_BACK} btnStyle={'border'} />
+				<AniButton
+					onPress={gotoNextStep}
+					disable={data.protect_animal_rescue_date == '' || data.protect_animal_rescue_location == ''}
+					btnLayout={btn_w226}
+					btnTitle={BTN_NEXT}
+				/>
 			</View>
 		</View>
 	);

@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/core';
-import React from 'react';
+import React, {useRef} from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 
 import {GRAY10} from 'Root/config/color';
@@ -27,12 +27,12 @@ import {
 	LOGOUT,
 } from 'Root/i18n/msg';
 import {btn_w280} from '../atom/btn/btn_style';
-import {FavoriteTag48_Filled, Paw48_APRI10, Setting46} from '../atom/icon';
+import {Arrow_Down_GRAY10, Arrow_Up_GRAY20, FavoriteTag48_Filled, Paw48_APRI10, Setting46} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import ProfileImageLarge194 from '../molecules/ProfileImageLarge194';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
 import SocialInfoB from '../organism_ksw/SocialInfoB';
-import {login_style, temp_style, userMenu_style} from './style_templete';
+import {login_style, shelterMenu, temp_style, userMenu_style} from './style_templete';
 // import {getUserProfile} from 'Root/api/usermenuapi';
 import {getUserProfile} from 'Root/api/userapi';
 import Modal from '../modal/Modal';
@@ -43,6 +43,7 @@ export default UserMenu = props => {
 	const navigation = useNavigation();
 	const ifFoucsed = useIsFocused();
 	const [data, setData] = React.useState({}); //우선 userObject 0번 추가
+	const [showMoreIntro, setShowMoreIntro] = React.useState(false);
 	//토큰에 로그인한 유저의 _id를 저장
 	// React.useLayoutEffect(() => {
 	React.useEffect(() => {
@@ -177,17 +178,31 @@ export default UserMenu = props => {
 				<View style={[userMenu_style.userMenu_step1]}>
 					<View style={[temp_style.userInfo, userMenu_style.userInfo]}>
 						<View style={[temp_style.profileImageLarge, userMenu_style.profileImageLarge]}>
-							<ProfileImageLarge194 data={data} />
+							{data._id != undefined && <ProfileImageLarge194 data={data} />}
 						</View>
 
 						<View>
 							<TouchableOpacity onPress={onPressMyName} style={[userMenu_style.user_id]}>
 								<Text style={[txt.roboto36b]}>{data.user_nickname || ''}</Text>
 							</TouchableOpacity>
+
 							<View style={[userMenu_style.contents]}>
-								<Text ellipsizeMode={'tail'} numberOfLines={3} style={[txt.noto24, {color: GRAY10}]}>
-									{data.user_introduction || '자기소개가 없습니다.'}
-								</Text>
+								{data._id != undefined && (
+									<Text numberOfLines={showMoreIntro ? 10 : 2} style={[txt.noto24, {color: GRAY10}]}>
+										{data.user_introduction || '자기소개가 없습니다.'}
+									</Text>
+								)}
+								{data._id != undefined && showMoreIntro ? (
+									<TouchableOpacity onPress={() => setShowMoreIntro(!showMoreIntro)} style={[shelterMenu.showMore, {}]}>
+										<Text style={[txt.noto24, {color: GRAY10}]}>접기</Text>
+										<Arrow_Up_GRAY20 />
+									</TouchableOpacity>
+								) : data._id != undefined ? (
+									<TouchableOpacity onPress={() => setShowMoreIntro(!showMoreIntro)} style={[shelterMenu.showMore, {}]}>
+										<Text style={[txt.noto24, {color: GRAY10}]}>펼치기</Text>
+										<Arrow_Down_GRAY10 />
+									</TouchableOpacity>
+								) : null}
 							</View>
 						</View>
 					</View>

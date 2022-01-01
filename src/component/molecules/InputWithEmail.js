@@ -3,7 +3,7 @@ import {txt} from 'Root/config/textstyle';
 import {Text, View, TouchableOpacity, TextInput} from 'react-native';
 import DP from 'Root/config/dp';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, Cross52} from '../atom/icon';
-import {APRI10, GRAY30, RED10} from 'Root/config/color';
+import {APRI10, GRAY10, GRAY30, RED10} from 'Root/config/color';
 import NormalDropDown from './NormalDropDown';
 import Input24 from './Input24';
 import {EMAIL_DOMAIN} from 'Root/i18n/msg';
@@ -108,6 +108,7 @@ const InputWithEmail = props => {
 					value={input.split('@')[0]}
 					defaultValue={props.defaultValue ? props.defaultValue.split('@')[0] : ''}
 					onChange={onChange}
+					showMsg={props.showMsg}
 					showCrossMark={false}
 					maxlength={30}
 					// onClear={onClear}
@@ -116,7 +117,7 @@ const InputWithEmail = props => {
 					validator={validator}
 					onValid={onValid}
 				/>
-				<View style={{}}>
+				<View style={{height: 80 * DP, borderBottomColor: APRI10, borderBottomWidth: 2 * DP, justifyContent: 'center'}}>
 					<Text style={[txt.roboto24b, {lineHeight: 36 * DP}]}>@</Text>
 				</View>
 				<EmialDropDown
@@ -135,6 +136,7 @@ InputWithEmail.defaultProps = {
 	placeholder: 'placeholder',
 	value: '',
 	title_star: false,
+	showMsg: false,
 	onClear: e => {},
 	onChange: e => {},
 	onValid: e => {},

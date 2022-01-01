@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, TouchableWithoutFeedback, KeyboardAvoidingView, Platform, Keyboard} from 'react-native';
-import {APRI10, GRAY10} from 'Root/config/color';
+import {View, TouchableWithoutFeedback, KeyboardAvoidingView, Platform, Keyboard, Text} from 'react-native';
+import {APRI10, GRAY10, GREEN, RED10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w654} from '../atom/btn/btn_style';
 import AniButton from '../molecules/AniButton';
@@ -80,13 +80,13 @@ export default AssignShelterInformation = props => {
 
 	const onValidPhoneNumber = isValid => {
 		// let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-		console.log('onValidPhoneNumber', data.shelter_delegate_contact_number.length > 9);
+		console.log('onValidPhoneNumber', data.shelter_delegate_contact_number.length >= 7);
 
 		setPhoneConfirmed(9 < data.shelter_delegate_contact_number.length);
 	};
 
 	const phoneValidate = num => {
-		return num.length > 8;
+		return num.length >= 7;
 	};
 
 	return (
@@ -100,9 +100,10 @@ export default AssignShelterInformation = props => {
 					maxstage={4} //전체 단계를 정의
 					width={600 * DP} //bar의 너비
 				/>
+				<Text style={[txt.noto24, {color: GRAY10}]}>전화번호와 E-mail은 반드시 입력해주세요.</Text>
 			</View>
 			{/* InputForm */}
-			<View>
+			<View style={[assignShelterInformation_style.inputFormContainer]}>
 				{/* (M)전화번호 */}
 				<View style={[temp_style.inputWithSelect_assignShelterInformation, assignShelterInformation_style.input24A]}>
 					<InputWithSelect
@@ -132,6 +133,13 @@ export default AssignShelterInformation = props => {
 						onChange={onChangeEmail}
 						onValid={onValidEmail}
 					/>
+					<View style={[assignShelterInformation_style.emailConfirmMsg]}>
+						{emailConfirmed ? (
+							<Text style={[txt.noto26, {color: GREEN}]}>이메일 양식과 일치합니다.</Text>
+						) : (
+							<Text style={[txt.noto26, {color: RED10}]}>이메일 양식에 맞춰주세요.</Text>
+						)}
+					</View>
 				</View>
 
 				{/* (M)홈페이지 */}

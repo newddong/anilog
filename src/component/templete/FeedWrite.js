@@ -10,7 +10,7 @@ import AniButton from '../molecules/AniButton';
 import {btn_w176, btn_w194} from '../atom/btn/btn_style';
 import ActionButton from '../molecules/ActionButton';
 import SelectedMediaList from '../organism_ksw/SelectedMediaList';
-import {pet_kind} from 'Root/i18n/msg';
+import {DOG_KIND, pet_kind} from 'Root/i18n/msg';
 import DatePicker from '../molecules/DatePicker';
 import TabSelectFilled_Type1 from '../molecules/TabSelectFilled_Type1';
 import Input24 from '../molecules/Input24';
@@ -28,6 +28,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import HashInput from 'Molecules/HashInput';
 import {getUserListByNickname} from 'Root/api/userapi';
 import AccountHashList from '../organism_ksw/AccountHashList';
+import {getAddressList} from 'Root/api/address';
 
 export default FeedWrite = props => {
 	const [showPetAccountList, setShowPetAccountList] = React.useState(false); //PetAccount 계정
@@ -113,7 +114,7 @@ export default FeedWrite = props => {
 					cropping: true,
 				})
 					.then(images => {
-						console.log(images);
+						console.log('images', images);
 						setSelectedImg(selectedImg.concat(images.path));
 						Modal.close();
 					})
@@ -124,17 +125,18 @@ export default FeedWrite = props => {
 				launchImageLibrary(
 					{
 						mediaType: 'photo',
-						selectionLimit: 5,
+						selectionLimit: 5 - selectedImg.length, //다중선택 모드일 경우 상시 5개면 4개 상태에서 최대 5개를 더해 9개가 가능해짐
 						maxHeight: 1500,
 						maxWidth: 1500,
 						quality: 0.8,
 					},
 					responseObject => {
 						console.log('선택됨', responseObject);
+
 						if (!responseObject.didCancel) {
-							responseObject.didCancel
-								? console.log('선택취소')
-								: setSelectedImg(responseObject.assets.map(v => v.uri).slice(0, 5 - selectedImg.length));
+							let tempContainer = [...selectedImg];
+							responseObject.assets.map(v => tempContainer.push(v.uri));
+							setSelectedImg(tempContainer);
 							Modal.close();
 						}
 					},
@@ -143,7 +145,6 @@ export default FeedWrite = props => {
 		);
 	};
 
-	
 	//사진 삭제
 	const deletePhoto = index => {
 		setSelectedImg(selectedImg.filter((v, i) => i != index));
@@ -265,38 +266,36 @@ export default FeedWrite = props => {
 			);
 		}
 	};
-	
+
 	return (
 		<View style={[login_style.wrp_main, feedWrite.container]}>
-			
 			{/* <ScrollView contentContainerStyle={{width: 750 * DP, alignItems: 'center'}}> */}
-				<HashInput
-					containerStyle={[temp_style.feedTextEdit,{borderBottomWidth:2*DP,borderBottomColor:APRI10}]}
-					textAlignVertical={'top'}
-					multiline={true}
-					placeholder="게시물을 작성하세요"
-					placeholderTextColor={GRAY20}
-					onChangeText={inputFeedTxt}
-					></HashInput>
+			<HashInput
+				containerStyle={[temp_style.feedTextEdit, {borderBottomWidth: 2 * DP, borderBottomColor: APRI10}]}
+				textAlignVertical={'top'}
+				multiline={true}
+				placeholder="게시물을 작성하세요"
+				placeholderTextColor={GRAY20}
+				onChangeText={inputFeedTxt}></HashInput>
 
-				{setWriteModeState()}
-				{/* 긴급 게시물 관련 버튼 컨테이너 */}
-				
+			{setWriteModeState()}
+			{/* 긴급 게시물 관련 버튼 컨테이너 */}
+
 			{/* </ScrollView> */}
 			{showUrgentBtns ? (
 				<View style={[temp_style.floatingBtn, feedWrite.urgentBtnContainer]}>
 					{showActionButton ? (
 						<View>
-							<View style={[feedWrite.urgentBtnItemContainer]}>
-								<TouchableWithoutFeedback onPress={onPressMissingWrite}>
+							<TouchableWithoutFeedback onPress={onPressMissingWrite}>
+								<View style={[feedWrite.urgentBtnItemContainer]}>
 									<Text style={[txt.noto32, {color: WHITE}]}>실종</Text>
-								</TouchableWithoutFeedback>
-							</View>
-							<View style={[feedWrite.urgentBtnItemContainer]}>
-								<TouchableWithoutFeedback onPress={onPressReportWrite}>
+								</View>
+							</TouchableWithoutFeedback>
+							<TouchableWithoutFeedback onPress={onPressReportWrite}>
+								<View style={[feedWrite.urgentBtnItemContainer]}>
 									<Text style={[txt.noto32, {color: WHITE}]}>제보</Text>
-								</TouchableWithoutFeedback>
-							</View>
+								</View>
+							</TouchableWithoutFeedback>
 						</View>
 					) : null}
 					<TouchableWithoutFeedback onPress={() => setShowActionButton(!showActionButton)}>
@@ -306,11 +305,10 @@ export default FeedWrite = props => {
 			) : (
 				false
 			)}
-
+			{/* </ScrollView> */}
 		</View>
 	);
 };
-
 
 //실종 컴포넌트
 const MissingForm = props => {
@@ -392,7 +390,7 @@ const MissingForm = props => {
 		setData({...data, missing_animal_features: feature});
 	};
 	return (
-		<View style={[feedWrite.lostAnimalForm]}>
+		<ScrollView style={[feedWrite.lostAnimalForm]} showsVerticalScrollIndicator={false}>
 			{/* DropDownSelect */}
 			<View style={[feedWrite.lostAnimalForm_Form]}>
 				<View style={[feedWrite.formTitle]}>
@@ -475,7 +473,7 @@ const MissingForm = props => {
 					value={data.missing_animal_features}
 				/>
 			</View>
-		</View>
+		</ScrollView>
 	);
 };
 
@@ -485,15 +483,16 @@ const ReportForm = props => {
 	const route = useRoute();
 	const [addr, setAddr] = React.useState('');
 	const [detailAddr, setDetailAddr] = React.useState('');
+
 	const [types, setTypes] = React.useState([
 		{
 			pet_species: '개',
-			pet_species_detail: ['믹스견', '치와와', '말티즈', '미니어처 핀셔', '파피용', '포메라니안', '푸들', '시추'],
+			pet_species_detail: DOG_KIND,
 		},
 	]);
 
 	const [data, setData] = React.useState({
-		report_witness_date: '2021.01.01',
+		report_witness_date: '',
 		report_witness_location: '',
 		report_animal_features: '',
 		report_animal_species: types[0].pet_species,
@@ -527,6 +526,7 @@ const ReportForm = props => {
 			err => Modal.alert(err),
 		);
 	}, []);
+
 	const onChangeAddr = addr => {
 		setAddr(addr);
 	};
@@ -561,7 +561,7 @@ const ReportForm = props => {
 		navigation.navigate('AddressSearch', {from: route.name, fromkey: route.key});
 	};
 	return (
-		<View style={[feedWrite.reportForm_container]}>
+		<ScrollView style={[feedWrite.reportForm_container]} showsVerticalScrollIndicator={false}>
 			<View style={[feedWrite.reportForm]}>
 				<View style={[feedWrite.reportForm_form]}>
 					<View style={[feedWrite.lostAnimalForm_Form]}>
@@ -588,7 +588,7 @@ const ReportForm = props => {
 						<Text style={[txt.noto24, {color: APRI10}]}>제보 날짜</Text>
 					</View>
 					<View style={[temp_style.datePicker_assignShelterInformation, feedWrite.datePicker]}>
-						<DatePicker width={654} onDateChange={onDateChange} />
+						<DatePicker width={654} onDateChange={onDateChange} defaultDate={''} />
 					</View>
 					<View style={[feedWrite.reportLocation_form]}>
 						<View style={[feedWrite.reportLocation_form_left]}>
@@ -627,6 +627,6 @@ const ReportForm = props => {
 					</View>
 				</View>
 			</View>
-		</View>
+		</ScrollView>
 	);
 };
