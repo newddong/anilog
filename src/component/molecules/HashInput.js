@@ -31,14 +31,17 @@ export default function HashInput(props) {
 	
 	const matchId = () => {
 		console.log('matchId ',internal.text);
+		if(typeof internal.text != 'string')return;
 		if(internal.linkStore.size>0){
 			internal.linkStore.forEach((value,key) => {
-				internal.text = internal.text.replaceAll(`&@&@@${key}|&|&@&@`,`&@&@@${key}|&|${value}&@&@`);
+				let regex = new RegExp(`&@&@@${key}%&%&@&@`,'g')
+				internal.text = internal.text.replace(regex,`&@&@@${key}%&%${value}&@&@`);
 			});
 		}
 		if(internal.hashStore?.size>0){
 			internal.hashStore.forEach((value,key)=>{
-				internal.text = internal.text.replaceAll(`&#&##${key}|&|&#&#`,`&#&##${key}|&|${value}&#&#`);
+				let regex = new RegExp(`&#&##${key}%&%&#&#`,'g')
+				internal.text = internal.text.replace(regex,`&#&##${key}%&%${value}&#&#`);
 			})
 		}
 		console.log('matchId Result ',internal.text)
@@ -47,7 +50,7 @@ export default function HashInput(props) {
 
 	const onChangeText = text => {
 		
-		internal.text = text.replace(changeTextRegex,'&$1&$1$1$2|&|&$1&$1'); //디비에 입력될 내용으로 변환
+		internal.text = text.replace(changeTextRegex,'&$1&$1$1$2%&%&$1&$1'); //디비에 입력될 내용으로 변환
 		console.log('onChangeText 1st ', internal.text);
 		internal.editTag = findTagAt(internal.textInputCursor, text);
 		console.log('onChangeText editTag ',internal.editTag);
@@ -112,8 +115,16 @@ export default function HashInput(props) {
 		let offset = Platform.OS=='android'?0:1;
 		
 		internal.linkStore.set(user.user_nickname,user._id);
-
-		internal.value = internal.value.substring(0,internal.tagStartIdx+offset).concat(nickname, internal.value.substring(internal.tagEndIdx)).trimEnd().concat(' ');
+		console.log('within string ',internal.value, 'change current tag ', internal.editTag, ' to selected user nickname ', nickname);
+		
+		if(internal.editTag.length==1){
+			internal.value = internal.value.substring(0,internal.tagStartIdx+offset).concat(nickname, internal.value.substring(internal.tagEndIdx)).trimEnd().concat(' ');
+		}
+		else if(internal.editTag.length>1){
+			let re = new RegExp(internal.editTag,'g');
+			internal.value = internal.value.replace(re, nickname)
+		}
+		// internal.value = internal.value.substring(0,internal.tagStartIdx+offset).concat(nickname, internal.value.substring(internal.tagEndIdx)).trimEnd().concat(' ');
 		setValue(internal.value);
 		
 		

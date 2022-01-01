@@ -25,7 +25,7 @@ const makeFeedInputView = (input,allowTab) => {
 		input = '피드 내용이 없습니다.'
 	}
 	if (!input.includes('&@&@') && !input.includes('&#&#')) return input;
-	let Regex = /(((.*?\n)*?.*?)(&@&@(.*?)\|&\|(.*?)&@&@|&#&#(.*?)\|&\|(.*?)&#&#))([^&@#]*?$)?/gm;
+	let Regex = /(((.*?\n)*?.*?)(&@&@(.*?)%&%(.*?)&@&@|&#&#(.*?)%&%(.*?)&#&#))([^&@#]*?$)?/g;
 	const navigation = useNavigation();
 	const onHashClick = hashID => {
 		allowTab&&alert('해쉬',hashID);
@@ -60,62 +60,3 @@ const makeFeedInputView = (input,allowTab) => {
 	
 };
 
-
-//이전버전
-const _makeFeedInputView = (input,allowTab) => {
-	let arr0 = '해쉬나 계정에 대한 테그가 없는 글입니다. 테스트용이라 삭제하셔도 됩니다.';
-	if(!input||input.length==0){
-	input = '앤터키를 시험\ngo해봅니다\n이만ㅇㄹ&@&@@시프리티|&|61c5667e38c5f6dee5a8b77f&@&@ &@&@@레몬이|&|61c5669d38c5f6dee5a8b782&@&@ &#&##띠롱|&|띠롱&#&##오늘은&@&@기영|&|eioasd&@&@이와함께 &#&#딸기|&|aslkdfja&#&# 를&@&@효쏭|&|aslfs&@&@과 함께 사먹었어요 &@&@행복&@&@이는&#&#간식을&#&#먹네요$$부럽네요$$증말';
-	}
-	if (!input.includes('&@&@') && !input.includes('&#&#')) return input;
-	let Regex = /((.*?\n)*?.*?(&@&@.*?&@&@|&#&#.*?&#&#))([^&@#]*?$)?/g;
-	let Regex2 = /(((.*?\n)*.*?)(&@&@(.*?)&@&@|&#&#(.*?)&#&#)(.*)$)/;
-	let delimiter = '|&|';
-	let result = input.match(Regex);
-
-	const navigation = useNavigation();
-
-	const onHashClick = hashID => {
-		allowTab&&alert('해쉬',hashID);
-	};
-
-	const onUserClick = userID => {
-		allowTab&&navigation.navigate('UserProfile',{userobject:{_id:userID}});
-	};
-
-	return result?.map((v, i) => {
-		let item = v.match(Regex2);
-		if (v.includes('@')) {
-			let user = item[5]?.split(delimiter);
-			return (
-				<React.Fragment key={i}>
-					{item[2]}
-					<Text
-						style={{color: BLUE20}}
-						onPress={() => {
-							onUserClick(user[1]);
-						}}>
-						{user[0]}
-					</Text>
-					{item[7]}
-				</React.Fragment>
-			);
-		}
-		if (v.includes('#')) {
-			let hash = item[6]?.split(delimiter);
-			return (
-				<React.Fragment key={i}>
-					{item[2]}
-					<Text
-						style={{color: BLUE20}}
-						onPress={() => {
-							onHashClick(hash[1]);
-						}}>
-						{hash[0]}
-					</Text>
-					{item[7]}
-				</React.Fragment>
-			);
-		}
-	});
-};
