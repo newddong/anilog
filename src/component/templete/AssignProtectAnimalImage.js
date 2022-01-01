@@ -33,8 +33,8 @@ export default AssignProtectAnimalImage = props => {
 
 	//다음 클릭
 	const gotoNextStep = () => {
-		console.log('data', data.protect_animal_photo_uri_list);
-		// navigation.push('AssignProtectAnimalDate', data);
+		// console.log('data', data.protect_animal_photo_uri_list);
+		navigation.push('AssignProtectAnimalDate', data);
 	};
 
 	const gotoSelectPicture = () => {
