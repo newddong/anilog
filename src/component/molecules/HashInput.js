@@ -151,7 +151,7 @@ export default function HashInput(props) {
 
 			{find && (
 				<View style={{width: '100%', flex:1, padding: 15 * DP, flexDirection: 'row'}}>
-					<AccountList items={userlist} onSelect={userSelect} />
+					<AccountList items={userlist} onSelect={userSelect} makeBorderMode={false} showCrossMark={false}/>
 				</View>
 			)}
 		</>
