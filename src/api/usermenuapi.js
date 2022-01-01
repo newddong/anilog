@@ -1,6 +1,3 @@
-import axios from 'axios';
-import {serveruri, cookieReset} from 'Root/config/server';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {apiController} from './apiController';
 // export const getUserObject = async (params, callback, errcallback) => {
 // 	try {
