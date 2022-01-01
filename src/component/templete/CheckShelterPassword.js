@@ -63,7 +63,7 @@ export default CheckShelterPassword = props => {
 			</View>
 
 			<View style={[btn_style.btn_w654, checkShelterPassword_style.btn_w654]}>
-				<AniButton btnTitle={'확인'} btnTheme={'shadow'} disable={!pwdValid} btnLayout={btn_w654} titleFontStyle={32} onPress={goToNextStep} />
+				<AniButton btnTitle={'확인'} disable={!pwdValid} btnLayout={btn_w654} titleFontStyle={32} onPress={goToNextStep} />
 			</View>
 		</KeyboardAvoidingView>
 	);

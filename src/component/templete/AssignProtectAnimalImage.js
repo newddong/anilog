@@ -4,7 +4,7 @@ import {btn_w226} from '../atom/btn/btn_style';
 import {login_style, btn_style, temp_style, progressbar_style, assignProtectAnimal_style} from './style_templete';
 import {useNavigation} from '@react-navigation/core';
 import Stagebar from '../molecules/Stagebar';
-import {APRI10, GRAY10} from 'Root/config/color';
+import {APRI10, GRAY10, GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {PLEASE_UPLOAD_PIC} from 'Root/i18n/msg';
 import SelectedMediaList from '../organism_ksw/SelectedMediaList';
@@ -27,12 +27,14 @@ export default AssignProtectAnimalImage = props => {
 	const onDelete = index => {
 		let copy = [...imageList];
 		copy.splice(index, 1);
+		setData({...data, protect_animal_photo_uri_list: copy});
 		setImageList(copy);
 	};
 
 	//다음 클릭
 	const gotoNextStep = () => {
-		navigation.push('AssignProtectAnimalDate', data);
+		console.log('data', data.protect_animal_photo_uri_list);
+		// navigation.push('AssignProtectAnimalDate', data);
 	};
 
 	const gotoSelectPicture = () => {
@@ -82,23 +84,27 @@ export default AssignProtectAnimalImage = props => {
 				<View style={[assignProtectAnimal_style.selectedMediaList]}>
 					{imageList.length == 0 ? (
 						<TouchableOpacity onPress={gotoSelectPicture} style={[assignProtectAnimal_style.addPhoto]}>
-							<Text style={[txt.roboto28b, assignProtectAnimal_style.addPhotoText]}>사진을 추가해주세요</Text>
 							<AddItem64 />
+							<Text style={[txt.noto30, assignProtectAnimal_style.addPhotoText]}>{'  '}사진 추가</Text>
 						</TouchableOpacity>
 					) : (
 						<SelectedMediaList items={imageList} layout={styles.img_square_round_410} onDelete={index => onDelete(index)} />
 					)}
 				</View>
 
-				<View style={[temp_style.btn_w226_assignProtectAnimal, assignProtectAnimal_style.btn_w226_view_image]}>
-					<View style={[assignProtectAnimal_style.pic]}>
-						<Camera54 onPress={gotoSelectPicture} />
-						<TouchableOpacity onPress={gotoSelectPicture}>
-							<Text style={[txt.noto24, assignProtectAnimal_style.addpic]}>사진추가</Text>
-						</TouchableOpacity>
-					</View>
+				<View style={[assignProtectAnimal_style.btn_w226_view_image]}>
+					{imageList.length > 0 ? (
+						<View style={[assignProtectAnimal_style.pic]}>
+							<Camera54 onPress={gotoSelectPicture} />
+							<TouchableOpacity onPress={gotoSelectPicture}>
+								<Text style={[txt.noto24, assignProtectAnimal_style.addpic, {textAlignVertical: 'center'}]}>사진추가</Text>
+							</TouchableOpacity>
+						</View>
+					) : (
+						<></>
+					)}
 					<View style={[btn_style.btn_w226]}>
-						<AniButton btnTitle={'다음'} btnLayout={btn_w226} onPress={gotoNextStep} />
+						<AniButton btnTitle={'다음'} disable={data.protect_animal_photo_uri_list.length == 0} btnLayout={btn_w226} onPress={gotoNextStep} />
 					</View>
 				</View>
 			</ScrollView>

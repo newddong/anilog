@@ -144,7 +144,7 @@ export default PetInfoSetting = ({route, navigation}) => {
 
 	return (
 		<View style={[login_style.wrp_main, petInfoSetting.container]}>
-			<ScrollView>
+			<ScrollView contentContainerStyle={{alignItems: 'center'}}>
 				{/* 프로필 컨테이너 */}
 				<View style={[petInfoSetting.profileContainer]}>
 					<View style={[temp_style.petImageLabel, petInfoSetting.petImageLabel]}>
@@ -179,9 +179,9 @@ export default PetInfoSetting = ({route, navigation}) => {
 						<View style={[petInfoSetting.petProfileMenu.menuTitle]}>
 							<Text style={[txt.noto30b, {color: GRAY10}]}>상세 정보</Text>
 						</View>
-						<View style={[petInfoSetting.petProfileMenu.bracket50]}>
-							<NextMark onPress={goToSetPetInfo} />
-						</View>
+						<TouchableOpacity onPress={goToSetPetInfo} style={[petInfoSetting.petProfileMenu.bracket50]}>
+							<NextMark />
+						</TouchableOpacity>
 					</View>
 				</View>
 				{/* 접종내역 */}
@@ -190,9 +190,9 @@ export default PetInfoSetting = ({route, navigation}) => {
 						<View style={[petInfoSetting.petProfileMenu.menuTitle]}>
 							<Text style={[txt.noto30b, {color: GRAY10}]}>접종 내역</Text>
 						</View>
-						<View style={[petInfoSetting.petProfileMenu.bracket50]}>
-							<NextMark onPress={goToVaccinationRecord} />
-						</View>
+						<TouchableOpacity onPress={goToVaccinationRecord} style={[petInfoSetting.petProfileMenu.bracket50]}>
+							<NextMark />
+						</TouchableOpacity>
 					</View>
 				</View>
 				{/* 가족 계정 추가 */}
@@ -204,9 +204,9 @@ export default PetInfoSetting = ({route, navigation}) => {
 							<View style={[petInfoSetting.petProfileMenu.menuTitle]}>
 								<Text style={[txt.noto30b, {color: GRAY10}]}>가족 계정 추가</Text>
 							</View>
-							<View style={[petInfoSetting.petProfileMenu.bracket50]}>
-								<NextMark onPress={goToAddFamilyAccount} />
-							</View>
+							<TouchableOpacity onPress={goToAddFamilyAccount} style={[petInfoSetting.petProfileMenu.bracket50]}>
+								<NextMark />
+							</TouchableOpacity>
 						</View>
 						<View style={[petInfoSetting.familyAccountSetting.infoMessage]}>
 							<Text style={[txt.noto22, {color: APRI10}]}>
@@ -263,13 +263,13 @@ export default PetInfoSetting = ({route, navigation}) => {
 				{/* {data.pet_status != 'companion' && ( */}
 				<View style={[petInfoSetting.changeAdoptionStatus.container]}>
 					<View style={[petInfoSetting.familyAccountSetting.insideContainer]}>
-						<View style={[petInfoSetting.changeAdoptionStatus.menuView]}>
-							<View style={[petInfoSetting.changeAdoptionStatus.menuTitle]}>
-								<Text style={[txt.noto30b, {color: GRAY10}]}>반려동물 입양 상태 변경</Text>
+						<View style={[petInfoSetting.familyAccountSetting.menuView]}>
+							<View style={[petInfoSetting.petProfileMenu.menuTitle]}>
+								<Text style={[txt.noto30b, {color: GRAY10}]}>가족 계정 추가</Text>
 							</View>
-							<View style={[petInfoSetting.changeAdoptionStatus.bracket50]}>
-								<NextMark onPress={goToAnimalAdoption} />
-							</View>
+							<TouchableOpacity onPress={goToAnimalAdoption} style={[petInfoSetting.changeAdoptionStatus.bracket50]}>
+								<NextMark />
+							</TouchableOpacity>
 						</View>
 					</View>
 				</View>

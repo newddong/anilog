@@ -213,7 +213,7 @@ export default MissingAnimalDetail = props => {
 	const moveToCommentList = () => {
 		let feedobject = {};
 		feedobject._id = props.route.params._id;
-		navigation.push('FeedCommentList', {feedobject: data});
+		navigation.push('FeedCommentList', {feedobject: data, showAllContents: true});
 	};
 
 	return (
@@ -231,7 +231,7 @@ export default MissingAnimalDetail = props => {
 				</View>
 				<View style={[temp_style.feedContent, reportDetail.feedContent]}>
 					{/* DB에서 가져오는 제보 피드글 데이터를 FeedContent에 넘겨준다. */}
-					<FeedContent data={data} missingOrReportDetail={true} />
+					<FeedContent data={data} showAllContents={true} />
 				</View>
 				<View style={[reportDetail.allCommentCount]}>
 					<TouchableOpacity onPress={moveToCommentList}>

@@ -92,7 +92,7 @@ export default ShelterInfoSetting = ({route}) => {
 			date = moment(date).format('YYYY-MM-DD');
 			return date;
 		} else {
-			return '';
+			return '미등록 상태입니다.';
 		}
 	};
 
@@ -230,7 +230,7 @@ export default ShelterInfoSetting = ({route}) => {
 								<Text style={[txt.noto30, {color: GRAY10}]}>홈페이지</Text>
 							</View>
 							<View style={temp_style.littleContents}>
-								<Text style={[txt.noto28]}>{data.shelter_homepage}</Text>
+								<Text style={[txt.noto28]}>{data.shelter_homepage || '미등록 상태입니다.'}</Text>
 							</View>
 						</View>
 						<View style={temp_style.title_type_shelterInfoSetting_view}>

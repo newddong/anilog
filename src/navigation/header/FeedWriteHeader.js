@@ -9,6 +9,7 @@ import {RED} from 'Root/screens/color';
 import {createFeed, createMissing, createReport} from 'Root/api/feedapi';
 
 export default FeedWriteHeader = ({route, navigation, options}) => {
+	// console.log('route', route);
 	const complete = result => {
 		Modal.close();
 		Modal.popNoBtn('게시물 등록이 완료되었습니다.');
@@ -30,10 +31,53 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 				createFeed(route.params, complete, handleError);
 				break;
 			case 'Missing':
-				createMissing(route.params, complete, handleError);
+				{
+					console.log('Before Write Report ', route.params);
+
+					const data = route.params;
+					if (
+						data.missing_animal_species &&
+						data.missing_animal_species_detail &&
+						data.feed_content &&
+						data.feed_medias &&
+						data.media_uri.length > 0 &&
+						data.missing_animal_age &&
+						data.missing_animal_features &&
+						data.missing_animal_date &&
+						data.missing_animal_sex &&
+						data.missing_animal_date &&
+						data.missing_animal_lost_location &&
+						data.missing_animal_contact
+					) {
+						console.log('NotNull 통과');
+						createMissing(route.params, complete, handleError);
+						Modal.close();
+					} else {
+						Modal.popOneBtn('작성란은 모두 작성해주셔야합니다.\n (사진 포함)', '확인', () => Modal.close());
+					}
+				}
 				break;
 			case 'Report':
-				createReport(route.params, complete, handleError);
+				{
+					console.log('Before Write Report ', route.params);
+					const data = route.params;
+					if (
+						data.addr &&
+						data.feed_content &&
+						data.feed_medias &&
+						data.media_uri.length > 0 &&
+						data.report_animal_features &&
+						data.report_animal_species &&
+						data.report_witness_date &&
+						data.report_witness_location
+					) {
+						console.log('NotNull 통과');
+						createReport(route.params, complete, handleError);
+						Modal.close();
+					} else {
+						Modal.popOneBtn('제보 동물의 품종 이외에는 \n 모두 작성해주셔야합니다.\n (사진 포함)', '확인', () => Modal.close());
+					}
+				}
 				break;
 			default:
 				break;
