@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/core';
-import React from 'react';
+import React, {useRef} from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 
 import {GRAY10} from 'Root/config/color';
@@ -44,7 +44,6 @@ export default UserMenu = props => {
 	const ifFoucsed = useIsFocused();
 	const [data, setData] = React.useState({}); //우선 userObject 0번 추가
 	const [showMoreIntro, setShowMoreIntro] = React.useState(false);
-
 	//토큰에 로그인한 유저의 _id를 저장
 	// React.useLayoutEffect(() => {
 	React.useEffect(() => {
@@ -179,28 +178,31 @@ export default UserMenu = props => {
 				<View style={[userMenu_style.userMenu_step1]}>
 					<View style={[temp_style.userInfo, userMenu_style.userInfo]}>
 						<View style={[temp_style.profileImageLarge, userMenu_style.profileImageLarge]}>
-							<ProfileImageLarge194 data={data} />
+							{data._id != undefined && <ProfileImageLarge194 data={data} />}
 						</View>
 
 						<View>
 							<TouchableOpacity onPress={onPressMyName} style={[userMenu_style.user_id]}>
 								<Text style={[txt.roboto36b]}>{data.user_nickname || ''}</Text>
 							</TouchableOpacity>
+
 							<View style={[userMenu_style.contents]}>
-								<Text numberOfLines={showMoreIntro ? 10 : 2} style={[txt.noto24, {color: GRAY10}]}>
-									{data.user_introduction || '자기소개가 없습니다.'}
-								</Text>
-								{showMoreIntro ? (
+								{data._id != undefined && (
+									<Text numberOfLines={showMoreIntro ? 10 : 2} style={[txt.noto24, {color: GRAY10}]}>
+										{data.user_introduction || '자기소개가 없습니다.'}
+									</Text>
+								)}
+								{data._id != undefined && showMoreIntro ? (
 									<TouchableOpacity onPress={() => setShowMoreIntro(!showMoreIntro)} style={[shelterMenu.showMore, {}]}>
 										<Text style={[txt.noto24, {color: GRAY10}]}>접기</Text>
 										<Arrow_Up_GRAY20 />
 									</TouchableOpacity>
-								) : (
+								) : data._id != undefined ? (
 									<TouchableOpacity onPress={() => setShowMoreIntro(!showMoreIntro)} style={[shelterMenu.showMore, {}]}>
 										<Text style={[txt.noto24, {color: GRAY10}]}>펼치기</Text>
 										<Arrow_Down_GRAY10 />
 									</TouchableOpacity>
-								)}
+								) : null}
 							</View>
 						</View>
 					</View>
