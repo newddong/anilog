@@ -55,7 +55,7 @@ export function findStartIndexOfTag(position, string){
  */
 export function isTag(string){
     let checkChar = ['#','@'];
-    return checkChar.some(v=>string.at(0)==v);
+    return checkChar.some(v=>string[0]==v);
 }
 
 
@@ -65,6 +65,6 @@ export function isTag(string){
  */
 export function getTagName(string){
     let checkChar = ['#','@'];
-    if(checkChar.some(v=>string.at(0)==v))return string.substring(1);
+    if(checkChar.some(v=>string[0]==v))return string.substring(1);
     return string;
 }

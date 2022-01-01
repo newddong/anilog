@@ -216,16 +216,16 @@ export default RootStackNavigation = () => {
 						options={{header: props => <SimpleHeader {...props} />, title: '보호소 등록'}}
 					/>
 
-					<RootStack.Screen name="ApplyProtectActivityA" component={ApplyCompanionA} />
-					<RootStack.Screen name="ApplyProtectActivityB" component={ApplyCompanionB} />
-					<RootStack.Screen name="ApplyProtectActivityC" component={ApplyCompanionC} />
-					<RootStack.Screen name="ApplyProtectActivityD" component={ApplyCompanionD} />
+					<RootStack.Screen name="ApplyProtectActivityA" component={ApplyCompanionA} options={{header: props => <SimpleHeader {...props} />}} />
+					<RootStack.Screen name="ApplyProtectActivityB" component={ApplyCompanionB} options={{header: props => <SimpleHeader {...props} />}} />
+					<RootStack.Screen name="ApplyProtectActivityC" component={ApplyCompanionC} options={{header: props => <SimpleHeader {...props} />}} />
+					<RootStack.Screen name="ApplyProtectActivityD" component={ApplyCompanionD} options={{header: props => <SimpleHeader {...props} />}} />
 					<RootStack.Screen name="ApplyProtectActivityE" component={ApplyDetails} />
 
-					<RootStack.Screen name="ApplyAnimalAdoptionA" component={ApplyCompanionA} />
-					<RootStack.Screen name="ApplyAnimalAdoptionB" component={ApplyCompanionB} />
-					<RootStack.Screen name="ApplyAnimalAdoptionC" component={ApplyCompanionC} />
-					<RootStack.Screen name="ApplyAnimalAdoptionD" component={ApplyCompanionD} />
+					<RootStack.Screen name="ApplyAnimalAdoptionA" component={ApplyCompanionA} options={{header: props => <SimpleHeader {...props} />}} />
+					<RootStack.Screen name="ApplyAnimalAdoptionB" component={ApplyCompanionB} options={{header: props => <SimpleHeader {...props} />}} />
+					<RootStack.Screen name="ApplyAnimalAdoptionC" component={ApplyCompanionC} options={{header: props => <SimpleHeader {...props} />}} />
+					<RootStack.Screen name="ApplyAnimalAdoptionD" component={ApplyCompanionD} options={{header: props => <SimpleHeader {...props} />}} />
 					<RootStack.Screen name="ApplyAnimalAdoptionE" component={ApplyDetails} />
 
 					<RootStack.Screen name="ApplyVolunteer" component={ApplyVolunteer} />

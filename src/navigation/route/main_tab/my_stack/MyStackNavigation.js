@@ -242,7 +242,11 @@ export default MyStackNavigation = props => {
 				component={AnimalFromShelter}
 				options={{header: props => <SimpleHeader {...props} />, title: '우리 보호소 출신 동물'}}
 			/>
-			<MyStack.Screen name="AdoptorInformation" component={AdoptorInformation} />
+			<MyStack.Screen
+				name="AdoptorInformation"
+				component={AdoptorInformation}
+				options={{header: props => <SimpleHeader {...props} />, title: '입양처 정보'}}
+			/>
 			<MyStack.Screen
 				name="ManageShelterVolunteer"
 				component={ManageVolunteer}
