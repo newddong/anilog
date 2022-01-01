@@ -10,11 +10,11 @@ import {styles} from '../atom/image/imageStyle';
 import AidRequest from '../organism_ksw/AidRequest';
 import {assignProtectAnimal_style, feedWrite, login_style, temp_style, writeAidRequest} from './style_templete';
 import ImagePicker from 'react-native-image-crop-picker';
+import Modal from '../modal/Modal';
 
 export default WriteAidRequest = ({route, navigation}) => {
 	// console.log('WriteAidRequest', route.params);
 	const [data, setData] = React.useState({...route.params.data}); //ShelterProtectAnimalObject(보호소의 보호동물) 정보가 담겨있음
-	// console.log('props.data', data.protect_animal_photo_uri_list[0]);
 	//ProtectRequestObject(보호소의 동물 보호 요청 게시글) 테이블에 맞춘 보호요청 작성글을 작성
 	const [protectRequestData, setProtectRequestData] = React.useState({
 		shelter_protect_animal_object_id: data._id,
@@ -80,6 +80,8 @@ export default WriteAidRequest = ({route, navigation}) => {
 							setProtectRequestData({...protectRequestData, protect_request_photos_uri: tempContainer});
 							setData({...data, protect_request_photos_uri: tempContainer || data.protect_request_photos_uri});
 							Modal.close();
+						} else {
+							Modal.close();
 						}
 					},
 				);
@@ -142,7 +144,7 @@ export default WriteAidRequest = ({route, navigation}) => {
 					</View>
 				</View>
 
-				<View style={[assignProtectAnimal_style.pic, {}]}>
+				<View style={[writeAidRequest.pic, {}]}>
 					<Camera54 onPress={gotoSelectPicture} />
 					<TouchableOpacity onPress={gotoSelectPicture}>
 						<Text style={[txt.noto24, assignProtectAnimal_style.addpic]}>사진추가</Text>

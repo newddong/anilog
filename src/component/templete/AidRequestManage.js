@@ -155,7 +155,7 @@ export default AidRequestManage = ({route, navigation}) => {
 				<ScrollView style={{flex: 1}}>
 					<View style={[temp_style.aidRequestList_aidRequestManage, baseInfo_style.list]}>
 						{data.length == 0 ? (
-							<Text style={[txt.noto30, {alignSelf: 'center', marginTop: 130, color: GRAY10}]}>지원 신청이 들어온 게시글이 없네요.</Text>
+							<Text style={[txt.noto30, {alignSelf: 'center', marginTop: 130, color: GRAY10}]}>목록이 비어있습니다.</Text>
 						) : (
 							<AidRequestList
 								items={data}

@@ -7,9 +7,11 @@ import {txt} from 'Root/config/textstyle';
 import Modal from 'Root/component/modal/Modal';
 import {RED} from 'Root/screens/color';
 import {createFeed, createMissing, createReport} from 'Root/api/feedapi';
+import userGlobalObject from 'Root/config/userGlobalObject';
 
 export default FeedWriteHeader = ({route, navigation, options}) => {
 	// console.log('route', route);
+	const userInfo = userGlobalObject;
 	const complete = result => {
 		Modal.close();
 		Modal.popNoBtn('게시물 등록이 완료되었습니다.');
@@ -108,17 +110,17 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 					<BackArrow32 onPress={navigation.goBack} />
 				</View>
 			</TouchableOpacity>
-			{route.params?.feedType != 'Feed' ? (
-				<View style={style.titleContainer}>
-					<Text style={titleStyle}>{options.title}</Text>
-				</View>
-			) : (
+			{userInfo.userInfo.user_type == 'user' && route.params?.feedType == 'Feed' ? (
 				<TouchableWithoutFeedback onPress={avartarSelect}>
 					<View style={style.titleContainer}>
 						<Text style={titleStyle}>{options.title}</Text>
 						<Bracket48 />
 					</View>
 				</TouchableWithoutFeedback>
+			) : (
+				<View style={style.titleContainer}>
+					<Text style={titleStyle}>{options.title}</Text>
+				</View>
 			)}
 			<Send60_Big onPress={onSend} />
 		</View>

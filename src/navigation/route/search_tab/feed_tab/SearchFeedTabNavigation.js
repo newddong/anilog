@@ -15,7 +15,7 @@ export default SearchFeedTabNavigation = props => {
 	const [searchInput, setSearchInput] = React.useState(); // 검색어 관련 State
 	const [currentScreen, setCurrentScreen] = React.useState(0); //현재 보고 있는 화면 State
 	const routeName = getFocusedRouteNameFromRoute(props.route);
-	console.log('getFocusedRouteNameFromRoute', routeName);
+	// console.log('getFocusedRouteNameFromRoute / SearchFeedTab', routeName);
 	React.useEffect(() => {
 		if (routeName == navName[0]) setCurrentScreen(0);
 		else if (routeName == navName[1]) setCurrentScreen(1);

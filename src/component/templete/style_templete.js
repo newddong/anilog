@@ -1880,7 +1880,6 @@ export const assignProtectAnimal_style = StyleSheet.create({
 		width: 654 * DP,
 		height: 72 * DP,
 		flexDirection: 'row',
-		justifyContent: 'space-between',
 		// alignItems: 'center',
 		marginTop: 50 * DP,
 		marginBottom: 64 * DP,
@@ -1897,9 +1896,6 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	btn_w226: {
 		width: 226 * DP,
 		// height: 70 * DP,
-		// alignItems: 'flex-end',
-		// alignSelf: 'flex-end',
-		// justifyContent: 'flex-end',
 	},
 	text118: {
 		marginLeft: 10 * DP,
@@ -3618,6 +3614,13 @@ export const writeAidRequest = StyleSheet.create({
 		marginTop: 30 * DP,
 		marginBottom: 40 * DP,
 		marginLeft: 48 * DP,
+	},
+	pic: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		marginTop: 40 * DP,
+		alignSelf: 'center',
+		justifyContent: 'flex-start',
 	},
 });
 

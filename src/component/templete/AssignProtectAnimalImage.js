@@ -92,7 +92,11 @@ export default AssignProtectAnimalImage = props => {
 					)}
 				</View>
 
-				<View style={[assignProtectAnimal_style.btn_w226_view_image]}>
+				<View
+					style={[
+						assignProtectAnimal_style.btn_w226_view_image,
+						imageList.length > 0 ? {justifyContent: 'space-between'} : {justifyContent: 'flex-end'},
+					]}>
 					{imageList.length > 0 ? (
 						<View style={[assignProtectAnimal_style.pic]}>
 							<Camera54 onPress={gotoSelectPicture} />

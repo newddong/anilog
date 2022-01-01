@@ -6,6 +6,7 @@ import Temp from 'Navigation/route/main_tab/community_stack/temp';
 import TopTabNavigation_Filled from 'Root/component/organism_ksw/TopTabNavigation_Filled';
 import InputAndSearchHeader from 'Root/navigation/header/InputAndSearchHeader';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
+import {SearchContext} from 'Root/config/searchContext';
 
 const SearchTabNav = createMaterialTopTabNavigator();
 
@@ -31,8 +32,11 @@ export default SearchTabNavigation = ({route, navigation}) => {
 		setSearchInput(route.params);
 	}, [route.params]);
 
+	const searchContext = React.useContext(SearchContext);
+
 	const routeNameChanged = v => {
-		console.log('v', v);
+		console.log('routeNameChanged / SearchTabNavigation  : ', v);
+		searchContext.routeName = v;
 		setCurrentChild(v);
 	};
 
@@ -59,7 +63,7 @@ export default SearchTabNavigation = ({route, navigation}) => {
 					/>
 				);
 			}}>
-			<SearchTabNav.Screen name="FEED" options={{header: props => <InputAndSearchHeader {...props} />, title: ''}}>
+			<SearchTabNav.Screen name="FEED">
 				{props => (
 					<SearchFeedTabNavigation
 						{...props}

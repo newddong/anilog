@@ -22,50 +22,37 @@ export default SendHeader = ({route, navigation, options}) => {
 					break;
 				}
 				case 'WriteAidRequest': {
-					console.log('data', data);
-					const t = {
-						protect_animal_id: '61d083dc07a02d829880ef53',
-						protect_request_content: '',
-						protect_request_photo_thumbnail: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
-						protect_request_photos_uri: [
-							'/Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/DD6346EA-03F5-4557-9EA2-19B6F54BBD81/tmp/react-native-image-crop-picker/49CF8C2D-DDA8-4C5E-8078-413036B66DFF.jpg',
-							'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/DD6346EA-03F5-4557-9EA2-19B6F54BBD81/tmp/498FB492-1880-42C5-9E76-9FA68FA1D38F.jpg',
-							'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/DD6346EA-03F5-4557-9EA2-19B6F54BBD81/tmp/C872CF3D-8549-4AD8-BAE6-033EC009595B.jpg',
-							'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/DD6346EA-03F5-4557-9EA2-19B6F54BBD81/tmp/03ACABC1-37D2-4639-AAFD-F80ECBB6BA07.jpg',
-							'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/DD6346EA-03F5-4557-9EA2-19B6F54BBD81/tmp/5ECE540D-EA67-4956-96AF-529E2EE97490.jpg',
-						],
-						protect_request_status: 'rescue',
-						protect_request_title: '',
-						shelter_protect_animal_object_id: '61d083dc07a02d829880ef53',
-					};
-
-					Modal.popTwoBtn(
-						'해당 내용으로 보호요청 \n 게시글을 작성하시겠습니까?',
-						'취소',
-						'확인',
-						() => Modal.close(),
-						() => {
-							console.log('SendHeader / Before Create AidRequest ', data);
-							createProtectRequest(
-								{
-									protect_request_photos_uri: data.protect_request_photos_uri,
-									shelter_protect_animal_object_id: data.shelter_protect_animal_object_id,
-									protect_request_title: data.protect_request_title,
-									protect_request_content: data.protect_request_content,
-								},
-								successed => {
-									console.log('successed / createProtectRequest / SendHeader', successed.protect_request_photos_uri);
-									Modal.popNoBtn('보호요청 게시글 \n 작성이 완료되었습니다!');
-									Modal.close();
-									navigation.push('ShelterMenu');
-								},
-								err => {
-									console.log('err, createProtectRequest / SendHeader', err);
-								},
-							);
-							Modal.close();
-						},
-					);
+					if (!data.protect_request_content || !data.protect_request_title) {
+						Modal.popOneBtn('보호 요청 내용과 제목은 \n 반드시 입력해주셔야합니다.', '확인', () => Modal.close());
+					} else {
+						Modal.popTwoBtn(
+							'해당 내용으로 보호요청 \n 게시글을 작성하시겠습니까?',
+							'취소',
+							'확인',
+							() => Modal.close(),
+							() => {
+								console.log('SendHeader / Before Create AidRequest ', data);
+								createProtectRequest(
+									{
+										protect_request_photos_uri: data.protect_request_photos_uri,
+										shelter_protect_animal_object_id: data.shelter_protect_animal_object_id,
+										protect_request_title: data.protect_request_title,
+										protect_request_content: data.protect_request_content,
+									},
+									successed => {
+										console.log('successed / createProtectRequest / SendHeader', successed.protect_request_photos_uri);
+										Modal.popNoBtn('보호요청 게시글 \n 작성이 완료되었습니다!');
+										Modal.close();
+										navigation.push('ShelterMenu');
+									},
+									err => {
+										console.log('err, createProtectRequest / SendHeader', err);
+									},
+								);
+								Modal.close();
+							},
+						);
+					}
 				}
 				default:
 					break;

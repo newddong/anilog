@@ -386,12 +386,13 @@ export default AnimalProtectRequestDetail = ({route}) => {
 				</View>
 
 				{/* 더보기 버튼 - 기본 2개 표출되며, 더보기 누르면 모두 보이도록 함. (hjs - 추후에 5개씩 더 보이게 한다거나 등등의 개수 제어 필요) */}
-				<TouchableOpacity onPress={onPressShowMore} style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
+				{/* <TouchableOpacity onPress={onPressShowMore} style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
 					<Text style={[txt.noto24, {color: GRAY10}]}>더보기 </Text>
 					<View style={showMore ? {transform: [{rotate: '180deg'}]} : null}>
 						<Bracket48 />
 					</View>
-				</TouchableOpacity>
+				</TouchableOpacity> */}
+
 				<View style={[animalProtectRequestDetail_style.replyWriteBox]}>
 					{editComment && (
 						<ReplyWriteBox

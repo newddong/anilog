@@ -1,9 +1,8 @@
 import React from 'react';
-import {Text, TextInput, View, Image, ScrollView, Dimensions, SafeAreaView, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 
-import {AlarmBadger48, Search48, BackArrow32} from 'Atom/icon';
+import {BackArrow32} from 'Atom/icon';
 import DP from 'Root/config/dp';
-import {txt} from 'Root/config/textstyle';
 import {WHITE, APRI10} from 'Root/config/color';
 import InputWithSearchIcon from 'Molecules/InputWithSearchIcon';
 
@@ -12,7 +11,7 @@ export default ConfirmInputHeader = props => {
 	const [searchInput, setSearchInput] = React.useState('');
 	const confirm = () => {
 		// navigation.navigate('Search');
-		navigation.setParams({searchInput: searchInput});
+		props.navigation.setParams({searchInput: searchInput});
 	};
 
 	const onChangeSearchText = text => {
