@@ -168,11 +168,9 @@ export const btn_style = StyleSheet.create({
 	},
 	btn_w226: {
 		width: 226 * DP,
-		height: 70 * DP,
-		// right: 0,
-		justifyContent: 'flex-end',
-		// alignSelf: 'flex-end',
-		// justifyContent: 'flex-end',
+		// height: 70 * DP,
+		alignItems: 'flex-end',
+		justifyContent: 'center',
 	},
 	btn_w176: {
 		width: 176 * DP,
@@ -681,6 +679,7 @@ export const temp_style = StyleSheet.create({
 		minHeight: 248 * DP,
 		marginTop: 40 * DP,
 		backgroundColor: 'white',
+		alignSelf: 'center',
 	},
 	selectedMediaList: {
 		width: 654 * DP,
@@ -1875,7 +1874,7 @@ export const assignProtectAnimal_style = StyleSheet.create({
 		height: 72 * DP,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		alignItems: 'center',
+		// alignItems: 'center',
 		marginTop: 50 * DP,
 		marginBottom: 64 * DP,
 	},
@@ -1883,7 +1882,17 @@ export const assignProtectAnimal_style = StyleSheet.create({
 		marginTop: 60 * DP,
 	},
 	dropdownSelect_year: {
-		marginLeft: 16 * DP,
+		marginLeft: 30 * DP,
+	},
+	dropdownSelect_month: {
+		marginLeft: 50 * DP,
+	},
+	btn_w226: {
+		width: 226 * DP,
+		// height: 70 * DP,
+		// alignItems: 'flex-end',
+		// alignSelf: 'flex-end',
+		// justifyContent: 'flex-end',
 	},
 	text118: {
 		marginLeft: 10 * DP,
@@ -1907,8 +1916,9 @@ export const assignProtectAnimal_style = StyleSheet.create({
 	},
 	pic: {
 		flexDirection: 'row',
-		width: 160 * DP,
-		// alignSelf: 'flex-start',
+		// width: 654 * DP,
+		// marginTop: 40 * DP,
+		alignSelf: 'center',
 		justifyContent: 'flex-start',
 	},
 	addpic: {
@@ -3548,15 +3558,19 @@ export const writeAidRequest = StyleSheet.create({
 	titleContainer: {
 		marginBottom: 20 * DP,
 		// height: 80 * DP,
-		borderBottomColor: APRI10,
-		borderBottomWidth: 4 * DP,
+		// borderBottomWidth: 2 * DP,
 	},
 	titleInput: {
 		paddingHorizontal: 15 * DP,
 		marginTop: 10 * DP,
+		borderBottomWidth: 2 * DP,
 		// lineHeight: 40 * DP,
 		// backgroundColor: 'yellow',
 		height: 100 * DP,
+	},
+	contentInput: {
+		flex: 1,
+		borderBottomWidth: 2 * DP,
 	},
 	feedTextEdit: {
 		marginTop: 80 * DP,

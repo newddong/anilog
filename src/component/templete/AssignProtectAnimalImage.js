@@ -103,7 +103,7 @@ export default AssignProtectAnimalImage = props => {
 					) : (
 						<></>
 					)}
-					<View style={[btn_style.btn_w226]}>
+					<View style={[assignProtectAnimal_style.btn_w226]}>
 						<AniButton btnTitle={'다음'} disable={data.protect_animal_photo_uri_list.length == 0} btnLayout={btn_w226} onPress={gotoNextStep} />
 					</View>
 				</View>

@@ -114,7 +114,7 @@ export default FeedWrite = props => {
 					cropping: true,
 				})
 					.then(images => {
-						console.log(images);
+						console.log('images', images);
 						setSelectedImg(selectedImg.concat(images.path));
 						Modal.close();
 					})
@@ -125,17 +125,18 @@ export default FeedWrite = props => {
 				launchImageLibrary(
 					{
 						mediaType: 'photo',
-						selectionLimit: 5,
+						selectionLimit: 5 - selectedImg.length, //다중선택 모드일 경우 상시 5개면 4개 상태에서 최대 5개를 더해 9개가 가능해짐
 						maxHeight: 1500,
 						maxWidth: 1500,
 						quality: 0.8,
 					},
 					responseObject => {
 						console.log('선택됨', responseObject);
+
 						if (!responseObject.didCancel) {
-							responseObject.didCancel
-								? console.log('선택취소')
-								: setSelectedImg(responseObject.assets.map(v => v.uri).slice(0, 5 - selectedImg.length));
+							let tempContainer = [...selectedImg];
+							responseObject.assets.map(v => tempContainer.push(v.uri));
+							setSelectedImg(tempContainer);
 							Modal.close();
 						}
 					},
@@ -285,16 +286,16 @@ export default FeedWrite = props => {
 				<View style={[temp_style.floatingBtn, feedWrite.urgentBtnContainer]}>
 					{showActionButton ? (
 						<View>
-							<View style={[feedWrite.urgentBtnItemContainer]}>
-								<TouchableWithoutFeedback onPress={onPressMissingWrite}>
+							<TouchableWithoutFeedback onPress={onPressMissingWrite}>
+								<View style={[feedWrite.urgentBtnItemContainer]}>
 									<Text style={[txt.noto32, {color: WHITE}]}>실종</Text>
-								</TouchableWithoutFeedback>
-							</View>
-							<View style={[feedWrite.urgentBtnItemContainer]}>
-								<TouchableWithoutFeedback onPress={onPressReportWrite}>
+								</View>
+							</TouchableWithoutFeedback>
+							<TouchableWithoutFeedback onPress={onPressReportWrite}>
+								<View style={[feedWrite.urgentBtnItemContainer]}>
 									<Text style={[txt.noto32, {color: WHITE}]}>제보</Text>
-								</TouchableWithoutFeedback>
-							</View>
+								</View>
+							</TouchableWithoutFeedback>
 						</View>
 					) : null}
 					<TouchableWithoutFeedback onPress={() => setShowActionButton(!showActionButton)}>

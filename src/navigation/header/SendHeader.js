@@ -13,7 +13,7 @@ export default SendHeader = ({route, navigation, options}) => {
 
 	const onSend = () => {
 		if (route.params.data) {
-			console.log('OnSend', route.params.data);
+			// console.log('OnSend', route.params.data);
 			const data = route.params.data;
 			switch (route.params.nav) {
 				case 'AidRequestAnimalList': {
@@ -22,6 +22,23 @@ export default SendHeader = ({route, navigation, options}) => {
 					break;
 				}
 				case 'WriteAidRequest': {
+					console.log('data', data);
+					const t = {
+						protect_animal_id: '61d083dc07a02d829880ef53',
+						protect_request_content: '',
+						protect_request_photo_thumbnail: 'https://consecutionjiujitsu.com/wp-content/uploads/2017/04/default-image.jpg',
+						protect_request_photos_uri: [
+							'/Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/DD6346EA-03F5-4557-9EA2-19B6F54BBD81/tmp/react-native-image-crop-picker/49CF8C2D-DDA8-4C5E-8078-413036B66DFF.jpg',
+							'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/DD6346EA-03F5-4557-9EA2-19B6F54BBD81/tmp/498FB492-1880-42C5-9E76-9FA68FA1D38F.jpg',
+							'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/DD6346EA-03F5-4557-9EA2-19B6F54BBD81/tmp/C872CF3D-8549-4AD8-BAE6-033EC009595B.jpg',
+							'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/DD6346EA-03F5-4557-9EA2-19B6F54BBD81/tmp/03ACABC1-37D2-4639-AAFD-F80ECBB6BA07.jpg',
+							'file:///Users/sangwoo/Library/Developer/CoreSimulator/Devices/CF9EEFF7-5DB8-4052-B8E3-F7C49AD98B82/data/Containers/Data/Application/DD6346EA-03F5-4557-9EA2-19B6F54BBD81/tmp/5ECE540D-EA67-4956-96AF-529E2EE97490.jpg',
+						],
+						protect_request_status: 'rescue',
+						protect_request_title: '',
+						shelter_protect_animal_object_id: '61d083dc07a02d829880ef53',
+					};
+
 					Modal.popTwoBtn(
 						'해당 내용으로 보호요청 \n 게시글을 작성하시겠습니까?',
 						'취소',
