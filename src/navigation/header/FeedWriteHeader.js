@@ -24,6 +24,13 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 	};
 
 	const onSend = () => {
+		if (route.params.feed_medias[0] == undefined) {
+			Modal.popOneBtn('이미지 등록은 필수 사항입니다.', '확인', () => {
+				Modal.close();
+			});
+			return;
+		}
+		console.log('route.params:', route.params);
 		Modal.popNoBtn('게시물을 등록중입니다.');
 		switch (route.params?.feedType) {
 			case 'Feed':
