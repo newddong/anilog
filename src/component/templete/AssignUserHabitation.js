@@ -18,19 +18,23 @@ import NormalDropDown from 'Molecules/NormalDropDown';
  */
 const AssignUserHabitation = props => {
 	console.log('-AssignUserHabitation-');
-	const debug = true;
+	const debug = false;
 	const [data, setData] = React.useState({
 		...props.route.params,
 		user_address: {
-			city: '시를 선택해 주세요', //시,도
-			district: '구를 선택해 주세요', //군,구
-			neighbor: '동을 선택해 주세요', //동,읍,면
+			// city: '시를 선택해 주세요', //시,도
+			// district: '구를 선택해 주세요', //군,구
+			// neighbor: '동을 선택해 주세요', //동,읍,면
+			city: '', //시,도
+			district: '', //군,구
+			neighbor: '', //동,읍,면
 		},
 	});
 
 	const [city, setCity] = React.useState(['시를 선택해 주세요']);
 	const [district, setDistrict] = React.useState(['구를 선택해 주세요']);
 	const [neighbor, setNeighbor] = React.useState(['동을 선택해 주세요']);
+	const [adressValid, setAdressValid] = React.useState(false); // 주소값이 모두 들어갔을 경우
 
 	const handleError = error => {
 		Modal.popOneBtn(error, '확인', () => Modal.close());
@@ -49,6 +53,13 @@ const AssignUserHabitation = props => {
 	const goToNextStep = () => {
 		props.navigation.push('AssignUserProfileImage', data);
 	};
+
+	React.useEffect(() => {
+		console.log('data.user_address:', data.user_address);
+		if (data.user_address.city != '' && data.user_address.district != '' && data.user_address.neighbor != '') {
+			setAdressValid(true);
+		}
+	}, [data.user_address]);
 
 	const onSelectCity = (v, i) => {
 		debug && console.log('city:', city[i]);
@@ -170,7 +181,11 @@ const AssignUserHabitation = props => {
 
 			{/* (A)Btn_w654 */}
 			<View style={[btn_style.btn_w654, assignUserHabitation_style.btn_w654]}>
-				<AniButton btnTitle={'확인'} titleFontStyle={'32'} btnTheme={'shadow'} btnLayout={btn_w522} onPress={goToNextStep} />
+				{adressValid ? (
+					<AniButton btnTitle={'확인'} titleFontStyle={'32'} btnTheme={'shadow'} btnLayout={btn_w522} onPress={goToNextStep} />
+				) : (
+					<AniButton btnTitle={'확인'} titleFontStyle={'32'} disable={true} btnLayout={btn_w522} />
+				)}
 			</View>
 		</View>
 	);
