@@ -14,7 +14,11 @@ import {getUserInfoById} from 'Root/api/userapi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from '../modal/Modal';
 import Input24 from '../molecules/Input24';
+import {getAddressList} from 'Root/api/address';
+import NormalDropDown from 'Molecules/NormalDropDown';
+
 export default UserInfoDetailSettting = ({route, navigation}) => {
+	const debug = false;
 	// console.log('UserInfoDetailSetting route.params : ', route.params);
 	// console.log('UserInfoDetailSetting route.params : ', route.params.data.user_interests);
 	const [data, setData] = React.useState(route.params); //기존 유저의 데이터가 담겨있음
@@ -46,6 +50,55 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 		}
 	}, [route.params]);
 
+	React.useEffect(() => {
+		getAddressList(
+			{},
+			cities => {
+				setCity(cities.msg), handleError;
+			},
+			err => Modal.alert(err),
+		);
+	}, []);
+
+	const handleError = error => {
+		Modal.popOneBtn(error, '확인', () => Modal.close());
+	};
+
+	const [city, setCity] = React.useState([data.user_address.city]);
+	const [district, setDistrict] = React.useState([data.user_address.district]);
+	const [neighbor, setNeighbor] = React.useState([data.user_address.neighbor]);
+
+	const onSelectCity = (v, i) => {
+		debug && console.log('city:', city[i]);
+		setData({...data, user_address: {...data.user_address, city: city[i]}});
+		getAddressList(
+			{city: city[i]},
+			districts => {
+				setDistrict(districts.msg);
+				debug && console.log('districts:', districts);
+			},
+			handleError,
+		);
+	};
+
+	const onSelectDistrict = (v, i) => {
+		debug && console.log('district:', district[i]);
+		setData({...data, user_address: {...data.user_address, district: district[i]}});
+		getAddressList(
+			{city: data.user_address.city, district: district[i]},
+			neighbor => {
+				setNeighbor(neighbor.msg);
+				debug && console.log('neighbors:', neighbor);
+			},
+			handleError,
+		);
+	};
+
+	const onSelectNeighbor = (v, i) => {
+		debug && console.log('neighbor:', neighbor[i]);
+		setData({...data, user_address: {...data.user_address, neighbor: neighbor[i]}});
+	};
+
 	const onPressSearchAddress = () => {
 		setAddrSearched(false);
 
@@ -61,24 +114,6 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	const onSelectMobileCompany = (v, i) => {
 		console.log('이동통신사ㅏㅏ', v);
 		setData({...data, user_mobile_company: v});
-	};
-
-	// 시, 구 단위 주소 값 변경 콜백
-	const onChangeAddress = addr => {
-		console.log('change Address', addr);
-		let copy = {...data}; //Json 부분 변경 방법
-		copy.user_address.city = addr;
-		copy.user_address.district = addr;
-		setData(copy);
-	};
-
-	// 세부 주소 값 변경 콜백
-	const onChangeDeatilAddress = addr => {
-		// console.log('change Detail addr', addr);
-		let copy = {...data};
-		// copy.user_address.neighbor = addr;
-		copy.user_address.detail = addr;
-		setData(copy);
 	};
 
 	const onSelectGender = index => {
@@ -193,7 +228,14 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 						</View>
 						{/* 나의 지역 */}
 						<View style={[temp_style.addressInput]}>
-							<AddressInput
+							<Text style={[txt.noto28, {color: GRAY10}]}>나의 지역</Text>
+							<View style={[userInfoDetailSettting_style.adressSelect]}>
+								<NormalDropDown menu={city} width={210} height={500} onSelect={onSelectCity} defaultIndex={0} />
+								<NormalDropDown menu={district} width={210} height={500} onSelect={onSelectDistrict} defaultIndex={0} />
+								<NormalDropDown menu={neighbor} width={210} height={500} onSelect={onSelectNeighbor} defaultIndex={0} />
+							</View>
+
+							{/* <AddressInput
 								title={'나의 지역'}
 								// address={data.user_address.brief ? data.user_address.brief : '없음'}
 								// detailAddress={data.user_address.detail ? data.user_address.detail : '없음'}
@@ -204,7 +246,7 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 								// addressDefault={data.user_address.brief ? data.user_address.brief : '없음'}
 								// detailAddressDefault={data ? data.user_address.neighbor : ''}
 								// detailAddressDefault={data.user_address.detail ? data.user_address.detail : '없음'}
-							/>
+							/> */}
 						</View>
 						{/* 관심지역 및 활동 */}
 						<View style={[userInfoDetailSettting_style.tagListContainer]}>

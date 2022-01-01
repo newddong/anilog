@@ -275,7 +275,7 @@ export const temp_style = StyleSheet.create({
 	addressInput: {
 		width: 654 * DP,
 		// height: 238 * DP,
-		alignItems: 'center',
+		// alignItems: 'center',
 		justifyContent: 'center',
 	},
 	inputWithSelect_assignShelterInformation: {
@@ -1654,6 +1654,13 @@ export const userInfoDetailSettting_style = StyleSheet.create({
 	},
 	interestTagList: {
 		width: 654 * DP,
+	},
+	adressSelect: {
+		flexDirection: 'row',
+		width: 654 * DP,
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		backgroundColor: '#FFF',
 	},
 });
 
