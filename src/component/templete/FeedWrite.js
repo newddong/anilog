@@ -270,29 +270,14 @@ export default FeedWrite = props => {
 		<View style={[login_style.wrp_main, feedWrite.container]}>
 			
 			{/* <ScrollView contentContainerStyle={{width: 750 * DP, alignItems: 'center'}}> */}
-			{/* <View style={[temp_style.feedTextEdit, feedWrite.feedTextEdit]}>
-					<TextInput
-						textAlignVertical={'top'}
-						multiline={true}
-						style={{flex: 1}}
-						placeholder="게시물을 작성하세요"
-						onChangeText={inputFeedTxt}
-						></TextInput>
-				</View>
-				<View style={{width: 654 * DP, height: 2 * DP, marginVertical: 40 * DP, backgroundColor: APRI10}} /> */}
-				{/* Input Text 하단 언더라인 */}
-				
 				<HashInput
-					containerStyle={[temp_style.feedTextEdit,{backgroundColor:'yellow',borderBottomWidth:2*DP,borderBottomColor:APRI10}]}
+					containerStyle={[temp_style.feedTextEdit,{borderBottomWidth:2*DP,borderBottomColor:APRI10}]}
 					textAlignVertical={'top'}
 					multiline={true}
 					placeholder="게시물을 작성하세요"
 					placeholderTextColor={GRAY20}
 					onChangeText={inputFeedTxt}
 					></HashInput>
-				{/* <View style={{width: 654 * DP, height: 300 * DP, backgroundColor: 'lightblue', flexDirection: 'row'}}>
-					{completed ? getFeedContent(draft) : null}
-				</View> */}
 
 				{setWriteModeState()}
 				{/* 긴급 게시물 관련 버튼 컨테이너 */}

@@ -19,9 +19,7 @@ HashText.defaultProps = {
 }
 
 const makeFeedInputView = (input,allowTab) => {
-	let arr0 = '해쉬나 계정에 대한 테그가 없는 글입니다. 테스트용이라 삭제하셔도 됩니다.';
 	if(!input||input.length==0){
-	// input = '엔터도\n들어가네\n된다&@&@@시프리티|&|61c5667e38c5f6dee5a8b77f&@&@ aaddsdfs&@&@@레몬이|&|61c5669d38c5f6dee5a8b782&@&@ sdfsdfaa&#&##띠롱|&|띠롱&#&#오늘은&@&@기영|&|eioasd&@&@이와함께 &#&#딸기|&|aslkdfja&#&# 를&@&@효쏭|&|aslfs&@&@과 함께 사먹었어요 &@&@행복|&|mongoID&@&@이는&#&##간식을|&|mongoid&#&#먹네요$$부럽네요$$증말';
 		input = '피드 내용이 없습니다.'
 	}
 	if (!input.includes('&@&@') && !input.includes('&#&#')) return input;
@@ -37,7 +35,6 @@ const makeFeedInputView = (input,allowTab) => {
 	let match;
 	let viewArr = []
 	while((match=Regex.exec(input))!==null){
-		// console.log(match);
 		let pressfn = match[5]?onUserClick:onHashClick;
 		let id = match[6]||match[8];
 		viewArr.push(
