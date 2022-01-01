@@ -78,7 +78,7 @@ const EmailDropDownSelect = React.forwardRef(
 		const emailRef = React.useRef();
 
 		return (
-			<TouchableOpacity onPress={onPress}>
+			<TouchableOpacity onPress={onPress} style={{}}>
 				<View
 					style={{
 						height: 80 * DP, //border가 있으므로 80DP로 수정

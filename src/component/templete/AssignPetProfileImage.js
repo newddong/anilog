@@ -168,6 +168,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 							validator={nickName_validator}
 							onChange={onNicknameChange}
 							onValid={onNicknameValid}
+							confirm={nickName_validator}
 							ref={nicknameInput}
 							maxLength={25}
 						/>

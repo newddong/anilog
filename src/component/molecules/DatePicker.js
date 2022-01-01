@@ -62,7 +62,7 @@ const DatePicker = props => {
 						txt.roboto28,
 						{
 							lineHeight: 44 * DP,
-							paddingLeft: 24 * DP,
+							paddingLeft: 14 * DP,
 							paddingVertical: 18 * DP, // Value와 최상위 View와의 paddingVertical 16px
 						},
 					]}>

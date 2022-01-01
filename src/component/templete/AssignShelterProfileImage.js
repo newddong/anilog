@@ -18,11 +18,13 @@ export default AssignShelterProfileImage = props => {
 
 	const assginShelter = () => {
 		Modal.popNoBtn('등록중입니다.');
-		console.log('data', data.user_profile_uri);
+		console.log('data', data);
 
 		assignShelter(
 			{...data, user_profile_uri: data.user_profile_uri ? data.user_profile_uri : 'http://'},
 			successmsg => {
+				console.log('보호소가입 ID : ', successmsg.shelter_delegate_contact_number);
+				console.log('보호소가입 PWD : ', successmsg.user_password);
 				Modal.close(); //NoBtn팝업 종료
 				Modal.popNoBtn('보호소 등록이 완료되었습니다.');
 				setTimeout(() => {
@@ -58,7 +60,7 @@ export default AssignShelterProfileImage = props => {
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* Text Msg */}
 			<View style={[temp_style.textMsg_AssignUserProfileImage, assignShelterProfileImage_style.txt_msg]}>
-				<Text style={[txt.noto24]}>프로필 사진은 나중에도 변경 할 수 있어요.</Text>
+				<Text style={[txt.noto24]}>프로필 이미지를 설정해주셔야해요.</Text>
 			</View>
 
 			{/* (M)ProfileImageSelect */}
@@ -68,7 +70,7 @@ export default AssignShelterProfileImage = props => {
 
 			{/* (A)Btn_w654 */}
 			<View style={[btn_style.btn_w654, assignShelterProfileImage_style.btn_w654]}>
-				<AniButton btnTitle={'확인'} titleFontStyle={'32'} btnLayout={btn_w654} onPress={assginShelter} />
+				<AniButton btnTitle={'확인'} titleFontStyle={'32'} disable={data.user_profile_uri == ''} btnLayout={btn_w654} onPress={assginShelter} />
 			</View>
 		</View>
 	);

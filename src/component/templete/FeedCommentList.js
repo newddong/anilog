@@ -15,7 +15,7 @@ import DP from 'Root/config/dp';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default FeedCommentList = props => {
-	// console.log('그림들' + props.route.params);
+	// console.log('props.showAllContents', props.route.params.showAllContents);
 	const navigation = useNavigation();
 	const [editComment, setEditComment] = React.useState(false); //답글 쓰기 클릭 state
 	const [privateComment, setPrivateComment] = React.useState(false); // 공개 설정 클릭 state
@@ -124,7 +124,7 @@ export default FeedCommentList = props => {
 				data={[{}, comments]}
 				renderItem={render}
 				stickyHeaderIndices={[1]}
-				ListHeaderComponent={<FeedContent data={props.route.params.feedobject} />}
+				ListHeaderComponent={<FeedContent data={props.route.params.feedobject} showAllContents={props.route.params.showAllContents} />}
 			/>
 			{/* Parent Comment 혹은 Child Comment 에서 답글쓰기를 클릭할 시 화면 최하단에 등장 */}
 			{/* 비로그인 유저일 경우 리플란이 안보이도록 처리 - 상우 */}

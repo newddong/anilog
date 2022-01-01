@@ -194,7 +194,7 @@ export default AnimalNeedHelp = props => {
 								{/* <Text style={[txt.noto24, {color: RED10}]}>실종일: {data.missing_animal_date || ''}</Text> */}
 								<Text style={[txt.noto24, {color: RED10}]}>실종일: {getParsedDate()}</Text>
 								<Text style={[txt.noto24, {color: RED10}]}>
-									나이:{data.missing_animal_age || ''} / 성별: {getParsedSex()}
+									나이:{data.missing_animal_age + '살' || ''} / 성별: {getParsedSex()}
 									{/* {data.missing_animal_sex} */}
 								</Text>
 								<Text style={[txt.noto24, {width: 380 * DP}]}>실종위치: {data.missing_animal_lost_location || ''}</Text>

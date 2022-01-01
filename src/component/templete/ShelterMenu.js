@@ -7,7 +7,7 @@ import ProfileImageLarge160 from '../molecules/ProfileImageLarge160';
 import {txt} from 'Root/config/textstyle';
 import SocialInfoB from '../organism_ksw/SocialInfoB';
 import {btn_w280} from '../atom/btn/btn_style';
-import {FloatAddPet_126x92} from '../atom/icon';
+import {Arrow_Down_GRAY10, Arrow_Up_GRAY20, FloatAddPet_126x92} from '../atom/icon';
 import {FloatAddArticle_126x92} from '../atom/icon';
 import AniButton from '../molecules/AniButton';
 import ProfileMenu from '../organism_ksw/ProfileMenu';
@@ -46,24 +46,30 @@ import {userLogout} from 'Root/api/userapi';
 export default ShelterMenu = ({route}) => {
 	const navigation = useNavigation();
 	const [data, setData] = React.useState({}); //우선 userObject_Shelter 0번 추가
+	const [showMoreIntro, setShowMoreIntro] = React.useState(false);
 	React.useEffect(() => {
-		AsyncStorage.getItem('token', async (err, res) => {
-			// Modal.popNoBtn('Loading');
-			getUserProfile(
-				{
-					userobject_id: res,
-				},
-				userObject => {
-					// console.log('userObject/ ShelterMenu', userObject.msg);
-					setData(userObject.msg);
-					// Modal.close();
-				},
-				err => {
-					console.log('err', err);
-					// Modal.close();
-				},
-			);
-		});
+		const getInfo = () => {
+			AsyncStorage.getItem('token', async (err, res) => {
+				// Modal.popNoBtn('Loading');
+				getUserProfile(
+					{
+						userobject_id: res,
+					},
+					userObject => {
+						// console.log('userObject/ ShelterMenu', userObject.msg);
+						setData(userObject.msg);
+						// Modal.close();
+					},
+					err => {
+						console.log('err', err);
+						// Modal.close();
+					},
+				);
+			});
+		};
+		const unsubscribe = navigation.addListener('focus', () => getInfo());
+
+		return unsubscribe;
 	}, []);
 
 	//보호소 정보 수정
@@ -197,9 +203,21 @@ export default ShelterMenu = ({route}) => {
 								</View>
 								{/* user_introduction */}
 								<View style={[shelterMenu.shelterInfo_contents]}>
-									<Text numberOfLines={2} style={[txt.noto24, {color: GRAY10}]}>
-										{data.user_introduction || ''}
+									<Text numberOfLines={showMoreIntro ? 10 : 2} style={[txt.noto24, {color: GRAY10}]}>
+										{data.user_introduction || '자기소개가 없습니다.'}
 									</Text>
+
+									{showMoreIntro ? (
+										<TouchableOpacity onPress={() => setShowMoreIntro(!showMoreIntro)} style={[shelterMenu.showMore, {}]}>
+											<Text style={[txt.noto24, {color: GRAY10}]}>접기</Text>
+											<Arrow_Up_GRAY20 />
+										</TouchableOpacity>
+									) : (
+										<TouchableOpacity onPress={() => setShowMoreIntro(!showMoreIntro)} style={[shelterMenu.showMore, {}]}>
+											<Text style={[txt.noto24, {color: GRAY10}]}>펼치기</Text>
+											<Arrow_Down_GRAY10 />
+										</TouchableOpacity>
+									)}
 								</View>
 							</View>
 						</View>

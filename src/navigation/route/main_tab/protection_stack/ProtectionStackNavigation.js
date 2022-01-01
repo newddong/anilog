@@ -10,6 +10,7 @@ import ReportDetail from 'Templete/ReportDetail';
 import ActivationDetail from 'Templete/ActivationDetail';
 import SocialRelationTopTabNavigation from './socialRelation_tab/SocialRelationTopTabNavigation';
 import ProtectionTopTabNavigation from './protection_tab/ProtectionTopTabNavigation';
+import AlarmAndSearchHeader from 'Root/navigation/header/AlarmAndSearchHeader';
 
 const ProtectionStack = createStackNavigator();
 
@@ -29,7 +30,7 @@ export default ProtectionStackNavigation = () => {
 				options={{header: props => <SimpleHeader {...props} />}}
 			/>
 			<ProtectionStack.Screen name="FeedListForHashTag" component={FeedListForHashTag} />
-			<ProtectionStack.Screen name="FeedCommentList" component={FeedCommentList} />
+			<ProtectionStack.Screen name="FeedCommentList" component={FeedCommentList} options={{header: props => <AlarmAndSearchHeader {...props} />}} />
 			<ProtectionStack.Screen name="MissingAnimalDetail" component={MissingAnimalDetail} options={{header: props => <MeatBallHeader {...props} />}} />
 			<ProtectionStack.Screen
 				name="ReportDetail"

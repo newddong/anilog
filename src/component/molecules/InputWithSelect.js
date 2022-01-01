@@ -74,6 +74,7 @@ const InputWithSelect = props => {
 						value={input}
 						ref={inputRef}
 						keyboardType={props.keyboardType}
+						confirm={props.confirm}
 						confirm_msg={props.confirm_msg}
 						showMsg={props.showMsg}
 						// defaultValue={props.defaultValue}
