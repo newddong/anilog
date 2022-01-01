@@ -17,7 +17,7 @@ export default AnimalProtectList = ({route}) => {
 		getUserProtectAnimalList(
 			{userobject_id: token},
 			successed => {
-				// console.log('success / AnimalProtectList', successed);
+				console.log('success / AnimalProtectList', successed);
 				setData(successed.msg);
 				//받아오는 list를 setData
 			},
@@ -45,3 +45,7 @@ export default AnimalProtectList = ({route}) => {
 		</View>
 	);
 };
+// user_my_pets: [
+// 	ObjectId('61c8220c98117827ac528e0f'),
+// 	ObjectId('61d0062707a02d829880289a')
+// ],

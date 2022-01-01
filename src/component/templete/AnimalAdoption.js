@@ -5,6 +5,7 @@ import {APRI10, GRAY20} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {btn_w522} from '../atom/btn/btn_style';
 import {Paw48_APRI10, Paw62_APRI10, Paw62_Mixed, Paw62_YELL20} from '../atom/icon';
+import Modal from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
 import {login_style, btn_style, animalAdoption} from './style_templete';
 
@@ -78,20 +79,21 @@ export default AnimalAdoption = props => {
 						btnLayout={btn_w522}
 						titleFontStyle={32}
 						onPress={() => {
-							Modal.popTwoBtn(
-								'입양 예정자가 애니로그 계정이 있나요?',
-								'없음',
-								'계정 찾기',
-								() => {
-									Modal.close();
-									navigation.push('PetInfoSetting', {userobject_id: props.route.params.userobject_id});
-								},
-								() => {
-									Modal.close();
-									console.log('모달창 닫힘');
-									navigation.push('SelectAccount', {userobject_id: props.route.params.userobject_id});
-								},
-							);
+							Modal.popOneBtn('패치 예정입니다!', '확인', () => Modal.close());
+							// Modal.popTwoBtn(
+							// 	'입양 예정자가 애니로그 계정이 있나요?',
+							// 	'없음',
+							// 	'계정 찾기',
+							// 	() => {
+							// 		Modal.close();
+							// 		navigation.push('PetInfoSetting', {userobject_id: props.route.params.userobject_id});
+							// 	},
+							// 	() => {
+							// 		Modal.close();
+							// 		console.log('모달창 닫힘');
+							// 		navigation.push('SelectAccount', {userobject_id: props.route.params.userobject_id});
+							// 	},
+							// );
 						}}
 					/>
 				</View>
@@ -104,13 +106,15 @@ export default AnimalAdoption = props => {
 						btnLayout={btn_w522}
 						titleFontStyle={32}
 						onPress={() => {
-							Modal.popTwoBtn(
-								'이 동물을 가족으로 맞이하시겠어요?',
-								'취소',
-								'예',
-								() => Modal.close(),
-								() => onCheerUp,
-							);
+							Modal.popOneBtn('패치 예정입니다!', '확인', () => Modal.close());
+
+							// Modal.popTwoBtn(
+							// 	'이 동물을 가족으로 맞이하시겠어요?',
+							// 	'취소',
+							// 	'예',
+							// 	() => Modal.close(),
+							// 	() => onCheerUp,
+							// );
 						}}
 					/>
 				</View>

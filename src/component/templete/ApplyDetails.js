@@ -11,7 +11,7 @@ import {applyDetails, btn_style, login_style, temp_style} from './style_templete
 
 export default ApplyDetails = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params);
-	// console.log('', data.protect_act_motivation);
+	console.log('', data.protect_act_companion_history);
 	//모달창에서 최종 확인을 클릭
 	const isProtect = route.name == 'ApplyProtectActivityE';
 	React.useEffect(() => {

@@ -8,7 +8,7 @@ import {WHITE, APRI10} from 'Root/config/color';
 import InputWithSearchIcon from 'Molecules/InputWithSearchIcon';
 
 export default ConfirmInputHeader = props => {
-	console.log('props Confirn', props);
+	// console.log('props Confirn', props);
 	const [searchInput, setSearchInput] = React.useState('');
 	const confirm = () => {
 		// navigation.navigate('Search');
@@ -20,11 +20,20 @@ export default ConfirmInputHeader = props => {
 		setSearchInput(text);
 	};
 
+	//뒤로 가기 클릭 시 탭이 initialRoute인 Feed로 가던 현상 수정
+	const onPressGoBack = () => {
+		if (props.route.params.prevNav == 'MainHomeFeedList' || props.route.params.prevNav == 'ProtectionTab') {
+			props.navigation.navigate(props.route.params.prevNav);
+		} else {
+			props.navigation.goBack();
+		}
+	};
+
 	return (
 		<View style={[style.headerContainer, style.shadow]}>
-			<TouchableOpacity onPress={props.navigation.goBack}>
+			<TouchableOpacity onPress={onPressGoBack}>
 				<View style={style.backButtonContainer}>
-					<BackArrow32 onPress={props.navigation.goBack} />
+					<BackArrow32 onPress={onPressGoBack} />
 				</View>
 			</TouchableOpacity>
 			<View style={{marginBottom: 20 * DP, flex: 1}}>

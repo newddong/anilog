@@ -44,7 +44,7 @@ export default AnimalNeedHelpList = props => {
 					onFavoriteTag={e => props.onFavoriteTag(e, index)}
 					onPressAdoptorInfo={() => props.onPressAdoptorInfo(item)}
 					onPressProtectRequest={() => props.onPressProtectRequest(item)}
-					onPressReporter={() => props.onPressReporter(item)}
+					callFrom={props.callFrom}
 				/>
 			</View>
 		);

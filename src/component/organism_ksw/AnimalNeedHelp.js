@@ -59,7 +59,8 @@ export default AnimalNeedHelp = props => {
 		// 보호 동물의 데이터 일 경우 (세 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
 		if (data.hasOwnProperty('protect_animal_sex') && data.hasOwnProperty('protect_animal_status')) {
 			resultJSON.gender = data.protect_animal_sex;
-			resultJSON.status = data.protect_request_status;
+			resultJSON.status =
+				data.protect_request_status != undefined ? data.protect_request_status : data.protect_act_request_article_id.protect_request_status;
 		} else if (data.hasOwnProperty('feed_type')) {
 			// 실종/제보는 feed_type에서 동물 상태 얻어옴
 			resultJSON.status = data.feed_type;
@@ -99,11 +100,6 @@ export default AnimalNeedHelp = props => {
 
 	const onPressProtectRequest = () => {
 		props.onPressProtectRequest();
-	};
-
-	const onPressReporter = () => {
-		console.log('data', data);
-		navigation.push('UserProfile', {userobject: data.feed_writer_id});
 	};
 
 	const getParsedDate = () => {
@@ -225,11 +221,9 @@ export default AnimalNeedHelp = props => {
 								</Text>
 								<View style={{flexDirection: 'row', alignItems: 'center'}}>
 									<Text style={[txt.noto24, {}]} numberOfLines={1}>
-										제보자: {'  '}
+										제보자: {''}
 									</Text>
-									<TouchableOpacity onPress={onPressReporter}>
-										<Text style={[txt.noto24, {textDecorationLine: 'underline', color: BLUE20}]}>{data.feed_writer_id.user_nickname || ''} </Text>
-									</TouchableOpacity>
+									<Text style={[txt.noto24]}>{data.feed_writer_id.user_nickname || ''} </Text>
 								</View>
 							</View>
 						</>

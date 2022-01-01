@@ -8,25 +8,44 @@ import BottomTab from 'Navigation/maintab/BottomTab';
 import {FEED, REQ_ANIMAL, VIDEO, MY} from 'Root/i18n/msg';
 import SimpleHeader from 'Root/navigation/header/SimpleHeader';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
+import SearchTabNavigation from '../search_tab/SearchTabNavigation';
+import InputAndSearchHeader from 'Root/navigation/header/InputAndSearchHeader';
 
 const MainTabNav = createBottomTabNavigator();
 
 export default MainTabNavigation = ({route, navigation}) => {
 	const getTabBarVisibility = route => {
 		const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-		if (routeName === 'AnimalProtectRequestDetail') {
-			return false;
+		// console.log('getFocusedRouteNameFromRoute', routeName);
+		switch (routeName) {
+			case 'AnimalProtectRequestDetail':
+			case 'ShelterInfoSetting':
+			case 'UserInfoSetting':
+			case 'FeedCommentList':
+				// case 'Search':
+				return false;
+				break;
+			default:
+				break;
 		}
 		return true;
 	};
 	return (
 		<MainTabNav.Navigator initialRouteName={'FEED'} tabBar={props => <BottomTab {...props} />}>
-			<MainTabNav.Screen name="FEED" component={FeedStackNavigation} options={{tabBarLabel: '피드', header: props => false}} />
+			<MainTabNav.Screen
+				name="FEED"
+				component={FeedStackNavigation}
+				options={({route}) => ({
+					tabBarVisible: getTabBarVisibility(route),
+					tabBarLabel: '피드',
+					tabBarHideOnKeyboard: true,
+					header: props => false,
+				})}
+			/>
 			<MainTabNav.Screen
 				name="PROTECTION"
 				component={ProtectionStackNavigation}
 				// options={{tabBarLabel: '동물보호', tabBarHideOnKeyboard: true, header: props => false}}
-
 				options={({route}) => ({
 					tabBarVisible: getTabBarVisibility(route),
 					tabBarLabel: '동물보호',
@@ -36,9 +55,25 @@ export default MainTabNavigation = ({route, navigation}) => {
 			/>
 			<MainTabNav.Screen name="COMMUNITY" component={Temp} options={{header: props => <SimpleHeader {...props} />, title: '커뮤니티'}} />
 
-			<MainTabNav.Screen name="MY" options={{tabBarLabel: 'MY', header: props => false}}>
+			<MainTabNav.Screen
+				name="MY"
+				options={({route}) => ({
+					tabBarVisible: getTabBarVisibility(route),
+					tabBarLabel: 'MY',
+					tabBarHideOnKeyboard: true,
+					header: props => false,
+				})}>
+				{/* // options={{tabBarLabel: 'MY', header: props => false}}> */}
 				{props => <MyStackNavigation {...props} user_type={route.params} />}
 			</MainTabNav.Screen>
+			<MainTabNav.Screen
+				name="Search"
+				component={SearchTabNavigation}
+				listeners={{
+					focus: e => {},
+				}}
+				options={{header: props => <InputAndSearchHeader {...props} />, tabBarShowLabel: false, tabBarLabel: 'Search'}}
+			/>
 		</MainTabNav.Navigator>
 	);
 };

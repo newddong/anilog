@@ -9,6 +9,7 @@ import {getUserAdoptProtectionList} from 'Root/api/protectapi';
 //ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default ApplyAdoptionList = props => {
+	// console.log('ApplyAdoptionList', props);
 	const navigation = useNavigation();
 	const [data, setData] = React.useState();
 	const [loading, setLoading] = React.useState(true); // 화면 출력 여부 결정
@@ -82,6 +83,7 @@ export default ApplyAdoptionList = props => {
 						}
 						onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
 						onClickLabel={(status, id, item) => onLabelClick(item)}
+						callFrom={props.route.name}
 					/>
 				</View>
 			</View>

@@ -13,7 +13,7 @@ import AnimalNeedHelp from './AnimalNeedHelp';
 import {animalProtectDetail} from './style_organism';
 
 export default AnimalProtectDetail = props => {
-	// console.log(' AnimalProtectDetail / props.data', props.data);
+	// console.log(' AnimalProtectDetail / props.data', props.data.protect_act_companion_history);
 
 	const data = props.data;
 	const getStatusText = arg => {

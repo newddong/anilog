@@ -14,6 +14,7 @@ export const tab = StyleSheet.create({
 	},
 	tab_feed: {
 		paddingTop: 24 * DP,
+		marginLeft: 30 * DP,
 	},
 	tab_animal_saving: {
 		paddingTop: 26 * DP,

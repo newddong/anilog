@@ -13,7 +13,7 @@ import {styles} from '../atom/image/imageStyle';
  * @param {(status:string, _id:number)=>void} props.onLabelClick - 썸네일 클릭할 때 동작하는 콜백, 썸네일 클릭 상태와 클릭한 썸네일의 고유 _id반환
  */
 const ProtectedThumbnail = props => {
-	// console.log('props ProtectThumb', props.data.status);
+	// console.log('props ProtectThumb', props.data);
 	const borderByStatus = () => {
 		if (props.data.status == 'emergency') {
 			return {

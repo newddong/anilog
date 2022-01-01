@@ -72,21 +72,22 @@ export default AssignPetInfoA = props => {
 		setData({...data, pet_neutralization: neutralization});
 	};
 
-	const gotoNextStep = () => {
-		props.route.name == 'AssignProtectAnimalType'
-			? props.navigation.push('AssignProtectAnimalAge', data)
-			: props.navigation.push('AssignPetInfoB', data);
-	};
-
 	const onSelectSpecies = (v, i) => {
 		console.log('v=>' + v + ' i=>' + i);
-		setData({...data, pet_species: types[i].pet_species, type: types[i]});
+		setData({...data, pet_species: types[i].pet_species, type: types[i], pet_species_detail: types[i].pet_species_detail[0]});
 		setIsSpeciesChanged(!isSpeciesChanged);
 	};
 
 	const onSelectSpeciesDetail = (v, i) => {
 		console.log('v=>' + v + ' i=>' + i);
 		setData({...data, pet_species_detail: data.type.pet_species_detail[i]});
+	};
+
+	const gotoNextStep = () => {
+		console.log('data, ', data.pet_species_detail);
+		props.route.name == 'AssignProtectAnimalType'
+			? props.navigation.push('AssignProtectAnimalAge', data)
+			: props.navigation.push('AssignPetInfoB', data);
 	};
 
 	if (loading) {

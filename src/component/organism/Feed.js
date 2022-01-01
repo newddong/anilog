@@ -14,7 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from '../modal/Modal';
 
 export default Feed = React.memo(props => {
-	console.log('Feed', props.data);
+	// console.log('Feed', props.data);
 	const navigation = useNavigation();
 	const {
 		feed_content,

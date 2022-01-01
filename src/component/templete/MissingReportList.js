@@ -140,7 +140,6 @@ export default MissingReportList = props => {
 					<AnimalNeedHelpList
 						// data={dummy_MissingReportList}
 						data={data}
-						onPressReporter={onPressReporter}
 						onFavoriteTag={(e, index) => onOff_FavoriteTag(e, index)}
 						onClickLabel={(status, id, item) => onClickLabel(status, id, item)}
 						whenEmpty={whenEmpty()}

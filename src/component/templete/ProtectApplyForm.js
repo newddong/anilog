@@ -49,6 +49,9 @@ export default ProtectApplyForm = ({route, navigation}) => {
 			'확인',
 			() => Modal.close,
 			() => {
+				//입양 및 임시보호 확정 => 신청서, 보호요청게시글, 보호동물의 상태, 유저의 반려동물
+				// 위 네가지의 상태가 바뀌어야 함 (현재 보호동물의 상태 API는 미제작)
+				console.log('data.protect_act_type', data.protect_act_type);
 				setProtectActivityStatus(
 					{
 						protect_act_object_id: data._id,
@@ -81,7 +84,7 @@ export default ProtectApplyForm = ({route, navigation}) => {
 						pet_sex: data.protect_animal_data.protect_animal_sex,
 						pet_species: data.protect_animal_species,
 						pet_species_detail: data.protect_animal_species_detail,
-						pet_status: data.protect_act_type == 'protet' ? 'protect' : 'adopt',
+						pet_status: data.protect_act_type == 'protect' ? 'protect' : 'adopt',
 						pet_weight: data.protect_animal_data.protect_animal_weight,
 						user_nickname: data.protect_animal_species,
 					},

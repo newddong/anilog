@@ -86,6 +86,7 @@ export default AidRequestManage = ({route, navigation}) => {
 					let merged = []; //페이지 이동 후 입양 신청한
 					result.msg.map((data, i) => {
 						data.shelter_name = route.params.shelter_name;
+						// console.log('data', i, data);
 						//출력된 보호요청게시글들이 가지는 지원신청서가 혹시 accept 상태인 것이 있는 경우 ( == 입양/임보가 확정-취소-신청취소 된 상태 )
 						// ==> 출력되어서는 안됨
 						const hasApplicantsWaitng = data.protect_act_applicants.some(

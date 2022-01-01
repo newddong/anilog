@@ -83,7 +83,7 @@ export default ApplyCompanionC = props => {
 			companion_pet_species: petTypes[0],
 			companion_pet_age: PET_AGE[0],
 			companion_pet_period: COMPANION_DURATION[0],
-			companion_pet_current_status: COMPANION_STATUS[0],
+			companion_pet_current_status: 'living',
 		});
 		setCompanionList(copy);
 	};
@@ -138,11 +138,18 @@ export default ApplyCompanionC = props => {
 		setCompanionList(copy);
 	};
 
+	//반려 생활 삭제 마크 클릭
+	const onDelteCompanion = index => {
+		let copy = [...companionList];
+		copy.splice(index, 1);
+		setCompanionList(copy);
+	};
+
 	//다음버튼 클릭
 	const goToNextStep = () => {
 		console.log('data', data.protect_act_companion_history);
 		const isSelectedCompanionKind = !data.protect_act_companion_history.some(e => e.companion_pet_species == '동물종류');
-		console.log('isSelectedCompanionKind', isSelectedCompanionKind);
+		// console.log('isSelectedCompanionKind', isSelectedCompanionKind);
 		if (isSelectedCompanionKind) {
 			//반려생활추가 목록 중 동물종류가 올바르게 선택되지 않았을 경우
 			props.route.name == 'ApplyProtectActivityB' ? navigation.push('ApplyProtectActivityC', data) : navigation.push('ApplyAnimalAdoptionC', data);
@@ -151,16 +158,6 @@ export default ApplyCompanionC = props => {
 		}
 		// props.route.name == 'ApplyProtectActivityB' ? navigation.push('ApplyProtectActivityC', data) : navigation.push('ApplyAnimalAdoptionC', data);
 	};
-
-	const onDelteCompanion = index => {
-		let copy = [...companionList];
-		copy.splice(index, 1);
-		setCompanionList(copy);
-	};
-
-	// const deleteAs = () => {
-	// 	AsyncStorage.removeItem('tempData_applyCompanionB')
-	// }
 
 	return (
 		<View style={[login_style.wrp_main, {flex: 1}]}>

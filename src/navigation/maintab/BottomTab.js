@@ -25,8 +25,22 @@ export default function BottomTab({state, descriptors, navigation, route}) {
 
 	const iconlayout = [tab.tab_feed, tab.tab_animal_saving, tab.tab_community, tab.tab_my];
 
+	let currentIndex = null;
 	if (focusedOptions.tabBarVisible === false) {
 		return null;
+	}
+
+	//SearchTab이 MainTab으로 편입되면서 불가피하게 제작
+	//서치탭이 포커스(돋보기 클릭)되지만 탭의 선택상태는 이전의 Tab상태로 유지를 해야함
+	//더 좋은 방법이 있을 시 개선 [상우]
+	if (state.index == 4 && state.routes) {
+		// console.log('state', state?.routes[state.index].params.prevNav);
+		if (state.routes[state.index].params != undefined) {
+			// console.log('state', state.routes ? state.routes[state.index].params.prevNav : 'dd');
+			const prevNav = state.routes[state.index].params.prevNav;
+			//현재는 서치탭이동이 두가지 경우 (보호활동탭, 피드탭)밖에 없으므로 이하와 같이 처리
+			prevNav == 'ProtectionTab' ? (currentIndex = '1') : (currentIndex = '0');
+		}
 	}
 
 	return (
@@ -36,8 +50,9 @@ export default function BottomTab({state, descriptors, navigation, route}) {
 				{state.routes.map((route, index) => {
 					const {options} = descriptors[route.key];
 					const label = options.tabBarLabel !== undefined ? options.tabBarLabel : options.title !== undefined ? options.title : route.name;
-
-					const isFocused = state.index === index;
+					//SearchTab으로 왔을 경우 현재 포커스되어야할 인덱스는 state.index(Tabindex)가 아닌 이전의 Index로 처리되어야 함 [상우]
+					const isFocused = (currentIndex != null ? currentIndex : state.index) == index;
+					//확인 필
 					const color = isFocused ? APRI10 : GRAY20;
 					const textStyle = isFocused ? txt.noto22b : txt.noto22;
 					const textStyleEng = isFocused ? txt.roboto22b : txt.roboto22;
@@ -62,13 +77,17 @@ export default function BottomTab({state, descriptors, navigation, route}) {
 					};
 
 					const renderTab = index => {
-						return (
-							<View style={[tab.hitboxLayout, iconlayout[index]]}>
-								{/* <SvgWrapper style={iconlayout[index]} svg={isFocused ? iconsFocused[index] : icons[index]} /> */}
-								{isFocused ? iconsFocused[index] : icons[index]}
-								<Text style={[index === 3 ? textStyleEng : textStyle, {color: color, lineHeight: 36 * DP, marginTop: 7 * DP}]}>{label}</Text>
-							</View>
-						);
+						if (index == 4) {
+							return <></>;
+						} else {
+							return (
+								<View style={[tab.hitboxLayout, iconlayout[index]]}>
+									{/* <SvgWrapper style={iconlayout[index]} svg={isFocused ? iconsFocused[index] : icons[index]} /> */}
+									{isFocused ? iconsFocused[index] : icons[index]}
+									<Text style={[index === 3 ? textStyleEng : textStyle, {color: color, lineHeight: 36 * DP, marginTop: 7 * DP}]}>{label}</Text>
+								</View>
+							);
+						}
 					};
 
 					return (

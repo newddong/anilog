@@ -125,12 +125,10 @@ export default AppliesRecord = ({route}) => {
 					<View style={[appliesRecord.record]}>
 						<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
 							<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>입양 신청 </Text>
-							{adopt_application_list != undefined && adopt_application_list.length > 1 && (
-								<TouchableOpacity onPress={showMoreAdoption} style={[appliesRecord.showMoreBox]}>
-									<Text style={[txt.noto24]}>더보기 </Text>
-									<NextMark />
-								</TouchableOpacity>
-							)}
+							<TouchableOpacity onPress={showMoreAdoption} style={[appliesRecord.showMoreBox]}>
+								<Text style={[txt.noto24]}>더보기 </Text>
+								<NextMark />
+							</TouchableOpacity>
 						</View>
 						{adopt_application_list != undefined && adopt_application_list.length > 0 ? (
 							<AnimalNeedHelpList data={adopt_application_list} onClickLabel={onClickAdoptApplication} onFavoriteTag={onOff_FavoriteTag} />
@@ -141,12 +139,10 @@ export default AppliesRecord = ({route}) => {
 					<View style={[appliesRecord.record]}>
 						<View style={[appliesRecord.animalNeedHelp.headerContainer]}>
 							<Text style={[appliesRecord.animalNeedHelp.headerContainer.title]}>임시보호 신청 </Text>
-							{protect_application_list != undefined && protect_application_list.length > 1 && (
-								<TouchableOpacity onPress={showMoreProtection} style={[appliesRecord.showMoreBox]}>
-									<Text style={[txt.noto24]}>더보기 </Text>
-									<NextMark />
-								</TouchableOpacity>
-							)}
+							<TouchableOpacity onPress={showMoreProtection} style={[appliesRecord.showMoreBox]}>
+								<Text style={[txt.noto24]}>더보기 </Text>
+								<NextMark />
+							</TouchableOpacity>
 						</View>
 						{protect_application_list != undefined && protect_application_list.length > 0 ? (
 							<AnimalNeedHelpList data={protect_application_list} onClickLabel={onClickProtectApplication} onFavoriteTag={onOff_FavoriteTag} />
