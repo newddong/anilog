@@ -36,10 +36,6 @@ const AssignUserHabitation = props => {
 	const [neighbor, setNeighbor] = React.useState(['동을 선택해 주세요']);
 	const [adressValid, setAdressValid] = React.useState(false); // 주소값이 모두 들어갔을 경우
 
-	const handleError = error => {
-		Modal.popOneBtn(error, '확인', () => Modal.close());
-	};
-
 	React.useEffect(() => {
 		getAddressList(
 			{},
@@ -49,10 +45,6 @@ const AssignUserHabitation = props => {
 			err => Modal.alert(err),
 		);
 	}, []);
-
-	const goToNextStep = () => {
-		props.navigation.push('AssignUserProfileImage', data);
-	};
 
 	React.useEffect(() => {
 		console.log('data.user_address:', data.user_address);
@@ -90,6 +82,14 @@ const AssignUserHabitation = props => {
 	const onSelectNeighbor = (v, i) => {
 		debug && console.log('neighbor:', neighbor[i]);
 		setData({...data, user_address: {...data.user_address, neighbor: neighbor[i]}});
+	};
+
+	const handleError = error => {
+		Modal.popOneBtn(error, '확인', () => Modal.close());
+	};
+
+	const goToNextStep = () => {
+		props.navigation.push('AssignUserProfileImage', data);
 	};
 
 	// const onSelectCity = () => {
