@@ -3,6 +3,8 @@ import {View, Text, TextInput} from 'react-native';
 import {txt} from 'Root/config/textstyle';
 import {BLUE20} from 'Root/config/color';
 import { useNavigation } from '@react-navigation/native';
+import {getUserListByNickname} from 'Root/api/userapi';
+
 /**
  * 해시테그, 유저 링크가 들어간 텍스트
  *
@@ -29,23 +31,40 @@ const makeFeedInputView = (input,allowTab) => {
 		allowTab&&alert('해쉬',hashID);
 	};
 
-	const onUserClick = userID => {
-		allowTab&&navigation.navigate('UserProfile',{userobject:{_id:userID}});
+	const onUserClick = (userID,nickname) => {
+		if(userID&&userID.length>0){
+			allowTab&&navigation.navigate('UserProfile',{userobject:{_id:userID}});
+		}
+		else{
+			getUserListByNickname(
+				{
+					user_nickname: nickname.substring(1),
+				},
+				result => {
+					allowTab&&navigation.navigate('UserProfile',{userobject:{_id:result.msg[0]._id}});
+				},
+				error => {
+					Modal.alert('존재하지 않는 유저입니다.')
+				},
+			);
+		}
 	};
+
 	let match;
 	let viewArr = []
 	while((match=Regex.exec(input))!==null){
 		let pressfn = match[5]?onUserClick:onHashClick;
 		let id = match[6]||match[8];
+		let nickname = match[5]||match[7];
 		viewArr.push(
 			<React.Fragment key={viewArr.length}>
 				{match[2]}
 				<Text
 					style={{color: BLUE20}}
 					onPress={()=>{
-						pressfn(id)
+						pressfn(id, nickname)
 					}}>
-					{match[5]||match[7]}
+					{nickname}
 				</Text>
 				{match[9]}
 			</React.Fragment>

@@ -8,9 +8,8 @@ import Stagebar from '../molecules/Stagebar';
 import {login_style, btn_style, temp_style, progressbar_style, assignUserHabitation_style} from './style_templete';
 import Modal from 'Component/modal/Modal';
 import {stagebar_style} from '../organism_ksw/style_organism';
-import {getAddressList} from 'Root/api/address'
-// 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
-//ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
+import {getAddressList} from 'Root/api/address';
+import NormalDropDown from 'Molecules/NormalDropDown';
 
 /**
  * 유저의 지역정보를 등록하는 템플릿
@@ -18,71 +17,134 @@ import {getAddressList} from 'Root/api/address'
  * @param {navigation} navigation - 네비게이션을 이용하기 위한 객체
  */
 const AssignUserHabitation = props => {
+	console.log('-AssignUserHabitation-');
+	const debug = false;
 	const [data, setData] = React.useState({
 		...props.route.params,
 		user_address: {
-			city: '시를 선택해 주세요', //시,도
-			district: '구를 선택해 주세요', //군,구
-			neighbor: '동을 선택해 주세요', //동,읍,면
+			// city: '시를 선택해 주세요', //시,도
+			// district: '구를 선택해 주세요', //군,구
+			// neighbor: '동을 선택해 주세요', //동,읍,면
+			city: '', //시,도
+			district: '', //군,구
+			neighbor: '', //동,읍,면
 		},
 	});
-	const [city,setCity] = React.useState(['']);
-	const [district,setDistrict] = React.useState(['']);
-	const [neighbor,setNeighbor] = React.useState(['']);
+
+	const [city, setCity] = React.useState(['시를 선택해 주세요']);
+	const [district, setDistrict] = React.useState(['구를 선택해 주세요']);
+	const [neighbor, setNeighbor] = React.useState(['동을 선택해 주세요']);
+	const [adressValid, setAdressValid] = React.useState(false); // 주소값이 모두 들어갔을 경우
+
 	const handleError = error => {
-		Modal.popOneBtn(error,'확인',()=>Modal.close())
+		Modal.popOneBtn(error, '확인', () => Modal.close());
 	};
 
-	React.useEffect(()=>{
-		getAddressList({},cities=>setCity(cities.msg),handleError)
-	},[]);
+	React.useEffect(() => {
+		getAddressList(
+			{},
+			cities => {
+				setCity(cities.msg), handleError;
+			},
+			err => Modal.alert(err),
+		);
+	}, []);
 
 	const goToNextStep = () => {
 		props.navigation.push('AssignUserProfileImage', data);
 	};
 
-	const onSelectCity = () => {
-		Modal.rollingSelect(
-			'시를 선택해 주세요',
-			city,
-			city => {
-				setData({...data, user_address: {...data.user_address, city: city}});
-				getAddressList({city: city},(districts)=>{setDistrict(districts.msg)},handleError)
-				cityDrop.current.press();
+	React.useEffect(() => {
+		console.log('data.user_address:', data.user_address);
+		if (data.user_address.city != '' && data.user_address.district != '' && data.user_address.neighbor != '') {
+			setAdressValid(true);
+		}
+	}, [data.user_address]);
+
+	const onSelectCity = (v, i) => {
+		debug && console.log('city:', city[i]);
+		setData({...data, user_address: {...data.user_address, city: city[i]}});
+		getAddressList(
+			{city: city[i]},
+			districts => {
+				setDistrict(districts.msg);
+				debug && console.log('districts:', districts);
 			},
-			() => {
-				cityDrop.current.press();
-			},
+			handleError,
 		);
 	};
-	const onSelectDistrict = selectedItem => {
-		Modal.rollingSelect(
-			'구를 선택해 주세요',
-			district,
-			district => {
-				setData({...data, user_address: {...data.user_address, district: district}});
-				getAddressList({city: data.user_address.city,district: district},(neighbors)=>{setNeighbor(neighbors.msg)},handleError)
-				districDrop.current.press();
+
+	const onSelectDistrict = (v, i) => {
+		debug && console.log('district:', district[i]);
+		setData({...data, user_address: {...data.user_address, district: district[i]}});
+		getAddressList(
+			{city: data.user_address.city, district: district[i]},
+			neighbor => {
+				setNeighbor(neighbor.msg);
+				debug && console.log('neighbors:', neighbor);
 			},
-			(district) => {
-				
-				districDrop.current.press();
-			},
+			handleError,
 		);
 	};
-	const onSelectNeighbor = selectedItem => {
-		Modal.rollingSelect(
-			'동을 선택해 주세요',
-			neighbor,
-			e => {
-				setData({...data, user_address: {...data.user_address, neighbor: e}});
-				neighborDrop.current.press();
-			},
-			() => {
-				neighborDrop.current.press();
-			},
-		);
+
+	const onSelectNeighbor = (v, i) => {
+		debug && console.log('neighbor:', neighbor[i]);
+		setData({...data, user_address: {...data.user_address, neighbor: neighbor[i]}});
 	};
+
+	// const onSelectCity = () => {
+	// 	// Modal.rollingSelect(
+	// 	// 	'시를 선택해 주세요',
+	// 	// 	city,
+	// 	// 	city => {
+	// 	// 		setData({...data, user_address: {...data.user_address, city: city}});
+	// 	// 		getAddressList(
+	// 	// 			{city: city},
+	// 	// 			districts => {
+	// 	// 				setDistrict(districts.msg);
+	// 	// 			},
+	// 	// 			handleError,
+	// 	// 		);
+	// 	// 		// cityDrop.current.press();
+	// 	// 	},
+	// 	// 	() => {
+	// 	// 		cityDrop.current.press();
+	// 	// 	},
+	// 	// );
+	// };
+	// const onSelectDistrict = selectedItem => {
+	// 	Modal.rollingSelect(
+	// 		'구를 선택해 주세요',
+	// 		district,
+	// 		district => {
+	// 			setData({...data, user_address: {...data.user_address, district: district}});
+	// 			getAddressList(
+	// 				{city: data.user_address.city, district: district},
+	// 				neighbors => {
+	// 					setNeighbor(neighbors.msg);
+	// 				},
+	// 				handleError,
+	// 			);
+	// 			districDrop.current.press();
+	// 		},
+	// 		district => {
+	// 			districDrop.current.press();
+	// 		},
+	// 	);
+	// };
+	// const onSelectNeighbor = selectedItem => {
+	// 	Modal.rollingSelect(
+	// 		'동을 선택해 주세요',
+	// 		neighbor,
+	// 		e => {
+	// 			setData({...data, user_address: {...data.user_address, neighbor: e}});
+	// 			neighborDrop.current.press();
+	// 		},
+	// 		() => {
+	// 			neighborDrop.current.press();
+	// 		},
+	// 	);
+	// };
 
 	const cityDrop = React.useRef();
 	const districDrop = React.useRef();
@@ -108,14 +170,22 @@ const AssignUserHabitation = props => {
 			</View>
 			{/* HabitationForm */}
 			<View style={[assignUserHabitation_style.habitationForm]}>
-				<DropdownSelect width={522} value={data.user_address.city} onOpen={onSelectCity} ref={cityDrop} />
-				<DropdownSelect width={522} value={data.user_address.district} onOpen={onSelectDistrict} ref={districDrop} />
-				<DropdownSelect width={522} value={data.user_address.neighbor} onOpen={onSelectNeighbor} ref={neighborDrop} />
+				<NormalDropDown menu={city} width={522} height={500} onSelect={onSelectCity} defaultIndex={0} />
+				<NormalDropDown menu={district} width={522} height={500} onSelect={onSelectDistrict} defaultIndex={0} />
+				<NormalDropDown menu={neighbor} width={522} height={500} onSelect={onSelectNeighbor} defaultIndex={0} />
+
+				{/* <DropdownSelect width={522} value={data.user_address.city} onOpen={onSelectCity} ref={cityDrop} /> */}
+				{/* <DropdownSelect width={522} value={data.user_address.district} onOpen={onSelectDistrict} ref={districDrop} />
+				<DropdownSelect width={522} value={data.user_address.neighbor} onOpen={onSelectNeighbor} ref={neighborDrop} /> */}
 			</View>
 
 			{/* (A)Btn_w654 */}
 			<View style={[btn_style.btn_w654, assignUserHabitation_style.btn_w654]}>
-				<AniButton btnTitle={'확인'} titleFontStyle={'32'} btnTheme={'shadow'} btnLayout={btn_w522} onPress={goToNextStep} />
+				{adressValid ? (
+					<AniButton btnTitle={'확인'} titleFontStyle={'32'} btnTheme={'shadow'} btnLayout={btn_w522} onPress={goToNextStep} />
+				) : (
+					<AniButton btnTitle={'확인'} titleFontStyle={'32'} disable={true} btnLayout={btn_w522} />
+				)}
 			</View>
 		</View>
 	);
