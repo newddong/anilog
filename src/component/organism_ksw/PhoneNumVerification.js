@@ -162,7 +162,7 @@ export default PhoneNumVerification = props => {
 						placeholder={'인증번호 입력'}
 						timeout_msg={'인증 가능한 시간이 초과되었습니다.'}
 						// alert_msg={'인증번호가 일치하지 않습니다.'}
-						alert_msg={'3자리 이상 넣어주세요.'}
+						alert_msg={'3글자 이상 문자 입력 후 인증 요청을 눌러주세요.'}
 						validator={verifyNumValidator}
 						onValid={onValidVerifyNum}
 					/>

@@ -113,12 +113,11 @@ export default LoginTemplete = props => {
 		<View style={[login_style.wrp_main, {flex: 1}]}>
 			{/* confirm without login */}
 			<View style={loginTemplete_style.without_login}>
-				<TouchableOpacity onPress={moveToMainTab}>
+				<TouchableOpacity>
+					{/* <TouchableOpacity onPress={moveToMainTab}> */}
 					<View style={[loginTemplete_style.without_login_text]}>
-						<Text style={[txt.noto24, {color: GRAY10}]}>로그인 없이 둘러보기</Text>
-						<View style={[loginTemplete_style.nextBtnView]}>
-							<NextMark />
-						</View>
+						{/* <Text style={[txt.noto24, {color: GRAY10}]}>로그인 없이 둘러보기</Text> */}
+						<View style={[loginTemplete_style.nextBtnView]}>{/* <NextMark /> */}</View>
 					</View>
 				</TouchableOpacity>
 			</View>
