@@ -11,12 +11,12 @@ import {getFeedsByHash} from 'Root/api/hashapi';
 import Modal from '../modal/Modal';
 
 export default FeedListForHashTag = props => {
-	console.log('FeedListForHashTag Props.route.params : ' + props.route.params);
+	console.log('FeedListForHashTag Props.route.params : ' ,props.route.params);
 	const [hashInfo, setHashInfo] = React.useState(props.route.params);
-	const [feeds, setFeeds] = React.useState([]);
+	const [feeds, setFeeds] = React.useState();
 	const navigation = useNavigation();
-	const moveToHashFeedList = () => {
-		navigation.push('HashFeedList');
+	const moveToHashFeedList = (index, item) => {
+		navigation.push('HashFeedList',{selected:item,hashtag_keyword:hashInfo.hashtag_keyword});
 	};
 	const [showRecent, setShowRecent] = React.useState(true);
 	
@@ -28,23 +28,27 @@ export default FeedListForHashTag = props => {
 	const showRecommendedFeed = () => {
 		setShowRecent(false);
 	};
+	
+	React.useEffect(()=>{
+		navigation.setOptions({title:'#'+hashInfo.hashtag_keyword});
+	},[])
+	
 
 	React.useEffect(() => {
-		navigation.setOptions({title:'#'+hashInfo.hashtag_keyword})
-		if (hashInfo && hashInfo.hashtag_keyword) {
-			getFeedsByHash(
-				{hashtag_keyword: hashInfo.hashtag_keyword},
-				result => {
-					console.log('해쉬 피드리스트',result);
-					setHashInfo(result.msg['hash']);
-					setFeeds(result.msg.feeds.map(v=>v.hashtag_feed_id));
-				},
-				error => {
-					Modal.popOneBtn(error,'확인',()=>{setTimeout(()=>{navigation.goBack(),300})})
-				},
-			);
-		}
-	}, [props.navigation]);
+		
+		getFeedsByHash(
+			{hashtag_keyword: hashInfo.hashtag_keyword},
+			result => {
+				console.log('해쉬 피드리스트',result);
+				setFeeds(result.msg.feeds.map(v=>v.hashtag_feed_id));
+				// setFeeds(result.msg.feeds.map(v=>v.hashtag_feed_id));
+			},
+			error => {
+				Modal.popOneBtn(error,'확인',()=>{setTimeout(()=>{navigation.goBack(),300})})
+			},
+		);
+		
+	}, []);
 
 	return (
 		<View style={[login_style.wrp_main, feedListForHashTag.container]}>
@@ -66,7 +70,7 @@ export default FeedListForHashTag = props => {
 			</View>
 			{/* FeedThumbnailList */}
 			<View style={[temp_style.feedThumbnailList]}>
-				<FeedThumbnailList onClickThumnail={moveToHashFeedList} items={feeds} />
+				<FeedThumbnailList items={feeds} onClickThumnail={moveToHashFeedList}  />
 			</View>
 		</View>
 	);

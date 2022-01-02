@@ -13,7 +13,7 @@ import {getUserListByNickname} from 'Root/api/userapi';
  * @param {(input:string)=>void} props.onChange - 인풋 값 변경 콜백
  */
 export default function HashText(props) {
-	return <Text style={props.style}>{makeFeedInputView(props.children, props.allowTab)}</Text>;
+	return <Text {...props}>{makeFeedInputView(props.children, props.allowTab)}</Text>;
 }
 
 HashText.defaultProps = {
@@ -30,13 +30,13 @@ const makeFeedInputView = (input,allowTab) => {
 	const onHashClick = (hashID, keyword) => {
 		console.log(hashID, keyword.substring(1));
 		if(keyword&&keyword.length>0){
-			allowTab&&navigation.navigate('FeedListForHashTag',{hashtag_keyword:keyword.substring(1)});
+			allowTab&&navigation.push('FeedListForHashTag',{hashtag_keyword:keyword.substring(1)});
 		}
 	};
 
 	const onUserClick = (userID,nickname) => {
 		if(userID&&userID.length>0){
-			allowTab&&navigation.navigate('UserProfile',{userobject:{_id:userID}});
+			allowTab&&navigation.push('UserProfile',{userobject:{_id:userID}});
 		}
 		else{
 			getUserListByNickname(
@@ -44,7 +44,7 @@ const makeFeedInputView = (input,allowTab) => {
 					user_nickname: nickname.substring(1),
 				},
 				result => {
-					allowTab&&navigation.navigate('UserProfile',{userobject:{_id:result.msg[0]._id}});
+					allowTab&&navigation.push('UserProfile',{userobject:{_id:result.msg[0]._id}});
 				},
 				error => {
 					Modal.alert('존재하지 않는 유저입니다.')

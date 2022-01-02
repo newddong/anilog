@@ -77,12 +77,12 @@ export default FeedContent = props => {
 	};
 
 	React.useEffect(() => {
-		if (layout.height + reportLayout.height + labelLayout.height + 116 * DP > 270 * DP) {
-			setBtnStatus(false);
-		} else {
+		if (layout.height + reportLayout.height + labelLayout.height + 116 * DP > 265* DP) {
 			setBtnStatus(true);
+		} else {
+			setBtnStatus(false);
 		}
-	}, [layout, reportLayout, labelLayout]);
+	}, [layout]);
 
 	const onClickMeatball = () => {
 		console.log('meatball');
@@ -93,7 +93,7 @@ export default FeedContent = props => {
 	};
 
 	return (
-		<View style={[organism_style.feedContent, show || props.showAllContents ? {height: null} : null]}>
+		<View style={[organism_style.feedContent, show || props.showAllContents ? {height: 270*DP+reportLayout.height + labelLayout.height+layout.height} : {}]}>
 			{/* line 1 */}
 			<View style={[organism_style.userLocationLabel_view_feedContent]} onLayout={onLayoutLabel}>
 				{/* UserLocationLabel */}
@@ -174,9 +174,9 @@ export default FeedContent = props => {
 					<HashText style={[txt.noto28]}>{feed_content}</HashText>
 				</View>
 			) : (
-				<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]} onLayout={onLayoutContent}>
+				<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]} >
 					{/* <FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} /> */}
-					<HashText style={[txt.noto28]}>{feed_content}</HashText>
+					<HashText style={[txt.noto28]} numberOfLines={show?0:2} onLayout={onLayoutContent}>{feed_content}</HashText>
 				</View>
 			)}
 
@@ -188,7 +188,7 @@ export default FeedContent = props => {
 
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}
 				{/* 제보 실종 게시물 디테일의 경우 더보기 버튼 미출력 */}
-				{!show && !props.showAllContents && (
+				{!show && !props.showAllContents &&btnStatus&& (
 					<TouchableWithoutFeedback onPress={showMore}>
 						<View style={[organism_style.addMore_view_feedContent]}>
 							<View style={[organism_style.addMore_feedContent]}>
