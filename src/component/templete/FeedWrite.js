@@ -10,7 +10,7 @@ import AniButton from '../molecules/AniButton';
 import {btn_w176, btn_w194} from '../atom/btn/btn_style';
 import ActionButton from '../molecules/ActionButton';
 import SelectedMediaList from '../organism_ksw/SelectedMediaList';
-import {DOG_KIND, pet_kind} from 'Root/i18n/msg';
+import {DOG_KIND, PET_KIND, pet_kind} from 'Root/i18n/msg';
 import DatePicker from '../molecules/DatePicker';
 import TabSelectFilled_Type1 from '../molecules/TabSelectFilled_Type1';
 import Input24 from '../molecules/Input24';
@@ -315,7 +315,7 @@ const MissingForm = props => {
 	const [types, setTypes] = React.useState([
 		{
 			pet_species: '개',
-			pet_species_detail: ['믹스견', '치와와', '말티즈', '미니어처 핀셔', '파피용', '포메라니안', '푸들', '시추'],
+			pet_species_detail: DOG_KIND,
 		},
 	]);
 	const [isSpeciesChanged, setIsSpeciesChanged] = React.useState(false);
@@ -324,7 +324,7 @@ const MissingForm = props => {
 		missing_animal_species: types[0].pet_species,
 		missing_animal_species_detail: types[0].pet_species_detail[0],
 		missing_animal_sex: 'male',
-		missing_animal_age: '0',
+		missing_animal_age: '',
 		missing_animal_lost_location: '',
 		missing_animal_features: '',
 		missing_animal_date: '',
@@ -491,9 +491,21 @@ const ReportForm = props => {
 		},
 	]);
 
+	const [city, setCity] = React.useState(['광역시도']); //광역시도 API자료 컨테이너
+	const [isCityChanged, setIsCityChanged] = React.useState(false); //광역시도 선택되었는지 여부
+	const [district, setDistrict] = React.useState(['시군']); //시군 API자료 컨테이너
+	const [isDistrictChanged, setIsDistrictChanged] = React.useState(false); // 시군 선택되었는지 여부
+	const [neighbor, setNeighbor] = React.useState(['동읍면']); //동읍면 API 자료 컨테이너
 	const [data, setData] = React.useState({
 		report_witness_date: '',
 		report_witness_location: '',
+		report_location: {
+			// 필드명 조정 필요 (상우)
+			city: '', //시,도
+			district: '', //군,구
+			neighbor: '', //동,읍,면
+			detailAddr: '',
+		},
 		report_animal_features: '',
 		report_animal_species: types[0].pet_species,
 		report_animal_species_detail: types[0].pet_species_detail[0],
@@ -506,16 +518,16 @@ const ReportForm = props => {
 		props.onDataChange && props.onDataChange(data);
 	}, [data]);
 
-	React.useEffect(() => {
-		if (route.params.addr) {
-			setAddr(route.params.addr.jibunAddr);
-			setDetailAddr(route.params.addr.detailAddr);
-		}
-	}, [route.params?.addr]);
+	// React.useEffect(() => {
+	// 	if (route.params.addr) {
+	// 		setAddr(route.params.addr.jibunAddr);
+	// 		setDetailAddr(route.params.addr.detailAddr);
+	// 	}
+	// }, [route.params?.addr]);
 
-	React.useEffect(() => {
-		setData({...data, report_witness_location: addr + ' ' + detailAddr});
-	}, [addr, detailAddr]);
+	// React.useEffect(() => {
+	// 	setData({...data, report_witness_location: addr + ' ' + detailAddr});
+	// }, [addr, detailAddr]);
 
 	React.useEffect(() => {
 		getPettypes(
@@ -525,22 +537,83 @@ const ReportForm = props => {
 			},
 			err => Modal.alert(err),
 		);
+		getAddressList(
+			{},
+			cities => {
+				// console.log('result / getAddressList / FeedWrite  ', cities.msg);
+				setCity(cities.msg);
+			},
+			err => {
+				console.log('err / getAddress / FeedWrite  : ', err);
+			},
+		);
 	}, []);
 
-	const onChangeAddr = addr => {
-		setAddr(addr);
+	const onSelectCity = (item, index) => {
+		// console.log('item', item);
+		getAddressList(
+			{
+				city: item,
+			},
+			district => {
+				// console.log('district  ', district.msg);
+				setDistrict(district.msg);
+				setData({...data, report_location: {city: item, district: district.msg[0], neighbor: ''}});
+				item == data.report_location.city ? false : setIsCityChanged(!isCityChanged);
+			},
+		);
 	};
 
-	const onClearAddr = () => {
-		setAddr('');
+	const onSelectDistrict = (item, index) => {
+		getAddressList(
+			{
+				city: data.report_location.city,
+				district: item,
+			},
+			neighbor => {
+				console.log('neighbor  ', neighbor.msg);
+				if (neighbor.msg.length == 0) {
+					setNeighbor(['목록없음']);
+				} else {
+					setNeighbor(neighbor.msg);
+				}
+				setData({...data, report_location: {city: data.report_location.city, district: item, neighbor: neighbor.msg[0]}});
+				item == data.report_location.district ? false : setIsDistrictChanged(!isDistrictChanged);
+			},
+		);
 	};
+
+	const onSelectNeighbor = (item, index) => {
+		setData({
+			...data,
+			report_location: {city: data.report_location.city, district: data.report_location.district, neighbor: item},
+		});
+	};
+
+	// const searchAddress = () => {
+	// 	navigation.navigate('AddressSearch', {from: route.name, fromkey: route.key});
+	// };
+
+	// const onChangeAddr = addr => {
+	// 	setAddr(addr);
+	// };
+
+	// const onClearAddr = () => {
+	// 	setAddr('');
+	// };
+
 	const onClearDetailAddr = () => {
-		setDetailAddr('');
+		// setDetailAddr('');
+		let copied_location = data.report_location;
+		copied_location.detailAddr = '';
+		setData({...data, report_location: copied_location});
 	};
 
 	const onChangeDetailAddr = addr => {
-		console.log('addr', addr);
-		setDetailAddr(addr);
+		let copied_location = data.report_location;
+		copied_location.detailAddr = addr;
+		setData({...data, report_location: copied_location});
+		// setDetailAddr(addr);
 	};
 	const onDateChange = date => {
 		setData({...data, report_witness_date: date});
@@ -557,9 +630,7 @@ const ReportForm = props => {
 	const onSelectSpeciesDetail = (v, i) => {
 		setData({...data, report_animal_species_detail: data.type.pet_species_detail[i]});
 	};
-	const searchAddress = () => {
-		navigation.navigate('AddressSearch', {from: route.name, fromkey: route.key});
-	};
+
 	return (
 		<ScrollView style={[feedWrite.reportForm_container]} showsVerticalScrollIndicator={false}>
 			<View style={[feedWrite.reportForm]}>
@@ -595,17 +666,31 @@ const ReportForm = props => {
 							<View style={[feedWrite.reportLocation_form_left_title]}>
 								<Text style={[txt.noto24, {color: APRI10}]}>제보 장소</Text>
 							</View>
-							<View style={[temp_style.inputNoTitle, feedWrite.reportLocation_form_left_inputNoTitle]}>
+							{/* <View style={[temp_style.inputNoTitle, feedWrite.reportLocation_form_left_inputNoTitle]}>
 								<Input24 onChange={onChangeAddr} value={addr} width={438} placeholder={'동주소 까지 적어주세요'} onClear={onClearAddr} />
-							</View>
+							</View> */}
 						</View>
 						<View style={[feedWrite.reportLocation_form_right]}>
 							<View style={[btn_style.btn_w176, feedWrite.btn_w176]}>
-								<LocationButton btnTitle={'현위치'} />
+								<LocationButton
+									btnTitle={'현위치'}
+									onPress={() => Modal.popOneBtn('현위치 찾기 기능은 패치예정입니다!', '확인', () => Modal.close())}
+								/>
 							</View>
-							<View style={[btn_style.btn_w176, feedWrite.btn_w176]}>
+							{/* <View style={[btn_style.btn_w176, feedWrite.btn_w176]}>
 								<AniButton btnTitle={'주소 검색'} btnLayout={btn_w176} btnStyle={'border'} titleFontStyle={24} onPress={searchAddress} />
-							</View>
+							</View> */}
+						</View>
+					</View>
+					<View style={[feedWrite.addressSelectContainer]}>
+						<View style={[feedWrite.addressDropDownContainer]}>
+							<NormalDropDown menu={city} onSelect={onSelectCity} width={240} height={300} />
+						</View>
+						<View style={[feedWrite.addressDropDownContainer]}>
+							<NormalDropDown menu={district} onSelect={onSelectDistrict} width={180} height={300} isLargeCategoryChanged={isCityChanged} />
+						</View>
+						<View style={[feedWrite.addressDropDownContainer]}>
+							<NormalDropDown menu={neighbor} onSelect={onSelectNeighbor} width={180} height={300} isLargeCategoryChanged={isDistrictChanged} />
 						</View>
 					</View>
 					<View style={[temp_style.inputNoTitle, feedWrite.locationDetail]}>
@@ -614,7 +699,8 @@ const ReportForm = props => {
 							onClear={onClearDetailAddr}
 							width={654}
 							placeholder={'장소의 세부적인 정보를 적어주세요'}
-							value={detailAddr}
+							// value={detailAddr}
+							value={data.report_location.detailAddr}
 						/>
 					</View>
 					<View style={[temp_style.inputBalloon, feedWrite.inputBalloon]}>

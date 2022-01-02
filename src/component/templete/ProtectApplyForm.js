@@ -67,7 +67,8 @@ export default ProtectApplyForm = ({route, navigation}) => {
 				setProtectRequestStatus(
 					{
 						protect_request_object_id: data.protect_act_request_article_id,
-						protect_request_status: 'complete',
+						//임시보호 신청일 경우 입양완료로 출력되어서는 안됨
+						protect_request_status: data.protect_act_type == 'protect' ? 'protect' : 'complete',
 					},
 					result => {
 						// console.log('result / setProtectRequestStatus / ProtectApplyForm  : ', result.msg);

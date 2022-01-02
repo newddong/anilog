@@ -115,7 +115,7 @@ const DropdownSelect = React.forwardRef(
 
 const DropdownSelectProps = {
 	/** @type {string} 버튼에 표시되는 값 */
-	value: string,
+	value: any,
 	/** @type {()=>void} 닫힐때의 콜백 */
 	onClose: func,
 	/** @type {()=>void} 열릴 때 콜백 */

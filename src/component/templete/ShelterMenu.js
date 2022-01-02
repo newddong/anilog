@@ -186,7 +186,7 @@ export default ShelterMenu = ({route}) => {
 
 	return (
 		<View style={(login_style.wrp_main, shelterMenu.container)}>
-			<ScrollView style={{flex: 1}}>
+			<ScrollView style={{backgroundColor: '#FFF'}}>
 				<View style={[shelterMenu.shelterMenuStep1]}>
 					{/* Shelter Info*/}
 					<View style={[shelterMenu.shelterInfo]}>
@@ -227,7 +227,7 @@ export default ShelterMenu = ({route}) => {
 						<SocialInfoB data={data} />
 					</View>
 
-					<View style={[shelterMenu.btnView]}>
+					<View style={[shelterMenu.btnView, {}]}>
 						<View style={[btn_style.btn_w280]}>
 							<AniButton btnTitle={MODIFY_SHELTER_DATA} btnStyle={'border'} btnLayout={btn_w280} onPress={moveToShelterInfoSetting} />
 						</View>

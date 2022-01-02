@@ -16,6 +16,7 @@ import DropdownSelect from './DropdownSelect';
  * @param {number} props.height - 드롭다운 높이
  * @param {number} props.titleFontStyle - 드롭다운 내부 글꼴 크기 default=24
  * @param {(item, index)=>void} props.onSelect - 드롭다운 선택했을 때 동작하는 콜백, 선택된 오브젝트와 인덱스를 반환
+ * @param {boolean} props.isLargeCategoryChanged - 상위 카테고리가 선택되었을 때 해당 드롭다운을 초기상태로 돌리기 여부
  */
 const NormalDropDown = props => {
 	//Default로 선택되어 있어야 하는 경우 ex)프로필 수정 혹은 임시저장된 데이터 호출 시에는 기존 데이터와 일치하는 Default값을 보여주어야 함
@@ -27,6 +28,7 @@ const NormalDropDown = props => {
 	};
 
 	React.useEffect(() => {
+		console.log('props.isLargeCategoryChanged', props.isLargeCategoryChanged);
 		setValue(props.menu[0]);
 	}, [props.isLargeCategoryChanged]);
 

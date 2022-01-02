@@ -41,8 +41,7 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 				break;
 			case 'Missing':
 				{
-					console.log('Before Write Report ', route.params);
-
+					console.log('Before Write Missing ', route.params);
 					const data = route.params;
 					if (
 						data.missing_animal_species &&
@@ -70,8 +69,16 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 				{
 					console.log('Before Write Report ', route.params);
 					const data = route.params;
+					data.report_witness_location =
+						(data.report_location.city || '') +
+						' ' +
+						(data.report_location.district || '') +
+						' ' +
+						(data.report_location.neighbor || '') +
+						' ' +
+						data.report_location.detailAddr;
 					if (
-						data.addr &&
+						// data.addr &&
 						data.feed_content &&
 						data.feed_medias &&
 						data.media_uri.length > 0 &&
@@ -86,6 +93,7 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 					} else {
 						Modal.popOneBtn('제보 동물의 품종 이외에는 \n 모두 작성해주셔야합니다.\n (사진 포함)', '확인', () => Modal.close());
 					}
+					// Modal.close();
 				}
 				break;
 			default:

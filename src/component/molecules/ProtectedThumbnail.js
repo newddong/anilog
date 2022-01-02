@@ -62,6 +62,7 @@ const ProtectedThumbnail = props => {
 		switch (props.data.status) {
 			case 'rescue':
 			case 'wait':
+			case 'protect':
 				return '입양가능';
 			case 'emergency':
 				return '안락사 임박';
@@ -71,8 +72,6 @@ const ProtectedThumbnail = props => {
 				return '제보';
 			case 'discuss':
 				return '협의 중';
-			case 'protect':
-				return '임시보호중';
 			case 'rainbowbridge':
 				return '무지개다리';
 			case 'complete':

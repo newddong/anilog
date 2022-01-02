@@ -23,8 +23,7 @@ export default AnimalFromShelter = ({route}) => {
 				request_number: 10,
 			},
 			result => {
-				// console.log('result / getProtectRequestListByShelterId / AnimalFromShelter', result.msg[0].protect_animal_id);
-
+				// console.log('result / getProtectRequestListByShelterId / AnimalFromShelter', result.msg[2].protect_animal_id);
 				setData(result.msg);
 				Modal.close();
 				setTimeout(() => {
