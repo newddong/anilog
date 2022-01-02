@@ -71,7 +71,7 @@ export default AidRequestList = props => {
 								data={props.items}
 								renderItem={({item, index}) => renderItem(item, index)}
 								scrollEnabled={false}
-								ListEmptyComponent={props.whenEmpty()}
+								ListEmptyComponent={props.whenEmpty}
 							/>
 						</View>
 					</ScrollView>
