@@ -41,7 +41,7 @@ export default UserInfoSetting = ({route}) => {
 		});
 	};
 	React.useEffect(() => {
-		fetchData();
+		// fetchData();
 		navigation.addListener('focus', () => fetchData());
 		//스크린 포커스, 프로필 변경이 있을 시 getUSerInfoById에 접속
 	}, [route.params?.changedPhoto]);
@@ -114,7 +114,7 @@ export default UserInfoSetting = ({route}) => {
 				{/* step1 */}
 				<View style={[temp_style.userInfoSetting_step1]}>
 					<View style={[temp_style.profileImageLarge, userInfoSetting_style.profileImageLarge]}>
-						<ProfileImageLarge194 data={data} />
+						{data._id != undefined && <ProfileImageLarge194 data={data} />}
 					</View>
 					<View style={[btn_style.btn_w242, userInfoSetting_style.btn_w242]}>
 						<AniButton btnTitle={MODIFY_PROFILE} btnLayout={btn_w242} onPress={onPressModofyProfile} />
