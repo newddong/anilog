@@ -176,7 +176,7 @@ export default LoginTemplete = props => {
 			</View>
 
 			{/* social login */}
-			<View style={[login_style.social_info, loginTemplete_style.social_info]}>
+			{/* <View style={[login_style.social_info, loginTemplete_style.social_info]}>
 				<View style={[loginTemplete_style.socialLogin_icon]}>
 					<Naver_Icon />
 				</View>
@@ -189,7 +189,7 @@ export default LoginTemplete = props => {
 				<View style={[loginTemplete_style.socialLogin_icon]}>
 					<Facebook_Icon />
 				</View>
-			</View>
+			</View> */}
 		</View>
 	);
 };
