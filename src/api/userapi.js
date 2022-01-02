@@ -319,3 +319,46 @@ export async function removeUserFromFamily(params, callback, errcallback) {
 export async function getPettypes(params, callback, errcallback) {
 	apiController( '/user/getPettypes', arguments);
 }
+
+
+
+/** 유저를 팔로우한다.
+ * @param {object} params
+ * @param {string} params.follow_userobject_id - 팔로우 할 유저아이디
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+*/
+export async function followUser(params, callback, errcallback) {
+	apiController( '/user/followUser', arguments);
+}
+
+/** 유저를 팔로우 취소한다.
+ * @param {object} params
+ * @param {string} params.follow_userobject_id - 팔로우 취소 할 유저아이디
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+*/
+export async function unFollowUser(params, callback, errcallback) {
+	apiController( '/user/unFollowUser', arguments);
+}
+
+/** 대상 유저가 팔로우 한 유저를 검색한다.
+ * @param {object} params
+ * @param {string} params.userobject_id  - 팔로우 목록을 열람할 유저의 아이디.
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+*/
+export async function getFollows(params, callback, errcallback) {
+	apiController( '/user/getFollows', arguments);
+}
+
+
+/** 대상 유저를 팔로우 한 유저를 검색한다.
+ * @param {object} params
+ * @param {string} params.userobject_id  - 팔로우 목록을 열람할 유저의 아이디.
+ * @param {({}:object)=>void} callback - API응답처리 콜백
+ * @param {(errmsg:string)=>void} errcallback - 에러처리 콜백
+*/
+export async function getFollowers(params, callback, errcallback) {
+	apiController( '/user/getFollowers', arguments);
+}

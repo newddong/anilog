@@ -13,7 +13,8 @@ import Dropdown from '../molecules/Dropdown';
 import ProfileDropdown from 'Molecules/ProfileDropdown';
 import {organism_style, profileInfo_style} from './style_organism';
 import Modal from 'Root/component/modal/Modal';
-import dp from 'Root/screens/dp';
+import {followUser, unFollowUser} from 'Root/api/userapi';
+import userGlobalObject from 'Root/config/userGlobalObject';
 
 /**
  *
@@ -28,10 +29,9 @@ import dp from 'Root/screens/dp';
  * }} props
  */
 export default ProfileInfo = props => {
-	const profile_data = props.data;
+	const [data, setData] = React.useState(props.data);
 
 	const [showMore, setShowMore] = React.useState(false); // 프로필 Description 우측 더보기 클릭 State
-	const [followState, setFollowState] = React.useState(false); // 팔로우 T/F
 	const [ownerListState, setOwnerListState] = React.useState(false); // userType이 Pet일 경우 반려인계정 출력 여부 T/F
 	const [companionListState, setCompanionListState] = React.useState(false); // userType이 User일 경우 반렫동물 리스트 출력 여부 T/F
 	const [into_height, setIntro_height] = React.useState(0); //user_introduction 의 길이 => 길이에 따른 '더보기' 버튼 출력 여부 결정
@@ -74,15 +74,14 @@ export default ProfileInfo = props => {
 		props.onHideCompanion();
 	};
 	const onLayout = e => {
-		console.log('e', e.nativeEvent.layout);
 		setIntro_height(e.nativeEvent.layout.height);
 	};
 
 	// props.data의 유저타입에 따라 다른 버튼이 출력
 	// NORMAL - [팔로우, 반려동물] / PET - [팔로우, 반려인계정 OR 입양하기] / SHELTER - [팔로우, 봉사활동 ]
 	const getButton = () => {
-		if (profile_data.user_type == PET) {
-			if (profile_data.pet_status == 'protected') {
+		if (data.user_type == PET) {
+			if (data.pet_status == 'protected') {
 				return <AniButton btnTitle={'입양 하기'} btnStyle={'border'} titleFontStyle={30} btnLayout={btn_w280} onPress={onPressAdoption} />;
 			} else
 				return (
@@ -95,7 +94,7 @@ export default ProfileInfo = props => {
 						onClose={hideOwner}
 					/>
 				);
-		} else if (profile_data.user_type == NORMAL) {
+		} else if (data.user_type == NORMAL) {
 			return (
 				<ActionButton
 					btnTitle={'반려동물'}
@@ -109,6 +108,41 @@ export default ProfileInfo = props => {
 		}
 		return <AniButton btnTitle={'봉사 활동'} btnStyle={'border'} titleFontStyle={24} btnLayout={btn_w280} onPress={onPressVolunteer} />;
 	};
+
+	React.useEffect(() => {
+		setData(props.data); //부모에서 props가 비동기로 바뀌었을때 반영하기위함
+	}, [props.data]);
+
+	//현재 프로필의 유저를 팔로우한다.
+	const follow = () => {
+		followUser(
+			{follow_userobject_id: data._id},
+			result => {
+				setData({...data,is_follow: !result.msg.follow_is_delete,user_follower_count: data.user_follower_count+1})
+			},
+			error => Modal.alert(error),
+		);
+	};
+
+	const socialAction = (v,i)=>{
+		console.log('socialAction',v,i);
+		switch (i) {
+			case 0:
+				unFollowUser(
+					{follow_userobject_id: data._id},
+					result => {
+						setData({...data,is_follow: !result.msg.follow_is_delete,user_follower_count: data.user_follower_count-1})
+					},
+					error => Modal.alert(error),
+				);
+				break;
+		
+			default:
+				break;
+		}
+	}
+
+
 	return (
 		<View style={organism_style.profileInfo_main}>
 			{/* 프로필 INFO */}
@@ -117,14 +151,14 @@ export default ProfileInfo = props => {
 					<ProfileImageLarge160 data={props.data} />
 				</View>
 				<View style={[organism_style.socialInfo_profileInfo, profileInfo_style.socialInfo]}>
-					<SocialInfoA data={profile_data} />
+					<SocialInfoA data={data} />
 				</View>
 			</View>
 
 			{/* user_introduction 높이정보를 얻기 위한 더미 ScrollView / 투명도 설정으로 화면에는 출력이 되지 않음 */}
 			<ScrollView onLayout={onLayout} style={{position: 'absolute', opacity: 0}}>
 				<Text ellipsizeMode={'tail'} numberOfLines={showMore ? null : 2} style={[txt.noto24, profileInfo_style.content_expanded]}>
-					{profile_data.user_introduction}
+					{data.user_introduction}
 				</Text>
 			</ScrollView>
 
@@ -133,7 +167,7 @@ export default ProfileInfo = props => {
 					ellipsizeMode={'tail'}
 					numberOfLines={showMore ? null : 2}
 					style={[txt.noto24, showMore ? profileInfo_style.content_expanded : profileInfo_style.content]}>
-					{profile_data.user_introduction != '' ? profile_data.user_introduction : '유저 인트로 소개글입니다. 현재는 비어있습니다.'}
+					{data.user_introduction != '' ? data.user_introduction : '유저 인트로 소개글입니다. 현재는 비어있습니다.'}
 				</Text>
 				{into_height > 50 * DP ? (
 					<TouchableOpacity onPress={onPressShowMore} style={[organism_style.addMore_profileInfo, profileInfo_style.addMore]}>
@@ -152,29 +186,22 @@ export default ProfileInfo = props => {
 			{/* 프로필 관련 버튼 */}
 			<View style={[organism_style.btn_w280_view_profileInfo, profileInfo_style.btn_w280_view]}>
 				<View style={[organism_style.btn_w280_profileInfo, profileInfo_style.btn_w280]}>
-					{followState || false ? (
+					{userGlobalObject.userInfo._id == data._id ? (
+						<AniButton btnTitle={'내 계정'} btnStyle={'filled'} titleFontStyle={24} btnLayout={btn_w280}/>
+					) : data.is_follow ? (
 						<ProfileDropdown
 							btnTitle={'팔로우 중'}
 							titleFontStyle={24}
+							btnStyle={'filled'}
 							btnLayout={btn_w280}
-							menu={['메뉴1', '메뉴2', '메뉴3', '메뉴4']}
-							onSelect={(v, i) => console.log(v + ':' + i)}
+							// menu={['즐겨찾기', '소식받기', '차단', '팔로우 취소']}
+							menu={['팔로우 취소']}
+							onSelect={socialAction}
 							// onOpen={()=>{alert('open')}}
 							// onClose={()=>{alert('close')}}
 						/>
 					) : (
-						<AniButton
-							btnTitle={'팔로우'}
-							btnStyle={'border'}
-							titleFontStyle={24}
-							btnLayout={btn_w280}
-							onPress={() => {
-								setFollowState(!followState);
-								Modal.popOneBtn('팔로우 기능은 패치예정입니다!', '확인', () => {
-									Modal.close();
-								});
-							}}
-						/>
+						<AniButton btnTitle={'팔로우'} btnStyle={'border'} titleFontStyle={24} btnLayout={btn_w280} onPress={follow} />
 					)}
 				</View>
 				<View style={[organism_style.ActionButton_profileInfo, profileInfo_style.btn_w280]}>{getButton()}</View>
@@ -183,10 +210,10 @@ export default ProfileInfo = props => {
 	);
 };
 ProfileInfo.defaultProps = {
-	volunteerBtnClick: e => console.log(e),
-	adoptionBtnClick: e => console.log(e),
-	onShowOwnerBtnClick: e => console.log(e),
-	onHideOwnerBtnClick: e => console.log(e),
-	onShowCompanion: e => console.log(e),
-	onHideCompanion: e => console.log(e),
+	volunteerBtnClick: e => {},
+	adoptionBtnClick: e => {},
+	onShowOwnerBtnClick: e => {},
+	onHideOwnerBtnClick: e => {},
+	onShowCompanion: e => {},
+	onHideCompanion: e => {},
 };

@@ -8,13 +8,11 @@ import {WHITE, APRI10} from 'Root/config/color';
 import SvgWrapper, {SvgWrap} from 'Screens/svgwrapper';
 
 export default LogoHeader = ({navigation, route, options, back}) => {
-	console.log('LogoHeader', route);
 	const clickLogo = () => {
 		alert('Logo!');
 	};
 	const clickSearch = () => {
 		navigation.navigate('Search', {mother: 0, child: 0, prevNav: route.name});
-		// alert('Search')
 	};
 	const clickAlarm = () => {
 		alert('Alarm!');

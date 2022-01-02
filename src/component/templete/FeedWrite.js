@@ -39,6 +39,7 @@ export default FeedWrite = props => {
 	const [isDiary, setDiary] = React.useState(false); //임보일기여부
 	const [feedText, setFeedText] = React.useState(''); //피드 TextInput Value
 	const [selectedImg, setSelectedImg] = React.useState([]); //사진 uri리스트
+	const [isSearchTag, setSearchTag] = React.useState(false);
 
 	React.useEffect(() => {
 		props.navigation.setParams({
@@ -84,17 +85,6 @@ export default FeedWrite = props => {
 		setShowRepotForm(true);
 		props.navigation.setParams({...props.route.params, feedType: 'Report'});
 		props.navigation.setOptions({title: '제보 게시물'});
-	};
-
-	//Text 안에 있는 HashTag된 텍스트 클릭 시 FeedListForHashTag 로 이동
-	const moveToFeedListForHashTag = tagText => {
-		console.log('TagText' + tagText);
-		const hashInfo = {
-			keyword: tagText,
-			keywordBold: true,
-			count: 10,
-		};
-		props.navigation.push('FeedListForHashTag', hashInfo);
 	};
 
 	//사진 추가
@@ -192,66 +182,60 @@ export default FeedWrite = props => {
 		else return showLostAnimalForm ? <MissingForm onDataChange={onMissingForm} /> : false;
 	};
 
+	//태그 검색중 리스트 외의 다른화면 가리기
+	const onFindTag = (isFind) => {
+		setSearchTag(isFind);
+	}
+
 	const setWriteModeState = () => {
-		//userType - 반려동물 계정 리스트 출력 분기
-		if (showPetAccountList) {
-			return (
-				<View style={[temp_style.petAccountList, feedWrite.petAccountList]}>
-					<AccountHashList data={lis} />
-				</View>
-			);
-		}
-		//일반 FeedWrite 분기
-		else {
-			return (
-				<>
-					{/* 사진추가 / 위치추가 / 태그하기 */}
-					<View style={[feedWrite.buttonContainer]}>
-						<TouchableWithoutFeedback onPress={moveToMultiPhotoSelect}>
-							<View style={[feedWrite.btnItemContainer, {marginBottom: 5 * DP}]}>
-								<Camera54 />
-								<Text style={[txt.noto24, {color: APRI10, marginLeft: 10 * DP}]}>사진추가</Text>
-							</View>
-						</TouchableWithoutFeedback>
-						{/* <TouchableWithoutFeedback onPress={moveToLocationPicker}>
+		return (
+			<>
+				{/* 사진추가 / 위치추가 / 태그하기 */}
+				<View style={[feedWrite.buttonContainer]}>
+					<TouchableWithoutFeedback onPress={moveToMultiPhotoSelect}>
+						<View style={[feedWrite.btnItemContainer, {marginBottom: 5 * DP}]}>
+							<Camera54 />
+							<Text style={[txt.noto24, {color: APRI10, marginLeft: 10 * DP}]}>사진추가</Text>
+						</View>
+					</TouchableWithoutFeedback>
+					{/* <TouchableWithoutFeedback onPress={moveToLocationPicker}>
 							<View style={[feedWrite.btnItemContainer]}>
 								<Location54_APRI10 />
 								<Text style={[txt.noto24, {color: APRI10, alignSelf: 'center', marginLeft: 10 * DP}]}>위치추가</Text>
 							</View>
 						</TouchableWithoutFeedback> */}
-						<TouchableWithoutFeedback onPress={moveToFeedMediaTagEdit}>
-							<View style={[feedWrite.btnItemContainer]}>
-								<Paw54_Border />
-								<Text style={[txt.noto24, {color: APRI10, alignSelf: 'center', marginLeft: 10 * DP}]}>태그하기</Text>
-							</View>
-						</TouchableWithoutFeedback>
+					<TouchableWithoutFeedback onPress={moveToFeedMediaTagEdit}>
+						<View style={[feedWrite.btnItemContainer]}>
+							<Paw54_Border />
+							<Text style={[txt.noto24, {color: APRI10, alignSelf: 'center', marginLeft: 10 * DP}]}>태그하기</Text>
+						</View>
+					</TouchableWithoutFeedback>
+				</View>
+				{!showReportForm && !showLostAnimalForm && (
+					<View style={[feedWrite.btn_w194_container]}>
+						<View style={[btn_style.btn_w194, feedWrite.btn_w194]}>
+							<AniButton
+								btnTitle={'임보일기'}
+								btnStyle={isDiary ? 'filled' : 'border'}
+								titleFontStyle={24}
+								btnLayout={btn_w194}
+								onPress={onSetDiary}
+							/>
+						</View>
+						<View style={[btn_style.btn_w194]}>
+							<ActionButton btnTitle={'전체 공개'} btnStyle={'border'} titleFontStyle={24} btnLayout={btn_w194} />
+						</View>
 					</View>
-					{!showReportForm && !showLostAnimalForm && (
-						<View style={[feedWrite.btn_w194_container]}>
-							<View style={[btn_style.btn_w194, feedWrite.btn_w194]}>
-								<AniButton
-									btnTitle={'임보일기'}
-									btnStyle={isDiary ? 'filled' : 'border'}
-									titleFontStyle={24}
-									btnLayout={btn_w194}
-									onPress={onSetDiary}
-								/>
-							</View>
-							<View style={[btn_style.btn_w194]}>
-								<ActionButton btnTitle={'전체 공개'} btnStyle={'border'} titleFontStyle={24} btnLayout={btn_w194} />
-							</View>
-						</View>
-					)}
-					{selectedImg.length > 0 && (
-						<View style={[temp_style.selectedMediaList, feedWrite.selectedMediaList]}>
-							<SelectedMediaList items={selectedImg} onDelete={deletePhoto} />
-						</View>
-					)}
-					{/* 긴급 게시 관련 버튼 클릭 시 출력되는 View */}
-					{setUrgBtnsClickedView()}
-				</>
-			);
-		}
+				)}
+				{selectedImg.length > 0 && (
+					<View style={[temp_style.selectedMediaList, feedWrite.selectedMediaList]}>
+						<SelectedMediaList items={selectedImg} onDelete={deletePhoto} />
+					</View>
+				)}
+				{/* 긴급 게시 관련 버튼 클릭 시 출력되는 View */}
+				{setUrgBtnsClickedView()}
+			</>
+		);
 	};
 
 	return (
@@ -263,13 +247,15 @@ export default FeedWrite = props => {
 				multiline={true}
 				placeholder="게시물을 작성하세요"
 				placeholderTextColor={GRAY20}
-				onChangeText={inputFeedTxt}></HashInput>
+				onChangeText={inputFeedTxt}
+				onFind={onFindTag}
+			></HashInput>
 
-			{setWriteModeState()}
+			{!isSearchTag&&setWriteModeState()}
 			{/* 긴급 게시물 관련 버튼 컨테이너 */}
 
 			{/* </ScrollView> */}
-			{showUrgentBtns ? (
+			{showUrgentBtns&&!isSearchTag ? (
 				<View style={[temp_style.floatingBtn, feedWrite.urgentBtnContainer]}>
 					{showActionButton ? (
 						<View>

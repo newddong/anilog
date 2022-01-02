@@ -56,6 +56,7 @@ export default function HashInput(props) {
 		console.log('onChangeText 1st ', internal.text);
 		internal.editTag = findTagAt(internal.textInputCursor, text);
 		console.log('onChangeText editTag ', internal.editTag);
+		props.onFind&&props.onFind(isTag(internal.editTag));
 		setFind(isTag(internal.editTag));
 
 		if (isTag(internal.editTag)) {
@@ -142,6 +143,7 @@ export default function HashInput(props) {
 		internal.tagStartIdx = findStartIndexOfTag(internal.textInputCursor, internal.value); //현재 커서가 위치한 단어의 시작 인덱스,
 		internal.tagEndIdx = findEndIndexOfTag(internal.textInputCursor, internal.value); //현재 커서가 위치한 단어의 끝 인덱스
 		console.log('tag position ', internal.tagStartIdx, internal.tagEndIdx);
+		props.onFind&&props.onFind(isTag(internal.editTag));
 		setFind(isTag(internal.editTag));
 		// matchId()
 	};
@@ -168,6 +170,7 @@ export default function HashInput(props) {
 		setValue(internal.value);
 
 		inputRef.current.focus();
+		props.onFind&&props.onFind(false);
 		setFind(false);
 		onChangeText(internal.value);
 	};
@@ -194,6 +197,7 @@ export default function HashInput(props) {
 		setValue(internal.value);
 
 		inputRef.current.focus();
+		props.onFind&&props.onFind(false);
 		setFind(false);
 		onChangeText(internal.value);
 	};
@@ -226,4 +230,5 @@ export default function HashInput(props) {
 HashInput.defaultProp = {
 	containerStyle: {},
 	onChangeText: (text, hashKewords) => {},
+	onFind:(isFinding)=>{},
 };
