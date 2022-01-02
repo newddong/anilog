@@ -101,6 +101,8 @@ export default FeedWrite = props => {
 				ImagePicker.openPicker({
 					// multiple: true,
 					compressImageQuality: 0.8,
+					width:750,
+					height:750,
 					cropping: true,
 				})
 					.then(images => {
@@ -116,8 +118,8 @@ export default FeedWrite = props => {
 					{
 						mediaType: 'photo',
 						selectionLimit: 5 - selectedImg.length, //다중선택 모드일 경우 상시 5개면 4개 상태에서 최대 5개를 더해 9개가 가능해짐
-						maxHeight: 1500,
-						maxWidth: 1500,
+						maxHeight: 750,
+						maxWidth: 750,
 						quality: 0.8,
 					},
 					responseObject => {

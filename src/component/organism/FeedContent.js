@@ -188,7 +188,7 @@ export default FeedContent = props => {
 
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}
 				{/* 제보 실종 게시물 디테일의 경우 더보기 버튼 미출력 */}
-				{!show && !props.showAllContents &&btnStatus&& (
+				{!show && !props.showAllContents && (
 					<TouchableWithoutFeedback onPress={showMore}>
 						<View style={[organism_style.addMore_view_feedContent]}>
 							<View style={[organism_style.addMore_feedContent]}>
