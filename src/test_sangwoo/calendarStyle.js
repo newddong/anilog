@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
 	outside: {
 		// marginTop: 200 * DP,
 		// borderRadius: 40 * DP,
-		height: 1500 * DP,
+		// height: '100%',
 		backgroundColor: 'white',
 	},
 	popUpWindow: {

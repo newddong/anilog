@@ -13,7 +13,7 @@ export default AidRequestManage = ({route, navigation}) => {
 	const token = route.params.token;
 	const [loading, setLoading] = React.useState(true); // 화면 출력 여부 결정
 	const [data, setData] = React.useState([]);
-	const [notFilteredData, setNotFilteredData] = React.useState(null);
+	const [notFilteredData, setNotFilteredData] = React.useState([]);
 	const isShelterProtect = route.name == 'ShelterProtectAnimalList';
 
 	React.useEffect(() => {
@@ -111,8 +111,13 @@ export default AidRequestManage = ({route, navigation}) => {
 	}, []);
 
 	React.useEffect(() => {
-		// console.log('notFltered', notFilteredData);
+		// 보호소의 모든 보호동물이 담겨 있는 notFilteredData
+		// 해당 보호동물에 대한 [입양/지원] 신청서가 있을 경우 해당 신청서들을 탐색
+		// 탐색의 목적 => 신청서들 중 상태가 'accept'된 항목이 있을 경우 이미 보호소를 떠난 동물로 판단
 		if (notFilteredData != null) {
+			// const isNotProtect = notFilteredData.filter(e => e.protect_act_type == 'protect');
+			// console.log('isNotProtect', isNotProtect);
+
 			const filtered_by_status = notFilteredData.filter(e => e.protect_act_status == 'accept');
 			let index_of_acceptItem = [];
 			filtered_by_status.map((v, i) => {
@@ -134,7 +139,7 @@ export default AidRequestManage = ({route, navigation}) => {
 
 	//선택 시 이동
 	const onSelect = index => {
-		// console.log('dummy Index', dummy_AidRequestAnimalList[index]);
+		console.log('index', data[index]);
 		!isShelterProtect ? navigation.push('ProtectApplicant', data[index]) : console.log('ShelterProtectAnimalList에서는 네비게이션 정의가 안됨');
 	};
 

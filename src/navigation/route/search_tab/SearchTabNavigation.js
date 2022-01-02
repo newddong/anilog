@@ -35,7 +35,7 @@ export default SearchTabNavigation = ({route, navigation}) => {
 
 	//하단 SearchFeedTabNavigation에서 스크린이 바뀔 때 호출
 	const routeNameChanged = v => {
-		console.log('routeNameChanged / SearchTabNavigation  : ', v);
+		// console.log('routeNameChanged / SearchTabNavigation  : ', v);
 		// navigation.setOptions({childName: routeName});
 		//헤더에 현재 보고있는 피드 - [게시글 , 계정, 태그] 스크린 정보를 송신
 		navigation.setParams({routeName: v});

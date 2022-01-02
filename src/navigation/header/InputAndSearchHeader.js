@@ -7,7 +7,7 @@ import {WHITE, APRI10} from 'Root/config/color';
 import InputWithSearchIcon from 'Molecules/InputWithSearchIcon';
 
 export default ConfirmInputHeader = props => {
-	console.log('ConfirmInputHeader.', props.route.params.routeName);
+	// console.log('ConfirmInputHeader.', props.route.params.routeName);
 	const routeName = props.route.params.routeName != undefined ? props.route.params.routeName : 'SearchFeed';
 	const [searchInput, setSearchInput] = React.useState('');
 	const confirm = () => {

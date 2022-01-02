@@ -183,7 +183,7 @@ export default FeedContent = props => {
 			{/* 피드 작성 날짜  3 */}
 			<View style={[organism_style.time_view_feedContent]}>
 				<View style={[organism_style.time_feedContent]}>
-					<Text style={[txt.noto22]}>{getTimeLapsed(feed_date)}</Text>
+					<Text style={[txt.noto22, {color: GRAY10}]}>{getTimeLapsed(feed_date)}</Text>
 				</View>
 
 				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}

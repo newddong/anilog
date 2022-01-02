@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {View, Text, TouchableOpacity, TouchableWithoutFeedback, Alert} from 'react-native';
+import {View, Text, TouchableOpacity, TouchableWithoutFeedback, Alert, Dimensions} from 'react-native';
 import {styles} from './calendarStyle';
 import moment from 'moment';
 import DP from 'Root/config/dp';
@@ -13,7 +13,9 @@ import Modal from 'Root/component/modal/Modal';
 import AniButton from 'Root/component/molecules/AniButton';
 
 const Calendar = props => {
-	console.log('props', props.future);
+	const HEIGHT = Dimensions.get('screen').height;
+
+	// console.log('props', props.future);
 	const BG = 'yellow';
 
 	const [getMoment, setMoment] = React.useState(moment()); //현재 시각 정보
@@ -189,7 +191,7 @@ const Calendar = props => {
 
 	return (
 		<TouchableWithoutFeedback>
-			<View style={[styles.outside]}>
+			<View style={[styles.outside, {height: HEIGHT}]}>
 				<View style={{justifyContent: 'center', alignItems: 'center', marginTop: 100, backgroundColor: WHITE}}>
 					<YearDropDown menu={years()} defaultIndex={4} index={getMoment.year()} onSelect={onSelectYear} />
 					<View style={[styles.headerCont, {}]}>

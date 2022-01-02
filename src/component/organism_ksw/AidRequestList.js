@@ -67,7 +67,12 @@ export default AidRequestList = props => {
 				<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
 					<ScrollView horizontal={true} contentContainerStyle={{flex: 1}} scrollEnabled={false}>
 						<View style={aidRequestList.aidRequestListCont}>
-							<FlatList data={props.items} renderItem={({item, index}) => renderItem(item, index)} scrollEnabled={false} />
+							<FlatList
+								data={props.items}
+								renderItem={({item, index}) => renderItem(item, index)}
+								scrollEnabled={false}
+								ListEmptyComponent={props.whenEmpty()}
+							/>
 						</View>
 					</ScrollView>
 				</ScrollView>

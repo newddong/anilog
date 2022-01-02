@@ -53,7 +53,7 @@ export default FeedMedia = props => {
 	const isEmergency = feed_type == 'report' || feed_type == 'missing';
 	const animal_species = missing_animal_species || report_animal_species;
 	const species_detail = missing_animal_species_detail || report_animal_species_detail;
-	const animal_species_detail = species_detail?.includes('un')||!species_detail?'':' / '+species_detail;
+	const animal_species_detail = species_detail?.includes('un') || !species_detail ? '' : ' / ' + species_detail;
 	const emergency_location = missing_animal_lost_location || report_witness_location;
 	// console.log(props.data.medias);
 
@@ -80,10 +80,8 @@ export default FeedMedia = props => {
 		} else return false;
 	};
 
-
-
 	return (
-		<View style={style.img_square_750x750}>
+		<View style={[style.img_square_750x750]}>
 			{/* Select된 상태일 때 불투명도 40% 적용 및 배경색  Black */}
 			<View style={{backgroundColor: BLACK}}>
 				<Swiper
@@ -107,17 +105,19 @@ export default FeedMedia = props => {
 				false
 			)}
 			{isEmergency ? (
-				<View style={[style.emergency_background, {paddingVertical: 20 * DP, paddingHorizontal: 48 * DP, height:null}]}>
+				<View style={[style.emergency_background, {paddingVertical: 20 * DP, paddingHorizontal: 48 * DP, height: null}]}>
 					<View style={style.emergency_info_container}>
 						<View style={{flexDirection: 'row'}}>
 							<Text style={[txt.roboto34b, {color: 'white'}]}>{animal_species + animal_species_detail}</Text>
 						</View>
-						<View style={{marginLeft: 20 * DP,flex:1}}>
+						<View style={{marginLeft: 20 * DP, flex: 1}}>
 							<Text style={[txt.roboto34b, {color: 'white'}]}>{emergency_location}</Text>
 						</View>
 					</View>
-					<View style={{flex:1}}>
-						<Text style={[txt.roboto24, {color: 'white', marginTop: 20 * DP}]} ellipsizeMode='tail'>{report_animal_features}</Text>
+					<View style={{flex: 1}}>
+						<Text style={[txt.roboto24, {color: 'white', marginTop: 20 * DP}]} ellipsizeMode="tail">
+							{report_animal_features}
+						</Text>
 					</View>
 				</View>
 			) : (

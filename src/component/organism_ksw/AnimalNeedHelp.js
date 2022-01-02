@@ -26,7 +26,8 @@ import {useNavigation} from '@react-navigation/core';
  * }} props
  */
 export default AnimalNeedHelp = props => {
-	// console.log('AnimalNeedHelp', props.data);
+	// console.log('AnimalNeedHelp', props.data.protect_animal_sex);
+	// console.log('AnimalNeedHelp', props.data.protect_animal_id.protect_animal_sex);
 
 	const navigation = useNavigation();
 	const data = props.data;
@@ -58,6 +59,7 @@ export default AnimalNeedHelp = props => {
 
 		// 보호 동물의 데이터 일 경우 (세 필드 중에 하나라도 존재 하지 않는다면 API를 불러오는 함수 확인)
 		if (data.hasOwnProperty('protect_animal_sex') && data.hasOwnProperty('protect_animal_status')) {
+			// console.log('data.protect_animal_sex', data.protect_animal_sex);
 			resultJSON.gender = data.protect_animal_sex;
 			resultJSON.status =
 				data.protect_request_status != undefined ? data.protect_request_status : data.protect_act_request_article_id.protect_request_status;
@@ -70,7 +72,7 @@ export default AnimalNeedHelp = props => {
 				resultJSON.gender = data.report_animal_sex;
 			}
 		} else {
-			resultJSON.gender = 'female';
+			resultJSON.gender = data.protect_animal_id.protect_animal_sex;
 			resultJSON.status = data.protect_request_status || data.protect_act_status;
 			// 기타 다른 경우의 수가 있는지 추후 확인
 		}

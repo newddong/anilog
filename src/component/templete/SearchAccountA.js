@@ -6,6 +6,7 @@ import Modal from '../modal/Modal';
 import ControllableAccountList from '../organism_ksw/ControllableAccountList';
 import {login_style, searchAccountA} from './style_templete';
 import {getUserListByNickname} from 'Root/api/userapi';
+import userGlobalObject from 'Root/config/userGlobalObject';
 
 export default SearchAccountA = props => {
 	// console.log('SearchAccountA', props.input);
@@ -17,20 +18,28 @@ export default SearchAccountA = props => {
 		if (props.input != null) {
 			// const inputData = props.input.searchIn
 			//검색 로직에 대해선 아직 미구현이므로 닉네임과 검색Input이 정확히 일치하는 Account Array를 userList로 반환
-			if (props.input.searchInput != null) {
-				console.log(`keyword=>${props.input}`);
+			if (props.input.searchInput != undefined) {
+				console.log('props.input', props.input);
+
+				// console.log(`keyword=>${props.input}`);
 				setSearchedList([]);
 				Modal.popNoBtn('검색 중... 잠시만 기다려주세요');
 				getUserListByNickname(
 					{
 						user_nickname: props.input.searchInput,
-						request_number: 20,
+						request_number: '',
 						userobject_id: null,
 						user_type: 'user',
 					},
 					result => {
-						console.log('result / getUserListByNick / SearchAccountA', result.msg);
-						setSearchedList(result.msg);
+						// console.log('result / getUserListByNick / SearchAccountA', result.msg);
+						let filtered = [];
+						result.msg.map((v, i) => {
+							v.user_type == 'user' ? filtered.push(v) : false;
+						});
+						let removeMine = filtered.findIndex(e => e.user_nickname == userGlobalObject.userInfo.user_nickname);
+						filtered.splice(removeMine, 1);
+						setSearchedList(filtered);
 						Modal.close();
 					},
 					err => {
@@ -51,7 +60,7 @@ export default SearchAccountA = props => {
 		} else {
 			null;
 		}
-	}, [props.input]);
+	}, [props.input.searchInput]);
 
 	//계정 클릭 콜백
 	const onClickAccount = (item, index) => {
@@ -77,11 +86,9 @@ export default SearchAccountA = props => {
 
 	return (
 		<View style={[searchAccountA.container]}>
-			<ScrollView style={{flex: 1}}>
-				<View style={[searchAccountA.listContainer]}>
-					<ControllableAccountList items={searchedList} onClickAccount={onClickAccount} showButtons={false} />
-				</View>
-			</ScrollView>
+			<View style={[searchAccountA.listContainer]}>
+				<ControllableAccountList items={searchedList} onClickAccount={onClickAccount} showButtons={false} />
+			</View>
 		</View>
 	);
 };

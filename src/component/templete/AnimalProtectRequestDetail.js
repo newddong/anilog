@@ -32,7 +32,7 @@ import Modal from '../modal/Modal';
 // - ProtectRequestList(보호활동탭) , AnimalFromShelter(게시글보기) , Profile(보호활동)
 
 export default AnimalProtectRequestDetail = ({route}) => {
-	console.log('AnimalProtectRequestDetail', route.params.item.protect_request_writer_id._id);
+	console.log('AnimalProtectRequestDetail', route.params.item.protect_request_status);
 
 	const navigation = useNavigation();
 	// 보호소 data는 ShelterSmallLabel에서 사용,  보호동물 Data는 RescueSummary, 임시보호 신청, 입양 신청 등에서 사용됨
@@ -144,7 +144,7 @@ export default AnimalProtectRequestDetail = ({route}) => {
 
 	//댓글 불러오기 (상단의 useEffect와 합칠지는 추후 결정)
 	React.useEffect(() => {
-		console.log(' - AnimalProtectRequestDetail getCommnetList -');
+		// console.log(' - AnimalProtectRequestDetail getCommnetList -');
 		getCommnetList();
 	}, []);
 
@@ -231,9 +231,15 @@ export default AnimalProtectRequestDetail = ({route}) => {
 	//보호요청 더보기의 Thumnail클릭
 	const onClick_ProtectedThumbLabel = (status, user_id, item) => {
 		if (route.name == 'ProtectRequestManage') {
-			navigation.push('ProtectRequestManage', {item: item, list: route.params.list});
+			// console.log('ProtectRequestManage');
+			const animal_sex_toString = item.protect_animal_id.protect_animal_sex == 'female' ? '여' : '남';
+			const title = item.protect_animal_species + '/' + item.protect_animal_species_detail + '/' + animal_sex_toString;
+			navigation.push('ProtectRequestManage', {item: item, list: route.params.list, title: title});
 		} else {
-			navigation.push('AnimalProtectRequestDetail', {item: item, list: route.params.list});
+			console.log('AnimalProtectRequestDetail', item);
+			const animal_sex_toString = item.protect_animal_id.protect_animal_sex == 'female' ? '여' : '남';
+			const title = item.protect_animal_species + '/' + item.protect_animal_species_detail + '/' + animal_sex_toString;
+			navigation.push('AnimalProtectRequestDetail', {item: item, list: route.params.list, title: title});
 		}
 	};
 
@@ -416,17 +422,13 @@ export default AnimalProtectRequestDetail = ({route}) => {
 
 				{/* AnimalNeedHelpList */}
 				<View style={[accountPicker.accountList]}>
-					<AnimalNeedHelpList
-						data={writersAnotherRequests}
-						onClickLabel={(status, user_id, item) => onClick_ProtectedThumbLabel(status, user_id, item)}
-						onFavoriteTag={onPressFavoriteTag}
-					/>
+					<AnimalNeedHelpList data={writersAnotherRequests} onClickLabel={onClick_ProtectedThumbLabel} onFavoriteTag={onPressFavoriteTag} />
 				</View>
 				{/* 보호소 계정이 나의 보호요청 게시글을 통해 들어왔을 경우 버튼 출력 X */}
 			</ScrollView>
 			{/* ScrollView 바깥에 둬야 Scroll의 현재 위치에 상관없이 아래에 출력 */}
 
-			{isShelter ? (
+			{isShelter || data.protect_request_status == 'complete' ? (
 				//보호소메뉴에서 자신의 보호요청게시글을 보는 경우 or 작성자 본인인 경우에는 임보/입양 버튼이 출력이 안됨
 				<></>
 			) : (

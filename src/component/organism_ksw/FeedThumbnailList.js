@@ -30,17 +30,19 @@ export default FeedThumbnailList = props => {
 
 	return (
 		<View style={{marginBottom: 0}}>
-			<FlatList
-				data={props.items}
-				renderItem={renderItem}
-				keyExtractor={(item, index) => index + ''}
-				ListHeaderComponent={props.ListHeaderComponent}
-				stickyHeaderIndices={[1]}
-				nestedScrollEnabled
-				showsVerticalScrollIndicator={false}
-				numColumns={NUMCOLUMNS}
-				ListEmptyComponent={props.whenEmpty ? props.whenEmpty : <></>}
-			/>
+			{props.items.length > 0 && (
+				<FlatList
+					data={props.items}
+					renderItem={renderItem}
+					keyExtractor={(item, index) => index + ''}
+					ListHeaderComponent={props.ListHeaderComponent}
+					stickyHeaderIndices={[1]}
+					nestedScrollEnabled
+					showsVerticalScrollIndicator={false}
+					numColumns={NUMCOLUMNS}
+					ListEmptyComponent={props.whenEmpty ? props.whenEmpty : <></>}
+				/>
+			)}
 		</View>
 	);
 };

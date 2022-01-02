@@ -35,7 +35,7 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 		}
 		console.log('route.params:', route.params);
 		Modal.popNoBtn('게시물을 등록중입니다.');
-		let param = {...route.params, hashtag_keyword: route.params.hashtag_keyword?.map(v=>v.substring(1))};
+		let param = {...route.params, hashtag_keyword: route.params.hashtag_keyword?.map(v => v.substring(1))};
 		switch (route.params?.feedType) {
 			case 'Feed':
 				console.log(param);
@@ -70,10 +70,19 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 				break;
 			case 'Report':
 				{
-					console.log('Before Write Report ', param);
 					const data = param;
+
+					data.report_witness_location =
+						(data.report_location.city || '') +
+						' ' +
+						(data.report_location.district || '') +
+						' ' +
+						(data.report_location.neighbor || '') +
+						' ' +
+						data.report_location.detailAddr;
+					console.log('Before Write Report ', data);
 					if (
-						data.addr &&
+						// data.addr &&
 						data.feed_content &&
 						data.feed_medias &&
 						data.media_uri.length > 0 &&
@@ -88,6 +97,7 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 					} else {
 						Modal.popOneBtn('제보 동물의 품종 이외에는 \n 모두 작성해주셔야합니다.\n (사진 포함)', '확인', () => Modal.close());
 					}
+					// Modal.close();
 				}
 				break;
 			default:

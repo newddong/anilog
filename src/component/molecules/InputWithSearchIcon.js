@@ -71,6 +71,8 @@ const InputWithSearchIcon = props => {
 							//TextInput과 바깥 View와의 거리 24px, lineHeight는 글꼴크기와 일치
 							paddingLeft: 24 * DP,
 							// lineHeight: 48 * DP,
+							// backgroundColor: 'red',
+							width: (props.width - 150) * DP,
 						},
 					]}
 				/>

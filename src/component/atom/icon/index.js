@@ -121,6 +121,7 @@ import childCommentLinker from './childCommentLinker';
 import profiledefault1 from './profiledefault1';
 import profiledefault2 from './profiledefault2';
 import profiledefault3 from './profiledefault3';
+import ready_for_updating from './ready_for_updating';
 
 import DP from 'Screens/dp';
 import {APRI10, YELL20, GRAY20, GRAY30, GRAY10, BLACK} from 'Root/config/color';
@@ -314,3 +315,4 @@ export const Instagram_Icon = makeSvg(instagramIcon, size80);
 export const Facebook_Icon = makeSvg(facebookIcon, size80);
 export const CrossMark_Filled = makeSvg(crossMark_filled, size50);
 export const ChildCommentLinker = makeSvg(childCommentLinker, {width: 14 * DP, height: 14 * DP});
+export const Ready_for_updating = makeSvg(ready_for_updating, {width: 382 * DP, height: 382 * DP});

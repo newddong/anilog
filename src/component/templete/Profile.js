@@ -24,21 +24,18 @@ export default Profile = ({route, navigation}) => {
 	const [showOwnerState, setShowOwnerState] = React.useState(false); // 현재 로드되어 있는 profile의 userType이 Pet인 경우 반려인 계정 리스트의 출력 여부
 	const [showCompanion, setShowCompanion] = React.useState(false); // User계정이 반려동물버튼을 클릭
 	const [protectActList, setProtectActList] = React.useState([]);
-	
+
 	React.useEffect(() => {
-
-
 		if (route.params && route.params.userobject) {
-			console.log('getUserProfile',route.params.userobject)
+			console.log('getUserProfile', route.params.userobject);
 			getUserProfile(
 				{
 					userobject_id: route.params.userobject._id,
 				},
 				result => {
-
 					navigation.setOptions({title: result.msg.user_nickname});
 					setData(result.msg);
-					console.log('getUserProfileResult',result);
+					console.log('getUserProfileResult', result);
 				},
 				err => {
 					Modal.popOneBtn(err, '확인', () => {
@@ -57,7 +54,6 @@ export default Profile = ({route, navigation}) => {
 
 	//보호소 프로필일 경우 보호요청 게시글 목록을 조회
 	React.useEffect(() => {
-
 		if (data.user_type == 'shelter') {
 			const unsubscribe = navigation.addListener('focus', () => {
 				getProtectRequestListByShelterId(
@@ -68,12 +64,9 @@ export default Profile = ({route, navigation}) => {
 						protect_request_status: 'rescue',
 					},
 					result => {
-
 						setProtectActList(result.msg);
 					},
-					err => {
-
-					},
+					err => {},
 				);
 			});
 			return unsubscribe;
@@ -85,7 +78,6 @@ export default Profile = ({route, navigation}) => {
 
 	//프로필의 피드탭의 피드 썸네일 클릭
 	const onClick_Thumbnail_FeedTab = (index, item) => {
-
 		navigation.push('UserFeedList', {userobject: data, selected: item});
 	};
 
@@ -100,13 +92,10 @@ export default Profile = ({route, navigation}) => {
 	};
 
 	//보호소프로필의 피드 및 태그 탭 썸네일 클릭xx
-	const onClick_FeedThumbnail_ShelterProfile = () => {
-
-	};
+	const onClick_FeedThumbnail_ShelterProfile = () => {};
 
 	//보호소프로필의 봉사활동 클릭
 	const onClick_Volunteer_ShelterProfile = () => {
-
 		AsyncStorage.getItem('type', (err, res) => {
 			if (res == 'shelter') {
 				Modal.popOneBtn('보호소 계정은 봉사활동을 \n 신청하실 수 없습니다.', '확인', () => Modal.close());
@@ -118,7 +107,6 @@ export default Profile = ({route, navigation}) => {
 
 	//보호소프로필의 보호활동 탭의 피드 썸네일 클릭
 	const onClickProtectAnimal = (status, user_id, item) => {
-
 		let sexValue = '';
 
 		switch (item.protect_animal_id?.protect_animal_sex || item.protect_animal_sex) {
@@ -145,24 +133,20 @@ export default Profile = ({route, navigation}) => {
 
 	//액션버튼 하단 탭 메뉴 클릭 콜백함수
 	const onSelectTabMenu = (item, index) => {
-
 		setTabMenuSelected(index);
 	};
 
 	//유저타입 - 펫 => 반려인 계정에서 가족계정의 이미지 라벨을 클릭
 	const onClickOwnerLabel = item => {
-
 		navigation.push('UserProfile', {userobject: item});
 	};
 
 	//유저타입 - 유저 => 반려동물 리스트에서 항목 클릭
 	const onClickMyCompanion = item => {
-
 		navigation.push('UserProfile', {userobject: item});
 	};
 
 	const onClickProtectPet = item => {
-
 		navigation.push('UserProfile', {userobject: item});
 	};
 

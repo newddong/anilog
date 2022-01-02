@@ -19,7 +19,7 @@ export default SearchHashTag = props => {
 							<Text style={[txt.noto24, {color: GRAY20}]}>최근 검색한 태그</Text>
 						</View>
 						<View style={[temp_style.hashTagList]}>
-							<HashTagList items={dummy_hashTagListObject} />
+							<HashTagList items={[]} />
 						</View>
 					</View>
 				) : (

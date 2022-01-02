@@ -1673,10 +1673,13 @@ export const addFamilyAccount_style = StyleSheet.create({
 		marginTop: 20 * DP,
 	},
 	accountList: {
+		width: 730 * DP,
+		marginLeft: 48 * DP,
 		marginTop: 30 * DP,
 	},
 	btn_w654: {
 		marginTop: 50 * DP,
+		marginLeft: 20 * DP,
 		marginBottom: 110 * DP,
 	},
 });
@@ -1719,7 +1722,7 @@ export const userMenu_style = StyleSheet.create({
 	},
 	btn_w280_view: {
 		flexDirection: 'row',
-		marginTop: 30 * DP,
+		marginVertical: 30 * DP,
 		width: 610 * DP,
 		alignItems: 'center',
 	},
@@ -2929,6 +2932,9 @@ export const activationList = StyleSheet.create({
 		height: 204 * DP,
 		marginTop: 12 * DP,
 	},
+	activityUpdating: {
+		marginTop: 246 * DP,
+	},
 });
 export const activationDetail = StyleSheet.create({
 	container: {
@@ -3737,7 +3743,7 @@ export const feedWrite = StyleSheet.create({
 	},
 	reportLocation_form: {
 		width: 654 * DP,
-		height: 164 * DP,
+		// height: 164 * DP,
 		marginTop: 60 * DP,
 		flexDirection: 'row',
 	},
@@ -3764,6 +3770,12 @@ export const feedWrite = StyleSheet.create({
 		marginTop: 24 * DP,
 		marginBottom: 50 * DP,
 	},
+	addressSelectContainer: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		// backgroundColor: 'lightblue',
+	},
+	addressDropDownContainer: {},
 });
 
 export const profile = StyleSheet.create({

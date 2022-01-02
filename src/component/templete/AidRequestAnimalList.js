@@ -1,10 +1,12 @@
 import React from 'react';
-import {ActivityIndicator, ScrollView, View} from 'react-native';
+import {ActivityIndicator, ScrollView, Text, View} from 'react-native';
 import {login_style} from './style_templete';
 import AidRequestList from '../organism_ksw/AidRequestList';
 import {temp_style, baseInfo_style} from './style_templete';
 import {getShelterProtectAnimalList} from 'Root/api/shelterapi';
 import {getApplyDetailById} from 'Root/api/protectapi';
+import {txt} from 'Root/config/textstyle';
+import {GRAY10} from 'Root/config/color';
 
 //ShelterMenu => 보호요청 게시글 작성하기 버튼 클릭
 //연관 테이블 : ShelterProtectAnimalObject
@@ -66,6 +68,9 @@ export default AidRequestAnimalList = ({route, navigation}) => {
 			err => {
 				console.log('err / getShelterProtectAnimalList / AidRequestAnimalList   :  ', err);
 				// setData(err);
+				setTimeout(() => {
+					setLoading(false);
+				}, 1500);
 			},
 		);
 	}, []);
@@ -102,6 +107,14 @@ export default AidRequestAnimalList = ({route, navigation}) => {
 		// navigation.push('WriteAidRequest');
 	};
 
+	const whenEmpty = () => {
+		return (
+			<View style={[{height: 100 * DP, width: '100%', marginVertical: 30 * DP, alignItems: 'center', justifyContent: 'center'}]}>
+				<Text style={[txt.roboto30b, {color: GRAY10}]}> 보호 중인 동물이 없습니다.</Text>
+			</View>
+		);
+	};
+
 	if (loading) {
 		return (
 			<View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: 'white'}}>
@@ -113,7 +126,7 @@ export default AidRequestAnimalList = ({route, navigation}) => {
 			<View style={[login_style.wrp_main, {flex: 1}]}>
 				<ScrollView style={{flex: 1}}>
 					<View style={[temp_style.aidRequestList_aidRequestManage, baseInfo_style.list]}>
-						<AidRequestList items={data} onSelect={onSelectRequestItem} onPressAddProtectAnimal={onPressAddProtectAnimal} />
+						<AidRequestList items={data} onSelect={onSelectRequestItem} onPressAddProtectAnimal={onPressAddProtectAnimal} whenEmpty={whenEmpty} />
 					</View>
 				</ScrollView>
 			</View>
