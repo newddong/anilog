@@ -55,7 +55,7 @@ export default ControllableAccountList = props => {
 	};
 
 	return (
-		<ScrollView horizontal={false} scrollEnabled={false}>
+		<ScrollView horizontal={false}>
 			<ScrollView horizontal={true} scrollEnabled={false}>
 				<View style={[controllableAccountList.container]}>
 					{props.title == null ? null : (

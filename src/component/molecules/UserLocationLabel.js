@@ -63,10 +63,9 @@ const UserLocationLabel = props => {
 					<Text style={[txt.roboto28b, {color: isLoginUser ? APRI10 : BLACK}]} numberOfLines={1} ellipsizeMode="tail">
 						{props.data.user_nickname}
 					</Text>
-					<Text style={[txt.noto24, {lineHeight: 36 * DP}]} numberOfLines={1} ellipsizeMode="tail">
+					{/* <Text style={[txt.noto24, {lineHeight: 36 * DP}]} numberOfLines={1} ellipsizeMode="tail">
 						{props.location}
-						{/* {data ? data.user_address.city || ' ' : ''} {data ? data.user_address.district || ' ' : ''} 유저정보 아님 글쓸때 지역임*/}
-					</Text>
+					</Text> */}
 				</View>
 			</View>
 		</TouchableOpacity>

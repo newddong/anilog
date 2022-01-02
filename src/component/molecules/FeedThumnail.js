@@ -28,7 +28,7 @@ const FeedThumbnail = React.memo(props => {
 	}, [props.data.checkBoxState]);
 
 	const onSelect = () => {
-		props.onSelect(props.data._id);
+		props.onSelect(props.data);
 		// console.log('FeedThumbnail OnSelect', props.data._id);
 		props.selectMode ? setSelected(!selected) : false; //SelectMode가 true일 경우에 한해서만 setSelected로 스타일을 바꿈
 	};

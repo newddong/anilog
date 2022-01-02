@@ -56,7 +56,7 @@ export default SearchFeedTabNavigation = props => {
 				);
 			}}>
 			{/* 게시글 */}
-			<SearchFeedTabNav.Screen name="SearchFeed">{props => <SearchFeed {...props} input={searchInput} />}</SearchFeedTabNav.Screen>
+			<SearchFeedTabNav.Screen name="SearchFeed">{props => <SearchFeed {...props} />}</SearchFeedTabNav.Screen>
 			{/* 계정 */}
 			<SearchFeedTabNav.Screen name="SearchAccountA">
 				{props => <SearchAccountA {...props} prevNav={props.prev} input={searchInput} />}

@@ -8,6 +8,7 @@ export const organism_style = StyleSheet.create({
 		flexDirection: 'column',
 		width: 750 * DP,
 		height: 270 * DP,
+		// height: 300 * DP,
 		alignItems: 'center',
 		paddingTop: 40 * DP,
 		paddingBottom: 50 * DP,
@@ -334,7 +335,7 @@ export const feedContent_style = StyleSheet.create({
 		marginTop: 10 * DP,
 	},
 	tipOff: {
-		marginTop: 16 * DP,
+		marginTop: 5 * DP,
 	},
 	like_count: {
 		marginTop: 1 * DP,

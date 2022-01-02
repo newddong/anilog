@@ -18,47 +18,27 @@ import ListEmptyInfo from '../molecules/ListEmptyInfo';
 export default FeedThumbnailList = props => {
 	const NUMCOLUMNS = 3;
 
-	return (
-		<FlatList
-			data={props.items}
-			renderItem={({item, index}) => (
-				<FeedThumnail data={item} onSelect={feed_id => props.onClickThumnail(index, feed_id, item)} selectMode={props.selectMode} />
-			)}
-			keyExtractor={(item, index) => index + ''}
-			numColumns={NUMCOLUMNS}
-			ListEmptyComponent={props.whenEmpty ? props.whenEmpty : <></>}
-		/>
-	);
-
-	const renderItem = (item, index) => {
+	const renderItem = ({item, index}) => {
 		// console.log('item index', index);
 		// FavoriteFeeds에서 SelectStat로부터 받은 받은 선택모드 값을 selectMode 변수로 넘겨줌. FeedThumail에서 투명도 조절과 체크 사항을 표기하기 위함
-		if (index == 0) {
-			return props.tabMenu;
-		}
-		return (
-			<FlatList
-				data={item}
-				renderItem={({item, index}) => (
-					<FeedThumnail data={item} onSelect={feed_id => props.onClickThumnail(index, feed_id)} selectMode={props.selectMode} />
-				)}
-				keyExtractor={(item, index) => index + ''}
-				numColumns={NUMCOLUMNS}
-			/>
-		);
+		return <FeedThumnail data={item} onSelect={() => props.onClickThumnail(index, item)} selectMode={props.selectMode} />;
 	};
 
 	return (
 		<View style={{marginBottom: 0}}>
-			<FlatList
-				data={[{}, props.items]}
-				renderItem={({item, index}) => renderItem(item, index)}
-				keyExtractor={(item, index) => index + ''}
-				ListHeaderComponent={props.ListHeaderComponent}
-				stickyHeaderIndices={[1]}
-				nestedScrollEnabled
-				showsVerticalScrollIndicator={false}
-			/>
+			{props.items.length > 0 && (
+				<FlatList
+					data={props.items}
+					renderItem={renderItem}
+					keyExtractor={(item, index) => index + ''}
+					ListHeaderComponent={props.ListHeaderComponent}
+					stickyHeaderIndices={[1]}
+					nestedScrollEnabled
+					showsVerticalScrollIndicator={false}
+					numColumns={NUMCOLUMNS}
+					ListEmptyComponent={props.whenEmpty ? props.whenEmpty : <></>}
+				/>
+			)}
 		</View>
 	);
 };

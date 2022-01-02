@@ -13,6 +13,11 @@ import {Arrow_Down_APRI10, Arrow_Down_GRAY30, Arrow_Down_White, Arrow_Up_APRI10,
  *
  */
 const ActionButton = React.forwardRef((props, ref) => {
+	React.useImperativeHandle(ref, () => ({
+		press: () => {
+			onPress();
+		},
+	}));
 	//btn의 초기상태 - false는 아직 버튼이 오픈되지 않은 상태
 	const [btnStatus, setBtnStatus] = React.useState(props.initState);
 
@@ -51,7 +56,19 @@ const ActionButton = React.forwardRef((props, ref) => {
 	const onPress = e => {
 		!props.noStateChange && setBtnStatus(!btnStatus);
 		// btnStatus ? props.onOpen() : props.onClose();
-		(btnStatus && (props.onClose() || true)) || props.onOpen();
+		(btnStatus && (onClose() || true)) || onOpen();
+	};
+
+	const onOpen = () => {
+		// console.log('DropdownSelect onOpen');
+		setBtnStatus(true);
+		props.onOpen();
+	};
+
+	const onClose = () => {
+		// console.log('DropdownSelect onClose');
+		setBtnStatus(false);
+		props.onClose();
 	};
 
 	//액션버튼 본체

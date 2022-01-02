@@ -17,8 +17,8 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 		Modal.popNoBtn('게시물 등록이 완료되었습니다.');
 		setTimeout(() => {
 			Modal.close();
+			navigation.goBack();
 		}, 200);
-		navigation.goBack();
 	};
 	const handleError = err => {
 		console.log('err', err);
@@ -35,14 +35,17 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 		}
 		console.log('route.params:', route.params);
 		Modal.popNoBtn('게시물을 등록중입니다.');
+		let param = {...route.params, hashtag_keyword: route.params.hashtag_keyword?.map(v => v.substring(1))};
 		switch (route.params?.feedType) {
 			case 'Feed':
-				createFeed(route.params, complete, handleError);
+				console.log(param);
+				createFeed(param, complete, handleError);
 				break;
 			case 'Missing':
 				{
-					console.log('Before Write Missing ', route.params);
-					const data = route.params;
+					console.log('Before Write Report ', param);
+
+					const data = param;
 					if (
 						data.missing_animal_species &&
 						data.missing_animal_species_detail &&
@@ -58,7 +61,7 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 						data.missing_animal_contact
 					) {
 						console.log('NotNull 통과');
-						createMissing(route.params, complete, handleError);
+						createMissing(param, complete, handleError);
 						Modal.close();
 					} else {
 						Modal.popOneBtn('작성란은 모두 작성해주셔야합니다.\n (사진 포함)', '확인', () => Modal.close());
@@ -67,8 +70,8 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 				break;
 			case 'Report':
 				{
-					console.log('Before Write Report ', route.params);
-					const data = route.params;
+					const data = param;
+
 					data.report_witness_location =
 						(data.report_location.city || '') +
 						' ' +
@@ -77,6 +80,7 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 						(data.report_location.neighbor || '') +
 						' ' +
 						data.report_location.detailAddr;
+					console.log('Before Write Report ', data);
 					if (
 						// data.addr &&
 						data.feed_content &&
@@ -88,7 +92,7 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 						data.report_witness_location
 					) {
 						console.log('NotNull 통과');
-						createReport(route.params, complete, handleError);
+						createReport(param, complete, handleError);
 						Modal.close();
 					} else {
 						Modal.popOneBtn('제보 동물의 품종 이외에는 \n 모두 작성해주셔야합니다.\n (사진 포함)', '확인', () => Modal.close());

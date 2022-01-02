@@ -2,7 +2,6 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import DP from 'Root/config/dp';
 import SvgWrapper, {SvgWrap} from 'Screens/svgwrapper';
-import {MainTabFeed, MainTabMy, MainTabVideo, MainTabSaveAnimal} from 'Asset/image_v2';
 import {txt} from 'Root/config/textstyle';
 import {tab, layout} from './style_BottomTab';
 import {APRI10, GRAY20} from 'Root/config/color';
@@ -18,7 +17,7 @@ import {
 } from 'Atom/icon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function BottomTab({state, descriptors, navigation, route}) {
+export default function BottomTab({state, descriptors, navigation}) {
 	const focusedOptions = descriptors[state.routes[state.index].key].options;
 	const icons = [<FeedTabBorder />, <AnimalSavingTabBorder />, <CommunityTabBorder />, <MyTabBorder />];
 	const iconsFocused = [<FeedTabFilled />, <AnimalSavingTabFilled />, <CommunityTabFilled />, <MyTabFilled />];
@@ -37,7 +36,7 @@ export default function BottomTab({state, descriptors, navigation, route}) {
 		// console.log('state', state?.routes[state.index].params.prevNav);
 		if (state.routes[state.index].params != undefined) {
 			// console.log('state', state.routes ? state.routes[state.index].params.prevNav : 'dd');
-			const prevNav = state.routes[state.index].params.prevNav;
+			let prevNav = state.routes[state.index].params.prevNav;
 			//현재는 서치탭이동이 두가지 경우 (보호활동탭, 피드탭)밖에 없으므로 이하와 같이 처리
 			prevNav == 'ProtectionTab' ? (currentIndex = '1') : (currentIndex = '0');
 		}
@@ -51,13 +50,15 @@ export default function BottomTab({state, descriptors, navigation, route}) {
 					const {options} = descriptors[route.key];
 					const label = options.tabBarLabel !== undefined ? options.tabBarLabel : options.title !== undefined ? options.title : route.name;
 					//SearchTab으로 왔을 경우 현재 포커스되어야할 인덱스는 state.index(Tabindex)가 아닌 이전의 Index로 처리되어야 함 [상우]
-					const isFocused = (currentIndex != null ? currentIndex : state.index) == index;
+					// const isFocused = (currentIndex != null ? currentIndex : state.index) == index;
+					const isFocused = state.index == index;
 					//확인 필
 					const color = isFocused ? APRI10 : GRAY20;
 					const textStyle = isFocused ? txt.noto22b : txt.noto22;
 					const textStyleEng = isFocused ? txt.roboto22b : txt.roboto22;
 
-					const onPress = async () => {
+					const onPress = () => {
+						console.log('tabP')
 						const event = navigation.emit({
 							type: 'tabPress',
 							target: route.key,
@@ -65,6 +66,7 @@ export default function BottomTab({state, descriptors, navigation, route}) {
 						});
 
 						if (!isFocused && !event.defaultPrevented) {
+							console.log('click')
 							navigation.navigate({name: route.name, merge: true});
 						}
 					};
@@ -78,11 +80,10 @@ export default function BottomTab({state, descriptors, navigation, route}) {
 
 					const renderTab = index => {
 						if (index == 4) {
-							return <></>;
+							return false;
 						} else {
 							return (
 								<View style={[tab.hitboxLayout, iconlayout[index]]}>
-									{/* <SvgWrapper style={iconlayout[index]} svg={isFocused ? iconsFocused[index] : icons[index]} /> */}
 									{isFocused ? iconsFocused[index] : icons[index]}
 									<Text style={[index === 3 ? textStyleEng : textStyle, {color: color, lineHeight: 36 * DP, marginTop: 7 * DP}]}>{label}</Text>
 								</View>
