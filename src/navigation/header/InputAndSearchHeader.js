@@ -7,7 +7,8 @@ import {WHITE, APRI10} from 'Root/config/color';
 import InputWithSearchIcon from 'Molecules/InputWithSearchIcon';
 
 export default ConfirmInputHeader = props => {
-	// console.log('props Confirn', props);
+	console.log('ConfirmInputHeader.', props.route.params.routeName);
+	const routeName = props.route.params.routeName != undefined ? props.route.params.routeName : 'SearchFeed';
 	const [searchInput, setSearchInput] = React.useState('');
 	const confirm = () => {
 		// navigation.navigate('Search');
@@ -30,14 +31,20 @@ export default ConfirmInputHeader = props => {
 
 	return (
 		<View style={[style.headerContainer, style.shadow]}>
-			<TouchableOpacity onPress={onPressGoBack}>
-				<View style={style.backButtonContainer}>
-					<BackArrow32 onPress={onPressGoBack} />
-				</View>
-			</TouchableOpacity>
-			<View style={{marginBottom: 20 * DP, flex: 1}}>
-				<InputWithSearchIcon placeholder={'검색어를 입력하세요.'} width={590} onChange={onChangeSearchText} onSearch={confirm} />
-			</View>
+			<>
+				<TouchableOpacity onPress={onPressGoBack}>
+					<View style={style.backButtonContainer}>
+						<BackArrow32 onPress={onPressGoBack} />
+					</View>
+				</TouchableOpacity>
+				{routeName == 'SearchFeed' ? (
+					<></>
+				) : (
+					<View style={{marginBottom: 20 * DP, flex: 1}}>
+						<InputWithSearchIcon placeholder={'검색어를 입력하세요.'} width={590} onChange={onChangeSearchText} onSearch={confirm} />
+					</View>
+				)}
+			</>
 		</View>
 	);
 };
