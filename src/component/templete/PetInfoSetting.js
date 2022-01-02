@@ -15,6 +15,7 @@ import {getUserInfoById, removeUserFromFamily} from 'Root/api/userapi';
 import {familyAccountList_style} from '../organism_ksw/style_organism';
 import ProfileImageSmall from '../molecules/ProfileImageSmall';
 import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
+import PetSelectModal from '../molecules/PetSelectModal';
 
 //이 화면에 들어오면서 특정 _id를 API 연동으로 데이터를 가져 옴.
 //이전 화면에서 모든 데이터를 가진 상태에서 들어오는 것이 아님.
@@ -81,7 +82,8 @@ export default PetInfoSetting = ({route, navigation}) => {
 
 	//계정정보 - '종' 변경하기 버튼 클릭
 	const changePetInfo = () => {
-		Modal.popSelect(['개', '고양이', '기타'], ['리트리버', '말티즈', '푸들', '치와와'], (val1, val2) => alert(val1 + ':' + val2), '동물선택');
+		// Modal.popSelect(['개', '고양이', '기타'], ['리트리버', '말티즈', '푸들', '치와와'], (val1, val2) => alert(val1 + ':' + val2), '동물선택');
+		Modal.popPetSelect(petData.pet_species, petData.pet_species_detail, (val1, val2) => console.log(val1 + ':' + val2), '완료');
 	};
 
 	//프로필 변경 버튼

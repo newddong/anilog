@@ -99,6 +99,18 @@ export default Modal = {
 	 */
 	popRadioSelect: (items, selectMsg, exitMsg, onSelect, onExit) => {},
 
+	/**
+	 * 선택 모달창을 띄우는 함수(첫번째 선택에 따라 두번째 선택의 항목이 변하는 부분은 구현되지 않음)
+	 * @param {string} primaryItem - 첫번째 항목 초기값
+	 * @param {string} secondaryItem - 두번째 항목 초기값
+	 * @param {(primaryItem:string,secondaryItem:string)=>void} onOk - 선택항목들을 반환하는 매개변수가 2개인 콜백
+	 * @param {string} okButtonnMsg - 확인버튼에 표시할 텍스트
+	 *
+	 * @example
+	 * Modal.popPetSelect('개','리트리버'],(val1,val2)=>alert(val1+':'+val2),'동물선택');
+	 */
+	popPetSelect: (primaryItem, secondaryItem, onOk, okButtonnMsg) => {},
+
 	alert: () => {},
 
 	closeKeboard: () => {},
