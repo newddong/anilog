@@ -6,6 +6,7 @@ import AniButton from '../molecules/AniButton';
 import CheckBox from '../molecules/CheckBox';
 import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
 import {controllableAccount, organism_style} from './style_organism';
+import { useNavigation } from '@react-navigation/native';
 
 /**
  *
@@ -20,6 +21,7 @@ import {controllableAccount, organism_style} from './style_organism';
  */
 export default ControllableAccount = props => {
 	// console.log('props.data', props.data);
+	const navigation = useNavigation();
 	const [showCheckBox, setShowCheckBox] = React.useState(props.showCheckBox); // Label 좌측 CheckBox 출력 Boolean
 	const [showCrossMark, setShowCrossMark] = React.useState(props.showCrossMark); // 팔로잉 버튼 우측 Cross 출력 Boolean
 	const [following, setFollowing] = React.useState(false);
@@ -37,7 +39,8 @@ export default ControllableAccount = props => {
 
 	//프로필 라벨 클릭
 	const onClickLabel = data => {
-		props.onClickLabel(data);
+		navigation.push('UserProfile',{userobject: data});
+		// props.onClickLabel(data);
 	};
 
 	return (
@@ -52,7 +55,7 @@ export default ControllableAccount = props => {
 			<View style={[showCheckBox || showCrossMark ? controllableAccount.userDescriptionLabel_checked : controllableAccount.userDescriptionLabel]}>
 				<UserDescriptionLabel data={props.data} onClickLabel={onClickLabel} width={300} />
 			</View>
-			{props.showButtons ? (
+			{props.showButtons&&false ? (
 				<View style={[controllableAccount.rightContainer]}>
 					<View style={[controllableAccount.btn_w108_controllableAccount]}>
 						{following ? (
