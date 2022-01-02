@@ -197,7 +197,7 @@ export const accountHashList = StyleSheet.create({
 	container: {
 		width: 750 * DP,
 		alignItems: 'center',
-		marginBottom: 100 * DP,
+		// marginBottom: 100 * DP,
 		// backgroundColor: BGCOLOR,
 	},
 	userAccount: {

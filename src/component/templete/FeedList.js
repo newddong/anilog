@@ -8,6 +8,7 @@ import {getSuggestFeedList} from 'Root/api/feedapi';
 import Modal from 'Component/modal/Modal';
 import OneBtnModal from '../molecules/OneBtnModal';
 import DP from 'Root/config/dp';
+import {getFeedListByUserId} from 'Root/api/feedapi';
 import userGlobalObject from 'Root/config/userGlobalObject';
 
 export default FeedList = ({route, navigation}) => {

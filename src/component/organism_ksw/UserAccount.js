@@ -23,13 +23,12 @@ export default UserAccount = props => {
 	const [followState, setFollowState] = React.useState(true);
 
 	const getLabel = () => {
-		// console.log('props.data.type=>' + props.data.type);
-		if (props.data.type == 'user' || props.data.type == 'pet' || props.data.type == 'shelter') {
+		if (props.data.type === 'UserObject') {
 			return <UserDescriptionLabel data={props.data} onClickLabel={e => props.onLabelClick(e)} />;
-		} else if (props.data.type == 'hash') {
+		} else if (props.data.type === 'HashTagObject') {
 			return (
 				<TouchableOpacity onPress={() => props.onHashClick()}>
-					<HashLabel keyword={props.data.keyword} keywordBold={props.data.keywordBold} count={props.data.count} />
+					<HashLabel keyword={props.data.hashtag_keyword} keywordBold={props.data.keywordBold} count={props.data.hashtag_feed_count} />
 				</TouchableOpacity>
 			);
 		}
@@ -50,19 +49,19 @@ export default UserAccount = props => {
 				<View style={[userAccount.checkBox]}>
 					<CheckBox
 						state={props.data.checkBoxState}
-						onCheck={() => props.onCheckBox(props.data.type == 'hash' ? props.data.keyword : props.data.user_nickname)}
+						onCheck={() => props.onCheckBox(props.data.type == 'HashTagObject' ? props.data.keyword : props.data.user_nickname)}
 					/>
 				</View>
-			) : null}
+			) : false}
 			{/* UserLabel */}
 			<View style={[userAccount.userProfileContainer]}>{getLabel()}</View>
-			<View onPress={onClickFollow} style={[props.checkBoxMode ? userAccount.followingBtnContainer : userAccount.followingBtnContainer_noneCheckBox]}>
+			{props.showFollowBtn&&<View onPress={onClickFollow} style={[props.checkBoxMode ? userAccount.followingBtnContainer : userAccount.followingBtnContainer_noneCheckBox]}>
 				{followState ? (
 					<AniButton onPress={onClickFollow} btnTitle={'팔로잉'} btnTheme={'shadow'} btnStyle={'border'} btnLayout={btn_w108} />
 				) : (
 					<AniButton onPress={onClickFollow} btnTitle={'팔로우'} btnTheme={'shadow'} btnLayout={btn_w108} />
 				)}
-			</View>
+			</View>}
 		</View>
 	);
 };
@@ -73,4 +72,5 @@ UserAccount.defaultProps = {
 	onCheckBox: e => console.log(e),
 	checkBoxMode: false,
 	checkBoxState: false,
+	showFollowBtn: false,
 };

@@ -26,17 +26,19 @@ export default SearchTabNavigation = ({route, navigation}) => {
 		if (routeName == navName[0]) setCurrentScreen(0);
 		else if (routeName == navName[1]) setCurrentScreen(1);
 		else if (routeName == navName[2]) setCurrentScreen(2);
+		// navigation.setParams({routeName: routeName});
 	}, [routeName]);
 
 	React.useEffect(() => {
 		setSearchInput(route.params);
 	}, [route.params]);
 
-	const searchContext = React.useContext(SearchContext);
-
+	//하단 SearchFeedTabNavigation에서 스크린이 바뀔 때 호출
 	const routeNameChanged = v => {
 		console.log('routeNameChanged / SearchTabNavigation  : ', v);
-		searchContext.routeName = v;
+		// navigation.setOptions({childName: routeName});
+		//헤더에 현재 보고있는 피드 - [게시글 , 계정, 태그] 스크린 정보를 송신
+		navigation.setParams({routeName: v});
 		setCurrentChild(v);
 	};
 

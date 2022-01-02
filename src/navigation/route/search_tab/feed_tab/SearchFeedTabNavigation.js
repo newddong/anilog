@@ -21,7 +21,7 @@ export default SearchFeedTabNavigation = props => {
 		else if (routeName == navName[1]) setCurrentScreen(1);
 		else if (routeName == navName[2]) setCurrentScreen(2);
 		props.routeNameChild(routeName);
-		props.navigation.setOptions({childName: routeName});
+		// props.navigation.setOptions({childName: routeName});
 	}, [routeName]);
 
 	React.useEffect(() => {

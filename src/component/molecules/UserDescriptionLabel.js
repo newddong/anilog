@@ -34,29 +34,31 @@ const UserDescriptionLabel = props => {
 
 	return (
 		// <View style={{flexDirection: 'row', alignItems: 'center', width: props.width != null ? props.width : null}}>
-		<View style={{flexDirection: 'row', alignItems: 'center'}}>
-			<TouchableOpacity onPress={onClickLabel}>
-				<Image source={{uri: data.user_profile_uri || DEFAULT_PROFILE}} style={[styles.img_round_94]} />
-			</TouchableOpacity>
-			<View style={{marginLeft: 30 * DP}}>
-				<View style={{flexDirection: 'row'}}>
-					<Text style={(txt.roboto28b, {color: isLoginUser ? APRI10 : BLACK})} numberOfLines={1} ellipsizeMode="tail">
-						{data.user_nickname || ''}
-					</Text>
-					{data.showStatus ? <Text style={[txt.noto22, {color: APRI10, alignSelf: 'center', paddingLeft: 10 * DP}]}> STATUS</Text> : null}
+		<TouchableOpacity onPress={onClickLabel}>
+			<View style={{flexDirection: 'row', alignItems: 'center'}}>
+				
+					<Image source={{uri: data.user_profile_uri || DEFAULT_PROFILE}} style={[styles.img_round_94]} />
+				
+				<View style={{marginLeft: 30 * DP}}>
+					<View style={{flexDirection: 'row'}}>
+						<Text style={(txt.roboto28b, {color: isLoginUser ? APRI10 : BLACK})} numberOfLines={1} ellipsizeMode="tail">
+							{data.user_nickname || ''}
+						</Text>
+						{data.showStatus ? <Text style={[txt.noto22, {color: APRI10, alignSelf: 'center', paddingLeft: 10 * DP}]}> STATUS</Text> : null}
+					</View>
+					{data.user_introduction ? (
+						<Text
+							style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10, maxWidth: props.width * DP || 400 * DP}]}
+							numberOfLines={1}
+							ellipsizeMode="tail">
+							{data.user_introduction || ''}
+						</Text>
+					) : (
+						<></>
+					)}
 				</View>
-				{data.user_introduction ? (
-					<Text
-						style={[txt.noto24, {lineHeight: 44 * DP, color: GRAY10, maxWidth: props.width * DP || 400 * DP}]}
-						numberOfLines={1}
-						ellipsizeMode="tail">
-						{data.user_introduction || ''}
-					</Text>
-				) : (
-					<></>
-				)}
 			</View>
-		</View>
+		</TouchableOpacity>
 	);
 };
 

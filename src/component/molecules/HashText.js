@@ -27,8 +27,11 @@ const makeFeedInputView = (input,allowTab) => {
 	if (!input.includes('&@&@') && !input.includes('&#&#')) return input;
 	let Regex = /(((.*?\n)*?.*?)(&@&@(.*?)%&%(.*?)&@&@|&#&#(.*?)%&%(.*?)&#&#))([^&@#]*?$)?/g;
 	const navigation = useNavigation();
-	const onHashClick = hashID => {
-		allowTab&&alert('해쉬',hashID);
+	const onHashClick = (hashID, keyword) => {
+		console.log(hashID, keyword.substring(1));
+		if(keyword&&keyword.length>0){
+			allowTab&&navigation.navigate('FeedListForHashTag',{hashtag_keyword:keyword.substring(1)});
+		}
 	};
 
 	const onUserClick = (userID,nickname) => {
@@ -55,16 +58,16 @@ const makeFeedInputView = (input,allowTab) => {
 	while((match=Regex.exec(input))!==null){
 		let pressfn = match[5]?onUserClick:onHashClick;
 		let id = match[6]||match[8];
-		let nickname = match[5]||match[7];
+		let tag = match[5]||match[7];
 		viewArr.push(
 			<React.Fragment key={viewArr.length}>
 				{match[2]}
 				<Text
 					style={{color: BLUE20}}
 					onPress={()=>{
-						pressfn(id, nickname)
+						pressfn(id, tag)
 					}}>
-					{nickname}
+					{tag}
 				</Text>
 				{match[9]}
 			</React.Fragment>

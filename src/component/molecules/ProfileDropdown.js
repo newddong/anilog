@@ -20,6 +20,7 @@ import {txt} from 'Root/config/textstyle';
  * @param {()=>void} props.onClose - 드롭다운이 닫혔을 때 동작하는 콜백
  */
 const ProfileDropdown = props => {
+	
 	const onClose = () => {
 		props.onClose();
 		Modal.close();
@@ -29,15 +30,21 @@ const ProfileDropdown = props => {
 		props.onOpen();
 	};
 
+	const onSelect = (v,i) => {
+		props.onSelect(v,i);
+		dropdown.current.button.current.press();
+	};
+	const dropdown = React.useRef();
 	return (
 		<Dropdown
-			buttonComponent={<ActionButton {...props} initState={false} noStateChange />}
+			buttonComponent={<ActionButton {...props} initState={false} noStateChange onClose={onClose} onOpen={onOpen}/>}
+			ref={dropdown}
 			dropdownList={
 				<View style={{backgroundColor: APRI10, borderRadius: 40 * DP, alignItems: 'center'}}>
-					<ActionButton {...props} initState noStateChange onClose={onClose} onOpen={onOpen} />
+					<ActionButton {...props} initState={false} noStateChange onClose={onClose} onOpen={onOpen} />
 					{props.menu.map((v, i) => (
-						<TouchableWithoutFeedback onPress={() => props.onSelect(v, i)} key={i}>
-							<View style={{width: props.btnLayout.width, marginVertical: 15 * DP}}>
+						<TouchableWithoutFeedback onPress={()=>onSelect(v,i)} key={i}>
+							<View style={{width: props.btnLayout.width, marginVertical: 15 * DP,height:80*DP,justifyContent:'center'}}>
 								<Text
 									style={[
 										txt.noto24b,
