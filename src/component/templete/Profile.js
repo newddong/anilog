@@ -54,6 +54,8 @@ export default Profile = ({route, navigation}) => {
 		}
 	}, []);
 
+	React.useEffect(()=>console.log(data),[data]);
+
 	//보호소 프로필일 경우 보호요청 게시글 목록을 조회
 	React.useEffect(() => {
 		// console.log('data ? ', data.user_type);
@@ -83,8 +85,9 @@ export default Profile = ({route, navigation}) => {
 	React.useEffect(() => {}, []);
 
 	//프로필의 피드탭의 피드 썸네일 클릭
-	const onClick_Thumbnail_FeedTab = () => {
-		navigation.push('UserFeedList', {userobject: data});
+	const onClick_Thumbnail_FeedTab = (index, item) => {
+		console.log(index, item);
+		navigation.push('UserFeedList', {userobject: data, selected: item});
 	};
 
 	//프로필의 태그탭의 피드 썸네일 클릭
