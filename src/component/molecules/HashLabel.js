@@ -15,11 +15,17 @@ import {styles} from '../atom/image/imageStyle';
  */
 const HashLabel = props => {
 	const count = () => {
+		let count = '';
 		if (props.count > 10000) {
-			return (props.count / 10000).toFixed(1) + '만의 게시물';
+			count = (props.count / 10000).toFixed(1) + '만';
 		} else {
-			return props.count;
+			count =  props.count+'';
 		}
+		return (
+			<Text style={props.keywordBold ? [txt.noto24b, {lineHeight: 42 * DP, color: GRAY20}] : [txt.noto24, {lineHeight: 42 * DP}]}>
+				{count+'개의 게시물'}
+			</Text>
+		);
 	};
 	return (
 		<View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -37,17 +43,18 @@ const HashLabel = props => {
 			</View>
 			<View style={{marginLeft: 30 * DP}}>
 				{/* 해쉬마크가 담긴 원과 KEYWORD간 30의 차이 */}
-				{props.count == false ? (
+				{props.count < 1 ? (
 					//부모가 보내는 count값이 없을 경우 키워드만 출력
-					<Text style={txt.noto30}>#{props.keyword}</Text>
+					<Text style={txt.noto30}>{props.keyword}</Text>
 				) : (
 					//count값이 있을 경우 'count한 게시물' 출력
 					<View>
-						<Text style={[txt.noto30, {lineHeight: 42 * DP, color: GRAY10}]}>#{props.keyword}</Text>
+						<Text style={[txt.noto30, {lineHeight: 42 * DP, color: GRAY10}]}>{props.keyword}</Text>
 						{/* 부모 props의 keywordBold값이 True라면 noto24b를 스타일로 준다 */}
-						<Text style={props.keywordBold ? [txt.noto24b, {lineHeight: 42 * DP, color: GRAY20}] : [txt.noto24, {lineHeight: 42 * DP}]}>
+						{count()}
+						{/* <Text style={props.keywordBold ? [txt.noto24b, {lineHeight: 42 * DP, color: GRAY20}] : [txt.noto24, {lineHeight: 42 * DP}]}>
 							{count()}개의 게시물
-						</Text>
+						</Text> */}
 					</View>
 				)}
 			</View>
@@ -57,7 +64,7 @@ const HashLabel = props => {
 HashLabel.defaultProps = {
 	keyword: '#KEYWORD',
 	keywordBold: true,
-	count: 'Count한 게시물',
+	count: 0,
 };
 
 export default HashLabel;

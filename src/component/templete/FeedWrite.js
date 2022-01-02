@@ -178,21 +178,8 @@ export default FeedWrite = props => {
 	const moveToFeedMediaTagEdit = () => {
 		// props.navigation.push('FeedMediaTagEdit');
 	};
-	const [lis, setLis] = React.useState([]);
-	const inputFeedTxt = feedInput => {
-		console.log('해쉬 인풋', feedInput);
-		// if(feedInput.length>0&&feedInput.test()){}
-		// if(feedInput[feedInput.length-1]=='@'){
-		// 	setShowPetAccountList(true);
-		// }
-		// getUserListByNickname({user_nickname:feedInput},
-		// 	(result)=>{
-		// 		setLis(result.msg);
-		// 	console.log(result);
-		// },
-		// (err)=>{
-		// 	console.log(err);
-		// });
+	const inputFeedTxt = (feedInput, hashtag_keyword) => {
+		props.navigation.setParams({...props.route.params, feed_content: feedText, hashtag_keyword: hashtag_keyword});
 		setFeedText(feedInput);
 	};
 

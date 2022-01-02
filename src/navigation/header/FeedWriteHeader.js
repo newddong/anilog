@@ -17,8 +17,8 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 		Modal.popNoBtn('게시물 등록이 완료되었습니다.');
 		setTimeout(() => {
 			Modal.close();
+			navigation.goBack();
 		}, 200);
-		navigation.goBack();
 	};
 	const handleError = err => {
 		console.log('err', err);
@@ -37,7 +37,9 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 		Modal.popNoBtn('게시물을 등록중입니다.');
 		switch (route.params?.feedType) {
 			case 'Feed':
-				createFeed(route.params, complete, handleError);
+				let param = {...route.params, hashtag_keyword: route.params.hashtag_keyword?.map(v=>v.substring(1))};
+				console.log(param);
+				createFeed(param, complete, handleError);
 				break;
 			case 'Missing':
 				{

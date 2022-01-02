@@ -1,9 +1,11 @@
 import React from 'react';
 import {View, Text, TextInput, TouchableWithoutFeedback, Platform} from 'react-native';
 import AccountList from '../organism_ksw/AccountList';
+import AccountHashList from '../organism_ksw/AccountHashList';
 import {GRAY20} from 'Root/config/color';
 import {findTagAt, isTag, getTagName, findStartIndexOfTag, findEndIndexOfTag} from 'Root/util/stringutil';
 import {getUserListByNickname} from 'Root/api/userapi';
+import {getHashKeywords} from 'Root/api/hashapi'
 
 export default function HashInput(props) {
 	const [value, setValue] = React.useState('');
@@ -22,10 +24,12 @@ export default function HashInput(props) {
 		prevEditTag: '',
 		hashStore: new Map(),
 		linkStore: new Map(),
+		hashKewords: [],
 	}).current;
 	console.log(internal);
-	const [userlist, setUserlist] = React.useState([]);
+	const [findList, setFindList] = React.useState([]);
 	const changeTextRegex = /([#@])([^#@\s]+)/gm;
+	const findHashRegex = /[#]([^#\s]+)/g;
 	//이벤트는 onChangeText가 onSelectionChange보다 먼저 발생한다.
 	//onSelectionChange는 한글의 자모 조립시에는 발생하지 않고, 한 음절이 입력이 끝난 뒤 커서의 위치가 변동되었을 경우만 발생한다.
 
@@ -55,23 +59,41 @@ export default function HashInput(props) {
 		setFind(isTag(internal.editTag));
 
 		if (isTag(internal.editTag)) {
-			getUserListByNickname(
-				{
-					user_nickname: getTagName(internal.editTag),
-				},
-				result => {
-					setUserlist(result.msg);
-				},
-				error => {
-					// Modal.alert(error)
-					console.log(error);
-				},
-			);
+			if (internal.editTag.startsWith('@')) {
+				getUserListByNickname(
+					{
+						user_nickname: getTagName(internal.editTag),
+					},
+					result => {
+						console.log('user editing',result);
+						setFindList(result.msg);
+					},
+					error => {
+						// Modal.alert(error)
+						console.log(error);
+					},
+				);
+			}
+			if (internal.editTag.startsWith('#')) {
+				getHashKeywords(
+					{
+						hashtag_keyword: getTagName(internal.editTag),
+					},
+					result => {
+						console.log('hash editing',result);
+						setFindList(result.msg);
+					},
+					error => {
+						console.log(error);
+					},
+				);
+			}
 		} //onChangeText에서 api검색을 수행해야 자모 변경에도 민감하게 반응, 음절 완료시 검색을 하게 하려면 onSelectionChange로 if문을 이동
 		internal.value = text;
 		setValue(text);
 		matchId();
-		props.onChangeText(internal.text);
+		internal.hashKewords = text.match(findHashRegex);
+		props.onChangeText(internal.text, internal.hashKewords);
 	};
 
 	const onSelectionChange = e => {
@@ -87,17 +109,34 @@ export default function HashInput(props) {
 
 		if (internal.editTag != internal.prevEditTag) {
 			console.log('nickname search by move cursor ');
-			getUserListByNickname(
-				{
-					user_nickname: getTagName(findTagAt(internal.textInputCursor, internal.value)),
-				},
-				result => {
-					setUserlist(result.msg);
-				},
-				error => {
-					console.log(error);
-				},
-			);
+			if (internal.editTag.startsWith('@')) {
+				getUserListByNickname(
+					{
+						user_nickname: getTagName(findTagAt(internal.textInputCursor, internal.value)),
+					},
+					result => {
+						console.log('user selection',result);
+						setFindList(result.msg);
+					},
+					error => {
+						console.log(error);
+					},
+				);
+			}
+			if (internal.editTag.startsWith('#')) {
+				getHashKeywords(
+					{
+						hashtag_keyword: getTagName(findTagAt(internal.textInputCursor, internal.value)),
+					},
+					result => {
+						console.log('hash selection',result);
+						setFindList(result.msg);
+					},
+					error => {
+						console.log(error);
+					},
+				);
+			}
 		} //커서 이동시 태그값이 바뀌면 리스트를 갱신
 
 		internal.tagStartIdx = findStartIndexOfTag(internal.textInputCursor, internal.value); //현재 커서가 위치한 단어의 시작 인덱스,
@@ -133,6 +172,31 @@ export default function HashInput(props) {
 		onChangeText(internal.value);
 	};
 
+	const hashSelect = (hash, index) => {
+		console.log('userselect ', hash, index);
+		let keyword = (Platform.OS == 'android' ? '#' : '#') + hash.hashtag_keyword;
+		let offset = Platform.OS == 'android' ? 0 : 1;
+
+		internal.hashStore.set(hash.hashtag_keyword, hash._id);
+		console.log('within string ', internal.value, 'change current tag ', internal.editTag, ' to selected hash keyword ', keyword);
+
+		if (internal.editTag.length == 1) {
+			internal.value = internal.value
+				.substring(0, internal.tagStartIdx + offset)
+				.concat(keyword, internal.value.substring(internal.tagEndIdx))
+				.trimEnd()
+				.concat(' ');
+		} else if (internal.editTag.length > 1) {
+			let re = new RegExp(internal.editTag, 'g');
+			internal.value = internal.value.replace(re, keyword);
+		}
+		// internal.value = internal.value.substring(0,internal.tagStartIdx+offset).concat(nickname, internal.value.substring(internal.tagEndIdx)).trimEnd().concat(' ');
+		setValue(internal.value);
+
+		inputRef.current.focus();
+		setFind(false);
+		onChangeText(internal.value);
+	};
 	return (
 		<>
 			<View style={[props.containerStyle, {height: 10 * DP}]}>
@@ -150,8 +214,9 @@ export default function HashInput(props) {
 			</View>
 
 			{find && (
-				<View style={{width: '100%', flex:1, padding: 15 * DP, flexDirection: 'row'}}>
-					<AccountList items={userlist} onSelect={userSelect} makeBorderMode={false} showCrossMark={false}/>
+				<View style={{width: '100%', flex: 1, padding: 15 * DP, flexDirection: 'row'}}>
+					{/* <AccountList items={findList} onSelect={userSelect} makeBorderMode={false} showCrossMark={false} /> */}
+					<AccountHashList data={findList} showFollowBtn={false} onClickLabel={userSelect} onClickHash={hashSelect}/>
 				</View>
 			)}
 		</>
@@ -160,4 +225,5 @@ export default function HashInput(props) {
 
 HashInput.defaultProp = {
 	containerStyle: {},
+	onChangeText: (text, hashKewords) => {},
 };

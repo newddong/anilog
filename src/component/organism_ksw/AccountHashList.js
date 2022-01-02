@@ -15,7 +15,8 @@ import UserAccount from './UserAccount';
  */
 export default AccountHashList = props => {
 	// console.log('props', props.items.length);
-	const renderItem = (item, index) => {
+	console.log(props.data);
+	const renderItem = ({item, index}) => {
 		return (
 			<View style={[accountHashList.userAccount]}>
 				<UserAccount
@@ -25,17 +26,18 @@ export default AccountHashList = props => {
 					onHashClick={() => props.onClickHash(item)}
 					onClickFollow={() => props.onClickFollow(item)}
 					onCheckBox={e => props.onCheckBox(e, index)}
+					showFollowBtn={props.showFollowBtn}
 				/>
 			</View>
 		);
 	};
 
 	return (
-		<View style={[accountHashList.container, {height: props.routeName != 'SaveFavorite' ? 300 * DP : null}]}>
+		<View style={[accountHashList.container, {height: props.routeName&&props.routeName != 'SaveFavorite' ? 300 * DP : null}]}>
 			<FlatList
 				data={props.data}
 				keyExtractor={item => item._id}
-				renderItem={({item, index}) => renderItem(item, index)}
+				renderItem={renderItem}
 				showsVerticalScrollIndicator={false}
 			/>
 		</View>
@@ -49,4 +51,5 @@ AccountHashList.defaultProps = {
 	onClickFollow: e => console.log(e), //
 	onCheckBox: e => console.log(e),
 	checkBoxMode: false, // CheckBox 콘테이너 Show T/F
+	showFollowBtn: false,
 };
