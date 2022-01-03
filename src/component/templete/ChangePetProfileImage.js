@@ -16,7 +16,7 @@ import {updateUserInformation} from 'Root/api/userapi';
 export default ChangePetProfileImage = props => {
 	const navigation = useNavigation();
 	const [petData, setPetData] = React.useState(props.route.params);
-	console.log('petData', props);
+
 	const [newNick, setNewNick] = React.useState('');
 	const [confirmed, setConfirmed] = React.useState(false);
 
@@ -51,7 +51,7 @@ export default ChangePetProfileImage = props => {
 			.catch(err => console.log(err + ''));
 		Modal.close();
 	};
-
+	console.log('petDetail', props.route.params);
 	//중복 처리
 	const checkDuplicateNickname = nick => {
 		const result = true;
@@ -79,7 +79,6 @@ export default ChangePetProfileImage = props => {
 		let regExp = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_-]{2,15}$/;
 		return regExp.test(nick) && checkDuplicateNickname(nick);
 	};
-
 	const onPressConfirm = () => {
 		console.log('props.nv', props.navigation);
 		// Modal.popNoBtn('잠시만 기다려주세요.');
@@ -126,9 +125,11 @@ export default ChangePetProfileImage = props => {
 					<Input24
 						title={PREVIOUS_NICK_TITLE}
 						value={petData.user_nickname || ''}
+						defaultValue={props.route.params.user_nickname}
 						width={654}
 						descriptionType={'none'}
 						editable={false}
+						placeholder=""
 						showCrossMark={false}
 					/>
 				</View>
