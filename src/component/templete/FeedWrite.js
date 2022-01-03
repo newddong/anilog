@@ -413,23 +413,24 @@ const MissingForm = props => {
 			<View style={[temp_style.input24, feedWrite.input24]}>
 				<Input24
 					title={'실종 동물의 나이'}
-					placeholder="실종 동물의 나이를 입력하세요"
+					placeholder="실종 동물의 나이를 입력하세요(년단위)"
 					width={654}
 					descriptionType={'none'}
 					onChange={inputAge}
 					maxlength={2}
-					keyboardType="number-pad"
+					keyboardType={'number-pad'}
 					value={data.missing_animal_age}
 				/>
 			</View>
 			<View style={[temp_style.input24, feedWrite.input24]}>
 				<Input24
 					title={'실종 위치'}
-					placeholder="실종 동물의 위치를 입력하세요 (20자)"
+					placeholder="실종 동물의 위치를 입력하세요 (30자)"
 					width={654}
 					descriptionType={'none'}
 					onChange={inputLocation}
-					maxlength={20}
+					keyboardType={'number-pad'}
+					maxlength={30}
 					value={data.missing_animal_lost_location}
 				/>
 			</View>
@@ -665,13 +666,27 @@ const ReportForm = props => {
 					</View>
 					<View style={[feedWrite.addressSelectContainer]}>
 						<View style={[feedWrite.addressDropDownContainer]}>
-							<NormalDropDown menu={city} onSelect={onSelectCity} width={240} height={300} />
+							<NormalDropDown menu={city} onSelect={onSelectCity} titleFontStyle={20} width={220} height={300} />
 						</View>
 						<View style={[feedWrite.addressDropDownContainer]}>
-							<NormalDropDown menu={district} onSelect={onSelectDistrict} width={180} height={300} isLargeCategoryChanged={isCityChanged} />
+							<NormalDropDown
+								menu={district}
+								onSelect={onSelectDistrict}
+								titleFontStyle={20}
+								width={200}
+								height={300}
+								isLargeCategoryChanged={isCityChanged}
+							/>
 						</View>
 						<View style={[feedWrite.addressDropDownContainer]}>
-							<NormalDropDown menu={neighbor} onSelect={onSelectNeighbor} width={180} height={300} isLargeCategoryChanged={isDistrictChanged} />
+							<NormalDropDown
+								menu={neighbor}
+								onSelect={onSelectNeighbor}
+								titleFontStyle={20}
+								width={200}
+								height={300}
+								isLargeCategoryChanged={isDistrictChanged}
+							/>
 						</View>
 					</View>
 					<View style={[temp_style.inputNoTitle, feedWrite.locationDetail]}>

@@ -91,6 +91,7 @@ const DropdownSelect = React.forwardRef(
 								paddingVertical: 16 * DP, // Value와 최상위 View와의 paddingVertical 16px
 								// textAlign: 'center',
 								marginRight: 40 * DP,
+								fontSize: props.titleFontStyle ? props.titleFontStyle * DP : null,
 							},
 						]}>
 						{props.value}

@@ -133,16 +133,16 @@ export default UserMenu = props => {
 				navigation.push('SaveFavorite'); // FollowObject
 				break;
 			case '피드 게시글':
-				navigation.push('FavoriteFeeds', {token: data._id}); // FavoriteFeedObject
+				navigation.push('FavoriteFeeds', {token: data}); // FavoriteFeedObject
 				break;
 			case '보호 요청':
 				navigation.push('UserSaveAnimalRequest'); // BookmarkProtectRequestObject
 				break;
 			case '내 게시글':
-				navigation.push('UserFeeds', {token: data._id});
+				navigation.push('UserFeeds', {token: data});
 				break;
 			case '나를 태그한 글':
-				navigation.push('TagMeFeeds', {token: data._id});
+				navigation.push('TagMeFeeds', {token: data});
 				break;
 			case '신청 내역':
 				navigation.push('AppliesRecord', data._id); // ShelterProtectAnimalObject

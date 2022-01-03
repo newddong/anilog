@@ -78,6 +78,8 @@ export default Profile = ({route, navigation}) => {
 
 	//프로필의 피드탭의 피드 썸네일 클릭
 	const onClick_Thumbnail_FeedTab = (index, item) => {
+		// console.log('userobject', data.feedList);s
+		// console.log('selected', item);
 		navigation.push('UserFeedList', {userobject: data, selected: item});
 	};
 
