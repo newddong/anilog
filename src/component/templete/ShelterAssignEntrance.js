@@ -47,7 +47,7 @@ export default ShelterAssignEntrance = props => {
 					btnStyle={'border'}
 					btnLayout={btn_w522}
 					titleFontStyle={32}
-					onPress={goToPrivateShelter}
+					onPress={goToPublicShelter}
 				/>
 			</View>
 
@@ -59,7 +59,7 @@ export default ShelterAssignEntrance = props => {
 					btnStyle={'border'}
 					btnLayout={btn_w522}
 					titleFontStyle={32}
-					onPress={goToPublicShelter}
+					onPress={goToPrivateShelter}
 				/>
 			</View>
 		</View>
