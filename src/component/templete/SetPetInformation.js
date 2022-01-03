@@ -12,7 +12,7 @@ export default SetPetInformation = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params);
 	// console.log('data', data);
 	const [selectedBirthDate, setSelectedBirthDate] = React.useState('');
-
+	const [btnOn, setBtnOn] = React.useState(true);
 	React.useEffect(() => {
 		navigation.setParams({route_name: route.name, data: data});
 	}, [data]);
@@ -66,7 +66,9 @@ export default SetPetInformation = ({route, navigation}) => {
 
 	//체중
 	const weigthValid = e => {
-		var regExp = /^[\D]{1,20}$/;
+		var regExp = /^[0-9]{1,2}(\.[0-9]{0,1})?$/;
+		// var regExp = /^[\D]{1,20}$/;
+		setBtnOn(!regExp.test(e));
 		return regExp.test(e);
 	};
 
@@ -143,20 +145,23 @@ export default SetPetInformation = ({route, navigation}) => {
 					</View>
 					<View style={[setPetInformation.inputNoTitle]}>
 						<Input30
-							alert_msg={'숫자 0 이상의 값을 입력하세요'}
-							showmsg={false}
+							alert_msg={'두자리 숫자, 소수점 한자리'}
+							description="info"
+							showmsg={true}
 							confirm={true}
 							showTitle={false}
-							width={154}
+							width={200}
 							placeholder={'몸무게 입력'}
-							clearMark={false}
+							showCrossMark={false}
 							onChange={onChangeKg}
 							value={data.pet_weight}
 							validator={weigthValid}
 							keyboardType={'number-pad'}
-							maxLength={3}
+							maxLength={4}
+							confirm_msg=""
 						/>
 					</View>
+					{/* <Text style={[txt.noto22, {marginLeft: 65, marginTop: 5}]}>* 2자리, 소수점 한자리까지 가능.</Text> */}
 					<View style={[setPetInformation.kg]}>
 						<Text style={[txt.noto28]}> kg </Text>
 					</View>

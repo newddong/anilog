@@ -26,7 +26,7 @@ export default AssignPetInfoB = props => {
 		pet_weight: '0',
 	});
 	const [selectedBirthDate, setSelectedBirthDate] = React.useState('2021.03.01');
-
+	const [btnOn, setBtnOn] = React.useState(true);
 	//생녈월일 계산 함수
 	const getBirthDate = () => {
 		const today = new Date().getTime();
@@ -94,7 +94,9 @@ export default AssignPetInfoB = props => {
 	};
 
 	const weigthValid = e => {
-		var regExp = /^[\D]{1,20}$/;
+		var regExp = /^[0-9]{1,2}(\.[0-9]{0,1})?$/;
+		// var regExp = /^[\D]{1,20}$/;
+		setBtnOn(!regExp.test(e));
 		return regExp.test(e);
 	};
 
@@ -133,8 +135,9 @@ export default AssignPetInfoB = props => {
 					<Text style={[txt.noto28, temp_style.text_assignPetInfo, {color: GRAY10}]}>체중</Text>
 					<View style={[temp_style.inputNoTitle_assignPetInfo, assignPetInfo_style.inputNoTitle]}>
 						<Input30
-							alert_msg={'숫자 0 이상의 값을 입력하세요'}
-							showmsg={false}
+							alert_msg={'두자리 숫자, 소수점 한자리'}
+							description="info"
+							showmsg={true}
 							confirm={true}
 							showTitle={false}
 							width={200}
@@ -144,11 +147,13 @@ export default AssignPetInfoB = props => {
 							value={data.pet_weight}
 							validator={weigthValid}
 							keyboardType={'number-pad'}
-							maxLength={3}
+							maxLength={4}
+							confirm_msg=""
 						/>
 					</View>
 					<Text style={[temp_style.text68_assignPetInfo, assignPetInfo_style.text68, txt.noto28]}>kg</Text>
 				</View>
+				{/* <Text style={[txt.noto22, {marginLeft: 65, marginTop: 5}]}>* 2자리, 소수점 한자리까지 가능.</Text> */}
 			</View>
 
 			{/* (A)Btn_w654 */}
@@ -157,7 +162,7 @@ export default AssignPetInfoB = props => {
 					<AniButton btnTitle={'뒤로'} btnStyle={'border'} onPress={() => navigation.goBack()} />
 				</View>
 				<View style={[btn_style.btn_w226, assignPetInfo_style.btn_w226]}>
-					<AniButton btnTitle={'등록'} onPress={onRegister} />
+					<AniButton btnTitle={'등록'} onPress={onRegister} disable={btnOn} />
 				</View>
 			</View>
 		</View>
