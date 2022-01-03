@@ -17,6 +17,7 @@ import ProfileImageSmall from '../molecules/ProfileImageSmall';
 import UserDescriptionLabel from '../molecules/UserDescriptionLabel';
 import PetSelectModal from '../molecules/PetSelectModal';
 import userGlobalObject from 'Root/config/userGlobalObject';
+
 //이 화면에 들어오면서 특정 _id를 API 연동으로 데이터를 가져 옴.
 //이전 화면에서 모든 데이터를 가진 상태에서 들어오는 것이 아님.
 //변수들은 모두 db 변수로 스네이크 형식으로 추후에 변경 필요.

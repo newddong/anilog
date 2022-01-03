@@ -20,10 +20,9 @@ export default MainTabNavigation = ({route, navigation}) => {
 	// 	console.log('searchContext / MainTab  :   ', searchContext.routeName);
 	// 	// searchContext.routeName == 'SearchFeed' ? setHeaderOff(true) : setHeaderOff(false);
 	// }, [searchContext.routeName]);
-
+	const routeName = getFocusedRouteNameFromRoute(route) ?? '';
+	console.log('getFocusedRouteNameFromRoute / MainTab  : ', routeName);
 	const getTabBarVisibility = route => {
-		const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-		// console.log('getFocusedRouteNameFromRoute / MainTab  : ', routeName);
 		switch (routeName) {
 			case 'AnimalProtectRequestDetail':
 			case 'ShelterInfoSetting':

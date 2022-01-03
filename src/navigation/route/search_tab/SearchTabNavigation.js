@@ -4,9 +4,7 @@ import SearchFeedTabNavigation from './feed_tab/SearchFeedTabNavigation';
 import SearchProtectRequest from 'Templete/SearchProtectRequest';
 import Temp from 'Navigation/route/main_tab/community_stack/temp';
 import TopTabNavigation_Filled from 'Root/component/organism_ksw/TopTabNavigation_Filled';
-import InputAndSearchHeader from 'Root/navigation/header/InputAndSearchHeader';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
-import {SearchContext} from 'Root/config/searchContext';
 
 const SearchTabNav = createMaterialTopTabNavigator();
 

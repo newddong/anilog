@@ -12,9 +12,8 @@ import {getSuggestFeedList} from 'Root/api/feedapi';
 export default SearchFeed = ({route, navigation}) => {
 	const [feedList, setFeedList] = React.useState([]);
 
-	const onClickThumnail = (index, feed_id, item) => {
-		// console.log('dd', item);
-		navigation.navigate('UserFeedList', {userobject: item.feed_writer_id});
+	const onClickThumnail = (index, feed_id) => {
+		navigation.navigate('UserFeedList', {userobject: feed_id.feed_writer_id});
 	};
 
 	const [showOnlyProtect, setShowOnlyProtect] = React.useState(false);

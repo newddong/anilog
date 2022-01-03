@@ -24,7 +24,6 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	const [data, setData] = React.useState(route.params); //기존 유저의 데이터가 담겨있음
 	const [loaded, setLoaded] = React.useState(false);
 	const [addrSearched, setAddrSearched] = React.useState(false);
-	console.log('UserInfoDeatail Setting', data);
 	// 갱신되는 데이터는 Header에도 Json형태로 전해짐
 	React.useEffect(() => {
 		navigation.setParams({data: data, route_name: route.name});

@@ -139,7 +139,7 @@ export default AssignPetInfoB = props => {
 							showTitle={false}
 							width={200}
 							placeholder={'몸무게 입력'}
-							clearMark={false}
+							showCrossMark={false}
 							onChange={onChangeKg}
 							value={data.pet_weight}
 							validator={weigthValid}

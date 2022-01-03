@@ -55,8 +55,6 @@ export default SearchAccountA = props => {
 					},
 				);
 			}
-
-			// let userList = userObejct.filter(e => e.user_nickname == inputData);
 		} else {
 			null;
 		}
@@ -64,24 +62,10 @@ export default SearchAccountA = props => {
 
 	//계정 클릭 콜백
 	const onClickAccount = (item, index) => {
-		console.log('onClickAccount', props);
 		console.log('click item', item);
 		let sendUserobject = {_id: item._id};
-		// navigation.push('UserProfile', {userobject: sendUserobject});
-		navigation.navigate('UserProfile', {userobject: sendUserobject});
-
-		// 	() => {
-		// 		console.log('pressed');
-		// 		navigation.push('UserFeedList', {userobject: item._id});
-		// 		Modal.close();
-		// 		// navigation.navigate('UserFeedList', {userobject: item._id});
-		// 		// navigation.navigate({
-		// 		// 	name: props.prevNav,
-		// 		// 	params: {addedVolunteer: item},
-		// 		// 	merge: true,
-		// 		// });
-		// 	},
-		// );
+		navigation.push('UserProfile', {userobject: sendUserobject});
+		// navigation.reset({index: 0, route: {name: 'UserProfile', params: {userobject: sendUserobject}}});
 	};
 
 	return (

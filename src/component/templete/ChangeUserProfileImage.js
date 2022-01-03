@@ -15,7 +15,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 export default ChangeUserProfileImage = ({route}) => {
 	// console.log('route / Profile', route.params);
-	console.log('changeUser', route.params.data);
+	// console.log('changeUser', route.params.data);
 	const [data, setData] = React.useState(route.params.data);
 	const [newNick, setNewNick] = React.useState(route.params.data.user_nickname);
 	const navigation = useNavigation();
@@ -75,23 +75,6 @@ export default ChangeUserProfileImage = ({route}) => {
 	};
 
 	const selectPhoto = () => {
-		// navigation.push('SinglePhotoSelect', route.name);
-		// launchImageLibrary(
-		// 	{
-		// 		mediaType: 'photo',
-		// 		selectionLimit: 1,
-		// 	},
-		// 	responseObject => {
-		// 		setConfirmed(true);
-		// 		console.log('선택됨!!', responseObject);
-		// 		// setUri(responseObject.assets[responseObject.assets.length - 1].uri);
-
-		// 		responseObject.didCancel
-		// 			? console.log('선택취소')
-		// 			: // : setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || data.user_profile_uri});
-		// 			  setData({...data, user_profile_uri: responseObject.assets[responseObject.assets.length - 1].uri || data.user_profile_uri});
-		// 	},
-		// );
 		ImagePicker.openPicker({
 			compressImageQuality: 0.8,
 			cropping: true,
@@ -108,14 +91,9 @@ export default ChangeUserProfileImage = ({route}) => {
 
 	//중복 처리
 	const checkDuplicateNickname = nick => {
-		// nicknameDuplicationCheck({user_nickname:nick,},isDuplicated=> {setDuplicated(isDuplicated)},err=>{
-		// 	console.log("dulicated check",err);
-		// }),
 		nicknameDuplicationCheck(
 			{user_nickname: nick},
 			isDuplicated => {
-				// console.log('isDuplKicated', isDuplicated.msg);
-				// console.log('api return', isDuplicated.msg);
 				setDuplicated(isDuplicated.msg);
 			},
 
@@ -123,8 +101,6 @@ export default ChangeUserProfileImage = ({route}) => {
 				console.log('duplicated check', err);
 			},
 		);
-
-		// console.log('duplicated, nick', duplicated, nick);
 	};
 
 	//닉네임 Validation
@@ -167,6 +143,7 @@ export default ChangeUserProfileImage = ({route}) => {
 						<Input24
 							title={PREVIOUS_NICK_TITLE}
 							value={data.user_nickname || ''}
+							defaultValue={data.user_nickname}
 							width={654}
 							descriptionType={'none'}
 							editable={false}
@@ -178,7 +155,7 @@ export default ChangeUserProfileImage = ({route}) => {
 						<Input24
 							onChange={nickName_validator}
 							validator={validateNewNick}
-							defaultValue={newNick}
+							defaultValue={data.user_nickname}
 							onValid={onValidName}
 							value={newNick}
 							title={NEW_NICK_TITLE}

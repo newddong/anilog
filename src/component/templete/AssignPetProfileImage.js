@@ -159,7 +159,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 				<View style={[temp_style.inputForm_assignPetProfileImage, assignPetProfileImage_style.inputForm]}>
 					<View style={[temp_style.input30_assignPetProfileImage]}>
 						<Input30
-							value={data.user_nickname}
+							// value={data.user_nickname}
 							showTitle={false}
 							width={654}
 							confirm_msg={'사용 가능한 닉네임입니다.'}

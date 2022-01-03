@@ -27,7 +27,7 @@ export default Profile = ({route, navigation}) => {
 
 	React.useEffect(() => {
 		if (route.params && route.params.userobject) {
-			console.log('getUserProfile', route.params.userobject);
+			// console.log('getUserProfile', route.params.userobject);
 			getUserProfile(
 				{
 					userobject_id: route.params.userobject._id,
@@ -35,7 +35,7 @@ export default Profile = ({route, navigation}) => {
 				result => {
 					navigation.setOptions({title: result.msg.user_nickname});
 					setData(result.msg);
-					console.log('getUserProfileResult', result);
+					// console.log('getUserProfileResult', result);
 				},
 				err => {
 					Modal.popOneBtn(err, '확인', () => {
