@@ -20,7 +20,7 @@ import {assignShelterAnimal} from 'Root/api/shelterapi';
 export default AssignProtectAnimalInfo = ({route}) => {
 	console.log('Assing', route.params);
 	const navigation = useNavigation();
-
+	const [btnOn, setBtnOn] = React.useState(true);
 	const [data, setData] = React.useState({
 		...route.params,
 		protect_animal_estimate_age: year + '년 ' + month + '개월',
@@ -111,7 +111,9 @@ export default AssignProtectAnimalInfo = ({route}) => {
 	};
 
 	const weigthValid = e => {
-		var regExp = /^[\D]{1,20}$/;
+		var regExp = /^[0-9]{1,2}(\.[0-9]{0,1})?$/;
+		// var regExp = /^[\D]{1,20}$/;
+		setBtnOn(!regExp.test(e));
 		return regExp.test(e);
 	};
 
@@ -168,7 +170,9 @@ export default AssignProtectAnimalInfo = ({route}) => {
 					</View>
 					<View style={[assignProtectAnimal_style.dropdownSelect_year]}>
 						<Input30
-							alert_msg={'숫자 0 이상의 값을 입력하세요'}
+							alert_msg={'소수점 한자리까지 2자리 숫자'}
+							info={'소수점 한자리까지 2자리 숫자'}
+							description="info"
 							showmsg={false}
 							confirm={true}
 							showTitle={false}
@@ -176,10 +180,10 @@ export default AssignProtectAnimalInfo = ({route}) => {
 							placeholder={'몸무게 입력'}
 							showCrossMark={false}
 							onChange={onChangeKg}
-							value={data.protect_animal_weight}
+							value={data.pet_weight}
 							validator={weigthValid}
 							keyboardType={'number-pad'}
-							maxLength={3}
+							maxLength={4}
 						/>
 					</View>
 					<Text style={[assignProtectAnimal_style.text118]}>kg</Text>
