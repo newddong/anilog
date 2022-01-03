@@ -66,6 +66,7 @@ export default FeedCommentList = props => {
 				setPhoto();
 				setParentComment();
 				parentComment || setComments([{...result.msg, comment_writer_id: userGlobalObject.userInfo}].concat(comments));
+				setContent('');
 			},
 			err => Modal.alert(err),
 		);
