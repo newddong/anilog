@@ -7,6 +7,7 @@ import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import DP from 'Root/screens/dp';
 import {styles} from '../atom/image/imageStyle';
 import {useNavigation} from '@react-navigation/native';
+import {getTimeLapsed} from 'Root/util/dateutil';
 
 /**
  * 유저의 프로필 사진, 닉네임, 댓글 작성 날짜 출력하는 라벨
@@ -15,8 +16,8 @@ import {useNavigation} from '@react-navigation/native';
  * @param {(data:object)=>void} props.onClickLabel - 버튼을 눌렸을때 동작하는 콜백, 제목 반환환
  */
 const UserLocationTimeLabel = props => {
+	// console.log('props Time :  ', props.time);
 	const navigation = useNavigation();
-	// console.log('userLocationTimeLabel', props.data);
 	const [isLoginUser, setIsLoginUser] = React.useState(false); //현재 접속 중인 아이디와 같다면 닉네임 색깔이 메인색깔
 	//현재 접속한 토큰과 출력된 유저라벨의 유저가 같은지 확인
 	React.useEffect(() => {
@@ -31,26 +32,7 @@ const UserLocationTimeLabel = props => {
 	};
 	console.log(props.data);
 
-	const getCommentedTime = () => {
-		console.log('UserLocationTimeLabel.time', props.time);
-		let date = props.time.match(/(\d{4}-\d{1,2}-\d{1,2}T\d{2}:\d{2}:\d{2}).*?$/);
-		let timelapsed = Date.now() - new Date(date[1]);
-		timelapsed = timelapsed - 1000 * 60 * 60 * 9; //UTC 시간차
-		let day = Math.ceil(timelapsed / 1000 / 60 / 60 / 24) - 1;
-		let hour = Math.ceil(timelapsed / 1000 / 60 / 60);
-		let min = Math.ceil(timelapsed / 1000 / 60);
-		let sec = Math.ceil(timelapsed / 1000);
-		return day > 0 ? `${day}일 전` : hour > 0 ? `${hour} 시간 전` : min > 0 ? `${min} 분 전` : `${sec} 초 전`;
-	};
-	// const getCommentedTime = () => {
-	// 	const commented_date = props.data.comment_date;
-	// 	let split = commented_date.split('-');
-	// 	let commented_date_time = new Date(split[0], split[1] - 1, split[2]);
-	// 	let date = new Date().getDate() - commented_date_time.getDate();
-	// 	return <>{date}일 전</>;
-	// 	// return '23';
-	// };
-	const address = Object.assign({}, props.data.user_address);
+	// const address = Object.assign({}, props.data.user_address);
 	return (
 		<TouchableOpacity onPress={onClickLabel} style={{paddingBottom: 8 * DP}}>
 			<View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -62,7 +44,7 @@ const UserLocationTimeLabel = props => {
 					</Text>
 					<Text style={[txt.noto24, {lineHeight: 36 * DP, color: GRAY20}]} numberOfLines={1}>
 						{/* {address?.city} {address?.district} · {props.data.feed_type == undefined ? getCommentedTime() : props.data.comment_date} */}
-						{props.time && getCommentedTime()}
+						{props.time && getTimeLapsed(props.time)}
 					</Text>
 				</View>
 			</View>
