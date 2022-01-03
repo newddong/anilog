@@ -229,7 +229,11 @@ export default RootStackNavigation = () => {
 					<RootStack.Screen name="ApplyAnimalAdoptionD" component={ApplyCompanionD} options={{header: props => <SimpleHeader {...props} />}} />
 					<RootStack.Screen name="ApplyAnimalAdoptionE" component={ApplyDetails} options={{header: props => <SimpleHeader {...props} />}} />
 
-					<RootStack.Screen name="ApplyVolunteer" component={ApplyVolunteer} />
+					<RootStack.Screen
+						name="ApplyVolunteer"
+						component={ApplyVolunteer}
+						options={{header: props => <SimpleHeader {...props} />, title: '봉사활동 신청하기'}}
+					/>
 					<RootStack.Screen name="FeedMediaTagEdit" component={FeedMediaTagEdit} />
 					<RootStack.Screen
 						name="FeedWrite"
