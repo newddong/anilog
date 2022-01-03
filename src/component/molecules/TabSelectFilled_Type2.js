@@ -13,7 +13,6 @@ import {APRI10, BLACK, WHITE} from 'Root/config/color';
  */
 const TabSelectFilled_Type2 = props => {
 	const [selected, setSelected] = React.useState(props.defaultIndex ? props.defaultIndex : 0);
-
 	const onSelect = (item, index) => {
 		setSelected(index); //새로만들어진 배열로 state 변경
 		props.onSelect(item, index);
@@ -44,7 +43,9 @@ const TabSelectFilled_Type2 = props => {
 		);
 	};
 
-	return <FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} inndica showsHorizontalScrollIndicator={false}/>;
+	return (
+		<FlatList data={props.items} renderItem={renderItem} horizontal={true} scrollEnabled={false} inndica showsHorizontalScrollIndicator={false} />
+	);
 };
 
 TabSelectFilled_Type2.defaultProps = {
