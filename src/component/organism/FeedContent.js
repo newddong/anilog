@@ -77,7 +77,7 @@ export default FeedContent = props => {
 	};
 
 	React.useEffect(() => {
-		if (layout.height + reportLayout.height + labelLayout.height + 116 * DP > 265* DP) {
+		if (layout.height + reportLayout.height + labelLayout.height + 116 * DP > 265 * DP) {
 			setBtnStatus(true);
 		} else {
 			setBtnStatus(false);
@@ -91,11 +91,11 @@ export default FeedContent = props => {
 	const showMore = () => {
 		setShow(true);
 	};
-	const shouldBeDetail = show||route.name=='MissingAnimalDetail'||route.name=='ReportDetail';
-	console.log('경로', route.name, route.name.includes('FeedList'))
+	const shouldBeDetail = show || route.name == 'MissingAnimalDetail' || route.name == 'ReportDetail';
+	// console.log('경로', route.name, route.name.includes('FeedList'));
 	return (
-		<View style={[organism_style.feedContent, (shouldBeDetail ? {height: 270*DP+reportLayout.height + labelLayout.height+layout.height} : {})]}>
-		{/* // <View style={[organism_style.feedContent,{height:800*DP}]}> */}
+		<View style={[organism_style.feedContent, shouldBeDetail ? {height: 270 * DP + reportLayout.height + labelLayout.height + layout.height} : {}]}>
+			{/* // <View style={[organism_style.feedContent,{height:800*DP}]}> */}
 			{/* line 1 */}
 			<View style={[organism_style.userLocationLabel_view_feedContent]} onLayout={onLayoutLabel}>
 				{/* UserLocationLabel */}
@@ -169,18 +169,20 @@ export default FeedContent = props => {
 				</View>
 			)}
 
-			
-			{(route.name.includes('FeedList')||feed_type!='report'||show)&&<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]} >
-				<HashText style={[txt.noto28]} numberOfLines={shouldBeDetail?0:2} onLayout={onLayoutContent}>{feed_content}</HashText>
-			</View>}
-		
+			{(route.name.includes('FeedList') || feed_type != 'report' || show) && (
+				<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]}>
+					<HashText style={[txt.noto28]} numberOfLines={shouldBeDetail ? 0 : 2} onLayout={onLayoutContent}>
+						{feed_content}
+					</HashText>
+				</View>
+			)}
 
 			<View style={[organism_style.time_view_feedContent]}>
 				<View style={[organism_style.time_feedContent]}>
 					<Text style={[txt.noto22, {color: GRAY10}]}>{getTimeLapsed(feed_date)}</Text>
 				</View>
 
-				{!show&&route.name.includes('FeedList') && (
+				{!show && route.name.includes('FeedList') && (
 					<TouchableWithoutFeedback onPress={showMore}>
 						<View style={[organism_style.addMore_view_feedContent]}>
 							<View style={[organism_style.addMore_feedContent]}>

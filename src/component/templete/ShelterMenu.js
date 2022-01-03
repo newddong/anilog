@@ -150,6 +150,8 @@ export default ShelterMenu = ({route}) => {
 			// 나를 태그한 글
 			case TAGED_CONTENTS_FOR_ME:
 				navigation.push('TagMeFeeds', {token: data._id});
+				alert('패치예정입니다.');
+
 				break;
 			//신청내역
 			case APPLICATION_HISTORY:
