@@ -32,6 +32,7 @@ export default ParentComment = props => {
 
 	React.useEffect(() => {
 		setData(props.parentComment);
+
 		// console.log('parantCommnet data', data);
 		//API 에서 해당 데이터가 들어온 후 재작업 예정.
 		//댓글의 Writer와 로그인유저가 일치하는 경우 내 댓글 처리
@@ -64,6 +65,7 @@ export default ParentComment = props => {
 		);
 	};
 
+	console.log('parentComment', parentComment.comment_update_date);
 	return (
 		<View style={organism_style.parentComment}>
 			{/* 유저프로필 라벨 및 Meatball  */}

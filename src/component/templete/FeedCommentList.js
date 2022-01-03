@@ -34,7 +34,7 @@ export default FeedCommentList = props => {
 				},
 				comments => {
 					setComments(comments.msg);
-					console.log(comments);
+					console.log('comments', comments);
 				},
 				err => console.log(err),
 			);
