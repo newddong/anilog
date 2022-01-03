@@ -35,6 +35,8 @@ const AssignUserHabitation = props => {
 	const [district, setDistrict] = React.useState(['구를 선택해 주세요']);
 	const [neighbor, setNeighbor] = React.useState(['동을 선택해 주세요']);
 	const [adressValid, setAdressValid] = React.useState(false); // 주소값이 모두 들어갔을 경우
+	const [isCityChanged, setIsCityChanged] = React.useState(false); //시단위 선택 변경 시
+	const [isDistrictChanged, setIsDistrictChanged] = React.useState(false); //구단위 선택 변경 시
 
 	React.useEffect(() => {
 		getAddressList(
@@ -53,35 +55,46 @@ const AssignUserHabitation = props => {
 		}
 	}, [data.user_address]);
 
-	const onSelectCity = (v, i) => {
-		debug && console.log('city:', city[i]);
-		setData({...data, user_address: {...data.user_address, city: city[i]}});
+	const onSelectCity = (value, index) => {
+		debug && console.log('city:', value);
 		getAddressList(
-			{city: city[i]},
+			{city: value},
 			districts => {
 				setDistrict(districts.msg);
-				debug && console.log('districts:', districts);
+				debug && console.log('districts:', districts.msg);
+				setData({...data, user_address: {...data.user_address, city: value, district: districts.msg[0], neighbor: ''}});
+				if (value != data.user_address.city) {
+					setIsCityChanged(!isCityChanged);
+				}
 			},
 			handleError,
 		);
 	};
 
-	const onSelectDistrict = (v, i) => {
-		debug && console.log('district:', district[i]);
-		setData({...data, user_address: {...data.user_address, district: district[i]}});
+	const onSelectDistrict = (value, index) => {
+		debug && console.log('district:', value);
 		getAddressList(
-			{city: data.user_address.city, district: district[i]},
+			{city: data.user_address.city, district: value},
 			neighbor => {
-				setNeighbor(neighbor.msg);
-				debug && console.log('neighbors:', neighbor);
+				if (neighbor.msg.length == 0) {
+					setNeighbor(['목록없음']);
+				} else {
+					setNeighbor(neighbor.msg);
+				}
+				debug && console.log('neighbors:', neighbor.msg);
+				setData({...data, user_address: {...data.user_address, district: value, neighbor: neighbor.msg[0] ? neighbor.msg[0] : ''}});
+				if (value != data.user_address.district) {
+					setIsDistrictChanged(!isDistrictChanged);
+				}
 			},
 			handleError,
 		);
 	};
 
-	const onSelectNeighbor = (v, i) => {
-		debug && console.log('neighbor:', neighbor[i]);
-		setData({...data, user_address: {...data.user_address, neighbor: neighbor[i]}});
+	const onSelectNeighbor = (value, index) => {
+		debug && console.log('neighbor:', value);
+		console.log('value=>', value);
+		setData({...data, user_address: {...data.user_address, neighbor: value == '목록없음' ? '' : value}});
 	};
 
 	const handleError = error => {
@@ -171,8 +184,22 @@ const AssignUserHabitation = props => {
 			{/* HabitationForm */}
 			<View style={[assignUserHabitation_style.habitationForm]}>
 				<NormalDropDown menu={city} width={522} height={500} onSelect={onSelectCity} defaultIndex={0} />
-				<NormalDropDown menu={district} width={522} height={500} onSelect={onSelectDistrict} defaultIndex={0} />
-				<NormalDropDown menu={neighbor} width={522} height={500} onSelect={onSelectNeighbor} defaultIndex={0} />
+				<NormalDropDown
+					menu={district}
+					width={522}
+					height={500}
+					onSelect={onSelectDistrict}
+					defaultIndex={0}
+					isLargeCategoryChanged={isCityChanged}
+				/>
+				<NormalDropDown
+					menu={neighbor}
+					width={522}
+					height={500}
+					onSelect={onSelectNeighbor}
+					defaultIndex={0}
+					isLargeCategoryChanged={isDistrictChanged}
+				/>
 
 				{/* <DropdownSelect width={522} value={data.user_address.city} onOpen={onSelectCity} ref={cityDrop} /> */}
 				{/* <DropdownSelect width={522} value={data.user_address.district} onOpen={onSelectDistrict} ref={districDrop} />

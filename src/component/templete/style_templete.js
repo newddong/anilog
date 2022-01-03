@@ -2932,6 +2932,9 @@ export const activationList = StyleSheet.create({
 		height: 204 * DP,
 		marginTop: 12 * DP,
 	},
+	activityUpdating: {
+		marginTop: 246 * DP,
+	},
 });
 export const activationDetail = StyleSheet.create({
 	container: {

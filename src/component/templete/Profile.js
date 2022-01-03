@@ -193,7 +193,7 @@ export default Profile = ({route, navigation}) => {
 
 	//TabSelect 하단 AccountList
 	const showTabContent = () => {
-		const renderItem = (item, index) => {
+		const renderItem = ({item, index}) => {
 			if (index == 0) {
 				return (
 					<View style={[temp_style.tabSelectFilled_Type2]}>
@@ -221,7 +221,7 @@ export default Profile = ({route, navigation}) => {
 			<View style={[profile.feedListContainer]}>
 				<FlatList
 					data={[{}, data.feedList]} //테스트 나중에 data.feedList로 변경해야함
-					renderItem={({item, index}) => renderItem(item, index)}
+					renderItem={renderItem}
 					keyExtractor={(item, index) => index + ''}
 					ListHeaderComponent={userProfileInfo()}
 					stickyHeaderIndices={[1]}
