@@ -179,6 +179,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 							value={data.protect_animal_weight}
 							validator={weigthValid}
 							keyboardType={'number-pad'}
+							maxLength={3}
 						/>
 					</View>
 					<Text style={[assignProtectAnimal_style.text118]}>kg</Text>
