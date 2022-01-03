@@ -11,9 +11,10 @@ export const organism_style = StyleSheet.create({
 		// height: 300 * DP,
 		alignItems: 'center',
 		paddingTop: 40 * DP,
-		paddingBottom: 50 * DP,
+		// paddingBottom: 50 * DP,
 		backgroundColor: WHITE,
 		paddingHorizontal: 48 * DP,
+		paddingBottom:100*DP,
 	},
 	userLocationLabel_view_feedContent: {
 		flexDirection: 'row',

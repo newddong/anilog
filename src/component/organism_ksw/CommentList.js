@@ -25,14 +25,14 @@ export default CommentList = props => {
 
 	const whenEmpty = () => {
 		return (
-			<View style={[{height: 100 * DP, width: '100%', marginVertical: 30 * DP, alignItems: 'center', justifyContent: 'center'}]}>
+			<View style={[{height: 100 * DP, width: '100%', paddingVertical: 30 * DP, alignItems: 'center', justifyContent: 'center'}]}>
 				<Text style={[txt.roboto30b, {color: GRAY10}]}> 댓글이 없습니다.</Text>
 			</View>
 		);
 	};
 
 	return (
-		<View style={{backgroundColor: '#fff', flex: 1, paddingHorizontal: 48 * DP}}>
+		<View style={{ flex: 1, paddingHorizontal: 48 * DP}}>
 			<FlatList data={props.items} renderItem={renderItem} ListEmptyComponent={whenEmpty} stickyHeaderIndices={[0]} />
 		</View>
 	);
