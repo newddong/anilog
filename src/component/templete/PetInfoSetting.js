@@ -165,7 +165,9 @@ export default PetInfoSetting = ({route, navigation}) => {
 					<View style={[petInfoSetting.petProfileMenu.container]}>
 						<View style={[petInfoSetting.petProfileMenu.insideContainer]}>
 							<View style={[petInfoSetting.petProfileMenu.menuTitle]}>
-								<Text style={[txt.noto30b, {color: GRAY10}]}>상세 정보</Text>
+								<TouchableOpacity onPress={goToSetPetInfo}>
+									<Text style={[txt.noto30b, {color: GRAY10}]}>상세 정보</Text>
+								</TouchableOpacity>
 							</View>
 							<TouchableOpacity onPress={goToSetPetInfo} style={[petInfoSetting.petProfileMenu.bracket50]}>
 								<NextMark />
@@ -176,7 +178,9 @@ export default PetInfoSetting = ({route, navigation}) => {
 					<View style={[petInfoSetting.petProfileMenu.container]}>
 						<View style={[petInfoSetting.petProfileMenu.insideContainer]}>
 							<View style={[petInfoSetting.petProfileMenu.menuTitle]}>
-								<Text style={[txt.noto30b, {color: GRAY10}]}>접종 내역</Text>
+								<TouchableOpacity onPress={goToVaccinationRecord}>
+									<Text style={[txt.noto30b, {color: GRAY10}]}>접종 내역</Text>
+								</TouchableOpacity>
 							</View>
 							<TouchableOpacity onPress={goToVaccinationRecord} style={[petInfoSetting.petProfileMenu.bracket50]}>
 								<NextMark />
@@ -190,7 +194,9 @@ export default PetInfoSetting = ({route, navigation}) => {
 						<View style={[petInfoSetting.familyAccountSetting.insideContainer]}>
 							<View style={[petInfoSetting.familyAccountSetting.menuView]}>
 								<View style={[petInfoSetting.petProfileMenu.menuTitle]}>
-									<Text style={[txt.noto30b, {color: GRAY10}]}>가족 계정 추가</Text>
+									<TouchableOpacity onPress={goToAddFamilyAccount}>
+										<Text style={[txt.noto30b, {color: GRAY10}]}>가족 계정 추가</Text>
+									</TouchableOpacity>
 								</View>
 								<TouchableOpacity onPress={goToAddFamilyAccount} style={[petInfoSetting.petProfileMenu.bracket50]}>
 									<NextMark />
