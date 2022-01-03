@@ -183,9 +183,9 @@ export default FeedWrite = props => {
 	};
 
 	//태그 검색중 리스트 외의 다른화면 가리기
-	const onFindTag = (isFind) => {
+	const onFindTag = isFind => {
 		setSearchTag(isFind);
-	}
+	};
 
 	const setWriteModeState = () => {
 		return (
@@ -248,14 +248,13 @@ export default FeedWrite = props => {
 				placeholder="게시물을 작성하세요"
 				placeholderTextColor={GRAY20}
 				onChangeText={inputFeedTxt}
-				onFind={onFindTag}
-			></HashInput>
+				onFind={onFindTag}></HashInput>
 
-			{!isSearchTag&&setWriteModeState()}
+			{!isSearchTag && setWriteModeState()}
 			{/* 긴급 게시물 관련 버튼 컨테이너 */}
 
 			{/* </ScrollView> */}
-			{showUrgentBtns&&!isSearchTag ? (
+			{showUrgentBtns && !isSearchTag ? (
 				<View style={[temp_style.floatingBtn, feedWrite.urgentBtnContainer]}>
 					{showActionButton ? (
 						<View>
@@ -663,7 +662,13 @@ const ReportForm = props => {
 							<NormalDropDown menu={district} onSelect={onSelectDistrict} width={180} height={300} isLargeCategoryChanged={isCityChanged} />
 						</View>
 						<View style={[feedWrite.addressDropDownContainer]}>
-							<NormalDropDown menu={neighbor} onSelect={onSelectNeighbor} width={180} height={300} isLargeCategoryChanged={isDistrictChanged} />
+							<NormalDropDown
+								menu={neighbor}
+								onSelect={onSelectNeighbor}
+								width={180}
+								height={300}
+								isLargeCategoryChanged={isCityChanged || isDistrictChanged}
+							/>
 						</View>
 					</View>
 					<View style={[temp_style.inputNoTitle, feedWrite.locationDetail]}>

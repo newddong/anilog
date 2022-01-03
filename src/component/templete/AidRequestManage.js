@@ -23,8 +23,8 @@ export default AidRequestManage = ({route, navigation}) => {
 			//차후 API 다듬는 과정에서 추가 필요
 			getShelterProtectAnimalList(
 				{
-					shelter_protect_animal_object_id: null,
-					request_number: 10,
+					shelter_protect_animal_object_id: '',
+					request_number: '',
 				},
 				result => {
 					// console.log('result / getShelterProtectAnimalList / ShelterProtectAnimalList', result.msg[0]);
@@ -140,7 +140,9 @@ export default AidRequestManage = ({route, navigation}) => {
 	//선택 시 이동
 	const onSelect = index => {
 		console.log('index', data[index]);
-		!isShelterProtect ? navigation.push('ProtectApplicant', data[index]) : console.log('ShelterProtectAnimalList에서는 네비게이션 정의가 안됨');
+		!isShelterProtect
+			? navigation.push('ProtectApplicant', data[index])
+			: console.log('ShelterProtectAnimalList에서는 네비게이션 정의가 안됨', data[index]);
 	};
 
 	const addProtectAnimal = () => {

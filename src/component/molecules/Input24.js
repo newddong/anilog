@@ -30,7 +30,15 @@ const Input24 = React.forwardRef((props, ref) => {
 
 	React.useEffect(() => {
 		validator(props.value);
+		props.onChange && props.onChange(props.value);
 	}, [props.value]);
+
+	React.useEffect(() => {
+		if (props.defaultValue != null) {
+			console.log('defaultValue', props.defaultValue);
+			onChange(props.defaultValue);
+		}
+	}, [props.defaultValue]);
 
 	//Validator 조건확인이 안되었기에 테스트용으로 입력된 텍스트가
 	// 10자 이상일 때 confirmed가 되도록 작성
@@ -49,12 +57,14 @@ const Input24 = React.forwardRef((props, ref) => {
 
 	const onChange = text => {
 		// setInput(text);
+		console.log('onChange', text);
 		props.validator && validator(text);
 		props.onChange && props.onChange(text);
 	};
 
 	const onFocus = () => {
 		Modal.closeKeboard();
+		// inputRef.current.clear();
 		props.onFocus();
 	};
 
@@ -124,15 +134,16 @@ const Input24 = React.forwardRef((props, ref) => {
 					onChangeText={onChange}
 					onFocus={onFocus}
 					onBlur={onBlur}
-					value={props.value}
+					// value={props.value}
 					placeholder={props.placeholder}
 					placeholderTextColor={GRAY10}
-					defaultValue={props.defaultValue}
+					defaultValue={props.defaultValue || null}
 					editable={props.editable}
 					keyboardType={props.keyboardType}
 					secureTextEntry={props.secureTextEntry}
 					maxLength={props.maxlength}
 					numberOfLines={props.numberOfLines}
+					multiline={props.multiline}
 					style={[
 						txt.noto28,
 						props.style,
@@ -219,6 +230,8 @@ Input24.defaultProps = {
 	confirm_msg: 'confirm_msg',
 	editable: true,
 	info: null, //
+	numberOfLines: 1,
+	multiline: false,
 	defaultValue: null, // 기존 아이디 등 DefaultValue가 필요한 경우에 대한 처리
 	showCrossMark: true, //Input 최우측 X마크(지우기마크) 출력 여부
 	showHttp: false, //AssignShelterInformation에서 http:// 인풋 좌측에 놓기 위한 props

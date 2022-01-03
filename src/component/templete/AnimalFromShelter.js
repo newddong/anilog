@@ -20,7 +20,7 @@ export default AnimalFromShelter = ({route}) => {
 				shelter_userobject_id: token,
 				protect_request_status: 'complete',
 				protect_request_object_id: null,
-				request_number: 10,
+				request_number: '',
 			},
 			result => {
 				// console.log('result / getProtectRequestListByShelterId / AnimalFromShelter', result.msg[2].protect_animal_id);

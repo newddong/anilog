@@ -38,14 +38,14 @@ const AddressInput = props => {
 	};
 	//주소 값 변경 콜백
 	const onChangeAddress = addr => {
-		// console.log('address', addr);
+		console.log('onChangeAddress', addr);
 		props.validator && validator(addr, props.detailAddress);
 		props.onChangeAddress(addr);
 	};
 
 	//세부 주소 값 변경 콜백
 	const onChangeDetailAddress = addr => {
-		// console.log('detail address', addr);
+		console.log('detail address', addr);
 		props.validator && validator(props.address, addr);
 		props.onChangeDeatilAddress(addr);
 		setDetailAddr(addr);
@@ -75,16 +75,13 @@ const AddressInput = props => {
 				<View style={[addressInput.input24A, {flexDirection: 'row'}]}>
 					<Input24
 						value={props.address}
-						// value={props.address.district + ' ' + props.address.neighbor}
-						// value={props.addressDefault}
 						editable={false}
 						width={470}
 						placeholder={'주소 찾기를 눌러주세요'}
 						onChange={onChangeAddress}
-						// title={props.title}
 						descriptionType={'star'}
 						showCrossMark={false}
-						defaultValue={props.addressDefault}
+						defaultValue={props.address}
 					/>
 
 					<View style={[addressInput.btn_w226]}>
@@ -96,9 +93,10 @@ const AddressInput = props => {
 				<Input24
 					width={654}
 					value={props.detailAddress}
-					defaultValue={props.detailAddressDefault}
-					// defaultValue={'123'}
+					defaultValue={props.detailAddress}
 					placeholder={'세부 주소를 입력해 주세요.'}
+					multiline={true}
+					maxlength={25}
 					onChange={onChangeDetailAddress}
 				/>
 			</View>

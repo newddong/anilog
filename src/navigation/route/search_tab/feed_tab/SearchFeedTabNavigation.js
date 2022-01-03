@@ -1,11 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import SearchAccountA from 'Templete/SearchAccountA';
-import SearchAccountB from 'Templete/SearchAccountB';
 import SearchFeed from 'Templete/SearchFeed';
 import SearchHashTag from 'Templete/SearchHashTag';
-import ConfirmInputHeader from 'Root/navigation/header/ConfirmInputHeader';
-import TopTabNavigation_Border from 'Root/component/organism_ksw/TopTabNavigation_Border';
 import TopTabNavigation_Border_Type2 from 'Root/component/organism_ksw/TopTabNavigation_Border_Type2';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
