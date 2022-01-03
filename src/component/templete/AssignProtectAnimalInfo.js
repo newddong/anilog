@@ -170,10 +170,9 @@ export default AssignProtectAnimalInfo = ({route}) => {
 					</View>
 					<View style={[assignProtectAnimal_style.dropdownSelect_year]}>
 						<Input30
-							alert_msg={'소수점 한자리까지 2자리 숫자'}
-							info={'소수점 한자리까지 2자리 숫자'}
+							alert_msg={'두자리 숫자, 소수점 한자리'}
 							description="info"
-							showmsg={false}
+							showmsg={true}
 							confirm={true}
 							showTitle={false}
 							width={200}
@@ -184,6 +183,7 @@ export default AssignProtectAnimalInfo = ({route}) => {
 							validator={weigthValid}
 							keyboardType={'number-pad'}
 							maxLength={4}
+							confirm_msg=""
 						/>
 					</View>
 					<Text style={[assignProtectAnimal_style.text118]}>kg</Text>

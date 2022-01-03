@@ -145,10 +145,9 @@ export default SetPetInformation = ({route, navigation}) => {
 					</View>
 					<View style={[setPetInformation.inputNoTitle]}>
 						<Input30
-							alert_msg={'소수점 한자리까지 2자리 숫자'}
-							info={'소수점 한자리까지 2자리 숫자'}
+							alert_msg={'두자리 숫자, 소수점 한자리'}
 							description="info"
-							showmsg={false}
+							showmsg={true}
 							confirm={true}
 							showTitle={false}
 							width={200}
@@ -159,8 +158,10 @@ export default SetPetInformation = ({route, navigation}) => {
 							validator={weigthValid}
 							keyboardType={'number-pad'}
 							maxLength={4}
+							confirm_msg=""
 						/>
 					</View>
+					{/* <Text style={[txt.noto22, {marginLeft: 65, marginTop: 5}]}>* 2자리, 소수점 한자리까지 가능.</Text> */}
 					<View style={[setPetInformation.kg]}>
 						<Text style={[txt.noto28]}> kg </Text>
 					</View>

@@ -135,10 +135,9 @@ export default AssignPetInfoB = props => {
 					<Text style={[txt.noto28, temp_style.text_assignPetInfo, {color: GRAY10}]}>체중</Text>
 					<View style={[temp_style.inputNoTitle_assignPetInfo, assignPetInfo_style.inputNoTitle]}>
 						<Input30
-							alert_msg={'소수점 한자리까지 2자리 숫자'}
-							info={'소수점 한자리까지 2자리 숫자'}
+							alert_msg={'두자리 숫자, 소수점 한자리'}
 							description="info"
-							showmsg={false}
+							showmsg={true}
 							confirm={true}
 							showTitle={false}
 							width={200}
@@ -149,11 +148,12 @@ export default AssignPetInfoB = props => {
 							validator={weigthValid}
 							keyboardType={'number-pad'}
 							maxLength={4}
+							confirm_msg=""
 						/>
 					</View>
 					<Text style={[temp_style.text68_assignPetInfo, assignPetInfo_style.text68, txt.noto28]}>kg</Text>
 				</View>
-				<Text style={[txt.noto22, {marginLeft: 65, marginTop: 5}]}>* 2자리, 소수점 한자리까지 가능.</Text>
+				{/* <Text style={[txt.noto22, {marginLeft: 65, marginTop: 5}]}>* 2자리, 소수점 한자리까지 가능.</Text> */}
 			</View>
 
 			{/* (A)Btn_w654 */}
