@@ -9,14 +9,14 @@ import {MAINCOLOR} from 'Screens/color';
 
 export default MainHeader = ({navigation}) => {
 	const clickLogo = () => {
-		alert('Logo!');
+		// alert('Logo!');
 	};
 	const clickSearch = () => {
 		// navigation.navigate('Search');
-		alert('Search')
+		alert('Search');
 	};
 	const clickAlarm = () => {
-		alert('Alarm!');
+		alert('이후 버전에서 제공할 예정입니다!');
 	};
 	return (
 		<View style={[style.headerContainer, style.shadow]}>
