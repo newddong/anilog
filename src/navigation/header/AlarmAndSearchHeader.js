@@ -9,7 +9,8 @@ import {WHITE, APRI10} from 'Root/config/color';
 export default AlarmAndSearchHeader = ({navigation, route, options, back}) => {
 	const clickSearch = () => {
 		// navigation.navigate('Search');
-		alert('Search');
+		// alert('Search');
+		alert('이후 버전에서 제공할 예정입니다!');
 	};
 	const clickAlarm = () => {
 		alert('이후 버전에서 제공할 예정입니다!');

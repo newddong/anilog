@@ -13,7 +13,8 @@ export default MainHeader = ({navigation}) => {
 	};
 	const clickSearch = () => {
 		// navigation.navigate('Search');
-		alert('Search');
+		// alert('Search');
+		alert('이후 버전에서 제공할 예정입니다!');
 	};
 	const clickAlarm = () => {
 		alert('이후 버전에서 제공할 예정입니다!');
@@ -35,7 +36,6 @@ const style = StyleSheet.create({
 		alignItems: 'flex-end',
 		height: 132 * DP,
 		flexDirection: 'row',
-		backgroundColor: '#FFFFFF',
 	},
 	logoContainer: {
 		marginLeft: 48 * DP,

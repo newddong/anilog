@@ -33,6 +33,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 	const [confirmed, setConfirmed] = React.useState(false); // 닉네임 폼 Validator 통과 ?
 	const [protect, setProtect] = React.useState(false); // 임시보호 동물 T/F
 	const [alertmsg, setAlertMsg] = React.useState('사용 불가능한 닉네임입니다.');
+	const [valid, setValid] = React.useState(false);
 	// React.useEffect(() => {
 	// 	route.params && setData({...data, user_profile_uri: route.params});
 	// }, [route.params]);
@@ -59,6 +60,8 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 	const nickName_validator = text => {
 		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
 		var regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
+		console.log('nickname valid', regExp.test(text));
+		setValid(regExp.test(text));
 		return regExp.test(text);
 	};
 
@@ -170,6 +173,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 							onValid={onNicknameValid}
 							confirm={nickName_validator}
 							ref={nicknameInput}
+							confirm={valid}
 							maxLength={25}
 						/>
 					</View>
