@@ -259,7 +259,9 @@ export default PetInfoSetting = ({route, navigation}) => {
 						<View style={[petInfoSetting.familyAccountSetting.insideContainer]}>
 							<View style={[petInfoSetting.familyAccountSetting.menuView]}>
 								<View style={[petInfoSetting.petProfileMenu.menuTitle]}>
-									<Text style={[txt.noto30b, {color: GRAY10}]}>가족 계정 추가</Text>
+									<TouchableOpacity onPress={goToAnimalAdoption}>
+										<Text style={[txt.noto30b, {color: GRAY10}]}>가족 계정 추가</Text>
+									</TouchableOpacity>
 								</View>
 								<TouchableOpacity onPress={goToAnimalAdoption} style={[petInfoSetting.changeAdoptionStatus.bracket50]}>
 									<NextMark />
