@@ -429,7 +429,6 @@ const MissingForm = props => {
 					width={654}
 					descriptionType={'none'}
 					onChange={inputLocation}
-					keyboardType={'number-pad'}
 					maxlength={30}
 					value={data.missing_animal_lost_location}
 				/>
@@ -441,7 +440,7 @@ const MissingForm = props => {
 					width={654}
 					descriptionType={'none'}
 					onChange={inputContact}
-					keyboardType="number-pad"
+					keyboardType={'number-pad'}
 					maxlength={15}
 					value={data.missing_animal_contact}
 				/>
