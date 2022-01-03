@@ -108,14 +108,14 @@ export default FeedMedia = props => {
 				<View style={[style.emergency_background, {paddingVertical: 20 * DP, paddingHorizontal: 48 * DP, height: null}]}>
 					<View style={style.emergency_info_container}>
 						<View style={{flexDirection: 'row'}}>
-							<Text style={[txt.roboto34b, {color: 'white'}]}>{animal_species + animal_species_detail}</Text>
+							<Text style={[txt.roboto34b, {color: 'white'}]} numberOfLines={3}>{animal_species + animal_species_detail}</Text>
 						</View>
 						<View style={{marginLeft: 20 * DP, flex: 1}}>
-							<Text style={[txt.roboto34b, {color: 'white'}]}>{emergency_location}</Text>
+							<Text style={[txt.roboto34b, {color: 'white'}]} numberOfLines={2}>{emergency_location}</Text>
 						</View>
 					</View>
 					<View style={{flex: 1}}>
-						<Text style={[txt.roboto24, {color: 'white', marginTop: 20 * DP}]} ellipsizeMode="tail">
+						<Text style={[txt.roboto24, {color: 'white', marginTop: 20 * DP}]} numberOfLines={3} ellipsizeMode="tail">
 							{report_animal_features}
 						</Text>
 					</View>

@@ -128,7 +128,7 @@ export default FeedWrite = props => {
 						if (!responseObject.didCancel) {
 							let tempContainer = [...selectedImg];
 							responseObject.assets.map(v => tempContainer.push(v.uri));
-							setSelectedImg(tempContainer);
+							setSelectedImg(tempContainer.slice(-5));
 							Modal.close();
 						}
 					},

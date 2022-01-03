@@ -6,6 +6,7 @@ import {GRAY20} from 'Root/config/color';
 import {findTagAt, isTag, getTagName, findStartIndexOfTag, findEndIndexOfTag} from 'Root/util/stringutil';
 import {getUserListByNickname} from 'Root/api/userapi';
 import {getHashKeywords} from 'Root/api/hashapi';
+import Modal from '../modal/Modal';
 
 export default function HashInput(props) {
 	const [value, setValue] = React.useState('');
@@ -201,6 +202,13 @@ export default function HashInput(props) {
 		setFind(false);
 		onChangeText(internal.value);
 	};
+
+	const onFocus = (e) => {
+		Modal.closeKeboard();
+		props.onFocus&&props.onFocus(e);
+
+	}
+
 	return (
 		<>
 			<View style={[props.containerStyle, {height: 10 * DP}]}>
@@ -210,6 +218,7 @@ export default function HashInput(props) {
 					multiline={true}
 					value={value}
 					onChangeText={onChangeText}
+					onFocus={onFocus}
 					placeholder={props.placeholder}
 					placeholderTextColor={GRAY20}
 					selection={cursor}
