@@ -1680,7 +1680,7 @@ export const addFamilyAccount_style = StyleSheet.create({
 	btn_w654: {
 		marginTop: 50 * DP,
 		marginLeft: 20 * DP,
-		marginBottom: 110 * DP,
+		marginBottom: 20 * DP,
 	},
 });
 

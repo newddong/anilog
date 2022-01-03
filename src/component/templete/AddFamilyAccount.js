@@ -62,6 +62,7 @@ export default AddFamilyAccount = ({route, navigation}) => {
 	};
 
 	const onAccountClick = item => {
+		console.log('onAccoitCLick');
 		setSelectedAccount(item);
 	};
 
@@ -106,11 +107,11 @@ export default AddFamilyAccount = ({route, navigation}) => {
 			</View>
 
 			<ScrollView style={[addFamilyAccount_style.accountList]}>
-				<AccountList items={searched_accountList} onSelect={onAccountClick} />
-				<View style={[btn_style.btn_w654, addFamilyAccount_style.btn_w654]}>
-					<AniButton onPress={onCheckFamilyMembers} btnTitle={'초대하기'} btnLayout={btn_w654} btnTheme={'shadow'} titleFontStyle={32} />
-				</View>
+				<AccountList items={searched_accountList} onClickLabel={onAccountClick} />
 			</ScrollView>
+			<View style={[btn_style.btn_w654, addFamilyAccount_style.btn_w654]}>
+				<AniButton onPress={onCheckFamilyMembers} btnTitle={'초대하기'} btnLayout={btn_w654} btnTheme={'shadow'} titleFontStyle={32} />
+			</View>
 		</View>
 	);
 };

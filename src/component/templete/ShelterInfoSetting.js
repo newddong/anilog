@@ -12,7 +12,7 @@ import {getUserInfoById, updateUserIntroduction} from 'Root/api/userapi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TextInput} from 'react-native';
 import moment from 'moment';
-import {Arrow_Down_GRAY20, ProfileDefaultImg} from '../atom/icon';
+import {Arrow_Down_GRAY20, Arrow_Up_GRAY20, ProfileDefaultImg} from '../atom/icon';
 import dp from 'Root/screens/dp';
 
 export default ShelterInfoSetting = ({route}) => {
@@ -159,21 +159,22 @@ export default ShelterInfoSetting = ({route}) => {
 								</View>
 							) : (
 								<View style={{}}>
+									<Text style={[txt.noto24, {color: GRAY10}]} ellipsizeMode={'tail'} numberOfLines={showMore ? null : 3}>
+										{data.user_introduction || ''}
+									</Text>
 									<Text
-										style={[txt.noto24, {color: GRAY10}]}
-										ellipsizeMode={'tail'}
-										numberOfLines={showMore ? null : 3}
+										style={[txt.noto24, {position: 'absolute', opacity: 0, backgroundColor: 'red'}]}
 										onTextLayout={({nativeEvent: {lines}}) => {
 											setNumOfLines(lines.length);
 										}}>
 										{data.user_introduction || '소개란이 비어있습니다.'}
 									</Text>
-									{numberOfLines >= 3 ? (
+									{numberOfLines > 3 ? (
 										<TouchableOpacity
 											onPress={() => setShowMore(!showMore)}
 											style={{alignSelf: 'flex-end', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
 											<Text style={[txt.noto24, {color: GRAY10}]}>더보기</Text>
-											<Arrow_Down_GRAY20 />
+											{!showMore ? <Arrow_Down_GRAY20 /> : <Arrow_Up_GRAY20 />}
 										</TouchableOpacity>
 									) : (
 										<></>

@@ -33,13 +33,11 @@ import {
 	SETTING,
 	INFO_QUESTION,
 	ACCOUNT,
-	DEFAULT_PROFILE,
 	MODIFY_SHELTER_DATA,
 	LOGOUT,
 } from 'Root/i18n/msg';
 import {GRAY10} from 'Root/config/color';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Modal from '../modal/Modal';
 import {getUserProfile} from 'Root/api/userapi';
 import {userLogout} from 'Root/api/userapi';
 
@@ -47,6 +45,7 @@ export default ShelterMenu = ({route}) => {
 	const navigation = useNavigation();
 	const [data, setData] = React.useState({}); //우선 userObject_Shelter 0번 추가
 	const [showMoreIntro, setShowMoreIntro] = React.useState(false);
+	const [introOriginLine, setIntroOriginLine] = React.useState(0);
 	React.useEffect(() => {
 		const getInfo = () => {
 			AsyncStorage.getItem('token', async (err, res) => {
@@ -186,6 +185,10 @@ export default ShelterMenu = ({route}) => {
 		}
 	};
 
+	React.useEffect(() => {
+		console.log('introOriginLine', introOriginLine);
+	}, [introOriginLine]);
+
 	return (
 		<View style={(login_style.wrp_main, shelterMenu.container)}>
 			<ScrollView style={{backgroundColor: '#FFF'}}>
@@ -205,11 +208,22 @@ export default ShelterMenu = ({route}) => {
 								</View>
 								{/* user_introduction */}
 								<View style={[shelterMenu.shelterInfo_contents]}>
+									{/* 자기소개글의 본래 텍스트 라인수 체크를 위한 더미텍스트컴포넌트 삭제금지 */}
+									<Text
+										style={[txt.noto24, {position: 'absolute', opacity: 0, backgroundColor: 'red'}]}
+										numberOfLines={null}
+										onTextLayout={({nativeEvent: {lines}}) => {
+											setIntroOriginLine(lines.length);
+										}}>
+										{data.user_introduction || ''}
+									</Text>
+									{/* 삭제금지 */}
 									<Text numberOfLines={showMoreIntro ? 10 : 2} style={[txt.noto24, {color: GRAY10}]}>
 										{data.user_introduction || '자기소개가 없습니다.'}
 									</Text>
-
-									{showMoreIntro ? (
+									{introOriginLine < 3 ? (
+										<></>
+									) : showMoreIntro ? (
 										<TouchableOpacity onPress={() => setShowMoreIntro(!showMoreIntro)} style={[shelterMenu.showMore, {}]}>
 											<Text style={[txt.noto24, {color: GRAY10}]}>접기</Text>
 											<Arrow_Up_GRAY20 />

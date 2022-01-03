@@ -200,7 +200,6 @@ export default UserInfoSetting = ({route}) => {
 											{data.user_introduction || ''}
 										</Text>
 										{/* 더미 텍스트 삭제금지 */}
-
 										<Text
 											style={[txt.noto24, {position: 'absolute', opacity: 0, backgroundColor: 'red'}]}
 											numberOfLines={null}

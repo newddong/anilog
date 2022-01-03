@@ -46,9 +46,11 @@ export default AccountList = props => {
 	};
 
 	//계정의 이미지 라벨 클릭 콜백 함수
-	const onclickLabel = user_data => {
+	const onclickLabel = (item, index) => {
 		// console.log('clicked User Data', user_data);
-		props.onClickLabel(user_data);
+		props.onClickLabel(item);
+		props.onSelect(item, index);
+		index == selectedIndex ? setSelectedIndex(99) : setSelectedIndex(index);
 	};
 
 	const renderItem = (item, index) => {
@@ -57,7 +59,7 @@ export default AccountList = props => {
 				style={[organism_style.accountListItem, {borderColor: selectedIndex == index && props.makeBorderMode ? APRI10 : WHITE}]}
 				onPress={() => makeBorder(item, index)}>
 				<View style={[organism_style.userDescriptionLabelContainer]}>
-					<UserDescriptionLabel data={item} width={310} onClickLabel={onclickLabel} />
+					<UserDescriptionLabel data={item} width={310} onClickLabel={item => onclickLabel(item, index)} />
 				</View>
 				{props.showCrossMark ? (
 					<View style={{position: 'absolute', right: 15 * DP}}>
