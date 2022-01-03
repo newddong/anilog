@@ -20,7 +20,7 @@ export default AidRequestAnimalList = ({route, navigation}) => {
 		getShelterProtectAnimalList(
 			{
 				shelter_protect_animal_object_id: null,
-				request_number: 0,
+				request_number: '',
 			},
 			result => {
 				setData(result.msg);

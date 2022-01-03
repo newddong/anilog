@@ -44,9 +44,11 @@ export default FeedWriteHeader = ({route, navigation, options}) => {
 			case 'Missing':
 				{
 					console.log('Before Write Report ', param);
-
 					const data = param;
-					if (
+					let check = /^[0-9]+$/;
+					if (!check.test(data.missing_animal_age)) {
+						Modal.alert('실종동물의 나이는 \n숫자만 입력가능합니다!');
+					} else if (
 						data.missing_animal_species &&
 						data.missing_animal_species_detail &&
 						data.feed_content &&

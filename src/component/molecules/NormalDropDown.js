@@ -38,7 +38,7 @@ const NormalDropDown = props => {
 		<Dropdown
 			alignBottom
 			ref={dropdown}
-			buttonComponent={<DropdownSelect width={props.width} value={value} />}
+			buttonComponent={<DropdownSelect width={props.width} titleFontStyle={props.titleFontStyle} value={value} />}
 			dropdownList={
 				<View style={{backgroundColor: WHITE, borderRadius: 10 * DP, alignItems: 'center', borderWidth: 2 * DP}}>
 					<TouchableWithoutFeedback>
