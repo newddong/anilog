@@ -24,14 +24,14 @@ const Input30 = React.forwardRef((props, ref) => {
 			onClear();
 		},
 	}));
-	// const [input, setInput] = React.useState('');
-	const [confirmed, setConfirmed] = React.useState(props.confirm || false); //Confirm Msg 출력 Boolean
+	const [input, setInput] = React.useState('');
+	const [confirmed, setConfirmed] = React.useState(false); //Confirm Msg 출력 Boolean
 	const inputRef = React.useRef();
 
 	// Input 값 변동 콜백
 	const onChange = text => {
 		// validator(text);
-		// setInput(text);
+		setInput(text);
 		console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
 		props.validator && validator(text);
 		props.onChange && props.onChange(text);
@@ -39,17 +39,17 @@ const Input30 = React.forwardRef((props, ref) => {
 
 	const validator = text => {
 		let isValid = props.validator(text);
-		props.onValid && props.onValid(isValid);
 		setConfirmed(isValid);
+		props.onValid && props.onValid(isValid);
 	};
 
 	const getMsg = () => {
 		if (props.showmsg) {
 			if (props.value == undefined || props.value.length == 0) {
-				return null;
-			} else if (confirmed == true) {
+				return false;
+			} else if (confirmed) {
 				return <Text style={(txt.noto22, {color: GREEN, lineHeight: 48 * DP})}>{props.confirm_msg}</Text>;
-			} else if (confirmed == false) {
+			} else if (!confirmed) {
 				return <Text style={(txt.noto22, {color: RED10, lineHeight: 48 * DP})}>{props.alert_msg}</Text>;
 			}
 		}
@@ -60,6 +60,7 @@ const Input30 = React.forwardRef((props, ref) => {
 		//지우기에서도 onChange에 빈 값을 넣어주어야 부모의 Confirmed값이 false로 바뀐다
 		//부모는 onChange로 넘어오는 값을 통해 Validator를 수행하기 때문
 		// setInput('');
+		setConfirmed(false);
 		props.onValid && props.onValid(false);
 		props.onChange('');
 		props.onClear();
@@ -98,7 +99,7 @@ const Input30 = React.forwardRef((props, ref) => {
 						ref={inputRef}
 						onChangeText={onChange}
 						placeholder={props.placeholder}
-						// value={input}
+						value={input}
 						onFocus={onFocus}
 						// value={props.value}
 						editable={props.editable}
@@ -112,7 +113,7 @@ const Input30 = React.forwardRef((props, ref) => {
 								//TextInput과 바깥 View와의 거리 24px, lineHeight는 Text View크기와 일치
 								paddingLeft: 16 * DP,
 								textAlignVertical: 'bottom',
-								color: props.confirm ? BLACK : RED10,
+								color: confirmed ? BLACK : RED10,
 								// width: props.width * DP,
 								width: props.width ? props.width * DP - 46 * DP : null,
 
