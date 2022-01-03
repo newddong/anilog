@@ -12,9 +12,8 @@ import {ChildCommentLinker} from '../atom/icon';
  * }} props
  */
 export default ChildCommentList = props => {
-	console.log(props.items);
+	// console.log(props.items);
 	const renderItem = (item, index) => {
-		
 		return (
 			<View style={[organism_style.childCommentList]}>
 				<ChildCommentLinker />

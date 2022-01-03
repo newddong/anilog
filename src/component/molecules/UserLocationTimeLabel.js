@@ -32,14 +32,15 @@ const UserLocationTimeLabel = props => {
 	console.log(props.data);
 
 	const getCommentedTime = () => {
+		console.log('UserLocationTimeLabel.time', props.time);
 		let date = props.time.match(/(\d{4}-\d{1,2}-\d{1,2}T\d{2}:\d{2}:\d{2}).*?$/);
 		let timelapsed = Date.now() - new Date(date[1]);
-		timelapsed = timelapsed - 1000*60*60*9;//UTC 시간차
-		let day = Math.ceil(timelapsed / 1000 / 60 / 60 / 24)-1;
+		timelapsed = timelapsed - 1000 * 60 * 60 * 9; //UTC 시간차
+		let day = Math.ceil(timelapsed / 1000 / 60 / 60 / 24) - 1;
 		let hour = Math.ceil(timelapsed / 1000 / 60 / 60);
 		let min = Math.ceil(timelapsed / 1000 / 60);
 		let sec = Math.ceil(timelapsed / 1000);
-		return day>0?`${day}일 전`:hour>0?`${hour} 시간 전`:min>0?`${min} 분 전`:`${sec} 초 전`;
+		return day > 0 ? `${day}일 전` : hour > 0 ? `${hour} 시간 전` : min > 0 ? `${min} 분 전` : `${sec} 초 전`;
 	};
 	// const getCommentedTime = () => {
 	// 	const commented_date = props.data.comment_date;
@@ -60,8 +61,8 @@ const UserLocationTimeLabel = props => {
 						{props.data.user_nickname || ''}
 					</Text>
 					<Text style={[txt.noto24, {lineHeight: 36 * DP, color: GRAY20}]} numberOfLines={1}>
-						{address?.city} {address?.district} · {/* {props.data.feed_type == undefined ? getCommentedTime() : props.data.comment_date} */}
-						{props.time&&getCommentedTime()}
+						{/* {address?.city} {address?.district} · {props.data.feed_type == undefined ? getCommentedTime() : props.data.comment_date} */}
+						{props.time && getCommentedTime()}
 					</Text>
 				</View>
 			</View>

@@ -25,8 +25,8 @@ const UserTimeLabel = props => {
 
 	const getCommentedTime = () => {
 		let date = props.data.comment_date.match(/(\d{4})-(\d{1,2})-(\d{1,2}).*?$/);
-		let timelapsed = Date.now() - new Date(date[1],date[2]-1,date[3]);
-		return <>{Math.ceil(timelapsed/1000/60/60/24)-1} 일 전</>;
+		let timelapsed = Date.now() - new Date(date[1], date[2] - 1, date[3]);
+		return <>{Math.ceil(timelapsed / 1000 / 60 / 60 / 24) - 1} 일 전</>;
 	};
 
 	const onClickLabel = e => {
