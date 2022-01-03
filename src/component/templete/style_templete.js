@@ -345,7 +345,7 @@ export const temp_style = StyleSheet.create({
 		// height: 78 * DP,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#88BA88',
+		backgroundColor: '#FFFFFF',
 	},
 	inputWithSearchIcon: {
 		width: 654 * DP,
