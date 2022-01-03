@@ -12,10 +12,10 @@ import {login_style, btn_style, temp_style, shelterAssignEntrance_style, progres
 
 export default ShelterAssignEntrance = props => {
 	const goToPrivateShelter = () => {
-		props.navigation.push('AssignShelterAddress', {data: {shleter_type: 'private'}});
+		props.navigation.push('AssignShelterAddress', {data: {shelter_type: 'private'}});
 	};
 	const goToPublicShelter = () => {
-		props.navigation.push('AssignShelterAddress', {data: {shleter_type: 'public'}});
+		props.navigation.push('AssignShelterAddress', {data: {shelter_type: 'public'}});
 	};
 
 	return (

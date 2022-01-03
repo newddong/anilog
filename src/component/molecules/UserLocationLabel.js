@@ -8,9 +8,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
 import {getUserInfoById} from 'Root/api/userapi';
 import Modal from 'Component/modal/Modal';
-import {ProfileDefaultImg1, ProfileDefaultImg1_70} from '../atom/icon';
+import {ProfileDefaultImg1, ProfileDefaultImg1_70, Paw30_APRI10, Paw30_Mixed, Paw30_YELL20, Private30, Public30} from '../atom/icon';
 import {profiledefault2} from '../atom/icon/profiledefault2.svg';
 import ProfileImageMedium120 from './ProfileImageMedium120';
+import userGlobalObject from 'Root/config/userGlobalObject';
+
 /**
  * 유저의 프로필 사진, 닉네임, 사는지역을 출력하는 라벨
  * @param {object} props - Props Object
@@ -18,7 +20,8 @@ import ProfileImageMedium120 from './ProfileImageMedium120';
  * @param {(data:object)=>void} props.onClickLabel - 버튼을 눌렸을때 동작하는 콜백, 제목 반환환
  */
 const UserLocationLabel = props => {
-	const [isLoginUser, setIsLoginUser] = React.useState(false); //현재 접속 중인 아이디와 같다면 닉네임 색깔이 메인색깔
+	// const [isLoginUser, setIsLoginUser] = React.useState(false); //현재 접속 중인 아이디와 같다면 닉네임 색깔이 메인색깔
+	const isLoginUser = userGlobalObject.userInfo._id == props.data._id;
 	console.log('UserLocationLabelUserLocationLabel', props.data);
 	const t = {
 		__v: 8,
@@ -99,6 +102,25 @@ const UserLocationLabel = props => {
 	const onClickLabel = e => {
 		props.onLabelClick(props.data);
 	};
+	const usertypeIcon = () => {
+		switch (props.data.user_type) {
+			case 'pet':
+				return (
+					<View style={{position: 'absolute', top: 0, left: 0}}>
+						{props.data.pet_status=='companion'?<Paw30_APRI10 />:props.data.pet_status=='protect'?<Paw30_YELL20 />:<Paw30_Mixed />}
+					</View>
+				);
+				break;
+			case 'shelter':
+				return (<View style={{position: 'absolute', bottom: 0, left: 40*DP}}>
+					{props.data.shelter_type=='public'?<Public30 />:<Private30 />}
+				</View>);
+				break;
+			default:
+				return false;
+				break;
+		}
+	};
 
 	return (
 		<TouchableOpacity onPress={onClickLabel}>
@@ -117,6 +139,7 @@ const UserLocationLabel = props => {
 						{props.location}
 					</Text> */}
 				</View>
+				{usertypeIcon()}
 			</View>
 		</TouchableOpacity>
 	);
