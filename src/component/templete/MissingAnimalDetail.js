@@ -1,5 +1,5 @@
 import React from 'react';
-import {LogBox, ScrollView, Image, ActivityIndicator, TouchableOpacity} from 'react-native';
+import {LogBox, ScrollView, Image, ActivityIndicator, TouchableOpacity, FlatList} from 'react-native';
 import {Text, View} from 'react-native';
 import {login_style, reportDetail, temp_style} from './style_templete';
 import FeedContent from '../organism/FeedContent';
@@ -218,37 +218,45 @@ export default MissingAnimalDetail = props => {
 
 	return (
 		<View style={[reportDetail.wrp_main]}>
-			<ScrollView contentContainerStyle={[reportDetail.container]}>
-				{/* Img_square_750 */}
-				<View style={[temp_style.img_square_750, reportDetail.img_square_750]}>
-					{/* 제보사진 */}
-					<Image
-						source={{
-							uri: data.feed_thumbnail,
-						}}
-						style={[temp_style.img_square_750]}
-					/>
-				</View>
-				<View style={[temp_style.feedContent, reportDetail.feedContent]}>
-					{/* DB에서 가져오는 제보 피드글 데이터를 FeedContent에 넘겨준다. */}
-					<FeedContent data={data} showAllContents={true} />
-				</View>
-				<View style={[reportDetail.allCommentCount]}>
-					<TouchableOpacity onPress={moveToCommentList}>
-						<Text style={[txt.noto24]}>댓글 쓰기</Text>
-					</TouchableOpacity>
-				</View>
-				<View style={[reportDetail.basic_separator]}>
-					<View style={[reportDetail.separator]}></View>
-				</View>
-				<View style={[reportDetail.commentList]}>
-					<CommentList
-						items={commentDataList}
-						onPressReplyBtn={onReplyBtnClick}
-						onPress_ChildComment_ReplyBtn={comment => onChildReplyBtnClick(comment)}
-					/>
-				</View>
-			</ScrollView>
+			<FlatList
+				contentContainerStyle={[reportDetail.container]}
+				data={[{}]}
+				ListHeaderComponent={
+					<View style={{alignItems:'center'}}>
+						<View style={[temp_style.img_square_750, reportDetail.img_square_750]}>
+							{/* 제보사진 */}
+							<Image
+								source={{
+									uri: data.feed_thumbnail,
+								}}
+								style={[temp_style.img_square_750]}
+							/>
+						</View>
+						<View style={[temp_style.feedContent]}>
+							{/* DB에서 가져오는 제보 피드글 데이터를 FeedContent에 넘겨준다. */}
+							<FeedContent data={data} />
+						</View>
+						<View style={[reportDetail.allCommentCount]}>
+							<TouchableOpacity onPress={moveToCommentList}>
+								<Text style={[txt.noto24]}>댓글 쓰기</Text>
+							</TouchableOpacity>
+						</View>
+						<View style={[reportDetail.basic_separator]}>
+							<View style={[reportDetail.separator]}></View>
+						</View>
+						
+					</View>
+				}
+				renderItem={({item, index}) => (
+					// <View style={[reportDetail.commentList]}>
+							<CommentList
+								items={commentDataList}
+								onPressReplyBtn={onReplyBtnClick}
+								onPress_ChildComment_ReplyBtn={comment => onChildReplyBtnClick(comment)}
+							/>
+					// </View>
+				)}
+			/>
 			<View>
 				{editComment ? (
 					<ReplyWriteBox

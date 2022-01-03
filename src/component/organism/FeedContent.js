@@ -4,7 +4,7 @@ import {organism_style, feedContent_style} from './style_organism';
 import UserLocationLabel from 'Root/component/molecules/UserLocationLabel';
 import AniButton from 'Root/component/molecules/AniButton';
 import {btn_w130} from 'Root/component/atom/btn/btn_style';
-import {useNavigation} from '@react-navigation/core';
+import {useNavigation, useRoute} from '@react-navigation/core';
 import {FavoriteTag48_Filled, Meatball50_GRAY20_Horizontal, Share48_Filled} from '../atom/icon';
 import {txt} from 'Root/config/textstyle';
 import {Arrow_Down_GRAY20, Arrow_Up_GRAY20} from '../atom/icon';
@@ -53,7 +53,7 @@ export default FeedContent = props => {
 	} = props.data;
 
 	const navigation = useNavigation();
-
+	const route = useRoute();
 	const [btnStatus, setBtnStatus] = React.useState(false); //더보기 Arrow방향 false면 아래
 	const [layout, setLayout] = React.useState({height: 0 * DP, width: 0}); // 초기의 Layout
 	const [reportLayout, setReportLayout] = React.useState({height: 0, width: 0});
@@ -91,9 +91,11 @@ export default FeedContent = props => {
 	const showMore = () => {
 		setShow(true);
 	};
-
+	const shouldBeDetail = show||route.name=='MissingAnimalDetail'||route.name=='ReportDetail';
+	console.log('경로', route.name, route.name.includes('FeedList'))
 	return (
-		<View style={[organism_style.feedContent, show || props.showAllContents ? {height: 270*DP+reportLayout.height + labelLayout.height+layout.height} : {}]}>
+		<View style={[organism_style.feedContent, (shouldBeDetail ? {height: 270*DP+reportLayout.height + labelLayout.height+layout.height} : {})]}>
+		{/* // <View style={[organism_style.feedContent,{height:800*DP}]}> */}
 			{/* line 1 */}
 			<View style={[organism_style.userLocationLabel_view_feedContent]} onLayout={onLayoutLabel}>
 				{/* UserLocationLabel */}
@@ -167,28 +169,18 @@ export default FeedContent = props => {
 				</View>
 			)}
 
-			{/* FeedText */}
-			{props.showAllContents ? (
-				<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]}>
-					{/* <FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} /> */}
-					<HashText style={[txt.noto28]}>{feed_content}</HashText>
-				</View>
-			) : (
-				<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]} >
-					{/* <FeedText text={feed_content} onHashClick={hashText => moveToFeedListForHashTag(hashText)} /> */}
-					<HashText style={[txt.noto28]} numberOfLines={show?0:2} onLayout={onLayoutContent}>{feed_content}</HashText>
-				</View>
-			)}
+			
+			{(route.name.includes('FeedList')||feed_type!='report'||show)&&<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]} >
+				<HashText style={[txt.noto28]} numberOfLines={shouldBeDetail?0:2} onLayout={onLayoutContent}>{feed_content}</HashText>
+			</View>}
+		
 
-			{/* 피드 작성 날짜  3 */}
 			<View style={[organism_style.time_view_feedContent]}>
 				<View style={[organism_style.time_feedContent]}>
 					<Text style={[txt.noto22, {color: GRAY10}]}>{getTimeLapsed(feed_date)}</Text>
 				</View>
 
-				{/* 내용이 길어지면 더보기 버튼이 생기는 로직은 추후 구현 */}
-				{/* 제보 실종 게시물 디테일의 경우 더보기 버튼 미출력 */}
-				{!show && !props.showAllContents && (
+				{!show&&route.name.includes('FeedList') && (
 					<TouchableWithoutFeedback onPress={showMore}>
 						<View style={[organism_style.addMore_view_feedContent]}>
 							<View style={[organism_style.addMore_feedContent]}>

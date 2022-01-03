@@ -15,7 +15,7 @@ export function getTimeLapsed(date_mongo){
     let timelapsed = Date.now() - new Date(date[1]);
     let hourOffset = 1000*60*60*9;
     let localtime = Platform.OS == 'ios' ? hourOffset : 0;
-    timelapsed = timelapsed - 0; //UTC 시간차
+    timelapsed = timelapsed - localtime; //UTC 시간차
     let day = Math.floor(timelapsed / 1000 / 60 / 60 / 24);
     let hour = Math.floor(timelapsed / 1000 / 60 / 60);
     let min = Math.floor(timelapsed / 1000 / 60);

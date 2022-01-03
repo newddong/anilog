@@ -81,7 +81,7 @@ export default FeedMedia = props => {
 	};
 
 	return (
-		<View style={[style.img_square_750x750]}>
+		<View>
 			{/* Select된 상태일 때 불투명도 40% 적용 및 배경색  Black */}
 			<View style={{backgroundColor: BLACK}}>
 				<Swiper
