@@ -38,7 +38,7 @@ export default SearchAccountA = props => {
 							v.user_type == 'user' ? filtered.push(v) : false;
 						});
 						let removeMine = filtered.findIndex(e => e.user_nickname == userGlobalObject.userInfo.user_nickname);
-						filtered.splice(removeMine, 1);
+						removeMine == -1 ? false : filtered.splice(removeMine, 1);
 						setSearchedList(filtered);
 						Modal.close();
 					},

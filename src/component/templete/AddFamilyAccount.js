@@ -26,7 +26,7 @@ export default AddFamilyAccount = ({route, navigation}) => {
 			{
 				user_nickname: input,
 				request_number: '',
-				userobject_id: null,
+				userobject_id: '',
 				user_type: 'user',
 			},
 			result => {
@@ -36,9 +36,9 @@ export default AddFamilyAccount = ({route, navigation}) => {
 				result.msg.map((v, i) => {
 					v.user_type == 'user' ? filtered.push(v) : false;
 				});
+				//자기 아이디는 필터 실시
 				let removeMine = filtered.findIndex(e => e.user_nickname == userGlobalObject.userInfo.user_nickname);
-				filtered.splice(removeMine, 1);
-				console.log('검색된 아이디 개수 ', filtered.length);
+				removeMine == -1 ? false : filtered.splice(removeMine, 1);
 				setSearched_accountList(filtered);
 				Modal.close();
 			},

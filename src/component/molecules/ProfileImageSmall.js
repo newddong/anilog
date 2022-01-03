@@ -11,6 +11,7 @@ import {
 	Paw30_Mixed,
 	Paw30_YELL20,
 	Private48,
+	ProfileDefaultImg,
 	ProfileDefaultImg1_194,
 	ProfileDefaultImg2_194,
 	ProfileDefaultImg3_194,
@@ -28,11 +29,11 @@ const ProfileImageSmall = props => {
 	// 유저의 프로필 이미지를 표시,  유저의 종류(일반유저, 반려동물, 보호소)와 상태(임시보호중,입양,공립,사립)에 따라 아이콘을 표시
 	const petStatus = () => {
 		switch (props.data.pet_status) {
-			case 'normal':
+			case 'companion':
 				return <Paw30_APRI10 />;
-			case 'protected':
+			case 'protect':
 				return <Paw30_YELL20 />;
-			case 'adopted':
+			case 'adopt':
 				return <Paw30_Mixed />;
 			default:
 				return <></>;
@@ -86,13 +87,15 @@ const ProfileImageSmall = props => {
 		<View>
 			{props.data.user_type == 'hash' ? (
 				getHash()
-			) : (
+			) : props.data.user_profile_uri != undefined ? (
 				<Image
 					source={{
-						uri: props.data.user_profile_uri || DEFAULT_ANIMAL_PROFILE,
+						uri: props.data.user_profile_uri,
 					}}
 					style={getSize()}
 				/>
+			) : (
+				<ProfileDefaultImg size={getSize()} />
 			)}
 			{userType()}
 		</View>

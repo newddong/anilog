@@ -17,6 +17,7 @@ import Modal from 'Component/modal/Modal';
 import userGlobalObject from 'Root/config/userGlobalObject';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {emailVerification} from '../organism_ksw/style_organism';
+import InfoScreen from 'Root/component/organism_ksw/InfoScreen';
 
 export default Profile = ({route, navigation}) => {
 	const [data, setData] = React.useState({...route.params?.userobject, feedList: []}); //라벨을 클릭한 유저의 userObject data
@@ -24,7 +25,7 @@ export default Profile = ({route, navigation}) => {
 	const [showOwnerState, setShowOwnerState] = React.useState(false); // 현재 로드되어 있는 profile의 userType이 Pet인 경우 반려인 계정 리스트의 출력 여부
 	const [showCompanion, setShowCompanion] = React.useState(false); // User계정이 반려동물버튼을 클릭
 	const [protectActList, setProtectActList] = React.useState([]);
-
+	console.log('tabMenuselc', tabMenuSelected);
 	React.useEffect(() => {
 		if (route.params && route.params.userobject) {
 			// console.log('getUserProfile', route.params.userobject);
@@ -35,7 +36,7 @@ export default Profile = ({route, navigation}) => {
 				result => {
 					navigation.setOptions({title: result.msg.user_nickname});
 					setData(result.msg);
-					// console.log('getUserProfileResult', result);
+					console.log('getUserProfileResult', result.msg);
 				},
 				err => {
 					Modal.popOneBtn(err, '확인', () => {
@@ -78,6 +79,8 @@ export default Profile = ({route, navigation}) => {
 
 	//프로필의 피드탭의 피드 썸네일 클릭
 	const onClick_Thumbnail_FeedTab = (index, item) => {
+		// console.log('userobject', data.feedList);s
+		// console.log('selected', item);
 		navigation.push('UserFeedList', {userobject: data, selected: item});
 	};
 
@@ -198,17 +201,24 @@ export default Profile = ({route, navigation}) => {
 				return (
 					<View style={[temp_style.tabSelectFilled_Type2]}>
 						{getTabSelectList()}
-						{tabMenuSelected == 2 && data.user_type != SHELTER && <ProtectedPetList data={data} onClickLabel={onClickProtectPet} />}
+						{/* {tabMenuSelected == 2 && data.user_type != SHELTER && <ProtectedPetList data={data} onClickLabel={onClickProtectPet} />} */}
+						{/* 보호활동 하는 반려동물들 */}
 					</View>
 				);
 			}
 			if (data.user_type != SHELTER) {
-				return <FeedThumbnailList items={item} onClickThumnail={onClick_Thumbnail_FeedTab} />;
+				if (tabMenuSelected == 0) {
+					return <FeedThumbnailList items={item} onClickThumnail={onClick_Thumbnail_FeedTab} />;
+				} else {
+					return <InfoScreen />;
+				}
 			} else {
 				if (tabMenuSelected != 2) {
 					return <FeedThumbnailList items={item} onClickThumnail={onClick_Thumbnail_FeedTab} />;
+					// return <InfoScreen />;
 				} else {
 					return (
+						// <InfoScreen />
 						<View style={[profile.animalNeedHelpList]}>
 							<AnimalNeedHelpList data={protectActList} onClickLabel={onClickProtectAnimal} />
 						</View>

@@ -88,7 +88,7 @@ export default Modal = {
 
 	/**
 	 * 반려 동물을 선택하는 모달창
-	 * @param {Array.<string>} items - 첫번째 항목 배열
+	 * @param {Array.<string>} items -  배열
 	 * @param {string} selectMsg - 확인 버튼 메시지
 	 * @param {string} exitMsg - 확인 버튼 메시지
 	 * @param {(petObject:string)=>void} onSelect - 확인 버튼 콜백

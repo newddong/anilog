@@ -10,10 +10,12 @@ import {CONFIRM_DELETE_FAVORITE_FEED, CONFIRM_DELETE_MY_FEED, CONFIRM_DELETE_TAG
 import {getFeedListByUserId} from 'Root/api/feedapi';
 import {txt} from 'Root/config/textstyle';
 import {GRAY10} from 'Root/config/color';
+import {getUserProfile} from 'Root/api/userapi';
 
 //즐겨찾기한 피드목록을 조회
 export default FavoriteFeeds = ({route, navigation}) => {
 	const token = route.params.token;
+	// console.log('token', token);
 	const [selectMode, setSelectMode] = React.useState(false);
 	const [data, setData] = React.useState([]);
 	const [selectCNT, setSelectCNT] = React.useState(0);
@@ -27,7 +29,7 @@ export default FavoriteFeeds = ({route, navigation}) => {
 						userobject_id: token,
 					},
 					result => {
-						console.log('result / getFeedListByUserId / FavoriteFeeds  : ', result.msg);
+						console.log('result / getFeedListByUserId / FavoriteFeeds  : ', result.msg[0]);
 						setData(result.msg);
 					},
 					err => {
@@ -41,7 +43,7 @@ export default FavoriteFeeds = ({route, navigation}) => {
 						userobject_id: token,
 					},
 					result => {
-						console.log('result / getFeedListByUserId / FavoriteFeeds  : ', result.msg);
+						// console.log('result / getFeedListByUserId / FavoriteFeeds  : ', result.msg);
 						setData(result.msg);
 					},
 					err => {
@@ -55,7 +57,7 @@ export default FavoriteFeeds = ({route, navigation}) => {
 						userobject_id: token,
 					},
 					result => {
-						console.log('result / getFeedListByUserId / FavoriteFeeds  : ', result.msg);
+						// console.log('result / getFeedListByUserId / FavoriteFeeds  : ', result.msg);
 						setData(result.msg);
 					},
 					err => {
@@ -132,20 +134,35 @@ export default FavoriteFeeds = ({route, navigation}) => {
 	//썸네일 클릭 - [ selecteMode에 따른 분기 ]
 	const onClickThumnail = (index, feed_id) => {
 		//선택하기 모드가 아닐 경우 (일반모드이며 썸네일 클릭시 네비게이션 동작)
-		const titleValue = feed_id.feed_writer_id.user_nickname;
+		console.log('선택한 피드의 작성자 Id', feed_id.feed_writer_id._id);
+		console.log('선택한 route.name', route.name);
+
 		if (!selectMode) {
+			const titleValue = feed_id.feed_writer_id.user_nickname;
 			//선택모드 true값과 false값이 반대로 주는 이유 확인 후 case 문으로 변경 필요
-			if (route.name == 'UserFeeds') {
-				navigation.push('UserFeedList', {title: titleValue, userobject: feed_id.feed_writer_id});
-			} else if (route.name == 'TagMeFeeds') {
-				navigation.push('TagMeFeedList', {title: titleValue + '님을 태그한 글', userobject: feed_id.feed_writer_id});
-			} else if (route.name == 'FavoriteFeeds') {
-				navigation.push('FavoriteFeedList', {title: titleValue + '님을 태그한 글', userobject: feed_id.feed_writer_id});
-			}
-			//다른 route가 있을 경우 else if 확장 할 것
-			else {
-				console.log('props.route.name=>' + route.name);
-			}
+			getUserProfile(
+				{
+					userobject_id: feed_id.feed_writer_id._id,
+				},
+				result => {
+					console.log('result / getUserProfile / FavoriteFeeds   :', result.msg.feedList[0]);
+					if (route.name == 'UserFeeds') {
+						navigation.push('UserFeedList', {title: titleValue, userobject: result.msg, selected: feed_id});
+					} else if (route.name == 'TagMeFeeds') {
+						// console.log('tageme');
+						navigation.push('TagMeFeedList', {title: titleValue + '님을 태그한 글', userobject: result.msg, selected: feed_id});
+					} else if (route.name == 'FavoriteFeeds') {
+						navigation.push('FavoriteFeedList', {title: titleValue + '님을 태그한 글', userobject: result.msg, selected: feed_id});
+					}
+					//다른 route가 있을 경우 else if 확장 할 것
+					else {
+						console.log('props.route.name=>' + route.name);
+					}
+				},
+				err => {
+					Modal.alert('err / getUserProfile / FavoriteFeeds ' + err);
+				},
+			);
 		} else if (selectMode) {
 			//SelectMode가 true일 경우, 썸네일 클릭 시 선택여부 state가 변화
 			let copy = [...data];

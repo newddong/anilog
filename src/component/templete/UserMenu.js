@@ -45,8 +45,8 @@ export default UserMenu = props => {
 	const ifFoucsed = useIsFocused();
 	const [data, setData] = React.useState({}); //우선 userObject 0번 추가
 	const [showMoreIntro, setShowMoreIntro] = React.useState(false);
+
 	//토큰에 로그인한 유저의 _id를 저장
-	// React.useLayoutEffect(() => {
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
 			if (res == null) {
@@ -54,6 +54,7 @@ export default UserMenu = props => {
 			}
 		});
 	}, []);
+
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
 			getUserProfile(
@@ -130,19 +131,23 @@ export default UserMenu = props => {
 	const menuClick = menuItem => {
 		switch (menuItem) {
 			case '친구':
-				navigation.push('SaveFavorite'); // FollowObject
+				alert('업데이트 예정입니다');
+				// navigation.push('SaveFavorite'); // FollowObject
 				break;
 			case '피드 게시글':
-				navigation.push('FavoriteFeeds', {token: data._id}); // FavoriteFeedObject
+				alert('업데이트 예정입니다');
+				// navigation.push('FavoriteFeeds', {token: data}); // FavoriteFeedObject
 				break;
 			case '보호 요청':
-				navigation.push('UserSaveAnimalRequest'); // BookmarkProtectRequestObject
+				// navigation.push('UserSaveAnimalRequest'); // BookmarkProtectRequestObject
+				alert('업데이트 예정입니다');
 				break;
 			case '내 게시글':
-				navigation.push('UserFeeds', {token: data._id});
+				navigation.push('UserFeeds', {token: data});
 				break;
 			case '나를 태그한 글':
-				navigation.push('TagMeFeeds', {token: data._id});
+				alert('업데이트 예정입니다');
+				// navigation.push('TagMeFeeds', {token: data});
 				break;
 			case '신청 내역':
 				navigation.push('AppliesRecord', data._id); // ShelterProtectAnimalObject

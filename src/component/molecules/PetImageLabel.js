@@ -3,7 +3,7 @@ import {View, Image, Text, TouchableOpacity} from 'react-native';
 import {GRAY10} from 'Root/config/color';
 import {txt} from 'Root/config/textstyle';
 import {DEFAULT_PROFILE} from 'Root/i18n/msg';
-import {Paw62_APRI10, Paw62_Mixed, Paw62_YELL20} from '../atom/icon';
+import {Paw62_APRI10, Paw62_Mixed, Paw62_YELL20, ProfileDefaultImg} from '../atom/icon';
 import {styles} from '../atom/image/imageStyle';
 
 /**
@@ -29,15 +29,17 @@ const PetImageLabel = props => {
 	};
 	return (
 		<TouchableOpacity onPress={onPressLabel} style={{width: 180 * DP, height: 180 * DP}}>
-			<Image
-				source={{
-					uri:
-						props.data.user_profile_uri != undefined
-							? props.data.user_profile_uri
-							: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/daebe896352685.5eac4787af6fa.jpg',
-				}}
-				style={styles.img_round_180}
-			/>
+			{props.data.user_profile_uri != undefined ? (
+				<Image
+					source={{
+						uri: props.data.user_profile_uri,
+					}}
+					style={styles.img_round_180}
+				/>
+			) : (
+				<ProfileDefaultImg size={{width: 180 * DP, height: 180 * DP}} />
+			)}
+
 			<View style={{position: 'absolute'}}>{petStatus()}</View>
 			{props.showNickname ? <Text style={[txt.noto28, {color: GRAY10, textAlign: 'center'}]}>{props.data.user_nickname}</Text> : <></>}
 		</TouchableOpacity>

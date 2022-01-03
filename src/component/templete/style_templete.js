@@ -3292,7 +3292,7 @@ export const reportDetail = StyleSheet.create({
 	basic_separator: {
 		width: 654 * DP,
 		height: 60 * DP,
-		backgroundColor: '#fff',
+		// backgroundColor: '#fff',
 	},
 	separator: {
 		width: 654 * DP,
