@@ -77,8 +77,8 @@ export default AssignShelterAddress = props => {
 	};
 
 	const nameValidator = name => {
-		console.log('이름 유효성 검사', name.length > 0);
-		return name.length > 0;
+		var regExp = /^[\wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
+		return regExp.test(name);
 	};
 	const onValidName = isValid => {
 		setConfirmName(isValid);
@@ -122,7 +122,7 @@ export default AssignShelterAddress = props => {
 					showMsg
 					width={654}
 					confirm_msg={''}
-					alert_msg={'보호소 이름을 입력하세요'}
+					alert_msg={'유효한 보호소 이름을 입력하세요, 띄어쓰기는 허용되지 않습니다.'}
 				/>
 			</View>
 
