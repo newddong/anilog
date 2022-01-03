@@ -81,7 +81,7 @@ export default UserInfoSetting = ({route}) => {
 
 	//나의 반려동물 => 반려클릭
 	const onClickCompanionLabel = myPetData => {
-		// console.log('myPetdata', myPetData);
+		console.log('myPetdata', myPetData);
 		navigation.push('PetInfoSetting', {pet_id: myPetData._id, token: data});
 	};
 

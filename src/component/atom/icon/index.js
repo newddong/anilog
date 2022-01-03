@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
+import {TouchableOpacity, TouchableWithoutFeedback, View} from 'react-native';
 
 import heartFilled from './heartFilled';
 import heartBorder from './heartBorder';
@@ -165,7 +165,7 @@ export const ProfileDefaultImg2_194 = makeSvg(profiledefault2, profileDefaultImg
 export const ProfileDefaultImg3_194 = makeSvg(profiledefault3, profileDefaultImg_194, '');
 export const ProfileDefaultImg1_70 = makeSvg(profiledefault1, size70, '');
 export const ProfileDefaultImg = props => {
-	return React.createElement(TouchableOpacity, {...props}, React.createElement(profiledefault1, {...props.size, fill: props.color}));
+	return React.createElement(View, {...props}, React.createElement(profiledefault1, {...props.size, fill: props.color}));
 };
 
 export const Heart30_Filled = makeSvg(heartFilled, size30, APRI10);
