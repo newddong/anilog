@@ -59,7 +59,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 	//닉네임 Validation
 	const nickName_validator = text => {
 		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
-		let regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
+		let regExp = /^[\w\ㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
 		let regExSpace = text.search(/\s/);
 		let blank_pattern = /\s/g;
 		console.log('nickname valid', regExp.test(text));
@@ -174,9 +174,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 							validator={nickName_validator}
 							onChange={onNicknameChange}
 							onValid={onNicknameValid}
-							confirm={nickName_validator}
 							ref={nicknameInput}
-							// confirm={nickName_validator}
 							maxLength={25}
 						/>
 					</View>
