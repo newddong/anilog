@@ -169,7 +169,7 @@ export default FeedContent = props => {
 				</View>
 			)}
 
-			{(route.name.includes('FeedList') || feed_type != 'report' || show) && (
+			{(route.name.includes('FeedList')||feed_type=='report'||feed_type=='missing' || show) && (
 				<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]}>
 					<HashText style={[txt.noto28]} numberOfLines={shouldBeDetail ? 0 : 2} onLayout={onLayoutContent}>
 						{feed_content}

@@ -37,7 +37,7 @@ export default FeedThumbnailList = props => {
 					renderItem={renderItem}
 					keyExtractor={(item, index) => index + ''}
 					ListHeaderComponent={props.ListHeaderComponent}
-					stickyHeaderIndices={[1]}
+					// stickyHeaderIndices={[1]}
 					nestedScrollEnabled
 					showsVerticalScrollIndicator={false}
 					numColumns={NUMCOLUMNS}

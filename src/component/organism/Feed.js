@@ -81,20 +81,26 @@ export default Feed = React.memo(props => {
 								<Text style={[txt.roboto24]}>{feed_like_count}</Text>
 							</View>
 						</View>
-						<View style={organism_style.like48}>
-							<Comment48_Border />
-						</View>
-						<View style={organism_style.comment_count_view_feed}>
-							<View style={[organism_style.comment_count_feed, feed_style.comment_count]}>
-								<Text style={[txt.roboto24]}>{feed_comment_count}</Text>
+						<TouchableOpacity onPress={moveToCommentList}>
+							<View style={{ flexDirection: 'row'}}>
+								<View style={organism_style.like48}>
+									<Comment48_Border />
+								</View>
+								<View style={organism_style.comment_count_view_feed}>
+									<View style={[organism_style.comment_count_feed, feed_style.comment_count]}>
+										<Text style={[txt.roboto24]}>{feed_comment_count}</Text>
+									</View>
+								</View>
 							</View>
-						</View>
+						</TouchableOpacity>
 					</View>
 
 					{/* 댓글 comment_count개 모두 보기 */}
 					<View style={[organism_style.allCommentCount]}>
 						<TouchableOpacity onPress={moveToCommentList}>
-							<Text style={[txt.noto24]}>{feed_comment_count > 0 ? `댓글 ${feed_comment_count}개 모두 보기` : '댓글 쓰기'}</Text>
+							<View style={{height: 80 * DP}}>
+								<Text style={[txt.noto24]}>{feed_comment_count > 0 ? `댓글 ${feed_comment_count}개 모두 보기` : '댓글 쓰기'}</Text>
+							</View>
 						</TouchableOpacity>
 					</View>
 				</View>

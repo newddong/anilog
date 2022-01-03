@@ -546,6 +546,28 @@ const ReportForm = props => {
 		);
 	};
 
+	React.useEffect(() => {
+		console.log('district update -------');
+		console.log('data.report_location.district -------', data.report_location.district);
+		getAddressList(
+			{
+				city: data.report_location.city,
+				district: data.report_location.district,
+			},
+			neighbor => {
+				console.log('neighbor  ', neighbor.msg);
+				if (neighbor.msg.length == 0) {
+					setNeighbor(['목록없음']);
+				} else {
+					setNeighbor(neighbor.msg);
+				}
+				setData({...data, report_location: {city: data.report_location.city, district: data.report_location.district, neighbor: neighbor.msg[0]}});
+				// data.report_location.district == data.report_location.district ? false : setIsDistrictChanged(!isDistrictChanged);
+				setIsDistrictChanged(!isDistrictChanged);
+			},
+		);
+	}, [data.report_location.district]);
+
 	const onSelectDistrict = (item, index) => {
 		getAddressList(
 			{
@@ -594,6 +616,8 @@ const ReportForm = props => {
 	const onChangeDetailAddr = addr => {
 		let copied_location = data.report_location;
 		copied_location.detailAddr = addr;
+		console.log('addr:', addr);
+		console.log('copied_location:', copied_location);
 		setData({...data, report_location: copied_location});
 		// setDetailAddr(addr);
 	};
@@ -694,8 +718,8 @@ const ReportForm = props => {
 							onChange={onChangeDetailAddr}
 							onClear={onClearDetailAddr}
 							width={654}
-							placeholder={'장소의 세부적인 정보를 적어주세요 (30자)'}
-							maxlength={30}
+							placeholder={'장소의 세부적인 정보를 적어주세요 (20자)'}
+							maxlength={21}
 							// value={detailAddr}
 							value={data.report_location.detailAddr}
 						/>
