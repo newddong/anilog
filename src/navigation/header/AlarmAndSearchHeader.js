@@ -12,7 +12,7 @@ export default AlarmAndSearchHeader = ({navigation, route, options, back}) => {
 		alert('Search');
 	};
 	const clickAlarm = () => {
-		alert('Alarm!');
+		alert('이후 버전에서 제공할 예정입니다!');
 	};
 	return (
 		<View style={[style.headerContainer, style.shadow]}>

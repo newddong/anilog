@@ -9,13 +9,13 @@ import SvgWrapper, {SvgWrap} from 'Screens/svgwrapper';
 
 export default LogoHeader = ({navigation, route, options, back}) => {
 	const clickLogo = () => {
-		alert('Logo!');
+		// alert('Logo!');
 	};
 	const clickSearch = () => {
 		navigation.navigate('Search', {mother: 0, child: 0, prevNav: route.name});
 	};
 	const clickAlarm = () => {
-		alert('Alarm!');
+		alert('이후 버전에서 제공할 예정입니다!');
 	};
 	return (
 		<View style={[style.headerContainer, style.shadow]}>

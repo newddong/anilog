@@ -9,6 +9,7 @@ import {APRI10, GRAY30, RED10} from 'Root/config/color';
  * @param {string} props.title - 인풋 상단의 제목
  * @param {string} props.placeholder - 인풋의 PlaceHolder
  * @param {(input:string)=>void} props.onChange - 인풋 값 변경 콜백
+ * @param {number} props.maxLength - 인풋의 길이 제한값
  */
 const InputBalloon = props => {
 	const inputRef = React.useRef();
@@ -53,6 +54,7 @@ const InputBalloon = props => {
 					placeholder={props.placeholder}
 					multiline={true}
 					ref={inputRef}
+					maxLength={props.maxLength}
 				/>
 			</View>
 		</View>
@@ -62,6 +64,7 @@ InputBalloon.defaultProps = {
 	placeholder: 'placeholder',
 	value: 'value',
 	title: 'title',
+	maxLength: 300,
 	onChange: e => console.log(e),
 };
 export default InputBalloon;

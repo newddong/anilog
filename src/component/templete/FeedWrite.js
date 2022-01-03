@@ -101,8 +101,8 @@ export default FeedWrite = props => {
 				ImagePicker.openPicker({
 					// multiple: true,
 					compressImageQuality: 0.8,
-					width:750,
-					height:750,
+					width: 750,
+					height: 750,
 					cropping: true,
 				})
 					.then(images => {
@@ -128,7 +128,7 @@ export default FeedWrite = props => {
 						if (!responseObject.didCancel) {
 							let tempContainer = [...selectedImg];
 							responseObject.assets.map(v => tempContainer.push(v.uri));
-							setSelectedImg(tempContainer);
+							setSelectedImg(tempContainer.slice(-5));
 							Modal.close();
 						}
 					},
@@ -247,9 +247,10 @@ export default FeedWrite = props => {
 				containerStyle={[temp_style.feedTextEdit, {borderBottomWidth: 2 * DP, borderBottomColor: APRI10}]}
 				textAlignVertical={'top'}
 				multiline={true}
-				placeholder="게시물을 작성하세요"
+				placeholder="게시물을 작성하세요 (150자)"
 				placeholderTextColor={GRAY20}
 				onChangeText={inputFeedTxt}
+				maxLength={150}
 				onFind={onFindTag}></HashInput>
 
 			{!isSearchTag && setWriteModeState()}
@@ -416,16 +417,19 @@ const MissingForm = props => {
 					width={654}
 					descriptionType={'none'}
 					onChange={inputAge}
+					maxlength={2}
+					keyboardType="number-pad"
 					value={data.missing_animal_age}
 				/>
 			</View>
 			<View style={[temp_style.input24, feedWrite.input24]}>
 				<Input24
 					title={'실종 위치'}
-					placeholder="실종 동물의 위치를 입력하세요"
+					placeholder="실종 동물의 위치를 입력하세요 (20자)"
 					width={654}
 					descriptionType={'none'}
 					onChange={inputLocation}
+					maxlength={20}
 					value={data.missing_animal_lost_location}
 				/>
 			</View>
@@ -436,15 +440,18 @@ const MissingForm = props => {
 					width={654}
 					descriptionType={'none'}
 					onChange={inputContact}
+					keyboardType="number-pad"
+					maxlength={15}
 					value={data.missing_animal_contact}
 				/>
 			</View>
 			<View style={[temp_style.inputBalloon, feedWrite.inputBalloon]}>
 				<InputBalloon
 					title={'실종 동물의 특징'}
-					placeholder="실종 동물의 특징을 상세하게 적어주세요"
+					placeholder="실종 동물의 특징을 상세하게 적어주세요 (150자)"
 					onChange={inputFeature}
 					value={data.missing_animal_features}
+					maxLength={150}
 				/>
 			</View>
 		</ScrollView>
@@ -664,13 +671,7 @@ const ReportForm = props => {
 							<NormalDropDown menu={district} onSelect={onSelectDistrict} width={180} height={300} isLargeCategoryChanged={isCityChanged} />
 						</View>
 						<View style={[feedWrite.addressDropDownContainer]}>
-							<NormalDropDown
-								menu={neighbor}
-								onSelect={onSelectNeighbor}
-								width={180}
-								height={300}
-								isLargeCategoryChanged={isCityChanged || isDistrictChanged}
-							/>
+							<NormalDropDown menu={neighbor} onSelect={onSelectNeighbor} width={180} height={300} isLargeCategoryChanged={isDistrictChanged} />
 						</View>
 					</View>
 					<View style={[temp_style.inputNoTitle, feedWrite.locationDetail]}>
@@ -678,7 +679,8 @@ const ReportForm = props => {
 							onChange={onChangeDetailAddr}
 							onClear={onClearDetailAddr}
 							width={654}
-							placeholder={'장소의 세부적인 정보를 적어주세요'}
+							placeholder={'장소의 세부적인 정보를 적어주세요 (30자)'}
+							maxlength={30}
 							// value={detailAddr}
 							value={data.report_location.detailAddr}
 						/>
@@ -686,8 +688,9 @@ const ReportForm = props => {
 					<View style={[temp_style.inputBalloon, feedWrite.inputBalloon]}>
 						<InputBalloon
 							title={'제보할 동물의 특징'}
-							placeholder="제보할 동물의 특징을 상세하게 적어주세요"
+							placeholder="제보할 동물의 특징을 상세하게 적어주세요 (150자)"
 							onChange={inputFeature}
+							maxLength={150}
 							value={data.missing_animal_features}
 						/>
 					</View>

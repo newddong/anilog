@@ -154,6 +154,7 @@ export default SetPetInformation = ({route, navigation}) => {
 							value={data.pet_weight}
 							validator={weigthValid}
 							keyboardType={'number-pad'}
+							maxLength={3}
 						/>
 					</View>
 					<View style={[setPetInformation.kg]}>
