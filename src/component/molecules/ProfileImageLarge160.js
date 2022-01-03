@@ -26,9 +26,9 @@ const ProfileImageLarge160 = props => {
 		switch (profile_data.pet_status) {
 			case 'normal':
 				return <Paw48_APRI10 />;
-			case 'protected':
+			case 'protect':
 				return <Paw48_YELL20 />;
-			case 'adopted':
+			case 'adopt':
 				return <Paw48_Mixed />;
 			default:
 				return <></>;

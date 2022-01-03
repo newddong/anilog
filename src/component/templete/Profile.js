@@ -35,7 +35,7 @@ export default Profile = ({route, navigation}) => {
 				result => {
 					navigation.setOptions({title: result.msg.user_nickname});
 					setData(result.msg);
-					// console.log('getUserProfileResult', result);
+					console.log('getUserProfileResult', result.msg);
 				},
 				err => {
 					Modal.popOneBtn(err, '확인', () => {

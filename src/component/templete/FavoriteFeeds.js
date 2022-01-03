@@ -145,17 +145,18 @@ export default FavoriteFeeds = ({route, navigation}) => {
 				if (!selectMode) {
 					//선택모드 true값과 false값이 반대로 주는 이유 확인 후 case 문으로 변경 필요
 					if (route.name == 'UserFeeds') {
-						navigation.push('UserFeedList', {title: titleValue, userobject: feed_id.feed_writer_id, selected: feed_id});
+						navigation.push('UserFeedList', {title: titleValue, userobject: result.msg, selected: feed_id});
 					} else if (route.name == 'TagMeFeeds') {
 						// console.log('tageme');
-						navigation.push('TagMeFeedList', {title: titleValue + '님을 태그한 글', userobject: feed_id.feed_writer_id, selected: feed_id});
+						navigation.push('TagMeFeedList', {title: titleValue + '님을 태그한 글', userobject: result.msg, selected: feed_id});
 					} else if (route.name == 'FavoriteFeeds') {
-						navigation.push('FavoriteFeedList', {title: titleValue + '님을 태그한 글', userobject: feed_id.feed_writer_id});
+						navigation.push('FavoriteFeedList', {title: titleValue + '님을 태그한 글', userobject: result.msg});
 					}
 					//다른 route가 있을 경우 else if 확장 할 것
 					else {
 						console.log('props.route.name=>' + route.name);
 					}
+					````````````;
 				} else if (selectMode) {
 					//SelectMode가 true일 경우, 썸네일 클릭 시 선택여부 state가 변화
 					let copy = [...data];
