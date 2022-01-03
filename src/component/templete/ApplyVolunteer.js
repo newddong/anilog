@@ -121,7 +121,8 @@ export default ApplyVolunteer = ({route, navigation}) => {
 
 	//계정추가 버튼 클릭
 	const addVolunteer = () => {
-		navigation.push('Search', {mother: 0, child: 1, prevNav: route.name});
+		// navigation.push('Search', {mother: 0, child: 1, prevNav: route.name});
+		navigation.push('AddVolunteers');
 	};
 
 	//DatePicker로 날짜 지정할 시, 하단에 봉사활동 날짜 Item이 View로 보여짐

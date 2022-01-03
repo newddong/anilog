@@ -59,10 +59,13 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 	//닉네임 Validation
 	const nickName_validator = text => {
 		// ('* 2자 이상 15자 이내의 영문,숫자, _ 의 입력만 가능합니다.');
-		var regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
+		let regExp = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
+		let regExSpace = text.search(/\s/);
+		let blank_pattern = /\s/g;
 		console.log('nickname valid', regExp.test(text));
-		setValid(regExp.test(text));
-		return regExp.test(text);
+
+		setValid(regExp.test(text) && !regExSpace);
+		return regExp.test(text) && !blank_pattern.test(text);
 	};
 
 	//임시보호 동물 체크박스 클릭(코드 보완 필요, 가독성이 좋지 않음)
@@ -162,7 +165,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 				<View style={[temp_style.inputForm_assignPetProfileImage, assignPetProfileImage_style.inputForm]}>
 					<View style={[temp_style.input30_assignPetProfileImage]}>
 						<Input30
-							// value={data.user_nickname}
+							value={data.user_nickname}
 							showTitle={false}
 							width={654}
 							confirm_msg={'사용 가능한 닉네임입니다.'}
@@ -173,7 +176,7 @@ export default AssignPetProfileImage = ({navigation, route}) => {
 							onValid={onNicknameValid}
 							confirm={nickName_validator}
 							ref={nicknameInput}
-							confirm={valid}
+							// confirm={nickName_validator}
 							maxLength={25}
 						/>
 					</View>

@@ -64,6 +64,7 @@ import InputAndSearchHeader from '../header/InputAndSearchHeader';
 import LogoutView from 'Root/test_sangwoo/LogoutView';
 import RequestLogin from 'Root/component/templete/RequestLogin';
 import RadioSelectModal from 'Root/component/molecules/RadioSelectModal';
+import AddVolunteers from 'Root/component/templete/AddVolunteers';
 // import Camera from 'Root/component/templete/Camera';
 const RootStack = createStackNavigator();
 
@@ -230,6 +231,11 @@ export default RootStackNavigation = () => {
 					<RootStack.Screen name="ApplyAnimalAdoptionE" component={ApplyDetails} options={{header: props => <SimpleHeader {...props} />}} />
 
 					<RootStack.Screen name="ApplyVolunteer" component={ApplyVolunteer} />
+					<RootStack.Screen
+						name="AddVolunteers"
+						component={AddVolunteers}
+						options={{header: props => <SimpleHeader {...props} />, title: '봉사활동 계정 추가'}}
+					/>
 					<RootStack.Screen name="FeedMediaTagEdit" component={FeedMediaTagEdit} />
 					<RootStack.Screen
 						name="FeedWrite"

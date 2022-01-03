@@ -115,7 +115,6 @@ const Input30 = React.forwardRef((props, ref) => {
 								color: props.confirm ? BLACK : RED10,
 								// width: props.width * DP,
 								width: props.width ? props.width * DP - 46 * DP : null,
-
 								// textAlign: 'center',
 							},
 						]}
