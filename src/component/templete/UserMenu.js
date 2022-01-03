@@ -45,8 +45,8 @@ export default UserMenu = props => {
 	const ifFoucsed = useIsFocused();
 	const [data, setData] = React.useState({}); //우선 userObject 0번 추가
 	const [showMoreIntro, setShowMoreIntro] = React.useState(false);
+
 	//토큰에 로그인한 유저의 _id를 저장
-	// React.useLayoutEffect(() => {
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
 			if (res == null) {
@@ -54,6 +54,7 @@ export default UserMenu = props => {
 			}
 		});
 	}, []);
+
 	React.useEffect(() => {
 		AsyncStorage.getItem('token', (err, res) => {
 			getUserProfile(

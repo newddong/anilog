@@ -196,11 +196,11 @@ export default UserInfoSetting = ({route}) => {
 									</View>
 								) : (
 									<View style={{}}>
-										{/* 더미 텍스트 삭제금지 */}
 										<Text style={[txt.noto24, {color: GRAY10}]} ellipsizeMode={'tail'} numberOfLines={showMore ? null : 3}>
 											{data.user_introduction || ''}
 										</Text>
-										{/* 삭제금지 */}
+										{/* 더미 텍스트 삭제금지 */}
+
 										<Text
 											style={[txt.noto24, {position: 'absolute', opacity: 0, backgroundColor: 'red'}]}
 											numberOfLines={null}
@@ -209,6 +209,7 @@ export default UserInfoSetting = ({route}) => {
 											}}>
 											{data.user_introduction || ''}
 										</Text>
+										{/* 삭제금지 */}
 										{numberOfLines > 3 ? (
 											<TouchableOpacity
 												onPress={() => setShowMore(!showMore)}
