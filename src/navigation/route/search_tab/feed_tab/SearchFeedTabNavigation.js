@@ -5,6 +5,8 @@ import SearchFeed from 'Templete/SearchFeed';
 import SearchHashTag from 'Templete/SearchHashTag';
 import TopTabNavigation_Border_Type2 from 'Root/component/organism_ksw/TopTabNavigation_Border_Type2';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
+import Profile from 'Root/component/templete/Profile';
+import MeatBallHeader from 'Root/navigation/header/MeatBallHeader';
 
 const SearchFeedTabNav = createMaterialTopTabNavigator();
 
@@ -28,6 +30,10 @@ export default SearchFeedTabNavigation = props => {
 
 	const menuItem = ['게시글', '계정', '태그'];
 	const navName = ['SearchFeed', 'SearchAccountA', 'SearchHashTag'];
+
+	const onClickUser = sendUserobject => {
+		props.onClickUser(sendUserobject);
+	};
 
 	return (
 		<SearchFeedTabNav.Navigator
@@ -56,7 +62,7 @@ export default SearchFeedTabNavigation = props => {
 			<SearchFeedTabNav.Screen name="SearchFeed">{props => <SearchFeed {...props} />}</SearchFeedTabNav.Screen>
 			{/* 계정 */}
 			<SearchFeedTabNav.Screen name="SearchAccountA">
-				{props => <SearchAccountA {...props} prevNav={props.prev} input={searchInput} />}
+				{props => <SearchAccountA {...props} prevNav={props.prevNav} input={searchInput} onClickUser={onClickUser} />}
 			</SearchFeedTabNav.Screen>
 			{/* 태그 */}
 			<SearchFeedTabNav.Screen name="SearchHashTag">{props => <SearchHashTag {...props} input={searchInput} />}</SearchFeedTabNav.Screen>

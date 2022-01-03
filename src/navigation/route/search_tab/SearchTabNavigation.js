@@ -8,9 +8,11 @@ import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
 const SearchTabNav = createMaterialTopTabNavigator();
 
-export default SearchTabNavigation = ({route, navigation}) => {
+export default SearchTabNavigation = props => {
 	// navigation.push('Search', {mother: 0, child: 1});
 	// ㄴ 위와 같이 호출할 경우 mother는 상위TopTab의 Tab인덱스를, child는 하단TopTab의 인덱스를 설정해줄 수 있음.
+	const prevNav = props.route.params.prevNav;
+	const childTab = props.route.params.child;
 	const [searchInput, setSearchInput] = React.useState();
 	const tabList = ['피드', '커뮤니티', '보호요청'];
 	const navName = ['FEED', 'COMMUNITY', 'SearchProtectRequest'];
@@ -18,8 +20,8 @@ export default SearchTabNavigation = ({route, navigation}) => {
 
 	const [currentScreen, setCurrentScreen] = React.useState(0); //현재 보고 있는 화면 State
 	const [currentChild, setCurrentChild] = React.useState(''); //현재 보고 있는 화면 State
-	const routeName = getFocusedRouteNameFromRoute(route); //현재 활성화되어 있는 스크린의 이름을 받아옴
-	// console.log('route', routeName);
+	const routeName = getFocusedRouteNameFromRoute(props.route); //현재 활성화되어 있는 스크린의 이름을 받아옴
+	console.log('route', routeName);
 	React.useEffect(() => {
 		if (routeName == navName[0]) setCurrentScreen(0);
 		else if (routeName == navName[1]) setCurrentScreen(1);
@@ -28,16 +30,25 @@ export default SearchTabNavigation = ({route, navigation}) => {
 	}, [routeName]);
 
 	React.useEffect(() => {
-		setSearchInput(route.params);
-	}, [route.params]);
+		setSearchInput(props.route.params);
+	}, [props.route.params]);
 
 	//하단 SearchFeedTabNavigation에서 스크린이 바뀔 때 호출
 	const routeNameChanged = v => {
 		// console.log('routeNameChanged / SearchTabNavigation  : ', v);
 		// navigation.setOptions({childName: routeName});
 		//헤더에 현재 보고있는 피드 - [게시글 , 계정, 태그] 스크린 정보를 송신
-		navigation.setParams({routeName: v});
+		props.navigation.setParams({routeName: v});
 		setCurrentChild(v);
+	};
+
+	const onClickUser = sendUserobject => {
+		// console.log('prevNav', prevNav);
+		// console.log('sendUserobject', sendUserobject);
+		prevNav == 'ProtectionTab'
+			? props.navigation.navigate('ProtectionTabUserProfile', {userobject: sendUserobject})
+			: props.navigation.navigate('FeedUserProfile', {userobject: sendUserobject});
+		// props.onClickUser();
 	};
 
 	return (
@@ -56,7 +67,7 @@ export default SearchTabNavigation = ({route, navigation}) => {
 				return (
 					<TopTabNavigation_Filled
 						onSelect={onSelectTab} // 현재 클릭된 상태인 tab (pressedTab에는 클릭된 index가 담겨져있음)
-						select={route.params.mother ? route.params.mother : state.index} // gesture Handler(손가락으로 swipe)로 tab을 움직였을 시 자식까지 state를 연동시키기 위한 props
+						select={props.route.params.mother ? props.route.params.mother : state.index} // gesture Handler(손가락으로 swipe)로 tab을 움직였을 시 자식까지 state를 연동시키기 위한 props
 						fontSize={24}
 						menu={tabList}
 						value={currentScreen}
@@ -69,9 +80,10 @@ export default SearchTabNavigation = ({route, navigation}) => {
 						{...props}
 						input={searchInput}
 						routeNameChild={routeNameChanged}
-						prevNav={route.params.prevNav}
+						prevNav={prevNav}
 						routeName={currentChild}
-						defaultIndex={route.params.child ? route.params.child : 0}
+						onClickUser={onClickUser}
+						defaultIndex={childTab ? childTab : 0}
 					/>
 				)}
 			</SearchTabNav.Screen>

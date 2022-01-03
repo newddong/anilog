@@ -62,9 +62,10 @@ export default SearchAccountA = props => {
 
 	//계정 클릭 콜백
 	const onClickAccount = (item, index) => {
-		console.log('click item', item);
+		// console.log('click item', item);
 		let sendUserobject = {_id: item._id};
-		navigation.push('UserProfile', {userobject: sendUserobject});
+		// props.navigation.navigate('UserProfile', {userobject: sendUserobject});
+		props.onClickUser(sendUserobject);
 		// navigation.reset({index: 0, route: {name: 'UserProfile', params: {userobject: sendUserobject}}});
 	};
 

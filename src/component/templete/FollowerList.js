@@ -10,15 +10,10 @@ import {getFollows, getFollowers} from 'Root/api/userapi';
 export default FollowerList = ({route, navigation}) => {
 	const [searchInput, setSearchInput] = React.useState('');
 	const [myFollower, setMyFollower] = React.useState(); // 팔로워리스트 현재 빈 값
-	const onWrite = () => {
-		console.log('Onwrite');
-	};
-	const onChangeSearchInput = text => {
-		console.log('text', text);
-	};
 
-	const onSearch = () => {
-		console.log('Search Start');
+	const onClickAccount = item => {
+		// console.log('item', item);
+		navigation.push('UserProfile', {userobject: item});
 	};
 
 	React.useEffect(() => {
@@ -35,7 +30,7 @@ export default FollowerList = ({route, navigation}) => {
 				},
 			);
 		}
-		if(route.name == 'FollowingList'){
+		if (route.name == 'FollowingList') {
 			getFollows(
 				{
 					userobject_id: route.params.userobject._id,
@@ -63,7 +58,11 @@ export default FollowerList = ({route, navigation}) => {
 				<View style={[{alignItems: 'center'}]}>
 					<ScrollView horizontal={false} style={{flex: 0}}>
 						<ScrollView horizontal={true} style={{flex: 1}}>
-							<ControllableAccountList items={myFollower} title={route.name=='FollowerList'?'팔로워':'팔로잉'} />
+							<ControllableAccountList
+								items={myFollower}
+								onClickAccount={onClickAccount}
+								title={route.name == 'FollowerList' ? '팔로워' : '팔로잉'}
+							/>
 						</ScrollView>
 					</ScrollView>
 				</View>

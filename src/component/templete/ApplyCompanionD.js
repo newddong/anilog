@@ -24,7 +24,7 @@ export default ApplyCompanionD = props => {
 	const [temp, setTemp] = React.useState(''); //임시저장된 data
 	const [data, setData] = React.useState({
 		...props.route.params,
-		protect_act_motivation: null, //보호활동 신청동기
+		protect_act_motivation: '', //보호활동 신청동기
 	});
 	React.useEffect(() => {
 		isProtect ? navigation.setOptions({title: '임시보호 신청'}) : navigation.setOptions({title: '입양 신청'});
@@ -60,7 +60,7 @@ export default ApplyCompanionD = props => {
 
 	//다음버튼
 	const goToNextStep = () => {
-		console.log('data Before Next', data.protect_act_motivation);
+		console.log('data Before Next', data);
 		props.route.name == 'ApplyProtectActivityD' ? navigation.push('ApplyProtectActivityE', data) : navigation.push('ApplyAnimalAdoptionE', data);
 	};
 

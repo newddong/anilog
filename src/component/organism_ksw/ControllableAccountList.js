@@ -39,18 +39,17 @@ export default ControllableAccountList = props => {
 
 	const renderItem = (item, index) => {
 		return (
-			<TouchableOpacity
-				onPress={() => onSelectItem(item, index)}
-				style={[selectedItem == index ? controllableAccountList.selectedItem : controllableAccountList.no_selectedItem]}>
+			<View style={[selectedItem == index ? controllableAccountList.selectedItem : controllableAccountList.no_selectedItem]}>
 				<ControllableAccount
 					data={item}
 					showCrossMark={props.showCrossMark}
 					showCheckBox={props.showCheckBox}
 					showButtons={props.showButtons}
+					onClickLabel={() => onSelectItem(item, index)}
 					onPressCrossMark={() => onPressCrossMark(index)}
 					onClickFollowBtn={() => onClickFollowBtn(index)}
 				/>
-			</TouchableOpacity>
+			</View>
 		);
 	};
 

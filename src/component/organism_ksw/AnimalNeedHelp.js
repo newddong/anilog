@@ -26,7 +26,7 @@ import {useNavigation} from '@react-navigation/core';
  * }} props
  */
 export default AnimalNeedHelp = props => {
-	// console.log('AnimalNeedHelp', props.data.protect_animal_sex);
+	// console.log('AnimalNeedHelp', props.data);
 	// console.log('AnimalNeedHelp', props.data.protect_animal_id.protect_animal_sex);
 
 	const navigation = useNavigation();
@@ -72,7 +72,7 @@ export default AnimalNeedHelp = props => {
 				resultJSON.gender = data.report_animal_sex;
 			}
 		} else {
-			resultJSON.gender = data.protect_animal_id.protect_animal_sex;
+			resultJSON.gender = data.protect_animal_id?.protect_animal_sex;
 			resultJSON.status = data.protect_request_status || data.protect_act_status;
 			// 기타 다른 경우의 수가 있는지 추후 확인
 		}
@@ -171,7 +171,6 @@ export default AnimalNeedHelp = props => {
 								<Text style={[txt.noto24]}>
 									{/* 보호장소 : {data.protect_request_writer_id != null ? data.protect_request_writer_id.shelter_name : data.shelter_name} */}
 									보호장소 : {data.shelter_name ? data.shelter_name : data.protect_request_writer_id.shelter_name}
-									{/* 보호장소 : {data.shelter_name} */}
 								</Text>
 								<Text style={[txt.noto24]}>
 									구조지역 :

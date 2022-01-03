@@ -36,6 +36,7 @@ export default MainTabNavigation = ({route, navigation}) => {
 		}
 		return true;
 	};
+
 	return (
 		<MainTabNav.Navigator initialRouteName={'FEED'} tabBar={props => <BottomTab {...props} />}>
 			<MainTabNav.Screen
@@ -74,13 +75,13 @@ export default MainTabNavigation = ({route, navigation}) => {
 			</MainTabNav.Screen>
 			<MainTabNav.Screen
 				name="Search"
-				component={SearchTabNavigation}
 				options={{
 					header: props => <InputAndSearchHeader {...props} />,
 					tabBarShowLabel: false,
 					// headerShown: !headerOff,
-				}}
-			/>
+				}}>
+				{props => <SearchTabNavigation {...props} user_type={route.params} />}
+			</MainTabNav.Screen>
 		</MainTabNav.Navigator>
 	);
 };

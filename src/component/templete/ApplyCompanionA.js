@@ -33,8 +33,8 @@ export default ApplyCompanionA = ({route}) => {
 			detail: '',
 		},
 
-		protect_act_phone_number: null,
-		protect_request_pet_data: null,
+		protect_act_phone_number: '',
+		protect_request_pet_data: '',
 	});
 	React.useEffect(() => {
 		isProtect ? navigation.setOptions({title: '임시보호 신청'}) : navigation.setOptions({title: '입양 신청'});
@@ -42,14 +42,12 @@ export default ApplyCompanionA = ({route}) => {
 
 	//동물보호 및 입양 요청 스크린에서 보내준 [임시보호 및 입양 신청을 한 동물에 대한 정보] 가 담겨 있는 'protect_request_pet_data'
 	React.useEffect(() => {
-		// console.log('params', route.params.protect_request_pet_data);
-		Object.assign(data, route.params.protect_request_pet_data);
+		console.log('params', route.params.protect_request_pet_data);
 	}, [route.params.protect_request_pet_data]);
 
 	//보호장소 및 연락처가 공란이면 다음 단계로 넘어갈 수 없는 로직
 	React.useEffect(() => {
 		// console.log('data', data);
-		data.protect_act_address.brief != '' && phoneNumFormCheck ? setConfirmed(true) : setConfirmed(false);
 	}, [data]);
 
 	React.useEffect(() => {
@@ -120,6 +118,7 @@ export default ApplyCompanionA = ({route}) => {
 	//확인 버튼 클릭
 	const goToNextStep = () => {
 		// console.log('data', data);
+		Object.assign(data, route.params.protect_request_pet_data);
 		route.name == 'ApplyProtectActivityA' ? navigation.push('ApplyProtectActivityB', data) : navigation.push('ApplyAnimalAdoptionB', data);
 	};
 
@@ -187,7 +186,13 @@ export default ApplyCompanionA = ({route}) => {
 			</View>
 			{/* (A)Btn_w654 */}
 			<View style={[btn_style.btn_w654, applyCompanionA.btn_w654]}>
-				<AniButton btnTitle={'확인'} disable={confirmed ? false : true} titleFontStyle={40} btnLayout={btn_w654} onPress={goToNextStep} />
+				<AniButton
+					btnTitle={'확인'}
+					disable={data.protect_act_address.brief != '' && phoneNumFormCheck ? false : true}
+					titleFontStyle={40}
+					btnLayout={btn_w654}
+					onPress={goToNextStep}
+				/>
 			</View>
 		</View>
 	);

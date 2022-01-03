@@ -45,6 +45,7 @@ export default FeedStackNavigation = () => {
 				component={FeedListForHashTag}
 				options={{header: props => <BookmarkHeader {...props} />, title: '#해시태그'}}
 			/>
+			<FeedStack.Screen name="FeedUserProfile" component={Profile} options={{header: props => <MeatBallHeader {...props} />, title: '프로필'}} />
 		</FeedStack.Navigator>
 	);
 };

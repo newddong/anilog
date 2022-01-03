@@ -38,6 +38,11 @@ export default ProtectionStackNavigation = () => {
 				options={{header: props => <MeatBallHeader {...props} />, title: '제보글'}}
 			/>
 			<ProtectionStack.Screen name="ActivationDetail" component={ActivationDetail} />
+			<ProtectionStack.Screen
+				name="ProtectionTabUserProfile"
+				component={Profile}
+				options={{header: props => <MeatBallHeader {...props} />, title: '프로필'}}
+			/>
 		</ProtectionStack.Navigator>
 	);
 };

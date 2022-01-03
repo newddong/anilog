@@ -5,9 +5,9 @@ import {Write94} from '../atom/icon';
 import InputWithSearchIcon from '../molecules/InputWithSearchIcon';
 import ControllableAccountList from '../organism_ksw/ControllableAccountList';
 import {followerList} from './style_templete';
-import { getUserListByNickname } from 'Root/api/userapi';
+import {getUserListByNickname} from 'Root/api/userapi';
 
-export default RecommendedAccountList = props => {
+export default RecommendedAccountList = ({route, navigation}) => {
 	const [searchInput, setSearchInput] = React.useState('');
 	const [recommendList, setRecommendList] = React.useState([]);
 	const onWrite = () => {
@@ -24,8 +24,8 @@ export default RecommendedAccountList = props => {
 	React.useEffect(() => {
 		getUserListByNickname(
 			{
-				user_nickname : '',
-				request_number : 999,
+				user_nickname: '',
+				request_number: 999,
 			},
 			result => {
 				setRecommendList(result.msg);
@@ -34,9 +34,11 @@ export default RecommendedAccountList = props => {
 				Modal.alert(error);
 			},
 		);
-
 	}, []);
 
+	const onClickAccount = data => {
+		navigation.push('UserProfile', {userobject: data});
+	};
 
 	return (
 		<View style={followerList.container}>
@@ -45,7 +47,7 @@ export default RecommendedAccountList = props => {
 					<InputWithSearchIcon onChange={onChangeSearchInput} onSearch={onSearch} placeholder={'검색어를 입력해주세요.'} />
 				</View>
 				<View style={[followerList.accountList_step1]}>
-					<ControllableAccountList items={recommendList} showCrossMark={true} />
+					<ControllableAccountList items={recommendList} onClickAccount={onClickAccount} showCrossMark={true} />
 				</View>
 			</ScrollView>
 			<View style={[followerList.floatingBtn]}>

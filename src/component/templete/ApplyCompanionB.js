@@ -22,6 +22,7 @@ export default ApplyCompanionC = props => {
 		...props.route.params,
 		protect_act_companion_history: [],
 	});
+	console.log('data', data);
 	const isProtect = props.route.name == 'ApplyProtectActivityB';
 	const [isTempDataAdded, setIsTempDataAdded] = React.useState(false);
 	const [companionList, setCompanionList] = React.useState([]);
@@ -41,12 +42,6 @@ export default ApplyCompanionC = props => {
 			err => Modal.alert(err),
 		);
 		isProtect ? navigation.setOptions({title: '임시보호 신청'}) : navigation.setOptions({title: '입양 신청'});
-	}, []);
-
-	React.useEffect(() => {
-		navigation.addListener('beforeRemove', () => {
-			Modal.close();
-		});
 	}, []);
 
 	React.useEffect(() => {
