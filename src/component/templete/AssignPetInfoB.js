@@ -144,6 +144,7 @@ export default AssignPetInfoB = props => {
 							value={data.pet_weight}
 							validator={weigthValid}
 							keyboardType={'number-pad'}
+							maxLength={3}
 						/>
 					</View>
 					<Text style={[temp_style.text68_assignPetInfo, assignPetInfo_style.text68, txt.noto28]}>kg</Text>
