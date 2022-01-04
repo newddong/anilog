@@ -10,6 +10,9 @@ export default SocialInfoB = props => {
 	const moveToSocialRelation = () => {
 		navigation.push('SocialRelation', {userobject: props.data});
 	};
+	const onPressUpload = () => {
+		navigation.push('UserProfile', {userobject: props.data});
+	};
 	const count_to_K = cnt => {
 		if (cnt > 1000000) {
 			let count = (cnt / 1000000).toFixed(0) + 'm';
@@ -25,7 +28,7 @@ export default SocialInfoB = props => {
 	return (
 		<View style={[socialInfoB.container]}>
 			<View style={[socialInfoB.socialInfo]}>
-				<TouchableWithoutFeedback onPress={moveToSocialRelation}>
+				<TouchableWithoutFeedback onPress={onPressUpload}>
 					<Text style={[txt.roboto36b, socialInfoB.number]}>{count_to_K(props.data.user_upload_count)}</Text>
 				</TouchableWithoutFeedback>
 				<Text style={[txt.noto24, socialInfoB.title]}>업로드</Text>
