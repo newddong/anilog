@@ -92,7 +92,7 @@ export default FeedContent = props => {
 		setShow(true);
 	};
 	const shouldBeDetail = show || route.name == 'MissingAnimalDetail' || route.name == 'ReportDetail';
-	// console.log('경로', route.name, route.name.includes('FeedList'));
+	console.log('경로', route.name, route.name.includes('FeedCommentList'));
 	return (
 		<View style={[organism_style.feedContent, shouldBeDetail ? {height: 270 * DP + reportLayout.height + labelLayout.height + layout.height} : {}]}>
 			{/* // <View style={[organism_style.feedContent,{height:800*DP}]}> */}
@@ -169,7 +169,7 @@ export default FeedContent = props => {
 				</View>
 			)}
 
-			{(route.name.includes('FeedList')||feed_type=='report'||feed_type=='missing' || show) && (
+			{(route.name.includes('FeedList')||feed_type=='report'||feed_type=='missing'||route.name.includes('FeedCommentList') || show) && (
 				<View style={[organism_style.content_feedContent, feedContent_style.content_Top10]}>
 					<HashText style={[txt.noto28]} numberOfLines={shouldBeDetail ? 0 : 2} onLayout={onLayoutContent}>
 						{feed_content}
@@ -182,7 +182,7 @@ export default FeedContent = props => {
 					<Text style={[txt.noto22, {color: GRAY10}]}>{getTimeLapsed(feed_date)}</Text>
 				</View>
 
-				{!show && route.name.includes('FeedList') && (
+				{!show && route.name.includes('FeedList')||route.name.includes('FeedCommentList') && (
 					<TouchableWithoutFeedback onPress={showMore}>
 						<View style={[organism_style.addMore_view_feedContent]}>
 							<View style={[organism_style.addMore_feedContent]}>
