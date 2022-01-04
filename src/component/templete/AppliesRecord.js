@@ -26,42 +26,53 @@ export default AppliesRecord = ({route}) => {
 		getAppliesRecord(
 			{},
 			result => {
-				// console.log('result / getAppliesRecord / ApplitesRecord  : ', JSON.stringify(result.msg));
+				console.log('result / getAppliesRecord / ApplitesRecord  : ', JSON.stringify(result.msg.volunteer[0]));
+
 				// 가장 최근 입양 신청한 내역 받고 필드 정리
-				let adopt = result.msg.adopt[0];
-				let adopt_animal_info = adopt.protect_act_request_article_id.protect_animal_id;
-				delete adopt_animal_info._id;
-				adopt = Object.assign(adopt, adopt_animal_info);
-				adopt.protect_request_photos_uri = adopt.protect_act_request_article_id.protect_request_photos_uri;
-				adopt.protect_request_date = adopt.protect_act_request_article_id.protect_request_date;
-				adopt.protect_request_status = adopt.protect_act_request_article_id.protect_request_status;
-				adopt.shelter_name = adopt.protect_act_request_article_id.protect_request_writer_id.shelter_name;
-				delete adopt.protect_act_request_article_id;
-				const adoptArr = [adopt];
+				if (result.msg.adopt.length > 0) {
+					console.log('dd');
+					let adopt = result.msg.adopt[0];
+					let adopt_animal_info = adopt.protect_act_request_article_id.protect_animal_id;
+					delete adopt_animal_info._id;
+					adopt = Object.assign(adopt, adopt_animal_info);
+					adopt.protect_request_photos_uri = adopt.protect_act_request_article_id.protect_request_photos_uri;
+					adopt.protect_request_date = adopt.protect_act_request_article_id.protect_request_date;
+					adopt.protect_request_status = adopt.protect_act_request_article_id.protect_request_status;
+					adopt.shelter_name = adopt.protect_act_request_article_id.protect_request_writer_id.shelter_name;
+					delete adopt.protect_act_request_article_id;
+					const adoptArr = [adopt];
+					setAdopt_application_list(adoptArr);
+				}
+
 				//가장 최근 임보활동 신청한 내역 받고 필드 정리
-				let protect = result.msg.protect[0];
-				let protect_animal_info = protect.protect_act_request_article_id.protect_animal_id;
-				delete protect_animal_info._id;
-				protect = Object.assign(protect, protect_animal_info);
-				protect.protect_request_photos_uri = protect.protect_act_request_article_id.protect_request_photos_uri;
-				protect.protect_request_date = protect.protect_act_request_article_id.protect_request_date;
-				protect.protect_request_status = protect.protect_act_request_article_id.protect_request_status;
-				protect.shelter_name = protect.protect_act_request_article_id.protect_request_writer_id.shelter_name;
-				delete protect.protect_act_request_article_id;
-				const protectArr = [protect];
-				//봉사활동 신청 내역 받고 필드 정리
-				let volunteer = result.msg.volunteer;
-				volunteer.map((v, i) => {
-					v.shelter_address = v.volunteer_target_shelter.shelter_address;
-					v.shelter_name = v.volunteer_target_shelter.shelter_name;
-					v.user_type = v.volunteer_target_shelter.user_type;
-					v.user_profile_uri = v.volunteer_target_shelter.user_profile_uri;
-					v.shelter_type = v.volunteer_target_shelter.shelter_type;
-					delete v.volunteer_target_shelter;
-				});
-				setVolunteer_list(volunteer);
-				setAdopt_application_list(adoptArr);
-				setProtect_application_list(protectArr);
+				if (result.msg.protect.length > 0) {
+					let protect = result.msg.protect[0];
+					let protect_animal_info = protect.protect_act_request_article_id.protect_animal_id;
+					delete protect_animal_info._id;
+					protect = Object.assign(protect, protect_animal_info);
+					protect.protect_request_photos_uri = protect.protect_act_request_article_id.protect_request_photos_uri;
+					protect.protect_request_date = protect.protect_act_request_article_id.protect_request_date;
+					protect.protect_request_status = protect.protect_act_request_article_id.protect_request_status;
+					protect.shelter_name = protect.protect_act_request_article_id.protect_request_writer_id.shelter_name;
+					delete protect.protect_act_request_article_id;
+					const protectArr = [protect];
+					setProtect_application_list(protectArr);
+				}
+
+				if (result.msg.volunteer.length > 0) {
+					//봉사활동 신청 내역 받고 필드 정리
+					let volunteer = result.msg.volunteer;
+					volunteer.map((v, i) => {
+						v.shelter_address = v.volunteer_target_shelter.shelter_address;
+						v.shelter_name = v.volunteer_target_shelter.shelter_name;
+						v.user_type = v.volunteer_target_shelter.user_type;
+						v.user_profile_uri = v.volunteer_target_shelter.user_profile_uri;
+						v.shelter_type = v.volunteer_target_shelter.shelter_type;
+						delete v.volunteer_target_shelter;
+					});
+					setVolunteer_list(volunteer);
+				}
+
 				setTimeout(() => {
 					setLoading(false);
 				}, 500);

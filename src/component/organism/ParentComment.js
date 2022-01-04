@@ -65,7 +65,6 @@ export default ParentComment = props => {
 		);
 	};
 
-	console.log('parentComment', parentComment);
 	return (
 		<View style={organism_style.parentComment}>
 			{/* 유저프로필 라벨 및 Meatball  */}

@@ -27,7 +27,7 @@ const AniButton = props => {
 					width: 1 * DP,
 					height: 1 * DP,
 				},
-				elevation: 2,
+				elevation: 1,
 			};
 		}
 	};
