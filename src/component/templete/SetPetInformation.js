@@ -156,7 +156,7 @@ export default SetPetInformation = ({route, navigation}) => {
 							onChange={onChangeKg}
 							value={data.pet_weight}
 							validator={weigthValid}
-							keyboardType={'number-pad'}
+							keyboardType={'numeric'}
 							maxLength={4}
 							confirm_msg=""
 						/>
