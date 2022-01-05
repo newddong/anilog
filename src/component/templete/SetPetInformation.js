@@ -143,28 +143,27 @@ export default SetPetInformation = ({route, navigation}) => {
 							<Text style={[txt.noto28]}>체중</Text>
 						</View>
 					</View>
-					<View>
-						<View style={[setPetInformation.inputNoTitle]}>
-							<Input30
-								// alert_msg={'두자리 숫자, 소수점 한자리'}
-								description="info"
-								showmsg={false}
-								confirm={true}
-								showTitle={false}
-								width={200}
-								placeholder={'몸무게 입력'}
-								showCrossMark={false}
-								onChange={onChangeKg}
-								value={data.pet_weight}
-								validator={weigthValid}
-								keyboardType={'number-pad'}
-								maxLength={4}
-							/>
-							<View style={[setPetInformation.kg]}>
-								<Text style={[txt.noto28]}> kg </Text>
-							</View>
-						</View>
-						<Text style={[txt.noto22, setPetInformation.weightInfoText]}>* 2자리, 소수점 한자리까지 가능.</Text>
+					<View style={[setPetInformation.inputNoTitle]}>
+						<Input30
+							alert_msg={'두자리 숫자, 소수점 한자리'}
+							description="info"
+							showmsg={true}
+							confirm={true}
+							showTitle={false}
+							width={200}
+							placeholder={'몸무게 입력'}
+							showCrossMark={false}
+							onChange={onChangeKg}
+							value={data.pet_weight}
+							validator={weigthValid}
+							keyboardType={'numeric'}
+							maxLength={4}
+							confirm_msg=""
+						/>
+					</View>
+					{/* <Text style={[txt.noto22, {marginLeft: 65, marginTop: 5}]}>* 2자리, 소수점 한자리까지 가능.</Text> */}
+					<View style={[setPetInformation.kg]}>
+						<Text style={[txt.noto28]}> kg </Text>
 					</View>
 				</View>
 				{/* 중성화 */}
