@@ -4,15 +4,13 @@ import {APRI10, GRAY10} from 'Root/config/color';
 import {userAssign_agreementCheckList} from 'Root/config/dummyDate_json';
 import {txt} from 'Root/config/textstyle';
 import {btn_w654} from '../atom/btn/btn_style';
+import Modal from '../modal/Modal';
 import AniButton from '../molecules/AniButton';
 import Stagebar from '../molecules/Stagebar';
 import AssignCheckList from '../organism_ksw/AssignCheckList';
 import AssignCheckListItem from '../organism_ksw/AssignCheckListItem';
 import {stagebar_style} from '../organism_ksw/style_organism';
 import {login_style, btn_style, temp_style, progressbar_style, agreementCheck_style} from './style_templete';
-
-// 각각 뷰에 컴포넌트 삽입시 style의 첫번째 index 삭제할 것. 두번째 index는 상.하 간격 style이라서 이 컴포넌트에만 해당 됨.
-//ex) 변경 전: <View style={[btn_style.btn_w654, findAccount_style.btn_w654]}>   변경 후:  <View style={[findAccount_style.btn_w654]}>
 
 export default AgreementCheck = props => {
 	const user_agreement = React.useRef({
@@ -23,10 +21,6 @@ export default AgreementCheck = props => {
 		is_donation_info: false, //기부정보 제공 동의
 		is_marketting_info: false, //마케팅정보 제공 동의
 	}).current;
-
-	React.useEffect(() => {
-		console.log('userAgreement', user_agreement);
-	}, [user_agreement]);
 
 	const [permissionToNext, setPermissionToNext] = React.useState(false);
 	const [acceptAllState, setAcceptAllState] = React.useState(false);
@@ -41,10 +35,6 @@ export default AgreementCheck = props => {
 		});
 		setAcceptAllState(state);
 	};
-
-	React.useEffect(() => {
-		console.log('userAgreement', user_agreement);
-	}, [user_agreement]);
 
 	const permissionCheck = () => {
 		if (
@@ -87,6 +77,7 @@ export default AgreementCheck = props => {
 
 	const onPressDetail = index => {
 		console.log(index + 'index 항목 더보기 클릭');
+		Modal.popOneBtn('적용 예정입니다.', '확인', () => Modal.close());
 	};
 
 	return (

@@ -65,13 +65,11 @@ const RadioBox = props => {
 
 	const renderItem = ({item, index}) => {
 		return (
-			<TouchableOpacity onPress={() => onSelect(index)}>
-				<View style={{height: 82 * DP, flexDirection: 'row'}}>
-					<View style={{marginLeft: props.horizontal ? 25 * DP : 0}}>
-						<View style={{height: 82 * DP}}>{selected[index].state ? <RadioChecked48 /> : <RadioUnchecked48 />}</View>
-					</View>
-					<Text style={[txt.noto28, {color: GRAY20, lineHeight: 46 * DP, marginLeft: 12 * DP, textAlign: 'center'}]}>{item}</Text>
+			<TouchableOpacity onPress={() => onSelect(index)} style={{flexDirection: 'row'}}>
+				<View style={{marginLeft: props.horizontal ? 25 * DP : 0}}>
+					<View style={{}}>{selected[index].state ? <RadioChecked48 /> : <RadioUnchecked48 />}</View>
 				</View>
+				<Text style={[txt.noto28, {color: GRAY20, lineHeight: 46 * DP, marginLeft: 12 * DP, textAlign: 'center'}]}>{item}</Text>
 			</TouchableOpacity>
 		);
 	};

@@ -173,10 +173,10 @@ export default EditShelterInfo = ({route, navigation}) => {
 								showTitle={false}
 								width={520}
 								showmsg={false}
-								// confirm_msg={'사용 가능한 보호소명입니다.'}
-								// alert_msg={'사용 불가능한 보호소 이름입니다.'}
+								confirm_msg={'사용 가능한 보호소명입니다.'}
+								alert_msg={'사용 불가능한 보호소 이름입니다.'}
 								placeholder={'보호소 이름을 입력해 주세요.'}
-								confirm={true}
+								confirm={shelterNameValidator}
 								validator={shelterNameValidator}
 								onChange={onChangeShelterName}
 							/>

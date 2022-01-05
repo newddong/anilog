@@ -101,7 +101,7 @@ const Input30 = React.forwardRef((props, ref) => {
 						placeholder={props.placeholder}
 						value={input}
 						onFocus={onFocus}
-						// value={props.value}
+						value={props.value}
 						editable={props.editable}
 						placeholderTextColor={GRAY10}
 						defaultValue={props.defaultValue}

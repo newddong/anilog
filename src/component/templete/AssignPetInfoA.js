@@ -145,7 +145,7 @@ export default AssignPetInfoA = props => {
 					{/* 중성화 */}
 					<View style={[temp_style.inputForm_assignPetInfo_line3, assignPetInfo_style.line3]}>
 						<Text style={[temp_style.text_assignPetInfo, txt.noto28, {color: GRAY10}]}>중성화</Text>
-						<View style={[temp_style.radioBox_assignPetInfo, assignPetInfo_style.tabSelectFilled_Type1]}>
+						<View style={[assignPetInfo_style.tabSelectFilled_Type1]}>
 							<RadioBox items={[YES, NO, UNAWARENESS]} onSelect={onSelectNeutralization} />
 						</View>
 					</View>

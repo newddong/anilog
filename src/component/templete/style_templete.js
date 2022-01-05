@@ -1128,6 +1128,8 @@ export const agreementCheck_style = StyleSheet.create({
 		marginTop: 61 * DP,
 	},
 	btn_w654: {
+		width: 660 * DP, // 좌우 끝이 잘리는 현상 보고(from 경진작가님) => 654 보다 조금 더 넓게 수정 (권상우)
+		alignSelf: 'center',
 		marginTop: 110 * DP,
 		marginBottom: 50 * DP,
 	},
@@ -2371,17 +2373,20 @@ export const animalAdoption = StyleSheet.create({
 		height: 834 * DP,
 		marginTop: 20 * DP,
 		marginBottom: 60 * DP,
-		borderRadius: 46 * DP,
-		shadowColor: '#000000',
-		shadowOpacity: 0.27,
-		shadowRadius: 4.65,
-		shadowOffset: {
-			width: 1 * DP,
-			height: 2 * DP,
-		},
-		elevation: 2,
-		justifyContent: 'center',
+		borderRadius: 40 * DP,
+		backgroundColor: 'white',
 		alignItems: 'center',
+		shadowOffset: {width: 1, height: 1},
+		shadowOpacity: 0.5,
+		// shadowColor: '#000000',
+		// shadowOpacity: 0.27,
+		// shadowRadius: 4.65,
+		// shadowOffset: {
+		// 	width: 1 * DP,
+		// 	height: 2 * DP,
+		// },
+		// elevation: 2,
+		justifyContent: 'center',
 	},
 	instruction_text: {
 		width: 574 * DP,
@@ -2449,6 +2454,7 @@ export const setPetInformation = StyleSheet.create({
 	},
 	inputNoTitle: {
 		width: 156 * DP,
+		flexDirection: 'row',
 	},
 	kg: {
 		width: 68 * DP,
@@ -2471,6 +2477,9 @@ export const setPetInformation = StyleSheet.create({
 	radioBox_left: {
 		width: 118 * DP,
 		height: 46 * DP,
+	},
+	weightInfoText: {
+		marginTop: 5 * DP,
 	},
 });
 
@@ -3363,37 +3372,44 @@ export const feedCommentList = StyleSheet.create({
 	},
 	editComment: {
 		width: 750 * DP,
-		// height: 94 * DP,
-		// flexDirection: 'row',
-
+		shadowColor: '#000000',
+		shadowOpacity: 0.27,
+		shadowRadius: 4.65,
+		shadowOffset: {
+			width: 1 * DP,
+			height: 2 * DP,
+		},
+		elevation: 2,
 		// position: 'absolute',
 		backgroundColor: WHITE,
-		bottom: 0,
-		alignItems: 'center',
-		paddingTop: 30 * DP,
-	},
-	editCommentFromRequest: {
-		width: 654 * DP,
-		// height: 94 * DP,
-		// flexDirection: 'row',
-		borderBottomColor: APRI10,
-		borderBottomWidth: 2 * DP,
-		// position: 'absolute',
-		backgroundColor: WHITE,
-		bottom: 0,
+		bottom: 1,
 		alignItems: 'center',
 		paddingTop: 30 * DP,
 	},
 	editComment_photoAdded: {
 		width: 750 * DP,
-		// height: 94 * DP,
-		// flexDirection: 'row',
-
-		// position: 'absolute',
+		shadowColor: '#000000',
+		shadowOpacity: 0.27,
+		shadowRadius: 4.65,
+		shadowOffset: {
+			width: 1 * DP,
+			height: 2 * DP,
+		},
+		elevation: 2,
+		backgroundColor: WHITE,
+		bottom: 1,
+		alignItems: 'center',
+	},
+	editCommentFromRequest: {
+		width: 654 * DP,
+		borderBottomColor: APRI10,
+		borderBottomWidth: 2 * DP,
 		backgroundColor: WHITE,
 		bottom: 0,
 		alignItems: 'center',
+		paddingTop: 30 * DP,
 	},
+
 	InputFromProtectRequest: {
 		width: 600 * DP,
 		height: 108 * DP,
@@ -3401,7 +3417,7 @@ export const feedCommentList = StyleSheet.create({
 		fontSize: 28 * DP,
 	},
 	replyTextInput: {
-		width: 453 * DP,
+		width: 530 * DP,
 		height: 108 * DP,
 		marginLeft: 20 * DP,
 		fontSize: 28 * DP,
@@ -3680,6 +3696,17 @@ export const feedWrite = StyleSheet.create({
 		width: 110 * DP,
 		height: 110 * DP,
 		alignSelf: 'flex-end',
+		backgroundColor: 'red',
+		shadowColor: '#000000',
+		shadowOpacity: 0.5,
+		borderRadius: 20 * DP,
+		shadowOffset: {width: 1, height: 1},
+		shadowRadius: 2.65,
+		// shadowOffset: {
+		// 	width: 2 * DP,
+		// 	height: 1 * DP,
+		// },
+		elevation: 3,
 	},
 	urgentBtnItemContainer: {
 		width: 158 * DP,

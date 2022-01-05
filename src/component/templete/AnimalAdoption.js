@@ -28,7 +28,7 @@ export default AnimalAdoption = props => {
 				{/* 축하메시지 */}
 				<View style={[animalAdoption.congratulatory_message]}>
 					<Text style={[txt.noto30b, {color: APRI10, textAlign: 'center'}]}>축하합니다! </Text>
-					<Text style={[txt.noto30b, {color: APRI10}]}>임시보호를 하고 있는 동물이 입양을 가게 되었나요? </Text>
+					<Text style={[txt.noto30b, {color: APRI10, textAlign: 'center'}]}>임시보호를 하고 있는 동물이 입양을 가게 되었나요? </Text>
 				</View>
 				{/* Instruction */}
 				<View style={[animalAdoption.instruction]}>
@@ -75,7 +75,6 @@ export default AnimalAdoption = props => {
 				<View style={[btn_style.btn_w522, animalAdoption.btn_w522]}>
 					<AniButton
 						btnTitle={'입양'}
-						btnTheme={'shadow'}
 						btnLayout={btn_w522}
 						titleFontStyle={32}
 						onPress={() => {
@@ -102,7 +101,6 @@ export default AnimalAdoption = props => {
 					<AniButton
 						btnTitle={'임시보호자 입양'}
 						btnStyle={'border'}
-						btnTheme={'shadow'}
 						btnLayout={btn_w522}
 						titleFontStyle={32}
 						onPress={() => {
