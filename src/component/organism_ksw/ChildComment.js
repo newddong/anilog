@@ -8,8 +8,8 @@ import {Heart30_Border, Heart30_Filled, Meatball50_GRAY20_Vertical} from '../ato
 import {styles} from '../atom/image/imageStyle';
 import MeatBallDropdown from '../molecules/MeatBallDropdown';
 import UserTimeLabel from '../molecules/UserTimeLabel';
+import {useNavigation} from '@react-navigation/native';
 import {childComment} from './style_organism';
-
 /**
  *
  * @param {{
@@ -22,7 +22,8 @@ export default ChildComment = props => {
 	const [data, setData] = React.useState(props.data);
 	const [isMyComment, setIsMyComment] = React.useState(false);
 	const [likeState, setLikeState] = React.useState(false);
-
+	console.log('ChildCommnet Data', props);
+	const navigation = useNavigation();
 	React.useEffect(() => {
 		setData(props.data);
 	}, [props.data]);
@@ -46,7 +47,7 @@ export default ChildComment = props => {
 		<View style={[childComment.container]}>
 			<View style={[childComment.profileContainer]}>
 				<View style={[childComment.userTimeLabel]}>
-					<UserTimeLabel data={data || null} />
+					<UserTimeLabel data={data || null} onLabelClick={userobject => navigation.push('UserProfile', {userobject: userobject})} />
 				</View>
 				<View style={[childComment.meatBall50_vertical]}>
 					<MeatBallDropdown menu={isMyComment ? SETTING_OWN_COMMENT : SETTING_COMMENT} horizontal={false} />
