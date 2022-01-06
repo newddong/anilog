@@ -18,6 +18,8 @@ export const btn_w158_urgent = {width: 158 * DP, height: 90 * DP, borderRadius: 
 export const btn_w130 = {width: 130 * DP, height: 38 * DP, borderRadius: 20 * DP};
 export const btn_w114 = {width: 114 * DP, height: 60 * DP, borderRadius: 30 * DP};
 export const btn_w108 = {width: 108 * DP, height: 54 * DP, borderRadius: 30 * DP};
+export const btn_w116 = {width: 116 * DP, height: 60 * DP, borderRadius: 21 * DP};
+export const btn_w92 = {width: 92 * DP, height: 60 * DP, borderRadius: 21 * DP};
 
 export const id = () => {
 	return <View style={{}} />;

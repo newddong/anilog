@@ -955,6 +955,7 @@ export const aidRequestList = StyleSheet.create({
 		width: 654 * DP,
 		height: 174 * DP,
 		borderRadius: 30 * DP,
+		marginRight: 14 * DP,
 		borderColor: APRI10,
 		borderWidth: 2 * DP,
 		marginTop: 30 * DP,

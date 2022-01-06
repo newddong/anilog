@@ -1054,6 +1054,10 @@ export const loginTemplete_style = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#A07A7A',
 	},
+	innerContainer: {
+		marginTop: 30,
+		alignItems: 'center',
+	},
 	without_login: {
 		width: 654 * DP,
 		height: 216 * DP,
@@ -1095,10 +1099,10 @@ export const loginTemplete_style = StyleSheet.create({
 		marginHorizontal: 20 * DP,
 	},
 	btn_w522_login: {
-		marginTop: 62 * DP,
+		marginTop: 102 * DP,
 	},
 	btn_w522_assign: {
-		marginTop: 30 * DP,
+		marginTop: 50 * DP,
 	},
 	basic_info: {
 		marginTop: 32 * DP,
@@ -2942,7 +2946,7 @@ export const activationList = StyleSheet.create({
 		marginTop: 12 * DP,
 	},
 	activityUpdating: {
-		marginTop: 246 * DP,
+		marginTop: 150 * DP,
 	},
 });
 export const activationDetail = StyleSheet.create({
@@ -3689,24 +3693,27 @@ export const feedWrite = StyleSheet.create({
 		height: 332 * DP,
 		position: 'absolute',
 		right: 30 * DP,
-		bottom: 60 * DP,
+		bottom: 40 * DP,
 		justifyContent: 'flex-end',
 	},
 	urgentActionButton: {
 		width: 110 * DP,
 		height: 110 * DP,
 		alignSelf: 'flex-end',
-		backgroundColor: 'red',
+		backgroundColor: 'white',
 		shadowColor: '#000000',
 		shadowOpacity: 0.5,
-		borderRadius: 20 * DP,
-		shadowOffset: {width: 1, height: 1},
-		shadowRadius: 2.65,
+		borderRadius: 100 * DP,
+		shadowOffset: {
+			width: 2,
+			height: 2,
+		},
+		shadowRadius: 4.65,
 		// shadowOffset: {
 		// 	width: 2 * DP,
 		// 	height: 1 * DP,
 		// },
-		elevation: 3,
+		elevation: 4,
 	},
 	urgentBtnItemContainer: {
 		width: 158 * DP,

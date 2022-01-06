@@ -12,14 +12,14 @@ import {GRAY10} from 'Root/config/color';
 //연관 테이블 : ShelterProtectAnimalObject
 export default AidRequestAnimalList = ({route, navigation}) => {
 	const [data, setData] = React.useState([]);
-	const [notFilteredData, setNotFilteredData] = React.useState(null);
+	const [notFilteredData, setNotFilteredData] = React.useState('');
 	const [loading, setLoading] = React.useState(true); // 화면 출력 여부 결정
 
 	React.useEffect(() => {
 		// 토큰을 토대로 해당 보호소의 보호동물 목록을 서버로부터 가져옴.
 		getShelterProtectAnimalList(
 			{
-				shelter_protect_animal_object_id: null,
+				shelter_protect_animal_object_id: '',
 				request_number: '',
 			},
 			result => {
@@ -35,7 +35,7 @@ export default AidRequestAnimalList = ({route, navigation}) => {
 						//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 						//현재 protect_animal_status(보호동물 오브젝트 테이블을 update) 를 바꾸는 API가 없는 상태이므로 신청 및 확정이 완료된 동물이더라도
 						//getShelterProtectAnimalList API를 통해 들어오는 모든 보호동물들의 protect_animal_status 는 'rescue' 상태로 온다
-						//우선 해당 보호동물에 대한 입양 및 보호 신청서들의 _id 배열로 map 을 실행  => getApplyDetailById 접속
+						//우선 해당 보호동물에 대한 입양 및 보호 신청서들의 _id 배열로 map 을 실행  => getApplyDetailById(신청서 상세조회) 접속
 						// 만약 신청서 배열값들중 status=='accept'인 것이 단 하나라도 존재한다면 보호소를 떠난 동물로 취급하고 출력을 시키지 말아야함
 						// 모든 것은 API가 도착하면 개선이 가능
 						//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -47,13 +47,7 @@ export default AidRequestAnimalList = ({route, navigation}) => {
 								// console.log('result / getApplyDetailById / AidRequestManage  ', protect_activity_index, res.msg);
 								const protect_activity_object = res.msg;
 								protect_activity_object.protect_animal_id = index;
-
 								notFiltered.push(res.msg);
-								// const isAccepted = protect_activity_object.protect_act_status == 'accept';
-								// console.log('isAccepted', index, protect_activity_index, isAccepted);
-								// isAccepted ? shelterProtectAnimalList_notAccepted.push(protectAnimalList[index]) : null;
-								// setNotFilteredData(shelterProtectAnimalList_notAccepted);
-								// // setData(result.msg);
 							},
 							err => {
 								console.log('err / getApplyDetailById / AidRequestManage   ', err);
@@ -77,7 +71,7 @@ export default AidRequestAnimalList = ({route, navigation}) => {
 
 	React.useEffect(() => {
 		// console.log('notFltered', notFilteredData);
-		if (notFilteredData != null) {
+		if (notFilteredData != '') {
 			const filtered_by_status = notFilteredData.filter(e => e.protect_act_status == 'accept');
 			let index_of_acceptItem = [];
 			filtered_by_status.map((v, i) => {
@@ -94,6 +88,9 @@ export default AidRequestAnimalList = ({route, navigation}) => {
 			}, 1500);
 		} else {
 			console.log('waiting');
+			setTimeout(() => {
+				setLoading(false);
+			}, 1500);
 		}
 	}, [notFilteredData]);
 

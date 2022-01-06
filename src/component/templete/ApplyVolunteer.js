@@ -13,9 +13,9 @@ import {applyVolunteer, btn_style, login_style} from './style_templete';
 import DatePicker from '../molecules/DatePicker';
 import Input24 from '../molecules/Input24';
 import Modal from '../modal/Modal';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getUserInfoById} from 'Root/api/userapi';
 import {assignVolunteerActivity} from 'Root/api/volunteerapi';
+import userGlobalObject from 'Root/config/userGlobalObject';
 
 //관련 DB테이블 - VolunteerActivityApplicantObject
 export default ApplyVolunteer = ({route, navigation}) => {
@@ -23,7 +23,7 @@ export default ApplyVolunteer = ({route, navigation}) => {
 	const param = route.params;
 	const [loading, setLoading] = React.useState(true);
 	const [shelter_data, setShelter_data] = React.useState(route.params); //선택한 보호소프로필의 userObject가 담겨있음
-
+	const userInfo = userGlobalObject.userInfo;
 	React.useEffect(() => {
 		Modal.popNoBtn('신청 양식을 얻어오고 있습니다.');
 		getUserInfoById(
@@ -31,7 +31,7 @@ export default ApplyVolunteer = ({route, navigation}) => {
 				userobject_id: param.token,
 			},
 			result => {
-				console.log('result / getUserInfoById / ApplyVolunteer   :  ', result.msg);
+				// console.log('result / getUserInfoById / ApplyVolunteer   :  ', result.msg);
 				setShelter_data(result.msg);
 				setLoading(false);
 				Modal.close();
@@ -44,20 +44,18 @@ export default ApplyVolunteer = ({route, navigation}) => {
 	}, [route.params]);
 
 	React.useEffect(() => {
-		AsyncStorage.getItem('token', (err, res) => {
-			getUserInfoById(
-				{userobject_id: res},
-				result => {
-					console.log('result / getUserInfoById / 내 계정 얻기 ', result.msg);
-					let copy = [...data.volunteer_accompany];
-					copy.push(result.msg);
-					setData({...data, volunteer_accompany: copy});
-				},
-				err => {
-					console.log('err / getUserInfoById / 내 계정 얻기 ', err);
-				},
-			);
-		});
+		getUserInfoById(
+			{userobject_id: userInfo._id},
+			result => {
+				// console.log('result / getUserInfoById / 내 계정 얻기 ', result.msg);
+				let copy = [...data.volunteer_accompany];
+				copy[0] = result.msg;
+				setData({...data, volunteer_accompany: copy});
+			},
+			err => {
+				console.log('err / getUserInfoById / 내 계정 얻기 ', err);
+			},
+		);
 	}, []);
 
 	const [data, setData] = React.useState({
@@ -76,10 +74,6 @@ export default ApplyVolunteer = ({route, navigation}) => {
 			setData({...data, volunteer_accompany: copy});
 		}
 	}, [param.addedVolunteer]);
-
-	React.useEffect(() => {
-		console.log('봉사활동 신청서 ', data.volunteer_accompany.length);
-	}, [data]);
 
 	//최종 신청
 	const onRegister = () => {
@@ -127,9 +121,12 @@ export default ApplyVolunteer = ({route, navigation}) => {
 
 	//DatePicker로 날짜 지정할 시, 하단에 봉사활동 날짜 Item이 View로 보여짐
 	const onDateChange = date => {
-		let copy = [...data.volunteer_wish_date];
-		copy.push(date);
-		setData({...data, volunteer_wish_date: copy});
+		let filteredDates = [...data.volunteer_wish_date];
+		date.map((v, i) => {
+			const isDup = data.volunteer_wish_date.some(e => e == v);
+			isDup ? false : filteredDates.push(v);
+		});
+		setData({...data, volunteer_wish_date: filteredDates});
 	};
 
 	//봉사활동자 연락처 변경 콜백
@@ -182,7 +179,7 @@ export default ApplyVolunteer = ({route, navigation}) => {
 								<Text style={[txt.noto24b, {color: GRAY10}]}>봉사활동 희망 날짜</Text>
 							</View>
 						</View>
-						<DatePicker width={654} onDateChange={onDateChange} past={false} />
+						<DatePicker width={654} onDateChange={onDateChange} past={false} multiple={true} />
 						{/* 봉사활동 희망날짜 FlatList */}
 						<ScrollView horizontal={false} contentContainerStyle={{flex: 0}}>
 							<ScrollView horizontal={true} contentContainerStyle={{flex: 1}}>

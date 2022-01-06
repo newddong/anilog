@@ -108,10 +108,14 @@ export default FeedMedia = props => {
 				<View style={[style.emergency_background, {paddingVertical: 20 * DP, paddingHorizontal: 48 * DP, height: null}]}>
 					<View style={style.emergency_info_container}>
 						<View style={{flexDirection: 'row'}}>
-							<Text style={[txt.roboto34b, {color: 'white'}]} numberOfLines={3}>{animal_species + animal_species_detail}</Text>
+							<Text style={[txt.roboto34b, {color: 'white'}]} numberOfLines={3}>
+								{animal_species + animal_species_detail}
+							</Text>
 						</View>
 						<View style={{marginLeft: 20 * DP, flex: 1}}>
-							<Text style={[txt.roboto34b, {color: 'white'}]} numberOfLines={2}>{emergency_location}</Text>
+							<Text style={[txt.roboto34b, {color: 'white'}]} numberOfLines={2}>
+								{emergency_location}
+							</Text>
 						</View>
 					</View>
 					<View style={{flex: 1}}>
@@ -143,10 +147,11 @@ FeedMedia.defaultProps = {
 
 const style = StyleSheet.create({
 	emergency_title: {
-		width: 202 * DP,
-		height: 94 * DP,
+		width: 164 * DP,
+		height: 82 * DP,
 		position: 'absolute',
 		backgroundColor: RED10,
+		paddingBottom: 10 * DP,
 		borderBottomLeftRadius: 20 * DP,
 		borderBottomRightRadius: 20 * DP,
 		alignItems: 'center',

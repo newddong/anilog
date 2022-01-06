@@ -39,7 +39,11 @@ export default AidRequestList = props => {
 		const isSelected = index == selectedIndex; //현재 선택된 indexd와 해당 item의 index가 같은 경우에서만 불투명으로 처리되며 나머지는 투명해짐
 		return (
 			<View
-				style={[aidRequestList.itemContainer, index != selectedIndex && isSelectedOnce && props.selectBorderMode ? {opacity: 0.5} : {opacity: 1}]}>
+				style={[
+					// {backgroundColor: 'red'},
+					aidRequestList.itemContainer,
+					index != selectedIndex && isSelectedOnce && props.selectBorderMode ? {opacity: 0.5} : {opacity: 1},
+				]}>
 				<AidRequest
 					data={item}
 					selected={isSelected}

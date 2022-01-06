@@ -44,11 +44,14 @@ export default Modal = {
 
 	/**
 	 * 달력 선택창을 모달로 띄우는 함수
-	 * @param {boolean} visible - 설명추가 바람
-	 * @param {()=>void} onOff - 설명추가 바람
-	 * @param {(moment.Moment)=>void} date -설명
+	 * @param {boolean} visible - 달력 모달 열기 true/false
+	 * @param {()=>void} onOff - 달력 모달 닫기 콜백
+	 * @param {(moment.Moment)=>void} date - 날짜 선택 반환값(Date타입)
+	 * @param {boolean} past - 과거 날짜만 선택가능
+	 * @param {boolean} future - 미래 날짜만 선택가능
+	 * @param {boolean} multiple - 다중선택 가능
 	 */
-	popCalendar: (visible, onOff, date) => {},
+	popCalendar: (visible, onOff, date, past, future, multiple) => {},
 
 	/**
 	 * 회전 선택창을 모달로 띄우는 함수

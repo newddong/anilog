@@ -65,6 +65,7 @@ import LogoutView from 'Root/test_sangwoo/LogoutView';
 import RequestLogin from 'Root/component/templete/RequestLogin';
 import RadioSelectModal from 'Root/component/molecules/RadioSelectModal';
 import AddVolunteers from 'Root/component/templete/AddVolunteers';
+import Calendar_Multiple from 'Root/component/molecules/Calendar_Multiple';
 // import Camera from 'Root/component/templete/Camera';
 const RootStack = createStackNavigator();
 
@@ -109,8 +110,11 @@ export default RootStackNavigation = () => {
 		!isPop && setPop(true);
 	};
 
-	Modal.popCalendar = (visible, onOff, date, past, future) => {
-		popIn(<Calendar modalOn={visible} modalOff={onOff} selectDate={date} past={past} future={future} />);
+	Modal.popCalendar = (visible, onOff, date, past, future, multiple) => {
+		console.log('Multi', multiple);
+		multiple
+			? popIn(<Calendar_Multiple modalOn={visible} modalOff={onOff} selectDate={date} past={past} future={future} />)
+			: popIn(<Calendar modalOn={visible} modalOff={onOff} selectDate={date} past={past} future={future} />);
 		!isPop && setPop(true);
 	};
 
@@ -230,7 +234,11 @@ export default RootStackNavigation = () => {
 					<RootStack.Screen name="ApplyAnimalAdoptionD" component={ApplyCompanionD} options={{header: props => <SimpleHeader {...props} />}} />
 					<RootStack.Screen name="ApplyAnimalAdoptionE" component={ApplyDetails} options={{header: props => <SimpleHeader {...props} />}} />
 
-					<RootStack.Screen name="ApplyVolunteer" component={ApplyVolunteer} />
+					<RootStack.Screen
+						name="ApplyVolunteer"
+						component={ApplyVolunteer}
+						options={{header: props => <SimpleHeader {...props} />, title: '봉사활동 신청'}}
+					/>
 					<RootStack.Screen
 						name="AddVolunteers"
 						component={AddVolunteers}

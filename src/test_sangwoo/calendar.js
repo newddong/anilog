@@ -9,7 +9,6 @@ import {txt} from 'Root/config/textstyle';
 import {APRI10, BLACK, GRAY10, GRAY20, GRAY30, WHITE} from 'Root/config/color';
 import {NextMark} from 'Root/component/atom/icon';
 import YearDropDown from 'Root/component/molecules/YearDropDown';
-import Modal from 'Root/component/modal/Modal';
 import AniButton from 'Root/component/molecules/AniButton';
 
 const Calendar = props => {

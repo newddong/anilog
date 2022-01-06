@@ -5,6 +5,7 @@ import DP from 'Root/config/dp';
 import {Calendar48_Border} from '../atom/icon';
 import {APRI10} from 'Root/config/color';
 import Modal from '../modal/Modal';
+import {object} from 'prop-types';
 
 /**
  * 날짜 선택 인풋
@@ -34,7 +35,9 @@ const DatePicker = props => {
 
 	const openCalendar = () => {
 		console.log('openCale');
-		Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date), props.past, props.future);
+		props.multiple
+			? Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date), props.past, props.future, props.multiple)
+			: Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date), props.past, props.future);
 		setShowCalendar(true);
 	};
 
@@ -66,7 +69,7 @@ const DatePicker = props => {
 							paddingVertical: 18 * DP, // Value와 최상위 View와의 paddingVertical 16px
 						},
 					]}>
-					{selectedDate}
+					{typeof selectedDate === 'object' ? '눌러서 추가해주세요' : selectedDate}
 				</Text>
 				<View style={{position: 'absolute', right: 15 * DP}}>
 					<Calendar48_Border />

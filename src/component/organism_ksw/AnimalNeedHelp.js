@@ -8,7 +8,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import AniButton from '../molecules/AniButton';
 import {FavoriteTag48_Border, FavoriteTag48_Filled} from '../atom/icon';
 import {BLUE10, BLUE20, RED10} from 'Root/config/color';
-import {DEFAULT_ANIMAL_PROFILE, DEFAULT_PROFILE} from 'Root/i18n/msg';
+import {DEFAULT_ANIMAL_PROFILE} from 'Root/i18n/msg';
 import moment from 'moment';
 import {useNavigation} from '@react-navigation/core';
 
@@ -76,8 +76,6 @@ export default AnimalNeedHelp = props => {
 			resultJSON.status = data.protect_request_status || data.protect_act_status;
 			// 기타 다른 경우의 수가 있는지 추후 확인
 		}
-		// console.log('data.props.protect', data.protect_act_status);
-		// resultJSON.status = data.protect_act_status;
 		setThumbnailData(resultJSON);
 	};
 
@@ -130,7 +128,6 @@ export default AnimalNeedHelp = props => {
 			default:
 				return '모름';
 		}
-		// return '남';
 	};
 
 	const contents = () => {
@@ -187,14 +184,14 @@ export default AnimalNeedHelp = props => {
 						<>
 							{/* 동물 종류 및 품종 */}
 							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
-								<Text style={[txt.noto30b, {color: RED10}]}>{data.missing_animal_species || ''}</Text>
-								<Text style={[txt.noto28, {color: RED10}, animalNeedHelp.breedText]}>{data.missing_animal_species_detail || ''}</Text>
+								<Text style={[txt.noto30b, {}]}>{data.missing_animal_species || ''}</Text>
+								<Text style={[txt.noto28b, {}, animalNeedHelp.breedText]}>{data.missing_animal_species_detail || ''}</Text>
 							</View>
 							{/* 실종/제보 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
 								{/* <Text style={[txt.noto24, {color: RED10}]}>실종일: {data.missing_animal_date || ''}</Text> */}
-								<Text style={[txt.noto24, {color: RED10}]}>실종일: {getParsedDate()}</Text>
-								<Text style={[txt.noto24, {color: RED10}]}>
+								<Text style={[txt.noto24b]}>실종일: {getParsedDate()}</Text>
+								<Text style={[txt.noto24b, {}]}>
 									나이:{data.missing_animal_age + '살' || ''} / 성별: {getParsedSex()}
 									{/* {data.missing_animal_sex} */}
 								</Text>
@@ -210,11 +207,11 @@ export default AnimalNeedHelp = props => {
 							{/* 제보 / 제보위치 / 특징 */}
 							{/* 동물 종류 및 품종 */}
 							<View style={[animalNeedHelp.lowerMenu_kindAndBreed]}>
-								<Text style={[txt.noto30b, {color: RED10}]}>{data.report_animal_species || ''}</Text>
+								<Text style={[txt.noto30b]}>{data.report_animal_species || ''}</Text>
 							</View>
 							{/* 실종/제보 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
-								<Text style={[txt.noto24, {color: RED10}]}>제보일: {getParsedDate()}</Text>
+								<Text style={[txt.noto24b]}>제보일: {getParsedDate()}</Text>
 
 								<Text style={[txt.noto24, {width: 380 * DP}]}>제보위치: {data.report_witness_location || ''}</Text>
 								<Text style={[txt.noto24]} numberOfLines={1}>

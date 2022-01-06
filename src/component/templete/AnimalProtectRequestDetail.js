@@ -27,6 +27,7 @@ import {getCommentListByProtectId} from 'Root/api/commentapi';
 import {createComment} from 'Root/api/commentapi';
 import ImagePicker from 'react-native-image-crop-picker';
 import Modal from '../modal/Modal';
+import userGlobalObject from 'Root/config/userGlobalObject';
 
 //AnimalProtectRequestDetail 호출 경로
 // - ProtectRequestList(보호활동탭) , AnimalFromShelter(게시글보기) , Profile(보호활동)
@@ -64,10 +65,8 @@ export default AnimalProtectRequestDetail = ({route}) => {
 			setLoading(false);
 		}, 1000);
 		//보고있는 요청글의 작성자가 로그인한 계정과 일치한다면 입양 / 임보 버튼이 나와서는 안됨
-		AsyncStorage.getItem('type', (err, res) => {
-			// console.log('type', res);
-			res == 'shelter' ? setIsShelter(true) : setIsShelter(false);
-		});
+		const user_type = userGlobalObject.userInfo.user_type;
+		user_type == 'shelter' ? setIsShelter(true) : setIsShelter(false);
 	}, []);
 
 	//대댓글 달기 버튼 누르면 대댓글 작성
