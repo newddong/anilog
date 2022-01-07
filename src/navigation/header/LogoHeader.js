@@ -12,8 +12,8 @@ export default LogoHeader = ({navigation, route, options, back}) => {
 		// alert('Logo!');
 	};
 	const clickSearch = () => {
-		// navigation.navigate('Search', {mother: 0, child: 0, prevNav: route.name});
-		alert('이후 버전에서 제공할 예정입니다!');
+		navigation.navigate('Search', {mother: 0, child: 0, prevNav: route.name});
+		// alert('이후 버전에서 제공할 예정입니다!');
 	};
 	const clickAlarm = () => {
 		alert('이후 버전에서 제공할 예정입니다!');

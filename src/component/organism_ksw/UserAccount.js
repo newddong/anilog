@@ -52,16 +52,22 @@ export default UserAccount = props => {
 						onCheck={() => props.onCheckBox(props.data.type == 'HashTagObject' ? props.data.keyword : props.data.user_nickname)}
 					/>
 				</View>
-			) : false}
+			) : (
+				false
+			)}
 			{/* UserLabel */}
 			<View style={[userAccount.userProfileContainer]}>{getLabel()}</View>
-			{props.showFollowBtn&&<View onPress={onClickFollow} style={[props.checkBoxMode ? userAccount.followingBtnContainer : userAccount.followingBtnContainer_noneCheckBox]}>
-				{followState ? (
-					<AniButton onPress={onClickFollow} btnTitle={'팔로잉'} btnTheme={'shadow'} btnStyle={'border'} btnLayout={btn_w108} />
-				) : (
-					<AniButton onPress={onClickFollow} btnTitle={'팔로우'} btnTheme={'shadow'} btnLayout={btn_w108} />
-				)}
-			</View>}
+			{props.showFollowBtn && (
+				<View
+					onPress={onClickFollow}
+					style={[props.checkBoxMode ? userAccount.followingBtnContainer : userAccount.followingBtnContainer_noneCheckBox]}>
+					{followState ? (
+						<AniButton onPress={onClickFollow} btnTitle={'팔로잉'} btnTheme={'shadow'} btnStyle={'border'} btnLayout={btn_w108} />
+					) : (
+						<AniButton onPress={onClickFollow} btnTitle={'팔로우'} btnTheme={'shadow'} btnLayout={btn_w108} />
+					)}
+				</View>
+			)}
 		</View>
 	);
 };

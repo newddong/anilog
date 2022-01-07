@@ -25,13 +25,104 @@ export default UserInfoDetailSettting = ({route, navigation}) => {
 	const [loaded, setLoaded] = React.useState(false);
 	const [addrSearched, setAddrSearched] = React.useState(false);
 	// 갱신되는 데이터는 Header에도 Json형태로 전해짐
-	React.useEffect(() => {
-		navigation.setParams({data: data, route_name: route.name});
-		// console.log('user_mobile_company', data.user_mobile_company);
-	}, [data]);
+	// React.useEffect(() => {
+	// 	navigation.setParams({data: data, route_name: route.name});
+	// 	// console.log('user_mobile_company', data.user_mobile_company);
+	// }, [data]);
 
 	React.useEffect(() => {
 		navigation.setParams({data: route.params, route_name: route.name});
+		console.log('route', data);
+		const t = {
+			__v: 2,
+			_id: '61d2de63c0f179ccd5ba5887',
+			is_follow: false,
+			pet_family: [],
+			type: 'UserObject',
+			user_address: {city: '서울특별시', district: '마포구', neighbor: '신수동'},
+			user_agreement: {
+				is_donation_info: true,
+				is_location_service_info: true,
+				is_marketting_info: true,
+				is_over_fourteen: true,
+				is_personal_info: true,
+				is_service: true,
+			},
+			user_denied: false,
+			user_follow_count: 5,
+			user_follower_count: 3,
+			user_interests: [],
+			user_introduction: 'Dkd		Dkdk',
+			user_is_verified_email: false,
+			user_is_verified_phone_number: true,
+			user_mobile_company: 'SK텔레콤',
+			user_my_pets: [
+				{
+					__v: 2,
+					_id: '61d2de8ac0f179ccd5ba58a6',
+					pet_birthday: '2022-01-03T00:00:00.000Z',
+					pet_family: [Array],
+					pet_is_temp_protection: false,
+					pet_neutralization: 'no',
+					pet_sex: 'male',
+					pet_species: '개',
+					pet_species_detail: '코커스패니얼',
+					pet_status: 'companion',
+					pet_weight: '4',
+					type: 'UserObject',
+					user_agreement: [Object],
+					user_denied: false,
+					user_follow_count: 0,
+					user_follower_count: 1,
+					user_interests: [Array],
+					user_introduction: '',
+					user_is_verified_email: false,
+					user_is_verified_phone_number: false,
+					user_my_pets: [Array],
+					user_nickname: '길동이',
+					user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1641209482105_A3B92DE3-4536-43F5-B8A9-94355C099318.jpg',
+					user_register_date: '2022-01-03T11:31:22.210Z',
+					user_type: 'pet',
+					user_upload_count: 0,
+				},
+				{
+					__v: 0,
+					_id: '61d2ff57c0f179ccd5ba6e72',
+					pet_birthday: '2021-03-03T00:00:00.000Z',
+					pet_family: [Array],
+					pet_is_temp_protection: true,
+					pet_neutralization: 'unknown',
+					pet_sex: 'female',
+					pet_species: '고양이',
+					pet_species_detail: '브리티시 숏헤어',
+					pet_status: 'protect',
+					pet_weight: '2',
+					type: 'UserObject',
+					user_agreement: [Object],
+					user_denied: false,
+					user_follow_count: 0,
+					user_follower_count: 0,
+					user_interests: [Array],
+					user_introduction: '',
+					user_is_verified_email: false,
+					user_is_verified_phone_number: false,
+					user_my_pets: [Array],
+					user_nickname: '기스',
+					user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1641217879453_1d4f1cf2-f720-4377-9f14-4b9f513317f7.jpg',
+					user_register_date: '2022-01-03T13:51:19.661Z',
+					user_type: 'pet',
+					user_upload_count: 0,
+				},
+			],
+			user_name: '권상우',
+			user_nickname: '권상우',
+			user_password: 'tkddn123',
+			user_phone_number: '01096450422',
+			user_profile_uri: 'https://pinetreegy.s3.ap-northeast-2.amazonaws.com/upload/1641209443215_0CF8CF7C-DA9E-4F9D-9F6D-2C19C7144A45.jpg',
+			user_register_date: '2022-01-03T11:30:43.310Z',
+			user_type: 'user',
+			user_upload_count: 4,
+		};
 		setLoaded(true);
 	}, []);
 

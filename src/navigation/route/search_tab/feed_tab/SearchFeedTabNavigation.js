@@ -7,6 +7,7 @@ import TopTabNavigation_Border_Type2 from 'Root/component/organism_ksw/TopTabNav
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import Profile from 'Root/component/templete/Profile';
 import MeatBallHeader from 'Root/navigation/header/MeatBallHeader';
+import {Dimensions} from 'react-native';
 
 const SearchFeedTabNav = createMaterialTopTabNavigator();
 
@@ -37,27 +38,32 @@ export default SearchFeedTabNavigation = props => {
 
 	return (
 		<SearchFeedTabNav.Navigator
-			initialRouteName={navName[props.defaultIndex]}
-			tabBar={({state, descriptors, navigation, position}) => {
-				// console.log('navigation', navigation);
-				const onSelectTab = pressedTab => {
-					// console.log('press', state.routes[pressedTab].name);
-					navigation.navigate({
-						//현재 Tab state가 가지는 routes들 중 pressedTab 인덱스
-						name: state.routes[pressedTab].name,
-						merge: true,
-					});
-				};
-				return (
-					<TopTabNavigation_Border_Type2
-						items={menuItem}
-						onSelect={onSelectTab} // 현재 클릭된 상태인 tab (pressedTab에는 클릭된 index가 담겨져있음)
-						select={props.defaultIndex || 0} // gesture Handler(손가락으로 swipe)로 tab을 움직였을 시 자식까지 state를 연동시키기 위한 props
-						fontSize={24}
-						value={currentScreen}
-					/>
-				);
-			}}>
+			// initialRouteName={navName[props.defaultIndex]}
+			initialLayout={{width: Dimensions.get('window').width}}
+			optimizationsEnabled
+			// lazy={true}
+			screenOptions={{lazy: true}}
+			// tabBar={({state, descriptors, navigation, position}) => {
+			// 	// console.log('navigation', navigation);
+			// 	const onSelectTab = pressedTab => {
+			// 		// console.log('press', state.routes[pressedTab].name);
+			// 		navigation.navigate({
+			// 			//현재 Tab state가 가지는 routes들 중 pressedTab 인덱스
+			// 			name: state.routes[pressedTab].name,
+			// 			merge: true,
+			// 		});
+			// 	};
+			// 	return (
+			// 		<TopTabNavigation_Border_Type2
+			// 			items={menuItem}
+			// 			onSelect={onSelectTab} // 현재 클릭된 상태인 tab (pressedTab에는 클릭된 index가 담겨져있음)
+			// 			select={props.defaultIndex || 0} // gesture Handler(손가락으로 swipe)로 tab을 움직였을 시 자식까지 state를 연동시키기 위한 props
+			// 			fontSize={24}
+			// 			value={currentScreen}
+			// 		/>
+			// 	);
+			// }}
+		>
 			{/* 게시글 */}
 			<SearchFeedTabNav.Screen name="SearchFeed">{props => <SearchFeed {...props} />}</SearchFeedTabNav.Screen>
 			{/* 계정 */}

@@ -164,7 +164,7 @@ export default AnimalNeedHelp = props => {
 							</View>
 							{/* 보호요청 관련 Details */}
 							<View style={[animalNeedHelp.lowerMenu_helpDetail]}>
-								<Text style={[txt.noto24]}>등록일 : {getParsedDate()}</Text>
+								<Text style={[txt.noto24]}>등&nbsp; 록&nbsp; 일 : {getParsedDate()}</Text>
 								<Text style={[txt.noto24]}>
 									{/* 보호장소 : {data.protect_request_writer_id != null ? data.protect_request_writer_id.shelter_name : data.shelter_name} */}
 									보호장소 : {data.shelter_name ? data.shelter_name : data.protect_request_writer_id.shelter_name}

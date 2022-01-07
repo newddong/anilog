@@ -134,7 +134,7 @@ const Input24 = React.forwardRef((props, ref) => {
 					onChangeText={onChange}
 					onFocus={onFocus}
 					onBlur={onBlur}
-					// value={props.value}
+					value={props.value}
 					placeholder={props.placeholder}
 					placeholderTextColor={GRAY10}
 					defaultValue={props.defaultValue || null}

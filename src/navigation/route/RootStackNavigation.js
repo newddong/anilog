@@ -66,6 +66,7 @@ import RequestLogin from 'Root/component/templete/RequestLogin';
 import RadioSelectModal from 'Root/component/molecules/RadioSelectModal';
 import AddVolunteers from 'Root/component/templete/AddVolunteers';
 import Calendar_Multiple from 'Root/component/molecules/Calendar_Multiple';
+import InfoModal from 'Root/component/molecules/InfoModal';
 // import Camera from 'Root/component/templete/Camera';
 const RootStack = createStackNavigator();
 
@@ -147,6 +148,12 @@ export default RootStackNavigation = () => {
 		popIn(<RadioSelectModal items={items} selectMsg={selectMsg} exitMsg={exitMsg} onSelect={onSelect} onExit={onExit} />);
 		!isPop && setPop(true);
 	};
+
+	Modal.popInfoModal = () => {
+		popIn(<InfoModal />);
+		!isPop && setPop(true);
+	};
+
 	// const openCalendar = () => {
 	// 	console.log('openCale')
 	// 	Modal.popCalendar(showCalendar, closeCalendar, date => onDateChange(date))

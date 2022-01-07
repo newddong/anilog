@@ -22,7 +22,7 @@ export default TopTabNavigation_Filled = props => {
 			<TouchableOpacity
 				onPress={() => onSelect(index)}
 				style={{
-					width: 250 * DP,
+					width: (750 * DP) / 2,
 					height: 70 * DP,
 					borderTopLeftRadius: 30 * DP,
 					borderTopRightRadius: 30 * DP,

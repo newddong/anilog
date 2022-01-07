@@ -5,6 +5,7 @@ import SearchProtectRequest from 'Templete/SearchProtectRequest';
 import Temp from 'Navigation/route/main_tab/community_stack/temp';
 import TopTabNavigation_Filled from 'Root/component/organism_ksw/TopTabNavigation_Filled';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
+import {Dimensions} from 'react-native';
 
 const SearchTabNav = createMaterialTopTabNavigator();
 
@@ -14,8 +15,8 @@ export default SearchTabNavigation = props => {
 	const prevNav = props.route.params.prevNav;
 	const childTab = props.route.params.child;
 	const [searchInput, setSearchInput] = React.useState();
-	const tabList = ['피드', '커뮤니티', '보호요청'];
-	const navName = ['FEED', 'COMMUNITY', 'SearchProtectRequest'];
+	const tabList = ['피드', '커뮤니티'];
+	const navName = ['FEED', 'COMMUNITY'];
 	//SearchHeader에서 작성한 검색어와 검색클릭이 행해지면 SearchInput에 값이 들어감
 
 	const [currentScreen, setCurrentScreen] = React.useState(0); //현재 보고 있는 화면 State
@@ -53,7 +54,10 @@ export default SearchTabNavigation = props => {
 
 	return (
 		<SearchTabNav.Navigator
+			screenOptions={{lazy: true}}
+			initialLayout={{width: Dimensions.get('window').width}}
 			initialRouteName={'FEED'}
+			optimizationsEnabled={true}
 			tabBar={({state, descriptors, navigation, position}) => {
 				// console.log('state', state);
 				const onSelectTab = pressedTab => {
@@ -88,7 +92,7 @@ export default SearchTabNavigation = props => {
 				)}
 			</SearchTabNav.Screen>
 			<SearchTabNav.Screen name="COMMUNITY" component={Temp} />
-			<SearchTabNav.Screen name="SearchProtectRequest">{props => <SearchProtectRequest {...props} input={searchInput} />}</SearchTabNav.Screen>
+			{/* <SearchTabNav.Screen name="SearchProtectRequest">{props => <SearchProtectRequest {...props} input={searchInput} />}</SearchTabNav.Screen> */}
 		</SearchTabNav.Navigator>
 	);
 };

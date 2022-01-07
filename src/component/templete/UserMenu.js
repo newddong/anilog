@@ -131,22 +131,23 @@ export default UserMenu = props => {
 	const menuClick = menuItem => {
 		switch (menuItem) {
 			case '친구':
-				alert('업데이트 예정입니다');
+				Modal.popInfoModal();
 				// navigation.push('SaveFavorite'); // FollowObject
 				break;
 			case '피드 게시글':
-				alert('업데이트 예정입니다');
+				// alert('업데이트 예정입니다');
+				Modal.popInfoModal();
 				// navigation.push('FavoriteFeeds', {token: data}); // FavoriteFeedObject
 				break;
 			case '보호 요청':
 				// navigation.push('UserSaveAnimalRequest'); // BookmarkProtectRequestObject
-				alert('업데이트 예정입니다');
+				Modal.popInfoModal();
 				break;
 			case '내 게시글':
 				navigation.push('UserFeeds', {token: data});
 				break;
 			case '나를 태그한 글':
-				alert('업데이트 예정입니다');
+				Modal.popInfoModal();
 				// navigation.push('TagMeFeeds', {token: data});
 				break;
 			case '신청 내역':
@@ -156,19 +157,19 @@ export default UserMenu = props => {
 				navigation.push('AnimalProtectList', data._id); //ProtectAnimalObject
 				break;
 			case '쪽지함':
-				alert('업데이트 예정입니다');
+				Modal.popInfoModal();
 				break;
 			case '정보/문의':
-				alert('업데이트 예정입니다');
+				Modal.popInfoModal();
 				break;
 			case '커뮤니티':
-				alert('업데이트 예정입니다');
+				Modal.popInfoModal();
 				break;
 			case '계정':
-				alert('업데이트 예정입니다');
+				Modal.popInfoModal();
 				break;
 			case '알림':
-				alert('업데이트 예정입니다');
+				Modal.popInfoModal();
 				break;
 			case '로그아웃':
 				logout();

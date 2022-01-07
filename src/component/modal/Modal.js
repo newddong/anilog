@@ -114,6 +114,8 @@ export default Modal = {
 	 */
 	popPetSelect: (primaryItem, secondaryItem, onOk, okButtonnMsg) => {},
 
+	popInfoModal: () => {},
+
 	alert: () => {},
 
 	closeKeboard: () => {},

@@ -122,7 +122,7 @@ import profiledefault1 from './profiledefault1';
 import profiledefault2 from './profiledefault2';
 import profiledefault3 from './profiledefault3';
 import ready_for_updating from './ready_for_updating';
-
+import updateImg from './updateImg';
 import DP from 'Screens/dp';
 import {APRI10, YELL20, GRAY20, GRAY30, GRAY10, BLACK} from 'Root/config/color';
 
@@ -146,6 +146,7 @@ const size92 = {width: 92 * DP, height: 92 * DP};
 const size94 = {width: 94 * DP, height: 94 * DP};
 const size110 = {width: 110 * DP, height: 110 * DP};
 const size126x92 = {width: 126 * DP, height: 92 * DP};
+const size206 = {width: 206 * DP, height: 206 * DP};
 const defaultProfileImg = {width: 294 * DP, height: 294 * DP};
 const profileDefaultImg_194 = {width: 194 * DP, height: 194 * DP};
 
@@ -157,6 +158,7 @@ const makeSvg = (component, style, color) => {
 	//return props => React.createElement(component, {...style, ...props, fill: color});
 };
 
+export const UpdateImg = makeSvg(updateImg, size206);
 export const ProfileDefaultImg1 = makeSvg(profiledefault1, defaultProfileImg, '');
 export const ProfileDefaultImg2 = makeSvg(profiledefault2, defaultProfileImg, '');
 export const ProfileDefaultImg3 = makeSvg(profiledefault3, defaultProfileImg, '');
