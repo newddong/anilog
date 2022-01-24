@@ -1,5 +1,5 @@
-import React from 'react';
-import {LogBox, ScrollView, Image, ActivityIndicator, TouchableOpacity, FlatList} from 'react-native';
+import React, {useRef} from 'react';
+import {LogBox, ScrollView, Image, ActivityIndicator, TouchableOpacity, FlatList, TouchableWithoutFeedback, Share} from 'react-native';
 import {Text, View} from 'react-native';
 import {login_style, missingAnimalDetail, reportDetail, temp_style} from './style_templete';
 import FeedContent from '../organism/FeedContent';
@@ -14,6 +14,7 @@ import {create} from 'react-test-renderer';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {txt} from 'Root/config/textstyle';
 import {styles} from '../molecules/NormalDropDown';
+import ViewShot, {captureScreen} from 'react-native-view-shot';
 
 export default MissingAnimalDetail = props => {
 	const navigation = useNavigation();
@@ -30,7 +31,7 @@ export default MissingAnimalDetail = props => {
 	const [replyPressed, setReplyPressed] = React.useState(false);
 	const debug = true;
 	const [loading, setLoading] = React.useState(true); //로딩상태
-
+	const viewShotRef = useRef();
 	React.useEffect(() => {
 		setPhoto(props.route.params);
 	}, [props.route.params]);
@@ -220,6 +221,10 @@ export default MissingAnimalDetail = props => {
 		console.log(formatNum, 'formatNum');
 		return formatNum;
 	};
+	async function captureScreenShot() {
+		const imageURI = await viewShotRef.current.capture();
+		Share.share({title: 'Image', url: imageURI});
+	}
 
 	//-------------------- 강아지를 찾습니다 컴포넌트 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	// 포스터 동물 사진2개 View 컴포넌트
@@ -313,23 +318,30 @@ export default MissingAnimalDetail = props => {
 				data={[{}]}
 				ListHeaderComponent={
 					<View style={{alignItems: 'center'}}>
-						<View style={[missingAnimalDetail.poster]}>
-							<View style={missingAnimalDetail.title}>
-								<Text style={missingAnimalDetail.titleText}>강아지를 찾습니다</Text>
-							</View>
-							{/* <View style={[temp_style.img_square_750, reportDetail.img_square_750]}> */}
-							{/* 제보사진 */}
-							{/* <Image
+						<ViewShot ref={viewShotRef} options={{format: 'jpg', quality: 1.0}}>
+							<View style={[missingAnimalDetail.poster]}>
+								<View style={missingAnimalDetail.title}>
+									<Text style={missingAnimalDetail.titleText}>강아지를 찾습니다</Text>
+								</View>
+								{/* <View style={[temp_style.img_square_750, reportDetail.img_square_750]}> */}
+								{/* 제보사진 */}
+								{/* <Image
 								source={{
 									uri: data.feed_thumbnail,
 								}}
 								style={[temp_style.img_square_750]}
 							/> */}
-							<MissingAnialPicture />
-							<MissingAnimalText />
-							<MissingAnimalPhone />
-							<Text style={missingAnimalDetail.missingText18}>반려동물 커뮤니티 애니로그</Text>
-						</View>
+								<MissingAnialPicture />
+								<MissingAnimalText />
+								<MissingAnimalPhone />
+								<Text style={missingAnimalDetail.missingText18}>반려동물 커뮤니티 애니로그</Text>
+								<TouchableWithoutFeedback onPress={captureScreenShot}>
+									<View style={missingAnimalDetail.floatingBtnMissingReport}>
+										<Text style={[txt.noto20, {color: 'red'}]}>전단지 저장</Text>
+									</View>
+								</TouchableWithoutFeedback>
+							</View>
+						</ViewShot>
 						<View style={[temp_style.feedContent]}>
 							{/* DB에서 가져오는 제보 피드글 데이터를 FeedContent에 넘겨준다. */}
 							<FeedContent data={data} />
