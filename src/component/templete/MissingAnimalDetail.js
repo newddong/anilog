@@ -257,14 +257,16 @@ export default MissingAnimalDetail = props => {
 		var newYearText = splitedNewText[0] + '년 ';
 		var newDayText = splitedNewText[1] + '월 ' + '월 ' + splitedNewText[2].toString().substring(0, 2) + '일';
 		if (data.missing_animal_sex == 'male') {
-			animalSex = '남';
+			animalSex = '/ 남';
+		} else if (data.missing_animal_sex == 'female') {
+			animalSex = '/ 여';
 		} else {
-			animalSex = '여';
+			animalSex = '';
 		}
 		return (
 			<View style={missingAnimalDetail.textBox}>
 				<Text style={missingAnimalDetail.missingText38}>
-					{data.missing_animal_species} / {data.missing_animal_species_detail} / {data.missing_animal_age}살 / {animalSex}
+					{data.missing_animal_species} / {data.missing_animal_species_detail} / {data.missing_animal_age}살 {animalSex}
 				</Text>
 				<View style={{flexDirection: 'row', alignItems: 'center'}}>
 					<Text style={missingAnimalDetail.missingBlackText32}>{newYearText}</Text>
@@ -279,7 +281,7 @@ export default MissingAnimalDetail = props => {
 
 				{/* <Text numberOfLines={1}>___________________________________</Text> */}
 
-				<Text style={missingAnimalDetail.missingText22}>*{data.missing_animal_features}</Text>
+				<Text style={missingAnimalDetail.missingText22}>ㆍ{data.missing_animal_features}</Text>
 			</View>
 		);
 	};
@@ -318,30 +320,33 @@ export default MissingAnimalDetail = props => {
 				data={[{}]}
 				ListHeaderComponent={
 					<View style={{alignItems: 'center'}}>
-						<ViewShot ref={viewShotRef} options={{format: 'jpg', quality: 1.0}}>
-							<View style={[missingAnimalDetail.poster]}>
-								<View style={missingAnimalDetail.title}>
-									<Text style={missingAnimalDetail.titleText}>강아지를 찾습니다</Text>
-								</View>
-								{/* <View style={[temp_style.img_square_750, reportDetail.img_square_750]}> */}
-								{/* 제보사진 */}
-								{/* <Image
+						<View>
+							<ViewShot ref={viewShotRef} options={{format: 'jpg', quality: 1.0}}>
+								<View style={[missingAnimalDetail.poster]}>
+									<View style={missingAnimalDetail.title}>
+										<Text style={missingAnimalDetail.titleText}>강아지를 찾습니다</Text>
+									</View>
+									{/* <View style={[temp_style.img_square_750, reportDetail.img_square_750]}> */}
+									{/* 제보사진 */}
+									{/* <Image
 								source={{
 									uri: data.feed_thumbnail,
 								}}
 								style={[temp_style.img_square_750]}
 							/> */}
-								<MissingAnialPicture />
-								<MissingAnimalText />
-								<MissingAnimalPhone />
-								<Text style={missingAnimalDetail.missingText18}>반려동물 커뮤니티 애니로그</Text>
-								<TouchableWithoutFeedback onPress={captureScreenShot}>
-									<View style={missingAnimalDetail.floatingBtnMissingReport}>
-										<Text style={[txt.noto20, {color: 'red'}]}>전단지 저장</Text>
-									</View>
-								</TouchableWithoutFeedback>
-							</View>
-						</ViewShot>
+									<MissingAnialPicture />
+									<MissingAnimalText />
+									<MissingAnimalPhone />
+									<Text style={missingAnimalDetail.missingText18}>반려동물 커뮤니티 애니로그</Text>
+								</View>
+							</ViewShot>
+							<TouchableWithoutFeedback onPress={captureScreenShot}>
+								<View style={missingAnimalDetail.floatingBtnMissingReport}>
+									<Text style={[txt.noto20, {color: 'red'}]}>전단지 저장</Text>
+								</View>
+							</TouchableWithoutFeedback>
+						</View>
+
 						<View style={[temp_style.feedContent]}>
 							{/* DB에서 가져오는 제보 피드글 데이터를 FeedContent에 넘겨준다. */}
 							<FeedContent data={data} />
