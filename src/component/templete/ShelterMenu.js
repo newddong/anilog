@@ -241,7 +241,8 @@ export default ShelterMenu = ({route}) => {
 						</View>
 					</View>
 					{/* SocialInfo */}
-					<View style={[temp_style.socialInfoB, shelterMenu.socialInfoB_4Items]}>
+					{/* <View style={[temp_style.socialInfoB, shelterMenu.socialInfoB_4Items]}> */}
+					<View style={[temp_style.socialInfoB]}>
 						<SocialInfoB data={data} />
 					</View>
 

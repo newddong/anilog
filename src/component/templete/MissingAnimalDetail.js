@@ -1,5 +1,17 @@
 import React, {useRef} from 'react';
-import {LogBox, ScrollView, Image, ActivityIndicator, TouchableOpacity, FlatList, TouchableWithoutFeedback, Share} from 'react-native';
+import {
+	LogBox,
+	ScrollView,
+	Image,
+	ActivityIndicator,
+	TouchableOpacity,
+	FlatList,
+	TouchableWithoutFeedback,
+	Share,
+	RefreshControlBase,
+	PermissionsAndroid,
+	Alert,
+} from 'react-native';
 import {Text, View} from 'react-native';
 import {login_style, missingAnimalDetail, reportDetail, temp_style} from './style_templete';
 import FeedContent from '../organism/FeedContent';
@@ -15,6 +27,8 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import {txt} from 'Root/config/textstyle';
 import {styles} from '../molecules/NormalDropDown';
 import ViewShot, {captureScreen} from 'react-native-view-shot';
+import CameraRoll from '@react-native-community/cameraroll';
+import Modal from '../modal/Modal';
 
 export default MissingAnimalDetail = props => {
 	const navigation = useNavigation();
@@ -56,6 +70,7 @@ export default MissingAnimalDetail = props => {
 				// debug && console.log(`MissingAnimalDetail data:${JSON.stringify(data.msg)}`);
 				console.log('FeedDetailByID', data.msg);
 				setData(data.msg);
+				console.log('api data', data.msg);
 			},
 			errcallback => {
 				console.log(`errcallback:${JSON.stringify(errcallback)}`);
@@ -222,31 +237,67 @@ export default MissingAnimalDetail = props => {
 		return formatNum;
 	};
 	async function captureScreenShot() {
-		const imageURI = await viewShotRef.current.capture();
-		Share.share({title: 'Image', url: imageURI});
+		try {
+			const imageURI = await viewShotRef.current.capture();
+			if (Platform.OS === 'android') {
+				const granted = await getPermissionAndroid();
+				if (!granted) {
+					return;
+				}
+			}
+			const image = CameraRoll.save(imageURI, 'photo');
+			if (image) {
+				// Alert.alert('', 'Image saved successfully.', [{text: 'OK', onPress: () => {}}], {cancelable: false});
+				Modal.popOneBtn('이미지 저장되었습니다.', '확인', Modal.close);
+			}
+			// Share.share({title: 'Image', url: imageURI});
+		} catch (error) {
+			console.log('error', error);
+		}
 	}
 
+	// get permission on android
+	const getPermissionAndroid = async () => {
+		try {
+			const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE, {
+				title: 'Image Download Permission',
+				message: 'Your permission is required to save images to your device',
+				buttonNegative: 'Cancel',
+				buttonPositive: 'OK',
+			});
+			if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+				return true;
+			}
+			Alert.alert('', '전단지를 저장하기 위해서는 권한이 필요합니다.', [{text: 'OK', onPress: () => {}}], {cancelable: false});
+		} catch (err) {
+			// handle error as you please
+			console.log('err', err);
+		}
+	};
 	//-------------------- 강아지를 찾습니다 컴포넌트 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	// 포스터 동물 사진2개 View 컴포넌트
 	const MissingAnialPicture = () => {
 		console.log('data.feed_media length', data.feed_medias);
-		// if (data.feed_thumbnail.length == 1) {
-		return (
-			<View style={missingAnimalDetail.picture}>
-				<Image
-					source={{
-						uri: data.feed_medias[0].media_uri,
-					}}
-					style={[missingAnimalDetail.img_squre_284]}
-				/>
-				<Image
-					source={{
-						uri: data.feed_medias[1].media_uri,
-					}}
-					style={[missingAnimalDetail.img_squre_284]}
-				/>
-			</View>
-		);
+		if (data.feed_thumbnail.length < 2) {
+			return <View></View>;
+		} else {
+			return (
+				<View style={missingAnimalDetail.picture}>
+					<Image
+						source={{
+							uri: data.feed_medias[0].media_uri,
+						}}
+						style={[missingAnimalDetail.img_squre_284]}
+					/>
+					<Image
+						source={{
+							uri: data.feed_medias[1].media_uri,
+						}}
+						style={[missingAnimalDetail.img_squre_284]}
+					/>
+				</View>
+			);
+		}
 	};
 	//포스터 동물 정보 View 컴포넌트
 	const MissingAnimalText = () => {
@@ -340,9 +391,10 @@ export default MissingAnimalDetail = props => {
 									<Text style={missingAnimalDetail.missingText18}>반려동물 커뮤니티 애니로그</Text>
 								</View>
 							</ViewShot>
+							{/* <TouchableWithoutFeedback onPress={captureScreenShot}> */}
 							<TouchableWithoutFeedback onPress={captureScreenShot}>
 								<View style={missingAnimalDetail.floatingBtnMissingReport}>
-									<Text style={[txt.noto20, {color: 'red'}]}>전단지 저장</Text>
+									<Text style={[txt.noto20, {color: 'red'}, {fontWeight: 'bold'}]}>전단지 저장</Text>
 								</View>
 							</TouchableWithoutFeedback>
 						</View>

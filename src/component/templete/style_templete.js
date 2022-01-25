@@ -3273,6 +3273,7 @@ export const missingAnimalDetail = StyleSheet.create({
 		height: 872 * DP,
 		marginTop: 33 * DP,
 		backgroundColor: '#FFFFFF',
+		// backgroundColor: 'lightblue',
 		...Platform.select({
 			ios: {
 				borderColor: 'black',
@@ -3329,10 +3330,9 @@ export const missingAnimalDetail = StyleSheet.create({
 	},
 	textBox: {
 		marginTop: 10 * DP,
-		height: 300 * DP,
+		// height: 300 * DP, //유동적인 텍스트 크기에 대해서 좌우 간격이 좁아짐에 따라 늘어나는 height에 관한 처리 필요
 		width: 578 * DP,
 		alignItems: 'center',
-		// backgroundColor: 'lightblue',
 	},
 	phoneNumberBox: {
 		width: 618 * DP,
@@ -3347,6 +3347,7 @@ export const missingAnimalDetail = StyleSheet.create({
 	},
 	missingText18: {
 		fontSize: 18 * DP,
+		color: '#191919',
 	},
 	missingText38: {
 		fontSize: 38 * DP,
@@ -3356,6 +3357,7 @@ export const missingAnimalDetail = StyleSheet.create({
 	missingBlackText32: {
 		fontSize: 32 * DP,
 		fontWeight: 'bold',
+		color: '#191919',
 	},
 	missingRedText32: {
 		fontSize: 32 * DP,
@@ -3365,10 +3367,12 @@ export const missingAnimalDetail = StyleSheet.create({
 	missingText26: {
 		fontSize: 26 * DP,
 		fontWeight: 'bold',
+		color: '#191919',
 	},
 	missingText22: {
 		paddingTop: 10 * DP,
 		fontSize: 22 * DP,
+		color: '#191919',
 	},
 	missingTextYellow50: {
 		fontSize: 50 * DP,
@@ -3387,6 +3391,7 @@ export const missingAnimalDetail = StyleSheet.create({
 		borderBottomWidth: 2 * DP,
 		width: 578 * DP,
 		marginTop: 10 * DP,
+		color: '#191919',
 	},
 	floatingBtnMissingReport: {
 		width: 118 * DP,
@@ -3404,6 +3409,7 @@ export const missingAnimalDetail = StyleSheet.create({
 		position: 'absolute',
 		opacity: 0.8,
 	},
+
 	commentList: {},
 });
 
