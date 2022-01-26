@@ -32,6 +32,7 @@ import Modal from '../modal/Modal';
 
 export default MissingAnimalDetail = props => {
 	const navigation = useNavigation();
+
 	React.useEffect(() => {
 		LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 	}, []);
@@ -45,6 +46,7 @@ export default MissingAnimalDetail = props => {
 	const [replyPressed, setReplyPressed] = React.useState(false);
 	const debug = true;
 	const [loading, setLoading] = React.useState(true); //로딩상태
+	const [animalSpecies, setAnimalSpecies] = React.useState(''); //포스터 타이틀 동물 종류
 	const viewShotRef = useRef();
 	React.useEffect(() => {
 		setPhoto(props.route.params);
@@ -70,7 +72,8 @@ export default MissingAnimalDetail = props => {
 				// debug && console.log(`MissingAnimalDetail data:${JSON.stringify(data.msg)}`);
 				console.log('FeedDetailByID', data.msg);
 				setData(data.msg);
-				console.log('api data', data.msg);
+
+				console.log('animalSepceissss', animalSpecies);
 			},
 			errcallback => {
 				console.log(`errcallback:${JSON.stringify(errcallback)}`);
@@ -351,23 +354,28 @@ export default MissingAnimalDetail = props => {
 	};
 	// 포스터 제목 컴포넌트
 	const MissingAnimalTitle = () => {
-		var animalSpecies = '';
-		console.log('반려동물 종륭ㅇㅇㅇ', data.missing_animal_species);
 		switch (data.missing_animal_species) {
 			case '개':
-				animalSpecies = '강아지를';
+				setAnimalSpecies('강아지를');
+				break;
 			case '고양이':
-				animalSpecies = '고양이를';
+				setAnimalSpecies('고양이를');
+				break;
 			case '기타 포유류':
-				animalSpecies = '반려동물을';
+				setAnimalSpecies('반려동물을');
+				break;
 			case '조류':
-				animalSpecies = data.missing_animal_species_detail.toString() + '를';
+				setAnimalSpecies(data.missing_animal_species_detail.toString() + '를');
+				break;
 			case '수중생물':
-				animalSpecies = '물고기를';
+				setAnimalSpecies('물고기를');
+				break;
 			case '기타':
-				animalSpecies = data.missing_animal_species_detail.toString() + '를';
-			// default:
-			// animalSpecies = '반려동물을';
+				setAnimalSpecies(data.missing_animal_species_detail.toString() + '를');
+				break;
+			default:
+				setAnimalSpecies('반려동물을');
+				break;
 		}
 		return <Text style={missingAnimalDetail.titleText}>{animalSpecies} 찾습니다</Text>;
 	};
@@ -399,6 +407,7 @@ export default MissingAnimalDetail = props => {
 									<View style={missingAnimalDetail.title}>
 										{/* <Text style={missingAnimalDetail.titleText}>강아지를 찾습니다</Text> */}
 										<MissingAnimalTitle />
+										{/* <Text style={missingAnimalDetail.titleText}>{animalSpecies} 찾습니다</Text>; */}
 									</View>
 									{/* <View style={[temp_style.img_square_750, reportDetail.img_square_750]}> */}
 									{/* 제보사진 */}
