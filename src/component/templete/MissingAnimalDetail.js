@@ -349,6 +349,28 @@ export default MissingAnimalDetail = props => {
 			</View>
 		);
 	};
+	// 포스터 제목 컴포넌트
+	const MissingAnimalTitle = () => {
+		var animalSpecies = '';
+		console.log('반려동물 종륭ㅇㅇㅇ', data.missing_animal_species);
+		switch (data.missing_animal_species) {
+			case '개':
+				animalSpecies = '강아지를';
+			case '고양이':
+				animalSpecies = '고양이를';
+			case '기타 포유류':
+				animalSpecies = '반려동물을';
+			case '조류':
+				animalSpecies = data.missing_animal_species_detail.toString() + '를';
+			case '수중생물':
+				animalSpecies = '물고기를';
+			case '기타':
+				animalSpecies = data.missing_animal_species_detail.toString() + '를';
+			// default:
+			// animalSpecies = '반려동물을';
+		}
+		return <Text style={missingAnimalDetail.titleText}>{animalSpecies} 찾습니다</Text>;
+	};
 
 	if (loading) {
 		return (
@@ -375,7 +397,8 @@ export default MissingAnimalDetail = props => {
 							<ViewShot ref={viewShotRef} options={{format: 'jpg', quality: 1.0}}>
 								<View style={[missingAnimalDetail.poster]}>
 									<View style={missingAnimalDetail.title}>
-										<Text style={missingAnimalDetail.titleText}>강아지를 찾습니다</Text>
+										{/* <Text style={missingAnimalDetail.titleText}>강아지를 찾습니다</Text> */}
+										<MissingAnimalTitle />
 									</View>
 									{/* <View style={[temp_style.img_square_750, reportDetail.img_square_750]}> */}
 									{/* 제보사진 */}

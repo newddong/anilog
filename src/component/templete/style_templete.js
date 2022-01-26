@@ -3271,7 +3271,7 @@ export const missingAnimalDetail = StyleSheet.create({
 	poster: {
 		width: 618 * DP,
 		height: 872 * DP,
-		marginTop: 33 * DP,
+		// marginTop: 33 * DP,
 		backgroundColor: '#FFFFFF',
 		// backgroundColor: 'lightblue',
 		...Platform.select({
@@ -3330,7 +3330,7 @@ export const missingAnimalDetail = StyleSheet.create({
 	},
 	textBox: {
 		marginTop: 10 * DP,
-		// height: 300 * DP, //유동적인 텍스트 크기에 대해서 좌우 간격이 좁아짐에 따라 늘어나는 height에 관한 처리 필요
+		height: 300 * DP, //유동적인 텍스트 크기에 대해서 좌우 간격이 좁아짐에 따라 늘어나는 height에 관한 처리 필요
 		width: 578 * DP,
 		alignItems: 'center',
 	},
