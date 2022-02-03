@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {
 	LogBox,
 	ScrollView,
@@ -29,6 +29,7 @@ import {styles} from '../molecules/NormalDropDown';
 import ViewShot, {captureScreen} from 'react-native-view-shot';
 import CameraRoll from '@react-native-community/cameraroll';
 import Modal from '../modal/Modal';
+import MissingReportInfo from '../organism/MissingReportInfo';
 
 export default MissingAnimalDetail = props => {
 	const navigation = useNavigation();
@@ -251,7 +252,7 @@ export default MissingAnimalDetail = props => {
 			const image = CameraRoll.save(imageURI, 'photo');
 			if (image) {
 				// Alert.alert('', 'Image saved successfully.', [{text: 'OK', onPress: () => {}}], {cancelable: false});
-				Modal.popOneBtn('이미지 저장되었습니다.', '확인', Modal.close);
+				Modal.popOneBtn('전단지가 저장되었습니다.', '확인', Modal.close);
 			}
 			// Share.share({title: 'Image', url: imageURI});
 		} catch (error) {
@@ -279,7 +280,7 @@ export default MissingAnimalDetail = props => {
 	};
 	//-------------------- 강아지를 찾습니다 컴포넌트 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	// 포스터 동물 사진2개 View 컴포넌트
-	const MissingAnialPicture = () => {
+	const MissingAnimalPicture = () => {
 		console.log('data.feed_media length', data.feed_medias);
 		if (data.feed_thumbnail.length < 2) {
 			return <View></View>;
@@ -354,29 +355,32 @@ export default MissingAnimalDetail = props => {
 	};
 	// 포스터 제목 컴포넌트
 	const MissingAnimalTitle = () => {
-		switch (data.missing_animal_species) {
-			case '개':
-				setAnimalSpecies('강아지를');
-				break;
-			case '고양이':
-				setAnimalSpecies('고양이를');
-				break;
-			case '기타 포유류':
-				setAnimalSpecies('반려동물을');
-				break;
-			case '조류':
-				setAnimalSpecies(data.missing_animal_species_detail.toString() + '를');
-				break;
-			case '수중생물':
-				setAnimalSpecies('물고기를');
-				break;
-			case '기타':
-				setAnimalSpecies(data.missing_animal_species_detail.toString() + '를');
-				break;
-			default:
-				setAnimalSpecies('반려동물을');
-				break;
-		}
+		useEffect(() => {
+			switch (data.missing_animal_species) {
+				case '개':
+					setAnimalSpecies('강아지를');
+					break;
+				case '고양이':
+					setAnimalSpecies('고양이를');
+					break;
+				case '기타 포유류':
+					setAnimalSpecies('반려동물을');
+					break;
+				case '조류':
+					setAnimalSpecies(data.missing_animal_species_detail.toString() + '를');
+					break;
+				case '수중생물':
+					setAnimalSpecies('물고기를');
+					break;
+				case '기타':
+					setAnimalSpecies(data.missing_animal_species_detail.toString() + '를');
+					break;
+				default:
+					setAnimalSpecies('반려동물을');
+					break;
+			}
+		}, []);
+
 		return <Text style={missingAnimalDetail.titleText}>{animalSpecies} 찾습니다</Text>;
 	};
 
@@ -405,19 +409,15 @@ export default MissingAnimalDetail = props => {
 							<ViewShot ref={viewShotRef} options={{format: 'jpg', quality: 1.0}}>
 								<View style={[missingAnimalDetail.poster]}>
 									<View style={missingAnimalDetail.title}>
-										{/* <Text style={missingAnimalDetail.titleText}>강아지를 찾습니다</Text> */}
 										<MissingAnimalTitle />
-										{/* <Text style={missingAnimalDetail.titleText}>{animalSpecies} 찾습니다</Text>; */}
 									</View>
-									{/* <View style={[temp_style.img_square_750, reportDetail.img_square_750]}> */}
-									{/* 제보사진 */}
 									{/* <Image
 								source={{
 									uri: data.feed_thumbnail,
 								}}
 								style={[temp_style.img_square_750]}
 							/> */}
-									<MissingAnialPicture />
+									<MissingAnimalPicture />
 									<MissingAnimalText />
 									<MissingAnimalPhone />
 									<Text style={missingAnimalDetail.missingText18}>반려동물 커뮤니티 애니로그</Text>
@@ -432,6 +432,7 @@ export default MissingAnimalDetail = props => {
 						</View>
 
 						<View style={[temp_style.feedContent]}>
+							<MissingReportInfo data={data} />
 							{/* DB에서 가져오는 제보 피드글 데이터를 FeedContent에 넘겨준다. */}
 							<FeedContent data={data} />
 						</View>
