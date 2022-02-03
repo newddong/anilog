@@ -3335,7 +3335,7 @@ export const missingAnimalDetail = StyleSheet.create({
 		alignItems: 'center',
 	},
 	phoneNumberBox: {
-		width: 618 * DP,
+		width: 578 * DP,
 		height: 106 * DP,
 		backgroundColor: '#FF0000',
 		alignItems: 'center',
