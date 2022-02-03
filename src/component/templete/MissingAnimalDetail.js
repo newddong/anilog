@@ -283,8 +283,17 @@ export default MissingAnimalDetail = props => {
 	// 포스터 동물 사진2개 View 컴포넌트
 	const MissingAnimalPicture = () => {
 		console.log('data.feed_media length', data.feed_medias);
-		if (data.feed_thumbnail.length < 2) {
-			return <View></View>;
+		if (data.feed_medias.length < 2) {
+			return (
+				<View style={missingAnimalDetail.picture}>
+					<Image
+						source={{
+							uri: data.feed_medias[0].media_uri,
+						}}
+						style={[missingAnimalDetail.img_squre_284]}
+					/>
+				</View>
+			);
 		} else {
 			return (
 				<View style={missingAnimalDetail.picture}>
