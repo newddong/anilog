@@ -30,6 +30,7 @@ import ViewShot, {captureScreen} from 'react-native-view-shot';
 import CameraRoll from '@react-native-community/cameraroll';
 import Modal from '../modal/Modal';
 import MissingReportInfo from '../organism/MissingReportInfo';
+import {PosterSave} from '../atom/icon';
 
 export default MissingAnimalDetail = props => {
 	const navigation = useNavigation();
@@ -426,6 +427,7 @@ export default MissingAnimalDetail = props => {
 							{/* <TouchableWithoutFeedback onPress={captureScreenShot}> */}
 							<TouchableWithoutFeedback onPress={captureScreenShot}>
 								<View style={missingAnimalDetail.floatingBtnMissingReport}>
+									<PosterSave />
 									<Text style={[txt.noto20, {color: 'red'}, {fontWeight: 'bold'}]}>전단지 저장</Text>
 								</View>
 							</TouchableWithoutFeedback>
